@@ -18,9 +18,9 @@ namespace SC2_GameTranslater
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SC2_GameTranslater_Window : Window
     {
-        public MainWindow()
+        public SC2_GameTranslater_Window()
         {
             InitializeComponent();
         }
