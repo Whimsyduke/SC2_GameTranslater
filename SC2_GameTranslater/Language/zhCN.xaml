@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:SC2_GameTranslater.Language">
+
+    <!--#region 通用文本-->
+    <sys:String x:Key="LanguageName">简体中文</sys:String>
+    <sys:String x:Key="WindowTitleText">《星际争霸II》游戏翻译器</sys:String>
+    <!--#endregion-->
+
+    <!--#region 界面文本-->
+    <sys:String x:Key="Backstage_Open_Header">开始</sys:String>
+    <sys:String x:Key="RibbonButton_Open_Name">打开</sys:String>
+    <sys:String x:Key="RibbonButton_Save_Name">保存</sys:String>
+    <sys:String x:Key="RibbonButton_Close_Name">关闭</sys:String>
+    <sys:String x:Key="BackstageTabItem_Preference_Header">配置</sys:String>
+    <sys:String x:Key="GroupBox_Language_Header">界面语言：</sys:String>
+    <!--#endregion-->
+</ResourceDictionary>

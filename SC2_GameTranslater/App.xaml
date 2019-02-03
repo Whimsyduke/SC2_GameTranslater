@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:SC2_GameTranslater"
              StartupUri="SC2_GameTranslater_Window.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary x:Name="ApplicatioLanguage">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Generic.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Assets/Assets.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Assets/Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>         
     </Application.Resources>
 </Application>
