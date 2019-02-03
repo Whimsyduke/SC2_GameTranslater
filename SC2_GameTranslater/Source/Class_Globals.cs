@@ -102,6 +102,11 @@ namespace SC2_GameTranslater.Source
 
         public static Dictionary<EnumLanguage, RibbonLocalizationBase> FluentLocalizationMap { set; get; } = new Dictionary<EnumLanguage, RibbonLocalizationBase>();
 
+        /// <summary>
+        /// 上一次打开的目录
+        /// </summary>
+        public static string LastOpenPath { set; get; }
+
         #endregion
 
         #endregion

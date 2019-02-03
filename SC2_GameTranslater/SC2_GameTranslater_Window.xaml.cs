@@ -49,6 +49,7 @@ namespace SC2_GameTranslater
                 Globals.CurrentLanguage = Globals.DictUILanguages[value];
                 ResourceDictionary_WindowLanguage.MergedDictionaries.Add(Globals.CurrentLanguage);
                 RibbonLocalization.Current.Localization = Globals.FluentLocalizationMap[value];
+                Title = Globals.CurrentLanguage["COM_WindowTitleText"].ToString() + " V" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
             get
             {
@@ -76,8 +77,8 @@ namespace SC2_GameTranslater
             Assembly assembly = Assembly.GetExecutingAssembly();
             foreach (EnumLanguage select in Enum.GetValues(typeof(EnumLanguage)))
             {
-                string languageName = Enum.GetName(typeof(EnumLanguage), select);
-                string fileName = "Language/" + languageName + ".xaml";
+                string COM_LanguageName = Enum.GetName(typeof(EnumLanguage), select);
+                string fileName = "Language/" + COM_LanguageName + ".xaml";
                 FileInfo file = new FileInfo(fileName);
                 ResourceDictionary language = new ResourceDictionary();
                 if (file.Exists)
@@ -98,7 +99,7 @@ namespace SC2_GameTranslater
                             continue;
                     }
                 }
-                string itemName = language["LanguageName"] as string;
+                string itemName = language["COM_LanguageName"] as string;
                 Globals.DictComboBoxItemLanguage.Add(itemName, select);
                 Globals.DictUILanguages.Add(select, language);
                 Globals.FluentLocalizationMap[select] = assembly.CreateInstance("SC2_GameTranslater.Source.RibbonLanguage_" + Enum.GetName(typeof(EnumLanguage), select)) as RibbonLocalizationBase;
@@ -111,10 +112,19 @@ namespace SC2_GameTranslater
             }
             if (useDefault)
             {
-                ComboBox_Language.SelectedItem = Globals.DictUILanguages[EnumLanguage.enUS]["LanguageName"];
+                ComboBox_Language.SelectedItem = Globals.DictUILanguages[EnumLanguage.enUS]["COM_LanguageName"];
             }
             #endregion
         }
+        #endregion
+
+        #region 方法
+
+        public void OnOpen(string filename)
+        {
+            MessageBox.Show(filename);
+        }
+
         #endregion
 
         #region 控件事件

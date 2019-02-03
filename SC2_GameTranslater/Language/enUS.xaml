@@ -1,20 +1,25 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    xmlns:local="clr-namespace:SC2_GameTranslater.Language">
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!--#region Common Text-->
-    <sys:String x:Key="LanguageName">English</sys:String>
-    <sys:String x:Key="WindowTitleText">StarcraftII Game Translater</sys:String>
+    <sys:String x:Key="COM_LanguageName">English</sys:String>
+    <sys:String x:Key="COM_WindowTitleText">StarcraftII Game Translater</sys:String>
+    <sys:String x:Key="COM_SC2Components">SCII Component Folders</sys:String>
+    <sys:String x:Key="COM_ProjectFile">Project File</sys:String>
     <!--#endregion-->
 
     <!--#region UI Text-->
-    <sys:String x:Key="Backstage_Open_Header">File</sys:String>
-    <sys:String x:Key="RibbonButton_Open_Name">Open</sys:String>
-    <sys:String x:Key="RibbonButton_Save_Name">Save</sys:String>
-    <sys:String x:Key="RibbonButton_Close_Name">Close</sys:String>
-    <sys:String x:Key="BackstageTabItem_Preference_Header">Preference</sys:String>
-    <sys:String x:Key="GroupBox_Language_Header">UI Language:</sys:String>
+    <sys:String x:Key="UI_Backstage_Open_Header">File</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Open_Header">Open</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Save_Header">Save</sys:String>
+    <sys:String x:Key="UI_RibbonButton_SaveAs_Header">Save As</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Close_Header">Close</sys:String>
+    <sys:String x:Key="UI_GroupBox_Language_Header">UI Language:</sys:String>
+    <sys:String x:Key="UI_BackstageTabItem_Preference_Header">Preference</sys:String>
+    <sys:String x:Key="UI_RibbonTabItem_Start_Header">Start</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_File_Header">File</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_Open_Title">Open</sys:String>
     <!--#endregion-->
-    
+
 </ResourceDictionary>
