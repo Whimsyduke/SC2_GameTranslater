@@ -18,6 +18,8 @@ using System.Globalization;
 
 using Globals = SC2_GameTranslater.Source.Class_Globals;
 using EnumLanguage = SC2_GameTranslater.Source.EnumLanguage;
+using System.Reflection;
+using Fluent.Localization;
 
 namespace SC2_GameTranslater
 {
@@ -46,6 +48,7 @@ namespace SC2_GameTranslater
                 ResourceDictionary_WindowLanguage.MergedDictionaries.Clear();
                 Globals.CurrentLanguage = Globals.DictUILanguages[value];
                 ResourceDictionary_WindowLanguage.MergedDictionaries.Add(Globals.CurrentLanguage);
+                RibbonLocalization.Current.Localization = Globals.FluentLocalizationMap[value];
             }
             get
             {
@@ -70,10 +73,11 @@ namespace SC2_GameTranslater
 
             #region 多语言配置
             bool useDefault = true;
+            Assembly assembly = Assembly.GetExecutingAssembly();
             foreach (EnumLanguage select in Enum.GetValues(typeof(EnumLanguage)))
             {
                 string languageName = Enum.GetName(typeof(EnumLanguage), select);
-                string fileName = "Language\\" + languageName + ".xaml";
+                string fileName = "Language/" + languageName + ".xaml";
                 FileInfo file = new FileInfo(fileName);
                 ResourceDictionary language = new ResourceDictionary();
                 if (file.Exists)
@@ -97,6 +101,7 @@ namespace SC2_GameTranslater
                 string itemName = language["LanguageName"] as string;
                 Globals.DictComboBoxItemLanguage.Add(itemName, select);
                 Globals.DictUILanguages.Add(select, language);
+                Globals.FluentLocalizationMap[select] = assembly.CreateInstance("SC2_GameTranslater.Source.RibbonLanguage_" + Enum.GetName(typeof(EnumLanguage), select)) as RibbonLocalizationBase;
                 ComboBox_Language.Items.Add(itemName);
                 if (CultureInfo.CurrentCulture.LCID == (int)select)
                 {

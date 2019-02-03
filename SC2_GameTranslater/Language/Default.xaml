@@ -13,8 +13,37 @@
     <sys:String x:Key="RibbonButton_Open_Name">Open</sys:String>
     <sys:String x:Key="RibbonButton_Save_Name">Save</sys:String>
     <sys:String x:Key="RibbonButton_Close_Name">Close</sys:String>
-    <sys:String x:Key="BackstageTabItem_Preference_Header">Preference</sys:String>
     <sys:String x:Key="GroupBox_Language_Header">UI Language:</sys:String>
     <!--#endregion-->
-    
+
+    <!--#region Fluent UI-->
+    <sys:String x:Key="Fluent_Automatic">Automatic</sys:String>
+    <sys:String x:Key="Fluent_BackstageButtonKeyTip">F</sys:String>
+    <sys:String x:Key="Fluent_BackstageButtonText">Preference</sys:String>
+    <sys:String x:Key="Fluent_CustomizeStatusBar">Customize Status Bar</sys:String>
+    <sys:String x:Key="Fluent_ExpandButtonScreenTipText">Like seeing the ribbon? Keep it open while you work.</sys:String>
+    <sys:String x:Key="Fluent_ExpandButtonScreenTipTitle">Pin the Ribbon (Ctrl+F1)</sys:String>
+    <sys:String x:Key="Fluent_MinimizeButtonScreenTipText">Need a bit more space? Collapse the ribbon so only the tab names show.</sys:String>
+    <sys:String x:Key="Fluent_MinimizeButtonScreenTipTitle">Collapse the Ribbon (Ctrl+F1)</sys:String>
+    <sys:String x:Key="Fluent_MoreColors">More colors...</sys:String>
+    <sys:String x:Key="Fluent_NoColor">No color</sys:String>
+    <sys:String x:Key="Fluent_QuickAccessToolBarDropDownButtonTooltip">Customize Quick Access Toolbar</sys:String>
+    <sys:String x:Key="Fluent_QuickAccessToolBarMenuHeader">Customize Quick Access Toolbar</sys:String>
+    <sys:String x:Key="Fluent_QuickAccessToolBarMenuShowAbove">Show Above the Ribbon</sys:String>
+    <sys:String x:Key="Fluent_QuickAccessToolBarMenuShowBelow">Show Below the Ribbon</sys:String>
+    <sys:String x:Key="Fluent_QuickAccessToolBarMoreControlsButtonTooltip">More controls</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuAddGallery">Add Gallery to Quick Access Toolbar</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuAddGroup">Add Group to Quick Access Toolbar</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuAddItem">Add to Quick Access Toolbar</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuAddMenu">Add Menu to Quick Access Toolbar</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuCustomizeQuickAccessToolBar">Customize Quick Access Toolbar...</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuCustomizeRibbon">Customize the Ribbon...</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuMinimizeRibbon">Collapse the Ribbon</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuRemoveItem">Remove from Quick Access Toolbar</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuShowAbove">Show Quick Access Toolbar Above the Ribbon</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuShowBelow">Show Quick Access Toolbar Below the Ribbon</sys:String>
+    <sys:String x:Key="Fluent_ScreenTipDisableReasonHeader">This command is currently disabled.</sys:String>
+    <sys:String x:Key="Fluent_ScreenTipF1LabelHeader">Press F1 for help</sys:String>
+    <!--#endregion-->
+
 </ResourceDictionary>

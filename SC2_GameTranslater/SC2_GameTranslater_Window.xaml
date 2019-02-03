@@ -17,14 +17,18 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="784*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <fluent:Ribbon Name="Ribbon_Main" Grid.Row="0">
-            <fluent:Ribbon.ContextualGroups>
+        <fluent:Ribbon Name="Ribbon_Main" Grid.Row="0" Grid.ColumnSpan="2">
+            <!--<fluent:Ribbon.ContextualGroups>
                 <fluent:RibbonContextualTabGroup x:Name="RibbonCTG_GlobalConfig" BorderBrush="Magenta" Background="Magenta" Foreground="Purple" Visibility="Visible"/>
-            </fluent:Ribbon.ContextualGroups>
+            </fluent:Ribbon.ContextualGroups>-->
             <fluent:Ribbon.Menu>
                 <fluent:Backstage Header="{DynamicResource ResourceKey=Backstage_Open_Header}">
                     <fluent:BackstageTabControl>
@@ -34,7 +38,7 @@
                         <Separator />
                         <fluent:Button x:Name="RibbonButton_Close" Header="{DynamicResource ResourceKey=RibbonButton_Close_Name}" Icon="{StaticResource ResourceKey=IMAGE_Close}" LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" KeyTip="C" />
                         <Separator />
-                        <fluent:BackstageTabItem x:Name="BackstageTabItem_Preference" Header="{DynamicResource ResourceKey=BackstageTabItem_Preference_Header}" KeyTip="P">
+                        <fluent:BackstageTabItem x:Name="BackstageTabItem_Preference" Header="{DynamicResource ResourceKey=Fluent_BackstageButtonText}" KeyTip="P">
                             <ScrollViewer Name="ScrollViewer_Preference">
                                 <Grid>
                                     <Grid.RowDefinitions>

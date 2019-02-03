@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using SC2_GameTranslater;
+using Fluent;
+using System.Reflection;
+using Fluent.Localization;
 
 namespace SC2_GameTranslater.Source
 {
@@ -80,12 +83,12 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 语言字典
         /// </summary>
-        public static Dictionary<EnumLanguage, ResourceDictionary> DictUILanguages { set; get; }
+        public static Dictionary<EnumLanguage, ResourceDictionary> DictUILanguages { set; get; } = new Dictionary<EnumLanguage, ResourceDictionary>();
 
         /// <summary>
         /// 列表项对应语言
         /// </summary>
-        public static Dictionary<object, EnumLanguage> DictComboBoxItemLanguage { set; get; }
+        public static Dictionary<object, EnumLanguage> DictComboBoxItemLanguage { set; get; } = new Dictionary<object, EnumLanguage>();
 
         /// <summary>
         /// 当前语言
@@ -96,6 +99,8 @@ namespace SC2_GameTranslater.Source
         /// 主窗口
         /// </summary>
         public static SC2_GameTranslater_Window MainWindow { set; get; }
+
+        public static Dictionary<EnumLanguage, RibbonLocalizationBase> FluentLocalizationMap { set; get; } = new Dictionary<EnumLanguage, RibbonLocalizationBase>();
 
         #endregion
 
@@ -108,8 +113,20 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         static Class_Globals()
         {
-            DictUILanguages = new Dictionary<EnumLanguage, ResourceDictionary>();
-            DictComboBoxItemLanguage = new Dictionary<object, EnumLanguage>();
+        }
+
+        #endregion
+
+        #region 方法
+        /// <summary>
+        /// 获取命名控件类型类别
+        /// </summary>
+        /// <param name="assembly">程序集</param>
+        /// <param name="nameSpace">命名空间</param>
+        /// <returns>类型列表</returns>
+        private static IList<Type> GetTypesInNamespace(Assembly assembly, string nameSpace)
+        {
+            return assembly.GetTypes().Where(t => string.Equals(t.Namespace, nameSpace, StringComparison.Ordinal)).ToList();
         }
 
         #endregion

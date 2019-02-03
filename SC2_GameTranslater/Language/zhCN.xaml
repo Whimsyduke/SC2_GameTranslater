@@ -13,7 +13,37 @@
     <sys:String x:Key="RibbonButton_Open_Name">打开</sys:String>
     <sys:String x:Key="RibbonButton_Save_Name">保存</sys:String>
     <sys:String x:Key="RibbonButton_Close_Name">关闭</sys:String>
-    <sys:String x:Key="BackstageTabItem_Preference_Header">配置</sys:String>
     <sys:String x:Key="GroupBox_Language_Header">界面语言：</sys:String>
     <!--#endregion-->
+    
+    <!--#region Fluent界面-->
+    <sys:String x:Key="Fluent_Automatic">自动</sys:String>
+    <sys:String x:Key="Fluent_BackstageButtonKeyTip">F</sys:String>
+    <sys:String x:Key="Fluent_BackstageButtonText">配置</sys:String>
+    <sys:String x:Key="Fluent_CustomizeStatusBar">自定义状态栏</sys:String>
+    <sys:String x:Key="Fluent_ExpandButtonScreenTipText">始终显示功能区选项卡和命令。</sys:String>
+    <sys:String x:Key="Fluent_ExpandButtonScreenTipTitle">展开功能区 (Ctrl + F1)</sys:String>
+    <sys:String x:Key="Fluent_MinimizeButtonScreenTipText">仅显示功能区上的选项卡名称。单击选项卡可显示命令。</sys:String>
+    <sys:String x:Key="Fluent_MinimizeButtonScreenTipTitle">功能区最小化 (Ctrl + F1)</sys:String>
+    <sys:String x:Key="Fluent_MoreColors">更多的颜色...</sys:String>
+    <sys:String x:Key="Fluent_NoColor">没有颜色</sys:String>
+    <sys:String x:Key="Fluent_QuickAccessToolBarDropDownButtonTooltip">自定义快速访问具栏</sys:String>
+    <sys:String x:Key="Fluent_QuickAccessToolBarMenuHeader">自定义快速访问工具栏</sys:String>
+    <sys:String x:Key="Fluent_QuickAccessToolBarMenuShowAbove">在功能区上方显示</sys:String>
+    <sys:String x:Key="Fluent_QuickAccessToolBarMenuShowBelow">在功能区下方显示</sys:String>
+    <sys:String x:Key="Fluent_QuickAccessToolBarMoreControlsButtonTooltip">其他命令</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuAddGallery">在快速访问工具栏中添加样式</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuAddGroup">在快速访问工具栏中添加组</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuAddItem">添加到快速访问工具栏</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuAddMenu">在快速访问工具栏中添加菜单</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuCustomizeQuickAccessToolBar">自定义快速访问工具栏...</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuCustomizeRibbon">自定义功能区...</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuMinimizeRibbon">功能区最小化</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuRemoveItem">在快速访问工具栏中移除</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuShowAbove">在功能区上方显示快速访问工具栏</sys:String>
+    <sys:String x:Key="Fluent_RibbonContextMenuShowBelow">在功能区下方显示快速访问工具栏</sys:String>
+    <sys:String x:Key="Fluent_ScreenTipDisableReasonHeader">此命令当前已被禁用。</sys:String>
+    <sys:String x:Key="Fluent_ScreenTipF1LabelHeader">按下F1启动帮助</sys:String>
+    <!--#endregion-->
+    
 </ResourceDictionary>
