@@ -76,6 +76,14 @@
     </ApplicationDefinition>
     <Compile Include="Source\Class_FluentLanguages.cs" />
     <Compile Include="Source\Class_Globals.cs" />
+    <Compile Include="Source\Data_GameText.cs">
+      <DependentUpon>Data_GameText.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Data_GameText.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Data_GameText.xsd</DependentUpon>
+    </Compile>
     <Page Include="Assets\Assets.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -123,6 +131,17 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Source\Data_GameText.xsc">
+      <DependentUpon>Data_GameText.xsd</DependentUpon>
+    </None>
+    <None Include="Source\Data_GameText.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Data_GameText.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Source\Data_GameText.xss">
+      <DependentUpon>Data_GameText.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
