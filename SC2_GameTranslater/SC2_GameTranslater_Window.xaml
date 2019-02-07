@@ -8,7 +8,7 @@
     xmlns:fluent="urn:fluent-ribbon"
     mc:Ignorable="d"
     Icon="pack://application:,,,/Assets/Image/Icon.ico"
-    Height="450" Width="800">
+    Height="450" Width="800" Name="RibbonWindow_Main">
     <Window.Resources>
         <ResourceDictionary x:Name="ResourceDictionary_WindowLanguage">
             <ResourceDictionary.MergedDictionaries>
@@ -32,13 +32,15 @@
             <fluent:Ribbon.Menu>
                 <fluent:Backstage Header="{DynamicResource ResourceKey=UI_Backstage_Open_Header}">
                     <fluent:BackstageTabControl>
-                        <fluent:Button x:Name="RibbonButton_MenuOpen" Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}" />
+                        <fluent:Button x:Name="RibbonButton_MenuOpen" Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandOpen}"/>
                         <Separator />
-                        <fluent:Button x:Name="RibbonButton_MenuSave" Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}"/>
+                        <fluent:Button x:Name="RibbonButton_MenuAccept" Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandAccept}"/>
                         <Separator />
-                        <fluent:Button x:Name="RibbonButton_MenuSaveAs" Header="{DynamicResource ResourceKey=UI_RibbonButton_SaveAs_Header}"/>
+                        <fluent:Button x:Name="RibbonButton_MenuSave" Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSave}"/>
                         <Separator />
-                        <fluent:Button x:Name="RibbonButton_MenuClose" Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}"/>
+                        <fluent:Button x:Name="RibbonButton_MenuSaveAs" Header="{DynamicResource ResourceKey=UI_RibbonButton_SaveAs_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSaveAs}"/>
+                        <Separator />
+                        <fluent:Button x:Name="RibbonButton_MenuClose" Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandClose}"/>
                         <Separator />
                         <fluent:BackstageTabItem x:Name="BackstageTabItem_Preference" Header="{DynamicResource ResourceKey=UI_BackstageTabItem_Preference_Header}" KeyTip="P">
                             <ScrollViewer Name="ScrollViewer_Preference">
@@ -62,11 +64,13 @@
             </fluent:Ribbon.Menu>
             <fluent:RibbonTabItem Name="RibbonTabItem_Start" Header="{DynamicResource ResourceKey=UI_RibbonTabItem_Start_Header}">
                 <fluent:RibbonGroupBox Name="RibbonGroupBox_File" Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_File_Header}" Grid.IsSharedSizeScope="True">
-                    <fluent:Button x:Name="RibbonButton_Open" Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}" Icon="{StaticResource ResourceKey=IMAGE_Open}" LargeIcon="{StaticResource ResourceKey=IMAGE_Open}" KeyTip="O" />
+                    <fluent:Button x:Name="RibbonButton_Open" Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}" Icon="{StaticResource ResourceKey=IMAGE_Open}" LargeIcon="{StaticResource ResourceKey=IMAGE_Open}" KeyTip="O" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandOpen}"/>
                     <Separator />
-                    <fluent:Button x:Name="RibbonButton_Save" Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}" Icon="{StaticResource ResourceKey=IMAGE_Save}" LargeIcon="{StaticResource ResourceKey=IMAGE_Save}" KeyTip="S" />
+                    <fluent:Button x:Name="RibbonButton_Accept" Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}" Icon="{StaticResource ResourceKey=IMAGE_Accept}" LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" KeyTip="E"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandAccept}"/>
                     <Separator />
-                    <fluent:Button x:Name="RibbonButton_Close" Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}" Icon="{StaticResource ResourceKey=IMAGE_Close}" LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" KeyTip="S" />
+                    <fluent:Button x:Name="RibbonButton_Save" Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}" Icon="{StaticResource ResourceKey=IMAGE_Save}" LargeIcon="{StaticResource ResourceKey=IMAGE_Save}" KeyTip="S"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSave}"/>
+                    <Separator />
+                    <fluent:Button x:Name="RibbonButton_Close" Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}" Icon="{StaticResource ResourceKey=IMAGE_Close}" LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" KeyTip="S"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandClose}"/>
                     <Separator />
                 </fluent:RibbonGroupBox>                
             </fluent:RibbonTabItem>

@@ -76,7 +76,6 @@
     </ApplicationDefinition>
     <Compile Include="Source\Class_FluentLanguages.cs" />
     <Compile Include="Source\Class_Globals.cs" />
-    <Compile Include="Source\Command\Control_Command.cs" />
     <Page Include="Assets\Assets.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -133,6 +132,9 @@
     <Folder Include="System\Windows\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Image\ui-editoricon-triggereditor_newcomment.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Icon.ico" />
     <Resource Include="Assets\Image\Icon.ico" />
     <Content Include="Assets\Image\ui-editoricon-data_types_buttons.dds">

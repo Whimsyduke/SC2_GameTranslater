@@ -3,15 +3,16 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!--#region Common Text-->
-    <sys:String x:Key="COM_LanguageName">English</sys:String>
-    <sys:String x:Key="COM_WindowTitleText">StarcraftII Game Translater</sys:String>
-    <sys:String x:Key="COM_SC2Components">SCII Component Folders</sys:String>
-    <sys:String x:Key="COM_ProjectFile">Project File</sys:String>
+    <sys:String x:Key="TEXT_LanguageName">English</sys:String>
+    <sys:String x:Key="TEXT_WindowTitleText">StarcraftII Game Translater</sys:String>
+    <sys:String x:Key="TEXT_SC2Components">SCII Component Folders</sys:String>
+    <sys:String x:Key="TEXT_ProjectFile">Project File</sys:String>
     <!--#endregion-->
 
     <!--#region UI Text-->
     <sys:String x:Key="UI_Backstage_Open_Header">File</sys:String>
     <sys:String x:Key="UI_RibbonButton_Open_Header">Open</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Accept_Header">Accept</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">Save</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">Save As</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">Close</sys:String>

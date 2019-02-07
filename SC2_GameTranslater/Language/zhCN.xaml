@@ -3,15 +3,16 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!--#region 通用文本-->
-    <sys:String x:Key="COM_LanguageName">简体中文</sys:String>
-    <sys:String x:Key="COM_WindowTitleText">《星际争霸II》游戏翻译器</sys:String>
-    <sys:String x:Key="COM_SC2Components">SCII 组件文件夹</sys:String>
-    <sys:String x:Key="COM_ProjectFile">翻译项目文件</sys:String>
+    <sys:String x:Key="TEXT_LanguageName">简体中文</sys:String>
+    <sys:String x:Key="TEXT_WindowTitleText">《星际争霸II》游戏翻译器</sys:String>
+    <sys:String x:Key="TEXT_SC2Components">SCII 组件文件夹</sys:String>
+    <sys:String x:Key="TEXT_ProjectFile">翻译项目文件</sys:String>
     <!--#endregion-->
 
     <!--#region 界面文本-->
     <sys:String x:Key="UI_Backstage_Open_Header">文件</sys:String>
     <sys:String x:Key="UI_RibbonButton_Open_Header">打开</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Accept_Header">应用</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">保存</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">另存为</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">关闭</sys:String>
