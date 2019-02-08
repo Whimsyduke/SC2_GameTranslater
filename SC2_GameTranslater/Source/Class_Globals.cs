@@ -9,6 +9,8 @@ using Fluent;
 using System.Reflection;
 using Fluent.Localization;
 
+using Log = SC2_GameTranslater.Source.Class_Log;
+
 namespace SC2_GameTranslater.Source
 {
     #region 声明
@@ -75,10 +77,48 @@ namespace SC2_GameTranslater.Source
     /// </summary>
     static class Class_Globals
     {
+        #region 声明常量
+
+        #region 常量
+
+        public const string Extension_SC2GameTran = ".SC2GameTran";
+        public const string Extension_SC2Map = ".SC2Map";
+        public const string Extension_SC2Mod = ".SC2Mod";
+        public const string Extension_SC2Components = ".SC2Components";
+        public const string FileName_SC2Components = "ComponentList.SC2Components";
+
+        #endregion
+
+        #endregion
 
         #region 属性字段
 
         #region 属性
+
+        /// <summary>
+        /// 允许在静态类中显示日志
+        /// </summary>
+        public static bool EnableShowLogInUI
+        {
+            set
+            {
+                m_EnableShowLogInUI = value;
+                if (!value)
+                {
+                    MainWindow.AvalonTextEditor_Log.Text = "";
+                }
+            }
+            get
+            {
+                return m_EnableShowLogInUI;
+            }
+        }
+        private static bool m_EnableShowLogInUI = true;
+
+        /// <summary>
+        /// 当前处理的数据
+        /// </summary>
+        public static Data_GameText CurrentProject { set; get; }
 
         /// <summary>
         /// 语言字典
@@ -123,16 +163,17 @@ namespace SC2_GameTranslater.Source
         #endregion
 
         #region 方法
+
         /// <summary>
-        /// 获取命名控件类型类别
+        /// 初始化新项目数据
         /// </summary>
-        /// <param name="assembly">程序集</param>
-        /// <param name="nameSpace">命名空间</param>
-        /// <returns>类型列表</returns>
-        private static IList<Type> GetTypesInNamespace(Assembly assembly, string nameSpace)
+        public static void InitProjectData()
         {
-            return assembly.GetTypes().Where(t => string.Equals(t.Namespace, nameSpace, StringComparison.Ordinal)).ToList();
+            Log.Assert(CurrentProject == null);
+            CurrentProject = new Data_GameText();
         }
+
+
 
         #endregion
     }

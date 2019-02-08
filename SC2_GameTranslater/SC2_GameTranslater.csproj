@@ -76,6 +76,7 @@
     </ApplicationDefinition>
     <Compile Include="Source\Class_FluentLanguages.cs" />
     <Compile Include="Source\Class_Globals.cs" />
+    <Compile Include="Source\Class_Log.cs" />
     <Compile Include="Source\Data_GameText.cs">
       <DependentUpon>Data_GameText.xsd</DependentUpon>
     </Compile>
@@ -151,7 +152,10 @@
     <Folder Include="System\Windows\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Image\ui-editoricon-triggereditor_newcomment.dds">
+    <Content Include="Assets\Image\ui-editoricon-triggereditor_newcondition.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Image\ui-editoricon-triggereditor_newconditiondefinition.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Icon.ico" />

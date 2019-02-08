@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:SC2_GameTranslater"
+    xmlns:Avalon="http://icsharpcode.net/sharpdevelop/avalonedit"
     xmlns:fluent="urn:fluent-ribbon"
     mc:Ignorable="d"
     Icon="pack://application:,,,/Assets/Image/Icon.ico"
@@ -18,12 +19,12 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="784*"/>
-            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <fluent:Ribbon Name="Ribbon_Main" Grid.Row="0" Grid.ColumnSpan="2">
             <!--<fluent:Ribbon.ContextualGroups>
@@ -34,11 +35,11 @@
                     <fluent:BackstageTabControl>
                         <fluent:Button x:Name="RibbonButton_MenuOpen" Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandOpen}"/>
                         <Separator />
-                        <fluent:Button x:Name="RibbonButton_MenuAccept" Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandAccept}"/>
-                        <Separator />
                         <fluent:Button x:Name="RibbonButton_MenuSave" Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSave}"/>
                         <Separator />
                         <fluent:Button x:Name="RibbonButton_MenuSaveAs" Header="{DynamicResource ResourceKey=UI_RibbonButton_SaveAs_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSaveAs}"/>
+                        <Separator />
+                        <fluent:Button x:Name="RibbonButton_MenuAccept" Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandAccept}"/>
                         <Separator />
                         <fluent:Button x:Name="RibbonButton_MenuClose" Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandClose}"/>
                         <Separator />
@@ -66,14 +67,25 @@
                 <fluent:RibbonGroupBox Name="RibbonGroupBox_File" Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_File_Header}" Grid.IsSharedSizeScope="True">
                     <fluent:Button x:Name="RibbonButton_Open" Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}" Icon="{StaticResource ResourceKey=IMAGE_Open}" LargeIcon="{StaticResource ResourceKey=IMAGE_Open}" KeyTip="O" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandOpen}"/>
                     <Separator />
-                    <fluent:Button x:Name="RibbonButton_Accept" Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}" Icon="{StaticResource ResourceKey=IMAGE_Accept}" LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" KeyTip="E"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandAccept}"/>
-                    <Separator />
                     <fluent:Button x:Name="RibbonButton_Save" Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}" Icon="{StaticResource ResourceKey=IMAGE_Save}" LargeIcon="{StaticResource ResourceKey=IMAGE_Save}" KeyTip="S"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSave}"/>
+                    <Separator />
+                    <fluent:Button x:Name="RibbonButton_Reload" Header="{DynamicResource ResourceKey=UI_RibbonButton_Reload_Header}" Icon="{StaticResource ResourceKey=IMAGE_Reload}" LargeIcon="{StaticResource ResourceKey=IMAGE_Reload}" KeyTip="R"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandReload}"/>
+                    <Separator />
+                    <fluent:Button x:Name="RibbonButton_Accept" Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}" Icon="{StaticResource ResourceKey=IMAGE_Accept}" LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" KeyTip="E"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandAccept}"/>
                     <Separator />
                     <fluent:Button x:Name="RibbonButton_Close" Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}" Icon="{StaticResource ResourceKey=IMAGE_Close}" LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" KeyTip="S"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandClose}"/>
                     <Separator />
                 </fluent:RibbonGroupBox>                
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
+        <GroupBox Name="GroupBox_Log" Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" Header="{DynamicResource UI_LogGroupBox_Header}" Margin="3">
+            <Avalon:TextEditor Name="AvalonTextEditor_Log" ShowLineNumbers="True" WordWrap="True" Margin="0,10,6,-4" IsReadOnly="True">
+                <Avalon:TextEditor.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Name="MenuItem_LogClear" Header="{DynamicResource UI_MenuItem_LogClear_Header}" />
+                    </ContextMenu>
+                </Avalon:TextEditor.ContextMenu>
+            </Avalon:TextEditor>
+        </GroupBox>
     </Grid>
 </fluent:RibbonWindow>

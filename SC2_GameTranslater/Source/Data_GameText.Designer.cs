@@ -34,15 +34,21 @@ namespace SC2_GameTranslater.Source {
         
         private Table_GameTextDataTable tableTable_GameText;
         
+        private Table_GalaxyLocationDataTable tableTable_GalaxyLocation;
+        
         private Table_LogDataTable tableTable_Log;
         
         private global::System.Data.DataRelation relationRelation_GalaxyFile_GalaxyLine_File;
         
         private global::System.Data.DataRelation relationRelation_Language_GameText_LanguageID;
         
-        private global::System.Data.DataRelation relationRelation_GalaxyFile_GameTextD_FileLine;
+        private global::System.Data.DataRelation relationRelation_GalaxyLine_GameLocation_Line;
+        
+        private global::System.Data.DataRelation relationRelation_GameText_GameLocation_Text;
         
         private global::System.Data.DataRelation relationRelation_GameText_Log_Target;
+        
+        private global::System.Data.DataRelation relationRelation_GameText_GalaxyLocation_TextID;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -86,6 +92,9 @@ namespace SC2_GameTranslater.Source {
                 }
                 if ((ds.Tables["Table_GameText"] != null)) {
                     base.Tables.Add(new Table_GameTextDataTable(ds.Tables["Table_GameText"]));
+                }
+                if ((ds.Tables["Table_GalaxyLocation"] != null)) {
+                    base.Tables.Add(new Table_GalaxyLocationDataTable(ds.Tables["Table_GalaxyLocation"]));
                 }
                 if ((ds.Tables["Table_Log"] != null)) {
                     base.Tables.Add(new Table_LogDataTable(ds.Tables["Table_Log"]));
@@ -155,6 +164,16 @@ namespace SC2_GameTranslater.Source {
         public Table_GameTextDataTable Table_GameText {
             get {
                 return this.tableTable_GameText;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public Table_GalaxyLocationDataTable Table_GalaxyLocation {
+            get {
+                return this.tableTable_GalaxyLocation;
             }
         }
         
@@ -250,6 +269,9 @@ namespace SC2_GameTranslater.Source {
                 if ((ds.Tables["Table_GameText"] != null)) {
                     base.Tables.Add(new Table_GameTextDataTable(ds.Tables["Table_GameText"]));
                 }
+                if ((ds.Tables["Table_GalaxyLocation"] != null)) {
+                    base.Tables.Add(new Table_GalaxyLocationDataTable(ds.Tables["Table_GalaxyLocation"]));
+                }
                 if ((ds.Tables["Table_Log"] != null)) {
                     base.Tables.Add(new Table_LogDataTable(ds.Tables["Table_Log"]));
                 }
@@ -316,6 +338,12 @@ namespace SC2_GameTranslater.Source {
                     this.tableTable_GameText.InitVars();
                 }
             }
+            this.tableTable_GalaxyLocation = ((Table_GalaxyLocationDataTable)(base.Tables["Table_GalaxyLocation"]));
+            if ((initTable == true)) {
+                if ((this.tableTable_GalaxyLocation != null)) {
+                    this.tableTable_GalaxyLocation.InitVars();
+                }
+            }
             this.tableTable_Log = ((Table_LogDataTable)(base.Tables["Table_Log"]));
             if ((initTable == true)) {
                 if ((this.tableTable_Log != null)) {
@@ -324,8 +352,10 @@ namespace SC2_GameTranslater.Source {
             }
             this.relationRelation_GalaxyFile_GalaxyLine_File = this.Relations["Relation_GalaxyFile_GalaxyLine_File"];
             this.relationRelation_Language_GameText_LanguageID = this.Relations["Relation_Language_GameText_LanguageID"];
-            this.relationRelation_GalaxyFile_GameTextD_FileLine = this.Relations["Relation_GalaxyFile_GameTextD_FileLine"];
+            this.relationRelation_GalaxyLine_GameLocation_Line = this.Relations["Relation_GalaxyLine_GameLocation_Line"];
+            this.relationRelation_GameText_GameLocation_Text = this.Relations["Relation_GameText_GameLocation_Text"];
             this.relationRelation_GameText_Log_Target = this.Relations["Relation_GameText_Log_Target"];
+            this.relationRelation_GameText_GalaxyLocation_TextID = this.Relations["Relation_GameText_GalaxyLocation_TextID"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -346,6 +376,8 @@ namespace SC2_GameTranslater.Source {
             base.Tables.Add(this.tableTable_GalaxyLine);
             this.tableTable_GameText = new Table_GameTextDataTable();
             base.Tables.Add(this.tableTable_GameText);
+            this.tableTable_GalaxyLocation = new Table_GalaxyLocationDataTable();
+            base.Tables.Add(this.tableTable_GalaxyLocation);
             this.tableTable_Log = new Table_LogDataTable();
             base.Tables.Add(this.tableTable_Log);
             global::System.Data.ForeignKeyConstraint fkc;
@@ -363,6 +395,13 @@ namespace SC2_GameTranslater.Source {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("Relation_GalaxyLine_GameLocation_Line", new global::System.Data.DataColumn[] {
+                        this.tableTable_GalaxyLine.IndexColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTable_GalaxyLocation.LineColumn});
+            this.tableTable_GalaxyLocation.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.None;
+            fkc.UpdateRule = global::System.Data.Rule.None;
             this.relationRelation_GalaxyFile_GalaxyLine_File = new global::System.Data.DataRelation("Relation_GalaxyFile_GalaxyLine_File", new global::System.Data.DataColumn[] {
                         this.tableTable_GalaxyFile.PathColumn}, new global::System.Data.DataColumn[] {
                         this.tableTable_GalaxyLine.FileColumn}, false);
@@ -371,14 +410,22 @@ namespace SC2_GameTranslater.Source {
                         this.tableTable_Language.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableTable_GameText.LanguageIDColumn}, false);
             this.Relations.Add(this.relationRelation_Language_GameText_LanguageID);
-            this.relationRelation_GalaxyFile_GameTextD_FileLine = new global::System.Data.DataRelation("Relation_GalaxyFile_GameTextD_FileLine", new global::System.Data.DataColumn[] {
+            this.relationRelation_GalaxyLine_GameLocation_Line = new global::System.Data.DataRelation("Relation_GalaxyLine_GameLocation_Line", new global::System.Data.DataColumn[] {
                         this.tableTable_GalaxyLine.IndexColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTable_GameText.FileLineColumn}, false);
-            this.Relations.Add(this.relationRelation_GalaxyFile_GameTextD_FileLine);
+                        this.tableTable_GalaxyLocation.LineColumn}, false);
+            this.Relations.Add(this.relationRelation_GalaxyLine_GameLocation_Line);
+            this.relationRelation_GameText_GameLocation_Text = new global::System.Data.DataRelation("Relation_GameText_GameLocation_Text", new global::System.Data.DataColumn[] {
+                        this.tableTable_GameText.IndexColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTable_Language.IDColumn}, false);
+            this.Relations.Add(this.relationRelation_GameText_GameLocation_Text);
             this.relationRelation_GameText_Log_Target = new global::System.Data.DataRelation("Relation_GameText_Log_Target", new global::System.Data.DataColumn[] {
                         this.tableTable_GameText.IndexColumn}, new global::System.Data.DataColumn[] {
                         this.tableTable_Log.TargetColumn}, false);
             this.Relations.Add(this.relationRelation_GameText_Log_Target);
+            this.relationRelation_GameText_GalaxyLocation_TextID = new global::System.Data.DataRelation("Relation_GameText_GalaxyLocation_TextID", new global::System.Data.DataColumn[] {
+                        this.tableTable_GameText.IndexColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTable_GalaxyLocation.TextIDColumn}, false);
+            this.Relations.Add(this.relationRelation_GameText_GalaxyLocation_TextID);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -408,6 +455,12 @@ namespace SC2_GameTranslater.Source {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeTable_GameText() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeTable_GalaxyLocation() {
             return false;
         }
         
@@ -486,6 +539,9 @@ namespace SC2_GameTranslater.Source {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void Table_GameTextRowChangeEventHandler(object sender, Table_GameTextRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void Table_GalaxyLocationRowChangeEventHandler(object sender, Table_GalaxyLocationRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void Table_LogRowChangeEventHandler(object sender, Table_LogRowChangeEvent e);
@@ -834,11 +890,14 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_LanguageRow AddTable_LanguageRow(int ID, int Count) {
+            public Table_LanguageRow AddTable_LanguageRow(Table_GameTextRow parentTable_GameTextRowByRelation_GameText_GameLocation_Text, int Count) {
                 Table_LanguageRow rowTable_LanguageRow = ((Table_LanguageRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ID,
+                        null,
                         Count};
+                if ((parentTable_GameTextRowByRelation_GameText_GameLocation_Text != null)) {
+                    columnValuesArray[0] = parentTable_GameTextRowByRelation_GameText_GameLocation_Text[0];
+                }
                 rowTable_LanguageRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTable_LanguageRow);
                 return rowTable_LanguageRow;
@@ -1588,8 +1647,6 @@ namespace SC2_GameTranslater.Source {
             
             private global::System.Data.DataColumn columnType;
             
-            private global::System.Data.DataColumn columnFileLine;
-            
             private global::System.Data.DataColumn columnText;
             
             private global::System.Data.DataColumn columnTempText;
@@ -1661,14 +1718,6 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn FileLineColumn {
-                get {
-                    return this.columnFileLine;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn TextColumn {
                 get {
                     return this.columnText;
@@ -1720,21 +1769,17 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_GameTextRow AddTable_GameTextRow(string ID, Table_LanguageRow parentTable_LanguageRowByRelation_Language_GameText_LanguageID, int Type, Table_GalaxyLineRow parentTable_GalaxyLineRowByRelation_GalaxyFile_GameTextD_FileLine, string Text, string TempText) {
+            public Table_GameTextRow AddTable_GameTextRow(string ID, Table_LanguageRow parentTable_LanguageRowByRelation_Language_GameText_LanguageID, short Type, string Text, string TempText) {
                 Table_GameTextRow rowTable_GameTextRow = ((Table_GameTextRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         ID,
                         null,
                         Type,
-                        null,
                         Text,
                         TempText};
                 if ((parentTable_LanguageRowByRelation_Language_GameText_LanguageID != null)) {
                     columnValuesArray[2] = parentTable_LanguageRowByRelation_Language_GameText_LanguageID[0];
-                }
-                if ((parentTable_GalaxyLineRowByRelation_GalaxyFile_GameTextD_FileLine != null)) {
-                    columnValuesArray[4] = parentTable_GalaxyLineRowByRelation_GalaxyFile_GameTextD_FileLine[0];
                 }
                 rowTable_GameTextRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTable_GameTextRow);
@@ -1769,7 +1814,6 @@ namespace SC2_GameTranslater.Source {
                 this.columnID = base.Columns["ID"];
                 this.columnLanguageID = base.Columns["LanguageID"];
                 this.columnType = base.Columns["Type"];
-                this.columnFileLine = base.Columns["FileLine"];
                 this.columnText = base.Columns["Text"];
                 this.columnTempText = base.Columns["TempText"];
             }
@@ -1783,10 +1827,8 @@ namespace SC2_GameTranslater.Source {
                 base.Columns.Add(this.columnID);
                 this.columnLanguageID = new global::System.Data.DataColumn("LanguageID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLanguageID);
-                this.columnType = new global::System.Data.DataColumn("Type", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnType = new global::System.Data.DataColumn("Type", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnType);
-                this.columnFileLine = new global::System.Data.DataColumn("FileLine", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFileLine);
                 this.columnText = new global::System.Data.DataColumn("Text", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnText);
                 this.columnTempText = new global::System.Data.DataColumn("TempText", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1798,9 +1840,6 @@ namespace SC2_GameTranslater.Source {
                 this.columnIndex.Unique = true;
                 this.columnID.AllowDBNull = false;
                 this.columnID.Caption = "LanguageID";
-                this.columnFileLine.AllowDBNull = false;
-                this.columnFileLine.Caption = "Text";
-                this.columnFileLine.DefaultValue = ((int)(-1));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1887,6 +1926,316 @@ namespace SC2_GameTranslater.Source {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "Table_GameTextDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class Table_GalaxyLocationDataTable : global::System.Data.TypedTableBase<Table_GalaxyLocationRow> {
+            
+            private global::System.Data.DataColumn columnIndex;
+            
+            private global::System.Data.DataColumn columnLine;
+            
+            private global::System.Data.DataColumn columnTextID;
+            
+            private global::System.Data.DataColumn columnKey;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Table_GalaxyLocationDataTable() {
+                this.TableName = "Table_GalaxyLocation";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal Table_GalaxyLocationDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected Table_GalaxyLocationDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IndexColumn {
+                get {
+                    return this.columnIndex;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LineColumn {
+                get {
+                    return this.columnLine;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TextIDColumn {
+                get {
+                    return this.columnTextID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn KeyColumn {
+                get {
+                    return this.columnKey;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Table_GalaxyLocationRow this[int index] {
+                get {
+                    return ((Table_GalaxyLocationRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event Table_GalaxyLocationRowChangeEventHandler Table_GalaxyLocationRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event Table_GalaxyLocationRowChangeEventHandler Table_GalaxyLocationRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event Table_GalaxyLocationRowChangeEventHandler Table_GalaxyLocationRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event Table_GalaxyLocationRowChangeEventHandler Table_GalaxyLocationRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddTable_GalaxyLocationRow(Table_GalaxyLocationRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Table_GalaxyLocationRow AddTable_GalaxyLocationRow(string Index, Table_GalaxyLineRow parentTable_GalaxyLineRowByRelation_GalaxyLine_GameLocation_Line, Table_GameTextRow parentTable_GameTextRowByRelation_GameText_GalaxyLocation_TextID, string Key) {
+                Table_GalaxyLocationRow rowTable_GalaxyLocationRow = ((Table_GalaxyLocationRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Index,
+                        null,
+                        null,
+                        Key};
+                if ((parentTable_GalaxyLineRowByRelation_GalaxyLine_GameLocation_Line != null)) {
+                    columnValuesArray[1] = parentTable_GalaxyLineRowByRelation_GalaxyLine_GameLocation_Line[0];
+                }
+                if ((parentTable_GameTextRowByRelation_GameText_GalaxyLocation_TextID != null)) {
+                    columnValuesArray[2] = parentTable_GameTextRowByRelation_GameText_GalaxyLocation_TextID[0];
+                }
+                rowTable_GalaxyLocationRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTable_GalaxyLocationRow);
+                return rowTable_GalaxyLocationRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Table_GalaxyLocationRow FindByIndex(string Index) {
+                return ((Table_GalaxyLocationRow)(this.Rows.Find(new object[] {
+                            Index})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                Table_GalaxyLocationDataTable cln = ((Table_GalaxyLocationDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new Table_GalaxyLocationDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnIndex = base.Columns["Index"];
+                this.columnLine = base.Columns["Line"];
+                this.columnTextID = base.Columns["TextID"];
+                this.columnKey = base.Columns["Key"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnIndex = new global::System.Data.DataColumn("Index", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIndex);
+                this.columnLine = new global::System.Data.DataColumn("Line", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLine);
+                this.columnTextID = new global::System.Data.DataColumn("TextID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTextID);
+                this.columnKey = new global::System.Data.DataColumn("Key", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKey);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Table_GalaxyLocationKey_ID", new global::System.Data.DataColumn[] {
+                                this.columnIndex}, true));
+                this.columnIndex.AllowDBNull = false;
+                this.columnIndex.Unique = true;
+                this.columnLine.AllowDBNull = false;
+                this.columnTextID.AllowDBNull = false;
+                this.columnKey.AllowDBNull = false;
+                this.columnKey.DefaultValue = ((string)(""));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Table_GalaxyLocationRow NewTable_GalaxyLocationRow() {
+                return ((Table_GalaxyLocationRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new Table_GalaxyLocationRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(Table_GalaxyLocationRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.Table_GalaxyLocationRowChanged != null)) {
+                    this.Table_GalaxyLocationRowChanged(this, new Table_GalaxyLocationRowChangeEvent(((Table_GalaxyLocationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.Table_GalaxyLocationRowChanging != null)) {
+                    this.Table_GalaxyLocationRowChanging(this, new Table_GalaxyLocationRowChangeEvent(((Table_GalaxyLocationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.Table_GalaxyLocationRowDeleted != null)) {
+                    this.Table_GalaxyLocationRowDeleted(this, new Table_GalaxyLocationRowChangeEvent(((Table_GalaxyLocationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.Table_GalaxyLocationRowDeleting != null)) {
+                    this.Table_GalaxyLocationRowDeleting(this, new Table_GalaxyLocationRowChangeEvent(((Table_GalaxyLocationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveTable_GalaxyLocationRow(Table_GalaxyLocationRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                Data_GameText ds = new Data_GameText();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "Table_GalaxyLocationDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2074,7 +2423,7 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_LogRow AddTable_LogRow(System.DateTime Date, int Type, Table_GameTextRow parentTable_GameTextRowByRelation_GameText_Log_Target, string OldValue, string NewValue, string Msg) {
+            public Table_LogRow AddTable_LogRow(System.DateTime Date, short Type, Table_GameTextRow parentTable_GameTextRowByRelation_GameText_Log_Target, string OldValue, string NewValue, string Msg) {
                 Table_LogRow rowTable_LogRow = ((Table_LogRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2132,7 +2481,7 @@ namespace SC2_GameTranslater.Source {
                 base.Columns.Add(this.columnID);
                 this.columnDate = new global::System.Data.DataColumn("Date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDate);
-                this.columnType = new global::System.Data.DataColumn("Type", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnType = new global::System.Data.DataColumn("Type", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnType);
                 this.columnTarget = new global::System.Data.DataColumn("Target", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTarget);
@@ -2360,6 +2709,17 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Table_GameTextRow Table_GameTextRow {
+                get {
+                    return ((Table_GameTextRow)(this.GetParentRow(this.Table.ParentRelations["Relation_GameText_GameLocation_Text"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Relation_GameText_GameLocation_Text"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsCountNull() {
                 return this.IsNull(this.tableTable_Language.CountColumn);
             }
@@ -2541,12 +2901,12 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_GameTextRow[] GetTable_GameTextRows() {
-                if ((this.Table.ChildRelations["Relation_GalaxyFile_GameTextD_FileLine"] == null)) {
-                    return new Table_GameTextRow[0];
+            public Table_GalaxyLocationRow[] GetTable_GalaxyLocationRows() {
+                if ((this.Table.ChildRelations["Relation_GalaxyLine_GameLocation_Line"] == null)) {
+                    return new Table_GalaxyLocationRow[0];
                 }
                 else {
-                    return ((Table_GameTextRow[])(base.GetChildRows(this.Table.ChildRelations["Relation_GalaxyFile_GameTextD_FileLine"])));
+                    return ((Table_GalaxyLocationRow[])(base.GetChildRows(this.Table.ChildRelations["Relation_GalaxyLine_GameLocation_Line"])));
                 }
             }
         }
@@ -2605,10 +2965,10 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Type {
+            public short Type {
                 get {
                     try {
-                        return ((int)(this[this.tableTable_GameText.TypeColumn]));
+                        return ((short)(this[this.tableTable_GameText.TypeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("表“Table_GameText”中列“Type”的值为 DBNull。", e);
@@ -2616,17 +2976,6 @@ namespace SC2_GameTranslater.Source {
                 }
                 set {
                     this[this.tableTable_GameText.TypeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int FileLine {
-                get {
-                    return ((int)(this[this.tableTable_GameText.FileLineColumn]));
-                }
-                set {
-                    this[this.tableTable_GameText.FileLineColumn] = value;
                 }
             }
             
@@ -2670,17 +3019,6 @@ namespace SC2_GameTranslater.Source {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["Relation_Language_GameText_LanguageID"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_GalaxyLineRow Table_GalaxyLineRow {
-                get {
-                    return ((Table_GalaxyLineRow)(this.GetParentRow(this.Table.ParentRelations["Relation_GalaxyFile_GameTextD_FileLine"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Relation_GalaxyFile_GameTextD_FileLine"]);
                 }
             }
             
@@ -2734,12 +3072,115 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Table_LanguageRow[] GetTable_LanguageRows() {
+                if ((this.Table.ChildRelations["Relation_GameText_GameLocation_Text"] == null)) {
+                    return new Table_LanguageRow[0];
+                }
+                else {
+                    return ((Table_LanguageRow[])(base.GetChildRows(this.Table.ChildRelations["Relation_GameText_GameLocation_Text"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public Table_LogRow[] GetTable_LogRows() {
                 if ((this.Table.ChildRelations["Relation_GameText_Log_Target"] == null)) {
                     return new Table_LogRow[0];
                 }
                 else {
                     return ((Table_LogRow[])(base.GetChildRows(this.Table.ChildRelations["Relation_GameText_Log_Target"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Table_GalaxyLocationRow[] GetTable_GalaxyLocationRows() {
+                if ((this.Table.ChildRelations["Relation_GameText_GalaxyLocation_TextID"] == null)) {
+                    return new Table_GalaxyLocationRow[0];
+                }
+                else {
+                    return ((Table_GalaxyLocationRow[])(base.GetChildRows(this.Table.ChildRelations["Relation_GameText_GalaxyLocation_TextID"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class Table_GalaxyLocationRow : global::System.Data.DataRow {
+            
+            private Table_GalaxyLocationDataTable tableTable_GalaxyLocation;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal Table_GalaxyLocationRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableTable_GalaxyLocation = ((Table_GalaxyLocationDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Index {
+                get {
+                    return ((string)(this[this.tableTable_GalaxyLocation.IndexColumn]));
+                }
+                set {
+                    this[this.tableTable_GalaxyLocation.IndexColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Line {
+                get {
+                    return ((int)(this[this.tableTable_GalaxyLocation.LineColumn]));
+                }
+                set {
+                    this[this.tableTable_GalaxyLocation.LineColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int TextID {
+                get {
+                    return ((int)(this[this.tableTable_GalaxyLocation.TextIDColumn]));
+                }
+                set {
+                    this[this.tableTable_GalaxyLocation.TextIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Key {
+                get {
+                    return ((string)(this[this.tableTable_GalaxyLocation.KeyColumn]));
+                }
+                set {
+                    this[this.tableTable_GalaxyLocation.KeyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Table_GalaxyLineRow Table_GalaxyLineRow {
+                get {
+                    return ((Table_GalaxyLineRow)(this.GetParentRow(this.Table.ParentRelations["Relation_GalaxyLine_GameLocation_Line"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Relation_GalaxyLine_GameLocation_Line"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Table_GameTextRow Table_GameTextRow {
+                get {
+                    return ((Table_GameTextRow)(this.GetParentRow(this.Table.ParentRelations["Relation_GameText_GalaxyLocation_TextID"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Relation_GameText_GalaxyLocation_TextID"]);
                 }
             }
         }
@@ -2787,9 +3228,9 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Type {
+            public short Type {
                 get {
-                    return ((int)(this[this.tableTable_Log.TypeColumn]));
+                    return ((short)(this[this.tableTable_Log.TypeColumn]));
                 }
                 set {
                     this[this.tableTable_Log.TypeColumn] = value;
@@ -3088,6 +3529,40 @@ namespace SC2_GameTranslater.Source {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public Table_GameTextRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class Table_GalaxyLocationRowChangeEvent : global::System.EventArgs {
+            
+            private Table_GalaxyLocationRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Table_GalaxyLocationRowChangeEvent(Table_GalaxyLocationRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Table_GalaxyLocationRow Row {
                 get {
                     return this.eventRow;
                 }

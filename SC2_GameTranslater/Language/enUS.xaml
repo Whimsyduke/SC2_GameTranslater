@@ -5,22 +5,26 @@
     <!--#region Common Text-->
     <sys:String x:Key="TEXT_LanguageName">English</sys:String>
     <sys:String x:Key="TEXT_WindowTitleText">StarcraftII Game Translater</sys:String>
-    <sys:String x:Key="TEXT_SC2Components">SCII Component Folders</sys:String>
+    <sys:String x:Key="TEXT_SC2File">SCII Map, Mod Or Component Folders</sys:String>
     <sys:String x:Key="TEXT_ProjectFile">Project File</sys:String>
     <!--#endregion-->
 
     <!--#region UI Text-->
     <sys:String x:Key="UI_Backstage_Open_Header">File</sys:String>
     <sys:String x:Key="UI_RibbonButton_Open_Header">Open</sys:String>
-    <sys:String x:Key="UI_RibbonButton_Accept_Header">Accept</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">Save</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">Save As</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Reload_Header">Reload</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Accept_Header">Accept</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">Close</sys:String>
     <sys:String x:Key="UI_GroupBox_Language_Header">UI Language:</sys:String>
     <sys:String x:Key="UI_BackstageTabItem_Preference_Header">Preference</sys:String>
     <sys:String x:Key="UI_RibbonTabItem_Start_Header">Start</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">File</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">Open</sys:String>
+    <sys:String x:Key="UI_LogGroupBox_Header">Log</sys:String>
+    <sys:String x:Key="UI_MenuItem_LogClear_Header">Clear Log</sys:String>
+    
     <!--#endregion-->
 
 </ResourceDictionary>

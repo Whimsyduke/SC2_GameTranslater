@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Image x:Key="IMAGE_Icon" Source="pack://application:,,,/Assets/Image/Icon.ico"/>
     <Image x:Key="IMAGE_Open" Source="pack://application:,,,/Assets/Image/ui-editoricon-general_open.dds"/>
-    <Image x:Key="IMAGE_Accept" Source="pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newcomment.dds"/>
     <Image x:Key="IMAGE_Save" Source="pack://application:,,,/Assets/Image/ui-editoricon-general_save.dds"/>
+    <Image x:Key="IMAGE_Reload" Source="pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newconditiondefinition.dds"/>
+    <Image x:Key="IMAGE_Accept" Source="pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newcondition.dds"/>
     <Image x:Key="IMAGE_Close" Source="pack://application:,,,/Assets/Image/ui-editoricon-data_types_buttons.dds"/>
 </ResourceDictionary>

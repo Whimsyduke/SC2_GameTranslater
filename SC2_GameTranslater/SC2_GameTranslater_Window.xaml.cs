@@ -19,6 +19,7 @@ using System.Globalization;
 using System.Reflection;
 
 using Globals = SC2_GameTranslater.Source.Class_Globals;
+using Log = SC2_GameTranslater.Source.Class_Log;
 using EnumLanguage = SC2_GameTranslater.Source.EnumLanguage;
 
 namespace SC2_GameTranslater
@@ -39,17 +40,7 @@ namespace SC2_GameTranslater
         /// 打开命令依赖项属性
         /// </summary>
         public RoutedUICommand CommandOpen { set => SetValue(CommandOpenProperty, value); get => (RoutedUICommand)GetValue(CommandOpenProperty); }
-
-        /// <summary>
-        /// 保存命令依赖项
-        /// </summary>
-        public static DependencyProperty CommandAcceptProperty = DependencyProperty.Register("CommandAccept", typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
-
-        /// <summary>
-        /// 接受命令依赖项属性
-        /// </summary>
-        public RoutedUICommand CommandAccept { set => SetValue(CommandAcceptProperty, value); get => (RoutedUICommand)GetValue(CommandAcceptProperty); }
-        
+                
         /// <summary>
         /// 保存命令依赖项
         /// </summary>
@@ -69,6 +60,26 @@ namespace SC2_GameTranslater
         /// 另存为命令依赖项属性
         /// </summary>
         public RoutedUICommand CommandSaveAs { set => SetValue(CommandSaveAsProperty, value); get => (RoutedUICommand)GetValue(CommandSaveAsProperty); }
+
+        /// <summary>
+        /// 刷新命令依赖项
+        /// </summary>
+        public static DependencyProperty CommandReloadProperty = DependencyProperty.Register("CommandReload", typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+
+        /// <summary>
+        /// 刷新命令依赖项属性
+        /// </summary>
+        public RoutedUICommand CommandReload { set => SetValue(CommandReloadProperty, value); get => (RoutedUICommand)GetValue(CommandReloadProperty); }
+
+        /// <summary>
+        /// 应用命令依赖项
+        /// </summary>
+        public static DependencyProperty CommandAcceptProperty = DependencyProperty.Register("CommandAccept", typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+
+        /// <summary>
+        /// 应用命令依赖项属性
+        /// </summary>
+        public RoutedUICommand CommandAccept { set => SetValue(CommandAcceptProperty, value); get => (RoutedUICommand)GetValue(CommandAcceptProperty); }
 
         /// <summary>
         /// 关闭命令依赖项
@@ -174,11 +185,13 @@ namespace SC2_GameTranslater
             CommandBinding binding;
             binding = new CommandBinding(CommandOpen, Executed_Open, CanExecuted_Open);
             Globals.MainWindow.CommandBindings.Add(binding);
-            binding = new CommandBinding(CommandAccept, Executed_Accept, CanExecuted_Accept);
-            Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandSave, Executed_Save, CanExecuted_Save);
             Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandSaveAs, Executed_SaveAs, CanExecuted_SaveAs);
+            Globals.MainWindow.CommandBindings.Add(binding);
+            binding = new CommandBinding(CommandReload, Executed_Reload, CanExecuted_Reload);
+            Globals.MainWindow.CommandBindings.Add(binding);
+            binding = new CommandBinding(CommandAccept, Executed_Accept, CanExecuted_Accept);
             Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandClose, Executed_Close, CanExecuted_Close);
             #endregion
@@ -205,15 +218,27 @@ namespace SC2_GameTranslater
             {
                 fileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             }
-            fileDialog.Filter = Globals.CurrentLanguage["TEXT_SC2Components"] as string + "|ComponentList.SC2Components|" + Globals.CurrentLanguage["TEXT_ProjectFile"] as string + "|*.SC2GameTran";
+#if true
+
+            fileDialog.Filter = Globals.CurrentLanguage["TEXT_ProjectFile"] as string + "|*" + Globals.Extension_SC2GameTran + "|" + Globals.CurrentLanguage["TEXT_SC2File"] as string + "|" + Globals.FileName_SC2Components;
+#else            
+            fileDialog.Filter = Globals.CurrentLanguage["TEXT_ProjectFile"] as string + "|*" + Globals.Extension_SC2GameTran + "|" + Globals.CurrentLanguage["TEXT_SC2File"] as string + "|*" + Globals.Extension_SC2Map + ";*" + Globals.Extension_SC2Mod + ";" + Globals.FileName_SC2Components;
+#endif
             fileDialog.Multiselect = false;
             fileDialog.RestoreDirectory = true;
             fileDialog.Title = Globals.CurrentLanguage["UI_OpenFileDialog_Open_Title"] as string;
             if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                Globals.MainWindow.OnOpen(fileDialog.FileName);
+                if (fileDialog.FilterIndex == 1)
+                {
+                    Globals.MainWindow.ProjectOpen(new FileInfo(fileDialog.FileName));
+                }
+                else
+                {
+                    Globals.MainWindow.ProjectNew(new FileInfo(fileDialog.FileName));
+                }
             }
-
+            
             e.Handled = true;
         }
 
@@ -223,28 +248,6 @@ namespace SC2_GameTranslater
         /// <param name="sender">命令来源</param>
         /// <param name="e">路由事件参数</param>
         public static void CanExecuted_Open(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-            e.Handled = true;
-        }
-
-        /// <summary>
-        ///另存为项目命令执行函数
-        /// </summary>
-        /// <param name="sender">命令来源</param>
-        /// <param name="e">路由事件参数</param>
-        public static void Executed_Accept(object sender, ExecutedRoutedEventArgs e)
-        {
-            MessageBox.Show("Accept");
-            e.Handled = true;
-        }
-
-        /// <summary>
-        /// 接受项目命令判断函数
-        /// </summary>
-        /// <param name="sender">命令来源</param>
-        /// <param name="e">路由事件参数</param>
-        public static void CanExecuted_Accept(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
             e.Handled = true;
@@ -268,7 +271,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void CanExecuted_Save(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = true;
+            e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
             e.Handled = true;
         }
         
@@ -290,7 +293,51 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void CanExecuted_SaveAs(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = true;
+            e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 刷新项目命令执行函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void Executed_Reload(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("Reload");
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 刷新项目命令判断函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void CanExecuted_Reload(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 应用项目命令执行函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void Executed_Accept(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("Accept");
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 应用项目命令判断函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void CanExecuted_Accept(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
             e.Handled = true;
         }
 
@@ -301,7 +348,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void Executed_Close(object sender, ExecutedRoutedEventArgs e)
         {
-            MessageBox.Show("Close");
+            Globals.MainWindow.ProjectClose();
             e.Handled = true;
         }
 
@@ -312,7 +359,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void CanExecuted_Close(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = true;
+            e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
             e.Handled = true;
         }
 
@@ -320,11 +367,52 @@ namespace SC2_GameTranslater
 
         #region 功能
 
-        public void OnOpen(string filename)
+        /// <summary>
+        /// 打开项目
+        /// </summary>
+        /// <param name="file">文件路径</param>
+        public void ProjectOpen(FileInfo file)
         {
-            MessageBox.Show(filename);
+            ProjectClose();
         }
 
+        /// <summary>
+        /// 新建项目
+        /// </summary>
+        /// <param name="file">文件路径</param>
+        public void ProjectNew(FileInfo file)
+        {
+            ProjectClose();
+            Globals.InitProjectData();
+            Globals.CurrentProject.Initialization(file);
+        }
+
+        /// <summary>
+        /// 重载数据
+        /// </summary>
+        /// <param name="fileName">文件路径</param>
+        public void ProjectReload(FileInfo file)
+        {
+            Log.Assert(Globals.CurrentProject != null);
+            Globals.CurrentProject.ReloadFile(file);
+        }
+
+        /// <summary>
+        /// 关闭文件
+        /// </summary>
+        public void ProjectClose()
+        {
+            
+        }
+
+        /// <summary>
+        /// 检测当前项目存在
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckCurrentProjectExist()
+        {
+            return Globals.CurrentProject != null;
+        }
         #endregion
 
         #endregion
