@@ -194,6 +194,7 @@ namespace SC2_GameTranslater
             binding = new CommandBinding(CommandAccept, Executed_Accept, CanExecuted_Accept);
             Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandClose, Executed_Close, CanExecuted_Close);
+            Globals.MainWindow.CommandBindings.Add(binding);
             #endregion
         }
         #endregion
