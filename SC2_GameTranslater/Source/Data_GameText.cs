@@ -2,15 +2,14 @@
 using System.IO;
 using System.Windows;
 using System.Text.RegularExpressions;
-
-using Globals = SC2_GameTranslater.Source.Class_Globals;
-using Log = SC2_GameTranslater.Source.Class_Log;
-using EnumLanguage = SC2_GameTranslater.Source.EnumLanguage;
 using System.Data;
 using System.Collections.Generic;
 
 namespace SC2_GameTranslater.Source
 {
+    using Globals = Class_Globals;
+    using Threads = Class_Threads;
+    using Log = Class_Log;
     /// <summary>
     /// 翻译文本数据表
     /// </summary>
@@ -152,6 +151,21 @@ namespace SC2_GameTranslater.Source
 
         #region 属性字段
 
+        public string ModPath
+        {
+            set
+            {
+                mModPath = value;
+                Tables[TN_ModInfo].Rows.Add(value);
+                Globals.MainWindow.TextBox_ModPath.Text = value;
+            }
+            get
+            {
+                return mModPath;
+            }
+        }
+        private string mModPath = null;
+
         #endregion
 
         #region 构造函数
@@ -159,6 +173,58 @@ namespace SC2_GameTranslater.Source
         #endregion
 
         #region 方法
+
+        #region 数据
+
+        
+        #endregion
+
+        #region 进程
+
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="argu"></param>
+        public void ThreadInitialization(object argu)
+        {
+            FileInfo file = argu as FileInfo;
+            Clear();
+            CleanGalaxyTable();
+
+            List<FileInfo> galaxyFiles = new List<FileInfo>();
+            GetGalaxyFiles(file.Directory, ref galaxyFiles);
+            int max = galaxyFiles.Count + GameTextFilesCount(file.Directory);
+            Globals.MainWindow.ProgressBarInit(max, "");
+
+            LoadGalaxyFile(galaxyFiles);
+            LoadGameTextFile(file.Directory);
+
+            Globals.MainWindow.ProgressBarClean();
+        }
+
+        /// <summary>
+        /// 重载
+        /// </summary>
+        /// <param name="argu"></param>
+        public void ThreadReloadFile(object argu)
+        {
+            FileInfo file = argu as FileInfo;
+            CleanGalaxyTable();
+
+            List<FileInfo> galaxyFiles = new List<FileInfo>();
+            GetGalaxyFiles(file.Directory, ref galaxyFiles);
+            int max = galaxyFiles.Count + GameTextFilesCount(file.Directory);
+            Globals.MainWindow.ProgressBarInit(max, "");
+
+            LoadGalaxyFile(galaxyFiles);
+            SetDataValue(TN_Language, RN_Language_Status, EnumDataValueStatus.Unused);
+            SetDataValue(TN_GameText, RN_GameText_Status, EnumDataValueStatus.Unused);
+            LoadGameTextFile(file.Directory);
+
+            Globals.MainWindow.ProgressBarClean();
+        }
+
+        #endregion
 
         #region 加载
 
@@ -168,11 +234,8 @@ namespace SC2_GameTranslater.Source
         /// <param name="path">文件路径</param>
         public void Initialization(FileInfo file)
         {
-            Clear();
-            Tables[TN_ModInfo].Rows.Add(file.FullName);
-            CleanGalaxyTable();
-            GetGalaxyFiles(file.Directory);
-            GetGameTextFiles(file.Directory);
+            ModPath = file.FullName;
+            Threads.StartThread(ThreadInitialization, file, true);
         }
 
         /// <summary>
@@ -181,14 +244,10 @@ namespace SC2_GameTranslater.Source
         /// <param name="path">文件路径</param>
         public void ReloadFile(FileInfo file)
         {
-            Tables[TN_ModInfo].Rows.Add(file.FullName);
-            CleanGalaxyTable();
-            GetGalaxyFiles(file.Directory);
-            SetDataValue(TN_Language, RN_Language_Status, EnumDataValueStatus.Unused);
-            SetDataValue(TN_GameText, RN_GameText_Status, EnumDataValueStatus.Unused);
-            GetGameTextFiles(file.Directory);
+            ModPath = file.FullName;
+            Threads.StartThread(ThreadReloadFile, file, true);
         }
-
+        
         #endregion
 
         #region 文本功能
@@ -250,6 +309,25 @@ namespace SC2_GameTranslater.Source
             }
         }
 
+        /// <summary>
+        /// 游戏文本文件数量
+        /// </summary>
+        /// <param name="baseDir">基础目录</param>
+        /// <returns>数量</returns>
+        private int GameTextFilesCount(DirectoryInfo baseDir)
+        {
+            int count = 0;
+            foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
+            {
+                foreach (EnumGameTextFile file in Enum.GetValues(typeof(EnumGameTextFile)))
+                {
+                    string path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, file));
+                    if (File.Exists(path)) count++;
+                }
+            }
+            return count;
+        }
+
         #endregion
 
         #region 加载
@@ -258,7 +336,7 @@ namespace SC2_GameTranslater.Source
         /// 获取Mod的文本文件
         /// </summary>
         /// <param name="baseDir">基础目录</param>
-        public void GetGameTextFiles(DirectoryInfo baseDir)
+        public void LoadGameTextFile(DirectoryInfo baseDir)
         {
             int count;
             foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
@@ -279,13 +357,16 @@ namespace SC2_GameTranslater.Source
         /// <param name="baseDir">基础目录</param>
         /// <param name="lang">语言</param>
         /// <param name="file">文件类型</param>
-        private void LoadGameTextFile(DirectoryInfo baseDir, EnumLanguage lang, EnumGameTextFile file, ref int count)
+        private bool LoadGameTextFile(DirectoryInfo baseDir, EnumLanguage lang, EnumGameTextFile file, ref int count)
         {
-            string path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, file));
+            string name = TextFilePath(lang, file);
+            string path = string.Format("{0}\\{1}", baseDir.FullName, name);
             string line;
             string key;
             string value;
             int length;
+            if (!File.Exists(path)) return false;
+            Globals.MainWindow.ProgressBarUpadte(1, name);
             StreamReader sr = new StreamReader(path);
             DataRow rowText;
             DataRow rowValue;
@@ -301,6 +382,7 @@ namespace SC2_GameTranslater.Source
             }
 
             sr.Close();
+            return true;
         }
 
         #endregion
@@ -412,20 +494,34 @@ namespace SC2_GameTranslater.Source
         /// 递归获取Mod的Galaxy文件
         /// </summary>
         /// <param name="parentDir">父级目录</param>
-        private void GetGalaxyFiles(DirectoryInfo parentDir)
+        /// <param name="files">Galaxy文件</param>
+        private void GetGalaxyFiles(DirectoryInfo parentDir, ref List<FileInfo> files)
+        {
+            foreach (FileInfo file in parentDir.GetFiles())
+            {
+                if (file.Extension.ToLower() == ".galaxy")
+                {
+                    files.Add(file);
+                }
+            }
+            foreach (DirectoryInfo select in parentDir.GetDirectories())
+            {
+                GetGalaxyFiles(select, ref files);
+            }
+        }
+
+        /// <summary>
+        /// 处理Galaxy文件
+        /// </summary>
+        /// <param name="files">Galaxy文件</param>
+        private void LoadGalaxyFile(List<FileInfo> files)
         {
             try
             {
-                foreach (FileInfo select in parentDir.GetFiles())
+                foreach (FileInfo file in files)
                 {
-                    if (select.Extension.ToLower() == ".galaxy")
-                    {
-                        LoadGalaxyFile(select);
-                    }
-                }
-                foreach (DirectoryInfo select in parentDir.GetDirectories())
-                {
-                    GetGalaxyFiles(select);
+                    Globals.MainWindow.ProgressBarUpadte(1, file.Name);
+                    LoadGalaxyFile(file);
                 }
             }
             catch (Exception e)

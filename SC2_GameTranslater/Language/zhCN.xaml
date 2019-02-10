@@ -10,7 +10,7 @@
     <!--#endregion-->
 
     <!--#region 界面文本-->
-    <sys:String x:Key="UI_Backstage_Open_Header">文件</sys:String>
+    <sys:String x:Key="UI_Backstage_Menu_Header">目录</sys:String>
     <sys:String x:Key="UI_RibbonButton_Open_Header">打开</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">保存</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">另存为</sys:String>
@@ -18,12 +18,15 @@
     <sys:String x:Key="UI_RibbonButton_Accept_Header">应用</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">关闭</sys:String>
     <sys:String x:Key="UI_GroupBox_Language_Header">界面语言：</sys:String>
+    <sys:String x:Key="UI_GroupBox_ModPath_Header">Mod/Map路径：</sys:String>
     <sys:String x:Key="UI_BackstageTabItem_Preference_Header">配置</sys:String>
     <sys:String x:Key="UI_RibbonTabItem_Start_Header">开始</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">文件</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">打开</sys:String>
     <sys:String x:Key="UI_LogGroupBox_Header">日志</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">清除日志</sys:String>
+    <sys:String x:Key="UI_Button_SelectModPath_Content">选择</sys:String>
+    <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">加载</sys:String>
     <!--#endregion-->
     
 </ResourceDictionary>

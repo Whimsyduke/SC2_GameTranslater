@@ -39,9 +39,17 @@ namespace SC2_GameTranslater.Source
         public static void Assert(bool val)
         {
             if (val) return;
-            DisplayLogOnUI("Error!");
-#if DEBUG
-            throw new Exception();
+#if !DEBUG
+            try
+#endif
+            {
+                throw new Exception();
+            }
+#if !DEBUG
+            catch (Exception err)
+            {
+                DisplayLogOnUI(err.Message);
+            }
 #endif
         }
 

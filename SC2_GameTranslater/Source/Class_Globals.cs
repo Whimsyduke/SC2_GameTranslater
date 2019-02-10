@@ -10,6 +10,7 @@ using System.Reflection;
 using Fluent.Localization;
 
 using Log = SC2_GameTranslater.Source.Class_Log;
+using System.IO;
 
 namespace SC2_GameTranslater.Source
 {
@@ -75,7 +76,7 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// 全局数据
     /// </summary>
-    static class Class_Globals
+    public static class Class_Globals
     {
         #region 声明常量
 
@@ -119,6 +120,17 @@ namespace SC2_GameTranslater.Source
         /// 当前处理的数据
         /// </summary>
         public static Data_GameText CurrentProject { set; get; }
+
+        /// <summary>
+        /// 项目对应的Mod或Map路径
+        /// </summary>
+        public static bool ModPathValid
+        {
+            get
+            {
+                return CurrentProject == null ? false : File.Exists(CurrentProject.ModPath);
+            }
+        }
 
         /// <summary>
         /// 语言字典

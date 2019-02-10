@@ -17,13 +17,14 @@ using Fluent.Localization;
 using System.IO;
 using System.Globalization;
 using System.Reflection;
-
-using Globals = SC2_GameTranslater.Source.Class_Globals;
-using Log = SC2_GameTranslater.Source.Class_Log;
-using EnumLanguage = SC2_GameTranslater.Source.EnumLanguage;
+using System.Threading;
 
 namespace SC2_GameTranslater
 {
+    using Globals = Source.Class_Globals;
+    using Log = Source.Class_Log;
+    using EnumLanguage = Source.EnumLanguage;
+
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
@@ -90,6 +91,16 @@ namespace SC2_GameTranslater
         /// 关闭命令依赖项属性
         /// </summary>
         public RoutedUICommand CommandClose { set => SetValue(CommandCloseProperty, value); get => (RoutedUICommand)GetValue(CommandCloseProperty); }
+
+        /// <summary>
+        /// 选择Mod/Map命令依赖项
+        /// </summary>
+        public static DependencyProperty CommandModPathProperty = DependencyProperty.Register("CommandModPath", typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+
+        /// <summary>
+        /// 选择Mod/Map依赖项属性
+        /// </summary>
+        public RoutedUICommand CommandModPath { set => SetValue(CommandModPathProperty, value); get => (RoutedUICommand)GetValue(CommandModPathProperty); }
 
         #endregion
 
@@ -195,11 +206,104 @@ namespace SC2_GameTranslater
             Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandClose, Executed_Close, CanExecuted_Close);
             Globals.MainWindow.CommandBindings.Add(binding);
+            binding = new CommandBinding(CommandModPath, Executed_ModPath, CanExecuted_ModPath);
+            Globals.MainWindow.CommandBindings.Add(binding);
             #endregion
         }
         #endregion
 
         #region 方法
+
+        #region 通用
+
+        /// <summary>
+        /// 打开文件浏览器选择文件
+        /// </summary>
+        /// <param name="pTextBox">设置文件地址的TextBox控件</param>
+        /// <param name="pFilter">文件类型筛选字符串</param>
+        /// <param name="pTitle">标题</param>
+        /// <returns></returns>
+        private FileInfo OpenFileDialogGetOpenFile(System.Windows.Controls.TextBox pTextBox, string pFilter, string pTitle)
+        {
+            System.Windows.Forms.OpenFileDialog fileDialog = new System.Windows.Forms.OpenFileDialog();
+            if (Directory.Exists(pTextBox.Text))
+            {
+                fileDialog.InitialDirectory = pTextBox.Text;
+            }
+            else
+            {
+                fileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            }
+            fileDialog.Filter = pFilter;
+            fileDialog.Multiselect = false;
+            fileDialog.RestoreDirectory = true;
+            fileDialog.Title = pTitle;
+            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                pTextBox.Text = fileDialog.FileName;
+                return new FileInfo(fileDialog.FileName);
+            }
+            else
+            {
+                pTextBox.Text = "";
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region 进度条
+
+        /// <summary>
+        /// 初始化进度条状态
+        /// </summary>
+        /// <param name="max">最大值</param>
+        /// <param name="msg">初始消息</param>
+        public void ProgressBarInit(int max, string msg)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
+                (ThreadStart)delegate ()
+                {
+                    Grid_Main.IsEnabled = false;
+                    ProgressBar_Loading.Visibility = Visibility.Visible;
+                    TextBlock_ProgressMsg.Visibility = Visibility.Visible;
+                    ProgressBar_Loading.Maximum = max;
+                    TextBlock_ProgressMsg.Text = msg;
+                });
+        }
+
+        /// <summary>
+        /// 更新加载进度条
+        /// </summary>
+        /// <param name="count">计数</param>
+        /// <param name="msg">消息</param>
+        public void ProgressBarUpadte(int count, string msg)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
+                (ThreadStart)delegate ()
+                {
+                    ProgressBar_Loading.Value += count;
+                    TextBlock_ProgressMsg.Text = string.Format("({0}/{1}) {2} {3}", ProgressBar_Loading.Value, ProgressBar_Loading.Value, Globals.CurrentLanguage["UI_TextBlock_ProgressMsg_Text"], msg);
+                });
+        }
+
+        /// <summary>
+        /// 清理进度条状态
+        /// </summary>
+        public void ProgressBarClean()
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
+                (ThreadStart)delegate ()
+                {
+                    ProgressBar_Loading.Visibility = Visibility.Hidden;
+                    TextBlock_ProgressMsg.Visibility = Visibility.Hidden;
+                    ProgressBar_Loading.Value =0 ;
+                    TextBlock_ProgressMsg.Text = "";
+                    Grid_Main.IsEnabled = true;
+                });
+        }
+
+        #endregion
 
         #region 命令
 
@@ -316,7 +420,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void CanExecuted_Reload(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
+            e.CanExecute = Globals.ModPathValid;
             e.Handled = true;
         }
 
@@ -338,7 +442,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void CanExecuted_Accept(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
+            e.CanExecute = Globals.ModPathValid;
             e.Handled = true;
         }
 
@@ -359,6 +463,35 @@ namespace SC2_GameTranslater
         /// <param name="sender">命令来源</param>
         /// <param name="e">路由事件参数</param>
         public static void CanExecuted_Close(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 浏览Mod/Map执行函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void Executed_ModPath(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (Globals.MainWindow != null)
+            {
+                FileInfo mod = Globals.MainWindow.OpenFileDialogGetOpenFile(Globals.MainWindow.TextBox_ModPath, Globals.CurrentLanguage["TEXT_SC2File"] as string + "|" + Globals.FileName_SC2Components, Globals.CurrentLanguage["UI_OpenFileDialog_Open_Title"] as string);
+                if (mod != null)
+                {
+                    Globals.CurrentProject.ModPath = mod.DirectoryName;
+                }
+            }
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 浏览Mod/Map判断函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void CanExecuted_ModPath(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
             e.Handled = true;
@@ -421,10 +554,10 @@ namespace SC2_GameTranslater
         #region 控件事件
 
         /// <summary>
-        /// 
+        /// 语言选择下拉列表选择事件
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
         private void ComboBox_Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string itemName = ComboBox_Language.SelectedItem as string;
@@ -432,6 +565,5 @@ namespace SC2_GameTranslater
         }
 
         #endregion
-
     }
 }

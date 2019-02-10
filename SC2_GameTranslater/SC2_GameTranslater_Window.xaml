@@ -17,7 +17,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Name="Grid_Main">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -25,28 +25,30 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="3*" />
             <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <fluent:Ribbon Name="Ribbon_Main" Grid.Row="0" Grid.ColumnSpan="2">
             <!--<fluent:Ribbon.ContextualGroups>
                 <fluent:RibbonContextualTabGroup x:Name="RibbonCTG_GlobalConfig" BorderBrush="Magenta" Background="Magenta" Foreground="Purple" Visibility="Visible"/>
             </fluent:Ribbon.ContextualGroups>-->
             <fluent:Ribbon.Menu>
-                <fluent:Backstage Header="{DynamicResource ResourceKey=UI_Backstage_Open_Header}">
+                <fluent:Backstage Header="{DynamicResource ResourceKey=UI_Backstage_Menu_Header}">
                     <fluent:BackstageTabControl>
-                        <fluent:Button x:Name="RibbonButton_MenuOpen" Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandOpen}"/>
+                        <fluent:Button x:Name="RibbonButton_MenuOpen" Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandOpen}"/>
                         <Separator />
-                        <fluent:Button x:Name="RibbonButton_MenuSave" Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSave}"/>
+                        <fluent:Button x:Name="RibbonButton_MenuSave" Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSave}"/>
                         <Separator />
-                        <fluent:Button x:Name="RibbonButton_MenuSaveAs" Header="{DynamicResource ResourceKey=UI_RibbonButton_SaveAs_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSaveAs}"/>
+                        <fluent:Button x:Name="RibbonButton_MenuSaveAs" Header="{DynamicResource ResourceKey=UI_RibbonButton_SaveAs_Header}" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSaveAs}"/>
                         <Separator />
-                        <fluent:Button x:Name="RibbonButton_MenuAccept" Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandAccept}"/>
+                        <fluent:Button x:Name="RibbonButton_MenuAccept" Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandAccept}"/>
                         <Separator />
-                        <fluent:Button x:Name="RibbonButton_MenuClose" Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandClose}"/>
+                        <fluent:Button x:Name="RibbonButton_MenuClose" Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandClose}"/>
                         <Separator />
                         <fluent:BackstageTabItem x:Name="BackstageTabItem_Preference" Header="{DynamicResource ResourceKey=UI_BackstageTabItem_Preference_Header}" KeyTip="P">
                             <ScrollViewer Name="ScrollViewer_Preference">
                                 <Grid>
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <GroupBox Name="GroupBox_Language" Grid.Row="0" Margin="3">
@@ -56,6 +58,21 @@
                                             </Label>
                                         </GroupBox.Header>
                                         <ComboBox Name="ComboBox_Language" Margin="3" SelectionChanged="ComboBox_Language_SelectionChanged"/>
+                                    </GroupBox>
+                                    <GroupBox Name="GroupBox_ModPath" Grid.Row="1">
+                                        <GroupBox.Header>
+                                            <Label>
+                                                <TextBlock Text="{DynamicResource ResourceKey=UI_GroupBox_ModPath_Header}"/>
+                                            </Label>
+                                        </GroupBox.Header>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="80"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBox Name="TextBox_ModPath" Grid.Column="0" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" MinWidth="50" Margin="3" IsReadOnly="True"/>
+                                            <Button Name="Button_SelectModPath" Grid.Column="1" Margin="3" Padding="3" Content="{DynamicResource UI_Button_SelectModPath_Content}" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandModPath}"/>
+                                        </Grid>
                                     </GroupBox>
                                 </Grid>
                             </ScrollViewer>
@@ -78,8 +95,8 @@
                 </fluent:RibbonGroupBox>                
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
-        <GroupBox Name="GroupBox_Log" Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" Header="{DynamicResource UI_LogGroupBox_Header}" Margin="3">
-            <Avalon:TextEditor Name="AvalonTextEditor_Log" ShowLineNumbers="True" WordWrap="True" Margin="0,10,6,-4" IsReadOnly="True">
+        <GroupBox Name="GroupBox_Log" Grid.Row="2" Header="{DynamicResource UI_LogGroupBox_Header}" Margin="3">
+            <Avalon:TextEditor Name="AvalonTextEditor_Log" ShowLineNumbers="True" WordWrap="True" Margin="3" IsReadOnly="True">
                 <Avalon:TextEditor.ContextMenu>
                     <ContextMenu>
                         <MenuItem Name="MenuItem_LogClear" Header="{DynamicResource UI_MenuItem_LogClear_Header}" />
@@ -87,5 +104,23 @@
                 </Avalon:TextEditor.ContextMenu>
             </Avalon:TextEditor>
         </GroupBox>
+        <StatusBar Name="StatusBar_Below" Grid.Row="3">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0">
+                <ProgressBar Name="ProgressBar_Loading" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden" Margin="3"/>
+            </StatusBarItem>
+            <StatusBarItem  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
+                <TextBlock Name="TextBlock_ProgressMsg" Visibility="Hidden" Margin="3"/>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </fluent:RibbonWindow>
