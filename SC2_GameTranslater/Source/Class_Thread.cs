@@ -30,8 +30,10 @@ namespace SC2_GameTranslater.Source
             try
 #endif
             {
-                Thread thread = new Thread(func);
-                thread.IsBackground = isBack;
+                Thread thread = new Thread(func)
+                {
+                    IsBackground = isBack
+                };
                 thread.Start(argu);
             }
 #if !DEBUG

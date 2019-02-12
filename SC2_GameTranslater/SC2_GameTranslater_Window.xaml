@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:SC2_GameTranslater"
+    xmlns:source="clr-namespace:SC2_GameTranslater.Source"
     xmlns:Avalon="http://icsharpcode.net/sharpdevelop/avalonedit"
     xmlns:fluent="urn:fluent-ribbon"
     mc:Ignorable="d"
@@ -28,9 +29,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <fluent:Ribbon Name="Ribbon_Main" Grid.Row="0" Grid.ColumnSpan="2">
-            <!--<fluent:Ribbon.ContextualGroups>
-                <fluent:RibbonContextualTabGroup x:Name="RibbonCTG_GlobalConfig" BorderBrush="Magenta" Background="Magenta" Foreground="Purple" Visibility="Visible"/>
-            </fluent:Ribbon.ContextualGroups>-->
             <fluent:Ribbon.Menu>
                 <fluent:Backstage Header="{DynamicResource ResourceKey=UI_Backstage_Menu_Header}">
                     <fluent:BackstageTabControl>
@@ -92,7 +90,11 @@
                     <Separator />
                     <fluent:Button x:Name="RibbonButton_Close" Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}" Icon="{StaticResource ResourceKey=IMAGE_Close}" LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" KeyTip="S"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandClose}"/>
                     <Separator />
-                </fluent:RibbonGroupBox>                
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox Name="RibbonGroupBox_TranslateLanguage" Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TranslateLanguage_Header}"  Grid.IsSharedSizeScope="True">
+                    <fluent:ComboBox Name="ComboBox_SourceLanguage" ItemsSource="{Binding ElementName=RibbonWindow_Main,Path=SourceLanguage}" Header="{DynamicResource ResourceKey=UI_ComboBox_SourceLanguage_Header}" VerticalContentAlignment="Center" IsEditable="False" MinWidth="50" SelectedIndex="0"/>
+                    <fluent:ComboBox Name="ComboBox_TargetLanguage" ItemsSource="{Binding ElementName=RibbonWindow_Main,Path=TargetLanguage}" Header="{DynamicResource ResourceKey=UI_ComboBox_SourceLanguage_Header}" VerticalContentAlignment="Center" IsEditable="False" MinWidth="50"  SelectedIndex="0"/>
+                </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
         <GroupBox Name="GroupBox_Log" Grid.Row="2" Header="{DynamicResource UI_LogGroupBox_Header}" Margin="3">

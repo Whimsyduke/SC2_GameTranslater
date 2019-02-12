@@ -4,6 +4,7 @@ using System.Windows;
 using System.Text.RegularExpressions;
 using System.Data;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SC2_GameTranslater.Source
 {
@@ -176,6 +177,14 @@ namespace SC2_GameTranslater.Source
 
         #region 数据
 
+        /// <summary>
+        /// 获取项目语言列表
+        /// </summary>
+        /// <returns></returns>
+        public List<EnumLanguage> GetLanguageList()
+        {
+            return Tables[TN_Language].AsEnumerable().Select(r => (EnumLanguage)r[RN_Language_ID]).ToList();
+        }
         
         #endregion
 
@@ -368,7 +377,6 @@ namespace SC2_GameTranslater.Source
             if (!File.Exists(path)) return false;
             Globals.MainWindow.ProgressBarUpadte(1, name);
             StreamReader sr = new StreamReader(path);
-            DataRow rowText;
             DataRow rowValue;
             while (!sr.EndOfStream)
             {
@@ -377,7 +385,7 @@ namespace SC2_GameTranslater.Source
                 length = line.IndexOf("=");
                 key = line.Substring(0, length++);
                 value = line.Substring(length);
-                rowValue = SetTextValue(lang, file, key, value, out rowText);
+                rowValue = SetTextValue(lang, file, key, value, out DataRow rowText);
                 count++;
             }
 

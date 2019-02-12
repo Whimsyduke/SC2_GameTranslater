@@ -7,6 +7,19 @@
     <sys:String x:Key="TEXT_WindowTitleText">StarcraftII Game Translater</sys:String>
     <sys:String x:Key="TEXT_SC2File">SCII Map, Mod Or Component Folders</sys:String>
     <sys:String x:Key="TEXT_ProjectFile">Project File</sys:String>
+    <sys:String x:Key="TEXT_Null">Null</sys:String>
+    <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
+    <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
+    <sys:String x:Key="TEXT_enUS">enUS</sys:String>
+    <sys:String x:Key="TEXT_deDE">deDE</sys:String>
+    <sys:String x:Key="TEXT_esMX">esMX</sys:String>
+    <sys:String x:Key="TEXT_esES">esES</sys:String>
+    <sys:String x:Key="TEXT_frFR">frFR</sys:String>
+    <sys:String x:Key="TEXT_itIT">itIT</sys:String>
+    <sys:String x:Key="TEXT_plPL">plPL</sys:String>
+    <sys:String x:Key="TEXT_ptBR">ptBR</sys:String>
+    <sys:String x:Key="TEXT_ruRU">ruRU</sys:String>
+    <sys:String x:Key="TEXT_koKR">koKR</sys:String>
     <!--#endregion-->
 
     <!--#region UI Text-->
@@ -22,6 +35,9 @@
     <sys:String x:Key="UI_BackstageTabItem_Preference_Header">Preference</sys:String>
     <sys:String x:Key="UI_RibbonTabItem_Start_Header">Start</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">File</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">Translate Language</sys:String>
+    <sys:String x:Key="UI_ComboBox_SourceLanguage_Header">Source Language</sys:String>
+    <sys:String x:Key="UI_ComboBox_TargetLanguage_Header">Target Language</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">Open</sys:String>
     <sys:String x:Key="UI_LogGroupBox_Header">Log</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">Clear Log</sys:String>

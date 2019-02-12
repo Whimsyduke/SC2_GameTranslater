@@ -80,6 +80,12 @@ namespace SC2_GameTranslater.Source
     {
         #region 声明常量
 
+        #region 类型
+
+        public delegate void Delegate_CurrentProjectChange(Data_GameText oldPro, Data_GameText newPro);
+
+        #endregion
+
         #region 常量
 
         public const string Extension_SC2GameTran = ".SC2GameTran";
@@ -119,7 +125,26 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 当前处理的数据
         /// </summary>
-        public static Data_GameText CurrentProject { set; get; }
+        public static Data_GameText CurrentProject
+        {
+            set
+            {
+                _EventProjectChange(mCurrentProject, value);
+                mCurrentProject = value;
+            }
+            get => mCurrentProject;
+        }
+        private static Data_GameText mCurrentProject = null;
+
+        /// <summary>
+        /// 当前处理数据切换事件
+        /// </summary>
+        public static event Delegate_CurrentProjectChange EventProjectChange
+        {
+            add { _EventProjectChange += value; }
+            remove { _EventProjectChange -= value; }
+        }
+        private static event Delegate_CurrentProjectChange _EventProjectChange;
 
         /// <summary>
         /// 项目对应的Mod或Map路径

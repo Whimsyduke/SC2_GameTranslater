@@ -18,6 +18,7 @@ using System.IO;
 using System.Globalization;
 using System.Reflection;
 using System.Threading;
+using SC2_GameTranslater.Source;
 
 namespace SC2_GameTranslater
 {
@@ -132,6 +133,28 @@ namespace SC2_GameTranslater
                 return ((EnumLanguage)GetValue(EnumCurrentLanguageProperty));
             }
         }
+
+        /// <summary>
+        /// 翻译源语言依赖项属性
+        /// </summary>
+        public static DependencyProperty SourceLanguageProperty = DependencyProperty.Register("SourceLanguage", typeof(List<ComboBoxItem>), typeof(SC2_GameTranslater_Window), new PropertyMetadata(NewTranslateLanguageItem(true)));
+
+        /// <summary>
+        /// 翻译源语言依赖项
+        /// </summary>
+        public List<ComboBoxItem> SourceLanguage { set => SetValue(SourceLanguageProperty, value); get => GetValue(SourceLanguageProperty) as List<ComboBoxItem>; }
+
+        /// <summary>
+        /// 翻译源语言依赖项属性
+        /// </summary>
+        public static DependencyProperty TargetLanguageProperty = DependencyProperty.Register("TargetLanguage", typeof(List<ComboBoxItem>), typeof(SC2_GameTranslater_Window), new PropertyMetadata(NewTranslateLanguageItem(false)));
+
+        /// <summary>
+        /// 翻译源语言依赖项
+        /// </summary>
+        public List<ComboBoxItem> TargetLanguage { set => SetValue(TargetLanguageProperty, value); get => GetValue(TargetLanguageProperty) as List<ComboBoxItem>; }
+
+
         #endregion
 
         #region 字段
@@ -193,6 +216,7 @@ namespace SC2_GameTranslater
             #endregion
 
             #region 指令配置
+
             CommandBinding binding;
             binding = new CommandBinding(CommandOpen, Executed_Open, CanExecuted_Open);
             Globals.MainWindow.CommandBindings.Add(binding);
@@ -208,8 +232,17 @@ namespace SC2_GameTranslater
             Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandModPath, Executed_ModPath, CanExecuted_ModPath);
             Globals.MainWindow.CommandBindings.Add(binding);
+
+            #endregion
+
+            #region 其他
+
+            Globals.EventProjectChange += OnProjectChangeRefresh;
+            OnProjectChangeRefresh(null, null);
+
             #endregion
         }
+
         #endregion
 
         #region 方法
@@ -499,6 +532,110 @@ namespace SC2_GameTranslater
 
         #endregion
 
+        #region 翻译选项
+
+        /// <summary>
+        /// 刷新翻译选项
+        /// </summary>
+        /// <param name="project">项目</param>
+        public void RefreshTranslateLanguageItems(Data_GameText project)
+        {
+            if (project == null)
+            {
+                RefreshNoTranslateLanguageItem();
+            }
+            else
+            {
+                List<EnumLanguage> list = project.GetLanguageList();
+                if (list.Count == 0)
+                {
+                    RefreshNoTranslateLanguageItem();
+                    return;
+                }
+                ComboBoxItem select = null;
+                SourceLanguage[0].Visibility = Visibility.Collapsed;
+                TargetLanguage[0].Visibility = Visibility.Collapsed;
+                for (int i = 1; i < Enum.GetValues(typeof(EnumLanguage)).Length; i++)
+                {
+                    if (list.Contains((EnumLanguage)SourceLanguage[i].Tag))
+                    {
+                        SourceLanguage[i].Visibility = Visibility.Visible;
+                        TargetLanguage[i].Visibility = Visibility.Visible;
+                        if (select == null)
+                        {
+                            select = SourceLanguage[i];
+                        }
+                    }
+                    else
+                    {
+                        SourceLanguage[i].Visibility = Visibility.Collapsed;
+                        TargetLanguage[i].Visibility = Visibility.Collapsed;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 没有可用的翻译语言
+        /// </summary>
+        private void RefreshNoTranslateLanguageItem()
+        {
+            SourceLanguage[0].Visibility = Visibility.Visible;
+            TargetLanguage[0].Visibility = Visibility.Visible;
+            for (int i = 1; i < Enum.GetValues(typeof(EnumLanguage)).Length; i++)
+            {
+                SourceLanguage[i].Visibility = Visibility.Collapsed;
+                TargetLanguage[i].Visibility = Visibility.Collapsed;
+            }
+            ComboBox_SourceLanguage.SelectedIndex = 0;
+            ComboBox_TargetLanguage.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// 新建语言切换按钮
+        /// </summary>
+        /// <param name="isSource">是否为翻译源选项</param>
+        /// <returns>按钮</returns>
+        private static List<ComboBoxItem> NewTranslateLanguageItem(bool isSource)
+        {
+            List<ComboBoxItem> list = new List<ComboBoxItem>();
+
+            string type = isSource ? "Source" : "Target";
+            ComboBoxItem item = new ComboBoxItem();
+            item.SetResourceReference(ContentProperty, "TEXT_Null");
+            list.Add(item);
+
+            EnumLanguage[] array = Enum.GetValues(typeof(EnumLanguage)).Cast<EnumLanguage>().ToArray();
+            Array.Sort(array, (p1, p2) => Enum.GetName(typeof(EnumLanguage), p1).CompareTo(Enum.GetName(typeof(EnumLanguage), p2)));
+            foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
+            {
+                list.Add(NewTranslateLanguageItem(isSource, lang));
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 新建语言切换按钮
+        /// </summary>
+        /// <param name="isSource">是否为翻译源选项</param>
+        /// <param name="language">对应语言</param>
+        /// <returns>按钮</returns>
+        private static ComboBoxItem NewTranslateLanguageItem(bool isSource, EnumLanguage language)
+        {
+            string lang = Enum.GetName(language.GetType(), language);
+            string type = isSource ? "Source" : "Target";
+            ComboBoxItem item = new ComboBoxItem
+            {
+                Tag = language,
+                Visibility = Visibility.Collapsed,
+            };
+            item.SetResourceReference(ContentProperty, string.Format("TEXT_{0}", lang));
+            if (isSource) item.Selected += SourceLanguageItem_Selected;
+            return item;
+        }
+
+        #endregion
+
         #region 功能
 
         /// <summary>
@@ -547,6 +684,16 @@ namespace SC2_GameTranslater
         {
             return Globals.CurrentProject != null;
         }
+
+        /// <summary>
+        /// 当前项目数据切换刷新
+        /// </summary>
+        /// <param name="oldPro">旧项目</param>
+        /// <param name="newPro">新项目</param>
+        private void OnProjectChangeRefresh(Data_GameText oldPro, Data_GameText newPro)
+        {
+            RefreshTranslateLanguageItems(newPro);
+        }
         #endregion
 
         #endregion
@@ -564,6 +711,22 @@ namespace SC2_GameTranslater
             EnumCurrentLanguage = Globals.DictComboBoxItemLanguage[itemName];
         }
 
+        /// <summary>
+        /// 源翻译语言选项选择事件
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private static void SourceLanguageItem_Selected(object sender, RoutedEventArgs e)
+        {
+            if (sender is ComboBoxItem item)
+            {
+                enum
+                Globals.MainWindow.ComboBox_TargetLanguage.
+            }
+            e.Handled = true;
+        }
+
         #endregion
+
     }
 }

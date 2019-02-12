@@ -149,9 +149,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="System\Windows\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Assets\Image\ui-editoricon-triggereditor_newcondition.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

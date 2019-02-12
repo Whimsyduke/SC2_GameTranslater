@@ -7,6 +7,19 @@
     <sys:String x:Key="TEXT_WindowTitleText">《星际争霸II》游戏翻译器</sys:String>
     <sys:String x:Key="TEXT_SC2File">SC II Mod，地图或组件文件夹</sys:String>
     <sys:String x:Key="TEXT_ProjectFile">翻译项目文件</sys:String>
+    <sys:String x:Key="TEXT_Null">空</sys:String>
+    <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
+    <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
+    <sys:String x:Key="TEXT_enUS">enUS</sys:String>
+    <sys:String x:Key="TEXT_deDE">deDE</sys:String>
+    <sys:String x:Key="TEXT_esMX">esMX</sys:String>
+    <sys:String x:Key="TEXT_esES">esES</sys:String>
+    <sys:String x:Key="TEXT_frFR">frFR</sys:String>
+    <sys:String x:Key="TEXT_itIT">itIT</sys:String>
+    <sys:String x:Key="TEXT_plPL">plPL</sys:String>
+    <sys:String x:Key="TEXT_ptBR">ptBR</sys:String>
+    <sys:String x:Key="TEXT_ruRU">ruRU</sys:String>
+    <sys:String x:Key="TEXT_koKR">koKR</sys:String>
     <!--#endregion-->
 
     <!--#region 界面文本-->
@@ -22,11 +35,14 @@
     <sys:String x:Key="UI_BackstageTabItem_Preference_Header">配置</sys:String>
     <sys:String x:Key="UI_RibbonTabItem_Start_Header">开始</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">文件</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">翻译语言</sys:String>
+    <sys:String x:Key="UI_ComboBox_SourceLanguage_Header">基准语言</sys:String>
+    <sys:String x:Key="UI_ComboBox_TargetLanguage_Header">目标语言</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">打开</sys:String>
     <sys:String x:Key="UI_LogGroupBox_Header">日志</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">清除日志</sys:String>
     <sys:String x:Key="UI_Button_SelectModPath_Content">选择</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">加载</sys:String>
     <!--#endregion-->
-    
+        
 </ResourceDictionary>
