@@ -90,7 +90,7 @@
                     <Separator />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Name="RibbonGroupBox_TranslateLanguage" Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TranslateLanguage_Header}"  Grid.IsSharedSizeScope="True">
-                    <fluent:InRibbonGallery Name="InRibbonGallery_SourceLanguage" Header="{DynamicResource ResourceKey=UI_InRibbonGallery_SourceLanguage_Header}" VerticalContentAlignment="Center"/>
+                    <fluent:InRibbonGallery Name="InRibbonGallery_SourceLanguage" Header="{DynamicResource ResourceKey=UI_InRibbonGallery_SourceLanguage_Header}" VerticalContentAlignment="Center" MaxItemsInRow="12"/>
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
         </fluent:Ribbon>

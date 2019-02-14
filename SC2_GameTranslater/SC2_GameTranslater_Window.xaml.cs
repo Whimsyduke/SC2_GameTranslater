@@ -519,13 +519,19 @@ namespace SC2_GameTranslater
                     return;
                 }
                 InRibbonGallery_SourceLanguage.Items.Clear();
+                ToggleButton selectButton = null;
                 foreach (KeyValuePair<EnumLanguage, ToggleButton> select in TranslateLanguage)
                 {
                     if (list.Contains(select.Key))
                     {
                         InRibbonGallery_SourceLanguage.Items.Add(select.Value);
+                        if (selectButton == null || (int)select.Key == CultureInfo.CurrentCulture.LCID)
+                        {
+                            selectButton = select.Value;
+                        }
                     }
                 }
+                selectButton.IsChecked = true;
             }
         }
 
@@ -552,7 +558,7 @@ namespace SC2_GameTranslater
 
             EnumLanguage[] array = Enum.GetValues(typeof(EnumLanguage)).Cast<EnumLanguage>().ToArray();
             Array.Sort(array, (p1, p2) => Enum.GetName(typeof(EnumLanguage), p1).CompareTo(Enum.GetName(typeof(EnumLanguage), p2)));
-            foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
+            foreach (EnumLanguage lang in array)
             {
                 list.Add(lang, NewTranslateLanguageItem(lang));
             }
@@ -570,7 +576,7 @@ namespace SC2_GameTranslater
             ToggleButton button = new ToggleButton
             {
                 Tag = language,
-                Visibility = Visibility.Collapsed,
+                GroupName = "TranslateLanguage",
             };
             button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_{0}", lang));
             return button;
