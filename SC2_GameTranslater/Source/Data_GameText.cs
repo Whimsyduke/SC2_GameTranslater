@@ -93,29 +93,16 @@ namespace SC2_GameTranslater.Source
         public const string RN_GalaxyLocation_Key = "Key";
         public const string RN_GameText_ID = "ID";
         public const string RN_GameText_File = "File";
-        public const string RN_TextValue_Index = "Index";
-        public const string RN_TextValue_TextID = "TextID";
-        public const string RN_TextValue_LangID = "LangID";
-        public const string RN_TextValue_Type = "Type";
-        public const string RN_TextValue_Text = "Text";
-        public const string RN_TextValue_TempText = "TempText";
-        public const string RN_Log_ID = "ID";
-        public const string RN_Log_Date = "Date";
-        public const string RN_Log_Type = "Type";
-        public const string RN_Log_Target = "Target";
-        public const string RN_Log_OldValue = "OldValue";
-        public const string RN_Log_NewValue = "NewValue";
-        public const string RN_Log_Msg = "Msg";
+        public const string RN_GameText_Type = "Type";
+        public const string RN_GameText_Text = "Text";
+        public const string RN_GameText_Temp = "Temp";
 
         #endregion
 
         #region 关系
 
-        public const string RSN_Language_TextValue_LangID = "Relation_Language_TextValue_LangID";
-        public const string RSN_GameText_TextValue_TextID = "Relation_GameText_TextValue_TextID";
         public const string RSN_GalaxyLine_GameLocation_Line = "Relation_GalaxyLine_GameLocation_Line";
         public const string RSN_GalaxyFile_GalaxyLine_File = "Relation_GalaxyFile_GalaxyLine_File";
-        public const string RSN_TextValue_Log_Target = "Relation_TextValue_Log_Target";
         public const string RSN_GameText_GalaxyLocation_Key = "Relation_GameText_GalaxyLocation_Key";
 
         #endregion
@@ -143,11 +130,20 @@ namespace SC2_GameTranslater.Source
 
         #endregion
 
-        #region 构造函数
+        #region 方法
+
+        #region 重载
+
+        public new void EndInit()
+        {
+            base.EndInit();
+            foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
+            {
+                GenerateDataColumnForLanguage(lang);
+            }
+        }
 
         #endregion
-
-        #region 方法
 
         #region 数据
 
@@ -205,8 +201,8 @@ namespace SC2_GameTranslater.Source
         /// <param name="path">文件路径</param>
         public void Initialization(FileInfo file)
         {
-            ModPath = file.FullName;
             Threads.StartThread(ThreadInitialization, file, true);
+            ModPath = file.FullName;
         }
 
         #endregion
@@ -214,6 +210,61 @@ namespace SC2_GameTranslater.Source
         #region 文本功能
 
         #region 通用
+
+        /// <summary>
+        /// 获取语言对应列名
+        /// </summary>
+        /// <param name="lang">语言</param>
+        /// <param name="name">基本名称</param>
+        /// <returns>列名</returns>
+        public string GetGameTextNameForLanguage(EnumLanguage lang, string name)
+        {
+            return string.Format("{0}_{1}", Enum.GetName(lang.GetType(), lang), name);
+        }
+
+        /// <summary>
+        /// 生成语言对应的DataColumn配置
+        /// </summary>
+        /// <param name="lang">语言</param>
+        private void GenerateDataColumnForLanguage(EnumLanguage lang)
+        {
+            string columnName;
+            DataColumn column;
+            DataTable table = Tables[TN_GameText];
+
+            // Type
+            columnName = GetGameTextNameForLanguage(lang, RN_GameText_Type);
+            column = new DataColumn(columnName, typeof(EnumGameTextType), "", MappingType.Element)
+            {
+                Caption = columnName,
+                DefaultValue = EnumGameTextType.Empty,
+                AllowDBNull = false,
+                Unique = false,
+            };
+            table.Columns.Add(column);
+
+            // Text
+            columnName = GetGameTextNameForLanguage(lang, RN_GameText_Text);
+            column = new DataColumn(columnName, typeof(string), "", MappingType.Element)
+            {
+                Caption = columnName,
+                DefaultValue = null,
+                AllowDBNull = true,
+                Unique = false,
+            };
+            table.Columns.Add(column);
+
+            // Text
+            columnName = GetGameTextNameForLanguage(lang, RN_GameText_Temp);
+            column = new DataColumn(columnName, typeof(string), "", MappingType.Element)
+            {
+                Caption = columnName,
+                DefaultValue = null,
+                AllowDBNull = true,
+                Unique = false,
+            };
+            table.Columns.Add(column);
+        }
 
         /// <summary>
         /// 生成文本文件路径
@@ -358,7 +409,7 @@ namespace SC2_GameTranslater.Source
                 length = line.IndexOf("=");
                 key = line.Substring(0, length++);
                 value = line.Substring(length);
-                rowValue = SetTextValue(lang, file, key, value, out DataRow rowText);
+                rowValue = SetTextValue(lang, file, key, value);
             }
 
             sr.Close();
@@ -395,25 +446,16 @@ namespace SC2_GameTranslater.Source
         /// <returns></returns>
         public DataRow GetGameTextRow(EnumGameTextFile file, string key)
         {
-            DataTable tableText = Tables[TN_GameText];
-            DataRow textRow = tableText.Rows.Find(key);
-            if (textRow == null)
+            DataTable table = Tables[TN_GameText];
+            DataRow row = table.Rows.Find(key);
+            if (row == null)
             {
-                textRow = tableText.NewRow();
-                textRow[RN_GameText_ID] = key;
-                textRow[RN_GameText_File] = file;
-                tableText.Rows.Add(textRow);
-                DataTable tableValue = Tables[TN_TextValue];
-                foreach (DataRow lang in Tables[TN_Language].Rows)
-                {
-                    DataRow valueRow = tableValue.NewRow();
-                    valueRow[RN_TextValue_TextID] = key;
-                    valueRow[RN_TextValue_LangID] = lang[RN_Language_ID];
-                    valueRow[RN_TextValue_Type] = EnumGameTextType.Empty;
-                    tableValue.Rows.Add(valueRow);
-                }
+                row = table.NewRow();
+                row[RN_GameText_ID] = key;
+                row[RN_GameText_File] = file;
+                table.Rows.Add(row);
             }
-            return textRow;
+            return row;
         }
 
         /// <summary>
@@ -425,23 +467,11 @@ namespace SC2_GameTranslater.Source
         /// <param name="value">值</param>
         /// <param name="textRow">文本列</param>
         /// <returns></returns>
-        public DataRow SetTextValue(EnumLanguage lang, EnumGameTextFile file, string key, string value, out DataRow textRow)
+        public DataRow SetTextValue(EnumLanguage lang, EnumGameTextFile file, string key, string value)
         {
-            textRow = GetGameTextRow(file, key);
-            DataTable table = Tables[TN_TextValue];
-            string filter = string.Format("{0}='{1}' and {2}={3:D}", RN_TextValue_TextID, key, RN_TextValue_LangID, lang);
-            DataRow[] rows = table.Select(filter);
-            DataRow row = null;
-            switch (rows.Length)
-            {
-                case 1:
-                    row = rows[0];
-                    row[RN_TextValue_Type] = EnumGameTextType.Normal;
-                    break;
-                default:
-                    Log.Assert(false);
-                    break;
-            }
+            DataRow row = GetGameTextRow(file, key);
+            row[GetGameTextNameForLanguage(lang, RN_GameText_Type)] = EnumGameTextType.Normal;
+            row[GetGameTextNameForLanguage(lang, RN_GameText_Text)] = value;
             return row;
         }
 
