@@ -31,12 +31,23 @@ namespace SC2_GameTranslater
     /// </summary>
     public partial class SC2_GameTranslater_Window : RibbonWindow
     {
+        #region 声明
+
+        /// <summary>
+        /// 进度条函数委托
+        /// </summary>
+        /// <param name="count">当前计数</param>
+        /// <param name="max">最大计数</param>
+        public delegate void Delegate_ProgressEvent(double count, double max);
+
+        #endregion
+
         #region 命令
 
         /// <summary>
         /// 打开命令依赖项
         /// </summary>
-        public static DependencyProperty CommandOpenProperty = DependencyProperty.Register("CommandOpen", typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+        public static DependencyProperty CommandOpenProperty = DependencyProperty.Register(nameof(CommandOpen), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
 
         /// <summary>
         /// 打开命令依赖项属性
@@ -46,7 +57,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 保存命令依赖项
         /// </summary>
-        public static DependencyProperty CommandSaveProperty = DependencyProperty.Register("CommandSave", typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+        public static DependencyProperty CommandSaveProperty = DependencyProperty.Register(nameof(CommandSave), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
 
         /// <summary>
         /// 保存命令依赖项属性
@@ -56,27 +67,17 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 另存为命令依赖项
         /// </summary>
-        public static DependencyProperty CommandSaveAsProperty = DependencyProperty.Register("CommandSaveAs", typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+        public static DependencyProperty CommandSaveAsProperty = DependencyProperty.Register(nameof(CommandSaveAs), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
 
         /// <summary>
         /// 另存为命令依赖项属性
         /// </summary>
         public RoutedUICommand CommandSaveAs { set => SetValue(CommandSaveAsProperty, value); get => (RoutedUICommand)GetValue(CommandSaveAsProperty); }
-
-        /// <summary>
-        /// 刷新命令依赖项
-        /// </summary>
-        public static DependencyProperty CommandReloadProperty = DependencyProperty.Register("CommandReload", typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
-
-        /// <summary>
-        /// 刷新命令依赖项属性
-        /// </summary>
-        public RoutedUICommand CommandReload { set => SetValue(CommandReloadProperty, value); get => (RoutedUICommand)GetValue(CommandReloadProperty); }
-
+        
         /// <summary>
         /// 应用命令依赖项
         /// </summary>
-        public static DependencyProperty CommandAcceptProperty = DependencyProperty.Register("CommandAccept", typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+        public static DependencyProperty CommandAcceptProperty = DependencyProperty.Register(nameof(CommandAccept), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
 
         /// <summary>
         /// 应用命令依赖项属性
@@ -86,7 +87,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 关闭命令依赖项
         /// </summary>
-        public static DependencyProperty CommandCloseProperty = DependencyProperty.Register("CommandClose", typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+        public static DependencyProperty CommandCloseProperty = DependencyProperty.Register(nameof(CommandClose), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
 
         /// <summary>
         /// 关闭命令依赖项属性
@@ -96,7 +97,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 选择Mod/Map命令依赖项
         /// </summary>
-        public static DependencyProperty CommandModPathProperty = DependencyProperty.Register("CommandModPath", typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+        public static DependencyProperty CommandModPathProperty = DependencyProperty.Register(nameof(CommandModPath), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
 
         /// <summary>
         /// 选择Mod/Map依赖项属性
@@ -112,7 +113,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 语言依赖项属性
         /// </summary>
-        public static DependencyProperty EnumCurrentLanguageProperty = DependencyProperty.Register("EnumCurrentLanguage", typeof(EnumLanguage), typeof(SC2_GameTranslater_Window));
+        public static DependencyProperty EnumCurrentLanguageProperty = DependencyProperty.Register(nameof(EnumCurrentLanguage), typeof(EnumLanguage), typeof(SC2_GameTranslater_Window));
 
         /// <summary>
         /// 当前语言依赖项
@@ -135,25 +136,10 @@ namespace SC2_GameTranslater
         }
 
         /// <summary>
-        /// 翻译源语言依赖项属性
+        /// 翻译语言
         /// </summary>
-        public static DependencyProperty SourceLanguageProperty = DependencyProperty.Register("SourceLanguage", typeof(List<ComboBoxItem>), typeof(SC2_GameTranslater_Window), new PropertyMetadata(NewTranslateLanguageItem(true)));
-
-        /// <summary>
-        /// 翻译源语言依赖项
-        /// </summary>
-        public List<ComboBoxItem> SourceLanguage { set => SetValue(SourceLanguageProperty, value); get => GetValue(SourceLanguageProperty) as List<ComboBoxItem>; }
-
-        /// <summary>
-        /// 翻译源语言依赖项属性
-        /// </summary>
-        public static DependencyProperty TargetLanguageProperty = DependencyProperty.Register("TargetLanguage", typeof(List<ComboBoxItem>), typeof(SC2_GameTranslater_Window), new PropertyMetadata(NewTranslateLanguageItem(false)));
-
-        /// <summary>
-        /// 翻译源语言依赖项
-        /// </summary>
-        public List<ComboBoxItem> TargetLanguage { set => SetValue(TargetLanguageProperty, value); get => GetValue(TargetLanguageProperty) as List<ComboBoxItem>; }
-
+        public Dictionary<EnumLanguage, ToggleButton> TranslateLanguage { set; get; } = NewTranslateLanguageItem();
+        
 
         #endregion
 
@@ -224,8 +210,6 @@ namespace SC2_GameTranslater
             Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandSaveAs, Executed_SaveAs, CanExecuted_SaveAs);
             Globals.MainWindow.CommandBindings.Add(binding);
-            binding = new CommandBinding(CommandReload, Executed_Reload, CanExecuted_Reload);
-            Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandAccept, Executed_Accept, CanExecuted_Accept);
             Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandClose, Executed_Close, CanExecuted_Close);
@@ -292,7 +276,8 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="max">最大值</param>
         /// <param name="msg">初始消息</param>
-        public void ProgressBarInit(int max, string msg)
+        /// <param name="func">调用委托</param>
+        public void ProgressBarInit(int max, string msg, Delegate_ProgressEvent func)
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
                 (ThreadStart)delegate ()
@@ -302,6 +287,7 @@ namespace SC2_GameTranslater
                     TextBlock_ProgressMsg.Visibility = Visibility.Visible;
                     ProgressBar_Loading.Maximum = max;
                     TextBlock_ProgressMsg.Text = msg;
+                    func?.Invoke(0, max);
                 });
         }
 
@@ -310,20 +296,21 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="count">计数</param>
         /// <param name="msg">消息</param>
-        public void ProgressBarUpadte(int count, string msg)
+        public void ProgressBarUpadte(int count, string msg, Delegate_ProgressEvent func)
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
                 (ThreadStart)delegate ()
                 {
                     ProgressBar_Loading.Value += count;
-                    TextBlock_ProgressMsg.Text = string.Format("({0}/{1}) {2} {3}", ProgressBar_Loading.Value, ProgressBar_Loading.Value, Globals.CurrentLanguage["UI_TextBlock_ProgressMsg_Text"], msg);
+                    TextBlock_ProgressMsg.Text = string.Format("({0}/{1}) {2} {3}", ProgressBar_Loading.Value, ProgressBar_Loading.Maximum, Globals.CurrentLanguage["UI_TextBlock_ProgressMsg_Text"], msg);
+                    func?.Invoke(ProgressBar_Loading.Value, ProgressBar_Loading.Maximum);
                 });
         }
 
         /// <summary>
         /// 清理进度条状态
         /// </summary>
-        public void ProgressBarClean()
+        public void ProgressBarClean(Delegate_ProgressEvent func)
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
                 (ThreadStart)delegate ()
@@ -333,6 +320,7 @@ namespace SC2_GameTranslater
                     ProgressBar_Loading.Value =0 ;
                     TextBlock_ProgressMsg.Text = "";
                     Grid_Main.IsEnabled = true;
+                    func?.Invoke(ProgressBar_Loading.Value, ProgressBar_Loading.Maximum);
                 });
         }
 
@@ -434,29 +422,7 @@ namespace SC2_GameTranslater
             e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
             e.Handled = true;
         }
-
-        /// <summary>
-        /// 刷新项目命令执行函数
-        /// </summary>
-        /// <param name="sender">命令来源</param>
-        /// <param name="e">路由事件参数</param>
-        public static void Executed_Reload(object sender, ExecutedRoutedEventArgs e)
-        {
-            MessageBox.Show("Reload");
-            e.Handled = true;
-        }
-
-        /// <summary>
-        /// 刷新项目命令判断函数
-        /// </summary>
-        /// <param name="sender">命令来源</param>
-        /// <param name="e">路由事件参数</param>
-        public static void CanExecuted_Reload(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = Globals.ModPathValid;
-            e.Handled = true;
-        }
-
+        
         /// <summary>
         /// 应用项目命令执行函数
         /// </summary>
@@ -552,24 +518,12 @@ namespace SC2_GameTranslater
                     RefreshNoTranslateLanguageItem();
                     return;
                 }
-                ComboBoxItem select = null;
-                SourceLanguage[0].Visibility = Visibility.Collapsed;
-                TargetLanguage[0].Visibility = Visibility.Collapsed;
-                for (int i = 1; i < Enum.GetValues(typeof(EnumLanguage)).Length; i++)
+                InRibbonGallery_SourceLanguage.Items.Clear();
+                foreach (KeyValuePair<EnumLanguage, ToggleButton> select in TranslateLanguage)
                 {
-                    if (list.Contains((EnumLanguage)SourceLanguage[i].Tag))
+                    if (list.Contains(select.Key))
                     {
-                        SourceLanguage[i].Visibility = Visibility.Visible;
-                        TargetLanguage[i].Visibility = Visibility.Visible;
-                        if (select == null)
-                        {
-                            select = SourceLanguage[i];
-                        }
-                    }
-                    else
-                    {
-                        SourceLanguage[i].Visibility = Visibility.Collapsed;
-                        TargetLanguage[i].Visibility = Visibility.Collapsed;
+                        InRibbonGallery_SourceLanguage.Items.Add(select.Value);
                     }
                 }
             }
@@ -580,36 +534,27 @@ namespace SC2_GameTranslater
         /// </summary>
         private void RefreshNoTranslateLanguageItem()
         {
-            SourceLanguage[0].Visibility = Visibility.Visible;
-            TargetLanguage[0].Visibility = Visibility.Visible;
-            for (int i = 1; i < Enum.GetValues(typeof(EnumLanguage)).Length; i++)
-            {
-                SourceLanguage[i].Visibility = Visibility.Collapsed;
-                TargetLanguage[i].Visibility = Visibility.Collapsed;
-            }
-            ComboBox_SourceLanguage.SelectedIndex = 0;
-            ComboBox_TargetLanguage.SelectedIndex = 0;
+            InRibbonGallery_SourceLanguage.Items.Clear();
+            InRibbonGallery_SourceLanguage.Items.Add(TranslateLanguage[0]);
         }
 
         /// <summary>
         /// 新建语言切换按钮
         /// </summary>
-        /// <param name="isSource">是否为翻译源选项</param>
         /// <returns>按钮</returns>
-        private static List<ComboBoxItem> NewTranslateLanguageItem(bool isSource)
+        private static Dictionary<EnumLanguage, ToggleButton> NewTranslateLanguageItem()
         {
-            List<ComboBoxItem> list = new List<ComboBoxItem>();
+            Dictionary<EnumLanguage, ToggleButton> list = new Dictionary<EnumLanguage, ToggleButton>();
 
-            string type = isSource ? "Source" : "Target";
-            ComboBoxItem item = new ComboBoxItem();
-            item.SetResourceReference(ContentProperty, "TEXT_Null");
-            list.Add(item);
+            ToggleButton button = new ToggleButton();
+            button.SetResourceReference(ToggleButton.HeaderProperty, "TEXT_Null");
+            list.Add(0, button);
 
             EnumLanguage[] array = Enum.GetValues(typeof(EnumLanguage)).Cast<EnumLanguage>().ToArray();
             Array.Sort(array, (p1, p2) => Enum.GetName(typeof(EnumLanguage), p1).CompareTo(Enum.GetName(typeof(EnumLanguage), p2)));
             foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
             {
-                list.Add(NewTranslateLanguageItem(isSource, lang));
+                list.Add(lang, NewTranslateLanguageItem(lang));
             }
             return list;
         }
@@ -617,21 +562,18 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 新建语言切换按钮
         /// </summary>
-        /// <param name="isSource">是否为翻译源选项</param>
         /// <param name="language">对应语言</param>
         /// <returns>按钮</returns>
-        private static ComboBoxItem NewTranslateLanguageItem(bool isSource, EnumLanguage language)
+        private static ToggleButton NewTranslateLanguageItem(EnumLanguage language)
         {
             string lang = Enum.GetName(language.GetType(), language);
-            string type = isSource ? "Source" : "Target";
-            ComboBoxItem item = new ComboBoxItem
+            ToggleButton button = new ToggleButton
             {
                 Tag = language,
                 Visibility = Visibility.Collapsed,
             };
-            item.SetResourceReference(ContentProperty, string.Format("TEXT_{0}", lang));
-            if (isSource) item.Selected += SourceLanguageItem_Selected;
-            return item;
+            button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_{0}", lang));
+            return button;
         }
 
         #endregion
@@ -654,26 +596,16 @@ namespace SC2_GameTranslater
         public void ProjectNew(FileInfo file)
         {
             ProjectClose();
-            Globals.InitProjectData();
-            Globals.CurrentProject.Initialization(file);
+            Globals.InitProjectData(file);
         }
-
-        /// <summary>
-        /// 重载数据
-        /// </summary>
-        /// <param name="fileName">文件路径</param>
-        public void ProjectReload(FileInfo file)
-        {
-            Log.Assert(Globals.CurrentProject != null);
-            Globals.CurrentProject.ReloadFile(file);
-        }
-
+        
         /// <summary>
         /// 关闭文件
         /// </summary>
         public void ProjectClose()
         {
-            
+            ///To Do Save
+            if (Globals.CurrentProject != null) Globals.CurrentProject = null;
         }
 
         /// <summary>
@@ -709,21 +641,6 @@ namespace SC2_GameTranslater
         {
             string itemName = ComboBox_Language.SelectedItem as string;
             EnumCurrentLanguage = Globals.DictComboBoxItemLanguage[itemName];
-        }
-
-        /// <summary>
-        /// 源翻译语言选项选择事件
-        /// </summary>
-        /// <param name="sender">事件控件</param>
-        /// <param name="e">响应参数</param>
-        private static void SourceLanguageItem_Selected(object sender, RoutedEventArgs e)
-        {
-            if (sender is ComboBoxItem item)
-            {
-                enum
-                Globals.MainWindow.ComboBox_TargetLanguage.
-            }
-            e.Handled = true;
         }
 
         #endregion

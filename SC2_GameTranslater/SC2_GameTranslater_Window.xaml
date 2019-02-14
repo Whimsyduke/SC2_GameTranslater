@@ -84,16 +84,13 @@
                     <Separator />
                     <fluent:Button x:Name="RibbonButton_Save" Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}" Icon="{StaticResource ResourceKey=IMAGE_Save}" LargeIcon="{StaticResource ResourceKey=IMAGE_Save}" KeyTip="S"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSave}"/>
                     <Separator />
-                    <fluent:Button x:Name="RibbonButton_Reload" Header="{DynamicResource ResourceKey=UI_RibbonButton_Reload_Header}" Icon="{StaticResource ResourceKey=IMAGE_Reload}" LargeIcon="{StaticResource ResourceKey=IMAGE_Reload}" KeyTip="R"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandReload}"/>
-                    <Separator />
                     <fluent:Button x:Name="RibbonButton_Accept" Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}" Icon="{StaticResource ResourceKey=IMAGE_Accept}" LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" KeyTip="E"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandAccept}"/>
                     <Separator />
                     <fluent:Button x:Name="RibbonButton_Close" Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}" Icon="{StaticResource ResourceKey=IMAGE_Close}" LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" KeyTip="S"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandClose}"/>
                     <Separator />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Name="RibbonGroupBox_TranslateLanguage" Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TranslateLanguage_Header}"  Grid.IsSharedSizeScope="True">
-                    <fluent:ComboBox Name="ComboBox_SourceLanguage" ItemsSource="{Binding ElementName=RibbonWindow_Main,Path=SourceLanguage}" Header="{DynamicResource ResourceKey=UI_ComboBox_SourceLanguage_Header}" VerticalContentAlignment="Center" IsEditable="False" MinWidth="50" SelectedIndex="0"/>
-                    <fluent:ComboBox Name="ComboBox_TargetLanguage" ItemsSource="{Binding ElementName=RibbonWindow_Main,Path=TargetLanguage}" Header="{DynamicResource ResourceKey=UI_ComboBox_SourceLanguage_Header}" VerticalContentAlignment="Center" IsEditable="False" MinWidth="50"  SelectedIndex="0"/>
+                    <fluent:InRibbonGallery Name="InRibbonGallery_SourceLanguage" Header="{DynamicResource ResourceKey=UI_InRibbonGallery_SourceLanguage_Header}" VerticalContentAlignment="Center"/>
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
         </fluent:Ribbon>

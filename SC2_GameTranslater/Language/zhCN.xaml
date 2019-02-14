@@ -5,7 +5,7 @@
     <!--#region 通用文本-->
     <sys:String x:Key="TEXT_LanguageName">简体中文</sys:String>
     <sys:String x:Key="TEXT_WindowTitleText">《星际争霸II》游戏翻译器</sys:String>
-    <sys:String x:Key="TEXT_SC2File">SC II Mod，地图或组件文件夹</sys:String>
+    <sys:String x:Key="TEXT_SC2File">SC II Mod地图或组件文件夹</sys:String>
     <sys:String x:Key="TEXT_ProjectFile">翻译项目文件</sys:String>
     <sys:String x:Key="TEXT_Null">空</sys:String>
     <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
@@ -36,8 +36,7 @@
     <sys:String x:Key="UI_RibbonTabItem_Start_Header">开始</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">文件</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">翻译语言</sys:String>
-    <sys:String x:Key="UI_ComboBox_SourceLanguage_Header">基准语言</sys:String>
-    <sys:String x:Key="UI_ComboBox_TargetLanguage_Header">目标语言</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_SourceLanguage_Header">翻译语言</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">打开</sys:String>
     <sys:String x:Key="UI_LogGroupBox_Header">日志</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">清除日志</sys:String>

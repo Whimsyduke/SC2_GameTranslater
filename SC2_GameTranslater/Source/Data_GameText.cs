@@ -36,29 +36,6 @@ namespace SC2_GameTranslater.Source
             /// 已修改
             /// </summary>
             Modified,
-            /// <summary>
-            /// 覆盖
-            /// </summary>
-            Overwrite,
-        }
-
-        /// <summary>
-        /// 数据状态
-        /// </summary>
-        public enum EnumDataValueStatus
-        {
-            /// <summary>
-            /// 正常
-            /// </summary>
-            Normal,
-            /// <summary>
-            /// 未使用
-            /// </summary>
-            New,
-            /// <summary>
-            /// 未使用
-            /// </summary>
-            Unused,
         }
 
         /// <summary>
@@ -105,8 +82,6 @@ namespace SC2_GameTranslater.Source
 
         public const string RN_ModInfo_FilePath = "FilePath";
         public const string RN_Language_ID = "ID";
-        public const string RN_Language_Count = "Count";
-        public const string RN_Language_Status = "Status";
         public const string RN_GalaxyFile_Path = "Path";
         public const string RN_GalaxyFile_Count = "Count";
         public const string RN_GalaxyLine_Index = "Index";
@@ -118,7 +93,6 @@ namespace SC2_GameTranslater.Source
         public const string RN_GalaxyLocation_Key = "Key";
         public const string RN_GameText_ID = "ID";
         public const string RN_GameText_File = "File";
-        public const string RN_GameText_Status = "Status";
         public const string RN_TextValue_Index = "Index";
         public const string RN_TextValue_TextID = "TextID";
         public const string RN_TextValue_LangID = "LangID";
@@ -185,10 +159,20 @@ namespace SC2_GameTranslater.Source
         {
             return Tables[TN_Language].AsEnumerable().Select(r => (EnumLanguage)r[RN_Language_ID]).ToList();
         }
-        
+
         #endregion
 
         #region 进程
+
+        /// <summary>
+        /// 委托设为当前Project
+        /// </summary>
+        /// <param name="count">当前计数</param>
+        /// <param name="max">最大计数</param>
+        private void SetToCurrentProject(double count, double max)
+        {
+            Globals.CurrentProject = this;
+        }
 
         /// <summary>
         /// 初始化
@@ -203,34 +187,12 @@ namespace SC2_GameTranslater.Source
             List<FileInfo> galaxyFiles = new List<FileInfo>();
             GetGalaxyFiles(file.Directory, ref galaxyFiles);
             int max = galaxyFiles.Count + GameTextFilesCount(file.Directory);
-            Globals.MainWindow.ProgressBarInit(max, "");
+            Globals.MainWindow.ProgressBarInit(max, "", null);
 
             LoadGalaxyFile(galaxyFiles);
             LoadGameTextFile(file.Directory);
 
-            Globals.MainWindow.ProgressBarClean();
-        }
-
-        /// <summary>
-        /// 重载
-        /// </summary>
-        /// <param name="argu"></param>
-        public void ThreadReloadFile(object argu)
-        {
-            FileInfo file = argu as FileInfo;
-            CleanGalaxyTable();
-
-            List<FileInfo> galaxyFiles = new List<FileInfo>();
-            GetGalaxyFiles(file.Directory, ref galaxyFiles);
-            int max = galaxyFiles.Count + GameTextFilesCount(file.Directory);
-            Globals.MainWindow.ProgressBarInit(max, "");
-
-            LoadGalaxyFile(galaxyFiles);
-            SetDataValue(TN_Language, RN_Language_Status, EnumDataValueStatus.Unused);
-            SetDataValue(TN_GameText, RN_GameText_Status, EnumDataValueStatus.Unused);
-            LoadGameTextFile(file.Directory);
-
-            Globals.MainWindow.ProgressBarClean();
+            Globals.MainWindow.ProgressBarClean(SetToCurrentProject);
         }
 
         #endregion
@@ -247,16 +209,6 @@ namespace SC2_GameTranslater.Source
             Threads.StartThread(ThreadInitialization, file, true);
         }
 
-        /// <summary>
-        /// 重载文件
-        /// </summary>
-        /// <param name="path">文件路径</param>
-        public void ReloadFile(FileInfo file)
-        {
-            ModPath = file.FullName;
-            Threads.StartThread(ThreadReloadFile, file, true);
-        }
-        
         #endregion
 
         #region 文本功能
@@ -347,17 +299,38 @@ namespace SC2_GameTranslater.Source
         /// <param name="baseDir">基础目录</param>
         public void LoadGameTextFile(DirectoryInfo baseDir)
         {
-            int count;
+            List<EnumLanguage> dictLanguage = new List<EnumLanguage>();
             foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
             {
-                count = 0;
-                DataRow row = SetLanguage(lang);
+                if (ExistGameTextFileOfLanguage(baseDir, lang))
+                {
+                    GetLanguageRow(lang);
+                    dictLanguage.Add(lang);
+                }
+            }
+            foreach (EnumLanguage lang in dictLanguage)
+            {
                 foreach (EnumGameTextFile file in Enum.GetValues(typeof(EnumGameTextFile)))
                 {
-                    LoadGameTextFile(baseDir, lang, file, ref count);
+                    LoadGameTextFile(baseDir, lang, file);
                 }
-                row[RN_Language_Count] = count;
             }
+        }
+
+        /// <summary>
+        /// 验证待翻译语言文件存在
+        /// </summary>
+        /// <param name="baseDir">基础目录</param>
+        /// <param name="lang">语言</param>
+        /// <returns>验证结果</returns>
+        private bool ExistGameTextFileOfLanguage(DirectoryInfo baseDir, EnumLanguage lang)
+        {
+            foreach (EnumGameTextFile file in Enum.GetValues(typeof(EnumGameTextFile)))
+            {
+                string path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, file));
+                if (File.Exists(path)) return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -366,7 +339,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="baseDir">基础目录</param>
         /// <param name="lang">语言</param>
         /// <param name="file">文件类型</param>
-        private bool LoadGameTextFile(DirectoryInfo baseDir, EnumLanguage lang, EnumGameTextFile file, ref int count)
+        private bool LoadGameTextFile(DirectoryInfo baseDir, EnumLanguage lang, EnumGameTextFile file)
         {
             string name = TextFilePath(lang, file);
             string path = string.Format("{0}\\{1}", baseDir.FullName, name);
@@ -375,7 +348,7 @@ namespace SC2_GameTranslater.Source
             string value;
             int length;
             if (!File.Exists(path)) return false;
-            Globals.MainWindow.ProgressBarUpadte(1, name);
+            Globals.MainWindow.ProgressBarUpadte(1, name, null);
             StreamReader sr = new StreamReader(path);
             DataRow rowValue;
             while (!sr.EndOfStream)
@@ -386,7 +359,6 @@ namespace SC2_GameTranslater.Source
                 key = line.Substring(0, length++);
                 value = line.Substring(length);
                 rowValue = SetTextValue(lang, file, key, value, out DataRow rowText);
-                count++;
             }
 
             sr.Close();
@@ -402,7 +374,7 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         /// <param name="lang">语言</param>
         /// <returns>语言对应的数据行</returns>
-        public DataRow SetLanguage(EnumLanguage lang)
+        public DataRow GetLanguageRow(EnumLanguage lang)
         {
             DataTable table = Tables[TN_Language];
             DataRow row = table.Rows.Find(lang);
@@ -410,12 +382,7 @@ namespace SC2_GameTranslater.Source
             {
                 row = table.NewRow();
                 row[RN_Language_ID] = lang;
-                row[RN_Language_Status] = EnumDataValueStatus.New;
                 table.Rows.Add(row);
-            }
-            else
-            {
-                row[RN_Language_Status] = EnumDataValueStatus.Normal;
             }
             return row;
         }
@@ -426,23 +393,27 @@ namespace SC2_GameTranslater.Source
         /// <param name="file">文件</param>
         /// <param name="key">关键字</param>
         /// <returns></returns>
-        public DataRow SetGameText(EnumGameTextFile file, string key)
+        public DataRow GetGameTextRow(EnumGameTextFile file, string key)
         {
-            DataTable table = Tables[TN_GameText];
-            DataRow row = table.Rows.Find(key);
-            if (row == null)
+            DataTable tableText = Tables[TN_GameText];
+            DataRow textRow = tableText.Rows.Find(key);
+            if (textRow == null)
             {
-                row = table.NewRow();
-                row[RN_GameText_ID] = key;
-                row[RN_GameText_File] = file;
-                row[RN_GameText_Status] = EnumDataValueStatus.New;
-                table.Rows.Add(row);
+                textRow = tableText.NewRow();
+                textRow[RN_GameText_ID] = key;
+                textRow[RN_GameText_File] = file;
+                tableText.Rows.Add(textRow);
+                DataTable tableValue = Tables[TN_TextValue];
+                foreach (DataRow lang in Tables[TN_Language].Rows)
+                {
+                    DataRow valueRow = tableValue.NewRow();
+                    valueRow[RN_TextValue_TextID] = key;
+                    valueRow[RN_TextValue_LangID] = lang[RN_Language_ID];
+                    valueRow[RN_TextValue_Type] = EnumGameTextType.Empty;
+                    tableValue.Rows.Add(valueRow);
+                }
             }
-            else
-            {
-                row[RN_GameText_Status] = EnumDataValueStatus.Normal;
-            }
-            return row;
+            return textRow;
         }
 
         /// <summary>
@@ -456,24 +427,16 @@ namespace SC2_GameTranslater.Source
         /// <returns></returns>
         public DataRow SetTextValue(EnumLanguage lang, EnumGameTextFile file, string key, string value, out DataRow textRow)
         {
-            textRow = SetGameText(file, key);
+            textRow = GetGameTextRow(file, key);
             DataTable table = Tables[TN_TextValue];
             string filter = string.Format("{0}='{1}' and {2}={3:D}", RN_TextValue_TextID, key, RN_TextValue_LangID, lang);
             DataRow[] rows = table.Select(filter);
             DataRow row = null;
             switch (rows.Length)
             {
-                case 0:
-                    row = table.NewRow();
-                    row[RN_TextValue_TextID] = key;
-                    row[RN_TextValue_LangID] = lang;
-                    row[RN_TextValue_Type] = EnumGameTextType.Overwrite;
-                    row[RN_TextValue_Text] = value;
-                    table.Rows.Add(row);
-                    break;
                 case 1:
                     row = rows[0];
-                    row[RN_TextValue_Type] = EnumGameTextType.Overwrite;
+                    row[RN_TextValue_Type] = EnumGameTextType.Normal;
                     break;
                 default:
                     Log.Assert(false);
@@ -528,7 +491,7 @@ namespace SC2_GameTranslater.Source
             {
                 foreach (FileInfo file in files)
                 {
-                    Globals.MainWindow.ProgressBarUpadte(1, file.Name);
+                    Globals.MainWindow.ProgressBarUpadte(1, file.Name, null);
                     LoadGalaxyFile(file);
                 }
             }

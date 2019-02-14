@@ -44,9 +44,9 @@ namespace SC2_GameTranslater.Source {
         
         private global::System.Data.DataRelation relationRelation_GalaxyLine_GameLocation_Line;
         
-        private global::System.Data.DataRelation relationRelation_GameText_TextValue_TextID;
-        
         private global::System.Data.DataRelation relationRelation_Language_TextValue_LangID;
+        
+        private global::System.Data.DataRelation relationRelation_GameText_TextValue_TextID;
         
         private global::System.Data.DataRelation relationRelation_TextValue_Log_Target;
         
@@ -376,8 +376,8 @@ namespace SC2_GameTranslater.Source {
             }
             this.relationRelation_GalaxyFile_GalaxyLine_File = this.Relations["Relation_GalaxyFile_GalaxyLine_File"];
             this.relationRelation_GalaxyLine_GameLocation_Line = this.Relations["Relation_GalaxyLine_GameLocation_Line"];
-            this.relationRelation_GameText_TextValue_TextID = this.Relations["Relation_GameText_TextValue_TextID"];
             this.relationRelation_Language_TextValue_LangID = this.Relations["Relation_Language_TextValue_LangID"];
+            this.relationRelation_GameText_TextValue_TextID = this.Relations["Relation_GameText_TextValue_TextID"];
             this.relationRelation_TextValue_Log_Target = this.Relations["Relation_TextValue_Log_Target"];
             this.relationRelation_GameText_GalaxyLocation_Key = this.Relations["Relation_GameText_GalaxyLocation_Key"];
         }
@@ -421,16 +421,16 @@ namespace SC2_GameTranslater.Source {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.None;
-            fkc = new global::System.Data.ForeignKeyConstraint("Relation_GameText_TextValue_TextID", new global::System.Data.DataColumn[] {
-                        this.tableTable_GameText.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTable_TextValue.TextIDColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("Relation_Language_TextValue_LangID", new global::System.Data.DataColumn[] {
+                        this.tableTable_Language.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTable_TextValue.LangIDColumn});
             this.tableTable_TextValue.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("Relation_Language_TextValue_LangID", new global::System.Data.DataColumn[] {
-                        this.tableTable_Language.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTable_TextValue.LangIDColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("Relation_GameText_TextValue_TextID", new global::System.Data.DataColumn[] {
+                        this.tableTable_GameText.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTable_TextValue.TextIDColumn});
             this.tableTable_TextValue.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
@@ -443,14 +443,14 @@ namespace SC2_GameTranslater.Source {
                         this.tableTable_GalaxyLine.IndexColumn}, new global::System.Data.DataColumn[] {
                         this.tableTable_GalaxyLocation.LineColumn}, false);
             this.Relations.Add(this.relationRelation_GalaxyLine_GameLocation_Line);
-            this.relationRelation_GameText_TextValue_TextID = new global::System.Data.DataRelation("Relation_GameText_TextValue_TextID", new global::System.Data.DataColumn[] {
-                        this.tableTable_GameText.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTable_TextValue.TextIDColumn}, false);
-            this.Relations.Add(this.relationRelation_GameText_TextValue_TextID);
             this.relationRelation_Language_TextValue_LangID = new global::System.Data.DataRelation("Relation_Language_TextValue_LangID", new global::System.Data.DataColumn[] {
                         this.tableTable_Language.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableTable_TextValue.LangIDColumn}, false);
             this.Relations.Add(this.relationRelation_Language_TextValue_LangID);
+            this.relationRelation_GameText_TextValue_TextID = new global::System.Data.DataRelation("Relation_GameText_TextValue_TextID", new global::System.Data.DataColumn[] {
+                        this.tableTable_GameText.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTable_TextValue.TextIDColumn}, false);
+            this.Relations.Add(this.relationRelation_GameText_TextValue_TextID);
             this.relationRelation_TextValue_Log_Target = new global::System.Data.DataRelation("Relation_TextValue_Log_Target", new global::System.Data.DataColumn[] {
                         this.tableTable_TextValue.IndexColumn}, new global::System.Data.DataColumn[] {
                         this.tableTable_Log.TargetColumn}, false);
@@ -844,10 +844,6 @@ namespace SC2_GameTranslater.Source {
             
             private global::System.Data.DataColumn columnID;
             
-            private global::System.Data.DataColumn columnCount;
-            
-            private global::System.Data.DataColumn columnStatus;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public Table_LanguageDataTable() {
@@ -891,22 +887,6 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn CountColumn {
-                get {
-                    return this.columnCount;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn StatusColumn {
-                get {
-                    return this.columnStatus;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -942,12 +922,10 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_LanguageRow AddTable_LanguageRow(int ID, int Count, short Status) {
+            public Table_LanguageRow AddTable_LanguageRow(int ID) {
                 Table_LanguageRow rowTable_LanguageRow = ((Table_LanguageRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ID,
-                        Count,
-                        Status};
+                        ID};
                 rowTable_LanguageRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTable_LanguageRow);
                 return rowTable_LanguageRow;
@@ -978,8 +956,6 @@ namespace SC2_GameTranslater.Source {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnID = base.Columns["ID"];
-                this.columnCount = base.Columns["Count"];
-                this.columnStatus = base.Columns["Status"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -987,16 +963,10 @@ namespace SC2_GameTranslater.Source {
             private void InitClass() {
                 this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
-                this.columnCount = new global::System.Data.DataColumn("Count", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCount);
-                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStatus);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Table_LanguageKey_Index", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AllowDBNull = false;
                 this.columnID.Unique = true;
-                this.columnCount.DefaultValue = ((int)(0));
-                this.columnStatus.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2007,8 +1977,6 @@ namespace SC2_GameTranslater.Source {
             
             private global::System.Data.DataColumn columnFile;
             
-            private global::System.Data.DataColumn columnStatus;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public Table_GameTextDataTable() {
@@ -2060,14 +2028,6 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn StatusColumn {
-                get {
-                    return this.columnStatus;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2103,12 +2063,11 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_GameTextRow AddTable_GameTextRow(string ID, short File, short Status) {
+            public Table_GameTextRow AddTable_GameTextRow(string ID, short File) {
                 Table_GameTextRow rowTable_GameTextRow = ((Table_GameTextRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
-                        File,
-                        Status};
+                        File};
                 rowTable_GameTextRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTable_GameTextRow);
                 return rowTable_GameTextRow;
@@ -2140,7 +2099,6 @@ namespace SC2_GameTranslater.Source {
             internal void InitVars() {
                 this.columnID = base.Columns["ID"];
                 this.columnFile = base.Columns["File"];
-                this.columnStatus = base.Columns["Status"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2150,14 +2108,11 @@ namespace SC2_GameTranslater.Source {
                 base.Columns.Add(this.columnID);
                 this.columnFile = new global::System.Data.DataColumn("File", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFile);
-                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStatus);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AllowDBNull = false;
                 this.columnID.Unique = true;
                 this.columnID.Caption = "LanguageID";
-                this.columnStatus.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3037,45 +2992,6 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Count {
-                get {
-                    try {
-                        return ((int)(this[this.tableTable_Language.CountColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Table_Language”中列“Count”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableTable_Language.CountColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public short Status {
-                get {
-                    return ((short)(this[this.tableTable_Language.StatusColumn]));
-                }
-                set {
-                    this[this.tableTable_Language.StatusColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsCountNull() {
-                return this.IsNull(this.tableTable_Language.CountColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetCountNull() {
-                this[this.tableTable_Language.CountColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public Table_TextValueRow[] GetTable_TextValueRows() {
                 if ((this.Table.ChildRelations["Relation_Language_TextValue_LangID"] == null)) {
                     return new Table_TextValueRow[0];
@@ -3379,17 +3295,6 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public short Status {
-                get {
-                    return ((short)(this[this.tableTable_GameText.StatusColumn]));
-                }
-                set {
-                    this[this.tableTable_GameText.StatusColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsFileNull() {
                 return this.IsNull(this.tableTable_GameText.FileColumn);
             }
@@ -3530,23 +3435,23 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_GameTextRow Table_GameTextRow {
-                get {
-                    return ((Table_GameTextRow)(this.GetParentRow(this.Table.ParentRelations["Relation_GameText_TextValue_TextID"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Relation_GameText_TextValue_TextID"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public Table_LanguageRow Table_LanguageRow {
                 get {
                     return ((Table_LanguageRow)(this.GetParentRow(this.Table.ParentRelations["Relation_Language_TextValue_LangID"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["Relation_Language_TextValue_LangID"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Table_GameTextRow Table_GameTextRow {
+                get {
+                    return ((Table_GameTextRow)(this.GetParentRow(this.Table.ParentRelations["Relation_GameText_TextValue_TextID"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Relation_GameText_TextValue_TextID"]);
                 }
             }
             

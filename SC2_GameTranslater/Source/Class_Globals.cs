@@ -204,10 +204,12 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 初始化新项目数据
         /// </summary>
-        public static void InitProjectData()
+        /// <param name="file">文件路径</param>
+        public static void InitProjectData(FileInfo file)
         {
             Log.Assert(CurrentProject == null);
-            CurrentProject = new Data_GameText();
+            Data_GameText project = new Data_GameText();
+            project.Initialization(file);
         }
 
 
