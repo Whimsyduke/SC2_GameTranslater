@@ -132,7 +132,7 @@ namespace SC2_GameTranslater.Source
 
         #region 方法
 
-        #region 重载
+        #region 重载方法
 
         public new void EndInit()
         {

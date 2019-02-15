@@ -36,7 +36,7 @@
     <sys:String x:Key="UI_RibbonTabItem_Start_Header">开始</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">文件</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">翻译语言</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_SourceLanguage_Header">翻译语言</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TranslateLanguage_Header">翻译语言</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">打开</sys:String>
     <sys:String x:Key="UI_LogGroupBox_Header">日志</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">清除日志</sys:String>

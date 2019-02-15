@@ -518,13 +518,13 @@ namespace SC2_GameTranslater
                     RefreshNoTranslateLanguageItem();
                     return;
                 }
-                InRibbonGallery_SourceLanguage.Items.Clear();
+                RibbonGroupBox_TranslateLanguage.Items.Clear();
                 ToggleButton selectButton = null;
                 foreach (KeyValuePair<EnumLanguage, ToggleButton> select in TranslateLanguage)
                 {
                     if (list.Contains(select.Key))
                     {
-                        InRibbonGallery_SourceLanguage.Items.Add(select.Value);
+                        RibbonGroupBox_TranslateLanguage.Items.Add(select.Value);
                         if (selectButton == null || (int)select.Key == CultureInfo.CurrentCulture.LCID)
                         {
                             selectButton = select.Value;
@@ -540,8 +540,8 @@ namespace SC2_GameTranslater
         /// </summary>
         private void RefreshNoTranslateLanguageItem()
         {
-            InRibbonGallery_SourceLanguage.Items.Clear();
-            InRibbonGallery_SourceLanguage.Items.Add(TranslateLanguage[0]);
+            RibbonGroupBox_TranslateLanguage.Items.Clear();
+            RibbonGroupBox_TranslateLanguage.Items.Add(TranslateLanguage[0]);
         }
 
         /// <summary>
@@ -554,6 +554,8 @@ namespace SC2_GameTranslater
 
             ToggleButton button = new ToggleButton();
             button.SetResourceReference(ToggleButton.HeaderProperty, "TEXT_Null");
+            button.SetResourceReference(ToggleButton.IconProperty, "IMAGE_NULL");
+            button.SetResourceReference(ToggleButton.LargeIconProperty, "IMAGE_NULL");
             list.Add(0, button);
 
             EnumLanguage[] array = Enum.GetValues(typeof(EnumLanguage)).Cast<EnumLanguage>().ToArray();
@@ -578,6 +580,8 @@ namespace SC2_GameTranslater
                 Tag = language,
                 GroupName = "TranslateLanguage",
             };
+            button.SetResourceReference(ToggleButton.IconProperty, string.Format("IMAGE_{0}", lang));
+            button.SetResourceReference(ToggleButton.LargeIconProperty, string.Format("IMAGE_{0}", lang));
             button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_{0}", lang));
             return button;
         }
@@ -603,6 +607,7 @@ namespace SC2_GameTranslater
         {
             ProjectClose();
             Globals.InitProjectData(file);
+            RibbonGroupBox_File.IsEnabled = true;
         }
         
         /// <summary>

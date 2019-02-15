@@ -10,7 +10,7 @@
     xmlns:fluent="urn:fluent-ribbon"
     mc:Ignorable="d"
     Icon="pack://application:,,,/Assets/Image/Icon.ico"
-    Height="450" Width="800" Name="RibbonWindow_Main">
+    Height="450" Width="800" MinWidth="400" MinHeight="300" Name="RibbonWindow_Main">
     <Window.Resources>
         <ResourceDictionary x:Name="ResourceDictionary_WindowLanguage">
             <ResourceDictionary.MergedDictionaries>
@@ -28,7 +28,7 @@
             <RowDefinition Height="2*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <fluent:Ribbon Name="Ribbon_Main" Grid.Row="0" Grid.ColumnSpan="2">
+        <fluent:Ribbon Name="Ribbon_Main" Grid.Row="0" Grid.ColumnSpan="2" AutomaticStateManagement="True">
             <fluent:Ribbon.Menu>
                 <fluent:Backstage Header="{DynamicResource ResourceKey=UI_Backstage_Menu_Header}">
                     <fluent:BackstageTabControl>
@@ -78,19 +78,38 @@
                     </fluent:BackstageTabControl>
                 </fluent:Backstage>
             </fluent:Ribbon.Menu>
-            <fluent:RibbonTabItem Name="RibbonTabItem_Start" Header="{DynamicResource ResourceKey=UI_RibbonTabItem_Start_Header}">
+            <fluent:Ribbon.ToolBarItems>
+                <fluent:Button Size="Small"
+                               Icon="{DynamicResource ResourceKey=IMAGE_HELP}">
+                    <!--<fluent:Button.ToolTip>
+                        <fluent:ScreenTip Title="Insert Chart"
+                                          Text="Insert a chart to illustarate and compare data. &#xa;&#xa;Bar, Pie, Line, Area and Surface are same of the available types."
+                                          HelpTopic="https://github.com/fluentribbon/Fluent.Ribbon"
+                                          DisableReason="Disable reason reason."
+                                          Width="190"
+                                          IsRibbonAligned="True" />
+                    </fluent:Button.ToolTip>-->
+                </fluent:Button>
+            </fluent:Ribbon.ToolBarItems>
+            <fluent:Ribbon.QuickAccessItems>
+                <fluent:QuickAccessMenuItem Target="{Binding Source={x:Reference RibbonButton_Open}}" IsChecked="True"/>
+                <fluent:QuickAccessMenuItem Target="{Binding Source={x:Reference RibbonButton_Save}}" IsChecked="True"/>
+                <fluent:QuickAccessMenuItem Target="{Binding Source={x:Reference RibbonButton_Accept}}" IsChecked="True"/>
+                <fluent:QuickAccessMenuItem Target="{Binding Source={x:Reference RibbonButton_Close}}" IsChecked="True"/>
+            </fluent:Ribbon.QuickAccessItems>
+            <fluent:RibbonTabItem Name="RibbonTabItem_Start" Header="{DynamicResource ResourceKey=UI_RibbonTabItem_Start_Header}" ReduceOrder="(RibbonGroupBox_File),(RibbonGroupBox_File),(RibbonGroupBox_File),(RibbonGroupBox_File),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage)">
                 <fluent:RibbonGroupBox Name="RibbonGroupBox_File" Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_File_Header}" Grid.IsSharedSizeScope="True">
-                    <fluent:Button x:Name="RibbonButton_Open" Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}" Icon="{StaticResource ResourceKey=IMAGE_Open}" LargeIcon="{StaticResource ResourceKey=IMAGE_Open}" KeyTip="O" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandOpen}"/>
+                    <fluent:ToggleButton x:Name="RibbonButton_Open" Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}" Icon="{StaticResource ResourceKey=IMAGE_Open}" LargeIcon="{StaticResource ResourceKey=IMAGE_Open}" KeyTip="O" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandOpen}"/>
                     <Separator />
-                    <fluent:Button x:Name="RibbonButton_Save" Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}" Icon="{StaticResource ResourceKey=IMAGE_Save}" LargeIcon="{StaticResource ResourceKey=IMAGE_Save}" KeyTip="S"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSave}"/>
+                    <fluent:ToggleButton x:Name="RibbonButton_Save" Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}" Icon="{StaticResource ResourceKey=IMAGE_Save}" LargeIcon="{StaticResource ResourceKey=IMAGE_Save}" KeyTip="S"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSave}"/>
                     <Separator />
-                    <fluent:Button x:Name="RibbonButton_Accept" Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}" Icon="{StaticResource ResourceKey=IMAGE_Accept}" LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" KeyTip="E"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandAccept}"/>
+                    <fluent:ToggleButton x:Name="RibbonButton_Accept" Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}" Icon="{StaticResource ResourceKey=IMAGE_Accept}" LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" KeyTip="E"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandAccept}"/>
                     <Separator />
-                    <fluent:Button x:Name="RibbonButton_Close" Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}" Icon="{StaticResource ResourceKey=IMAGE_Close}" LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" KeyTip="S"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandClose}"/>
+                    <fluent:ToggleButton x:Name="RibbonButton_Close" Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}" Icon="{StaticResource ResourceKey=IMAGE_Close}" LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" KeyTip="S"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandClose}"/>
                     <Separator />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Name="RibbonGroupBox_TranslateLanguage" Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TranslateLanguage_Header}"  Grid.IsSharedSizeScope="True">
-                    <fluent:InRibbonGallery Name="InRibbonGallery_SourceLanguage" Header="{DynamicResource ResourceKey=UI_InRibbonGallery_SourceLanguage_Header}" VerticalContentAlignment="Center" MaxItemsInRow="12"/>
+                    <fluent:InRibbonGallery Name="InRibbonGallery_TranslateLanguage" Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TranslateLanguage_Header}" VerticalContentAlignment="Center" MaxItemsInRow="12" MinItemsInRow="1" ResizeMode="Vertical" Icon="{StaticResource ResourceKey=IMAGE_TranslateLanguage}" LargeIcon="{StaticResource ResourceKey=IMAGE_TranslateLanguage}"/>
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
@@ -103,23 +122,25 @@
                 </Avalon:TextEditor.ContextMenu>
             </Avalon:TextEditor>
         </GroupBox>
-        <StatusBar Name="StatusBar_Below" Grid.Row="3">
+        <fluent:StatusBar Name="StatusBar_Below" Grid.Row="3">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                     </Grid>
                 </ItemsPanelTemplate>
             </StatusBar.ItemsPanel>
-            <StatusBarItem HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0">
+            <fluent:StatusBarItem HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0">
                 <ProgressBar Name="ProgressBar_Loading" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden" Margin="3"/>
-            </StatusBarItem>
-            <StatusBarItem  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
-                <TextBlock Name="TextBlock_ProgressMsg" Visibility="Hidden" Margin="3"/>
-            </StatusBarItem>
-        </StatusBar>
+            </fluent:StatusBarItem>
+            <Separator HorizontalAlignment="Left" Grid.Column="1"/>
+            <fluent:StatusBarItem  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2">
+                <TextBlock Name="TextBlock_ProgressMsg" Visibility="Hidden" Margin="3" Foreground="White"/>
+            </fluent:StatusBarItem>
+        </fluent:StatusBar>
     </Grid>
 </fluent:RibbonWindow>

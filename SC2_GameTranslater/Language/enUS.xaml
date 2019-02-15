@@ -36,7 +36,7 @@
     <sys:String x:Key="UI_RibbonTabItem_Start_Header">Start</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">File</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">Translate Language</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_SourceLanguage_Header">Translate Language</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TranslateLanguage_Header">Translate Language</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">Open</sys:String>
     <sys:String x:Key="UI_LogGroupBox_Header">Log</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">Clear Log</sys:String>
