@@ -78,6 +78,7 @@
     <Compile Include="Source\Class_FluentLanguages.cs" />
     <Compile Include="Source\Class_Globals.cs" />
     <Compile Include="Source\Class_Log.cs" />
+    <Compile Include="Source\Class_Preference.cs" />
     <Compile Include="Source\Class_Thread.cs" />
     <Compile Include="Source\Data_GameText.cs">
       <DependentUpon>Data_GameText.xsd</DependentUpon>

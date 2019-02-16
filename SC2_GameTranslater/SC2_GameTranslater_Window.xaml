@@ -13,7 +13,9 @@
     Height="768"
     MinWidth="400"
     MinHeight="300"
+    Closing="RibbonWindow_Main_Closing"
     Icon="pack://application:,,,/Assets/Image/Icon.ico"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Resources>
         <ResourceDictionary x:Name="ResourceDictionary_WindowLanguage">

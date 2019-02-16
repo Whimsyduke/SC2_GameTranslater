@@ -24,6 +24,7 @@ using System.Data;
 namespace SC2_GameTranslater
 {
     using Globals = Source.Class_Globals;
+    using Preference = Source.Class_Preference;
     using Log = Source.Class_Log;
     using EnumLanguage = Source.EnumLanguage;
 
@@ -221,7 +222,7 @@ namespace SC2_GameTranslater
             #endregion
 
             #region 其他
-
+            Globals.Preference.LoadPreference();
             Globals.EventProjectChange += OnProjectChangeRefresh;
             OnProjectChangeRefresh(null, null);
 
@@ -337,9 +338,9 @@ namespace SC2_GameTranslater
         public static void Executed_Open(object sender, ExecutedRoutedEventArgs e)
         {
             System.Windows.Forms.OpenFileDialog fileDialog = new System.Windows.Forms.OpenFileDialog();
-            if (Directory.Exists(Globals.LastOpenPath))
+            if (Directory.Exists(Globals.Preference.LastFolderPath))
             {
-                fileDialog.InitialDirectory = Globals.LastOpenPath;
+                fileDialog.InitialDirectory = Globals.Preference.LastFolderPath;
             }
             else
             {
@@ -687,6 +688,15 @@ namespace SC2_GameTranslater
         {
         }
 
+        /// <summary>
+        /// 窗口关闭
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void RibbonWindow_Main_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Globals.Preference.SavePreference();
+        }
         #endregion
 
     }

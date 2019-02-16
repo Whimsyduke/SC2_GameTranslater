@@ -1,19 +1,16 @@
-﻿using System;
+﻿using Fluent.Localization;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using SC2_GameTranslater;
-using Fluent;
-using System.Reflection;
-using Fluent.Localization;
-
-using Log = SC2_GameTranslater.Source.Class_Log;
 using System.IO;
+using System.IO.Compression;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows;
+using System.Xml.Linq;
 
 namespace SC2_GameTranslater.Source
 {
+    using Log = SC2_GameTranslater.Source.Class_Log;
+
     #region 声明
 
     /// <summary>
@@ -88,12 +85,16 @@ namespace SC2_GameTranslater.Source
 
         #region 常量
 
+        #region 文件名
+
         public const string Extension_SC2GameTran = ".SC2GameTran";
         public const string Extension_SC2Map = ".SC2Map";
         public const string Extension_SC2Mod = ".SC2Mod";
         public const string Extension_SC2Components = ".SC2Components";
         public const string FileName_SC2Components = "ComponentList.SC2Components";
 
+        #endregion
+        
         #endregion
 
         #endregion
@@ -180,9 +181,9 @@ namespace SC2_GameTranslater.Source
         public static Dictionary<EnumLanguage, RibbonLocalizationBase> FluentLocalizationMap { set; get; } = new Dictionary<EnumLanguage, RibbonLocalizationBase>();
 
         /// <summary>
-        /// 上一次打开的目录
+        /// 配置文件
         /// </summary>
-        public static string LastOpenPath { set; get; }
+        public static Class_Preference Preference { set; get; } = new Class_Preference();
 
         #endregion
 
@@ -201,6 +202,79 @@ namespace SC2_GameTranslater.Source
 
         #region 方法
 
+        #region 通用
+
+        /// <summary>      
+        /// 序列化对象并压缩      
+        /// </summary>      
+        /// <param name="savePath">保存路径</param>   
+        /// <param name="obj">压缩对象</param>    
+        public static void ObjectSerializerCompression(FileInfo savePath, object obj)
+        {
+            IFormatter formatter = new BinaryFormatter();//定义BinaryFormatter以序列化DataSet对象   
+            MemoryStream ms = new MemoryStream();//创建内存流对象   
+            formatter.Serialize(ms, obj);//把DataSet对象序列化到内存流   
+            byte[] buffer = ms.ToArray();//把内存流对象写入字节数组   
+            ms.Close();//关闭内存流对象   
+            ms.Dispose();//释放资源   
+            if (!savePath.Directory.Exists)
+            {
+                savePath.Directory.Create();
+            }
+
+            FileStream fs = savePath.Create();//创建文件   
+            GZipStream gzipStream = new GZipStream(fs, CompressionMode.Compress, true);//创建压缩对象   
+            gzipStream.Write(buffer, 0, buffer.Length);//把压缩后的数据写入文件   
+            gzipStream.Close();//关闭压缩流   
+            gzipStream.Dispose();//释放对象   
+            fs.Close();//关闭流   
+            fs.Dispose();//释放对象   
+        }
+
+        /// <summary>   
+        /// 反序列化压缩的对象 
+        /// </summary>   
+        /// <param name="filePath">读取路径</param>   
+        /// <returns>序列化对象</returns>   
+        public static object ObjectDeserializeDecompress(FileInfo filePath)
+        {
+            FileStream fs = filePath.OpenRead();//打开文件   
+            fs.Position = 0;//设置文件流的位置   
+            GZipStream gzipStream = new GZipStream(fs, CompressionMode.Decompress);//创建解压对象   
+            byte[] buffer = new byte[4096];//定义数据缓冲   
+            int offset = 0;//定义读取位置   
+            MemoryStream ms = new MemoryStream();//定义内存流   
+            while ((offset = gzipStream.Read(buffer, 0, buffer.Length)) != 0)
+            {
+                ms.Write(buffer, 0, offset);//解压后的数据写入内存流   
+            }
+            BinaryFormatter sfFormatter = new BinaryFormatter();//定义BinaryFormatter以反序列化DataSet对象   
+            ms.Position = 0;//设置内存流的位置   
+            object ds;
+            try
+            {
+                ds = sfFormatter.Deserialize(ms);//反序列化   
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                ms.Close();//关闭内存流   
+                ms.Dispose();//释放资源   
+            }
+            fs.Close();//关闭文件流   
+            fs.Dispose();//释放资源   
+            gzipStream.Close();//关闭解压缩流   
+            gzipStream.Dispose();//释放资源   
+            return ds;
+        }
+
+        #endregion
+
+        #region 项目文件
+
         /// <summary>
         /// 初始化新项目数据
         /// </summary>
@@ -212,7 +286,7 @@ namespace SC2_GameTranslater.Source
             project.Initialization(file);
         }
 
-
+        #endregion
 
         #endregion
     }
