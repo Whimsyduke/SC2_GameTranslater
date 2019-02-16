@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:SC2_GameTranslater.Assets"
+                    xmlns:source="clr-namespace:SC2_GameTranslater.Source">
+
+    <source:AutoNumberValueConverter x:Key="Converter_AutoNumberValue" />
+</ResourceDictionary>

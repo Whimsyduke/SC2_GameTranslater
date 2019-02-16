@@ -38,10 +38,17 @@
     <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">翻译语言</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TranslateLanguage_Header">翻译语言</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">打开</sys:String>
-    <sys:String x:Key="UI_LogGroupBox_Header">日志</sys:String>
+    <sys:String x:Key="UI_GroupBox_Details_Header">详情</sys:String>
+    <sys:String x:Key="UI_GroupBox_Log_Header">日志</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">清除日志</sys:String>
     <sys:String x:Key="UI_Button_SelectModPath_Content">选择</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">加载</sys:String>
+    <sys:String x:Key="UI_GroupBox_ExcelDataGrid_Header">翻译文本</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_LineNumber_Header">行号</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TextID_Header">文本ID</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_Status_Header">状态</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_SourceText_Header">原文本</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_EditedText_Header">修改文本</sys:String>
     <!--#endregion-->
         
 </ResourceDictionary>

@@ -38,10 +38,17 @@
     <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">Translate Language</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TranslateLanguage_Header">Translate Language</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">Open</sys:String>
-    <sys:String x:Key="UI_LogGroupBox_Header">Log</sys:String>
+    <sys:String x:Key="UI_GroupBox_Details_Header">Details</sys:String>
+    <sys:String x:Key="UI_GroupBox_Log_Header">Log</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">Clear Log</sys:String>
     <sys:String x:Key="UI_Button_SelectModPath_Content">Select</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">Load</sys:String>
+    <sys:String x:Key="UI_GroupBox_ExcelDataGrid_Header">Translated Text</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_LineNumber_Header">Index</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TextID_Header">Text ID</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_Status_Header">Status</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_SourceText_Header">Source Text</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_EditedText_Header">Edited Text</sys:String>
     
     <!--#endregion-->
 

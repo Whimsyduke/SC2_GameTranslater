@@ -19,6 +19,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Threading;
 using SC2_GameTranslater.Source;
+using System.Data;
 
 namespace SC2_GameTranslater
 {
@@ -542,6 +543,7 @@ namespace SC2_GameTranslater
         {
             RibbonGroupBox_TranslateLanguage.Items.Clear();
             RibbonGroupBox_TranslateLanguage.Items.Add(TranslateLanguage[0]);
+            TranslateLanguage[0].IsChecked = true;
         }
 
         /// <summary>
@@ -583,7 +585,28 @@ namespace SC2_GameTranslater
             button.SetResourceReference(ToggleButton.IconProperty, string.Format("IMAGE_{0}", lang));
             button.SetResourceReference(ToggleButton.LargeIconProperty, string.Format("IMAGE_{0}", lang));
             button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_{0}", lang));
+            button.Checked += Button_TranslateLanguage_Checked;
             return button;
+        }
+
+        #endregion
+
+        #region DataGrid
+
+        /// <summary>
+        /// 加载数据表
+        /// </summary>
+        /// <param name="table"></param>
+        public void DataGrid_LoadData(DataTable table)
+        {
+            if (table == null)
+            {
+                DataGrid_Excel.ItemsSource = null;
+            }
+            else
+            {
+                DataGrid_Excel.ItemsSource = new DataView(table);
+            }
         }
 
         #endregion
@@ -636,6 +659,7 @@ namespace SC2_GameTranslater
         private void OnProjectChangeRefresh(Data_GameText oldPro, Data_GameText newPro)
         {
             RefreshTranslateLanguageItems(newPro);
+            DataGrid_LoadData(newPro?.Tables[Data_GameText.TN_GameText]);
         }
         #endregion
 
@@ -652,6 +676,15 @@ namespace SC2_GameTranslater
         {
             string itemName = ComboBox_Language.SelectedItem as string;
             EnumCurrentLanguage = Globals.DictComboBoxItemLanguage[itemName];
+        }
+
+        /// <summary>
+        /// 翻译语言按钮点击
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private static void Button_TranslateLanguage_Checked(object sender, RoutedEventArgs e)
+        {
         }
 
         #endregion

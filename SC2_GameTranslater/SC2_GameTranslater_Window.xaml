@@ -2,74 +2,120 @@
     x:Class="SC2_GameTranslater.SC2_GameTranslater_Window"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:SC2_GameTranslater"
-    xmlns:source="clr-namespace:SC2_GameTranslater.Source"
     xmlns:Avalon="http://icsharpcode.net/sharpdevelop/avalonedit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:fluent="urn:fluent-ribbon"
-    mc:Ignorable="d"
+    xmlns:local="clr-namespace:SC2_GameTranslater"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:source="clr-namespace:SC2_GameTranslater.Source"
+    Name="RibbonWindow_Main"
+    Width="1366"
+    Height="768"
+    MinWidth="400"
+    MinHeight="300"
     Icon="pack://application:,,,/Assets/Image/Icon.ico"
-    Height="450" Width="800" MinWidth="400" MinHeight="300" Name="RibbonWindow_Main">
+    mc:Ignorable="d">
     <Window.Resources>
         <ResourceDictionary x:Name="ResourceDictionary_WindowLanguage">
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Language/zhCN.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Language/zhCN.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <Grid Name="Grid_Main">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="3*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <fluent:Ribbon Name="Ribbon_Main" Grid.Row="0" Grid.ColumnSpan="2" AutomaticStateManagement="True">
+        <fluent:Ribbon
+            Name="Ribbon_Main"
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            AutomaticStateManagement="True">
             <fluent:Ribbon.Menu>
                 <fluent:Backstage Header="{DynamicResource ResourceKey=UI_Backstage_Menu_Header}">
                     <fluent:BackstageTabControl>
-                        <fluent:Button x:Name="RibbonButton_MenuOpen" Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandOpen}"/>
+                        <fluent:Button
+                            x:Name="RibbonButton_MenuOpen"
+                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandOpen}"
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}" />
                         <Separator />
-                        <fluent:Button x:Name="RibbonButton_MenuSave" Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSave}"/>
+                        <fluent:Button
+                            x:Name="RibbonButton_MenuSave"
+                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSave}"
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}" />
                         <Separator />
-                        <fluent:Button x:Name="RibbonButton_MenuSaveAs" Header="{DynamicResource ResourceKey=UI_RibbonButton_SaveAs_Header}" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSaveAs}"/>
+                        <fluent:Button
+                            x:Name="RibbonButton_MenuSaveAs"
+                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSaveAs}"
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_SaveAs_Header}" />
                         <Separator />
-                        <fluent:Button x:Name="RibbonButton_MenuAccept" Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandAccept}"/>
+                        <fluent:Button
+                            x:Name="RibbonButton_MenuAccept"
+                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandAccept}"
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}" />
                         <Separator />
-                        <fluent:Button x:Name="RibbonButton_MenuClose" Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandClose}"/>
+                        <fluent:Button
+                            x:Name="RibbonButton_MenuClose"
+                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandClose}"
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}" />
                         <Separator />
-                        <fluent:BackstageTabItem x:Name="BackstageTabItem_Preference" Header="{DynamicResource ResourceKey=UI_BackstageTabItem_Preference_Header}" KeyTip="P">
+                        <fluent:BackstageTabItem
+                            x:Name="BackstageTabItem_Preference"
+                            Header="{DynamicResource ResourceKey=UI_BackstageTabItem_Preference_Header}"
+                            KeyTip="P">
                             <ScrollViewer Name="ScrollViewer_Preference">
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <GroupBox Name="GroupBox_Language" Grid.Row="0" Margin="3">
+                                    <GroupBox
+                                        Name="GroupBox_Language"
+                                        Grid.Row="0"
+                                        Margin="3">
                                         <GroupBox.Header>
                                             <Label>
-                                                <TextBlock Text="{DynamicResource ResourceKey=UI_GroupBox_Language_Header}"/>
+                                                <TextBlock Text="{DynamicResource ResourceKey=UI_GroupBox_Language_Header}" />
                                             </Label>
                                         </GroupBox.Header>
-                                        <ComboBox Name="ComboBox_Language" Margin="3" SelectionChanged="ComboBox_Language_SelectionChanged"/>
+                                        <ComboBox
+                                            Name="ComboBox_Language"
+                                            Margin="3"
+                                            SelectionChanged="ComboBox_Language_SelectionChanged" />
                                     </GroupBox>
                                     <GroupBox Name="GroupBox_ModPath" Grid.Row="1">
                                         <GroupBox.Header>
                                             <Label>
-                                                <TextBlock Text="{DynamicResource ResourceKey=UI_GroupBox_ModPath_Header}"/>
+                                                <TextBlock Text="{DynamicResource ResourceKey=UI_GroupBox_ModPath_Header}" />
                                             </Label>
                                         </GroupBox.Header>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="80"/>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="80" />
                                             </Grid.ColumnDefinitions>
-                                            <TextBox Name="TextBox_ModPath" Grid.Column="0" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" MinWidth="50" Margin="3" IsReadOnly="True"/>
-                                            <Button Name="Button_SelectModPath" Grid.Column="1" Margin="3" Padding="3" Content="{DynamicResource UI_Button_SelectModPath_Content}" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandModPath}"/>
+                                            <TextBox
+                                                Name="TextBox_ModPath"
+                                                Grid.Column="0"
+                                                MinWidth="50"
+                                                Margin="3"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalContentAlignment="Center"
+                                                IsReadOnly="True" />
+                                            <Button
+                                                Name="Button_SelectModPath"
+                                                Grid.Column="1"
+                                                Margin="3"
+                                                Padding="3"
+                                                Command="{Binding ElementName=RibbonWindow_Main, Path=CommandModPath}"
+                                                Content="{DynamicResource UI_Button_SelectModPath_Content}" />
                                         </Grid>
                                     </GroupBox>
                                 </Grid>
@@ -79,8 +125,7 @@
                 </fluent:Backstage>
             </fluent:Ribbon.Menu>
             <fluent:Ribbon.ToolBarItems>
-                <fluent:Button Size="Small"
-                               Icon="{DynamicResource ResourceKey=IMAGE_HELP}">
+                <fluent:Button Icon="{DynamicResource ResourceKey=IMAGE_HELP}" Size="Small">
                     <!--<fluent:Button.ToolTip>
                         <fluent:ScreenTip Title="Insert Chart"
                                           Text="Insert a chart to illustarate and compare data. &#xa;&#xa;Bar, Pie, Line, Area and Surface are same of the available types."
@@ -92,54 +137,288 @@
                 </fluent:Button>
             </fluent:Ribbon.ToolBarItems>
             <fluent:Ribbon.QuickAccessItems>
-                <fluent:QuickAccessMenuItem Target="{Binding Source={x:Reference RibbonButton_Open}}" IsChecked="True"/>
-                <fluent:QuickAccessMenuItem Target="{Binding Source={x:Reference RibbonButton_Save}}" IsChecked="True"/>
-                <fluent:QuickAccessMenuItem Target="{Binding Source={x:Reference RibbonButton_Accept}}" IsChecked="True"/>
-                <fluent:QuickAccessMenuItem Target="{Binding Source={x:Reference RibbonButton_Close}}" IsChecked="True"/>
+                <fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Open}}" />
+                <fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Save}}" />
+                <fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Accept}}" />
+                <fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Close}}" />
             </fluent:Ribbon.QuickAccessItems>
-            <fluent:RibbonTabItem Name="RibbonTabItem_Start" Header="{DynamicResource ResourceKey=UI_RibbonTabItem_Start_Header}" ReduceOrder="(RibbonGroupBox_File),(RibbonGroupBox_File),(RibbonGroupBox_File),(RibbonGroupBox_File),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage)">
-                <fluent:RibbonGroupBox Name="RibbonGroupBox_File" Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_File_Header}" Grid.IsSharedSizeScope="True">
-                    <fluent:ToggleButton x:Name="RibbonButton_Open" Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}" Icon="{StaticResource ResourceKey=IMAGE_Open}" LargeIcon="{StaticResource ResourceKey=IMAGE_Open}" KeyTip="O" Command="{Binding ElementName=RibbonWindow_Main,Path=CommandOpen}"/>
+            <fluent:RibbonTabItem
+                Name="RibbonTabItem_Start"
+                Header="{DynamicResource ResourceKey=UI_RibbonTabItem_Start_Header}"
+                ReduceOrder="(RibbonGroupBox_File),(RibbonGroupBox_File),(RibbonGroupBox_File),(RibbonGroupBox_File),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage)">
+                <fluent:RibbonGroupBox
+                    Name="RibbonGroupBox_File"
+                    Grid.IsSharedSizeScope="True"
+                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_File_Header}">
+                    <fluent:ToggleButton
+                        x:Name="RibbonButton_Open"
+                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandOpen}"
+                        Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_Open}"
+                        KeyTip="O"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Open}" />
                     <Separator />
-                    <fluent:ToggleButton x:Name="RibbonButton_Save" Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}" Icon="{StaticResource ResourceKey=IMAGE_Save}" LargeIcon="{StaticResource ResourceKey=IMAGE_Save}" KeyTip="S"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandSave}"/>
+                    <fluent:ToggleButton
+                        x:Name="RibbonButton_Save"
+                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSave}"
+                        Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_Save}"
+                        KeyTip="S"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Save}" />
                     <Separator />
-                    <fluent:ToggleButton x:Name="RibbonButton_Accept" Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}" Icon="{StaticResource ResourceKey=IMAGE_Accept}" LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" KeyTip="E"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandAccept}"/>
+                    <fluent:ToggleButton
+                        x:Name="RibbonButton_Accept"
+                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandAccept}"
+                        Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_Accept}"
+                        KeyTip="E"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" />
                     <Separator />
-                    <fluent:ToggleButton x:Name="RibbonButton_Close" Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}" Icon="{StaticResource ResourceKey=IMAGE_Close}" LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" KeyTip="S"  Command="{Binding ElementName=RibbonWindow_Main,Path=CommandClose}"/>
+                    <fluent:ToggleButton
+                        x:Name="RibbonButton_Close"
+                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandClose}"
+                        Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_Close}"
+                        KeyTip="S"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" />
                     <Separator />
                 </fluent:RibbonGroupBox>
-                <fluent:RibbonGroupBox Name="RibbonGroupBox_TranslateLanguage" Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TranslateLanguage_Header}"  Grid.IsSharedSizeScope="True">
-                    <fluent:InRibbonGallery Name="InRibbonGallery_TranslateLanguage" Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TranslateLanguage_Header}" VerticalContentAlignment="Center" MaxItemsInRow="12" MinItemsInRow="1" ResizeMode="Vertical" Icon="{StaticResource ResourceKey=IMAGE_TranslateLanguage}" LargeIcon="{StaticResource ResourceKey=IMAGE_TranslateLanguage}"/>
+                <fluent:RibbonGroupBox
+                    Name="RibbonGroupBox_TranslateLanguage"
+                    Grid.IsSharedSizeScope="True"
+                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TranslateLanguage_Header}">
+                    <fluent:InRibbonGallery
+                        Name="InRibbonGallery_TranslateLanguage"
+                        VerticalContentAlignment="Center"
+                        Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TranslateLanguage_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_TranslateLanguage}"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_TranslateLanguage}"
+                        MaxItemsInRow="12"
+                        MinItemsInRow="1"
+                        ResizeMode="Vertical" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
-        <GroupBox Name="GroupBox_Log" Grid.Row="2" Header="{DynamicResource UI_LogGroupBox_Header}" Margin="3">
-            <Avalon:TextEditor Name="AvalonTextEditor_Log" ShowLineNumbers="True" WordWrap="True" Margin="3" IsReadOnly="True">
-                <Avalon:TextEditor.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Name="MenuItem_LogClear" Header="{DynamicResource UI_MenuItem_LogClear_Header}" />
-                    </ContextMenu>
-                </Avalon:TextEditor.ContextMenu>
-            </Avalon:TextEditor>
+        <GroupBox
+            Name="GroupBox_ExcelDataGrid"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="3"
+            Header="{DynamicResource ResourceKey=UI_GroupBox_ExcelDataGrid_Header}">
+            <DataGrid
+                Name="DataGrid_Excel"
+                VerticalContentAlignment="Center"
+                AlternatingRowBackground="LightGray"
+                AlternationCount="2"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                ItemsSource="{Binding}"
+                SelectionMode="Extended"
+                SelectionUnit="CellOrRowHeader">
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="SkyBlue" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.RowHeaderStyle>
+                    <Style TargetType="{x:Type DataGridRowHeader}">
+                        <Setter Property="Content">
+                            <Setter.Value>
+                                <MultiBinding Converter="{StaticResource Converter_AutoNumberValue}">
+                                    <Binding />
+                                    <Binding Path="Items" RelativeSource="{RelativeSource AncestorType={x:Type DataGrid}}" />
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.RowHeaderStyle>
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="VerticalAlignment" Value="Stretch" />
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        x:Name="DataGridColumn_TextID"
+                        Width="*"
+                        Binding="{Binding ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        CanUserReorder="True"
+                        CanUserResize="True"
+                        CanUserSort="True"
+                        DisplayIndex="0"
+                        IsReadOnly="True">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TextID_Header}" />
+                        </DataGridTextColumn.Header>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Margin" Value="2" />
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn
+                        x:Name="DataGridColumn_Status"
+                        Width="*"
+                        CanUserReorder="True"
+                        CanUserResize="True"
+                        CanUserSort="True"
+                        DisplayIndex="1"
+                        IsReadOnly="True">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_Status_Header}" />
+                        </DataGridTextColumn.Header>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Margin" Value="2" />
+                                <Setter Property="TextWrapping" Value="NoWrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn
+                        x:Name="DataGridColumn_Text"
+                        Width="*"
+                        CanUserReorder="True"
+                        CanUserResize="True"
+                        CanUserSort="True"
+                        DisplayIndex="2"
+                        IsReadOnly="True">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_SourceText_Header}" />
+                        </DataGridTextColumn.Header>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Margin" Value="2" />
+                                <Setter Property="TextWrapping" Value="NoWrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn
+                        x:Name="DataGridColumn_Edited"
+                        Width="2*"
+                        CanUserReorder="True"
+                        CanUserResize="True"
+                        CanUserSort="False"
+                        DisplayIndex="3">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_EditedText_Header}" />
+                        </DataGridTextColumn.Header>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Margin" Value="2" />
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                        <DataGridTextColumn.EditingElementStyle>
+                            <Style TargetType="TextBox">
+                                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="Margin" Value="2" />
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.EditingElementStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </GroupBox>
-        <fluent:StatusBar Name="StatusBar_Below" Grid.Row="3">
+        <GridSplitter
+            Grid.Row="2"
+            Height="3"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            ResizeDirection="Rows" />
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <GroupBox
+                Name="GroupBox_Details"
+                Grid.Column="0"
+                Margin="3"
+                Header="{DynamicResource ResourceKey=UI_GroupBox_Details_Header}" />
+            <GridSplitter
+                Grid.Column="1"
+                Width="3"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Stretch"
+                ResizeDirection="Columns" />
+            <GroupBox
+                Name="GroupBox_Log"
+                Grid.Column="2"
+                Margin="3"
+                Header="{DynamicResource UI_GroupBox_Log_Header}">
+                <Avalon:TextEditor
+                    Name="AvalonTextEditor_Log"
+                    Margin="3"
+                    IsReadOnly="True"
+                    ShowLineNumbers="True"
+                    WordWrap="True">
+                    <Avalon:TextEditor.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Name="MenuItem_LogClear" Header="{DynamicResource UI_MenuItem_LogClear_Header}" />
+                        </ContextMenu>
+                    </Avalon:TextEditor.ContextMenu>
+                </Avalon:TextEditor>
+            </GroupBox>
+        </Grid>
+        <fluent:StatusBar Name="StatusBar_Below" Grid.Row="4">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                     </Grid>
                 </ItemsPanelTemplate>
             </StatusBar.ItemsPanel>
-            <fluent:StatusBarItem HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0">
-                <ProgressBar Name="ProgressBar_Loading" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden" Margin="3"/>
+            <fluent:StatusBarItem
+                Grid.Column="0"
+                VerticalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch">
+                <ProgressBar
+                    Name="ProgressBar_Loading"
+                    Margin="3"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Visibility="Hidden" />
             </fluent:StatusBarItem>
-            <Separator HorizontalAlignment="Left" Grid.Column="1"/>
-            <fluent:StatusBarItem  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2">
-                <TextBlock Name="TextBlock_ProgressMsg" Visibility="Hidden" Margin="3" Foreground="White"/>
+            <Separator Grid.Column="1" HorizontalAlignment="Left" />
+            <fluent:StatusBarItem
+                Grid.Column="2"
+                VerticalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch">
+                <TextBlock
+                    Name="TextBlock_ProgressMsg"
+                    Margin="3"
+                    Foreground="White"
+                    Visibility="Hidden" />
             </fluent:StatusBarItem>
         </fluent:StatusBar>
     </Grid>

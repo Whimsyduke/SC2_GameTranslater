@@ -22,7 +22,7 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 文本状态
         /// </summary>
-        public enum EnumGameTextType
+        public enum EnumGameTextStatus
         {
             /// <summary>
             /// 空
@@ -93,9 +93,9 @@ namespace SC2_GameTranslater.Source
         public const string RN_GalaxyLocation_Key = "Key";
         public const string RN_GameText_ID = "ID";
         public const string RN_GameText_File = "File";
-        public const string RN_GameText_Type = "Type";
+        public const string RN_GameText_Status = "Status";
         public const string RN_GameText_Text = "Text";
-        public const string RN_GameText_Temp = "Temp";
+        public const string RN_GameText_Edited = "Edited";
 
         #endregion
 
@@ -232,12 +232,12 @@ namespace SC2_GameTranslater.Source
             DataColumn column;
             DataTable table = Tables[TN_GameText];
 
-            // Type
-            columnName = GetGameTextNameForLanguage(lang, RN_GameText_Type);
-            column = new DataColumn(columnName, typeof(EnumGameTextType), "", MappingType.Element)
+            // Status
+            columnName = GetGameTextNameForLanguage(lang, RN_GameText_Status);
+            column = new DataColumn(columnName, typeof(EnumGameTextStatus), "", MappingType.Attribute)
             {
                 Caption = columnName,
-                DefaultValue = EnumGameTextType.Empty,
+                DefaultValue = EnumGameTextStatus.Empty,
                 AllowDBNull = false,
                 Unique = false,
             };
@@ -254,8 +254,8 @@ namespace SC2_GameTranslater.Source
             };
             table.Columns.Add(column);
 
-            // Text
-            columnName = GetGameTextNameForLanguage(lang, RN_GameText_Temp);
+            // Edited
+            columnName = GetGameTextNameForLanguage(lang, RN_GameText_Edited);
             column = new DataColumn(columnName, typeof(string), "", MappingType.Element)
             {
                 Caption = columnName,
@@ -470,7 +470,7 @@ namespace SC2_GameTranslater.Source
         public DataRow SetTextValue(EnumLanguage lang, EnumGameTextFile file, string key, string value)
         {
             DataRow row = GetGameTextRow(file, key);
-            row[GetGameTextNameForLanguage(lang, RN_GameText_Type)] = EnumGameTextType.Normal;
+            row[GetGameTextNameForLanguage(lang, RN_GameText_Status)] = EnumGameTextStatus.Normal;
             row[GetGameTextNameForLanguage(lang, RN_GameText_Text)] = value;
             return row;
         }
