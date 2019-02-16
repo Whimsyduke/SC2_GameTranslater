@@ -152,7 +152,7 @@
                     Name="RibbonGroupBox_File"
                     Grid.IsSharedSizeScope="True"
                     Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_File_Header}">
-                    <fluent:ToggleButton
+                    <fluent:Button
                         x:Name="RibbonButton_Open"
                         Command="{Binding ElementName=RibbonWindow_Main, Path=CommandOpen}"
                         Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}"
@@ -160,7 +160,7 @@
                         KeyTip="O"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Open}" />
                     <Separator />
-                    <fluent:ToggleButton
+                    <fluent:Button
                         x:Name="RibbonButton_Save"
                         Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSave}"
                         Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}"
@@ -168,7 +168,7 @@
                         KeyTip="S"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Save}" />
                     <Separator />
-                    <fluent:ToggleButton
+                    <fluent:Button
                         x:Name="RibbonButton_Accept"
                         Command="{Binding ElementName=RibbonWindow_Main, Path=CommandAccept}"
                         Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}"
@@ -176,7 +176,7 @@
                         KeyTip="E"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" />
                     <Separator />
-                    <fluent:ToggleButton
+                    <fluent:Button
                         x:Name="RibbonButton_Close"
                         Command="{Binding ElementName=RibbonWindow_Main, Path=CommandClose}"
                         Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}"

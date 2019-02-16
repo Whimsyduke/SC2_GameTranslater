@@ -357,13 +357,15 @@ namespace SC2_GameTranslater
             fileDialog.Title = Globals.CurrentLanguage["UI_OpenFileDialog_Open_Title"] as string;
             if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                FileInfo file = new FileInfo(fileDialog.FileName);
+                Globals.Preference.LastFolderPath = file.DirectoryName;
                 if (fileDialog.FilterIndex == 1)
                 {
-                    Globals.MainWindow.ProjectOpen(new FileInfo(fileDialog.FileName));
+                    Globals.MainWindow.ProjectOpen(file);
                 }
                 else
                 {
-                    Globals.MainWindow.ProjectNew(new FileInfo(fileDialog.FileName));
+                    Globals.MainWindow.ProjectNew(file);
                 }
             }
             
