@@ -355,6 +355,9 @@ namespace SC2_GameTranslater
             fileDialog.Multiselect = false;
             fileDialog.RestoreDirectory = true;
             fileDialog.Title = Globals.CurrentLanguage["UI_OpenFileDialog_Open_Title"] as string;
+#if DEBUG
+            fileDialog.FilterIndex = 2;
+#endif
             if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
