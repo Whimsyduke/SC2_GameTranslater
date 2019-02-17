@@ -1,6 +1,7 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!--#region 通用文本-->
     <sys:String x:Key="TEXT_LanguageName">简体中文</sys:String>
@@ -46,9 +47,20 @@
     <sys:String x:Key="UI_GroupBox_ExcelDataGrid_Header">翻译文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_LineNumber_Header">行号</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TextID_Header">文本ID</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_File_Header">所在文件</sys:String>
     <sys:String x:Key="UI_DataGridColumn_Status_Header">状态</sys:String>
     <sys:String x:Key="UI_DataGridColumn_SourceText_Header">原文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_EditedText_Header">修改文本</sys:String>
+    <sys:String x:Key="UI_RibbonTabItem_Filter_Header">筛选</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">Galaxy文件</sys:String>
     <!--#endregion-->
-        
+
+    <!--#region EnumValue-->
+    <sys:String x:Key="ENUM_EnumGameTextFile_GameStrings">游戏文本</sys:String>
+    <sys:String x:Key="ENUM_EnumGameTextFile_ObjectStrings">数据文本</sys:String>
+    <sys:String x:Key="ENUM_EnumGameTextFile_TriggerStrings">触发文本</sys:String>
+    <sys:String x:Key="ENUM_EnumGameTextStatus_Empty">空文本</sys:String>
+    <sys:String x:Key="ENUM_EnumGameTextStatus_Normal">未修改</sys:String>
+    <sys:String x:Key="ENUM_EnumGameTextStatus_Modified">已修改</sys:String>
+    <!--#endregion-->
 </ResourceDictionary>

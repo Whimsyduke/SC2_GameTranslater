@@ -46,10 +46,21 @@
     <sys:String x:Key="UI_GroupBox_ExcelDataGrid_Header">Translated Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_LineNumber_Header">Index</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TextID_Header">Text ID</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_File_Header">In File</sys:String>
     <sys:String x:Key="UI_DataGridColumn_Status_Header">Status</sys:String>
     <sys:String x:Key="UI_DataGridColumn_SourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_EditedText_Header">Edited Text</sys:String>
-    
+    <sys:String x:Key="UI_RibbonTabItem_Filter_Header">Filter</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">Galaxy File</sys:String>
+    <!--#endregion-->
+
+    <!--#region EnumValue-->
+    <sys:String x:Key="ENUM_EnumGameTextFile_GameStrings">Game Strings</sys:String>
+    <sys:String x:Key="ENUM_EnumGameTextFile_ObjectStrings">Object Strings</sys:String>
+    <sys:String x:Key="ENUM_EnumGameTextFile_TriggerStrings">Trigger Strings</sys:String>
+    <sys:String x:Key="ENUM_EnumGameTextStatus_Empty">Empty</sys:String>
+    <sys:String x:Key="ENUM_EnumGameTextStatus_Normal">Normal</sys:String>
+    <sys:String x:Key="ENUM_EnumGameTextStatus_Modified">Modified</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

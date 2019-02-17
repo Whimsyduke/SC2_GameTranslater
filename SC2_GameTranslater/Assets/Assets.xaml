@@ -22,7 +22,7 @@
     <Image x:Key="IMAGE_ruRU" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_ruRU.png"/>
     <Image x:Key="IMAGE_zhCN" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_zhCN.png"/>
     <Image x:Key="IMAGE_zhTW" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_zhTW.png"/>
-    <Image x:Key="IMAGE_NULL" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_zhTW.png"/>
+    <Image x:Key="IMAGE_Null" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_Null.png"/>
     <!--#endregion-->
 
     <!--#region Drawing Image-->

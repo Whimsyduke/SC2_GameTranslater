@@ -193,6 +193,9 @@
     <Resource Include="Assets\Image\TranslationTool_Language_zhTW.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\Image\TranslationTool_Language_Null.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Assets\Image\ui-editoricon-triggereditor_newcondition.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

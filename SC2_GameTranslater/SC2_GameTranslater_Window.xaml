@@ -39,7 +39,7 @@
             Name="Ribbon_Main"
             Grid.Row="0"
             Grid.ColumnSpan="2"
-            AutomaticStateManagement="True">
+            AutomaticStateManagement="False">
             <fluent:Ribbon.Menu>
                 <fluent:Backstage Header="{DynamicResource ResourceKey=UI_Backstage_Menu_Header}">
                     <fluent:BackstageTabControl>
@@ -144,14 +144,11 @@
                 <fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Accept}}" />
                 <fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Close}}" />
             </fluent:Ribbon.QuickAccessItems>
-            <fluent:RibbonTabItem
-                Name="RibbonTabItem_Start"
-                Header="{DynamicResource ResourceKey=UI_RibbonTabItem_Start_Header}"
-                ReduceOrder="(RibbonGroupBox_File),(RibbonGroupBox_File),(RibbonGroupBox_File),(RibbonGroupBox_File),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage),(RibbonGroupBox_TranslateLanguage)">
+            <fluent:RibbonTabItem Name="RibbonTabItem_Start" Header="{DynamicResource ResourceKey=UI_RibbonTabItem_Start_Header}">
                 <fluent:RibbonGroupBox
                     Name="RibbonGroupBox_File"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_File_Header}">
+                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_File_Header}" Width="Auto">
                     <fluent:Button
                         x:Name="RibbonButton_Open"
                         Command="{Binding ElementName=RibbonWindow_Main, Path=CommandOpen}"
@@ -188,16 +185,37 @@
                 <fluent:RibbonGroupBox
                     Name="RibbonGroupBox_TranslateLanguage"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TranslateLanguage_Header}">
+                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TranslateLanguage_Header}" >
                     <fluent:InRibbonGallery
                         Name="InRibbonGallery_TranslateLanguage"
                         VerticalContentAlignment="Center"
                         Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TranslateLanguage_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_TranslateLanguage}"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_TranslateLanguage}"
-                        MaxItemsInRow="12"
-                        MinItemsInRow="1"
-                        ResizeMode="Vertical" />
+                        MaxItemsInRow="6"
+                        MinItemsInRow="2"
+                        MaxItemsInDropDownRow="6"
+                        MinItemsInDropDownRow="2"
+                        Orientation="Horizontal"
+                        SizeDefinition="Large"
+                        CanCollapseToButton="False"
+                        ResizeMode="Both"
+                        IsCollapsed="False" MinWidth="120">
+                        <fluent:InRibbonGallery.ItemContainerStyle>
+                            <Style TargetType="{x:Type fluent:GalleryItem}">
+                                <Setter Property="PreviewCommand"
+                                        Value="{Binding DataContext.PreviewCommand, RelativeSource={RelativeSource AncestorType={x:Type fluent:InRibbonGallery}}}" />
+                                <Setter Property="CancelPreviewCommand"
+                                        Value="{Binding DataContext.CancelPreviewCommand, RelativeSource={RelativeSource AncestorType={x:Type fluent:InRibbonGallery}}}" />
+                            </Style>
+                        </fluent:InRibbonGallery.ItemContainerStyle>
+                    </fluent:InRibbonGallery>
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+
+            <fluent:RibbonTabItem Name="RibbonTabItem_Filter" Header="{DynamicResource ResourceKey=UI_RibbonTabItem_Filter_Header}" IsSelected="True">
+                <fluent:RibbonGroupBox Name="RibbonGroupBox_GalaxyFilter" Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_GalaxyFilter_Header}" 
+                    Grid.IsSharedSizeScope="True">
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
@@ -256,7 +274,7 @@
                     <DataGridTextColumn
                         x:Name="DataGridColumn_TextID"
                         Width="*"
-                        Binding="{Binding ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Binding="{Binding ID, Mode=TwoWay}"
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="True"
@@ -275,12 +293,38 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_Status"
-                        Width="*"
+                        x:Name="DataGridColumn_File"
+                        Width="Auto"
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="True"
                         DisplayIndex="1"
+                        IsReadOnly="True">
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_File}" Mode="OneWay">
+                                <Binding />
+                                <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_File_Header}" />
+                        </DataGridTextColumn.Header>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Margin" Value="2" />
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn
+                        x:Name="DataGridColumn_Status"
+                        Width="Auto"
+                        CanUserReorder="True"
+                        CanUserResize="True"
+                        CanUserSort="True"
+                        DisplayIndex="2"
                         IsReadOnly="True">
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{DynamicResource UI_DataGridColumn_Status_Header}" />
@@ -296,11 +340,11 @@
                     </DataGridTextColumn>
                     <DataGridTextColumn
                         x:Name="DataGridColumn_Text"
-                        Width="*"
+                        Width="2*"
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="True"
-                        DisplayIndex="2"
+                        DisplayIndex="3"
                         IsReadOnly="True">
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{DynamicResource UI_DataGridColumn_SourceText_Header}" />
@@ -320,7 +364,7 @@
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="False"
-                        DisplayIndex="3">
+                        DisplayIndex="4">
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{DynamicResource UI_DataGridColumn_EditedText_Header}" />
                         </DataGridTextColumn.Header>

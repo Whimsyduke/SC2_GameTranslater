@@ -4,4 +4,5 @@
                     xmlns:source="clr-namespace:SC2_GameTranslater.Source">
 
     <source:AutoNumberValueConverter x:Key="Converter_AutoNumberValue" />
+    <source:EnumNameInLanguage_TextFileConverter x:Key="Converter_EnumNameInLanguage_File" />
 </ResourceDictionary>

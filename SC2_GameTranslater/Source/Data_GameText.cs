@@ -217,9 +217,21 @@ namespace SC2_GameTranslater.Source
         /// <param name="lang">语言</param>
         /// <param name="name">基本名称</param>
         /// <returns>列名</returns>
-        public string GetGameTextNameForLanguage(EnumLanguage lang, string name)
+        public static string GetGameTextNameForLanguage(EnumLanguage lang, string name)
         {
             return string.Format("{0}_{1}", Enum.GetName(lang.GetType(), lang), name);
+        }
+
+        /// <summary>
+        /// 获取枚举值对应的文本
+        /// </summary>
+        /// <param name="lang">语言</param>
+        /// <param name="value">枚举值</param>
+        /// <returns>翻译名称</returns>
+        public static string GetEnumNameInLanguage(EnumLanguage lang, Enum value)
+        {
+            string key = string.Format("ENUM_{0}_{1}", value.GetType().Name, Enum.GetName(value.GetType(), value));
+            return Globals.DictUILanguages[lang][key] as string;
         }
 
         /// <summary>

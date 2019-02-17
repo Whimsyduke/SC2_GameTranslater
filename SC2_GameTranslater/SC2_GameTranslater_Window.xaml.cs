@@ -525,13 +525,13 @@ namespace SC2_GameTranslater
                     RefreshNoTranslateLanguageItem();
                     return;
                 }
-                RibbonGroupBox_TranslateLanguage.Items.Clear();
+                InRibbonGallery_TranslateLanguage.Items.Clear();
                 ToggleButton selectButton = null;
                 foreach (KeyValuePair<EnumLanguage, ToggleButton> select in TranslateLanguage)
                 {
                     if (list.Contains(select.Key))
                     {
-                        RibbonGroupBox_TranslateLanguage.Items.Add(select.Value);
+                        InRibbonGallery_TranslateLanguage.Items.Add(select.Value);
                         if (selectButton == null || (int)select.Key == CultureInfo.CurrentCulture.LCID)
                         {
                             selectButton = select.Value;
@@ -547,8 +547,8 @@ namespace SC2_GameTranslater
         /// </summary>
         private void RefreshNoTranslateLanguageItem()
         {
-            RibbonGroupBox_TranslateLanguage.Items.Clear();
-            RibbonGroupBox_TranslateLanguage.Items.Add(TranslateLanguage[0]);
+            InRibbonGallery_TranslateLanguage.Items.Clear();
+            InRibbonGallery_TranslateLanguage.Items.Add(TranslateLanguage[0]);
             TranslateLanguage[0].IsChecked = true;
         }
 
@@ -562,8 +562,9 @@ namespace SC2_GameTranslater
 
             ToggleButton button = new ToggleButton();
             button.SetResourceReference(ToggleButton.HeaderProperty, "TEXT_Null");
-            button.SetResourceReference(ToggleButton.IconProperty, "IMAGE_NULL");
-            button.SetResourceReference(ToggleButton.LargeIconProperty, "IMAGE_NULL");
+            button.SetResourceReference(ToggleButton.IconProperty, "IMAGE_Null");
+            button.SetResourceReference(ToggleButton.LargeIconProperty, "IMAGE_Null");
+            button.Tag = null;
             list.Add(0, button);
 
             EnumLanguage[] array = Enum.GetValues(typeof(EnumLanguage)).Cast<EnumLanguage>().ToArray();
@@ -613,6 +614,41 @@ namespace SC2_GameTranslater
             {
                 DataGrid_Excel.ItemsSource = new DataView(table);
             }
+        }
+
+        /// <summary>
+        /// 设置当前翻译语言
+        /// </summary>
+        /// <param name="lang">翻译语言</param>
+        public void SetCurrentTranslateLanguage(EnumLanguage lang)
+        {
+            Binding binding;
+            string langName = Enum.GetName(lang.GetType(), lang);
+            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_Status))
+            {
+                Mode = BindingMode.TwoWay,
+            };
+            DataGridColumn_Status.Binding = binding;
+            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_Text))
+            {
+                Mode = BindingMode.TwoWay,
+            };
+            DataGridColumn_Text.Binding = binding;
+            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_Edited))
+            {
+                Mode = BindingMode.TwoWay,
+            };
+            DataGridColumn_Edited.Binding = binding;
+        }
+
+        /// <summary>
+        /// 清理当前翻译语言
+        /// </summary>
+        public void CleanCurrentTranslateLanguage()
+        {
+            DataGridColumn_Status.Binding = null;
+            DataGridColumn_Text.Binding = null;
+            DataGridColumn_Edited.Binding = null;
         }
 
         #endregion
@@ -682,6 +718,7 @@ namespace SC2_GameTranslater
         {
             string itemName = ComboBox_Language.SelectedItem as string;
             EnumCurrentLanguage = Globals.DictComboBoxItemLanguage[itemName];
+            e.Handled = true;
         }
 
         /// <summary>
@@ -691,6 +728,19 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private static void Button_TranslateLanguage_Checked(object sender, RoutedEventArgs e)
         {
+            if (sender is ToggleButton button)
+            {
+                Globals.MainWindow.InRibbonGallery_TranslateLanguage.SelectedItem = button;
+                if (button.Tag != null)
+                {
+                    Globals.MainWindow.SetCurrentTranslateLanguage((EnumLanguage)button.Tag);
+                }
+                else
+                {
+                    Globals.MainWindow.CleanCurrentTranslateLanguage();
+                }
+                e.Handled = true;
+            }
         }
 
         /// <summary>
