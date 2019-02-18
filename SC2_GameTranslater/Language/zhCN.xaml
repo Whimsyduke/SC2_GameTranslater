@@ -8,6 +8,8 @@
     <sys:String x:Key="TEXT_WindowTitleText">《星际争霸II》游戏翻译器</sys:String>
     <sys:String x:Key="TEXT_SC2File">SC II Mod地图或组件文件夹</sys:String>
     <sys:String x:Key="TEXT_ProjectFile">翻译项目文件</sys:String>
+    <sys:String x:Key="TEXT_SelectALL">全选</sys:String>
+    <sys:String x:Key="TEXT_SelectNone">全不选</sys:String>
     <sys:String x:Key="TEXT_Null">空</sys:String>
     <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
     <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
@@ -54,8 +56,10 @@
     <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">所属Galaxy文件</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy文件</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
-    <sys:String x:Key="UI_MenuItem_GalaxyFilterSelectAll_Header">全选</sys:String>
-    <sys:String x:Key="UI_MenuItem_GalaxyFilterSelectNone_Header">全不选</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_TextFileFilter_Header">所属文本文件</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">文本文件</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_TextStatusFilter_Header">文本状态</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">文本状态</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->

@@ -7,6 +7,8 @@
     <sys:String x:Key="TEXT_WindowTitleText">StarcraftII Game Translater</sys:String>
     <sys:String x:Key="TEXT_SC2File">SCII Map, Mod Or Component Folders</sys:String>
     <sys:String x:Key="TEXT_ProjectFile">Project File</sys:String>
+    <sys:String x:Key="TEXT_SelectALL">Select All</sys:String>
+    <sys:String x:Key="TEXT_SelectNone">Select None</sys:String>
     <sys:String x:Key="TEXT_Null">Null</sys:String>
     <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
     <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
@@ -23,7 +25,7 @@
     <!--#endregion-->
 
     <!--#region UI Text-->
-    <sys:String x:Key="UI_Backstage_Menu_Header">目录</sys:String>
+    <sys:String x:Key="UI_Backstage_Menu_Header">Menu</sys:String>
     <sys:String x:Key="UI_RibbonButton_Open_Header">Open</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">Save</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">Save As</sys:String>
@@ -50,11 +52,13 @@
     <sys:String x:Key="UI_DataGridColumn_Status_Header">Status</sys:String>
     <sys:String x:Key="UI_DataGridColumn_SourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_EditedText_Header">Edited Text</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">Use in Galaxy File</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">In Galaxy File</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy File</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
-    <sys:String x:Key="UI_MenuItem_GalaxyFilterSelectAll_Header">Select All</sys:String>
-    <sys:String x:Key="UI_MenuItem_GalaxyFilterSelectNone_Header">Select None</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_TextFileFilter_Header">In Record File</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">Record File</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_TextStatusFilter_Header">Text Status</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">Text Status</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->

@@ -66,7 +66,7 @@ namespace SC2_GameTranslater.Source
             DataRowView rowView = values[0] as DataRowView;
             EnumLanguage language = (EnumLanguage)values[1];
             var var = rowView.Row[Data_GameText.RN_GameText_File];
-            Data_GameText.EnumGameTextFile value = (Data_GameText.EnumGameTextFile)Enum.ToObject(typeof(Data_GameText.EnumGameTextFile), var);
+            EnumGameTextFile value = (EnumGameTextFile)Enum.ToObject(typeof(EnumGameTextFile), var);
             return Data_GameText.GetEnumNameInLanguage(language, value);
         }
 

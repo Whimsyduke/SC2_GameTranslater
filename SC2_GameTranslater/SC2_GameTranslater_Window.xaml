@@ -147,8 +147,9 @@
             <fluent:RibbonTabItem Name="RibbonTabItem_Start" Header="{DynamicResource ResourceKey=UI_RibbonTabItem_Start_Header}">
                 <fluent:RibbonGroupBox
                     Name="RibbonGroupBox_File"
+                    Width="Auto"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_File_Header}" Width="Auto">
+                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_File_Header}">
                     <fluent:Button
                         x:Name="RibbonButton_Open"
                         Command="{Binding ElementName=RibbonWindow_Main, Path=CommandOpen}"
@@ -185,55 +186,211 @@
                 <fluent:RibbonGroupBox
                     Name="RibbonGroupBox_TranslateLanguage"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TranslateLanguage_Header}" >
+                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TranslateLanguage_Header}">
                     <fluent:InRibbonGallery
                         Name="InRibbonGallery_TranslateLanguage"
+                        MinWidth="120"
+                        CanCollapseToButton="False"
                         Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TranslateLanguage_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_TranslateLanguage}"
+                        IsCollapsed="False"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_TranslateLanguage}"
-                        MaxItemsInRow="6"
-                        MinItemsInRow="2"
                         MaxItemsInDropDownRow="6"
+                        MaxItemsInRow="6"
                         MinItemsInDropDownRow="2"
+                        MinItemsInRow="2"
                         Orientation="Horizontal"
-                        SizeDefinition="Large"
-                        CanCollapseToButton="False"
                         ResizeMode="Both"
-                        IsCollapsed="False" MinWidth="120">
+                        SizeDefinition="Large">
                         <fluent:InRibbonGallery.ItemContainerStyle>
                             <Style TargetType="{x:Type fluent:GalleryItem}">
-                                <Setter Property="PreviewCommand"
-                                        Value="{Binding DataContext.PreviewCommand, RelativeSource={RelativeSource AncestorType={x:Type fluent:InRibbonGallery}}}" />
-                                <Setter Property="CancelPreviewCommand"
-                                        Value="{Binding DataContext.CancelPreviewCommand, RelativeSource={RelativeSource AncestorType={x:Type fluent:InRibbonGallery}}}" />
+                                <Setter Property="PreviewCommand" Value="{Binding DataContext.PreviewCommand, RelativeSource={RelativeSource AncestorType={x:Type fluent:InRibbonGallery}}}" />
+                                <Setter Property="CancelPreviewCommand" Value="{Binding DataContext.CancelPreviewCommand, RelativeSource={RelativeSource AncestorType={x:Type fluent:InRibbonGallery}}}" />
                             </Style>
                         </fluent:InRibbonGallery.ItemContainerStyle>
                     </fluent:InRibbonGallery>
                 </fluent:RibbonGroupBox>
-                <fluent:RibbonGroupBox Name="RibbonGroupBox_GalaxyFilter" Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_GalaxyFilter_Header}" 
-                    Grid.IsSharedSizeScope="True">
+                <fluent:RibbonGroupBox
+                    Name="RibbonGroupBox_GalaxyFilter"
+                    Grid.IsSharedSizeScope="True"
+                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_GalaxyFilter_Header}">
                     <fluent:InRibbonGallery
                         Name="InRibbonGallery_GalaxyFilter"
+                        MinWidth="150"
+                        CanCollapseToButton="False"
                         Header="{DynamicResource ResourceKey=UI_InRibbonGallery_GalaxyFilter_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
+                        IsCollapsed="False"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
-                        Selectable="False"
                         MaxItemsInDropDownRow="1"
                         MinItemsInDropDownRow="1"
                         Orientation="Vertical"
-                        SizeDefinition="Large"
-                        CanCollapseToButton="False"
                         ResizeMode="Both"
-                        IsCollapsed="False" MinWidth="150" >
+                        Selectable="False"
+                        SizeDefinition="Large">
                         <fluent:InRibbonGallery.Menu>
                             <fluent:RibbonMenu>
-                                <fluent:MenuItem Name="MenuItem_GalaxyFilterSelectAll" Header="{DynamicResource ResourceKey=UI_MenuItem_GalaxyFilterSelectAll_Header}" Click="MenuItem_GalaxyFilterSelectAll_Click"/>
-                                <fluent:MenuItem Name="MenuItem_GalaxyFilterSelectNone" Header="{DynamicResource ResourceKey=UI_MenuItem_GalaxyFilterSelectNone_Header}" Click="MenuItem_GalaxyFilterSelectNone_Click"/>
+                                <fluent:MenuItem
+                                    Name="MenuItem_GalaxyFilterSelectAll"
+                                    Click="MenuItem_GalaxyFilterSelectAll_Click"
+                                    Header="{DynamicResource ResourceKey=TEXT_SelectALL}" />
+                                <fluent:MenuItem
+                                    Name="MenuItem_GalaxyFilterSelectNone"
+                                    Click="MenuItem_GalaxyFilterSelectNone_Click"
+                                    Header="{DynamicResource ResourceKey=TEXT_SelectNone}" />
                             </fluent:RibbonMenu>
                         </fluent:InRibbonGallery.Menu>
-                        <fluent:ToggleButton Name="ToggleButton_FilterGalaxyFileNone" Header="{DynamicResource ResourceKey=UI_ToggleButton_FilterGalaxyFileNone_Header}" SizeDefinition="Middle" VerticalAlignment="Top" Icon="{StaticResource ResourceKey=IMAGE_GalaxyNone}" HorizontalAlignment="Stretch" ToolTip="{DynamicResource ResourceKey=TipToggleButton_FilterGalaxyFileNone_ToolTip}"/>
+                        <fluent:ToggleButton
+                            Name="ToggleButton_FilterGalaxyFileNone"
+                            Height="17"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            Checked="ToggleButton_FilterGalaxyButton_CheckEvent"
+                            FontSize="10"
+                            Header="{DynamicResource ResourceKey=UI_ToggleButton_FilterGalaxyFileNone_Header}"
+                            Icon="{StaticResource ResourceKey=IMAGE_GalaxyNone}"
+                            SizeDefinition="Middle"
+                            ToolTip="{DynamicResource ResourceKey=TipToggleButton_FilterGalaxyFileNone_ToolTip}"
+                            Unchecked="ToggleButton_FilterGalaxyButton_CheckEvent" />
                     </fluent:InRibbonGallery>
-                </fluent:RibbonGroupBox>                
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox
+                    Name="RibbonGroupBox_TextFileFilter"
+                    Grid.IsSharedSizeScope="True"
+                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TextFileFilter_Header}">
+                    <fluent:InRibbonGallery
+                        Name="InRibbonGallery_TextFileFilter"
+                        MinWidth="150"
+                        CanCollapseToButton="False"
+                        Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TextFileFilter_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
+                        IsCollapsed="False"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
+                        MaxItemsInDropDownRow="1"
+                        MinItemsInDropDownRow="1"
+                        Orientation="Vertical"
+                        ResizeMode="Both"
+                        Selectable="False"
+                        SizeDefinition="Large">
+                        <fluent:InRibbonGallery.Menu>
+                            <fluent:RibbonMenu>
+                                <fluent:MenuItem
+                                    Name="MenuItem_TextFileFilterSelectAll"
+                                    Click="MenuItem_TextFileFilterSelectAll_Click"
+                                    Header="{DynamicResource ResourceKey=TEXT_SelectALL}" />
+                                <fluent:MenuItem
+                                    Name="MenuItem_TextFileFilterSelectNone"
+                                    Click="MenuItem_TextFileFilterSelectNone_Click"
+                                    Header="{DynamicResource ResourceKey=TEXT_SelectNone}" />
+                            </fluent:RibbonMenu>
+                        </fluent:InRibbonGallery.Menu>
+                        <fluent:ToggleButton
+                            Name="ToggleButton_TextFileFilterGameStrings"
+                            Height="17"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            Checked="ToggleButton_TextFileFilterButton_CheckEvent"
+                            FontSize="10"
+                            Header="{DynamicResource ResourceKey=ENUM_EnumGameTextFile_GameStrings}"
+                            Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
+                            SizeDefinition="Middle"
+                            Unchecked="ToggleButton_TextFileFilterButton_CheckEvent" />
+                        <fluent:ToggleButton
+                            Name="ToggleButton_TextFileFilterObjectStrings"
+                            Height="17"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            Checked="ToggleButton_TextFileFilterButton_CheckEvent"
+                            FontSize="10"
+                            Header="{DynamicResource ResourceKey=ENUM_EnumGameTextFile_ObjectStrings}"
+                            Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
+                            SizeDefinition="Middle"
+                            Unchecked="ToggleButton_TextFileFilterButton_CheckEvent" />
+                        <fluent:ToggleButton
+                            Name="ToggleButton_TextFileFilterTriggerStrings"
+                            Height="17"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            Checked="ToggleButton_TextFileFilterButton_CheckEvent"
+                            FontSize="10"
+                            Header="{DynamicResource ResourceKey=ENUM_EnumGameTextFile_TriggerStrings}"
+                            Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
+                            SizeDefinition="Middle"
+                            Unchecked="ToggleButton_TextFileFilterButton_CheckEvent" />
+                    </fluent:InRibbonGallery>
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox
+                    Name="RibbonGroupBox_TextStatusFilter"
+                    Grid.IsSharedSizeScope="True"
+                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TextStatusFilter_Header}">
+                    <fluent:InRibbonGallery
+                        Name="InRibbonGallery_TextStatusFilter"
+                        MinWidth="150"
+                        CanCollapseToButton="False"
+                        Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TextStatusFilter_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
+                        IsCollapsed="False"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
+                        MaxItemsInDropDownRow="1"
+                        MinItemsInDropDownRow="1"
+                        Orientation="Vertical"
+                        ResizeMode="Both"
+                        Selectable="False"
+                        SizeDefinition="Large">
+                        <fluent:InRibbonGallery.Menu>
+                            <fluent:RibbonMenu>
+                                <fluent:MenuItem
+                                    Name="MenuItem_TextStatusFilterSelectAll"
+                                    Click="MenuItem_TextStatusFilterSelectAll_Click"
+                                    Header="{DynamicResource ResourceKey=TEXT_SelectALL}" />
+                                <fluent:MenuItem
+                                    Name="MenuItem_TextStatusFilterSelectNone"
+                                    Click="MenuItem_TextStatusFilterSelectNone_Click"
+                                    Header="{DynamicResource ResourceKey=TEXT_SelectNone}" />
+                            </fluent:RibbonMenu>
+                        </fluent:InRibbonGallery.Menu>
+                        <fluent:ToggleButton
+                            Name="ToggleButton_TextStatusFilterEmpty"
+                            Height="17"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            Checked="ToggleButton_TextStatusFilterButton_CheckEvent"
+                            FontSize="10"
+                            Header="{DynamicResource ResourceKey=ENUM_EnumGameTextStatus_Empty}"
+                            Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
+                            SizeDefinition="Middle"
+                            Unchecked="ToggleButton_TextStatusFilterButton_CheckEvent" />
+                        <fluent:ToggleButton
+                            Name="ToggleButton_TextStatusFilterNormal"
+                            Height="17"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            Checked="ToggleButton_TextStatusFilterButton_CheckEvent"
+                            FontSize="10"
+                            Header="{DynamicResource ResourceKey=ENUM_EnumGameTextStatus_Normal}"
+                            Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
+                            SizeDefinition="Middle"
+                            Unchecked="ToggleButton_TextStatusFilterButton_CheckEvent" />
+                        <fluent:ToggleButton
+                            Name="ToggleButton_TextStatusFilterModified"
+                            Height="17"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            Checked="ToggleButton_TextStatusFilterButton_CheckEvent"
+                            Header="{DynamicResource ResourceKey=ENUM_EnumGameTextStatus_Modified}"
+                            Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
+                            IsChecked="True"
+                            SizeDefinition="Middle"
+                            Unchecked="ToggleButton_TextStatusFilterButton_CheckEvent" />
+                    </fluent:InRibbonGallery>
+                </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
         <GroupBox

@@ -13,45 +13,56 @@ namespace SC2_GameTranslater.Source
     using Globals = Class_Globals;
     using Threads = Class_Threads;
     using Log = Class_Log;
+
+    #region 枚举声明
+
+    /// <summary>
+    /// 文本状态
+    /// </summary>
+    public enum EnumGameTextStatus
+    {
+        /// <summary>
+        /// 空
+        /// </summary>
+        Empty,
+        /// <summary>
+        /// 正常
+        /// </summary>
+        Normal,
+        /// <summary>
+        /// 已修改
+        /// </summary>
+        Modified,
+    }
+
+    /// <summary>
+    /// 文本文件
+    /// </summary>
+    public enum EnumGameTextFile
+    {
+        /// <summary>
+        /// GameStrings.txt
+        /// </summary>
+        GameStrings,
+        /// <summary>
+        /// ObjectStrings.txt
+        /// </summary>
+        ObjectStrings,
+        /// <summary>
+        /// ObjectStrings.txt
+        /// </summary>
+        TriggerStrings,
+    }
+
+    #endregion
+
     /// <summary>
     /// 翻译文本数据表
     /// </summary>
     public partial class Data_GameText
     {
         #region 声明常量
-
-        #region 枚举声明
-        /// <summary>
-        /// 文本状态
-        /// </summary>
-        public enum EnumGameTextStatus
-        {
-            /// <summary>
-            /// 空
-            /// </summary>
-            Empty,
-            /// <summary>
-            /// 正常
-            /// </summary>
-            Normal,
-            /// <summary>
-            /// 已修改
-            /// </summary>
-            Modified,
-        }
-
-        /// <summary>
-        /// 文本文件
-        /// </summary>
-        public enum EnumGameTextFile
-        {
-            GameStrings,
-            ObjectStrings,
-            TriggerStrings,
-        }
-
-        #endregion
-
+        
         #region 正则表达式常量
         /// <summary>
         /// Galaxy文本函数

@@ -55,7 +55,7 @@ namespace SC2_GameTranslater
         /// 打开命令依赖项属性
         /// </summary>
         public RoutedUICommand CommandOpen { set => SetValue(CommandOpenProperty, value); get => (RoutedUICommand)GetValue(CommandOpenProperty); }
-                
+
         /// <summary>
         /// 保存命令依赖项
         /// </summary>
@@ -75,7 +75,7 @@ namespace SC2_GameTranslater
         /// 另存为命令依赖项属性
         /// </summary>
         public RoutedUICommand CommandSaveAs { set => SetValue(CommandSaveAsProperty, value); get => (RoutedUICommand)GetValue(CommandSaveAsProperty); }
-        
+
         /// <summary>
         /// 应用命令依赖项
         /// </summary>
@@ -142,6 +142,15 @@ namespace SC2_GameTranslater
         /// </summary>
         public Dictionary<EnumLanguage, ToggleButton> TranslateLanguage { set; get; } = NewTranslateLanguageButton();
 
+        /// <summary>
+        /// 是否选择全部Galaxy筛选文件
+        /// </summary>
+        public bool IsSelectAllGalaxyFilter { private set; get; } = true;
+
+        /// <summary>
+        /// 是否选择全部文本所在筛选文件
+        /// </summary>
+        public bool IsSelectAllTextFileFilter { private set; get; } = true;
 
         #endregion
 
@@ -161,7 +170,7 @@ namespace SC2_GameTranslater
         {
             Globals.MainWindow = this;
             InitializeComponent();
-            
+
             #region 多语言配置
             bool useDefault = true;
             Assembly assembly = Assembly.GetExecutingAssembly();
@@ -322,7 +331,7 @@ namespace SC2_GameTranslater
                 {
                     ProgressBar_Loading.Visibility = Visibility.Hidden;
                     TextBlock_ProgressMsg.Visibility = Visibility.Hidden;
-                    ProgressBar_Loading.Value =0 ;
+                    ProgressBar_Loading.Value = 0;
                     TextBlock_ProgressMsg.Text = "";
                     Grid_Main.IsEnabled = true;
                     func?.Invoke(ProgressBar_Loading.Value, ProgressBar_Loading.Maximum);
@@ -374,7 +383,7 @@ namespace SC2_GameTranslater
                     Globals.MainWindow.ProjectNew(file);
                 }
             }
-            
+
             e.Handled = true;
         }
 
@@ -410,7 +419,7 @@ namespace SC2_GameTranslater
             e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
             e.Handled = true;
         }
-        
+
         /// <summary>
         ///另存为项目命令执行函数
         /// </summary>
@@ -432,7 +441,7 @@ namespace SC2_GameTranslater
             e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
             e.Handled = true;
         }
-        
+
         /// <summary>
         /// 应用项目命令执行函数
         /// </summary>
@@ -508,7 +517,7 @@ namespace SC2_GameTranslater
 
         #endregion
 
-        #region 翻译选项
+        #region 翻译筛选项
 
         /// <summary>
         /// 刷新翻译选项
@@ -602,14 +611,14 @@ namespace SC2_GameTranslater
 
         #endregion
 
-        #region Galaxy选项
+        #region Galaxy筛选项
 
 
         /// <summary>
-        /// 新建语言切换按钮
+        /// 刷新Galaxy筛选按钮
         /// </summary>
         /// <returns>按钮列表</returns>
-        private void RefreshGalaxyFileFilterButton(Data_GameText project)
+        private void RefreshGalaxyTextFileFilterButton(Data_GameText project)
         {
             foreach (ToggleButton button in m_GalaxyButtons)
             {
@@ -623,8 +632,8 @@ namespace SC2_GameTranslater
                 ToggleButton button;
                 foreach (DataRow row in project.Tables[Data_GameText.TN_GalaxyFile].Rows)
                 {
-                    button = NewGalaxyFileFilterButton(row);
-                    m_GalaxyButtons.Add(NewGalaxyFileFilterButton(row));
+                    button = NewGalaxyTextFileFilterButton(row);
+                    m_GalaxyButtons.Add(button);
                     InRibbonGallery_GalaxyFilter.Items.Insert(InRibbonGallery_GalaxyFilter.Items.Count - 1, button);
                 }
             }
@@ -640,7 +649,7 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="language">对应语言</param>
         /// <returns>按钮</returns>
-        private ToggleButton NewGalaxyFileFilterButton(DataRow fileRow)
+        private ToggleButton NewGalaxyTextFileFilterButton(DataRow fileRow)
         {
             ToggleButton button = new ToggleButton
             {
@@ -649,10 +658,42 @@ namespace SC2_GameTranslater
                 ToolTip = fileRow[Data_GameText.RN_GalaxyFile_Path],
                 SizeDefinition = new RibbonControlSizeDefinition(RibbonControlSize.Middle, RibbonControlSize.Middle, RibbonControlSize.Middle),
                 HorizontalAlignment = HorizontalAlignment.Stretch,
+                IsChecked = true,
+                Height = ToggleButton_FilterGalaxyFileNone.Height,
+                FontSize = ToggleButton_FilterGalaxyFileNone.FontSize,
+                VerticalContentAlignment = VerticalAlignment.Center,
             };
             button.SetResourceReference(ToggleButton.IconProperty, "IMAGE_GalaxyFile");
             button.SetResourceReference(ToggleButton.LargeIconProperty, "IMAGE_GalaxyFile");
+            button.Checked += ToggleButton_FilterGalaxyButton_CheckEvent;
+            button.Unchecked += ToggleButton_FilterGalaxyButton_CheckEvent;
             return button;
+        }
+
+        #endregion
+
+        #region 枚举筛选项
+
+        /// <summary>
+        /// 新建语言切换按钮
+        /// </summary>
+        private void RefreshTextFileFilterButton()
+        {
+            foreach (ToggleButton button in InRibbonGallery_TextFileFilter.Items)
+            {
+                button.IsChecked = true;
+            }
+        }
+
+        /// <summary>
+        /// 新建语言切换按钮
+        /// </summary>
+        private void RefreshTextStatusFilterButton()
+        {
+            foreach (ToggleButton button in InRibbonGallery_TextStatusFilter.Items)
+            {
+                button.IsChecked = true;
+            }
         }
 
         #endregion
@@ -733,7 +774,7 @@ namespace SC2_GameTranslater
             Globals.InitProjectData(file);
             RibbonGroupBox_File.IsEnabled = true;
         }
-        
+
         /// <summary>
         /// 关闭文件
         /// </summary>
@@ -760,7 +801,9 @@ namespace SC2_GameTranslater
         private void OnProjectChangeRefresh(Data_GameText oldPro, Data_GameText newPro)
         {
             RefreshTranslateLanguageButtons(newPro);
-            RefreshGalaxyFileFilterButton(newPro);
+            RefreshGalaxyTextFileFilterButton(newPro);
+            RefreshTextFileFilterButton();
+            RefreshTextStatusFilterButton();
             DataGrid_LoadData(newPro?.Tables[Data_GameText.TN_GameText]);
         }
         #endregion
@@ -826,7 +869,7 @@ namespace SC2_GameTranslater
                 button.IsChecked = true;
             }
         }
-        
+
         /// <summary>
         /// Galaxy文件筛选全不选
         /// </summary>
@@ -842,7 +885,114 @@ namespace SC2_GameTranslater
 
         }
 
-        #endregion
+        /// <summary>
+        /// Galaxy筛选文件点击
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void ToggleButton_FilterGalaxyButton_CheckEvent(object sender, RoutedEventArgs e)
+        {
+            if (ToggleButton_FilterGalaxyFileNone.IsChecked == true)
+            {
+                foreach (ToggleButton button in m_GalaxyButtons)
+                {
+                    if (button.IsChecked == false)
+                    {
+                        IsSelectAllGalaxyFilter = false;
+                        return;
+                    }
+                }
+            }
+            IsSelectAllGalaxyFilter = true;
+        }
 
+        /// <summary>
+        /// 文本文件筛选全选
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void MenuItem_TextFileFilterSelectAll_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (ToggleButton button in InRibbonGallery_TextFileFilter.Items)
+            {
+                button.IsChecked = true;
+            }
+        }
+
+        /// <summary>
+        /// 文本文件筛选全不选
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void MenuItem_TextFileFilterSelectNone_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (ToggleButton button in InRibbonGallery_TextFileFilter.Items)
+            {
+                button.IsChecked = false;
+            }
+        }
+
+        /// <summary>
+        /// 文本文件筛选文件点击
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void ToggleButton_TextFileFilterButton_CheckEvent(object sender, RoutedEventArgs e)
+        {
+            foreach (ToggleButton button in InRibbonGallery_TextFileFilter.Items)
+            {
+                if (button.IsChecked == false)
+                {
+                    IsSelectAllTextFileFilter = false;
+                    return;
+                }
+            }
+            IsSelectAllTextFileFilter = true;
+        }
+
+        /// <summary>
+        /// 文本状态筛选全选
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void MenuItem_TextStatusFilterSelectAll_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (ToggleButton button in InRibbonGallery_TextStatusFilter.Items)
+            {
+                button.IsChecked = true;
+            }
+        }
+
+        /// <summary>
+        /// 文本状态筛选全不选
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void MenuItem_TextStatusFilterSelectNone_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (ToggleButton button in InRibbonGallery_TextStatusFilter.Items)
+            {
+                button.IsChecked = false;
+            }
+        }
+
+        /// <summary>
+        /// 文本状态筛选文件点击
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void ToggleButton_TextStatusFilterButton_CheckEvent(object sender, RoutedEventArgs e)
+        {
+            foreach (ToggleButton button in InRibbonGallery_TextStatusFilter.Items)
+            {
+                if (button.IsChecked == false)
+                {
+                    IsSelectAllTextFileFilter = false;
+                    return;
+                }
+            }
+            IsSelectAllTextFileFilter = true;
+        }
+        #endregion
     }
 }
