@@ -90,6 +90,7 @@ namespace SC2_GameTranslater.Source
         public const string Extension_SC2GameTran = ".SC2GameTran";
         public const string Extension_SC2Map = ".SC2Map";
         public const string Extension_SC2Mod = ".SC2Mod";
+        public const string Extension_Galaxy = ".Galaxy";
         public const string Extension_SC2Components = ".SC2Components";
         public const string FileName_SC2Components = "ComponentList.SC2Components";
 
@@ -154,7 +155,7 @@ namespace SC2_GameTranslater.Source
         {
             get
             {
-                return CurrentProject == null ? false : File.Exists(CurrentProject.ModPath);
+                return CurrentProject == null ? false : File.Exists(CurrentProject.ComponentsPath);
             }
         }
 

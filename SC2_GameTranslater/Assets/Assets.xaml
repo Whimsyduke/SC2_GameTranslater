@@ -1,28 +1,30 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--#region Common Image-->
-    <Image x:Key="IMAGE_Icon" Source="pack://application:,,,/Assets/Image/Icon.ico"/>
-    <Image x:Key="IMAGE_Open" Source="pack://application:,,,/Assets/Image/ui-editoricon-general_open.dds"/>
-    <Image x:Key="IMAGE_Save" Source="pack://application:,,,/Assets/Image/ui-editoricon-general_save.dds"/>
-    <Image x:Key="IMAGE_Accept" Source="pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newcondition.dds"/>
-    <Image x:Key="IMAGE_Close" Source="pack://application:,,,/Assets/Image/ui-editoricon-data_types_buttons.dds"/>
-    <Image x:Key="IMAGE_TranslateLanguage" Source="pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newparameter.dds"/>
+    <BitmapImage x:Key="IMAGE_Icon" UriSource="pack://application:,,,/Assets/Image/Icon.ico"/>
+    <BitmapImage x:Key="IMAGE_Open" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-general_open.dds"/>
+    <BitmapImage x:Key="IMAGE_Save" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-general_save.dds"/>
+    <BitmapImage x:Key="IMAGE_Accept" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newcondition.dds"/>
+    <BitmapImage x:Key="IMAGE_Close" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-data_types_buttons.dds"/>
+    <BitmapImage x:Key="IMAGE_TranslateLanguage" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newparameter.dds"/>
+    <BitmapImage x:Key="IMAGE_GalaxyNone" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_game.dds"/>
+    <BitmapImage x:Key="IMAGE_GalaxyFile" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_minimap.dds"/>
     <!--#endregion-->
     
     <!--#region Translate Language-->
-    <Image x:Key="IMAGE_deDE" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_deDE.png"/>
-    <Image x:Key="IMAGE_enUS" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_enUS.png"/>
-    <Image x:Key="IMAGE_esES" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_esES.png"/>
-    <Image x:Key="IMAGE_esMX" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_esMX.png"/>
-    <Image x:Key="IMAGE_frFR" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_frFR.png"/>
-    <Image x:Key="IMAGE_itIT" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_itIT.png"/>
-    <Image x:Key="IMAGE_koKR" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_koKR.png"/>
-    <Image x:Key="IMAGE_plPL" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_plPL.png"/>
-    <Image x:Key="IMAGE_ptBR" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_ptBR.png"/>
-    <Image x:Key="IMAGE_ruRU" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_ruRU.png"/>
-    <Image x:Key="IMAGE_zhCN" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_zhCN.png"/>
-    <Image x:Key="IMAGE_zhTW" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_zhTW.png"/>
-    <Image x:Key="IMAGE_Null" Source="pack://application:,,,/Assets/Image/TranslationTool_Language_Null.png"/>
+    <BitmapImage x:Key="IMAGE_deDE" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_deDE.png"/>
+    <BitmapImage x:Key="IMAGE_enUS" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_enUS.png"/>
+    <BitmapImage x:Key="IMAGE_esES" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_esES.png"/>
+    <BitmapImage x:Key="IMAGE_esMX" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_esMX.png"/>
+    <BitmapImage x:Key="IMAGE_frFR" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_frFR.png"/>
+    <BitmapImage x:Key="IMAGE_itIT" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_itIT.png"/>
+    <BitmapImage x:Key="IMAGE_koKR" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_koKR.png"/>
+    <BitmapImage x:Key="IMAGE_plPL" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_plPL.png"/>
+    <BitmapImage x:Key="IMAGE_ptBR" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_ptBR.png"/>
+    <BitmapImage x:Key="IMAGE_ruRU" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_ruRU.png"/>
+    <BitmapImage x:Key="IMAGE_zhCN" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_zhCN.png"/>
+    <BitmapImage x:Key="IMAGE_zhTW" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_zhTW.png"/>
+    <BitmapImage x:Key="IMAGE_Null" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_Null.png"/>
     <!--#endregion-->
 
     <!--#region Drawing Image-->

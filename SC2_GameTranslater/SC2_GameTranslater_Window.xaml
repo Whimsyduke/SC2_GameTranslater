@@ -188,7 +188,6 @@
                     Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TranslateLanguage_Header}" >
                     <fluent:InRibbonGallery
                         Name="InRibbonGallery_TranslateLanguage"
-                        VerticalContentAlignment="Center"
                         Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TranslateLanguage_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_TranslateLanguage}"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_TranslateLanguage}"
@@ -211,12 +210,30 @@
                         </fluent:InRibbonGallery.ItemContainerStyle>
                     </fluent:InRibbonGallery>
                 </fluent:RibbonGroupBox>
-            </fluent:RibbonTabItem>
-
-            <fluent:RibbonTabItem Name="RibbonTabItem_Filter" Header="{DynamicResource ResourceKey=UI_RibbonTabItem_Filter_Header}" IsSelected="True">
                 <fluent:RibbonGroupBox Name="RibbonGroupBox_GalaxyFilter" Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_GalaxyFilter_Header}" 
                     Grid.IsSharedSizeScope="True">
-                </fluent:RibbonGroupBox>
+                    <fluent:InRibbonGallery
+                        Name="InRibbonGallery_GalaxyFilter"
+                        Header="{DynamicResource ResourceKey=UI_InRibbonGallery_GalaxyFilter_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
+                        Selectable="False"
+                        MaxItemsInDropDownRow="1"
+                        MinItemsInDropDownRow="1"
+                        Orientation="Vertical"
+                        SizeDefinition="Large"
+                        CanCollapseToButton="False"
+                        ResizeMode="Both"
+                        IsCollapsed="False" MinWidth="150" >
+                        <fluent:InRibbonGallery.Menu>
+                            <fluent:RibbonMenu>
+                                <fluent:MenuItem Name="MenuItem_GalaxyFilterSelectAll" Header="{DynamicResource ResourceKey=UI_MenuItem_GalaxyFilterSelectAll_Header}" Click="MenuItem_GalaxyFilterSelectAll_Click"/>
+                                <fluent:MenuItem Name="MenuItem_GalaxyFilterSelectNone" Header="{DynamicResource ResourceKey=UI_MenuItem_GalaxyFilterSelectNone_Header}" Click="MenuItem_GalaxyFilterSelectNone_Click"/>
+                            </fluent:RibbonMenu>
+                        </fluent:InRibbonGallery.Menu>
+                        <fluent:ToggleButton Name="ToggleButton_FilterGalaxyFileNone" Header="{DynamicResource ResourceKey=UI_ToggleButton_FilterGalaxyFileNone_Header}" SizeDefinition="Middle" VerticalAlignment="Top" Icon="{StaticResource ResourceKey=IMAGE_GalaxyNone}" HorizontalAlignment="Stretch" ToolTip="{DynamicResource ResourceKey=TipToggleButton_FilterGalaxyFileNone_ToolTip}"/>
+                    </fluent:InRibbonGallery>
+                </fluent:RibbonGroupBox>                
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
         <GroupBox

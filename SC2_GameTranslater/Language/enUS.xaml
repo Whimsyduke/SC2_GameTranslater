@@ -50,8 +50,15 @@
     <sys:String x:Key="UI_DataGridColumn_Status_Header">Status</sys:String>
     <sys:String x:Key="UI_DataGridColumn_SourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_EditedText_Header">Edited Text</sys:String>
-    <sys:String x:Key="UI_RibbonTabItem_Filter_Header">Filter</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">Galaxy File</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">Use in Galaxy File</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy File</sys:String>
+    <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
+    <sys:String x:Key="UI_MenuItem_GalaxyFilterSelectAll_Header">Select All</sys:String>
+    <sys:String x:Key="UI_MenuItem_GalaxyFilterSelectNone_Header">Select None</sys:String>
+    <!--#endregion-->
+
+    <!--#region Tooltip-->
+    <sys:String x:Key="TipToggleButton_FilterGalaxyFileNone_ToolTip">Filtrate all text that not use in any galaxy files.</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

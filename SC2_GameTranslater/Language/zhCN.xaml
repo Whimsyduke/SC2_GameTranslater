@@ -51,10 +51,17 @@
     <sys:String x:Key="UI_DataGridColumn_Status_Header">状态</sys:String>
     <sys:String x:Key="UI_DataGridColumn_SourceText_Header">原文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_EditedText_Header">修改文本</sys:String>
-    <sys:String x:Key="UI_RibbonTabItem_Filter_Header">筛选</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">Galaxy文件</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">所属Galaxy文件</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy文件</sys:String>
+    <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
+    <sys:String x:Key="UI_MenuItem_GalaxyFilterSelectAll_Header">全选</sys:String>
+    <sys:String x:Key="UI_MenuItem_GalaxyFilterSelectNone_Header">全不选</sys:String>
     <!--#endregion-->
 
+    <!--#region Tooltip-->
+    <sys:String x:Key="TipToggleButton_FilterGalaxyFileNone_ToolTip">筛选所有未被Galaxy文件使用的文本。</sys:String>
+    <!--#endregion-->
+    
     <!--#region EnumValue-->
     <sys:String x:Key="ENUM_EnumGameTextFile_GameStrings">游戏文本</sys:String>
     <sys:String x:Key="ENUM_EnumGameTextFile_ObjectStrings">数据文本</sys:String>

@@ -5,6 +5,8 @@ using System.Text.RegularExpressions;
 using System.Data;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Threading;
+using System.Threading;
 
 namespace SC2_GameTranslater.Source
 {
@@ -83,6 +85,7 @@ namespace SC2_GameTranslater.Source
         public const string RN_ModInfo_FilePath = "FilePath";
         public const string RN_Language_ID = "ID";
         public const string RN_GalaxyFile_Path = "Path";
+        public const string RN_GalaxyFile_Name = "Name";
         public const string RN_GalaxyFile_Count = "Count";
         public const string RN_GalaxyLine_Index = "Index";
         public const string RN_GalaxyLine_File = "File";
@@ -113,20 +116,36 @@ namespace SC2_GameTranslater.Source
 
         #region 属性字段
 
-        public string ModPath
+        /// <summary>
+        /// 组件文件夹路径
+        /// </summary>
+        public string ComponentsPath
         {
             set
             {
-                mModPath = value;
+                m_ComponentsPath = value;
                 Tables[TN_ModInfo].Rows.Add(value);
                 Globals.MainWindow.TextBox_ModPath.Text = value;
+                m_ModPath = (new FileInfo(value)).DirectoryName;
             }
             get
             {
-                return mModPath;
+                return m_ComponentsPath;
             }
         }
-        private string mModPath = null;
+        private string m_ComponentsPath = null;
+
+        /// <summary>
+        /// Mod或Map路径
+        /// </summary>
+        public string ModPath
+        {
+            get
+            {
+                return m_ModPath;
+            }
+        }
+        private string m_ModPath = null;
 
         #endregion
 
@@ -202,7 +221,7 @@ namespace SC2_GameTranslater.Source
         public void Initialization(FileInfo file)
         {
             Threads.StartThread(ThreadInitialization, file, true);
-            ModPath = file.FullName;
+            ComponentsPath = file.FullName;
         }
 
         #endregion
@@ -529,7 +548,9 @@ namespace SC2_GameTranslater.Source
         /// <param name="files">Galaxy文件</param>
         private void LoadGalaxyFile(List<FileInfo> files)
         {
+#if !DEBUG
             try
+#endif
             {
                 foreach (FileInfo file in files)
                 {
@@ -537,29 +558,32 @@ namespace SC2_GameTranslater.Source
                     LoadGalaxyFile(file);
                 }
             }
+#if !DEBUG
             catch (Exception e)
             {
-                Log.DisplayLogOnUI(e.Message);
+                //Log.DisplayLogOnUI(e.Message);
                 MessageBox.Show(e.Message);
             }
+#endif
         }
 
         /// <summary>
         /// 加载Galaxy文件
         /// </summary>
         /// <param name="file">Galaxy文件</param>
-        private void LoadGalaxyFile(FileInfo file)
+        private void LoadGalaxyFile(FileInfo file) 
         {
-            string path = file.FullName;
+            string path = file.FullName.Substring(ModPath.Length);
             DataRow row = Tables[TN_GalaxyFile].NewRow();
             row[RN_GalaxyFile_Path] = path;
+            row[RN_GalaxyFile_Name] = file.Name;
             Tables[TN_GalaxyFile].Rows.Add(row);
             int count = 0;
             DataTable tableLine = Tables[TN_GalaxyLine];
             DataTable tableLocation = Tables[TN_GalaxyLocation];
             int indexLine = tableLine.Rows.Count;
             int indexLocation = tableLocation.Rows.Count;
-            StreamReader sr = new StreamReader(path);
+            StreamReader sr = new StreamReader(file.FullName);
             string line;
             while (!sr.EndOfStream)
             {
@@ -578,8 +602,8 @@ namespace SC2_GameTranslater.Source
             row[RN_GalaxyFile_Count] = count;
         }
 
-        #endregion
+#endregion
 
-        #endregion
+#endregion
     }
 }

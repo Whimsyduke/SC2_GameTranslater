@@ -140,12 +140,15 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 翻译语言
         /// </summary>
-        public Dictionary<EnumLanguage, ToggleButton> TranslateLanguage { set; get; } = NewTranslateLanguageItem();
-        
+        public Dictionary<EnumLanguage, ToggleButton> TranslateLanguage { set; get; } = NewTranslateLanguageButton();
+
 
         #endregion
 
         #region 字段
+
+        private List<ToggleButton> m_GalaxyButtons = new List<ToggleButton>();
+
         #endregion
 
         #endregion
@@ -314,8 +317,8 @@ namespace SC2_GameTranslater
         /// </summary>
         public void ProgressBarClean(Delegate_ProgressEvent func)
         {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
-                (ThreadStart)delegate ()
+            Dispatcher.BeginInvoke(priority: System.Windows.Threading.DispatcherPriority.Normal,
+                method: (ThreadStart)delegate ()
                 {
                     ProgressBar_Loading.Visibility = Visibility.Hidden;
                     TextBlock_ProgressMsg.Visibility = Visibility.Hidden;
@@ -486,7 +489,7 @@ namespace SC2_GameTranslater
                 FileInfo mod = Globals.MainWindow.OpenFileDialogGetOpenFile(Globals.MainWindow.TextBox_ModPath, Globals.CurrentLanguage["TEXT_SC2File"] as string + "|" + Globals.FileName_SC2Components, Globals.CurrentLanguage["UI_OpenFileDialog_Open_Title"] as string);
                 if (mod != null)
                 {
-                    Globals.CurrentProject.ModPath = mod.DirectoryName;
+                    Globals.CurrentProject.ComponentsPath = mod.DirectoryName;
                 }
             }
             e.Handled = true;
@@ -511,18 +514,18 @@ namespace SC2_GameTranslater
         /// 刷新翻译选项
         /// </summary>
         /// <param name="project">项目</param>
-        public void RefreshTranslateLanguageItems(Data_GameText project)
+        public void RefreshTranslateLanguageButtons(Data_GameText project)
         {
             if (project == null)
             {
-                RefreshNoTranslateLanguageItem();
+                RefreshNoTranslateLanguageButtons();
             }
             else
             {
                 List<EnumLanguage> list = project.GetLanguageList();
                 if (list.Count == 0)
                 {
-                    RefreshNoTranslateLanguageItem();
+                    RefreshNoTranslateLanguageButtons();
                     return;
                 }
                 InRibbonGallery_TranslateLanguage.Items.Clear();
@@ -545,7 +548,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 没有可用的翻译语言
         /// </summary>
-        private void RefreshNoTranslateLanguageItem()
+        private void RefreshNoTranslateLanguageButtons()
         {
             InRibbonGallery_TranslateLanguage.Items.Clear();
             InRibbonGallery_TranslateLanguage.Items.Add(TranslateLanguage[0]);
@@ -556,7 +559,7 @@ namespace SC2_GameTranslater
         /// 新建语言切换按钮
         /// </summary>
         /// <returns>按钮</returns>
-        private static Dictionary<EnumLanguage, ToggleButton> NewTranslateLanguageItem()
+        private static Dictionary<EnumLanguage, ToggleButton> NewTranslateLanguageButton()
         {
             Dictionary<EnumLanguage, ToggleButton> list = new Dictionary<EnumLanguage, ToggleButton>();
 
@@ -565,13 +568,14 @@ namespace SC2_GameTranslater
             button.SetResourceReference(ToggleButton.IconProperty, "IMAGE_Null");
             button.SetResourceReference(ToggleButton.LargeIconProperty, "IMAGE_Null");
             button.Tag = null;
+            button.IsEnabled = false;
             list.Add(0, button);
 
             EnumLanguage[] array = Enum.GetValues(typeof(EnumLanguage)).Cast<EnumLanguage>().ToArray();
             Array.Sort(array, (p1, p2) => Enum.GetName(typeof(EnumLanguage), p1).CompareTo(Enum.GetName(typeof(EnumLanguage), p2)));
             foreach (EnumLanguage lang in array)
             {
-                list.Add(lang, NewTranslateLanguageItem(lang));
+                list.Add(lang, NewTranslateLanguageButton(lang));
             }
             return list;
         }
@@ -581,7 +585,7 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="language">对应语言</param>
         /// <returns>按钮</returns>
-        private static ToggleButton NewTranslateLanguageItem(EnumLanguage language)
+        private static ToggleButton NewTranslateLanguageButton(EnumLanguage language)
         {
             string lang = Enum.GetName(language.GetType(), language);
             ToggleButton button = new ToggleButton
@@ -593,6 +597,61 @@ namespace SC2_GameTranslater
             button.SetResourceReference(ToggleButton.LargeIconProperty, string.Format("IMAGE_{0}", lang));
             button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_{0}", lang));
             button.Checked += Button_TranslateLanguage_Checked;
+            return button;
+        }
+
+        #endregion
+
+        #region Galaxy选项
+
+
+        /// <summary>
+        /// 新建语言切换按钮
+        /// </summary>
+        /// <returns>按钮列表</returns>
+        private void RefreshGalaxyFileFilterButton(Data_GameText project)
+        {
+            foreach (ToggleButton button in m_GalaxyButtons)
+            {
+                InRibbonGallery_GalaxyFilter.Items.Remove(button);
+            }
+            ToggleButton_FilterGalaxyFileNone.IsChecked = true;
+            m_GalaxyButtons.Clear();
+            if (project != null)
+            {
+                InRibbonGallery_GalaxyFilter.Items.Add(ToggleButton_FilterGalaxyFileNone);
+                ToggleButton button;
+                foreach (DataRow row in project.Tables[Data_GameText.TN_GalaxyFile].Rows)
+                {
+                    button = NewGalaxyFileFilterButton(row);
+                    m_GalaxyButtons.Add(NewGalaxyFileFilterButton(row));
+                    InRibbonGallery_GalaxyFilter.Items.Insert(InRibbonGallery_GalaxyFilter.Items.Count - 1, button);
+                }
+            }
+            else
+            {
+                InRibbonGallery_GalaxyFilter.Items.Remove(ToggleButton_FilterGalaxyFileNone);
+            }
+            InRibbonGallery_GalaxyFilter.SelectedItem = null;
+        }
+
+        /// <summary>
+        /// 新建Galaxy文件筛选按钮
+        /// </summary>
+        /// <param name="language">对应语言</param>
+        /// <returns>按钮</returns>
+        private ToggleButton NewGalaxyFileFilterButton(DataRow fileRow)
+        {
+            ToggleButton button = new ToggleButton
+            {
+                Tag = fileRow,
+                Header = fileRow[Data_GameText.RN_GalaxyFile_Name],
+                ToolTip = fileRow[Data_GameText.RN_GalaxyFile_Path],
+                SizeDefinition = new RibbonControlSizeDefinition(RibbonControlSize.Middle, RibbonControlSize.Middle, RibbonControlSize.Middle),
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+            };
+            button.SetResourceReference(ToggleButton.IconProperty, "IMAGE_GalaxyFile");
+            button.SetResourceReference(ToggleButton.LargeIconProperty, "IMAGE_GalaxyFile");
             return button;
         }
 
@@ -700,7 +759,8 @@ namespace SC2_GameTranslater
         /// <param name="newPro">新项目</param>
         private void OnProjectChangeRefresh(Data_GameText oldPro, Data_GameText newPro)
         {
-            RefreshTranslateLanguageItems(newPro);
+            RefreshTranslateLanguageButtons(newPro);
+            RefreshGalaxyFileFilterButton(newPro);
             DataGrid_LoadData(newPro?.Tables[Data_GameText.TN_GameText]);
         }
         #endregion
@@ -752,6 +812,36 @@ namespace SC2_GameTranslater
         {
             Globals.Preference.SavePreference();
         }
+
+        /// <summary>
+        /// Galaxy文件筛选全选
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void MenuItem_GalaxyFilterSelectAll_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButton_FilterGalaxyFileNone.IsChecked = true;
+            foreach (ToggleButton button in m_GalaxyButtons)
+            {
+                button.IsChecked = true;
+            }
+        }
+        
+        /// <summary>
+        /// Galaxy文件筛选全不选
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void MenuItem_GalaxyFilterSelectNone_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButton_FilterGalaxyFileNone.IsChecked = false;
+            foreach (ToggleButton button in m_GalaxyButtons)
+            {
+                button.IsChecked = false;
+            }
+
+        }
+
         #endregion
 
     }
