@@ -160,7 +160,16 @@
     <Content Include="Assets\Image\ui-editoricon-triggercategories_game.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Image\ui-editoricon-triggercategories_logic.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Image\ui-editoricon-triggercategories_parameter.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Image\ui-editoricon-triggercategories_story.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Image\ui-editoricon-triggercategories_techpurchase.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Image\ui-editoricon-triggereditor_newparameter.dds">

@@ -140,7 +140,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 翻译语言
         /// </summary>
-        public Dictionary<EnumLanguage, ToggleButton> TranslateLanguage { set; get; } = NewTranslateLanguageButton();
+        public Dictionary<EnumLanguage, KeyValuePair<ToggleButton, ComboBoxItem>> TranslateAndSearchLanguage { set; get; } = NewTranslateAndSerachLanguageButton();
 
         /// <summary>
         /// 是否选择全部Galaxy筛选文件
@@ -151,6 +151,21 @@ namespace SC2_GameTranslater
         /// 是否选择全部文本所在筛选文件
         /// </summary>
         public bool IsSelectAllTextFileFilter { private set; get; } = true;
+
+        /// <summary>
+        /// 允许刷新翻译文本
+        /// </summary>
+        public bool CanRefreshTranslatedText { set; get; }
+
+        /// <summary>
+        /// 当前文本数据赖项属性
+        /// </summary>
+        public static DependencyProperty CurrentTextDataProperty = DependencyProperty.Register(nameof(CurrentTextData), typeof(DataTable), typeof(SC2_GameTranslater_Window));
+
+        /// <summary>
+        /// 当前文本数据赖项
+        /// </summary>
+        public DataTable CurrentTextData { get => (DataTable)GetValue(CurrentTextDataProperty); set => SetValue(CurrentTextDataProperty, value); }
 
         #endregion
 
@@ -523,32 +538,33 @@ namespace SC2_GameTranslater
         /// 刷新翻译选项
         /// </summary>
         /// <param name="project">项目</param>
-        public void RefreshTranslateLanguageButtons(Data_GameText project)
+        public void RefreshTranslateAndSearchLanguageButtons(Data_GameText project)
         {
             if (project == null)
             {
-                RefreshNoTranslateLanguageButtons();
+                RefreshNoTranslateAndSearchLanguageButtons();
                 InRibbonGallery_TranslateLanguage.Selectable = false;
             }
             else
             {
+                InRibbonGallery_TranslateLanguage.Items.Clear();
                 List<EnumLanguage> list = project.GetLanguageList();
                 if (list.Count == 0)
                 {
-                    RefreshNoTranslateLanguageButtons();
+                    RefreshNoTranslateAndSearchLanguageButtons();
                     InRibbonGallery_TranslateLanguage.Selectable = false;
                     return;
                 }
-                InRibbonGallery_TranslateLanguage.Items.Clear();
                 ToggleButton selectButton = null;
-                foreach (KeyValuePair<EnumLanguage, ToggleButton> select in TranslateLanguage)
+                foreach (KeyValuePair<EnumLanguage, KeyValuePair<ToggleButton, ComboBoxItem>> select in TranslateAndSearchLanguage)
                 {
                     if (list.Contains(select.Key))
                     {
-                        InRibbonGallery_TranslateLanguage.Items.Add(select.Value);
+                        InRibbonGallery_TranslateLanguage.Items.Add(select.Value.Key);
+                        ComboBox_SearchLanguage.Items.Add(select.Value.Value);
                         if (selectButton == null || (int)select.Key == CultureInfo.CurrentCulture.LCID)
                         {
-                            selectButton = select.Value;
+                            selectButton = select.Value.Key;
                         }
                     }
                 }
@@ -560,34 +576,46 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 没有可用的翻译语言
         /// </summary>
-        private void RefreshNoTranslateLanguageButtons()
+        private void RefreshNoTranslateAndSearchLanguageButtons()
         {
             InRibbonGallery_TranslateLanguage.Items.Clear();
-            InRibbonGallery_TranslateLanguage.Items.Add(TranslateLanguage[0]);
-            TranslateLanguage[0].IsChecked = false;
+            InRibbonGallery_TranslateLanguage.Items.Add(TranslateAndSearchLanguage[0].Key);
+            TranslateAndSearchLanguage[0].Key.IsChecked = false;
+            ComboBox_SearchLanguage.Items.Clear();
+            ComboBox_SearchLanguage.Items.Add(TranslateAndSearchLanguage[0].Value);
         }
 
         /// <summary>
         /// 新建语言切换按钮
         /// </summary>
         /// <returns>按钮</returns>
-        private static Dictionary<EnumLanguage, ToggleButton> NewTranslateLanguageButton()
+        private static Dictionary<EnumLanguage, KeyValuePair<ToggleButton, ComboBoxItem>> NewTranslateAndSerachLanguageButton()
         {
-            Dictionary<EnumLanguage, ToggleButton> list = new Dictionary<EnumLanguage, ToggleButton>();
+            Dictionary<EnumLanguage, KeyValuePair<ToggleButton, ComboBoxItem>> list = new Dictionary<EnumLanguage, KeyValuePair<ToggleButton, ComboBoxItem>>();
 
-            ToggleButton button = new ToggleButton();
+            ToggleButton button = new ToggleButton
+            {
+                Tag = null,
+                IsEnabled = false
+            };
             button.SetResourceReference(ToggleButton.HeaderProperty, "TEXT_Null");
             button.SetResourceReference(ToggleButton.IconProperty, "IMAGE_Null");
             button.SetResourceReference(ToggleButton.LargeIconProperty, "IMAGE_Null");
-            button.Tag = null;
-            button.IsEnabled = false;
-            list.Add(0, button);
+            ComboBoxItem item = new ComboBoxItem();
+            item.SetResourceReference(ComboBoxItem.ContentProperty, "UI_ComboBoxItem_SearchLanguageALL_Header");
+            item.Tag = null;
+            list.Add(0, new KeyValuePair<ToggleButton, ComboBoxItem>(button, item));
 
             EnumLanguage[] array = Enum.GetValues(typeof(EnumLanguage)).Cast<EnumLanguage>().ToArray();
             Array.Sort(array, (p1, p2) => Enum.GetName(typeof(EnumLanguage), p1).CompareTo(Enum.GetName(typeof(EnumLanguage), p2)));
             foreach (EnumLanguage lang in array)
             {
-                list.Add(lang, NewTranslateLanguageButton(lang));
+                item = new ComboBoxItem
+                {
+                    Tag = lang,
+                };
+                item.SetResourceReference(ComboBoxItem.ContentProperty, string.Format("TEXT_{0}", lang));
+                list.Add(lang, new KeyValuePair<ToggleButton, ComboBoxItem>(NewTranslateLanguageButton(lang), item));
             }
             return list;
         }
@@ -679,7 +707,7 @@ namespace SC2_GameTranslater
         #region 枚举筛选项
 
         /// <summary>
-        /// 新建语言切换按钮
+        /// 刷新文件筛选选项
         /// </summary>
         /// <param name="project">项目数据</param>
         private void RefreshTextFileFilterButton(Data_GameText project)
@@ -693,7 +721,7 @@ namespace SC2_GameTranslater
         }
 
         /// <summary>
-        /// 新建语言切换按钮
+        /// 刷新文本状态选项
         /// </summary>
         /// <param name="project">项目数据</param>
         private void RefreshTextStatusFilterButton(Data_GameText project)
@@ -708,23 +736,26 @@ namespace SC2_GameTranslater
 
         #endregion
 
-        #region DataGrid
+        #region 搜索相关
 
         /// <summary>
-        /// 加载数据表
+        /// 刷新搜索相关控件状态
         /// </summary>
-        /// <param name="table"></param>
-        public void DataGrid_LoadData(DataTable table)
+        /// <param name="project">项目数据</param>
+        private void RefreshSearchControl(Data_GameText project)
         {
-            if (table == null)
-            {
-                DataGrid_Excel.ItemsSource = null;
-            }
-            else
-            {
-                DataGrid_Excel.ItemsSource = new DataView(table);
-            }
+            bool isCheck = project != null;
+            ComboBox_SearchType.IsEnabled = isCheck;
+            ComboBox_SearchType.SelectedIndex = 0;
+            ComboBox_SearchLanguage.IsEnabled = isCheck;
+            ComboBox_SearchLanguage.SelectedIndex = 0;
+            TextBox_SearchText.IsEnabled = isCheck;
+            TextBox_SearchText.Text = "";
         }
+
+        #endregion
+
+        #region DataGrid
 
         /// <summary>
         /// 设置当前翻译语言
@@ -759,6 +790,32 @@ namespace SC2_GameTranslater
             DataGridColumn_Status.Binding = null;
             DataGridColumn_Text.Binding = null;
             DataGridColumn_Edited.Binding = null;
+        }
+
+        /// <summary>
+        /// 刷新翻译文本
+        /// </summary>
+        /// <param name="project">项目数据</param>
+        public void RefreshTranslatedText(Data_GameText project)
+        {
+            if (project == null)
+            {
+                CurrentTextData = null;
+            }
+            else
+            {
+                CurrentTextData = project.Tables[Data_GameText.TN_GameText];
+            }
+            RefreshTranslatedText();
+        }
+
+        /// <summary>
+        /// 刷新翻译文本
+        /// </summary>
+        public void RefreshTranslatedText()
+        {
+            if (!CanRefreshTranslatedText) return;
+
         }
 
         #endregion
@@ -810,11 +867,14 @@ namespace SC2_GameTranslater
         /// <param name="newPro">新项目</param>
         private void OnProjectChangeRefresh(Data_GameText oldPro, Data_GameText newPro)
         {
-            RefreshTranslateLanguageButtons(newPro);
+            CanRefreshTranslatedText = false;
+            RefreshTranslateAndSearchLanguageButtons(newPro);
             RefreshGalaxyTextFileFilterButton(newPro);
             RefreshTextFileFilterButton(newPro);
             RefreshTextStatusFilterButton(newPro);
-            DataGrid_LoadData(newPro?.Tables[Data_GameText.TN_GameText]);
+            RefreshSearchControl(newPro);
+            CanRefreshTranslatedText = true;
+            RefreshTranslatedText(newPro);
         }
         #endregion
 
@@ -1003,6 +1063,17 @@ namespace SC2_GameTranslater
             }
             IsSelectAllTextFileFilter = true;
         }
+
+        /// <summary>
+        /// 翻译文本表选择事件
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void DataGrid_TranslatedTexts_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+           
+        }
+
         #endregion
     }
 }

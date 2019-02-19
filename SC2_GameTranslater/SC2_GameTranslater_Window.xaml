@@ -11,8 +11,6 @@
     Name="RibbonWindow_Main"
     Width="1366"
     Height="768"
-    MinWidth="400"
-    MinHeight="300"
     Closing="RibbonWindow_Main_Closing"
     Icon="pack://application:,,,/Assets/Image/Icon.ico"
     WindowStartupLocation="CenterScreen"
@@ -39,7 +37,8 @@
             Name="Ribbon_Main"
             Grid.Row="0"
             Grid.ColumnSpan="2"
-            AutomaticStateManagement="False">
+            AutomaticStateManagement="False"
+            IsAutomaticCollapseEnabled="True">
             <fluent:Ribbon.Menu>
                 <fluent:Backstage Header="{DynamicResource ResourceKey=UI_Backstage_Menu_Header}">
                     <fluent:BackstageTabControl>
@@ -211,6 +210,36 @@
                     </fluent:InRibbonGallery>
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox
+                    Name="RibbonGroupBox_Search"
+                    Grid.IsSharedSizeScope="True"
+                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_Search_Header}">
+                    <fluent:ComboBox
+                        Name="ComboBox_SearchType"
+                        Header="{DynamicResource ResourceKey=UI_ComboBox_SearchType_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_SearchType}"
+                        IsEditable="False"
+                        SelectedIndex="0">
+                        <ComboBoxItem Name="ComboBoxItem_SearchTypeAll" Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeALL_Header}" />
+                        <ComboBoxItem Name="ComboBoxItem_SearchTypeTextID" Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeTextID_Header}" />
+                        <ComboBoxItem Name="ComboBoxItem_SearchTypeAllText" Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeALLText_Header}" />
+                        <ComboBoxItem Name="ComboBoxItem_SearchTypeSourceText" Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeSourceText_Header}" />
+                        <ComboBoxItem Name="ComboBoxItem_SearchTypeEditedText" Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeEditedText_Header}" />
+                    </fluent:ComboBox>
+                    <fluent:ComboBox
+                        Name="ComboBox_SearchLanguage"
+                        Header="{DynamicResource ResourceKey=UI_ComboBox_SearchLanguage_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_SearchLanguage}"
+                        IsEditable="False"
+                        SelectedIndex="0" />
+                    <fluent:TextBox
+                        Name="TextBox_SearchText"
+                        Width="280"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        Header="{DynamicResource ResourceKey=UI_ComboBox_SearchText_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_SearchText}" />
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox
                     Name="RibbonGroupBox_GalaxyFilter"
                     Grid.IsSharedSizeScope="True"
                     Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_GalaxyFilter_Header}">
@@ -226,8 +255,7 @@
                         MinItemsInDropDownRow="1"
                         Orientation="Vertical"
                         ResizeMode="Both"
-                        Selectable="False"
-                        SizeDefinition="Large">
+                        Selectable="False">
                         <fluent:InRibbonGallery.Menu>
                             <fluent:RibbonMenu>
                                 <fluent:MenuItem
@@ -242,12 +270,10 @@
                         </fluent:InRibbonGallery.Menu>
                         <fluent:ToggleButton
                             Name="ToggleButton_FilterGalaxyFileNone"
-                            Height="17"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_FilterGalaxyButton_CheckEvent"
-                            FontSize="10"
                             Header="{DynamicResource ResourceKey=UI_ToggleButton_FilterGalaxyFileNone_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_GalaxyNone}"
                             SizeDefinition="Middle"
@@ -271,8 +297,7 @@
                         MinItemsInDropDownRow="1"
                         Orientation="Vertical"
                         ResizeMode="Both"
-                        Selectable="False"
-                        SizeDefinition="Large">
+                        Selectable="False">
                         <fluent:InRibbonGallery.Menu>
                             <fluent:RibbonMenu>
                                 <fluent:MenuItem
@@ -291,8 +316,6 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextFileFilterButton_CheckEvent"
-                            Height="17"
-                            FontSize="10"
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextFile_GameStrings}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
@@ -303,8 +326,6 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextFileFilterButton_CheckEvent"
-                            Height="17"
-                            FontSize="10"
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextFile_ObjectStrings}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
@@ -315,8 +336,6 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextFileFilterButton_CheckEvent"
-                            Height="17"
-                            FontSize="10"
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextFile_TriggerStrings}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
@@ -339,8 +358,7 @@
                         MinItemsInDropDownRow="1"
                         Orientation="Vertical"
                         ResizeMode="Both"
-                        Selectable="False"
-                        SizeDefinition="Large">
+                        Selectable="False">
                         <fluent:InRibbonGallery.Menu>
                             <fluent:RibbonMenu>
                                 <fluent:MenuItem
@@ -359,8 +377,6 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextStatusFilterButton_CheckEvent"
-                            Height="17"
-                            FontSize="10"
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextStatus_Empty}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
@@ -371,8 +387,6 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextStatusFilterButton_CheckEvent"
-                            Height="17"
-                            FontSize="10"
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextStatus_Normal}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
@@ -383,8 +397,6 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextStatusFilterButton_CheckEvent"
-                            Height="17"
-                            FontSize="10"
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextStatus_Modified}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
@@ -394,14 +406,14 @@
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
         <GroupBox
-            Name="GroupBox_ExcelDataGrid"
+            Name="GroupBox_TranslatedTexts"
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Margin="3"
-            Header="{DynamicResource ResourceKey=UI_GroupBox_ExcelDataGrid_Header}">
+            Header="{DynamicResource ResourceKey=UI_GroupBox_TranslatedTexts_Header}">
             <DataGrid
-                Name="DataGrid_Excel"
+                Name="DataGrid_TranslatedTexts"
                 VerticalContentAlignment="Center"
                 AlternatingRowBackground="LightGray"
                 AlternationCount="2"
@@ -409,7 +421,8 @@
                 CanUserAddRows="False"
                 ItemsSource="{Binding}"
                 SelectionMode="Extended"
-                SelectionUnit="CellOrRowHeader">
+                SelectedCellsChanged="DataGrid_TranslatedTexts_SelectedCellsChanged"
+                SelectionUnit="CellOrRowHeader" Margin="2,0,-2,0">
                 <DataGrid.CellStyle>
                     <Style TargetType="DataGridCell">
                         <Setter Property="BorderThickness" Value="0" />

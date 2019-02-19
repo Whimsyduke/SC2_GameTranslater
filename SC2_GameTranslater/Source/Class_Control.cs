@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ using System.Windows.Data;
 
 namespace SC2_GameTranslater.Source
 {
+    using Globals = Class_Globals;
+
     #region Converter
 
     /// <summary>
@@ -19,7 +22,7 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 转换函数
         /// </summary>
-        /// <param name="value">值数组</param>
+        /// <param name="values">值数组</param>
         /// <param name="targetType">目标类型</param>
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
@@ -56,7 +59,7 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 转换函数
         /// </summary>
-        /// <param name="value">值数组</param>
+        /// <param name="values">值数组</param>
         /// <param name="targetType">目标类型</param>
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
