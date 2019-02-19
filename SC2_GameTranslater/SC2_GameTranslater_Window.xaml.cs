@@ -528,6 +528,7 @@ namespace SC2_GameTranslater
             if (project == null)
             {
                 RefreshNoTranslateLanguageButtons();
+                InRibbonGallery_TranslateLanguage.Selectable = false;
             }
             else
             {
@@ -535,6 +536,7 @@ namespace SC2_GameTranslater
                 if (list.Count == 0)
                 {
                     RefreshNoTranslateLanguageButtons();
+                    InRibbonGallery_TranslateLanguage.Selectable = false;
                     return;
                 }
                 InRibbonGallery_TranslateLanguage.Items.Clear();
@@ -551,6 +553,7 @@ namespace SC2_GameTranslater
                     }
                 }
                 selectButton.IsChecked = true;
+                InRibbonGallery_TranslateLanguage.Selectable = true;
             }
         }
 
@@ -561,7 +564,7 @@ namespace SC2_GameTranslater
         {
             InRibbonGallery_TranslateLanguage.Items.Clear();
             InRibbonGallery_TranslateLanguage.Items.Add(TranslateLanguage[0]);
-            TranslateLanguage[0].IsChecked = true;
+            TranslateLanguage[0].IsChecked = false;
         }
 
         /// <summary>
@@ -617,18 +620,16 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 刷新Galaxy筛选按钮
         /// </summary>
-        /// <returns>按钮列表</returns>
+        /// <param name="project">项目数据</param>
         private void RefreshGalaxyTextFileFilterButton(Data_GameText project)
         {
             foreach (ToggleButton button in m_GalaxyButtons)
             {
                 InRibbonGallery_GalaxyFilter.Items.Remove(button);
             }
-            ToggleButton_FilterGalaxyFileNone.IsChecked = true;
             m_GalaxyButtons.Clear();
             if (project != null)
             {
-                InRibbonGallery_GalaxyFilter.Items.Add(ToggleButton_FilterGalaxyFileNone);
                 ToggleButton button;
                 foreach (DataRow row in project.Tables[Data_GameText.TN_GalaxyFile].Rows)
                 {
@@ -636,10 +637,13 @@ namespace SC2_GameTranslater
                     m_GalaxyButtons.Add(button);
                     InRibbonGallery_GalaxyFilter.Items.Insert(InRibbonGallery_GalaxyFilter.Items.Count - 1, button);
                 }
+                ToggleButton_FilterGalaxyFileNone.IsChecked = true;
+                ToggleButton_FilterGalaxyFileNone.IsEnabled = true;
             }
             else
             {
-                InRibbonGallery_GalaxyFilter.Items.Remove(ToggleButton_FilterGalaxyFileNone);
+                ToggleButton_FilterGalaxyFileNone.IsChecked = false;
+                ToggleButton_FilterGalaxyFileNone.IsEnabled = false;
             }
             InRibbonGallery_GalaxyFilter.SelectedItem = null;
         }
@@ -647,7 +651,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 新建Galaxy文件筛选按钮
         /// </summary>
-        /// <param name="language">对应语言</param>
+        /// <param name="fileRow">Galaxy数据</param>
         /// <returns>按钮</returns>
         private ToggleButton NewGalaxyTextFileFilterButton(DataRow fileRow)
         {
@@ -677,22 +681,28 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 新建语言切换按钮
         /// </summary>
-        private void RefreshTextFileFilterButton()
+        /// <param name="project">项目数据</param>
+        private void RefreshTextFileFilterButton(Data_GameText project)
         {
+            bool isCheck = project != null;
             foreach (ToggleButton button in InRibbonGallery_TextFileFilter.Items)
             {
-                button.IsChecked = true;
+                button.IsChecked = isCheck;
+                button.IsEnabled = isCheck;
             }
         }
 
         /// <summary>
         /// 新建语言切换按钮
         /// </summary>
-        private void RefreshTextStatusFilterButton()
+        /// <param name="project">项目数据</param>
+        private void RefreshTextStatusFilterButton(Data_GameText project)
         {
+            bool isCheck = project != null;
             foreach (ToggleButton button in InRibbonGallery_TextStatusFilter.Items)
             {
-                button.IsChecked = true;
+                button.IsChecked = isCheck;
+                button.IsEnabled = isCheck;
             }
         }
 
@@ -802,8 +812,8 @@ namespace SC2_GameTranslater
         {
             RefreshTranslateLanguageButtons(newPro);
             RefreshGalaxyTextFileFilterButton(newPro);
-            RefreshTextFileFilterButton();
-            RefreshTextStatusFilterButton();
+            RefreshTextFileFilterButton(newPro);
+            RefreshTextStatusFilterButton(newPro);
             DataGrid_LoadData(newPro?.Tables[Data_GameText.TN_GameText]);
         }
         #endregion

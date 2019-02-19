@@ -287,11 +287,11 @@
                         </fluent:InRibbonGallery.Menu>
                         <fluent:ToggleButton
                             Name="ToggleButton_TextFileFilterGameStrings"
-                            Height="17"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextFileFilterButton_CheckEvent"
+                            Height="17"
                             FontSize="10"
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextFile_GameStrings}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
@@ -299,11 +299,11 @@
                             Unchecked="ToggleButton_TextFileFilterButton_CheckEvent" />
                         <fluent:ToggleButton
                             Name="ToggleButton_TextFileFilterObjectStrings"
-                            Height="17"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextFileFilterButton_CheckEvent"
+                            Height="17"
                             FontSize="10"
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextFile_ObjectStrings}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
@@ -311,11 +311,11 @@
                             Unchecked="ToggleButton_TextFileFilterButton_CheckEvent" />
                         <fluent:ToggleButton
                             Name="ToggleButton_TextFileFilterTriggerStrings"
-                            Height="17"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextFileFilterButton_CheckEvent"
+                            Height="17"
                             FontSize="10"
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextFile_TriggerStrings}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
@@ -355,11 +355,11 @@
                         </fluent:InRibbonGallery.Menu>
                         <fluent:ToggleButton
                             Name="ToggleButton_TextStatusFilterEmpty"
-                            Height="17"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextStatusFilterButton_CheckEvent"
+                            Height="17"
                             FontSize="10"
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextStatus_Empty}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
@@ -367,11 +367,11 @@
                             Unchecked="ToggleButton_TextStatusFilterButton_CheckEvent" />
                         <fluent:ToggleButton
                             Name="ToggleButton_TextStatusFilterNormal"
-                            Height="17"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextStatusFilterButton_CheckEvent"
+                            Height="17"
                             FontSize="10"
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextStatus_Normal}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
@@ -379,14 +379,14 @@
                             Unchecked="ToggleButton_TextStatusFilterButton_CheckEvent" />
                         <fluent:ToggleButton
                             Name="ToggleButton_TextStatusFilterModified"
-                            Height="17"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextStatusFilterButton_CheckEvent"
+                            Height="17"
+                            FontSize="10"
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextStatus_Modified}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
-                            IsChecked="True"
                             SizeDefinition="Middle"
                             Unchecked="ToggleButton_TextStatusFilterButton_CheckEvent" />
                     </fluent:InRibbonGallery>
