@@ -95,7 +95,16 @@ namespace SC2_GameTranslater.Source
         public const string FileName_SC2Components = "ComponentList.SC2Components";
 
         #endregion
-        
+
+        #region 默认值
+
+        /// <summary>
+        /// 未在Galaxy文件中使用
+        /// </summary>
+        public static string Const_NoUseInGalaxy { get;} = "-";
+
+        #endregion
+
         #endregion
 
         #endregion

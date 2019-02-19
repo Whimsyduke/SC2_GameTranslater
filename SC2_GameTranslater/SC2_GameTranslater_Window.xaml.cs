@@ -41,7 +41,7 @@ namespace SC2_GameTranslater
         /// <param name="count">当前计数</param>
         /// <param name="max">最大计数</param>
         public delegate void Delegate_ProgressEvent(double count, double max);
-
+        
         #endregion
 
         #region 命令
@@ -143,14 +143,24 @@ namespace SC2_GameTranslater
         public Dictionary<EnumLanguage, KeyValuePair<ToggleButton, ComboBoxItem>> TranslateAndSearchLanguage { set; get; } = NewTranslateAndSerachLanguageButton();
 
         /// <summary>
-        /// 是否选择全部Galaxy筛选文件
+        /// 是否选择全部Galaxy文件筛选
         /// </summary>
         public bool IsSelectAllGalaxyFilter { private set; get; } = true;
 
         /// <summary>
-        /// 是否选择全部文本所在筛选文件
+        /// Galaxy筛选列表
         /// </summary>
-        public bool IsSelectAllTextFileFilter { private set; get; } = true;
+        public List<string> GalaxyFilter { set; get; } = new List<string>();
+
+        /// <summary>
+        /// 文本所在文件筛选
+        /// </summary>
+        public EnumGameTextFile TextFileFilter { private set; get; } = EnumGameTextFile.All;
+
+        /// <summary>
+        /// 文本状态筛选
+        /// </summary>
+        public EnumGameTextStatus TextStatusFilter { private set; get; } = EnumGameTextStatus.All;
 
         /// <summary>
         /// 允许刷新翻译文本
@@ -809,13 +819,73 @@ namespace SC2_GameTranslater
             RefreshTranslatedText();
         }
 
+        struct temp
+        {
+            bool checkFile;
+            bool checkStatus;
+            bool checkGalaxy;
+            EnumGameTextFile enumFile;
+            EnumGameTextStatus enumStatus;
+            public temp (bool a, bool b, bool c, EnumGameTextFile file, EnumGameTextStatus status)
+            {
+                checkFile = a;
+                checkStatus = b;
+                checkGalaxy = c;
+                enumFile = file;
+                enumStatus = status;
+            }
+        }
         /// <summary>
         /// 刷新翻译文本
         /// </summary>
         public void RefreshTranslatedText()
         {
-            if (!CanRefreshTranslatedText) return;
+            if (!CanRefreshTranslatedText || CurrentTextData == null) return;
+            EnumerableRowCollection<DataRow> query = CurrentTextData.AsEnumerable();
+            if (TextFileFilter != EnumGameTextFile.All)
+            {
+                string keyFile = Data_GameText.RN_GameText_File;
+                query = from row in query
+                        where ((int)row[keyFile] & (int)TextFileFilter) != 0
+                        select row;
+            }
+            if (TextStatusFilter != EnumGameTextStatus.All)
+            {
+                string keyStatus = Data_GameText.GetGameTextNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_Status);
+                query = from row in query
+                        where ((int)row[keyStatus] & (int)TextStatusFilter) != 0
+                        select row;
+            }
+            //if (!IsSelectAllGalaxyFilter)
+            //{
+            //    query = from row in query
+            //            where IsUseInGalaxyFiles(row)
+            //            select row;
+            //}
+            //EnumerableRowCollection<temp> b = from row in CurrentTextData.AsEnumerable()
+            //               select new temp(((int)row[keyFile] & (int)TextFileFilter) != 0, ((int)row[keyStatus] & (int)TextStatusFilter) != 0, IsUseInGalaxyFiles(row), (EnumGameTextFile)row[keyFile], (EnumGameTextStatus)row[keyStatus]);
+            //EnumerableRowCollection<DataRow> query = from row in CurrentTextData.AsEnumerable()
+            //                                         where ((int)row[keyFile] & (int)TextFileFilter) != 0 && ((int)row[keyStatus] & (int)TextStatusFilter) != 0
+            //                                         select row;
+            DataGrid_TranslatedTexts.ItemsSource = query.AsDataView();
+        }
 
+        /// <summary>
+        /// 是否在galaxy中使用
+        /// </summary>
+        /// <param name="row">行</param>
+        /// <returns>判断结果</returns>
+        private bool IsUseInGalaxyFiles(DataRow row)
+        {
+            DataRow[] locations = row.GetChildRows(Data_GameText.RSN_GameText_GalaxyLocation_Key);
+            if (locations.Count() == 0)
+            {
+                return GalaxyFilter.Contains(Globals.Const_NoUseInGalaxy);
+            }
+            else
+            {
+                return locations.Where(r=> GalaxyFilter.Contains(r.GetParentRow(Data_GameText.RSN_GalaxyLine_GameLocation_Line)[Data_GameText.RN_GalaxyLine_File])).Count() != 0;
+            }
         }
 
         #endregion
@@ -912,6 +982,7 @@ namespace SC2_GameTranslater
                 {
                     Globals.MainWindow.CleanCurrentTranslateLanguage();
                 }
+                Globals.MainWindow.RefreshTranslatedText();
                 e.Handled = true;
             }
         }
@@ -933,11 +1004,14 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void MenuItem_GalaxyFilterSelectAll_Click(object sender, RoutedEventArgs e)
         {
+            CanRefreshTranslatedText = false;
             ToggleButton_FilterGalaxyFileNone.IsChecked = true;
             foreach (ToggleButton button in m_GalaxyButtons)
             {
                 button.IsChecked = true;
             }
+            CanRefreshTranslatedText = true;
+            e.Handled = true;
         }
 
         /// <summary>
@@ -947,12 +1021,14 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void MenuItem_GalaxyFilterSelectNone_Click(object sender, RoutedEventArgs e)
         {
+            CanRefreshTranslatedText = false;
             ToggleButton_FilterGalaxyFileNone.IsChecked = false;
             foreach (ToggleButton button in m_GalaxyButtons)
             {
                 button.IsChecked = false;
             }
-
+            CanRefreshTranslatedText = true;
+            e.Handled = true;
         }
 
         /// <summary>
@@ -962,6 +1038,8 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void ToggleButton_FilterGalaxyButton_CheckEvent(object sender, RoutedEventArgs e)
         {
+            GalaxyFilter.Clear();
+            IsSelectAllGalaxyFilter = true;
             if (ToggleButton_FilterGalaxyFileNone.IsChecked == true)
             {
                 foreach (ToggleButton button in m_GalaxyButtons)
@@ -969,11 +1047,12 @@ namespace SC2_GameTranslater
                     if (button.IsChecked == false)
                     {
                         IsSelectAllGalaxyFilter = false;
-                        return;
+                        GalaxyFilter.Add(button.Tag as string);
                     }
                 }
             }
-            IsSelectAllGalaxyFilter = true;
+            Globals.MainWindow.RefreshTranslatedText();
+            e.Handled = true;
         }
 
         /// <summary>
@@ -983,10 +1062,13 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void MenuItem_TextFileFilterSelectAll_Click(object sender, RoutedEventArgs e)
         {
+            CanRefreshTranslatedText = false;
             foreach (ToggleButton button in InRibbonGallery_TextFileFilter.Items)
             {
                 button.IsChecked = true;
             }
+            CanRefreshTranslatedText = true;
+            e.Handled = true;
         }
 
         /// <summary>
@@ -996,10 +1078,13 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void MenuItem_TextFileFilterSelectNone_Click(object sender, RoutedEventArgs e)
         {
+            CanRefreshTranslatedText = false;
             foreach (ToggleButton button in InRibbonGallery_TextFileFilter.Items)
             {
                 button.IsChecked = false;
             }
+            CanRefreshTranslatedText = true;
+            e.Handled = true;
         }
 
         /// <summary>
@@ -1009,15 +1094,17 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void ToggleButton_TextFileFilterButton_CheckEvent(object sender, RoutedEventArgs e)
         {
-            foreach (ToggleButton button in InRibbonGallery_TextFileFilter.Items)
+            ToggleButton button = sender as ToggleButton;
+            if (button.IsChecked == true)
             {
-                if (button.IsChecked == false)
-                {
-                    IsSelectAllTextFileFilter = false;
-                    return;
-                }
+                TextFileFilter |= (EnumGameTextFile)button.Tag;
             }
-            IsSelectAllTextFileFilter = true;
+            else
+            {
+                TextFileFilter &= ~(EnumGameTextFile)button.Tag;
+            }
+            Globals.MainWindow.RefreshTranslatedText();
+            e.Handled = true;
         }
 
         /// <summary>
@@ -1027,10 +1114,13 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void MenuItem_TextStatusFilterSelectAll_Click(object sender, RoutedEventArgs e)
         {
+            CanRefreshTranslatedText = false;
             foreach (ToggleButton button in InRibbonGallery_TextStatusFilter.Items)
             {
                 button.IsChecked = true;
             }
+            CanRefreshTranslatedText = true;
+            e.Handled = true;
         }
 
         /// <summary>
@@ -1040,10 +1130,13 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void MenuItem_TextStatusFilterSelectNone_Click(object sender, RoutedEventArgs e)
         {
+            CanRefreshTranslatedText = false;
             foreach (ToggleButton button in InRibbonGallery_TextStatusFilter.Items)
             {
                 button.IsChecked = false;
             }
+            CanRefreshTranslatedText = false;
+            e.Handled = true;
         }
 
         /// <summary>
@@ -1053,15 +1146,17 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void ToggleButton_TextStatusFilterButton_CheckEvent(object sender, RoutedEventArgs e)
         {
-            foreach (ToggleButton button in InRibbonGallery_TextStatusFilter.Items)
+            ToggleButton button = sender as ToggleButton;
+            if (button.IsChecked == true)
             {
-                if (button.IsChecked == false)
-                {
-                    IsSelectAllTextFileFilter = false;
-                    return;
-                }
+                TextStatusFilter |= (EnumGameTextStatus)button.Tag;
             }
-            IsSelectAllTextFileFilter = true;
+            else
+            {
+                TextStatusFilter &= ~(EnumGameTextStatus)button.Tag;
+            }
+            Globals.MainWindow.RefreshTranslatedText();
+            e.Handled = true;
         }
 
         /// <summary>
@@ -1071,7 +1166,6 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void DataGrid_TranslatedTexts_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-           
         }
 
         #endregion

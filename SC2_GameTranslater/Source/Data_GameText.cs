@@ -24,15 +24,19 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 空
         /// </summary>
-        Empty,
+        Empty = 1,
         /// <summary>
         /// 正常
         /// </summary>
-        Normal,
+        Normal = 2,
         /// <summary>
         /// 已修改
         /// </summary>
-        Modified,
+        Modified = 4,
+        /// <summary>
+        /// 全部复选
+        /// </summary>
+        All = 7,
     }
 
     /// <summary>
@@ -43,15 +47,19 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// GameStrings.txt
         /// </summary>
-        GameStrings,
+        GameStrings = 1,
         /// <summary>
         /// ObjectStrings.txt
         /// </summary>
-        ObjectStrings,
+        ObjectStrings = 2,
         /// <summary>
         /// ObjectStrings.txt
         /// </summary>
-        TriggerStrings,
+        TriggerStrings = 4,
+        /// <summary>
+        /// 全部复选
+        /// </summary>
+        All = 7,
     }
 
     #endregion
@@ -62,7 +70,7 @@ namespace SC2_GameTranslater.Source
     public partial class Data_GameText
     {
         #region 声明常量
-        
+
         #region 正则表达式常量
         /// <summary>
         /// Galaxy文本函数
@@ -276,7 +284,7 @@ namespace SC2_GameTranslater.Source
 
             // Status
             columnName = GetGameTextNameForLanguage(lang, RN_GameText_Status);
-            column = new DataColumn(columnName, typeof(EnumGameTextStatus), "", MappingType.Attribute)
+            column = new DataColumn(columnName, typeof(int), "", MappingType.Attribute)
             {
                 Caption = columnName,
                 DefaultValue = EnumGameTextStatus.Empty,
@@ -373,11 +381,13 @@ namespace SC2_GameTranslater.Source
             int count = 0;
             foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
             {
-                foreach (EnumGameTextFile file in Enum.GetValues(typeof(EnumGameTextFile)))
-                {
-                    string path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, file));
-                    if (File.Exists(path)) count++;
-                }
+                string path;
+                path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, EnumGameTextFile.GameStrings));
+                if (File.Exists(path)) count++;
+                path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, EnumGameTextFile.ObjectStrings));
+                if (File.Exists(path)) count++;
+                path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, EnumGameTextFile.TriggerStrings));
+                if (File.Exists(path)) count++;
             }
             return count;
         }
@@ -403,10 +413,9 @@ namespace SC2_GameTranslater.Source
             }
             foreach (EnumLanguage lang in dictLanguage)
             {
-                foreach (EnumGameTextFile file in Enum.GetValues(typeof(EnumGameTextFile)))
-                {
-                    LoadGameTextFile(baseDir, lang, file);
-                }
+                LoadGameTextFile(baseDir, lang, EnumGameTextFile.GameStrings);
+                LoadGameTextFile(baseDir, lang, EnumGameTextFile.ObjectStrings);
+                LoadGameTextFile(baseDir, lang, EnumGameTextFile.TriggerStrings);
             }
         }
 
@@ -418,11 +427,13 @@ namespace SC2_GameTranslater.Source
         /// <returns>验证结果</returns>
         private bool ExistGameTextFileOfLanguage(DirectoryInfo baseDir, EnumLanguage lang)
         {
-            foreach (EnumGameTextFile file in Enum.GetValues(typeof(EnumGameTextFile)))
-            {
-                string path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, file));
-                if (File.Exists(path)) return true;
-            }
+            string path;
+            path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, EnumGameTextFile.GameStrings));
+            if (File.Exists(path)) return true;
+            path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, EnumGameTextFile.ObjectStrings));
+            if (File.Exists(path)) return true;
+            path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, EnumGameTextFile.TriggerStrings));
+            if (File.Exists(path)) return true;
             return false;
         }
 
@@ -582,7 +593,7 @@ namespace SC2_GameTranslater.Source
         /// 加载Galaxy文件
         /// </summary>
         /// <param name="file">Galaxy文件</param>
-        private void LoadGalaxyFile(FileInfo file) 
+        private void LoadGalaxyFile(FileInfo file)
         {
             string path = file.FullName.Substring(ModPath.Length);
             DataRow row = Tables[TN_GalaxyFile].NewRow();
@@ -613,8 +624,8 @@ namespace SC2_GameTranslater.Source
             row[RN_GalaxyFile_Count] = count;
         }
 
-#endregion
+        #endregion
 
-#endregion
+        #endregion
     }
 }

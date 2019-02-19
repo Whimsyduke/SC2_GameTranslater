@@ -277,6 +277,7 @@
                             Header="{DynamicResource ResourceKey=UI_ToggleButton_FilterGalaxyFileNone_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_GalaxyNone}"
                             SizeDefinition="Middle"
+                            Tag="{x:Static source:Class_Globals.Const_NoUseInGalaxy}"
                             ToolTip="{DynamicResource ResourceKey=TipToggleButton_FilterGalaxyFileNone_ToolTip}"
                             Unchecked="ToggleButton_FilterGalaxyButton_CheckEvent" />
                     </fluent:InRibbonGallery>
@@ -319,6 +320,7 @@
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextFile_GameStrings}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
+                            Tag="{x:Static source:EnumGameTextFile.GameStrings}"
                             Unchecked="ToggleButton_TextFileFilterButton_CheckEvent" />
                         <fluent:ToggleButton
                             Name="ToggleButton_TextFileFilterObjectStrings"
@@ -329,6 +331,7 @@
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextFile_ObjectStrings}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
+                            Tag="{x:Static source:EnumGameTextFile.ObjectStrings}"
                             Unchecked="ToggleButton_TextFileFilterButton_CheckEvent" />
                         <fluent:ToggleButton
                             Name="ToggleButton_TextFileFilterTriggerStrings"
@@ -339,6 +342,7 @@
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextFile_TriggerStrings}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
+                            Tag="{x:Static source:EnumGameTextFile.TriggerStrings}"
                             Unchecked="ToggleButton_TextFileFilterButton_CheckEvent" />
                     </fluent:InRibbonGallery>
                 </fluent:RibbonGroupBox>
@@ -380,6 +384,7 @@
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextStatus_Empty}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
+                            Tag="{x:Static source:EnumGameTextStatus.Empty}"
                             Unchecked="ToggleButton_TextStatusFilterButton_CheckEvent" />
                         <fluent:ToggleButton
                             Name="ToggleButton_TextStatusFilterNormal"
@@ -390,6 +395,7 @@
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextStatus_Normal}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
+                            Tag="{x:Static source:EnumGameTextStatus.Normal}"
                             Unchecked="ToggleButton_TextStatusFilterButton_CheckEvent" />
                         <fluent:ToggleButton
                             Name="ToggleButton_TextStatusFilterModified"
@@ -400,6 +406,7 @@
                             Header="{DynamicResource ResourceKey=ENUM_EnumGameTextStatus_Modified}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
+                            Tag="{x:Static source:EnumGameTextStatus.Modified}"
                             Unchecked="ToggleButton_TextStatusFilterButton_CheckEvent" />
                     </fluent:InRibbonGallery>
                 </fluent:RibbonGroupBox>
@@ -414,15 +421,16 @@
             Header="{DynamicResource ResourceKey=UI_GroupBox_TranslatedTexts_Header}">
             <DataGrid
                 Name="DataGrid_TranslatedTexts"
+                Margin="2,0,-2,0"
                 VerticalContentAlignment="Center"
                 AlternatingRowBackground="LightGray"
                 AlternationCount="2"
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 ItemsSource="{Binding}"
-                SelectionMode="Extended"
                 SelectedCellsChanged="DataGrid_TranslatedTexts_SelectedCellsChanged"
-                SelectionUnit="CellOrRowHeader" Margin="2,0,-2,0">
+                SelectionMode="Extended"
+                SelectionUnit="CellOrRowHeader">
                 <DataGrid.CellStyle>
                     <Style TargetType="DataGridCell">
                         <Setter Property="BorderThickness" Value="0" />
