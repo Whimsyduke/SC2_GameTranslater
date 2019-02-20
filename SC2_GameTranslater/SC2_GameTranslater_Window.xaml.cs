@@ -819,22 +819,6 @@ namespace SC2_GameTranslater
             RefreshTranslatedText();
         }
 
-        struct temp
-        {
-            bool checkFile;
-            bool checkStatus;
-            bool checkGalaxy;
-            EnumGameTextFile enumFile;
-            EnumGameTextStatus enumStatus;
-            public temp (bool a, bool b, bool c, EnumGameTextFile file, EnumGameTextStatus status)
-            {
-                checkFile = a;
-                checkStatus = b;
-                checkGalaxy = c;
-                enumFile = file;
-                enumStatus = status;
-            }
-        }
         /// <summary>
         /// 刷新翻译文本
         /// </summary>
@@ -856,17 +840,12 @@ namespace SC2_GameTranslater
                         where ((int)row[keyStatus] & (int)TextStatusFilter) != 0
                         select row;
             }
-            //if (!IsSelectAllGalaxyFilter)
-            //{
-            //    query = from row in query
-            //            where IsUseInGalaxyFiles(row)
-            //            select row;
-            //}
-            //EnumerableRowCollection<temp> b = from row in CurrentTextData.AsEnumerable()
-            //               select new temp(((int)row[keyFile] & (int)TextFileFilter) != 0, ((int)row[keyStatus] & (int)TextStatusFilter) != 0, IsUseInGalaxyFiles(row), (EnumGameTextFile)row[keyFile], (EnumGameTextStatus)row[keyStatus]);
-            //EnumerableRowCollection<DataRow> query = from row in CurrentTextData.AsEnumerable()
-            //                                         where ((int)row[keyFile] & (int)TextFileFilter) != 0 && ((int)row[keyStatus] & (int)TextStatusFilter) != 0
-            //                                         select row;
+            if (!IsSelectAllGalaxyFilter)
+            {
+                query = from row in query
+                        where IsUseInGalaxyFiles(row)
+                        select row;
+            }                            
             DataGrid_TranslatedTexts.ItemsSource = query.AsDataView();
         }
 
@@ -1039,14 +1018,22 @@ namespace SC2_GameTranslater
         private void ToggleButton_FilterGalaxyButton_CheckEvent(object sender, RoutedEventArgs e)
         {
             GalaxyFilter.Clear();
-            IsSelectAllGalaxyFilter = true;
-            if (ToggleButton_FilterGalaxyFileNone.IsChecked == true)
+            IsSelectAllGalaxyFilter = ToggleButton_FilterGalaxyFileNone.IsChecked == true;
+            if (IsSelectAllGalaxyFilter) GalaxyFilter.Add(Globals.Const_NoUseInGalaxy);
+            foreach (ToggleButton button in m_GalaxyButtons)
             {
-                foreach (ToggleButton button in m_GalaxyButtons)
+                if (button.IsChecked == false)
                 {
-                    if (button.IsChecked == false)
+                    IsSelectAllGalaxyFilter = false;
+                }
+                else
+                {
+                    if (button.Tag is DataRow row)
                     {
-                        IsSelectAllGalaxyFilter = false;
+                        GalaxyFilter.Add(row[Data_GameText.RN_GalaxyFile_Path] as string);
+                    }
+                    else
+                    {
                         GalaxyFilter.Add(button.Tag as string);
                     }
                 }
