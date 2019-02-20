@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TriggerData>
+    <Library Id="LIB1">
+        <Root>
+            <Item Type="Trigger" Library="LIB1" Id="F18196F3"/>
+            <Item Type="Trigger" Library="LIB1" Id="04A0D8C7"/>
+        </Root>
+        <Element Type="Trigger" Id="F18196F3">
+            <Identifier>TriggerInLibrary</Identifier>
+        </Element>
+        <Element Type="Trigger" Id="04A0D8C7">
+            <Identifier>Trigger</Identifier>
+            <Variable Type="Variable" Library="LIB1" Id="AF5C38AB"/>
+            <Action Type="FunctionCall" Library="LIB1" Id="8692974C"/>
+        </Element>
+        <Element Type="Variable" Id="AF5C38AB">
+            <Identifier>Text</Identifier>
+            <VariableType>
+                <Type Value="text"/>
+            </VariableType>
+            <Value Type="Param" Library="LIB1" Id="2C693B9E"/>
+        </Element>
+        <Element Type="Param" Id="2C693B9E">
+            <Preset Type="PresetValue" Library="Ntve" Id="50BDC6EF"/>
+        </Element>
+        <Element Type="FunctionCall" Id="8692974C">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000136"/>
+            <Parameter Type="Param" Library="LIB1" Id="9F770125"/>
+            <Parameter Type="Param" Library="LIB1" Id="2254CCC2"/>
+        </Element>
+        <Element Type="Param" Id="9F770125">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000219"/>
+            <Variable Type="Variable" Library="LIB1" Id="AF5C38AB"/>
+        </Element>
+        <Element Type="Param" Id="2254CCC2">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
+            <ValueType Type="text"/>
+        </Element>
+    </Library>
+    <Library Id="LIB2">
+        <Root>
+            <Item Type="Trigger" Library="LIB2" Id="7B3D3878"/>
+            <Item Type="Trigger" Library="LIB2" Id="F18196F3"/>
+        </Root>
+        <Element Type="Trigger" Id="7B3D3878">
+            <Identifier>Trigger</Identifier>
+            <Variable Type="Variable" Library="LIB2" Id="58814005"/>
+            <Action Type="FunctionCall" Library="LIB2" Id="60F27B5B"/>
+        </Element>
+        <Element Type="Variable" Id="58814005">
+            <Identifier>Text</Identifier>
+            <VariableType>
+                <Type Value="text"/>
+            </VariableType>
+            <Value Type="Param" Library="LIB2" Id="AF429609"/>
+        </Element>
+        <Element Type="Param" Id="AF429609">
+            <Preset Type="PresetValue" Library="Ntve" Id="50BDC6EF"/>
+        </Element>
+        <Element Type="FunctionCall" Id="60F27B5B">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000136"/>
+            <Parameter Type="Param" Library="LIB2" Id="36B6171D"/>
+            <Parameter Type="Param" Library="LIB2" Id="43EF0FA3"/>
+        </Element>
+        <Element Type="Param" Id="36B6171D">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000219"/>
+            <Variable Type="Variable" Library="LIB2" Id="58814005"/>
+        </Element>
+        <Element Type="Param" Id="43EF0FA3">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
+            <ValueType Type="text"/>
+        </Element>
+        <Element Type="Trigger" Id="F18196F3">
+            <Identifier>TriggerInLibrary</Identifier>
+        </Element>
+    </Library>
+</TriggerData>

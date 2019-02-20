@@ -1,0 +1,71 @@
+include "TriggerLibs/NativeLib"
+
+include "LibLIB2_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ???2
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libLIB2_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: ?????????2
+//--------------------------------------------------------------------------------------------------
+bool libLIB2_gt_Trigger_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_Text;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_Text = StringExternal("Param/Value/lib_LIB2_43EF0FA3");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libLIB2_gt_Trigger_Init () {
+    libLIB2_gt_Trigger = TriggerCreate("libLIB2_gt_Trigger_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: ???????????????2
+//--------------------------------------------------------------------------------------------------
+bool libLIB2_gt_TriggerInLibrary_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libLIB2_gt_TriggerInLibrary_Init () {
+    libLIB2_gt_TriggerInLibrary = TriggerCreate("libLIB2_gt_TriggerInLibrary_Func");
+}
+
+void libLIB2_InitTriggers () {
+    libLIB2_gt_Trigger_Init();
+    libLIB2_gt_TriggerInLibrary_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libLIB2_InitLib_completed = false;
+
+void libLIB2_InitLib () {
+    if (libLIB2_InitLib_completed) {
+        return;
+    }
+
+    libLIB2_InitLib_completed = true;
+
+    libLIB2_InitLibraries();
+    libLIB2_InitTriggers();
+}
+

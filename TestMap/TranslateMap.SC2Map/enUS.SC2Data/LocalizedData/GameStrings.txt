@@ -1,0 +1,6 @@
+﻿DocInfo/DescLong=完全没有任何描述。
+DocInfo/DescShort=任意
+DocInfo/Name=这只是另一张《星际争霸II》地图
+MapInfo/Player00/Name=中立
+MapInfo/Player01/Name=玩家1
+MapInfo/Player02/Name=敌对

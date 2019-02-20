@@ -1,0 +1,15 @@
+﻿DOCSTR_0000=翻译自定义文本
+DocInfo/DescLong=翻译描述
+DocInfo/DescShort=翻译玩家数
+DocInfo/Name=翻译地图
+LoadingScreen/Subtitle=字幕
+LoadingScreen/TextBody=主体
+LoadingScreen/Tip=加载帮助
+LoadingScreen/TipRestart=重启帮助
+LoadingScreen/Title=标题
+MapInfo/Player00/Name=中立
+MapInfo/Player01/Name=翻译玩家1
+MapInfo/Player02/Name=敌对
+MapInfo/Team00/Name=翻译队伍
+Param/Value/3523BB42=翻译文本
+Unit/Name/TranslateUnit=翻译单位
