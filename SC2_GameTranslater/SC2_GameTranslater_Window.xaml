@@ -230,7 +230,7 @@
                         Header="{DynamicResource ResourceKey=UI_ComboBox_SearchLanguage_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchLanguage}"
                         IsEditable="False"
-                        SelectedIndex="0" />
+                        SelectedIndex="0" Height="22" VerticalAlignment="Bottom" />
                     <fluent:TextBox
                         Name="TextBox_SearchText"
                         Width="280"

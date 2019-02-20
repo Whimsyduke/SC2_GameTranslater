@@ -20,6 +20,7 @@ using System.Reflection;
 using System.Threading;
 using SC2_GameTranslater.Source;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace SC2_GameTranslater
 {
@@ -845,7 +846,21 @@ namespace SC2_GameTranslater
                 query = from row in query
                         where IsUseInGalaxyFiles(row)
                         select row;
-            }                            
+            }
+            if (TextBox_SearchText.Text != null)
+            {
+                try
+                {
+                    Regex regex = new Regex(TextBox_SearchText.Text, RegexOptions.Compiled);
+                    query = from row in query
+                            where IsInSearchResult(row, regex)
+                            select row;
+                }
+                catch
+                {
+
+                }
+            }
             DataGrid_TranslatedTexts.ItemsSource = query.AsDataView();
         }
 
@@ -865,6 +880,17 @@ namespace SC2_GameTranslater
             {
                 return locations.Where(r=> GalaxyFilter.Contains(r.GetParentRow(Data_GameText.RSN_GalaxyLine_GameLocation_Line)[Data_GameText.RN_GalaxyLine_File])).Count() != 0;
             }
+        }
+
+        /// <summary>
+        /// 在搜索结果中
+        /// </summary>
+        /// <param name="regex">测试正则表达式</param>
+        /// <param name="row">行</param>
+        /// <returns>判断结果</returns>
+        private bool IsInSearchResult(DataRow row, Regex regex)
+        {
+            
         }
 
         #endregion
