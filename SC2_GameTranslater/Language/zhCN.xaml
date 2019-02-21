@@ -57,6 +57,7 @@
     <sys:String x:Key="UI_ComboBox_SearchType_Header">类型：</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchLanguage_Header">语言:</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchText_Header">文本：</sys:String>
+    <sys:String x:Key="UI_CheckBox_SearchRegex_Header">正则</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeALL_Header">全部</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeTextID_Header">文本ID:</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeALLText_Header">全部文本</sys:String>

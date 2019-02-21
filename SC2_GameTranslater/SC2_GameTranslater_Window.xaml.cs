@@ -42,6 +42,33 @@ namespace SC2_GameTranslater
         /// <param name="count">当前计数</param>
         /// <param name="max">最大计数</param>
         public delegate void Delegate_ProgressEvent(double count, double max);
+
+        /// <summary>
+        /// 搜索文本类型
+        /// </summary>
+        public enum SearchTextType
+        {
+            /// <summary>
+            /// 全部
+            /// </summary>
+            All = 7,
+            /// <summary>
+            /// ID
+            /// </summary>
+            ID = 1,
+            /// <summary>
+            /// 全部文本
+            /// </summary>
+            AllText = 6,
+            /// <summary>
+            /// 原文本
+            /// </summary>
+            Source = 2,
+            /// <summary>
+            /// 修改文本
+            /// </summary>
+            Edited = 4,
+        }
         
         #endregion
 
@@ -890,7 +917,7 @@ namespace SC2_GameTranslater
         /// <returns>判断结果</returns>
         private bool IsInSearchResult(DataRow row, Regex regex)
         {
-            
+            return true;
         }
 
         #endregion

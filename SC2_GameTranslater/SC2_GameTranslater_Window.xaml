@@ -211,6 +211,8 @@
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox
                     Name="RibbonGroupBox_Search"
+                    FlowDirection="LeftToRight"
+                    
                     Grid.IsSharedSizeScope="True"
                     Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_Search_Header}">
                     <fluent:ComboBox
@@ -227,10 +229,12 @@
                     </fluent:ComboBox>
                     <fluent:ComboBox
                         Name="ComboBox_SearchLanguage"
+                        Height="22"
+                        VerticalAlignment="Bottom"
                         Header="{DynamicResource ResourceKey=UI_ComboBox_SearchLanguage_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchLanguage}"
                         IsEditable="False"
-                        SelectedIndex="0" Height="22" VerticalAlignment="Bottom" />
+                        SelectedIndex="0" />
                     <fluent:TextBox
                         Name="TextBox_SearchText"
                         Width="280"
@@ -238,6 +242,11 @@
                         VerticalContentAlignment="Center"
                         Header="{DynamicResource ResourceKey=UI_ComboBox_SearchText_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchText}" />
+                    <fluent:CheckBox
+                        Name="CheckBox_SearchRegex"
+                        Header="{DynamicResource ResourceKey=UI_CheckBox_SearchRegex_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_SearchRegex}"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_SearchRegex}" Height="15" Margin="2,2,2,0" VerticalAlignment="Top" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox
                     Name="RibbonGroupBox_GalaxyFilter"

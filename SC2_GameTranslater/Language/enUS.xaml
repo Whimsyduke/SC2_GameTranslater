@@ -56,6 +56,7 @@
     <sys:String x:Key="UI_ComboBox_SearchType_Header">Type:</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchLanguage_Header">Language:</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchText_Header">Text:</sys:String>
+    <sys:String x:Key="UI_CheckBox_SearchRegex_Header">Use Regex</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeALL_Header">All</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeTextID_Header">Text ID:</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeALLText_Header">All Text</sys:String>
