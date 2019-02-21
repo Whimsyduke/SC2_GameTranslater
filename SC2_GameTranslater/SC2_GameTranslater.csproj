@@ -163,9 +163,6 @@
     <Content Include="Assets\Image\ui-editoricon-triggercategories_logic.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Image\ui-editoricon-triggercategories_math.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\Image\ui-editoricon-triggercategories_parameter.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

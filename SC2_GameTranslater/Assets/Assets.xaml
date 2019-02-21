@@ -12,7 +12,6 @@
     <BitmapImage x:Key="IMAGE_SearchType" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_techpurchase.dds" />
     <BitmapImage x:Key="IMAGE_SearchLanguage" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_parameter.dds" />
     <BitmapImage x:Key="IMAGE_SearchText" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_logic.dds" />
-    <BitmapImage x:Key="IMAGE_SearchRegex" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_math.dds" />
     <!--#endregion-->
 
     <!--#region Translate Language-->
