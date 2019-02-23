@@ -29,6 +29,55 @@ namespace SC2_GameTranslater
     using Log = Source.Class_Log;
     using EnumLanguage = Source.EnumLanguage;
 
+    #region 声明
+
+    /// <summary>
+    /// 搜索文本类型
+    /// </summary>
+    public enum EnumSearchTextType
+    {
+        /// <summary>
+        /// 全部
+        /// </summary>
+        All = 7,
+        /// <summary>
+        /// ID
+        /// </summary>
+        ID = 1,
+        /// <summary>
+        /// 全部文本
+        /// </summary>
+        AllText = 6,
+        /// <summary>
+        /// 原文本
+        /// </summary>
+        Source = 2,
+        /// <summary>
+        /// 修改文本
+        /// </summary>
+        Edited = 4,
+    }
+
+    /// <summary>
+    /// 搜索文本位置
+    /// </summary>
+    public enum EnumSearchTextLocation
+    {
+        /// <summary>
+        /// 全部
+        /// </summary>
+        All,
+        /// <summary>
+        /// 左侧开始
+        /// </summary>
+        Left,
+        /// <summary>
+        /// 右侧开始
+        /// </summary>
+        Right
+    }
+    #endregion
+
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
@@ -44,32 +93,14 @@ namespace SC2_GameTranslater
         public delegate void Delegate_ProgressEvent(double count, double max);
 
         /// <summary>
-        /// 搜索文本类型
+        /// 
         /// </summary>
-        public enum SearchTextType
-        {
-            /// <summary>
-            /// 全部
-            /// </summary>
-            All = 7,
-            /// <summary>
-            /// ID
-            /// </summary>
-            ID = 1,
-            /// <summary>
-            /// 全部文本
-            /// </summary>
-            AllText = 6,
-            /// <summary>
-            /// 原文本
-            /// </summary>
-            Source = 2,
-            /// <summary>
-            /// 修改文本
-            /// </summary>
-            Edited = 4,
-        }
-        
+        /// <param name="row"></param>
+        /// <param name="key"></param>
+        /// <param name="match"></param>
+        /// <returns></returns>
+        private delegate bool Delegate_IsInSearchResult(DataRow row, string key, string match, bool ignoreCase);
+
         #endregion
 
         #region 命令
@@ -204,6 +235,13 @@ namespace SC2_GameTranslater
         /// 当前文本数据赖项
         /// </summary>
         public DataTable CurrentTextData { get => (DataTable)GetValue(CurrentTextDataProperty); set => SetValue(CurrentTextDataProperty, value); }
+
+        private Dictionary<EnumSearchTextLocation, Delegate_IsInSearchResult> DictTextSearchLocationFunc { get; } = new Dictionary<EnumSearchTextLocation, Delegate_IsInSearchResult>
+        {
+            { EnumSearchTextLocation.All, IsInSearchResult_All},
+            { EnumSearchTextLocation.Left, IsInSearchResult_Left},
+            { EnumSearchTextLocation.Right, IsInSearchResult_Right},
+        };
 
         #endregion
 
@@ -782,12 +820,17 @@ namespace SC2_GameTranslater
         /// <param name="project">项目数据</param>
         private void RefreshSearchControl(Data_GameText project)
         {
-            bool isCheck = project != null;
-            ComboBox_SearchType.IsEnabled = isCheck;
+            bool isEnable = project != null;
+            ComboBox_SearchType.IsEnabled = isEnable;
             ComboBox_SearchType.SelectedIndex = 0;
-            ComboBox_SearchLanguage.IsEnabled = isCheck;
+            ComboBox_SearchLocation.SelectedIndex = 0;
+            ComboBox_SearchLanguage.IsEnabled = isEnable;
             ComboBox_SearchLanguage.SelectedIndex = 0;
-            TextBox_SearchText.IsEnabled = isCheck;
+            CheckBox_SearchRegex.IsEnabled = isEnable;
+            CheckBox_SearchRegex.IsChecked = false;
+            CheckBox_SearchCase.IsEnabled = isEnable;
+            CheckBox_SearchCase.IsChecked = false;
+            TextBox_SearchText.IsEnabled = isEnable;
             TextBox_SearchText.Text = "";
         }
 
@@ -852,7 +895,12 @@ namespace SC2_GameTranslater
         /// </summary>
         public void RefreshTranslatedText()
         {
-            if (!CanRefreshTranslatedText || CurrentTextData == null) return;
+            if (!CanRefreshTranslatedText) return;
+            if (CurrentTextData == null)
+            {
+                DataGrid_TranslatedTexts.ItemsSource = null;
+                return;
+            }
             EnumerableRowCollection<DataRow> query = CurrentTextData.AsEnumerable();
             if (TextFileFilter != EnumGameTextFile.All)
             {
@@ -865,7 +913,7 @@ namespace SC2_GameTranslater
             {
                 string keyStatus = Data_GameText.GetGameTextNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_Status);
                 query = from row in query
-                        where ((int)row[keyStatus] & (int)TextStatusFilter) != 0
+                        where ((Enum)row[keyStatus]).HasFlag(TextStatusFilter)
                         select row;
             }
             if (!IsSelectAllGalaxyFilter)
@@ -874,21 +922,100 @@ namespace SC2_GameTranslater
                         where IsUseInGalaxyFiles(row)
                         select row;
             }
-            if (TextBox_SearchText.Text != null)
+            if (CheckBox_SearchRegex.IsChecked == true)
             {
-                try
-                {
-                    Regex regex = new Regex(TextBox_SearchText.Text, RegexOptions.Compiled);
-                    query = from row in query
-                            where IsInSearchResult(row, regex)
-                            select row;
-                }
-                catch
-                {
-
-                }
+                SereachText_RegexMod(ref query);
+            }
+            else
+            {
+                SereachText_MatchMod(ref query);
             }
             DataGrid_TranslatedTexts.ItemsSource = query.AsDataView();
+        }
+
+        /// <summary>
+        /// 获取需要搜索的Key的列表
+        /// </summary>
+        /// <returns></returns>
+        private List<string> GetSearchKeyList()
+        {
+            List<string> keyList = new List<string>();
+            EnumSearchTextType type = (EnumSearchTextType)(ComboBox_SearchType.SelectedItem as ComboBoxItem).Tag;
+            // ID
+            if (type.HasFlag(EnumSearchTextType.ID))
+            {
+                keyList.Add(Data_GameText.RN_GameText_ID);
+            }
+
+            // Source
+            if (type.HasFlag(EnumSearchTextType.Source))
+            {
+                ComboBoxItem item = ComboBox_SearchLanguage.SelectedItem as ComboBoxItem;
+                List<EnumLanguage> languageList = (CurrentTextData.DataSet as Data_GameText).LangaugeList;
+                if (item.Tag == null)
+                {
+                    keyList.AddRange(languageList.Select(r => Data_GameText.GetGameTextNameForLanguage(r, Data_GameText.RN_GameText_Text)).ToList());
+                }
+                else
+                {
+                    keyList.Add(Data_GameText.GetGameTextNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_Text));
+                }
+            }
+            // Edited
+            if (type.HasFlag(EnumSearchTextType.Edited))
+            {
+                ComboBoxItem item = ComboBox_SearchLanguage.SelectedItem as ComboBoxItem;
+                List<EnumLanguage> languageList = (CurrentTextData.DataSet as Data_GameText).LangaugeList;
+                if (item.Tag == null)
+                {
+                    keyList.AddRange(languageList.Select(r => Data_GameText.GetGameTextNameForLanguage(r, Data_GameText.RN_GameText_Edited)).ToList());
+                }
+                else
+                {
+                    keyList.Add(Data_GameText.GetGameTextNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_Edited));
+                }
+            }
+            return keyList;
+        }
+
+        /// <summary>
+        /// 搜索文本（正则表达式模式）
+        /// </summary>
+        /// <param name="query">查询数据</param>
+        private void SereachText_RegexMod(ref EnumerableRowCollection<DataRow> query)
+        {
+            string match = TextBox_SearchText.Text;
+            if (string.IsNullOrEmpty(match)) return;
+            RegexOptions options = CheckBox_SearchCase.IsChecked == true ? RegexOptions.Compiled : RegexOptions.Compiled | RegexOptions.IgnoreCase;
+            try
+            {
+                Regex regex = new Regex(match, options);
+                query = from row in query
+                        where IsInSearchResult_RegexLangauge(row, GetSearchKeyList(), regex)
+                        select row;
+            }
+            catch
+            {
+                SereachText_MatchMod(ref query);
+            }
+        }
+
+        /// <summary>
+        /// 搜索文本（匹配模式）
+        /// </summary>
+        /// <param name="query">查询数据</param>
+        private void SereachText_MatchMod(ref EnumerableRowCollection<DataRow> query)
+        {
+            string match = TextBox_SearchText.Text;
+            if (String.IsNullOrEmpty(match)) return;
+            EnumSearchTextType type = (EnumSearchTextType)(ComboBox_SearchType.SelectedItem as ComboBoxItem).Tag;
+            EnumSearchTextLocation location = (EnumSearchTextLocation)(ComboBox_SearchLocation.SelectedItem as ComboBoxItem).Tag;
+            Delegate_IsInSearchResult searchMatchFunc = DictTextSearchLocationFunc[location];
+            bool ignoreCase = CheckBox_SearchCase.IsChecked == false;
+            if (ignoreCase) match = match.ToLower();
+            query = from row in query
+                    where IsInSearchResult_Langauge(row, GetSearchKeyList(), match, ignoreCase, searchMatchFunc)
+                    select row;
         }
 
         /// <summary>
@@ -905,19 +1032,96 @@ namespace SC2_GameTranslater
             }
             else
             {
-                return locations.Where(r=> GalaxyFilter.Contains(r.GetParentRow(Data_GameText.RSN_GalaxyLine_GameLocation_Line)[Data_GameText.RN_GalaxyLine_File])).Count() != 0;
+                return locations.Where(r => GalaxyFilter.Contains(r.GetParentRow(Data_GameText.RSN_GalaxyLine_GameLocation_Line)[Data_GameText.RN_GalaxyLine_File])).Count() != 0;
             }
         }
 
         /// <summary>
-        /// 在搜索结果中
+        /// 在搜索结果中（多语言）
         /// </summary>
-        /// <param name="regex">测试正则表达式</param>
         /// <param name="row">行</param>
+        /// <param name="keyList">数据列名列表</param>
+        /// <param name="match">测试正则表达式</param>
         /// <returns>判断结果</returns>
-        private bool IsInSearchResult(DataRow row, Regex regex)
+        private static bool IsInSearchResult_RegexLangauge(DataRow row, List<string> keyList, Regex match)
         {
-            return true;
+            foreach (string key in keyList)
+            {
+                if (row[key] != DBNull.Value && match.IsMatch(row[key] as string))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 在搜索结果中（全部）
+        /// </summary>
+        /// <param name="row">行</param>
+        /// <param name="key">数据列名</param>
+        /// <param name="match">匹配字符串</param>
+        /// <param name="ignoreCase">忽略大小写</param>
+        /// <returns>判断结果</returns>
+        private static bool IsInSearchResult_All(DataRow row, string key, string match, bool ignoreCase)
+        {
+            if (row[key] == DBNull.Value) return false;
+            string value = row[key] as string;
+            if (ignoreCase) value = value.ToLower();
+            return value.Contains(match);
+        }
+
+        /// <summary>
+        /// 在搜索结果中（左起）
+        /// </summary>
+        /// <param name="row">行</param>
+        /// <param name="key">数据列名</param>
+        /// <param name="match">匹配字符串</param>
+        /// <param name="ignoreCase">忽略大小写</param>
+        /// <returns>判断结果</returns>
+        private static bool IsInSearchResult_Left(DataRow row, string key, string match, bool ignoreCase)
+        {
+            if (row[key] == DBNull.Value) return false;
+            string value = row[key] as string;
+            if (ignoreCase) value = value.ToLower();
+            return value.StartsWith(match);
+        }
+
+        /// <summary>
+        /// 在搜索结果中（右起）
+        /// </summary>
+        /// <param name="row">行</param>
+        /// <param name="key">数据列名</param>
+        /// <param name="match">匹配字符串</param>
+        /// <param name="ignoreCase">忽略大小写</param>
+        /// <returns>判断结果</returns>
+        private static bool IsInSearchResult_Right(DataRow row, string key, string match, bool ignoreCase)
+        {
+            if (row[key] == DBNull.Value) return false;
+            string value = row[key] as string;
+            if (ignoreCase) value = value.ToLower();
+            return value.EndsWith(match);
+        }
+
+        /// <summary>
+        /// 在搜索结果中（多语言）
+        /// </summary>
+        /// <param name="row">行</param>
+        /// <param name="keyList">数据列名列表</param>
+        /// <param name="match">匹配字符串</param>
+        /// <param name="ignoreCase">忽略大小写</param>
+        /// <param name="func">匹配函数</param>
+        /// <returns>判断结果</returns>
+        private static bool IsInSearchResult_Langauge(DataRow row, List<string> keyList, string match, bool ignoreCase, Delegate_IsInSearchResult func)
+        {
+            foreach (string key in keyList)
+            {
+                if (func(row, key, match, ignoreCase))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         #endregion
@@ -1208,6 +1412,39 @@ namespace SC2_GameTranslater
         {
         }
 
+        /// <summary>
+        /// 搜索类型选择事件
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void ComboBox_Search_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RefreshTranslatedText();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 搜索正则表达式状态切换事件
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void CheckBox_SearchCheckBox_CheckEvent(object sender, RoutedEventArgs e)
+        {
+            RefreshTranslatedText();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 文本变化换事件
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void TextBox_SearchText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshTranslatedText();
+        }
+
         #endregion
+
     }
 }

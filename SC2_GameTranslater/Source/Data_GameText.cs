@@ -145,7 +145,7 @@ namespace SC2_GameTranslater.Source
                 m_ComponentsPath = value;
                 Tables[TN_ModInfo].Rows.Add(value);
                 Globals.MainWindow.TextBox_ModPath.Text = value;
-                m_ModPath = (new FileInfo(value)).DirectoryName;
+                ModPath = (new FileInfo(value)).DirectoryName;
             }
             get
             {
@@ -157,14 +157,9 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// Mod或Map路径
         /// </summary>
-        public string ModPath
-        {
-            get
-            {
-                return m_ModPath;
-            }
-        }
-        private string m_ModPath = null;
+        public string ModPath { get; private set; } = null;
+
+        public List<EnumLanguage> LangaugeList { get; private set; } 
 
         #endregion
 
@@ -402,16 +397,16 @@ namespace SC2_GameTranslater.Source
         /// <param name="baseDir">基础目录</param>
         public void LoadGameTextFile(DirectoryInfo baseDir)
         {
-            List<EnumLanguage> dictLanguage = new List<EnumLanguage>();
+            LangaugeList = new List<EnumLanguage>();
             foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
             {
                 if (ExistGameTextFileOfLanguage(baseDir, lang))
                 {
                     GetLanguageRow(lang);
-                    dictLanguage.Add(lang);
+                    LangaugeList.Add(lang);
                 }
             }
-            foreach (EnumLanguage lang in dictLanguage)
+            foreach (EnumLanguage lang in LangaugeList)
             {
                 LoadGameTextFile(baseDir, lang, EnumGameTextFile.GameStrings);
                 LoadGameTextFile(baseDir, lang, EnumGameTextFile.ObjectStrings);
