@@ -170,6 +170,11 @@ namespace SC2_GameTranslater.Source
         }
 
         /// <summary>
+        /// 当前项目路径
+        /// </summary>
+        public static FileInfo CurrentProjectPath { set; get; } = null;
+
+        /// <summary>
         /// 语言字典
         /// </summary>
         public static Dictionary<EnumLanguage, ResourceDictionary> DictUILanguages { set; get; } = new Dictionary<EnumLanguage, ResourceDictionary>();
@@ -213,7 +218,60 @@ namespace SC2_GameTranslater.Source
 
         #region 方法
 
-        #region 通用
+        #region 打开保存窗口
+
+        /// <summary>
+        /// 打开文件路径窗口
+        /// </summary>
+        /// <param name="baseFolder">默认打开目录</param>
+        /// <param name="filter">文件类型验证</param>
+        /// <param name="title">标题</param>
+        /// <returns>打开结果</returns>
+        public static System.Windows.Forms.DialogResult OpenFilePathDialog(string baseFolder, string filter, string title, out System.Windows.Forms.OpenFileDialog fileDialog)
+        {
+            fileDialog = new System.Windows.Forms.OpenFileDialog();
+            if (Directory.Exists(baseFolder))
+            {
+                fileDialog.InitialDirectory = baseFolder;
+            }
+            else
+            {
+                fileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            }
+            fileDialog.Filter = filter;
+            fileDialog.Title = title;
+            fileDialog.Multiselect = false;
+            fileDialog.RestoreDirectory = true;
+            return fileDialog.ShowDialog();
+        }
+
+        /// <summary>
+        /// 保存文件路径窗口
+        /// </summary>
+        /// <param name="baseFolder">默认保存目录</param>
+        /// <param name="filter">文件类型验证</param>
+        /// <param name="title">标题</param>
+        /// <returns>打开结果</returns>
+        public static System.Windows.Forms.DialogResult SaveFilePathDialog(string baseFolder, string filter, string title, out System.Windows.Forms.SaveFileDialog fileDialog)
+        {
+            fileDialog = new System.Windows.Forms.SaveFileDialog();
+            if (Directory.Exists(baseFolder))
+            {
+                fileDialog.InitialDirectory = baseFolder;
+            }
+            else
+            {
+                fileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            }
+            fileDialog.Filter = filter;
+            fileDialog.Title = title;
+            fileDialog.RestoreDirectory = true;
+            return fileDialog.ShowDialog();
+        }
+
+        #endregion
+
+        #region 压缩反压缩
 
         /// <summary>      
         /// 序列化对象并压缩      
@@ -295,6 +353,19 @@ namespace SC2_GameTranslater.Source
             Log.Assert(CurrentProject == null);
             Data_GameText project = new Data_GameText();
             project.Initialization(file);
+            CurrentProject = project;
+        }
+
+        /// <summary>
+        /// 打开新项目数据
+        /// </summary>
+        /// <param name="file">文件路径</param>
+        public static bool OpenProjectData(FileInfo file)
+        {
+            Log.Assert(CurrentProject == null);
+            Data_GameText project = Data_GameText.LoadProject(file);
+            CurrentProject = project;
+            return project != null;
         }
 
         #endregion

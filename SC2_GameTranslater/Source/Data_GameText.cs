@@ -159,7 +159,7 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         public string ModPath { get; private set; } = null;
 
-        public List<EnumLanguage> LangaugeList { get; private set; } 
+        public List<EnumLanguage> LangaugeList { get; private set; }
 
         #endregion
 
@@ -194,16 +194,6 @@ namespace SC2_GameTranslater.Source
         #region 进程
 
         /// <summary>
-        /// 委托设为当前Project
-        /// </summary>
-        /// <param name="count">当前计数</param>
-        /// <param name="max">最大计数</param>
-        private void SetToCurrentProject(double count, double max)
-        {
-            Globals.CurrentProject = this;
-        }
-
-        /// <summary>
         /// 初始化
         /// </summary>
         /// <param name="argu"></param>
@@ -221,7 +211,20 @@ namespace SC2_GameTranslater.Source
             LoadGalaxyFile(galaxyFiles);
             LoadGameTextFile(file.Directory);
 
-            Globals.MainWindow.ProgressBarClean(SetToCurrentProject);
+            Globals.MainWindow.ProgressBarClean(null);
+        }
+
+        #endregion
+
+        #region 保存
+
+        /// <summary>
+        /// 保存当前项目
+        /// </summary>
+        /// <param name="path">保存路径</param>
+        public void SaveProject(FileInfo path)
+        {
+            Globals.ObjectSerializerCompression(path, this);
         }
 
         #endregion
@@ -236,6 +239,39 @@ namespace SC2_GameTranslater.Source
         {
             Threads.StartThread(ThreadInitialization, file, true);
             ComponentsPath = file.FullName;
+        }
+
+        /// <summary>
+        /// 加载项目
+        /// </summary>
+        /// <param name="path">路径</param>
+        public static Data_GameText LoadProject(FileInfo path)
+        {
+            Data_GameText proj = Globals.ObjectDeserializeDecompress(path) as Data_GameText;
+            proj.RefreshAttribute();
+            return proj;
+        }
+
+        /// <summary>
+        /// 刷新项目属性
+        /// </summary>
+        /// <returns>是否成功加载</returns>
+        public bool RefreshAttribute()
+        {
+#if !DEBUG
+            try
+#endif
+            {
+                ComponentsPath = Tables[TN_ModInfo].Rows[0][RN_ModInfo_FilePath] as string;
+                LangaugeList = Tables[TN_Language].AsEnumerable().Select(r => (EnumLanguage)r[RN_Language_ID]).ToList();
+                return true;
+            }
+#if !DEBUG
+            catch
+            {
+                return false;
+            }
+#endif
         }
 
         #endregion

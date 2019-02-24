@@ -43,6 +43,11 @@
                 <Fluent:Backstage Header="{DynamicResource ResourceKey=UI_Backstage_Menu_Header}">
                     <Fluent:BackstageTabControl>
                         <Fluent:Button
+                            x:Name="RibbonButton_MenuNew"
+                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandNew}"
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_New_Header}" />
+                        <Separator />
+                        <Fluent:Button
                             x:Name="RibbonButton_MenuOpen"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandOpen}"
                             Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}" />
@@ -138,6 +143,7 @@
                 </Fluent:Button>
             </Fluent:Ribbon.ToolBarItems>
             <Fluent:Ribbon.QuickAccessItems>
+                <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_New}}" />
                 <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Open}}" />
                 <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Save}}" />
                 <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Accept}}" />
@@ -149,6 +155,13 @@
                     Width="Auto"
                     Grid.IsSharedSizeScope="True"
                     Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_File_Header}">
+                    <Fluent:Button
+                        x:Name="RibbonButton_New"
+                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandNew}"
+                        Header="{DynamicResource ResourceKey=UI_RibbonButton_New_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_New}"
+                        KeyTip="N"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_New}" />
                     <Fluent:Button
                         x:Name="RibbonButton_Open"
                         Command="{Binding ElementName=RibbonWindow_Main, Path=CommandOpen}"
@@ -268,8 +281,8 @@
                         SelectionChanged="ComboBox_Search_SelectionChanged">
                         <Fluent:ComboBox.IsEnabled>
                             <MultiBinding Converter="{StaticResource Converter_SerachLocationByRegexControl}">
-                                <Binding ElementName="CheckBox_SearchRegex" Path="IsEnabled"/>
-                                <Binding ElementName="CheckBox_SearchRegex" Path="IsChecked"/>
+                                <Binding ElementName="CheckBox_SearchRegex" Path="IsEnabled" />
+                                <Binding ElementName="CheckBox_SearchRegex" Path="IsChecked" />
                             </MultiBinding>
                         </Fluent:ComboBox.IsEnabled>
                         <ComboBoxItem
@@ -660,7 +673,7 @@
                                 <Setter Property="HorizontalContentAlignment" Value="Left" />
                                 <Setter Property="VerticalContentAlignment" Value="Center" />
                                 <Setter Property="Margin" Value="2" />
-                                <Setter Property="AcceptsReturn" Value="True"/>
+                                <Setter Property="AcceptsReturn" Value="True" />
                                 <Setter Property="TextWrapping" Value="Wrap" />
                             </Style>
                         </DataGridTextColumn.EditingElementStyle>

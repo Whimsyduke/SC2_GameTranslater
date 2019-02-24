@@ -106,6 +106,16 @@ namespace SC2_GameTranslater
         #region 命令
 
         /// <summary>
+        /// 新建命令依赖项
+        /// </summary>
+        public static DependencyProperty CommandNewProperty = DependencyProperty.Register(nameof(CommandNew), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+
+        /// <summary>
+        /// 新建命令依赖项属性
+        /// </summary>
+        public RoutedUICommand CommandNew { set => SetValue(CommandNewProperty, value); get => (RoutedUICommand)GetValue(CommandNewProperty); }
+
+        /// <summary>
         /// 打开命令依赖项
         /// </summary>
         public static DependencyProperty CommandOpenProperty = DependencyProperty.Register(nameof(CommandOpen), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
@@ -309,6 +319,8 @@ namespace SC2_GameTranslater
             #region 指令配置
 
             CommandBinding binding;
+            binding = new CommandBinding(CommandNew, Executed_New, CanExecuted_New);
+            Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandOpen, Executed_Open, CanExecuted_Open);
             Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandSave, Executed_Save, CanExecuted_Save);
@@ -434,45 +446,50 @@ namespace SC2_GameTranslater
         #region 命令
 
         /// <summary>
+        /// 新建项目命令执行函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void Executed_New(object sender, ExecutedRoutedEventArgs e)
+        {
+            string baseFolder = Globals.Preference.LastFolderPath; ;
+            string filter = Globals.CurrentLanguage["TEXT_SC2File"] as string + "|" + Globals.FileName_SC2Components;
+            string title = Globals.CurrentLanguage["UI_OpenFileDialog_New_Title"] as string;
+            if (Globals.OpenFilePathDialog(baseFolder, filter, title, out System.Windows.Forms.OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
+            {
+                FileInfo file = new FileInfo(fileDialog.FileName);
+                Globals.Preference.LastFolderPath = file.DirectoryName;
+                ProjectNew(file);
+            }
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 新建项目命令判断函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void CanExecuted_New(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+            e.Handled = true;
+        }
+
+        /// <summary>
         /// 打开项目命令执行函数
         /// </summary>
         /// <param name="sender">命令来源</param>
         /// <param name="e">路由事件参数</param>
         public static void Executed_Open(object sender, ExecutedRoutedEventArgs e)
         {
-            System.Windows.Forms.OpenFileDialog fileDialog = new System.Windows.Forms.OpenFileDialog();
-            if (Directory.Exists(Globals.Preference.LastFolderPath))
-            {
-                fileDialog.InitialDirectory = Globals.Preference.LastFolderPath;
-            }
-            else
-            {
-                fileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            }
-#if true
-
-            fileDialog.Filter = Globals.CurrentLanguage["TEXT_ProjectFile"] as string + "|*" + Globals.Extension_SC2GameTran + "|" + Globals.CurrentLanguage["TEXT_SC2File"] as string + "|" + Globals.FileName_SC2Components;
-#else            
-            fileDialog.Filter = Globals.CurrentLanguage["TEXT_ProjectFile"] as string + "|*" + Globals.Extension_SC2GameTran + "|" + Globals.CurrentLanguage["TEXT_SC2File"] as string + "|*" + Globals.Extension_SC2Map + ";*" + Globals.Extension_SC2Mod + ";" + Globals.FileName_SC2Components;
-#endif
-            fileDialog.Multiselect = false;
-            fileDialog.RestoreDirectory = true;
-            fileDialog.Title = Globals.CurrentLanguage["UI_OpenFileDialog_Open_Title"] as string;
-#if DEBUG
-            fileDialog.FilterIndex = 2;
-#endif
-            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            string baseFolder = Globals.Preference.LastFolderPath; ;
+            string filter = Globals.CurrentLanguage["TEXT_ProjectFile"] as string + "|*" + Globals.Extension_SC2GameTran;
+            string title = Globals.CurrentLanguage["UI_OpenFileDialog_Open_Title"] as string;
+            if (Globals.OpenFilePathDialog(baseFolder, filter, title, out System.Windows.Forms.OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
                 Globals.Preference.LastFolderPath = file.DirectoryName;
-                if (fileDialog.FilterIndex == 1)
-                {
-                    Globals.MainWindow.ProjectOpen(file);
-                }
-                else
-                {
-                    Globals.MainWindow.ProjectNew(file);
-                }
+                ProjectOpen(file);
             }
 
             e.Handled = true;
@@ -496,7 +513,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void Executed_Save(object sender, ExecutedRoutedEventArgs e)
         {
-            MessageBox.Show("Save");
+            ProjectSave(false);
             e.Handled = true;
         }
 
@@ -507,7 +524,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void CanExecuted_Save(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
+            e.CanExecute = CheckCurrentProjectExist();
             e.Handled = true;
         }
 
@@ -518,7 +535,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void Executed_SaveAs(object sender, ExecutedRoutedEventArgs e)
         {
-            MessageBox.Show("SaveAs");
+            ProjectSave(false);
             e.Handled = true;
         }
 
@@ -529,7 +546,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void CanExecuted_SaveAs(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
+            e.CanExecute = CheckCurrentProjectExist();
             e.Handled = true;
         }
 
@@ -562,7 +579,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void Executed_Close(object sender, ExecutedRoutedEventArgs e)
         {
-            Globals.MainWindow.ProjectClose();
+            ProjectClose();
             e.Handled = true;
         }
 
@@ -573,7 +590,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void CanExecuted_Close(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
+            e.CanExecute = CheckCurrentProjectExist();
             e.Handled = true;
         }
 
@@ -602,7 +619,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void CanExecuted_ModPath(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = Globals.MainWindow.CheckCurrentProjectExist();
+            e.CanExecute = CheckCurrentProjectExist();
             e.Handled = true;
         }
 
@@ -1129,39 +1146,86 @@ namespace SC2_GameTranslater
         #region 功能
 
         /// <summary>
-        /// 打开项目
-        /// </summary>
-        /// <param name="file">文件路径</param>
-        public void ProjectOpen(FileInfo file)
-        {
-            ProjectClose();
-        }
-
-        /// <summary>
         /// 新建项目
         /// </summary>
         /// <param name="file">文件路径</param>
-        public void ProjectNew(FileInfo file)
+        public static void ProjectNew(FileInfo file)
         {
             ProjectClose();
             Globals.InitProjectData(file);
-            RibbonGroupBox_File.IsEnabled = true;
+            Globals.MainWindow.RibbonGroupBox_File.UpdateLayout();
+        }
+
+        /// <summary>
+        /// 打开项目
+        /// </summary>
+        /// <param name="file">文件路径</param>
+        /// <returns>是否成功打开</returns>
+        public static bool ProjectOpen(FileInfo file)
+        {
+            ProjectClose();
+            Globals.CurrentProjectPath = file;
+            bool result = Globals.OpenProjectData(file);
+            Globals.MainWindow.RibbonGroupBox_File.UpdateLayout();
+            return result;
+        }
+
+        /// <summary>
+        /// 保存项目
+        /// </summary>
+        /// <param name="file">保存路径</param>
+        public static void ProjectSave(FileInfo file)
+        {
+            Log.Assert(Globals.CurrentProject != null);
+            Globals.CurrentProject.SaveProject(file);
+        }
+
+        /// <summary>
+        /// 保存项目
+        /// </summary>
+        /// <param name="isSaveAs">是否另存为</param>
+        public static void ProjectSave(bool isSaveAs)
+        {
+            Log.Assert(Globals.CurrentProject != null);
+            if (!isSaveAs && Globals.CurrentProjectPath != null)
+            {
+                ProjectSave(Globals.CurrentProjectPath);
+                return;
+            }
+            else
+            {
+                string baseFolder = Globals.Preference.LastFolderPath; ;
+                string filter = Globals.CurrentLanguage["TEXT_ProjectFile"] as string + "|*" + Globals.Extension_SC2GameTran;
+                string key = isSaveAs ? "UI_OpenFileDialog_SaveAs_Title" : "UI_OpenFileDialog_Save_Title";
+                string title = Globals.CurrentLanguage[isSaveAs] as string;
+                if (Globals.SaveFilePathDialog(baseFolder, filter, title, out System.Windows.Forms.SaveFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
+                {
+                    FileInfo file = new FileInfo(fileDialog.FileName);
+                    Globals.Preference.LastFolderPath = file.DirectoryName;
+                    Globals.CurrentProjectPath = file;
+                    ProjectSave(file);
+                }
+            }
         }
 
         /// <summary>
         /// 关闭文件
         /// </summary>
-        public void ProjectClose()
+        public static void ProjectClose()
         {
             ///To Do Save
-            if (Globals.CurrentProject != null) Globals.CurrentProject = null;
+            if (Globals.CurrentProject != null)
+            {
+                Globals.CurrentProject = null;
+                Globals.CurrentProjectPath = null;
+            }
         }
 
         /// <summary>
         /// 检测当前项目存在
         /// </summary>
         /// <returns></returns>
-        public bool CheckCurrentProjectExist()
+        public static bool CheckCurrentProjectExist()
         {
             return Globals.CurrentProject != null;
         }

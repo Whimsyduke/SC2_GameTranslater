@@ -27,6 +27,7 @@
 
     <!--#region 界面文本-->
     <sys:String x:Key="UI_Backstage_Menu_Header">目录</sys:String>
+    <sys:String x:Key="UI_RibbonButton_New_Header">新建</sys:String>
     <sys:String x:Key="UI_RibbonButton_Open_Header">打开</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">保存</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">另存为</sys:String>
@@ -40,7 +41,10 @@
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">文件</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">翻译语言</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TranslateLanguage_Header">翻译语言</sys:String>
-    <sys:String x:Key="UI_OpenFileDialog_Open_Title">打开</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_New_Title">新建项目</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_Open_Title">打开项目</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_Save_Title">保存项目</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_SaveAs_Title">保存项目到</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">详情</sys:String>
     <sys:String x:Key="UI_GroupBox_Log_Header">日志</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">清除日志</sys:String>

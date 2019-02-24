@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--#region Common Image-->
     <BitmapImage x:Key="IMAGE_Icon" UriSource="pack://application:,,,/Assets/Image/Icon.ico" />
+    <BitmapImage x:Key="IMAGE_New" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-general_new.dds" />
     <BitmapImage x:Key="IMAGE_Open" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-general_open.dds" />
     <BitmapImage x:Key="IMAGE_Save" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-general_save.dds" />
     <BitmapImage x:Key="IMAGE_Accept" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newcondition.dds" />
