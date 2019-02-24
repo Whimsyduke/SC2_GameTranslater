@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Threading;
 using System.Threading;
+using System.Text;
 
 namespace SC2_GameTranslater.Source
 {
@@ -138,26 +139,20 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 组件文件夹路径
         /// </summary>
-        public string ComponentsPath
+        public FileInfo SC2Components
         {
             set
             {
                 m_ComponentsPath = value;
-                Tables[TN_ModInfo].Rows.Add(value);
-                Globals.MainWindow.TextBox_ModPath.Text = value;
-                ModPath = (new FileInfo(value)).DirectoryName;
+                Tables[TN_ModInfo].Rows.Add(value.FullName);
+                Globals.MainWindow.TextBox_ComponentsPath.Text = value.FullName;
             }
             get
             {
                 return m_ComponentsPath;
             }
         }
-        private string m_ComponentsPath = null;
-
-        /// <summary>
-        /// Mod或Map路径
-        /// </summary>
-        public string ModPath { get; private set; } = null;
+        private FileInfo m_ComponentsPath = null;
 
         public List<EnumLanguage> LangaugeList { get; private set; }
 
@@ -238,7 +233,7 @@ namespace SC2_GameTranslater.Source
         public void Initialization(FileInfo file)
         {
             Threads.StartThread(ThreadInitialization, file, true);
-            ComponentsPath = file.FullName;
+            SC2Components = file;
         }
 
         /// <summary>
@@ -262,7 +257,7 @@ namespace SC2_GameTranslater.Source
             try
 #endif
             {
-                ComponentsPath = Tables[TN_ModInfo].Rows[0][RN_ModInfo_FilePath] as string;
+                SC2Components = new FileInfo(Tables[TN_ModInfo].Rows[0][RN_ModInfo_FilePath] as string);
                 LangaugeList = Tables[TN_Language].AsEnumerable().Select(r => (EnumLanguage)r[RN_Language_ID]).ToList();
                 return true;
             }
@@ -272,6 +267,84 @@ namespace SC2_GameTranslater.Source
                 return false;
             }
 #endif
+        }
+
+        #endregion
+
+        #region 写入
+
+        /// <summary>
+        /// 写入到地图或Mod
+        /// </summary>
+        /// <returns>写入成功</returns>
+        public bool WriteToComponents()
+        {
+            if (SC2Components != null && !SC2Components.Exists) return false;
+            DirectoryInfo baseDir = SC2Components.Directory;
+            List<string> backFiles = new List<string>();
+            EnumerableRowCollection<DataRow> gameStringRows = GetGameTextRows(EnumGameTextFile.GameStrings);
+            EnumerableRowCollection<DataRow> objectStringRows = GetGameTextRows(EnumGameTextFile.ObjectStrings);
+            EnumerableRowCollection<DataRow> triggerStringRows = GetGameTextRows(EnumGameTextFile.TriggerStrings);
+            foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
+            {
+                WriteToTextFile(baseDir,lang, EnumGameTextFile.GameStrings, ref backFiles, gameStringRows);
+                WriteToTextFile(baseDir, lang, EnumGameTextFile.ObjectStrings, ref backFiles, objectStringRows);
+                WriteToTextFile(baseDir, lang, EnumGameTextFile.TriggerStrings, ref backFiles, triggerStringRows);
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// 写入文本文件数据
+        /// </summary>
+        /// <param name="baseDir">基础目录</param>
+        /// <param name="lang">语言</param>
+        /// <param name="fileType">文件类型</param>
+        /// <param name="backFiles">备份文件列表</param>
+        /// <param name="data">文件数据</param>
+        /// <returns>写入成功</returns>
+        private bool WriteToTextFile(DirectoryInfo baseDir, EnumLanguage lang, EnumGameTextFile fileTyperef, ref List<string> backFiles, EnumerableRowCollection<DataRow> data)
+        {
+#if !DEBUG
+            try
+#endif
+            {
+                string backPath = TextFilePath(lang, EnumGameTextFile.GameStrings);
+                string originpath = string.Format("{0}\\{1}", baseDir.FullName, backPath);
+                if (!File.Exists(originpath)) return true; // no need write.
+                backFiles.Add(backPath);
+                File.Copy(originpath, backPath);
+                StreamWriter sw = new StreamWriter(originpath, false);
+                string key = GetGameTextNameForLanguage(lang, RN_GameText_Edited);
+                foreach (DataRow row in data)
+                {
+                    sw.WriteLine(string.Format("{0}={1}", row[RN_GameText_ID], row[RN_GameText_Edited]));
+                }
+                sw.Close();
+                return true;
+            }
+#if !DEBUG
+            cache
+            {
+                returen false;
+            }
+#endif
+        }
+
+        /// <summary>
+        /// 获取文本文件对应的文本数据
+        /// </summary>
+        /// <param name="fileType">文本文件类型</param>
+        /// <returns>数据列</returns>
+        private EnumerableRowCollection<DataRow> GetGameTextRows(EnumGameTextFile fileType)
+        {
+            EnumerableRowCollection<DataRow> query = Tables[TN_GameText].AsEnumerable();
+            string keyFile = RN_GameText_File;
+            query = from row in query
+                    where (EnumGameTextFile)row[keyFile] == fileType
+                    orderby row[RN_GameText_ID]
+                    select row;
+            return query;
         }
 
         #endregion
@@ -556,6 +629,7 @@ namespace SC2_GameTranslater.Source
             DataRow row = GetGameTextRow(file, key);
             row[GetGameTextNameForLanguage(lang, RN_GameText_Status)] = EnumGameTextStatus.Normal;
             row[GetGameTextNameForLanguage(lang, RN_GameText_Text)] = value;
+            row[GetGameTextNameForLanguage(lang, RN_GameText_Edited)] = value;
             return row;
         }
 
@@ -626,7 +700,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="file">Galaxy文件</param>
         private void LoadGalaxyFile(FileInfo file)
         {
-            string path = file.FullName.Substring(ModPath.Length);
+            string path = file.FullName.Substring(SC2Components.DirectoryName.Length);
             DataRow row = Tables[TN_GalaxyFile].NewRow();
             row[RN_GalaxyFile_Path] = path;
             row[RN_GalaxyFile_Name] = file.Name;

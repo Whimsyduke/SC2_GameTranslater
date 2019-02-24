@@ -35,7 +35,7 @@
     <sys:String x:Key="UI_RibbonButton_Accept_Header">应用</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">关闭</sys:String>
     <sys:String x:Key="UI_GroupBox_Language_Header">界面语言：</sys:String>
-    <sys:String x:Key="UI_GroupBox_ModPath_Header">Mod/Map路径：</sys:String>
+    <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Mod/Map路径：</sys:String>
     <sys:String x:Key="UI_BackstageTabItem_Preference_Header">配置</sys:String>
     <sys:String x:Key="UI_RibbonTabItem_Start_Header">开始</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">文件</sys:String>
@@ -45,10 +45,11 @@
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">打开项目</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Save_Title">保存项目</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_SaveAs_Title">保存项目到</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_CompontentsPath_Title">选择SC2地图/Mod组件文件夹</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">详情</sys:String>
     <sys:String x:Key="UI_GroupBox_Log_Header">日志</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">清除日志</sys:String>
-    <sys:String x:Key="UI_Button_SelectModPath_Content">选择</sys:String>
+    <sys:String x:Key="UI_Button_SelectComponentsPath_Content">选择</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">加载</sys:String>
     <sys:String x:Key="UI_GroupBox_TranslatedTexts_Header">翻译文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_LineNumber_Header">行号</sys:String>

@@ -96,10 +96,10 @@
                                             Margin="3"
                                             SelectionChanged="ComboBox_Language_SelectionChanged" />
                                     </GroupBox>
-                                    <GroupBox Name="GroupBox_ModPath" Grid.Row="1">
+                                    <GroupBox Name="GroupBox_ComponentsPath" Grid.Row="1">
                                         <GroupBox.Header>
                                             <Label>
-                                                <TextBlock Text="{DynamicResource ResourceKey=UI_GroupBox_ModPath_Header}" />
+                                                <TextBlock Text="{DynamicResource ResourceKey=UI_GroupBox_ComponentsPath_Header}" />
                                             </Label>
                                         </GroupBox.Header>
                                         <Grid>
@@ -108,7 +108,7 @@
                                                 <ColumnDefinition Width="80" />
                                             </Grid.ColumnDefinitions>
                                             <TextBox
-                                                Name="TextBox_ModPath"
+                                                Name="TextBox_ComponentsPath"
                                                 Grid.Column="0"
                                                 MinWidth="50"
                                                 Margin="3"
@@ -116,12 +116,12 @@
                                                 VerticalContentAlignment="Center"
                                                 IsReadOnly="True" />
                                             <Button
-                                                Name="Button_SelectModPath"
+                                                Name="Button_SelectComponentsPath"
                                                 Grid.Column="1"
                                                 Margin="3"
                                                 Padding="3"
-                                                Command="{Binding ElementName=RibbonWindow_Main, Path=CommandModPath}"
-                                                Content="{DynamicResource UI_Button_SelectModPath_Content}" />
+                                                Command="{Binding ElementName=RibbonWindow_Main, Path=CommandComponentsPath}"
+                                                Content="{DynamicResource UI_Button_SelectComponentsPath_Content}" />
                                         </Grid>
                                     </GroupBox>
                                 </Grid>

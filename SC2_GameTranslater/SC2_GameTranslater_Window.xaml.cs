@@ -168,12 +168,12 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 选择Mod/Map命令依赖项
         /// </summary>
-        public static DependencyProperty CommandModPathProperty = DependencyProperty.Register(nameof(CommandModPath), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+        public static DependencyProperty CommandComponentsPathProperty = DependencyProperty.Register(nameof(CommandComponentsPath), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
 
         /// <summary>
         /// 选择Mod/Map依赖项属性
         /// </summary>
-        public RoutedUICommand CommandModPath { set => SetValue(CommandModPathProperty, value); get => (RoutedUICommand)GetValue(CommandModPathProperty); }
+        public RoutedUICommand CommandComponentsPath { set => SetValue(CommandComponentsPathProperty, value); get => (RoutedUICommand)GetValue(CommandComponentsPathProperty); }
 
         #endregion
 
@@ -331,7 +331,7 @@ namespace SC2_GameTranslater
             Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandClose, Executed_Close, CanExecuted_Close);
             Globals.MainWindow.CommandBindings.Add(binding);
-            binding = new CommandBinding(CommandModPath, Executed_ModPath, CanExecuted_ModPath);
+            binding = new CommandBinding(CommandComponentsPath, Executed_ComponentsPath, CanExecuted_ComponentsPath);
             Globals.MainWindow.CommandBindings.Add(binding);
 
             #endregion
@@ -507,7 +507,7 @@ namespace SC2_GameTranslater
         }
 
         /// <summary>
-        ///接受项目命令执行函数
+        ///保存项目命令执行函数
         /// </summary>
         /// <param name="sender">命令来源</param>
         /// <param name="e">路由事件参数</param>
@@ -557,7 +557,16 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void Executed_Accept(object sender, ExecutedRoutedEventArgs e)
         {
-            MessageBox.Show("Accept");
+            Log.Assert(Globals.CurrentProject != null);
+            if (!Globals.CurrentProject.SC2Components.Exists)
+            {
+                if (!SetComponentsPath())
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+            Globals.CurrentProject.WriteToComponents();
             e.Handled = true;
         }
 
@@ -568,7 +577,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void CanExecuted_Accept(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = Globals.ModPathValid;
+            e.CanExecute = Globals.ComponentsPathValid;
             e.Handled = true;
         }
 
@@ -599,16 +608,9 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="sender">命令来源</param>
         /// <param name="e">路由事件参数</param>
-        public static void Executed_ModPath(object sender, ExecutedRoutedEventArgs e)
+        public static void Executed_ComponentsPath(object sender, ExecutedRoutedEventArgs e)
         {
-            if (Globals.MainWindow != null)
-            {
-                FileInfo mod = Globals.MainWindow.OpenFileDialogGetOpenFile(Globals.MainWindow.TextBox_ModPath, Globals.CurrentLanguage["TEXT_SC2File"] as string + "|" + Globals.FileName_SC2Components, Globals.CurrentLanguage["UI_OpenFileDialog_Open_Title"] as string);
-                if (mod != null)
-                {
-                    Globals.CurrentProject.ComponentsPath = mod.DirectoryName;
-                }
-            }
+            SetComponentsPath();
             e.Handled = true;
         }
 
@@ -617,7 +619,7 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="sender">命令来源</param>
         /// <param name="e">路由事件参数</param>
-        public static void CanExecuted_ModPath(object sender, CanExecuteRoutedEventArgs e)
+        public static void CanExecuted_ComponentsPath(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = CheckCurrentProjectExist();
             e.Handled = true;
@@ -1222,6 +1224,27 @@ namespace SC2_GameTranslater
         }
 
         /// <summary>
+        /// 设置组件文件夹路径
+        /// </summary>
+        /// <returns>设置成功</returns>
+        public static bool SetComponentsPath()
+        {
+            string baseFolder = Globals.MainWindow.TextBox_ComponentsPath.Text; ;
+            string filter = Globals.CurrentLanguage["TEXT_SC2File"] as string + "|" + Globals.FileName_SC2Components;
+            string title = Globals.CurrentLanguage["UI_OpenFileDialog_CompontentsPath_Title"] as string;
+            if (Globals.OpenFilePathDialog(baseFolder, filter, title, out System.Windows.Forms.OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
+            {
+                FileInfo file = new FileInfo(fileDialog.FileName);
+                Globals.CurrentProject.SC2Components = file;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// 检测当前项目存在
         /// </summary>
         /// <returns></returns>
@@ -1246,6 +1269,7 @@ namespace SC2_GameTranslater
             CanRefreshTranslatedText = true;
             RefreshTranslatedText(newPro);
         }
+
         #endregion
 
         #endregion

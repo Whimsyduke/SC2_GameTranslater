@@ -34,7 +34,7 @@
     <sys:String x:Key="UI_RibbonButton_Accept_Header">Accept</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">Close</sys:String>
     <sys:String x:Key="UI_GroupBox_Language_Header">UI Language:</sys:String>
-    <sys:String x:Key="UI_GroupBox_ModPath_Header">Mod/Map Path:</sys:String>
+    <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Mod/Map Path:</sys:String>
     <sys:String x:Key="UI_BackstageTabItem_Preference_Header">Preference</sys:String>
     <sys:String x:Key="UI_RibbonTabItem_Start_Header">Start</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">File</sys:String>
@@ -44,10 +44,11 @@
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">Open Project</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Save_Title">Save Project</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_SaveAs_Title">Save Project As</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_CompontentsPath_Title">Select SC2 Map/Mod Compontents</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">Details</sys:String>
     <sys:String x:Key="UI_GroupBox_Log_Header">Log</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">Clear Log</sys:String>
-    <sys:String x:Key="UI_Button_SelectModPath_Content">Select</sys:String>
+    <sys:String x:Key="UI_Button_SelectComponentsPath_Content">Select</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">Load</sys:String>
     <sys:String x:Key="UI_GroupBox_TranslatedTexts_Header">Translated Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_LineNumber_Header">Index</sys:String>

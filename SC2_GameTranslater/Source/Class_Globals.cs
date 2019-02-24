@@ -161,11 +161,11 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 项目对应的Mod或Map路径
         /// </summary>
-        public static bool ModPathValid
+        public static bool ComponentsPathValid
         {
             get
             {
-                return CurrentProject == null ? false : File.Exists(CurrentProject.ComponentsPath);
+                return CurrentProject == null ? false : CurrentProject.SC2Components.Exists;
             }
         }
 
