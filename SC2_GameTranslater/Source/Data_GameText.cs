@@ -89,7 +89,7 @@ namespace SC2_GameTranslater.Source
 
         #region 表名
 
-        public const string TN_ModInfo = "Table_ModInfo";
+        public const string TN_CompontentsInfo = "Table_CompontentsInfo";
         public const string TN_Language = "Table_Language";
         public const string TN_GalaxyFile = "Table_GalaxyFile";
         public const string TN_GalaxyLine = "Table_GalaxyLine";
@@ -151,7 +151,7 @@ namespace SC2_GameTranslater.Source
             set
             {
                 m_ComponentsPath = value;
-                Tables[TN_ModInfo].Rows.Add(value.FullName);
+                WriteCompontentsPath(value.FullName);
                 Globals.MainWindow.TextBox_ComponentsPath.Text = value.FullName;
             }
             get
@@ -191,6 +191,27 @@ namespace SC2_GameTranslater.Source
             return Tables[TN_Language].AsEnumerable().Select(r => (EnumLanguage)r[RN_Language_ID]).ToList();
         }
 
+        /// <summary>
+        /// 写入组件文件夹路径
+        /// </summary>
+        /// <param name="path">路径</param>
+        private void WriteCompontentsPath(string path)
+        {
+            DataTable table = Tables[TN_CompontentsInfo];
+            DataRow row;
+            if (table.Rows.Count != 1)
+            {
+                table.Rows.Clear();
+                row = table.NewRow();
+                table.Rows.Add(row);
+            }
+            else
+            {
+                row = table.Rows[0];
+            }
+            row[RN_ModInfo_FilePath] = path;
+        }
+
         #endregion
 
         #region 进程
@@ -204,7 +225,7 @@ namespace SC2_GameTranslater.Source
         {
             Globals.CurrentProject = this;
         }
-        
+
         /// <summary>
         /// 初始化
         /// </summary>
@@ -274,7 +295,7 @@ namespace SC2_GameTranslater.Source
             try
 #endif
             {
-                SC2Components = new FileInfo(Tables[TN_ModInfo].Rows[0][RN_ModInfo_FilePath] as string);
+                SC2Components = new FileInfo(Tables[TN_CompontentsInfo].Rows[0][RN_ModInfo_FilePath] as string);
                 LangaugeList = Tables[TN_Language].AsEnumerable().Select(r => (EnumLanguage)r[RN_Language_ID]).ToList();
                 return true;
             }
@@ -304,7 +325,7 @@ namespace SC2_GameTranslater.Source
             EnumerableRowCollection<DataRow> triggerStringRows = GetGameTextRows(EnumGameTextFile.TriggerStrings);
             foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
             {
-                WriteToTextFile(baseDir,lang, EnumGameTextFile.GameStrings, ref backFiles, gameStringRows);
+                WriteToTextFile(baseDir, lang, EnumGameTextFile.GameStrings, ref backFiles, gameStringRows);
                 WriteToTextFile(baseDir, lang, EnumGameTextFile.ObjectStrings, ref backFiles, objectStringRows);
                 WriteToTextFile(baseDir, lang, EnumGameTextFile.TriggerStrings, ref backFiles, triggerStringRows);
             }
@@ -326,18 +347,18 @@ namespace SC2_GameTranslater.Source
             try
 #endif
             {
-                string backPath = TextFilePath(lang, EnumGameTextFile.GameStrings);
+                string backPath = TextFilePath(lang, fileTyperef);
                 string originpath = string.Format("{0}\\{1}", baseDir.FullName, backPath);
-                if (!File.Exists(originpath)) return true; 
+                if (!File.Exists(originpath)) return true;
                 FileInfo backFile = new FileInfo(PATH_TempFolder + backPath);
                 backFiles.Add(backFile);
                 if (!backFile.Directory.Exists) backFile.Directory.Create();
-                File.Copy(originpath, backFile.FullName);
+                File.Copy(originpath, backFile.FullName, true);
                 StreamWriter sw = new StreamWriter(originpath, false);
                 string key = GetGameTextNameForLanguage(lang, RN_GameText_Edited);
                 foreach (DataRow row in data)
                 {
-                    sw.WriteLine(string.Format("{0}={1}", row[RN_GameText_ID], row[RN_GameText_Edited]));
+                    sw.WriteLine(string.Format("{0}={1}", row[RN_GameText_ID], row[key]));
                 }
                 sw.Close();
                 return true;
@@ -663,9 +684,9 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         private void CleanGalaxyTable()
         {
-            Tables[TN_GalaxyLocation].Clear();
-            Tables[TN_GalaxyLine].Clear();
-            Tables[TN_GalaxyFile].Clear();
+            Tables[TN_GalaxyLocation].Rows.Clear();
+            Tables[TN_GalaxyLine].Rows.Clear();
+            Tables[TN_GalaxyFile].Rows.Clear();
         }
 
         /// <summary>

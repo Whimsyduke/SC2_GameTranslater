@@ -24,7 +24,7 @@ namespace SC2_GameTranslater.Source {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class Data_GameText : global::System.Data.DataSet {
         
-        private Table_ModInfoDataTable tableTable_ModInfo;
+        private Table_CompontentsInfoDataTable tableTable_CompontentsInfo;
         
         private Table_LanguageDataTable tableTable_Language;
         
@@ -70,8 +70,8 @@ namespace SC2_GameTranslater.Source {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["Table_ModInfo"] != null)) {
-                    base.Tables.Add(new Table_ModInfoDataTable(ds.Tables["Table_ModInfo"]));
+                if ((ds.Tables["Table_CompontentsInfo"] != null)) {
+                    base.Tables.Add(new Table_CompontentsInfoDataTable(ds.Tables["Table_CompontentsInfo"]));
                 }
                 if ((ds.Tables["Table_Language"] != null)) {
                     base.Tables.Add(new Table_LanguageDataTable(ds.Tables["Table_Language"]));
@@ -110,9 +110,9 @@ namespace SC2_GameTranslater.Source {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public Table_ModInfoDataTable Table_ModInfo {
+        public Table_CompontentsInfoDataTable Table_CompontentsInfo {
             get {
-                return this.tableTable_ModInfo;
+                return this.tableTable_CompontentsInfo;
             }
         }
         
@@ -233,8 +233,8 @@ namespace SC2_GameTranslater.Source {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["Table_ModInfo"] != null)) {
-                    base.Tables.Add(new Table_ModInfoDataTable(ds.Tables["Table_ModInfo"]));
+                if ((ds.Tables["Table_CompontentsInfo"] != null)) {
+                    base.Tables.Add(new Table_CompontentsInfoDataTable(ds.Tables["Table_CompontentsInfo"]));
                 }
                 if ((ds.Tables["Table_Language"] != null)) {
                     base.Tables.Add(new Table_LanguageDataTable(ds.Tables["Table_Language"]));
@@ -284,10 +284,10 @@ namespace SC2_GameTranslater.Source {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableTable_ModInfo = ((Table_ModInfoDataTable)(base.Tables["Table_ModInfo"]));
+            this.tableTable_CompontentsInfo = ((Table_CompontentsInfoDataTable)(base.Tables["Table_CompontentsInfo"]));
             if ((initTable == true)) {
-                if ((this.tableTable_ModInfo != null)) {
-                    this.tableTable_ModInfo.InitVars();
+                if ((this.tableTable_CompontentsInfo != null)) {
+                    this.tableTable_CompontentsInfo.InitVars();
                 }
             }
             this.tableTable_Language = ((Table_LanguageDataTable)(base.Tables["Table_Language"]));
@@ -334,8 +334,8 @@ namespace SC2_GameTranslater.Source {
             this.Locale = new global::System.Globalization.CultureInfo("");
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableTable_ModInfo = new Table_ModInfoDataTable();
-            base.Tables.Add(this.tableTable_ModInfo);
+            this.tableTable_CompontentsInfo = new Table_CompontentsInfoDataTable();
+            base.Tables.Add(this.tableTable_CompontentsInfo);
             this.tableTable_Language = new Table_LanguageDataTable();
             base.Tables.Add(this.tableTable_Language);
             this.tableTable_GalaxyFile = new Table_GalaxyFileDataTable();
@@ -377,7 +377,7 @@ namespace SC2_GameTranslater.Source {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeTable_ModInfo() {
+        private bool ShouldSerializeTable_CompontentsInfo() {
             return false;
         }
         
@@ -467,7 +467,7 @@ namespace SC2_GameTranslater.Source {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void Table_ModInfoRowChangeEventHandler(object sender, Table_ModInfoRowChangeEvent e);
+        public delegate void Table_CompontentsInfoRowChangeEventHandler(object sender, Table_CompontentsInfoRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void Table_LanguageRowChangeEventHandler(object sender, Table_LanguageRowChangeEvent e);
@@ -489,14 +489,14 @@ namespace SC2_GameTranslater.Source {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class Table_ModInfoDataTable : global::System.Data.TypedTableBase<Table_ModInfoRow> {
+        public partial class Table_CompontentsInfoDataTable : global::System.Data.TypedTableBase<Table_CompontentsInfoRow> {
             
             private global::System.Data.DataColumn columnFilePath;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_ModInfoDataTable() {
-                this.TableName = "Table_ModInfo";
+            public Table_CompontentsInfoDataTable() {
+                this.TableName = "Table_CompontentsInfo";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -504,7 +504,7 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal Table_ModInfoDataTable(global::System.Data.DataTable table) {
+            internal Table_CompontentsInfoDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -521,7 +521,7 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected Table_ModInfoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected Table_CompontentsInfoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -545,45 +545,45 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_ModInfoRow this[int index] {
+            public Table_CompontentsInfoRow this[int index] {
                 get {
-                    return ((Table_ModInfoRow)(this.Rows[index]));
+                    return ((Table_CompontentsInfoRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event Table_ModInfoRowChangeEventHandler Table_ModInfoRowChanging;
+            public event Table_CompontentsInfoRowChangeEventHandler Table_CompontentsInfoRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event Table_ModInfoRowChangeEventHandler Table_ModInfoRowChanged;
+            public event Table_CompontentsInfoRowChangeEventHandler Table_CompontentsInfoRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event Table_ModInfoRowChangeEventHandler Table_ModInfoRowDeleting;
+            public event Table_CompontentsInfoRowChangeEventHandler Table_CompontentsInfoRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event Table_ModInfoRowChangeEventHandler Table_ModInfoRowDeleted;
+            public event Table_CompontentsInfoRowChangeEventHandler Table_CompontentsInfoRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddTable_ModInfoRow(Table_ModInfoRow row) {
+            public void AddTable_CompontentsInfoRow(Table_CompontentsInfoRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_ModInfoRow AddTable_ModInfoRow(string FilePath) {
-                Table_ModInfoRow rowTable_ModInfoRow = ((Table_ModInfoRow)(this.NewRow()));
+            public Table_CompontentsInfoRow AddTable_CompontentsInfoRow(string FilePath) {
+                Table_CompontentsInfoRow rowTable_CompontentsInfoRow = ((Table_CompontentsInfoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         FilePath};
-                rowTable_ModInfoRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTable_ModInfoRow);
-                return rowTable_ModInfoRow;
+                rowTable_CompontentsInfoRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTable_CompontentsInfoRow);
+                return rowTable_CompontentsInfoRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                Table_ModInfoDataTable cln = ((Table_ModInfoDataTable)(base.Clone()));
+                Table_CompontentsInfoDataTable cln = ((Table_CompontentsInfoDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -591,7 +591,7 @@ namespace SC2_GameTranslater.Source {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new Table_ModInfoDataTable();
+                return new Table_CompontentsInfoDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -609,28 +609,28 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_ModInfoRow NewTable_ModInfoRow() {
-                return ((Table_ModInfoRow)(this.NewRow()));
+            public Table_CompontentsInfoRow NewTable_CompontentsInfoRow() {
+                return ((Table_CompontentsInfoRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new Table_ModInfoRow(builder);
+                return new Table_CompontentsInfoRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(Table_ModInfoRow);
+                return typeof(Table_CompontentsInfoRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.Table_ModInfoRowChanged != null)) {
-                    this.Table_ModInfoRowChanged(this, new Table_ModInfoRowChangeEvent(((Table_ModInfoRow)(e.Row)), e.Action));
+                if ((this.Table_CompontentsInfoRowChanged != null)) {
+                    this.Table_CompontentsInfoRowChanged(this, new Table_CompontentsInfoRowChangeEvent(((Table_CompontentsInfoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -638,8 +638,8 @@ namespace SC2_GameTranslater.Source {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.Table_ModInfoRowChanging != null)) {
-                    this.Table_ModInfoRowChanging(this, new Table_ModInfoRowChangeEvent(((Table_ModInfoRow)(e.Row)), e.Action));
+                if ((this.Table_CompontentsInfoRowChanging != null)) {
+                    this.Table_CompontentsInfoRowChanging(this, new Table_CompontentsInfoRowChangeEvent(((Table_CompontentsInfoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -647,8 +647,8 @@ namespace SC2_GameTranslater.Source {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.Table_ModInfoRowDeleted != null)) {
-                    this.Table_ModInfoRowDeleted(this, new Table_ModInfoRowChangeEvent(((Table_ModInfoRow)(e.Row)), e.Action));
+                if ((this.Table_CompontentsInfoRowDeleted != null)) {
+                    this.Table_CompontentsInfoRowDeleted(this, new Table_CompontentsInfoRowChangeEvent(((Table_CompontentsInfoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -656,14 +656,14 @@ namespace SC2_GameTranslater.Source {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.Table_ModInfoRowDeleting != null)) {
-                    this.Table_ModInfoRowDeleting(this, new Table_ModInfoRowChangeEvent(((Table_ModInfoRow)(e.Row)), e.Action));
+                if ((this.Table_CompontentsInfoRowDeleting != null)) {
+                    this.Table_CompontentsInfoRowDeleting(this, new Table_CompontentsInfoRowChangeEvent(((Table_CompontentsInfoRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveTable_ModInfoRow(Table_ModInfoRow row) {
+            public void RemoveTable_CompontentsInfoRow(Table_CompontentsInfoRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -690,7 +690,7 @@ namespace SC2_GameTranslater.Source {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "Table_ModInfoDataTable";
+                attribute2.FixedValue = "Table_CompontentsInfoDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2152,15 +2152,15 @@ namespace SC2_GameTranslater.Source {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class Table_ModInfoRow : global::System.Data.DataRow {
+        public partial class Table_CompontentsInfoRow : global::System.Data.DataRow {
             
-            private Table_ModInfoDataTable tableTable_ModInfo;
+            private Table_CompontentsInfoDataTable tableTable_CompontentsInfo;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal Table_ModInfoRow(global::System.Data.DataRowBuilder rb) : 
+            internal Table_CompontentsInfoRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableTable_ModInfo = ((Table_ModInfoDataTable)(this.Table));
+                this.tableTable_CompontentsInfo = ((Table_CompontentsInfoDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2168,27 +2168,27 @@ namespace SC2_GameTranslater.Source {
             public string FilePath {
                 get {
                     try {
-                        return ((string)(this[this.tableTable_ModInfo.FilePathColumn]));
+                        return ((string)(this[this.tableTable_CompontentsInfo.FilePathColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Table_ModInfo”中列“FilePath”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“Table_CompontentsInfo”中列“FilePath”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableTable_ModInfo.FilePathColumn] = value;
+                    this[this.tableTable_CompontentsInfo.FilePathColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsFilePathNull() {
-                return this.IsNull(this.tableTable_ModInfo.FilePathColumn);
+                return this.IsNull(this.tableTable_CompontentsInfo.FilePathColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetFilePathNull() {
-                this[this.tableTable_ModInfo.FilePathColumn] = global::System.Convert.DBNull;
+                this[this.tableTable_CompontentsInfo.FilePathColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2565,22 +2565,22 @@ namespace SC2_GameTranslater.Source {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class Table_ModInfoRowChangeEvent : global::System.EventArgs {
+        public class Table_CompontentsInfoRowChangeEvent : global::System.EventArgs {
             
-            private Table_ModInfoRow eventRow;
+            private Table_CompontentsInfoRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_ModInfoRowChangeEvent(Table_ModInfoRow row, global::System.Data.DataRowAction action) {
+            public Table_CompontentsInfoRowChangeEvent(Table_CompontentsInfoRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_ModInfoRow Row {
+            public Table_CompontentsInfoRow Row {
                 get {
                     return this.eventRow;
                 }

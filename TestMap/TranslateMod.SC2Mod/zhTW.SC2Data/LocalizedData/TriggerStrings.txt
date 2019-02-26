@@ -1,4 +1,4 @@
-﻿Library/Name/LIB1=庫1
+Library/Name/LIB1=庫1
 Library/Name/LIB2=庫2
 Trigger/Name/lib_LIB1_04A0D8C7=觸發器1
 Trigger/Name/lib_LIB1_F18196F3=庫中觸發器1
