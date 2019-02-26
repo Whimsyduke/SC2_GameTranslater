@@ -627,7 +627,7 @@ namespace SC2_GameTranslater
 
         #endregion
 
-        #region 翻译筛选项
+        #region 语言筛选项
 
         /// <summary>
         /// 刷新翻译选项

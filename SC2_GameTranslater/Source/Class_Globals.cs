@@ -353,7 +353,6 @@ namespace SC2_GameTranslater.Source
             Log.Assert(CurrentProject == null);
             Data_GameText project = new Data_GameText();
             project.Initialization(file);
-            CurrentProject = project;
         }
 
         /// <summary>

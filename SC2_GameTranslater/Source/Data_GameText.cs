@@ -189,6 +189,16 @@ namespace SC2_GameTranslater.Source
         #region 进程
 
         /// <summary>
+        /// 委托设为当前Project
+        /// </summary>
+        /// <param name="count">当前计数</param>
+        /// <param name="max">最大计数</param>
+        private void SetToCurrentProject(double count, double max)
+        {
+            Globals.CurrentProject = this;
+        }
+        
+        /// <summary>
         /// 初始化
         /// </summary>
         /// <param name="argu"></param>
@@ -206,7 +216,7 @@ namespace SC2_GameTranslater.Source
             LoadGalaxyFile(galaxyFiles);
             LoadGameTextFile(file.Directory);
 
-            Globals.MainWindow.ProgressBarClean(null);
+            Globals.MainWindow.ProgressBarClean(SetToCurrentProject);
         }
 
         #endregion
