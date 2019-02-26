@@ -1,6 +1,6 @@
-﻿DocInfo/DescLong=翻译描述
-DocInfo/DescShort=翻译玩家数
-DocInfo/Name=翻译Mod
-Param/Value/lib_LIB1_2254CCC2=翻译文本
-Param/Value/lib_LIB2_43EF0FA3=翻译文本
-Unit/Name/TranslateUnit=翻译单位
+﻿DocInfo/DescLong=翻譯描述
+DocInfo/DescShort=翻譯玩家數
+DocInfo/Name=翻譯Mod
+Param/Value/lib_LIB1_2254CCC2=翻譯文本
+Param/Value/lib_LIB2_43EF0FA3=翻譯文本
+Unit/Name/TranslateUnit=翻譯單位

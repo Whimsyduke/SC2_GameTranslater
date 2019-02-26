@@ -130,6 +130,13 @@ namespace SC2_GameTranslater.Source
 
         #endregion
 
+        #region 其他
+
+        public const string PATH_TempFolder = "Temp\\";
+        public const string PATH_BackupFolder = "Backup\\";
+
+        #endregion
+
         #endregion
 
         #endregion
@@ -291,7 +298,7 @@ namespace SC2_GameTranslater.Source
         {
             if (SC2Components != null && !SC2Components.Exists) return false;
             DirectoryInfo baseDir = SC2Components.Directory;
-            List<string> backFiles = new List<string>();
+            List<FileInfo> backFiles = new List<FileInfo>();
             EnumerableRowCollection<DataRow> gameStringRows = GetGameTextRows(EnumGameTextFile.GameStrings);
             EnumerableRowCollection<DataRow> objectStringRows = GetGameTextRows(EnumGameTextFile.ObjectStrings);
             EnumerableRowCollection<DataRow> triggerStringRows = GetGameTextRows(EnumGameTextFile.TriggerStrings);
@@ -313,7 +320,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="backFiles">备份文件列表</param>
         /// <param name="data">文件数据</param>
         /// <returns>写入成功</returns>
-        private bool WriteToTextFile(DirectoryInfo baseDir, EnumLanguage lang, EnumGameTextFile fileTyperef, ref List<string> backFiles, EnumerableRowCollection<DataRow> data)
+        private bool WriteToTextFile(DirectoryInfo baseDir, EnumLanguage lang, EnumGameTextFile fileTyperef, ref List<FileInfo> backFiles, EnumerableRowCollection<DataRow> data)
         {
 #if !DEBUG
             try
@@ -321,9 +328,11 @@ namespace SC2_GameTranslater.Source
             {
                 string backPath = TextFilePath(lang, EnumGameTextFile.GameStrings);
                 string originpath = string.Format("{0}\\{1}", baseDir.FullName, backPath);
-                if (!File.Exists(originpath)) return true; // no need write.
-                backFiles.Add(backPath);
-                File.Copy(originpath, backPath);
+                if (!File.Exists(originpath)) return true; 
+                FileInfo backFile = new FileInfo(PATH_TempFolder + backPath);
+                backFiles.Add(backFile);
+                if (!backFile.Directory.Exists) backFile.Directory.Create();
+                File.Copy(originpath, backFile.FullName);
                 StreamWriter sw = new StreamWriter(originpath, false);
                 string key = GetGameTextNameForLanguage(lang, RN_GameText_Edited);
                 foreach (DataRow row in data)
