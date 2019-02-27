@@ -244,6 +244,10 @@
                             Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeTextID_Header}"
                             Tag="{x:Static local:EnumSearchTextType.ID}" />
                         <ComboBoxItem
+                            Name="ComboBoxItem_SearchTypeIndex"
+                            Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeIndex_Header}"
+                            Tag="{x:Static local:EnumSearchTextType.Index}" />
+                        <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeAllText"
                             Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeALLText_Header}"
                             Tag="{x:Static local:EnumSearchTextType.AllText}" />
@@ -251,6 +255,10 @@
                             Name="ComboBoxItem_SearchTypeSourceText"
                             Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeSourceText_Header}"
                             Tag="{x:Static local:EnumSearchTextType.Source}" />
+                        <ComboBoxItem
+                            Name="ComboBoxItem_SearchTypeOldText"
+                            Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeOldText_Header}"
+                            Tag="{x:Static local:EnumSearchTextType.Old}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeEditedText"
                             Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeEditedText_Header}"
@@ -585,12 +593,32 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
+                        x:Name="DataGridColumn_Index"
+                        Width="Auto"
+                        Binding="{Binding Index, Mode=TwoWay}"
+                        CanUserReorder="True"
+                        CanUserResize="True"
+                        CanUserSort="True"
+                        DisplayIndex="1"
+                        IsReadOnly="True">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_Index_Header}" />
+                        </DataGridTextColumn.Header>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Margin" Value="2" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn
                         x:Name="DataGridColumn_File"
                         Width="Auto"
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="True"
-                        DisplayIndex="1"
+                        DisplayIndex="2"
                         IsReadOnly="True">
                         <DataGridTextColumn.Binding>
                             <MultiBinding Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_File}" Mode="OneWay">
@@ -616,7 +644,7 @@
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="True"
-                        DisplayIndex="2"
+                        DisplayIndex="3"
                         IsReadOnly="True">
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{DynamicResource UI_DataGridColumn_Status_Header}" />
@@ -636,7 +664,7 @@
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="True"
-                        DisplayIndex="3"
+                        DisplayIndex="4"
                         IsReadOnly="True">
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{DynamicResource UI_DataGridColumn_SourceText_Header}" />
@@ -656,7 +684,7 @@
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="False"
-                        DisplayIndex="4">
+                        DisplayIndex="5">
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{DynamicResource UI_DataGridColumn_EditedText_Header}" />
                         </DataGridTextColumn.Header>

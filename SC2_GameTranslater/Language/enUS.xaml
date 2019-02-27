@@ -53,6 +53,7 @@
     <sys:String x:Key="UI_GroupBox_TranslatedTexts_Header">Translated Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_LineNumber_Header">Index</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TextID_Header">Text ID</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_Index_Header">Index</sys:String>
     <sys:String x:Key="UI_DataGridColumn_File_Header">In File</sys:String>
     <sys:String x:Key="UI_DataGridColumn_Status_Header">Status</sys:String>
     <sys:String x:Key="UI_DataGridColumn_SourceText_Header">Source Text</sys:String>
@@ -68,9 +69,11 @@
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationLeft_Header">Start Left</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationRight_Header">Start Right</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeALL_Header">All</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeTextID_Header">Text ID:</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchTypeTextID_Header">Text ID</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchTypeIndex_Header">Index</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeALLText_Header">All Text</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeSourceText_Header">Source Text</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchTypeSourceText_Header">Old Text</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchTypeOldText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeEditedText_Header">Edited Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLanguageALL_Header">All</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">In Galaxy File</sys:String>

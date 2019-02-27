@@ -37,25 +37,33 @@ namespace SC2_GameTranslater
     public enum EnumSearchTextType
     {
         /// <summary>
-        /// 全部
-        /// </summary>
-        All = 7,
-        /// <summary>
         /// ID
         /// </summary>
         ID = 1,
         /// <summary>
-        /// 全部文本
+        /// Index
         /// </summary>
-        AllText = 6,
+        Index = 2,
         /// <summary>
         /// 原文本
         /// </summary>
-        Source = 2,
+        Source = 4,
+        /// <summary>
+        /// 旧文本
+        /// </summary>
+        Old = 8,
         /// <summary>
         /// 修改文本
         /// </summary>
-        Edited = 4,
+        Edited = 16,
+        /// <summary>
+        /// 全部文本
+        /// </summary>
+        AllText = 28,
+        /// <summary>
+        /// 全部（全部文本及ID）
+        /// </summary>
+        All = 29,
     }
 
     /// <summary>

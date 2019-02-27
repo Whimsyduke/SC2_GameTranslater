@@ -35,9 +35,33 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         Modified = 4,
         /// <summary>
+        /// 刷新并且为空
+        /// </summary>
+        EmptyRefreshed = 9,
+        /// <summary>
+        /// 刷新的
+        /// </summary>
+        Refreshed = 10,
+        /// <summary>
+        /// 刷新修改的
+        /// </summary>
+        ModifyRefreshed = 12,
+        /// <summary>
+        /// 放弃空的
+        /// </summary>
+        EmptyDroped = 17,
+        /// <summary>
+        /// 放弃的
+        /// </summary>
+        Droped = 18,
+        /// <summary>
+        /// 放弃修改的
+        /// </summary>
+        ModifyDroped = 20,
+        /// <summary>
         /// 全部复选
         /// </summary>
-        All = 7,
+        All = 31,
     }
 
     /// <summary>
@@ -115,6 +139,7 @@ namespace SC2_GameTranslater.Source
         public const string RN_GalaxyLocation_TextID = "TextID";
         public const string RN_GalaxyLocation_Key = "Key";
         public const string RN_GameText_ID = "ID";
+        public const string RN_GameText_Index = "Index";
         public const string RN_GameText_File = "File";
         public const string RN_GameText_Status = "Status";
         public const string RN_GameText_Text = "Text";

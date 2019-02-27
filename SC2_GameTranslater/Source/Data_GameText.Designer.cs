@@ -1885,6 +1885,8 @@ namespace SC2_GameTranslater.Source {
             
             private global::System.Data.DataColumn columnID;
             
+            private global::System.Data.DataColumn columnIndex;
+            
             private global::System.Data.DataColumn columnFile;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1925,6 +1927,14 @@ namespace SC2_GameTranslater.Source {
             public global::System.Data.DataColumn IDColumn {
                 get {
                     return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IndexColumn {
+                get {
+                    return this.columnIndex;
                 }
             }
             
@@ -1977,6 +1987,7 @@ namespace SC2_GameTranslater.Source {
                 Table_GameTextRow rowTable_GameTextRow = ((Table_GameTextRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
+                        null,
                         File};
                 rowTable_GameTextRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTable_GameTextRow);
@@ -2008,6 +2019,7 @@ namespace SC2_GameTranslater.Source {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnID = base.Columns["ID"];
+                this.columnIndex = base.Columns["Index"];
                 this.columnFile = base.Columns["File"];
             }
             
@@ -2016,6 +2028,8 @@ namespace SC2_GameTranslater.Source {
             private void InitClass() {
                 this.columnID = new global::System.Data.DataColumn("ID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
+                this.columnIndex = new global::System.Data.DataColumn("Index", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIndex);
                 this.columnFile = new global::System.Data.DataColumn("File", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFile);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -2023,6 +2037,8 @@ namespace SC2_GameTranslater.Source {
                 this.columnID.AllowDBNull = false;
                 this.columnID.Unique = true;
                 this.columnID.Caption = "LanguageID";
+                this.columnIndex.AutoIncrement = true;
+                this.columnIndex.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2518,6 +2534,17 @@ namespace SC2_GameTranslater.Source {
                 }
                 set {
                     this[this.tableTable_GameText.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Index {
+                get {
+                    return ((int)(this[this.tableTable_GameText.IndexColumn]));
+                }
+                set {
+                    this[this.tableTable_GameText.IndexColumn] = value;
                 }
             }
             
