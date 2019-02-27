@@ -80,6 +80,7 @@
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">Record File</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TextStatusFilter_Header">Text Status</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">Text Status</sys:String>
+    <sys:String x:Key="UI_TabItem_LanguageText_Header">Text In Language</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->

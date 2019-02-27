@@ -689,7 +689,7 @@
             ResizeDirection="Rows" />
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
@@ -697,7 +697,13 @@
                 Name="GroupBox_Details"
                 Grid.Column="0"
                 Margin="3"
-                Header="{DynamicResource ResourceKey=UI_GroupBox_Details_Header}" />
+                Header="{DynamicResource ResourceKey=UI_GroupBox_Details_Header}">
+                <TabControl Name="TabControl_Details">
+                    <TabItem Name="TabItem_LanguageText" Header="{DynamicResource ResourceKey=UI_TabItem_LanguageText_Header}">
+                        <DataGrid Name="DataGrid_LanguageText" />
+                    </TabItem>
+                </TabControl>
+            </GroupBox>
             <GridSplitter
                 Grid.Column="1"
                 Width="3"

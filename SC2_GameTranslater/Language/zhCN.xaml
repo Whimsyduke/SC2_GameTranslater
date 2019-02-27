@@ -81,6 +81,7 @@
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">文本文件</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TextStatusFilter_Header">文本状态</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">文本状态</sys:String>
+    <sys:String x:Key="UI_TabItem_LanguageText_Header">全语言文本</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->
