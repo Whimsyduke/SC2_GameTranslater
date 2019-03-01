@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
@@ -122,6 +123,37 @@ namespace SC2_GameTranslater.Source
     }
 
     /// <summary>
+    /// 取反转换
+    /// </summary>
+    public class BooleanToVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            switch ((bool?)value)
+            {
+                case true:
+                    return Visibility.Visible;
+                case false:
+                    return Visibility.Collapsed;
+                default:
+                    return Visibility.Visible;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            switch ((Visibility)value)
+            {
+                case Visibility.Visible:
+                    return true; ;
+                case Visibility.Hidden:
+                case Visibility.Collapsed:
+                default:
+                    return false;
+            }
+        }
+    }
+    /// <summary>
     /// 枚举值翻译Converter
     /// </summary>
     public class SerachLocationByRegexControlConverter : IMultiValueConverter
@@ -155,4 +187,5 @@ namespace SC2_GameTranslater.Source
     }
 
     #endregion
+
 }

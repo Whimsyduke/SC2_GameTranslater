@@ -55,9 +55,11 @@
     <sys:String x:Key="UI_DataGridColumn_LineNumber_Header">行号</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TextID_Header">文本ID</sys:String>
     <sys:String x:Key="UI_DataGridColumn_Index_Header">编号</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_File_Header">所在文件</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_Status_Header">状态</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_SourceText_Header">原文本</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TextFile_Header">所在文件</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TextStatus_Header">文本状态</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_UseStatus_Header">使用状态</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DropedText_Header">舍弃文本</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_SourceText_Header">原始文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_EditedText_Header">修改文本</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_Search_Header">搜索</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchType_Header">类型：</sys:String>
@@ -73,7 +75,7 @@
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeTextID_Header">文本ID:</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeIndex_Header">编号</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeALLText_Header">全部文本</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeOldText_Header">旧文本</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchTypeDropedText_Header">舍弃文本</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeSourceText_Header">原始文本</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeEditedText_Header">修改文本</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLanguageALL_Header">全部</sys:String>
@@ -84,6 +86,8 @@
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">文本文件</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TextStatusFilter_Header">文本状态</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">文本状态</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_UseStatusFilter_Header">使用状态</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">使用状态</sys:String>
     <sys:String x:Key="UI_TabItem_LanguageText_Header">全语言文本</sys:String>
     <!--#endregion-->
 
@@ -98,5 +102,9 @@
     <sys:String x:Key="ENUM_EnumGameTextStatus_Empty">空文本</sys:String>
     <sys:String x:Key="ENUM_EnumGameTextStatus_Normal">未修改</sys:String>
     <sys:String x:Key="ENUM_EnumGameTextStatus_Modified">已修改</sys:String>
+    <sys:String x:Key="ENUM_EnumGameUseStatus_Droped">放弃</sys:String>
+    <sys:String x:Key="ENUM_EnumGameUseStatus_Normal">正常</sys:String>
+    <sys:String x:Key="ENUM_EnumGameUseStatus_New">新增</sys:String>
     <!--#endregion-->
+    
 </ResourceDictionary>

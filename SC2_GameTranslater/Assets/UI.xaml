@@ -10,6 +10,7 @@
     <source:AutoNumberValueConverter x:Key="Converter_AutoNumberValue" />
     <source:EnumNameInLanguage_TextFileConverter x:Key="Converter_EnumNameInLanguage_File" />
     <source:CommonNotValueConverter x:Key="Converter_CommonNotValue" />
+    <source:BooleanToVisibilityConverter x:Key="Converter_BooleanToVisibility" />
     <source:SerachLocationByRegexControlConverter x:Key="Converter_SerachLocationByRegexControl" />
     <!--#endregion-->
 

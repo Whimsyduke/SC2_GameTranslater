@@ -51,7 +51,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 旧文本
         /// </summary>
-        Old = 8,
+        Droped = 8,
         /// <summary>
         /// 修改文本
         /// </summary>
@@ -238,6 +238,11 @@ namespace SC2_GameTranslater
         /// 文本状态筛选
         /// </summary>
         public EnumGameTextStatus TextStatusFilter { private set; get; } = EnumGameTextStatus.All;
+
+        /// <summary>
+        /// 使用状态筛选
+        /// </summary>
+        public EnumGameUseStatus UseStatusFilter { private set; get; } = EnumGameUseStatus.All;
 
         /// <summary>
         /// 允许刷新翻译文本
@@ -837,6 +842,19 @@ namespace SC2_GameTranslater
             }
         }
 
+        /// <summary>
+        /// 刷新文本状态选项
+        /// </summary>
+        /// <param name="project">项目数据</param>
+        private void RefreshUseStatusFilterButton(Data_GameText project)
+        {
+            bool isCheck = project != null;
+            foreach (ToggleButton button in InRibbonGallery_UseStatusFilter.Items)
+            {
+                button.IsChecked = isCheck;
+                button.IsEnabled = isCheck;
+            }
+        }
         #endregion
 
         #region 搜索相关
@@ -873,21 +891,31 @@ namespace SC2_GameTranslater
         {
             Binding binding;
             string langName = Enum.GetName(lang.GetType(), lang);
-            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_Status))
+            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_TextStatus))
             {
                 Mode = BindingMode.TwoWay,
             };
-            DataGridColumn_Status.Binding = binding;
-            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_Text))
+            DataGridColumn_TextStatus.Binding = binding;
+            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_UseStatus))
             {
                 Mode = BindingMode.TwoWay,
             };
-            DataGridColumn_Text.Binding = binding;
-            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_Edited))
+            DataGridColumn_UseStatus.Binding = binding;
+            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_DropedText))
             {
                 Mode = BindingMode.TwoWay,
             };
-            DataGridColumn_Edited.Binding = binding;
+            DataGridColumn_SourceText.Binding = binding;
+            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_SourceText))
+            {
+                Mode = BindingMode.TwoWay,
+            };
+            DataGridColumn_SourceText.Binding = binding;
+            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_EditedText))
+            {
+                Mode = BindingMode.TwoWay,
+            };
+            DataGridColumn_EditedText.Binding = binding;
         }
 
         /// <summary>
@@ -895,9 +923,11 @@ namespace SC2_GameTranslater
         /// </summary>
         public void CleanCurrentTranslateLanguage()
         {
-            DataGridColumn_Status.Binding = null;
-            DataGridColumn_Text.Binding = null;
-            DataGridColumn_Edited.Binding = null;
+            DataGridColumn_UseStatus.Binding = null;
+            DataGridColumn_TextStatus.Binding = null;
+            DataGridColumn_DropedText.Binding = null;
+            DataGridColumn_SourceText.Binding = null;
+            DataGridColumn_EditedText.Binding = null;
         }
 
         /// <summary>
@@ -938,9 +968,16 @@ namespace SC2_GameTranslater
             }
             if (TextStatusFilter != EnumGameTextStatus.All)
             {
-                string keyStatus = Data_GameText.GetGameTextNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_Status);
+                string keyStatus = Data_GameText.GetGameTextNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus);
                 query = from row in query
                         where ((Enum)row[keyStatus]).HasFlag(TextStatusFilter)
+                        select row;
+            }
+            if (UseStatusFilter != EnumGameUseStatus.All)
+            {
+                string keyStatus = Data_GameText.GetGameTextNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus);
+                query = from row in query
+                        where ((Enum)row[keyStatus]).HasFlag(UseStatusFilter)
                         select row;
             }
             if (!IsSelectAllGalaxyFilter)
@@ -974,32 +1011,48 @@ namespace SC2_GameTranslater
                 keyList.Add(Data_GameText.RN_GameText_ID);
             }
 
-            // Source
+            // Droped Text
+            if (type.HasFlag(EnumSearchTextType.Droped))
+            {
+                ComboBoxItem item = ComboBox_SearchLanguage.SelectedItem as ComboBoxItem;
+                List<EnumLanguage> languageList = (CurrentTextData.DataSet as Data_GameText).LangaugeList;
+                if (item.Tag == null)
+                {
+                    keyList.AddRange(languageList.Select(r => Data_GameText.GetGameTextNameForLanguage(r, Data_GameText.RN_GameText_DropedText)).ToList());
+                }
+                else
+                {
+                    keyList.Add(Data_GameText.GetGameTextNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_DropedText));
+                }
+            }
+
+            // Source Text
             if (type.HasFlag(EnumSearchTextType.Source))
             {
                 ComboBoxItem item = ComboBox_SearchLanguage.SelectedItem as ComboBoxItem;
                 List<EnumLanguage> languageList = (CurrentTextData.DataSet as Data_GameText).LangaugeList;
                 if (item.Tag == null)
                 {
-                    keyList.AddRange(languageList.Select(r => Data_GameText.GetGameTextNameForLanguage(r, Data_GameText.RN_GameText_Text)).ToList());
+                    keyList.AddRange(languageList.Select(r => Data_GameText.GetGameTextNameForLanguage(r, Data_GameText.RN_GameText_SourceText)).ToList());
                 }
                 else
                 {
-                    keyList.Add(Data_GameText.GetGameTextNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_Text));
+                    keyList.Add(Data_GameText.GetGameTextNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_SourceText));
                 }
             }
-            // Edited
+
+            // Edited Text
             if (type.HasFlag(EnumSearchTextType.Edited))
             {
                 ComboBoxItem item = ComboBox_SearchLanguage.SelectedItem as ComboBoxItem;
                 List<EnumLanguage> languageList = (CurrentTextData.DataSet as Data_GameText).LangaugeList;
                 if (item.Tag == null)
                 {
-                    keyList.AddRange(languageList.Select(r => Data_GameText.GetGameTextNameForLanguage(r, Data_GameText.RN_GameText_Edited)).ToList());
+                    keyList.AddRange(languageList.Select(r => Data_GameText.GetGameTextNameForLanguage(r, Data_GameText.RN_GameText_EditedText)).ToList());
                 }
                 else
                 {
-                    keyList.Add(Data_GameText.GetGameTextNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_Edited));
+                    keyList.Add(Data_GameText.GetGameTextNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_EditedText));
                 }
             }
             return keyList;
@@ -1273,6 +1326,7 @@ namespace SC2_GameTranslater
             RefreshGalaxyTextFileFilterButton(newPro);
             RefreshTextFileFilterButton(newPro);
             RefreshTextStatusFilterButton(newPro);
+            RefreshUseStatusFilterButton(newPro);
             RefreshSearchControl(newPro);
             CanRefreshTranslatedText = true;
             RefreshTranslatedText(newPro);
@@ -1499,6 +1553,57 @@ namespace SC2_GameTranslater
             e.Handled = true;
         }
 
+        /// <summary>
+        /// 文本状态筛选全选
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void MenuItem_UseStatusFilterSelectAll_Click(object sender, RoutedEventArgs e)
+        {
+            CanRefreshTranslatedText = false;
+            foreach (ToggleButton button in InRibbonGallery_UseStatusFilter.Items)
+            {
+                button.IsChecked = true;
+            }
+            CanRefreshTranslatedText = true;
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 文本状态筛选全不选
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void MenuItem_UseStatusFilterSelectNone_Click(object sender, RoutedEventArgs e)
+        {
+            CanRefreshTranslatedText = false;
+            foreach (ToggleButton button in InRibbonGallery_UseStatusFilter.Items)
+            {
+                button.IsChecked = false;
+            }
+            CanRefreshTranslatedText = false;
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 文本状态筛选文件点击
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void ToggleButton_UseStatusFilterButton_CheckEvent(object sender, RoutedEventArgs e)
+        {
+            ToggleButton button = sender as ToggleButton;
+            if (button.IsChecked == true)
+            {
+                UseStatusFilter |= (EnumGameUseStatus)button.Tag;
+            }
+            else
+            {
+                UseStatusFilter &= ~(EnumGameUseStatus)button.Tag;
+            }
+            Globals.MainWindow.RefreshTranslatedText();
+            e.Handled = true;
+        }
         /// <summary>
         /// 翻译文本表选择事件
         /// </summary>

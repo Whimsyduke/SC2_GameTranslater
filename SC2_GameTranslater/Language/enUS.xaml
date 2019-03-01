@@ -54,8 +54,10 @@
     <sys:String x:Key="UI_DataGridColumn_LineNumber_Header">Index</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TextID_Header">Text ID</sys:String>
     <sys:String x:Key="UI_DataGridColumn_Index_Header">Index</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_File_Header">In File</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_Status_Header">Status</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TextFile_Header">In File</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TextStatus_Header">Text Status</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_UseStatus_Header">Use Status</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DropedText_Header">Droped Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_SourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_EditedText_Header">Edited Text</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_Search_Header">Search</sys:String>
@@ -72,8 +74,8 @@
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeTextID_Header">Text ID</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeIndex_Header">Index</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeALLText_Header">All Text</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeSourceText_Header">Old Text</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeOldText_Header">Source Text</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchTypeDropedText_Header">Drop Text</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchTypeSourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeEditedText_Header">Edited Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLanguageALL_Header">All</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">In Galaxy File</sys:String>
@@ -83,6 +85,8 @@
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">Record File</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TextStatusFilter_Header">Text Status</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">Text Status</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_UseStatusFilter_Header">Use Status</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">Use Status</sys:String>
     <sys:String x:Key="UI_TabItem_LanguageText_Header">Text In Language</sys:String>
     <!--#endregion-->
 
@@ -97,6 +101,9 @@
     <sys:String x:Key="ENUM_EnumGameTextStatus_Empty">Empty</sys:String>
     <sys:String x:Key="ENUM_EnumGameTextStatus_Normal">Normal</sys:String>
     <sys:String x:Key="ENUM_EnumGameTextStatus_Modified">Modified</sys:String>
+    <sys:String x:Key="ENUM_EnumGameUseStatus_Droped">Droped</sys:String>
+    <sys:String x:Key="ENUM_EnumGameUseStatus_Normal">Normal</sys:String>
+    <sys:String x:Key="ENUM_EnumGameUseStatus_New">New</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

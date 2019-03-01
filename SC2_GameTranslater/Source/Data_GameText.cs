@@ -20,6 +20,29 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// 文本状态
     /// </summary>
+    public enum EnumGameUseStatus
+    {
+        /// 过期
+        /// </summary>
+        Droped = 1,
+        /// <summary>
+        /// 正常
+        /// </summary>
+        Normal = 2,
+        /// <summary>
+        /// <summary>
+        /// 新增
+        /// </summary>
+        New = 4,
+        /// <summary>
+        /// 全部
+        /// </summary>
+        All = 7,
+    }
+
+    /// <summary>
+    /// 文本状态
+    /// </summary>
     public enum EnumGameTextStatus
     {
         /// <summary>
@@ -35,33 +58,9 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         Modified = 4,
         /// <summary>
-        /// 刷新并且为空
-        /// </summary>
-        EmptyRefreshed = 9,
-        /// <summary>
-        /// 刷新的
-        /// </summary>
-        Refreshed = 10,
-        /// <summary>
-        /// 刷新修改的
-        /// </summary>
-        ModifyRefreshed = 12,
-        /// <summary>
-        /// 放弃空的
-        /// </summary>
-        EmptyDroped = 17,
-        /// <summary>
-        /// 放弃的
-        /// </summary>
-        Droped = 18,
-        /// <summary>
-        /// 放弃修改的
-        /// </summary>
-        ModifyDroped = 20,
-        /// <summary>
         /// 全部复选
         /// </summary>
-        All = 31,
+        All = 7,
     }
 
     /// <summary>
@@ -113,7 +112,7 @@ namespace SC2_GameTranslater.Source
 
         #region 表名
 
-        public const string TN_CompontentsInfo = "Table_CompontentsInfo";
+        public const string TN_ProjectInfo = "Table_ProjectInfo";
         public const string TN_Language = "Table_Language";
         public const string TN_GalaxyFile = "Table_GalaxyFile";
         public const string TN_GalaxyLine = "Table_GalaxyLine";
@@ -126,7 +125,7 @@ namespace SC2_GameTranslater.Source
 
         #region 列名
 
-        public const string RN_ModInfo_FilePath = "FilePath";
+        public const string RN_ModInfo_CompontentsPath = "CompontentsPath";
         public const string RN_Language_ID = "ID";
         public const string RN_GalaxyFile_Path = "Path";
         public const string RN_GalaxyFile_Name = "Name";
@@ -141,9 +140,11 @@ namespace SC2_GameTranslater.Source
         public const string RN_GameText_ID = "ID";
         public const string RN_GameText_Index = "Index";
         public const string RN_GameText_File = "File";
-        public const string RN_GameText_Status = "Status";
-        public const string RN_GameText_Text = "Text";
-        public const string RN_GameText_Edited = "Edited";
+        public const string RN_GameText_TextStatus = "TextStatus";
+        public const string RN_GameText_UseStatus = "UseStatuse";
+        public const string RN_GameText_DropedText = "Droped";
+        public const string RN_GameText_SourceText = "Source";
+        public const string RN_GameText_EditedText = "Edited";
 
         #endregion
 
@@ -186,7 +187,25 @@ namespace SC2_GameTranslater.Source
         }
         private FileInfo m_ComponentsPath = null;
 
+        /// <summary>
+        /// 使用语言列表
+        /// </summary>
         public List<EnumLanguage> LangaugeList { get; private set; }
+
+        /// <summary>
+        /// 项目信息行
+        /// </summary>
+        public DataRow ProjectInfoRow
+        {
+            get
+            {
+                if (Tables[TN_ProjectInfo].Rows.Count == 0)
+                {
+                    Tables[TN_ProjectInfo].Rows.Add(Tables[TN_ProjectInfo].NewRow());
+                }
+                return Tables[TN_ProjectInfo].Rows[0];
+            }
+        }
 
         #endregion
 
@@ -222,19 +241,8 @@ namespace SC2_GameTranslater.Source
         /// <param name="path">路径</param>
         private void WriteCompontentsPath(string path)
         {
-            DataTable table = Tables[TN_CompontentsInfo];
-            DataRow row;
-            if (table.Rows.Count != 1)
-            {
-                table.Rows.Clear();
-                row = table.NewRow();
-                table.Rows.Add(row);
-            }
-            else
-            {
-                row = table.Rows[0];
-            }
-            row[RN_ModInfo_FilePath] = path;
+
+            ProjectInfoRow[RN_ModInfo_CompontentsPath] = path;
         }
 
         #endregion
@@ -258,7 +266,6 @@ namespace SC2_GameTranslater.Source
         public void ThreadInitialization(object argu)
         {
             FileInfo file = argu as FileInfo;
-            Clear();
             CleanGalaxyTable();
 
             List<FileInfo> galaxyFiles = new List<FileInfo>();
@@ -295,6 +302,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="path">文件路径</param>
         public void Initialization(FileInfo file)
         {
+            Clear();
             Threads.StartThread(ThreadInitialization, file, true);
             SC2Components = file;
         }
@@ -320,7 +328,7 @@ namespace SC2_GameTranslater.Source
             try
 #endif
             {
-                SC2Components = new FileInfo(Tables[TN_CompontentsInfo].Rows[0][RN_ModInfo_FilePath] as string);
+                SC2Components = new FileInfo(ProjectInfoRow[RN_ModInfo_CompontentsPath] as string);
                 LangaugeList = Tables[TN_Language].AsEnumerable().Select(r => (EnumLanguage)r[RN_Language_ID]).ToList();
                 return true;
             }
@@ -380,7 +388,7 @@ namespace SC2_GameTranslater.Source
                 if (!backFile.Directory.Exists) backFile.Directory.Create();
                 File.Copy(originpath, backFile.FullName, true);
                 StreamWriter sw = new StreamWriter(originpath, false);
-                string key = GetGameTextNameForLanguage(lang, RN_GameText_Edited);
+                string key = GetGameTextNameForLanguage(lang, RN_GameText_EditedText);
                 foreach (DataRow row in data)
                 {
                     sw.WriteLine(string.Format("{0}={1}", row[RN_GameText_ID], row[key]));
@@ -451,8 +459,8 @@ namespace SC2_GameTranslater.Source
             DataColumn column;
             DataTable table = Tables[TN_GameText];
 
-            // Status
-            columnName = GetGameTextNameForLanguage(lang, RN_GameText_Status);
+            // Text Status
+            columnName = GetGameTextNameForLanguage(lang, RN_GameText_TextStatus);
             column = new DataColumn(columnName, typeof(int), "", MappingType.Attribute)
             {
                 Caption = columnName,
@@ -462,8 +470,19 @@ namespace SC2_GameTranslater.Source
             };
             table.Columns.Add(column);
 
-            // Text
-            columnName = GetGameTextNameForLanguage(lang, RN_GameText_Text);
+            // Use Status
+            columnName = GetGameTextNameForLanguage(lang, RN_GameText_UseStatus);
+            column = new DataColumn(columnName, typeof(int), "", MappingType.Attribute)
+            {
+                Caption = columnName,
+                DefaultValue = EnumGameTextStatus.Empty,
+                AllowDBNull = false,
+                Unique = false,
+            };
+            table.Columns.Add(column);
+
+            // Drop Text
+            columnName = GetGameTextNameForLanguage(lang, RN_GameText_DropedText);
             column = new DataColumn(columnName, typeof(string), "", MappingType.Element)
             {
                 Caption = columnName,
@@ -473,8 +492,19 @@ namespace SC2_GameTranslater.Source
             };
             table.Columns.Add(column);
 
-            // Edited
-            columnName = GetGameTextNameForLanguage(lang, RN_GameText_Edited);
+            // Source Text
+            columnName = GetGameTextNameForLanguage(lang, RN_GameText_SourceText);
+            column = new DataColumn(columnName, typeof(string), "", MappingType.Element)
+            {
+                Caption = columnName,
+                DefaultValue = null,
+                AllowDBNull = true,
+                Unique = false,
+            };
+            table.Columns.Add(column);
+
+            // Edited Text
+            columnName = GetGameTextNameForLanguage(lang, RN_GameText_EditedText);
             column = new DataColumn(columnName, typeof(string), "", MappingType.Element)
             {
                 Caption = columnName,
@@ -692,9 +722,11 @@ namespace SC2_GameTranslater.Source
         public DataRow SetTextValue(EnumLanguage lang, EnumGameTextFile file, string key, string value)
         {
             DataRow row = GetGameTextRow(file, key);
-            row[GetGameTextNameForLanguage(lang, RN_GameText_Status)] = EnumGameTextStatus.Normal;
-            row[GetGameTextNameForLanguage(lang, RN_GameText_Text)] = value;
-            row[GetGameTextNameForLanguage(lang, RN_GameText_Edited)] = value;
+            row[GetGameTextNameForLanguage(lang, RN_GameText_TextStatus)] = EnumGameTextStatus.Normal;
+            row[GetGameTextNameForLanguage(lang, RN_GameText_UseStatus)] = EnumGameUseStatus.Normal;
+            row[GetGameTextNameForLanguage(lang, RN_GameText_DropedText)] = value;
+            row[GetGameTextNameForLanguage(lang, RN_GameText_SourceText)] = value;
+            row[GetGameTextNameForLanguage(lang, RN_GameText_EditedText)] = value;
             return row;
         }
 

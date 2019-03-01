@@ -256,9 +256,9 @@
                             Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeSourceText_Header}"
                             Tag="{x:Static local:EnumSearchTextType.Source}" />
                         <ComboBoxItem
-                            Name="ComboBoxItem_SearchTypeOldText"
-                            Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeOldText_Header}"
-                            Tag="{x:Static local:EnumSearchTextType.Old}" />
+                            Name="ComboBoxItem_SearchTypeDropedText"
+                            Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeDropedText_Header}"
+                            Tag="{x:Static local:EnumSearchTextType.Droped}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeEditedText"
                             Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeEditedText_Header}"
@@ -350,7 +350,7 @@
                     Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_GalaxyFilter_Header}">
                     <Fluent:InRibbonGallery
                         Name="InRibbonGallery_GalaxyFilter"
-                        MinWidth="150"
+                        MinWidth="100"
                         CanCollapseToButton="False"
                         Header="{DynamicResource ResourceKey=UI_InRibbonGallery_GalaxyFilter_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
@@ -393,7 +393,7 @@
                     Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TextFileFilter_Header}">
                     <Fluent:InRibbonGallery
                         Name="InRibbonGallery_TextFileFilter"
-                        MinWidth="150"
+                        MinWidth="100"
                         CanCollapseToButton="False"
                         Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TextFileFilter_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
@@ -457,7 +457,7 @@
                     Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TextStatusFilter_Header}">
                     <Fluent:InRibbonGallery
                         Name="InRibbonGallery_TextStatusFilter"
-                        MinWidth="150"
+                        MinWidth="100"
                         CanCollapseToButton="False"
                         Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TextStatusFilter_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
@@ -515,6 +515,70 @@
                             Unchecked="ToggleButton_TextStatusFilterButton_CheckEvent" />
                     </Fluent:InRibbonGallery>
                 </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox
+                    Name="RibbonGroupBox_UseStatusFilter"
+                    Grid.IsSharedSizeScope="True"
+                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_UseStatusFilter_Header}">
+                    <Fluent:InRibbonGallery
+                        Name="InRibbonGallery_UseStatusFilter"
+                        MinWidth="100"
+                        CanCollapseToButton="False"
+                        Header="{DynamicResource ResourceKey=UI_InRibbonGallery_UseStatusFilter_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
+                        IsCollapsed="False"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
+                        MaxItemsInDropDownRow="1"
+                        MinItemsInDropDownRow="1"
+                        Orientation="Vertical"
+                        ResizeMode="Both"
+                        Selectable="False">
+                        <Fluent:InRibbonGallery.Menu>
+                            <Fluent:RibbonMenu>
+                                <Fluent:MenuItem
+                                    Name="MenuItem_UseStatusFilterSelectAll"
+                                    Click="MenuItem_UseStatusFilterSelectAll_Click"
+                                    Header="{DynamicResource ResourceKey=TEXT_SelectALL}" />
+                                <Fluent:MenuItem
+                                    Name="MenuItem_UseStatusFilterSelectNone"
+                                    Click="MenuItem_UseStatusFilterSelectNone_Click"
+                                    Header="{DynamicResource ResourceKey=TEXT_SelectNone}" />
+                            </Fluent:RibbonMenu>
+                        </Fluent:InRibbonGallery.Menu>
+                        <Fluent:ToggleButton
+                            Name="ToggleButton_UseStatusFilterDroped"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            Checked="ToggleButton_UseStatusFilterButton_CheckEvent"
+                            Header="{DynamicResource ResourceKey=ENUM_EnumGameUseStatus_Droped}"
+                            Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
+                            SizeDefinition="Middle"
+                            Tag="{x:Static source:EnumGameUseStatus.Droped}"
+                            Unchecked="ToggleButton_UseStatusFilterButton_CheckEvent" />
+                        <Fluent:ToggleButton
+                            Name="ToggleButton_UseStatusFilterNormal"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            Checked="ToggleButton_UseStatusFilterButton_CheckEvent"
+                            Header="{DynamicResource ResourceKey=ENUM_EnumGameUseStatus_Normal}"
+                            Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
+                            SizeDefinition="Middle"
+                            Tag="{x:Static source:EnumGameUseStatus.Normal}"
+                            Unchecked="ToggleButton_UseStatusFilterButton_CheckEvent" />
+                        <Fluent:ToggleButton
+                            Name="ToggleButton_UseStatusFilterNew"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            Checked="ToggleButton_UseStatusFilterButton_CheckEvent"
+                            Header="{DynamicResource ResourceKey=ENUM_EnumGameUseStatus_New}"
+                            Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
+                            SizeDefinition="Middle"
+                            Tag="{x:Static source:EnumGameUseStatus.New}"
+                            Unchecked="ToggleButton_UseStatusFilterButton_CheckEvent" />
+                    </Fluent:InRibbonGallery>
+                </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
         <GroupBox
@@ -536,6 +600,58 @@
                 SelectedCellsChanged="DataGrid_TranslatedTexts_SelectedCellsChanged"
                 SelectionMode="Extended"
                 SelectionUnit="CellOrRowHeader">
+                <DataGrid.Resources>
+                    <MenuItem
+                        x:Key="MenuItem_TextID"
+                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_TextID_Header}"
+                        IsCheckable="True"
+                        IsChecked="True" />
+                    <MenuItem
+                        x:Key="MenuItem_Index"
+                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_Index_Header}"
+                        IsCheckable="True"
+                        IsChecked="True" />
+                    <MenuItem
+                        x:Key="MenuItem_TextFile"
+                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_TextFile_Header}"
+                        IsCheckable="True"
+                        IsChecked="True" />
+                    <MenuItem
+                        x:Key="MenuItem_TextStatus"
+                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_TextStatus_Header}"
+                        IsCheckable="True"
+                        IsChecked="True" />
+                    <MenuItem
+                        x:Key="MenuItem_UseStatus"
+                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_UseStatus_Header}"
+                        IsCheckable="True"
+                        IsChecked="False" />
+                    <MenuItem
+                        x:Key="MenuItem_DropedText"
+                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_DropedText_Header}"
+                        IsCheckable="True"
+                        IsChecked="False" />
+                    <MenuItem
+                        x:Key="MenuItem_SourceText"
+                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_SourceText_Header}"
+                        IsCheckable="True"
+                        IsChecked="True" />
+                    <MenuItem
+                        x:Key="MenuItem_EditedText"
+                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_EditedText_Header}"
+                        IsCheckable="True"
+                        IsChecked="True" />
+                    <ContextMenu x:Key="ContextMenu_ColumnVisible">
+                        <StaticResource ResourceKey="MenuItem_TextID" />
+                        <StaticResource ResourceKey="MenuItem_Index" />
+                        <StaticResource ResourceKey="MenuItem_TextFile" />
+                        <StaticResource ResourceKey="MenuItem_TextStatus" />
+                        <StaticResource ResourceKey="MenuItem_UseStatus" />
+                        <StaticResource ResourceKey="MenuItem_DropedText" />
+                        <StaticResource ResourceKey="MenuItem_SourceText" />
+                        <StaticResource ResourceKey="MenuItem_EditedText" />
+                    </ContextMenu>
+                </DataGrid.Resources>
                 <DataGrid.CellStyle>
                     <Style TargetType="DataGridCell">
                         <Setter Property="BorderThickness" Value="0" />
@@ -568,6 +684,7 @@
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="HorizontalContentAlignment" Value="Center" />
                         <Setter Property="VerticalContentAlignment" Value="Center" />
+                        <Setter Property="ContextMenu" Value="{StaticResource ResourceKey=ContextMenu_ColumnVisible}" />
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
@@ -578,8 +695,8 @@
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="True"
-                        DisplayIndex="0"
-                        IsReadOnly="True">
+                        IsReadOnly="True"
+                        Visibility="{Binding Source={StaticResource MenuItem_TextID}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{DynamicResource UI_DataGridColumn_TextID_Header}" />
                         </DataGridTextColumn.Header>
@@ -599,8 +716,8 @@
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="True"
-                        DisplayIndex="1"
-                        IsReadOnly="True">
+                        IsReadOnly="True"
+                        Visibility="{Binding Source={StaticResource MenuItem_Index}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{DynamicResource UI_DataGridColumn_Index_Header}" />
                         </DataGridTextColumn.Header>
@@ -613,13 +730,13 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_File"
+                        x:Name="DataGridColumn_TextFile"
                         Width="Auto"
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="True"
-                        DisplayIndex="2"
-                        IsReadOnly="True">
+                        IsReadOnly="True"
+                        Visibility="{Binding Source={StaticResource MenuItem_TextFile}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Binding>
                             <MultiBinding Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_File}" Mode="OneWay">
                                 <Binding />
@@ -627,7 +744,7 @@
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_File_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TextFile_Header}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -639,15 +756,15 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_Status"
+                        x:Name="DataGridColumn_TextStatus"
                         Width="Auto"
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="True"
-                        DisplayIndex="3"
-                        IsReadOnly="True">
+                        IsReadOnly="True"
+                        Visibility="{Binding Source={StaticResource MenuItem_TextStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_Status_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TextStatus_Header}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -659,13 +776,53 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_Text"
+                        x:Name="DataGridColumn_UseStatus"
+                        Width="Auto"
+                        CanUserReorder="True"
+                        CanUserResize="True"
+                        CanUserSort="True"
+                        IsReadOnly="True"
+                        Visibility="{Binding Source={StaticResource MenuItem_UseStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_UseStatus_Header}" />
+                        </DataGridTextColumn.Header>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Margin" Value="2" />
+                                <Setter Property="TextWrapping" Value="NoWrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn
+                        x:Name="DataGridColumn_DropedText"
                         Width="2*"
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="True"
-                        DisplayIndex="4"
-                        IsReadOnly="True">
+                        IsReadOnly="True"
+                        Visibility="{Binding Source={StaticResource MenuItem_DropedText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_DropedText_Header}" />
+                        </DataGridTextColumn.Header>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Margin" Value="2" />
+                                <Setter Property="TextWrapping" Value="NoWrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn
+                        x:Name="DataGridColumn_SourceText"
+                        Width="2*"
+                        CanUserReorder="True"
+                        CanUserResize="True"
+                        CanUserSort="True"
+                        IsReadOnly="True"
+                        Visibility="{Binding Source={StaticResource MenuItem_SourceText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{DynamicResource UI_DataGridColumn_SourceText_Header}" />
                         </DataGridTextColumn.Header>
@@ -679,12 +836,12 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_Edited"
+                        x:Name="DataGridColumn_EditedText"
                         Width="2*"
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="False"
-                        DisplayIndex="5">
+                        Visibility="{Binding Source={StaticResource MenuItem_EditedText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{DynamicResource UI_DataGridColumn_EditedText_Header}" />
                         </DataGridTextColumn.Header>
