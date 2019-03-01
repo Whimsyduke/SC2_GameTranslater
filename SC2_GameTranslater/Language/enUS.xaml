@@ -1,6 +1,7 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!--#region Common Text-->
     <sys:String x:Key="TEXT_LanguageName">English</sys:String>

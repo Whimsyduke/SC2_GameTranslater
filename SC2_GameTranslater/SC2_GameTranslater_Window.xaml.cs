@@ -894,6 +894,7 @@ namespace SC2_GameTranslater
             binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_TextStatus))
             {
                 Mode = BindingMode.TwoWay,
+
             };
             DataGridColumn_TextStatus.Binding = binding;
             binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_UseStatus))

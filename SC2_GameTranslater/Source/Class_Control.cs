@@ -54,7 +54,7 @@ namespace SC2_GameTranslater.Source
     }
 
     /// <summary>
-    /// 枚举值翻译Converter
+    /// 语言枚举值翻译Converter
     /// </summary>
     public class EnumNameInLanguage_TextFileConverter : IMultiValueConverter
     {
@@ -91,6 +91,79 @@ namespace SC2_GameTranslater.Source
     }
 
     /// <summary>
+    /// 语言枚举值翻译Converter
+    /// </summary>
+    public class EnumNameInLanguage_TextStatusConverter : IMultiValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="values">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            DataRowView rowView = values[0] as DataRowView;
+            EnumLanguage language = (EnumLanguage)values[1];
+            var var = rowView.Row[Data_GameText.RN_GameText_File];
+            EnumGameTextStatus value = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), var);
+            return Data_GameText.GetEnumNameInLanguage(language, value);
+        }
+
+        /// <summary>
+        /// 逆向转换函数
+        /// </summary>
+        /// <param name="value">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+
+    }
+
+    /// <summary>
+    /// 语言枚举值翻译Converter
+    /// </summary>
+    public class EnumNameInLanguage_UseStatusConverter : IMultiValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="values">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            DataRowView rowView = values[0] as DataRowView;
+            EnumLanguage language = (EnumLanguage)values[1];
+            var var = rowView.Row[Data_GameText.RN_GameText_File];
+            EnumGameUseStatus value = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), var);
+            return Data_GameText.GetEnumNameInLanguage(language, value);
+        }
+
+        /// <summary>
+        /// 逆向转换函数
+        /// </summary>
+        /// <param name="value">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+
+    }
+    /// <summary>
     /// 取反转换
     /// </summary>
     public class CommonNotValueConverter : IValueConverter
@@ -123,7 +196,7 @@ namespace SC2_GameTranslater.Source
     }
 
     /// <summary>
-    /// 取反转换
+    /// 布尔值可见性转换器
     /// </summary>
     public class BooleanToVisibilityConverter : IValueConverter
     {

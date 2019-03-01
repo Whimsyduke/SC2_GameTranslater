@@ -8,10 +8,12 @@
     mc:Ignorable="d">
     <!--#region Converter-->
     <source:AutoNumberValueConverter x:Key="Converter_AutoNumberValue" />
-    <source:EnumNameInLanguage_TextFileConverter x:Key="Converter_EnumNameInLanguage_File" />
+    <source:EnumNameInLanguage_TextFileConverter x:Key="Converter_EnumNameInLanguage_TextFile" />
+    <source:EnumNameInLanguage_TextStatusConverter x:Key="Converter_EnumNameInLanguage_TextStatus" />
+    <source:EnumNameInLanguage_UseStatusConverter x:Key="Converter_EnumNameInLanguage_UseStatus" />
     <source:CommonNotValueConverter x:Key="Converter_CommonNotValue" />
-    <source:BooleanToVisibilityConverter x:Key="Converter_BooleanToVisibility" />
     <source:SerachLocationByRegexControlConverter x:Key="Converter_SerachLocationByRegexControl" />
+    <BooleanToVisibilityConverter x:Key="Converter_BooleanToVisibility" />
     <!--#endregion-->
 
     <!--#region Template-->

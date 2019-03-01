@@ -2038,6 +2038,7 @@ namespace SC2_GameTranslater.Source {
                 this.columnID.Unique = true;
                 this.columnID.Caption = "LanguageID";
                 this.columnIndex.AutoIncrement = true;
+                this.columnIndex.AutoIncrementSeed = 1;
                 this.columnIndex.AllowDBNull = false;
             }
             
