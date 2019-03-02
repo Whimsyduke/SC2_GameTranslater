@@ -935,14 +935,14 @@ namespace SC2_GameTranslater
             {
                 string keyStatus = Data_GameText.GetGameTextNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus);
                 query = from row in query
-                        where ((Enum)row[keyStatus]).HasFlag(TextStatusFilter)
+                        where ((EnumGameTextStatus)row[keyStatus]).HasFlag(TextStatusFilter)
                         select row;
             }
             if (UseStatusFilter != EnumGameUseStatus.All)
             {
                 string keyStatus = Data_GameText.GetGameTextNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus);
                 query = from row in query
-                        where ((Enum)row[keyStatus]).HasFlag(UseStatusFilter)
+                        where ((EnumGameUseStatus)row[keyStatus]).HasFlag(UseStatusFilter)
                         select row;
             }
             if (!IsSelectAllGalaxyFilter)

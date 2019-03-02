@@ -32,10 +32,15 @@ namespace SC2_GameTranslater.Source
         {
             if (values[0] == null || values[1] == null) return 0;
             var item = values[0];
-            var items = values[1] as ItemCollection;
-
-            var index = items.IndexOf(item);
-            return (index + 1).ToString();
+            if (values[1] is ItemCollection items)
+            {
+                var index = items.IndexOf(item);
+                return (index + 1).ToString();
+            }
+            else
+            {
+                return "";
+            }
         }
 
         /// <summary>
