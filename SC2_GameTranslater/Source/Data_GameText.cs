@@ -141,7 +141,7 @@ namespace SC2_GameTranslater.Source
         public const string RN_GameText_Index = "Index";
         public const string RN_GameText_File = "File";
         public const string RN_GameText_TextStatus = "TextStatus";
-        public const string RN_GameText_UseStatus = "UseStatuse";
+        public const string RN_GameText_UseStatus = "UseStatus";
         public const string RN_GameText_DropedText = "Droped";
         public const string RN_GameText_SourceText = "Source";
         public const string RN_GameText_EditedText = "Edited";

@@ -250,12 +250,12 @@ namespace SC2_GameTranslater
         public bool CanRefreshTranslatedText { set; get; }
 
         /// <summary>
-        /// 当前文本数据赖项属性
+        /// 当前文本数据依赖项属性
         /// </summary>
         public static DependencyProperty CurrentTextDataProperty = DependencyProperty.Register(nameof(CurrentTextData), typeof(DataTable), typeof(SC2_GameTranslater_Window));
 
         /// <summary>
-        /// 当前文本数据赖项
+        /// 当前文本数据依赖项
         /// </summary>
         public DataTable CurrentTextData { get => (DataTable)GetValue(CurrentTextDataProperty); set => SetValue(CurrentTextDataProperty, value); }
 
@@ -265,6 +265,18 @@ namespace SC2_GameTranslater
             { EnumSearchTextLocation.Left, IsInSearchResult_Left},
             { EnumSearchTextLocation.Right, IsInSearchResult_Right},
         };
+
+
+        /// <summary>
+        /// 当前翻译语言文本数据依赖项属性
+        /// </summary>>
+        public static DependencyProperty CurrentTranslateLanguageProperty = DependencyProperty.Register(nameof(CurrentTranslateLanguage), typeof(EnumLanguage), typeof(SC2_GameTranslater_Window));
+
+
+        /// <summary>
+        /// 当前翻译语言文本数据依赖项
+        /// </summary>
+        private EnumLanguage CurrentTranslateLanguage { set => SetValue(CurrentTranslateLanguageProperty, value); get => (EnumLanguage)GetValue(CurrentTranslateLanguageProperty); }
 
         #endregion
 
@@ -884,54 +896,6 @@ namespace SC2_GameTranslater
         #region DataGrid
 
         /// <summary>
-        /// 设置当前翻译语言
-        /// </summary>
-        /// <param name="lang">翻译语言</param>
-        public void SetCurrentTranslateLanguage(EnumLanguage lang)
-        {
-            Binding binding;
-            string langName = Enum.GetName(lang.GetType(), lang);
-            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_TextStatus))
-            {
-                Mode = BindingMode.TwoWay,
-
-            };
-            DataGridColumn_TextStatus.Binding = binding;
-            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_UseStatus))
-            {
-                Mode = BindingMode.TwoWay,
-            };
-            DataGridColumn_UseStatus.Binding = binding;
-            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_DropedText))
-            {
-                Mode = BindingMode.TwoWay,
-            };
-            DataGridColumn_SourceText.Binding = binding;
-            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_SourceText))
-            {
-                Mode = BindingMode.TwoWay,
-            };
-            DataGridColumn_SourceText.Binding = binding;
-            binding = new Binding(Data_GameText.GetGameTextNameForLanguage(lang, Data_GameText.RN_GameText_EditedText))
-            {
-                Mode = BindingMode.TwoWay,
-            };
-            DataGridColumn_EditedText.Binding = binding;
-        }
-
-        /// <summary>
-        /// 清理当前翻译语言
-        /// </summary>
-        public void CleanCurrentTranslateLanguage()
-        {
-            DataGridColumn_UseStatus.Binding = null;
-            DataGridColumn_TextStatus.Binding = null;
-            DataGridColumn_DropedText.Binding = null;
-            DataGridColumn_SourceText.Binding = null;
-            DataGridColumn_EditedText.Binding = null;
-        }
-
-        /// <summary>
         /// 刷新翻译文本
         /// </summary>
         /// <param name="project">项目数据</param>
@@ -1363,12 +1327,17 @@ namespace SC2_GameTranslater
                 Globals.MainWindow.InRibbonGallery_TranslateLanguage.SelectedItem = button;
                 if (button.Tag != null)
                 {
-                    Globals.MainWindow.SetCurrentTranslateLanguage((EnumLanguage)button.Tag);
+                    Binding binding = new Binding(Data_GameText.GetGameTextNameForLanguage((EnumLanguage) button.Tag, Data_GameText.RN_GameText_EditedText))
+                    {
+                        Mode = BindingMode.TwoWay,
+                    };
+                    Globals.MainWindow.DataGridColumn_EditedText.Binding = binding;
                 }
                 else
                 {
-                    Globals.MainWindow.CleanCurrentTranslateLanguage();
+                    Globals.MainWindow.DataGridColumn_EditedText.Binding = null;
                 }
+                Globals.MainWindow.CurrentTranslateLanguage = (EnumLanguage)button.Tag;
                 Globals.MainWindow.RefreshTranslatedText();
                 e.Handled = true;
             }

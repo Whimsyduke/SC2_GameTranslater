@@ -54,6 +54,43 @@ namespace SC2_GameTranslater.Source
     }
 
     /// <summary>
+    /// 翻译语言对应数据Converter
+    /// </summary>
+    public class EnumTranslateLanguageDataConverter : IMultiValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="values">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            DataRowView rowView = values[0] as DataRowView;
+            EnumLanguage language = (EnumLanguage)values[1];
+            string column = parameter as string;
+            string key = Data_GameText.GetGameTextNameForLanguage(language, column);
+            return rowView.Row[key].ToString();
+        }
+
+        /// <summary>
+        /// 逆向转换函数
+        /// </summary>
+        /// <param name="value">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+
+    }
+
+    /// <summary>
     /// 语言枚举值翻译Converter
     /// </summary>
     public class EnumNameInLanguage_TextFileConverter : IMultiValueConverter
@@ -106,10 +143,13 @@ namespace SC2_GameTranslater.Source
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             DataRowView rowView = values[0] as DataRowView;
-            EnumLanguage language = (EnumLanguage)values[1];
-            var var = rowView.Row[Data_GameText.RN_GameText_File];
+            EnumLanguage translateLanguage = (EnumLanguage)values[1];
+            EnumLanguage softeareLanguage = (EnumLanguage)values[2];
+            string column = parameter as string;
+            string key = Data_GameText.GetGameTextNameForLanguage(translateLanguage, column);
+            var var = rowView.Row[key];
             EnumGameTextStatus value = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), var);
-            return Data_GameText.GetEnumNameInLanguage(language, value);
+            return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
         }
 
         /// <summary>
@@ -143,10 +183,13 @@ namespace SC2_GameTranslater.Source
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             DataRowView rowView = values[0] as DataRowView;
-            EnumLanguage language = (EnumLanguage)values[1];
-            var var = rowView.Row[Data_GameText.RN_GameText_File];
+            EnumLanguage translateLanguage = (EnumLanguage)values[1];
+            EnumLanguage softeareLanguage = (EnumLanguage)values[2];
+            string column = parameter as string;
+            string key = Data_GameText.GetGameTextNameForLanguage(translateLanguage, column);
+            var var = rowView.Row[key];
             EnumGameUseStatus value = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), var);
-            return Data_GameText.GetEnumNameInLanguage(language, value);
+            return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
         }
 
         /// <summary>
