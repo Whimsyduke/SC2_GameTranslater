@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -35,6 +36,7 @@ namespace SC2_GameTranslater.Source
         public const string Preference_AttributeLastFolderPath = "LastFolder";
         public const string Preference_ElementRecentProjectList = "RecentProjectList";
         public const string Preference_AttributeRecentProject = "RecentProject";
+        public const string Preference_AttributeColumnVisiblility = "ColumnVisiblility";
 
         #endregion
 
@@ -66,6 +68,22 @@ namespace SC2_GameTranslater.Source
         [XmlArray(Preference_ElementRecentProjectList), XmlArrayItem(Preference_AttributeRecentProject)]
         public List<string> RecentProjectList { get; set; } = new List<string>();
 
+        /// <summary>
+        /// 最后打开保存文件路径
+        /// </summary>
+        [XmlArray(Preference_AttributeColumnVisiblility)]
+        public bool [] ColumnVisiblity { get; set; } = 
+        {
+            true,  // MenuItem_TextID
+            true,  // MenuItem_Index
+            true,  // MenuItem_TextFile
+            true,  // MenuItem_TextStatus
+            false, // MenuItem_UseStatus
+            false, // MenuItem_DropedText
+            true,  // MenuItem_SourceText
+            true,  // MenuItem_EditedText
+        };
+
         #endregion
 
         #endregion
@@ -78,11 +96,12 @@ namespace SC2_GameTranslater.Source
         public void SavePreference()
         {
             Globals.Preference.Preference_SaveWindowSize();
+            Globals.Preference.Preference_SaveColumnVisibility();
             SerializerCompression();
         }
 
         /// <summary>
-        /// 加载配置
+        /// 加载配置文件
         /// </summary>
         public void LoadPreference()
         {
@@ -102,12 +121,15 @@ namespace SC2_GameTranslater.Source
 #endif
             {
                 Globals.Preference.Preference_LoadWindowSize();
+                Globals.Preference.Preference_LoadColumnVisibility();
             }
         }
 
         #endregion
 
         #region 配置数据
+
+        #region 窗口大小
 
         /// <summary>
         /// 保存窗口大小
@@ -126,6 +148,44 @@ namespace SC2_GameTranslater.Source
             Globals.MainWindow.Width = WindowWidth;
             Globals.MainWindow.Height = WindowHeight;
         }
+
+        #endregion
+
+        #region 列可见性
+
+        /// <summary>
+        /// 保存列可见性
+        /// </summary>
+        private void Preference_SaveColumnVisibility()
+        {
+            foreach (System.Collections.DictionaryEntry select in Globals.MainWindow.DataGrid_TranslatedTexts.Resources)
+            {
+                if (select.Value is MenuItem item)
+                {
+                    ColumnVisiblity[int.Parse(item.Tag as string)] = item.IsChecked == true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 读取列可见性
+        /// </summary>
+        private void Preference_LoadColumnVisibility()
+        {
+            foreach (System.Collections.DictionaryEntry select in Globals.MainWindow.DataGrid_TranslatedTexts.Resources)
+            {
+                if (select.Value is MenuItem item)
+                {
+                    item.IsChecked = ColumnVisiblity[int.Parse(item.Tag as string)];
+                }
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region 压缩文件
 
         /// <summary>      
         /// 序列化DataSet对象并压缩      
@@ -189,6 +249,5 @@ namespace SC2_GameTranslater.Source
         }
 
         #endregion
-
     }
 }
