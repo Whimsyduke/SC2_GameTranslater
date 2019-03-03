@@ -32,6 +32,7 @@
     <sys:String x:Key="UI_RibbonButton_Save_Header">Save</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">Save As</sys:String>
     <sys:String x:Key="UI_RibbonButton_Reload_Header">Reload</sys:String>
+    <sys:String x:Key="UI_RibbonButton_ReloadSC2_Header">Reload (Mod/Map)</sys:String>
     <sys:String x:Key="UI_RibbonButton_Accept_Header">Accept</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">Close</sys:String>
     <sys:String x:Key="UI_GroupBox_Language_Header">UI Language:</sys:String>
@@ -45,6 +46,7 @@
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">Open Project</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Save_Title">Save Project</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_SaveAs_Title">Save Project As</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_Reload_Title">Reload Project</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_CompontentsPath_Title">Select SC2 Map/Mod Compontents</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">Details</sys:String>
     <sys:String x:Key="UI_GroupBox_Log_Header">Log</sys:String>
@@ -105,6 +107,10 @@
     <sys:String x:Key="ENUM_EnumGameUseStatus_Droped">Droped</sys:String>
     <sys:String x:Key="ENUM_EnumGameUseStatus_Normal">Normal</sys:String>
     <sys:String x:Key="ENUM_EnumGameUseStatus_New">New</sys:String>
+    <!--#endregion-->
+
+    <!--#region Error-->
+    <sys:String x:Key="ERR_CommonNewException">{0} &#160; File:{1}  Class:{2} Method:{3} Line:{4} &#160;</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

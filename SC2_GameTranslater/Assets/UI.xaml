@@ -159,6 +159,7 @@
                 Grid.ColumnSpan="1"
                 Margin="0,0,4,0"
                 HorizontalAlignment="Left"
+                VerticalAlignment="Center"
                 Orientation="Horizontal">
                 <Image
                     x:Name="iconImage"
@@ -166,7 +167,7 @@
                     Width="16"
                     Height="16"
                     Margin="3,0,0,0"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     IsEnabled="{TemplateBinding IsEnabled}"
                     Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" />
                 <Grid>
@@ -176,7 +177,7 @@
                     <TextBlock
                         x:Name="headerTextBlock"
                         Margin="5,0,0,0"
-                        VerticalAlignment="Top"
+                        VerticalAlignment="Center"
                         Text="{TemplateBinding Header}"
                         TextWrapping="Wrap" />
                 </Grid>

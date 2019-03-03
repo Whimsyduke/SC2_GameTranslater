@@ -178,7 +178,7 @@
     <Content Include="Assets\Image\ui-editoricon-triggercategories_techpurchase.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Image\ui-editoricon-triggereditor_newparameter.dds">
+    <Content Include="Assets\Image\ui-editoricon-triggereditor_newconditiondefinition.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Assets\Image\TranslationTool_Language_deDE.png">

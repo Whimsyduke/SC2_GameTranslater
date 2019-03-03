@@ -32,6 +32,7 @@
     <sys:String x:Key="UI_RibbonButton_Save_Header">保存</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">另存为</sys:String>
     <sys:String x:Key="UI_RibbonButton_Reload_Header">重载</sys:String>
+    <sys:String x:Key="UI_RibbonButton_ReloadSC2_Header">重载（地图/Mod）</sys:String>
     <sys:String x:Key="UI_RibbonButton_Accept_Header">应用</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">关闭</sys:String>
     <sys:String x:Key="UI_GroupBox_Language_Header">界面语言：</sys:String>
@@ -45,6 +46,7 @@
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">打开项目</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Save_Title">保存项目</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_SaveAs_Title">保存项目到</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_Reload_Title">重载项目</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_CompontentsPath_Title">选择SC2地图/Mod组件文件夹</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">详情</sys:String>
     <sys:String x:Key="UI_GroupBox_Log_Header">日志</sys:String>
@@ -105,6 +107,10 @@
     <sys:String x:Key="ENUM_EnumGameUseStatus_Droped">放弃</sys:String>
     <sys:String x:Key="ENUM_EnumGameUseStatus_Normal">正常</sys:String>
     <sys:String x:Key="ENUM_EnumGameUseStatus_New">新增</sys:String>
+    <!--#endregion-->
+
+    <!--#region Error-->
+    <sys:String x:Key="ERR_CommonNewException">{0} &#160; 文件：{1}  类：{2} 方法：{3} 行号：{4} &#160;</sys:String>
     <!--#endregion-->
     
 </ResourceDictionary>

@@ -250,33 +250,36 @@ namespace SC2_GameTranslater.Source
         #region 进程
 
         /// <summary>
-        /// 委托设为当前Project
-        /// </summary>
-        /// <param name="count">当前计数</param>
-        /// <param name="max">最大计数</param>
-        private void SetToCurrentProject(double count, double max)
-        {
-            Globals.CurrentProject = this;
-        }
-
-        /// <summary>
         /// 初始化
         /// </summary>
         /// <param name="argu"></param>
         public void ThreadInitialization(object argu)
         {
-            FileInfo file = argu as FileInfo;
+            KeyValuePair<FileInfo, SC2_GameTranslater_Window.Delegate_ProgressEvent> pair = (KeyValuePair<FileInfo, SC2_GameTranslater_Window.Delegate_ProgressEvent>)argu;
+               FileInfo file = pair.Key;
             CleanGalaxyTable();
 
             List<FileInfo> galaxyFiles = new List<FileInfo>();
             GetGalaxyFiles(file.Directory, ref galaxyFiles);
             int max = galaxyFiles.Count + GameTextFilesCount(file.Directory);
-            Globals.MainWindow.ProgressBarInit(max, "", null);
+            Globals.MainWindow.ProgressBarInit(max, "", this, null);
 
             LoadGalaxyFile(galaxyFiles);
             LoadGameTextFile(file.Directory);
 
-            Globals.MainWindow.ProgressBarClean(SetToCurrentProject);
+            Globals.MainWindow.ProgressBarClean(this, pair.Value);
+        }
+
+        /// <summary>
+        /// 从Mod初始化数据集
+        /// </summary>
+        /// <param name="path">文件路径</param>
+        /// <param name="func">结束回调</param>
+        public void Initialization(FileInfo file, SC2_GameTranslater_Window.Delegate_ProgressEvent func)
+        {
+            Clear();
+            Threads.StartThread(ThreadInitialization, new KeyValuePair<FileInfo, SC2_GameTranslater_Window.Delegate_ProgressEvent>( file, func), true);
+            SC2Components = file;
         }
 
         #endregion
@@ -295,17 +298,6 @@ namespace SC2_GameTranslater.Source
         #endregion
 
         #region 加载
-
-        /// <summary>
-        /// 从Mod初始化数据集
-        /// </summary>
-        /// <param name="path">文件路径</param>
-        public void Initialization(FileInfo file)
-        {
-            Clear();
-            Threads.StartThread(ThreadInitialization, file, true);
-            SC2Components = file;
-        }
 
         /// <summary>
         /// 加载项目
@@ -651,7 +643,7 @@ namespace SC2_GameTranslater.Source
             string value;
             int length;
             if (!File.Exists(path)) return false;
-            Globals.MainWindow.ProgressBarUpadte(1, name, null);
+            Globals.MainWindow.ProgressBarUpadte(1, name, this, null);
             StreamReader sr = new StreamReader(path);
             DataRow rowValue;
             while (!sr.EndOfStream)
@@ -778,7 +770,7 @@ namespace SC2_GameTranslater.Source
             {
                 foreach (FileInfo file in files)
                 {
-                    Globals.MainWindow.ProgressBarUpadte(1, file.Name, null);
+                    Globals.MainWindow.ProgressBarUpadte(1, file.Name, this, null);
                     LoadGalaxyFile(file);
                 }
             }

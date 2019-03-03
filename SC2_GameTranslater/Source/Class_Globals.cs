@@ -345,17 +345,6 @@ namespace SC2_GameTranslater.Source
         #region 项目文件
 
         /// <summary>
-        /// 初始化新项目数据
-        /// </summary>
-        /// <param name="file">文件路径</param>
-        public static void InitProjectData(FileInfo file)
-        {
-            Log.Assert(CurrentProject == null);
-            Data_GameText project = new Data_GameText();
-            project.Initialization(file);
-        }
-
-        /// <summary>
         /// 打开新项目数据
         /// </summary>
         /// <param name="file">文件路径</param>

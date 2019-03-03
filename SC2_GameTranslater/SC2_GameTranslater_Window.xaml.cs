@@ -98,7 +98,7 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="count">当前计数</param>
         /// <param name="max">最大计数</param>
-        public delegate void Delegate_ProgressEvent(double count, double max);
+        public delegate void Delegate_ProgressEvent(double count, double max, object param);
 
         /// <summary>
         /// 
@@ -154,6 +154,16 @@ namespace SC2_GameTranslater
         public RoutedUICommand CommandSaveAs { set => SetValue(CommandSaveAsProperty, value); get => (RoutedUICommand)GetValue(CommandSaveAsProperty); }
 
         /// <summary>
+        /// 关闭命令依赖项
+        /// </summary>
+        public static DependencyProperty CommandCloseProperty = DependencyProperty.Register(nameof(CommandClose), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+
+        /// <summary>
+        /// 关闭命令依赖项属性
+        /// </summary>
+        public RoutedUICommand CommandClose { set => SetValue(CommandCloseProperty, value); get => (RoutedUICommand)GetValue(CommandCloseProperty); }
+
+        /// <summary>
         /// 应用命令依赖项
         /// </summary>
         public static DependencyProperty CommandAcceptProperty = DependencyProperty.Register(nameof(CommandAccept), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
@@ -164,14 +174,24 @@ namespace SC2_GameTranslater
         public RoutedUICommand CommandAccept { set => SetValue(CommandAcceptProperty, value); get => (RoutedUICommand)GetValue(CommandAcceptProperty); }
 
         /// <summary>
-        /// 关闭命令依赖项
+        /// 重载命令依赖项
         /// </summary>
-        public static DependencyProperty CommandCloseProperty = DependencyProperty.Register(nameof(CommandClose), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+        public static DependencyProperty CommandReloadSC2perty = DependencyProperty.Register(nameof(CommandReload), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
 
         /// <summary>
-        /// 关闭命令依赖项属性
+        /// 重载命令依赖项属性
         /// </summary>
-        public RoutedUICommand CommandClose { set => SetValue(CommandCloseProperty, value); get => (RoutedUICommand)GetValue(CommandCloseProperty); }
+        public RoutedUICommand CommandReload { set => SetValue(CommandReloadSC2perty, value); get => (RoutedUICommand)GetValue(CommandReloadSC2perty); }
+
+        /// <summary>
+        /// 重载(地图/Mod)命令依赖项
+        /// </summary>
+        public static DependencyProperty CommandReloadSC2Property = DependencyProperty.Register(nameof(CommandReloadSC2), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+
+        /// <summary>
+        /// 重载(地图/Mod)命令依赖项属性
+        /// </summary>
+        public RoutedUICommand CommandReloadSC2 { set => SetValue(CommandReloadSC2Property, value); get => (RoutedUICommand)GetValue(CommandReloadSC2Property); }
 
         /// <summary>
         /// 选择Mod/Map命令依赖项
@@ -352,9 +372,13 @@ namespace SC2_GameTranslater
             Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandSaveAs, Executed_SaveAs, CanExecuted_SaveAs);
             Globals.MainWindow.CommandBindings.Add(binding);
+            binding = new CommandBinding(CommandClose, Executed_Close, CanExecuted_Close);
+            Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandAccept, Executed_Accept, CanExecuted_Accept);
             Globals.MainWindow.CommandBindings.Add(binding);
-            binding = new CommandBinding(CommandClose, Executed_Close, CanExecuted_Close);
+            binding = new CommandBinding(CommandReload, Executed_Reload, CanExecuted_Reload);
+            Globals.MainWindow.CommandBindings.Add(binding);
+            binding = new CommandBinding(CommandReloadSC2, Executed_ReloadSC2, CanExecuted_ReloadSC2);
             Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandComponentsPath, Executed_ComponentsPath, CanExecuted_ComponentsPath);
             Globals.MainWindow.CommandBindings.Add(binding);
@@ -418,8 +442,9 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="max">最大值</param>
         /// <param name="msg">初始消息</param>
+        /// <param name="param">参数</param>
         /// <param name="func">调用委托</param>
-        public void ProgressBarInit(int max, string msg, Delegate_ProgressEvent func)
+        public void ProgressBarInit(int max, string msg, object param, Delegate_ProgressEvent func)
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
                 (ThreadStart)delegate ()
@@ -429,7 +454,7 @@ namespace SC2_GameTranslater
                     TextBlock_ProgressMsg.Visibility = Visibility.Visible;
                     ProgressBar_Loading.Maximum = max;
                     TextBlock_ProgressMsg.Text = msg;
-                    func?.Invoke(0, max);
+                    func?.Invoke(0, max, param);
                 });
         }
 
@@ -438,21 +463,25 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="count">计数</param>
         /// <param name="msg">消息</param>
-        public void ProgressBarUpadte(int count, string msg, Delegate_ProgressEvent func)
+        /// <param name="param">参数</param>
+        /// <param name="func">调用委托</param>
+        public void ProgressBarUpadte(int count, string msg, object param, Delegate_ProgressEvent func)
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
                 (ThreadStart)delegate ()
                 {
                     ProgressBar_Loading.Value += count;
                     TextBlock_ProgressMsg.Text = string.Format("({0}/{1}) {2} {3}", ProgressBar_Loading.Value, ProgressBar_Loading.Maximum, Globals.CurrentLanguage["UI_TextBlock_ProgressMsg_Text"], msg);
-                    func?.Invoke(ProgressBar_Loading.Value, ProgressBar_Loading.Maximum);
+                    func?.Invoke(ProgressBar_Loading.Value, ProgressBar_Loading.Maximum, param);
                 });
         }
 
         /// <summary>
         /// 清理进度条状态
         /// </summary>
-        public void ProgressBarClean(Delegate_ProgressEvent func)
+        /// <param name="param">参数</param>
+        /// <param name="func">调用委托</param>
+        public void ProgressBarClean(object param, Delegate_ProgressEvent func)
         {
             Dispatcher.BeginInvoke(priority: System.Windows.Threading.DispatcherPriority.Normal,
                 method: (ThreadStart)delegate ()
@@ -462,7 +491,7 @@ namespace SC2_GameTranslater
                     ProgressBar_Loading.Value = 0;
                     TextBlock_ProgressMsg.Text = "";
                     Grid_Main.IsEnabled = true;
-                    func?.Invoke(ProgressBar_Loading.Value, ProgressBar_Loading.Maximum);
+                    func?.Invoke(ProgressBar_Loading.Value, ProgressBar_Loading.Maximum, param);
                 });
         }
 
@@ -514,7 +543,8 @@ namespace SC2_GameTranslater
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
                 Globals.Preference.LastFolderPath = file.DirectoryName;
-                ProjectOpen(file);
+                bool result = ProjectOpen(file);
+
             }
 
             e.Handled = true;
@@ -560,7 +590,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void Executed_SaveAs(object sender, ExecutedRoutedEventArgs e)
         {
-            ProjectSave(false);
+            ProjectSave(true);
             e.Handled = true;
         }
 
@@ -570,6 +600,28 @@ namespace SC2_GameTranslater
         /// <param name="sender">命令来源</param>
         /// <param name="e">路由事件参数</param>
         public static void CanExecuted_SaveAs(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = CheckCurrentProjectExist();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        ///关闭项目命令执行函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void Executed_Close(object sender, ExecutedRoutedEventArgs e)
+        {
+            ProjectClose();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 关闭项目命令判断函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void CanExecuted_Close(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = CheckCurrentProjectExist();
             e.Handled = true;
@@ -607,24 +659,65 @@ namespace SC2_GameTranslater
         }
 
         /// <summary>
-        ///关闭项目命令执行函数
+        /// 重载项目命令执行函数
         /// </summary>
         /// <param name="sender">命令来源</param>
         /// <param name="e">路由事件参数</param>
-        public static void Executed_Close(object sender, ExecutedRoutedEventArgs e)
+        public static void Executed_Reload(object sender, ExecutedRoutedEventArgs e)
         {
-            ProjectClose();
+            Log.Assert(Globals.CurrentProject != null);
+            string baseFolder = Globals.Preference.LastFolderPath; ;
+            string filter = Globals.CurrentLanguage["TEXT_ProjectFile"] as string + "|*" + Globals.Extension_SC2GameTran;
+            string title = Globals.CurrentLanguage["UI_OpenFileDialog_Reload_Title"] as string;
+            if (Globals.OpenFilePathDialog(baseFolder, filter, title, out System.Windows.Forms.OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
+            {
+                FileInfo file = new FileInfo(fileDialog.FileName);
+                Globals.Preference.LastFolderPath = file.DirectoryName;
+                ProjectReload(GetProjectDataFile(file));
+            }
             e.Handled = true;
         }
 
         /// <summary>
-        /// 关闭项目命令判断函数
+        /// 重载项目命令判断函数
         /// </summary>
         /// <param name="sender">命令来源</param>
         /// <param name="e">路由事件参数</param>
-        public static void CanExecuted_Close(object sender, CanExecuteRoutedEventArgs e)
+        public static void CanExecuted_Reload(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = CheckCurrentProjectExist();
+            e.CanExecute = Globals.ComponentsPathValid;
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 重载(地图/Mod)项目命令执行函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void Executed_ReloadSC2(object sender, ExecutedRoutedEventArgs e)
+        {
+            Log.Assert(Globals.CurrentProject != null);
+            Log.Assert(Globals.CurrentProject != null);
+            string baseFolder = Globals.Preference.LastFolderPath; ;
+            string filter = Globals.CurrentLanguage["TEXT_SC2File"] as string + "|" + Globals.FileName_SC2Components;
+            string title = Globals.CurrentLanguage["UI_OpenFileDialog_Reload_Title"] as string;
+            if (Globals.OpenFilePathDialog(baseFolder, filter, title, out System.Windows.Forms.OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
+            {
+                FileInfo file = new FileInfo(fileDialog.FileName);
+                Globals.Preference.LastFolderPath = file.DirectoryName;
+                ProjectReloadSC2(file);
+            }
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 重载(地图/Mod)项目命令判断函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void CanExecuted_ReloadSC2(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = Globals.ComponentsPathValid;
             e.Handled = true;
         }
 
@@ -1174,13 +1267,25 @@ namespace SC2_GameTranslater
         #region 功能
 
         /// <summary>
+        /// 委托设为当前Project
+        /// </summary>
+        /// <param name="count">当前计数</param>
+        /// <param name="max">最大计数</param>
+        /// <param name="param">参数</param>
+        public static void SetToCurrentProject(double count, double max, object param)
+        {
+            Globals.CurrentProject = param as Data_GameText;
+        }
+
+        /// <summary>
         /// 新建项目
         /// </summary>
         /// <param name="file">文件路径</param>
         public static void ProjectNew(FileInfo file)
         {
             ProjectClose();
-            Globals.InitProjectData(file);
+            Data_GameText project = new Data_GameText();
+            project.Initialization(file, SetToCurrentProject);
             Globals.MainWindow.RibbonGroupBox_File.UpdateLayout();
         }
 
@@ -1193,9 +1298,10 @@ namespace SC2_GameTranslater
         {
             ProjectClose();
             Globals.CurrentProjectPath = file;
-            bool result = Globals.OpenProjectData(file);
+            Data_GameText project = Data_GameText.LoadProject(file);
+            Globals.CurrentProject = project;
             Globals.MainWindow.RibbonGroupBox_File.UpdateLayout();
-            return result;
+            return project != null ;
         }
 
         /// <summary>
@@ -1247,6 +1353,45 @@ namespace SC2_GameTranslater
                 Globals.CurrentProject = null;
                 Globals.CurrentProjectPath = null;
             }
+        }
+
+        /// <summary>
+        /// 获取项目文件
+        /// </summary>
+        /// <param name="file">文件路径</param>
+        /// <returns>项目数据</returns>
+        public static Data_GameText GetProjectDataFile(FileInfo file)
+        {
+            return Data_GameText.LoadProject(file);
+        }
+
+        /// <summary>
+        /// 委托设为当前Project
+        /// </summary>
+        /// <param name="count">当前计数</param>
+        /// <param name="max">最大计数</param>
+        /// <param name="param">参数</param>
+        public static void ProjectReloadCallback(double count, double max, object param)
+        {
+            ProjectReload(param as Data_GameText);
+        }
+
+        /// <summary>
+        /// 重载项目
+        /// </summary>
+        /// <param name="project">项目文件</param>
+        public static void ProjectReload(Data_GameText project)
+        {
+
+        }
+
+        /// <summary>
+        /// 重载项目(地图/Mod)
+        /// </summary>
+        public static void ProjectReloadSC2(FileInfo file)
+        {
+            Data_GameText project = new Data_GameText();
+            project.Initialization(file, ProjectReloadCallback);
         }
 
         /// <summary>

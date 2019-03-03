@@ -63,14 +63,14 @@
                             Header="{DynamicResource ResourceKey=UI_RibbonButton_SaveAs_Header}" />
                         <Separator />
                         <Fluent:Button
-                            x:Name="RibbonButton_MenuAccept"
-                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandAccept}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}" />
-                        <Separator />
-                        <Fluent:Button
                             x:Name="RibbonButton_MenuClose"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandClose}"
                             Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}" />
+                        <Separator />
+                        <Fluent:Button
+                            x:Name="RibbonButton_MenuAccept"
+                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandAccept}"
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}" />
                         <Separator />
                         <Fluent:BackstageTabItem
                             x:Name="BackstageTabItem_Preference"
@@ -146,7 +146,6 @@
                 <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_New}}" />
                 <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Open}}" />
                 <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Save}}" />
-                <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Accept}}" />
                 <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Close}}" />
             </Fluent:Ribbon.QuickAccessItems>
             <Fluent:RibbonTabItem Name="RibbonTabItem_Start" Header="{DynamicResource ResourceKey=UI_RibbonTabItem_Start_Header}">
@@ -155,28 +154,43 @@
                     Width="Auto"
                     Grid.IsSharedSizeScope="True"
                     Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_File_Header}">
-                    <Fluent:Button
-                        x:Name="RibbonButton_New"
-                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandNew}"
-                        Header="{DynamicResource ResourceKey=UI_RibbonButton_New_Header}"
-                        Icon="{StaticResource ResourceKey=IMAGE_New}"
-                        KeyTip="N"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_New}" />
-                    <Fluent:Button
+                    <Fluent:SplitButton
                         x:Name="RibbonButton_Open"
                         Command="{Binding ElementName=RibbonWindow_Main, Path=CommandOpen}"
                         Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Open}"
                         KeyTip="O"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_Open}" />
-                    <Separator />
-                    <Fluent:Button
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Open}">
+                        <Fluent:Button
+                            x:Name="RibbonButton_New"
+                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandNew}"
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_New_Header}"
+                            Icon="{StaticResource ResourceKey=IMAGE_New}"
+                            KeyTip="N"
+                            LargeIcon="{StaticResource ResourceKey=IMAGE_New}" />
+                    </Fluent:SplitButton>
+                    <Fluent:SplitButton
                         x:Name="RibbonButton_Save"
                         Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSave}"
                         Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Save}"
                         KeyTip="S"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_Save}" />
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Save}">
+                        <Fluent:Button
+                            x:Name="RibbonButton_SaveAs"
+                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSaveAs}"
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_SaveAs_Header}"
+                            Icon="{StaticResource ResourceKey=IMAGE_Save}"
+                            KeyTip="S"
+                            LargeIcon="{StaticResource ResourceKey=IMAGE_Save}" />
+                    </Fluent:SplitButton>
+                    <Fluent:Button
+                        x:Name="RibbonButton_Close"
+                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandClose}"
+                        Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_Close}"
+                        KeyTip="S"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" />
                     <Separator />
                     <Fluent:Button
                         x:Name="RibbonButton_Accept"
@@ -185,14 +199,19 @@
                         Icon="{StaticResource ResourceKey=IMAGE_Accept}"
                         KeyTip="E"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" />
-                    <Separator />
-                    <Fluent:Button
-                        x:Name="RibbonButton_Close"
-                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandClose}"
-                        Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}"
-                        Icon="{StaticResource ResourceKey=IMAGE_Close}"
-                        KeyTip="S"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" />
+                    <Fluent:SplitButton
+                        Name="SplitButton_Reload"
+                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandReload}"
+                        Header="{DynamicResource ResourceKey=UI_RibbonButton_Reload_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_Reload}"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Reload}">
+                        <Fluent:Button
+                            Name="SplitButton_ReloadSC2"
+                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandReloadSC2}"
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_ReloadSC2_Header}"
+                            Icon="{StaticResource ResourceKey=IMAGE_Reload}"
+                            LargeIcon="{StaticResource ResourceKey=IMAGE_Reload}" />
+                    </Fluent:SplitButton>
                     <Separator />
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
@@ -204,13 +223,11 @@
                         MinWidth="120"
                         CanCollapseToButton="False"
                         Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TranslateLanguage_Header}"
-                        Icon="{StaticResource ResourceKey=IMAGE_TranslateLanguage}"
                         IsCollapsed="False"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_TranslateLanguage}"
-                        MaxItemsInDropDownRow="6"
-                        MaxItemsInRow="6"
-                        MinItemsInDropDownRow="2"
-                        MinItemsInRow="2"
+                        MaxItemsInDropDownRow="3"
+                        MaxItemsInRow="3"
+                        MinItemsInDropDownRow="1"
+                        MinItemsInRow="1"
                         Orientation="Horizontal"
                         ResizeMode="Both"
                         SizeDefinition="Large">
@@ -332,7 +349,7 @@
                     </Grid>
                     <Fluent:TextBox
                         Name="TextBox_SearchText"
-                        Width="250"
+                        Width="300"
                         Height="44"
                         HorizontalContentAlignment="Left"
                         VerticalContentAlignment="Top"
@@ -353,9 +370,7 @@
                         MinWidth="100"
                         CanCollapseToButton="False"
                         Header="{DynamicResource ResourceKey=UI_InRibbonGallery_GalaxyFilter_Header}"
-                        Icon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
                         IsCollapsed="False"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
                         MaxItemsInDropDownRow="1"
                         MinItemsInDropDownRow="1"
                         Orientation="Vertical"
@@ -396,9 +411,7 @@
                         MinWidth="100"
                         CanCollapseToButton="False"
                         Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TextFileFilter_Header}"
-                        Icon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
                         IsCollapsed="False"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
                         MaxItemsInDropDownRow="1"
                         MinItemsInDropDownRow="1"
                         Orientation="Vertical"
@@ -460,9 +473,7 @@
                         MinWidth="100"
                         CanCollapseToButton="False"
                         Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TextStatusFilter_Header}"
-                        Icon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
                         IsCollapsed="False"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
                         MaxItemsInDropDownRow="1"
                         MinItemsInDropDownRow="1"
                         Orientation="Vertical"
@@ -524,9 +535,7 @@
                         MinWidth="100"
                         CanCollapseToButton="False"
                         Header="{DynamicResource ResourceKey=UI_InRibbonGallery_UseStatusFilter_Header}"
-                        Icon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
                         IsCollapsed="False"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_GalaxyFile}"
                         MaxItemsInDropDownRow="1"
                         MinItemsInDropDownRow="1"
                         Orientation="Vertical"
@@ -605,50 +614,50 @@
                         x:Key="MenuItem_TextID"
                         Header="{DynamicResource ResourceKey=UI_DataGridColumn_TextID_Header}"
                         IsCheckable="True"
-                        Tag="0"
-                        IsChecked="True" />
+                        IsChecked="True"
+                        Tag="0" />
                     <MenuItem
                         x:Key="MenuItem_Index"
                         Header="{DynamicResource ResourceKey=UI_DataGridColumn_Index_Header}"
                         IsCheckable="True"
-                        Tag="1"
-                        IsChecked="True" />
+                        IsChecked="True"
+                        Tag="1" />
                     <MenuItem
                         x:Key="MenuItem_TextFile"
                         Header="{DynamicResource ResourceKey=UI_DataGridColumn_TextFile_Header}"
                         IsCheckable="True"
-                        Tag="2"
-                        IsChecked="True" />
+                        IsChecked="True"
+                        Tag="2" />
                     <MenuItem
                         x:Key="MenuItem_TextStatus"
                         Header="{DynamicResource ResourceKey=UI_DataGridColumn_TextStatus_Header}"
                         IsCheckable="True"
-                        Tag="3"
-                        IsChecked="True" />
+                        IsChecked="True"
+                        Tag="3" />
                     <MenuItem
                         x:Key="MenuItem_UseStatus"
                         Header="{DynamicResource ResourceKey=UI_DataGridColumn_UseStatus_Header}"
                         IsCheckable="True"
-                        Tag="4"
-                        IsChecked="False" />
+                        IsChecked="False"
+                        Tag="4" />
                     <MenuItem
                         x:Key="MenuItem_DropedText"
                         Header="{DynamicResource ResourceKey=UI_DataGridColumn_DropedText_Header}"
                         IsCheckable="True"
-                        Tag="5"
-                        IsChecked="False" />
+                        IsChecked="False"
+                        Tag="5" />
                     <MenuItem
                         x:Key="MenuItem_SourceText"
                         Header="{DynamicResource ResourceKey=UI_DataGridColumn_SourceText_Header}"
                         IsCheckable="True"
-                        Tag="6"
-                        IsChecked="True" />
+                        IsChecked="True"
+                        Tag="6" />
                     <MenuItem
                         x:Key="MenuItem_EditedText"
                         Header="{DynamicResource ResourceKey=UI_DataGridColumn_EditedText_Header}"
                         IsCheckable="True"
-                        Tag="7"
-                        IsChecked="True" />
+                        IsChecked="True"
+                        Tag="7" />
                     <ContextMenu x:Key="ContextMenu_ColumnVisible">
                         <StaticResource ResourceKey="MenuItem_TextID" />
                         <StaticResource ResourceKey="MenuItem_Index" />
@@ -773,8 +782,8 @@
                         Visibility="{Binding Source={StaticResource MenuItem_TextStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Binding>
                             <MultiBinding Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_TextStatus}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_TextStatus}">
-                                <Binding/>
-                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage"/>
+                                <Binding />
+                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
                                 <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
@@ -800,8 +809,8 @@
                         Visibility="{Binding Source={StaticResource MenuItem_UseStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Binding>
                             <MultiBinding Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_UseStatus}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_TextStatus}">
-                                <Binding/>
-                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage"/>
+                                <Binding />
+                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
                                 <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
@@ -827,8 +836,8 @@
                         Visibility="{Binding Source={StaticResource MenuItem_DropedText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Binding>
                             <MultiBinding Converter="{StaticResource ResourceKey=Converter_TranslateLanguageData}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_DropedText}">
-                                <Binding/>
-                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage"/>
+                                <Binding />
+                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
@@ -853,8 +862,8 @@
                         Visibility="{Binding Source={StaticResource MenuItem_SourceText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Binding>
                             <MultiBinding Converter="{StaticResource ResourceKey=Converter_TranslateLanguageData}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_SourceText}">
-                                <Binding/>
-                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage"/>
+                                <Binding />
+                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
