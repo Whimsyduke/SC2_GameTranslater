@@ -22,6 +22,10 @@ namespace SC2_GameTranslater.Source
     /// </summary>
     public enum EnumGameUseStatus
     {
+        /// <summary>
+        /// 无效
+        /// </summary>
+        None = 0,
         /// 过期
         /// </summary>
         Droped = 1,
@@ -45,6 +49,10 @@ namespace SC2_GameTranslater.Source
     /// </summary>
     public enum EnumGameTextStatus
     {
+        /// <summary>
+        /// 无效
+        /// </summary>
+        None = 0,
         /// <summary>
         /// 空
         /// </summary>
@@ -127,6 +135,7 @@ namespace SC2_GameTranslater.Source
 
         public const string RN_ModInfo_CompontentsPath = "CompontentsPath";
         public const string RN_Language_ID = "ID";
+        public const string RN_Language_Status = "Status";
         public const string RN_GalaxyFile_Path = "Path";
         public const string RN_GalaxyFile_Name = "Name";
         public const string RN_GalaxyFile_Count = "Count";
@@ -211,11 +220,212 @@ namespace SC2_GameTranslater.Source
 
         #region 方法
 
-        #region 重载方法
+        #region 通用
+
+        /// <summary>
+        /// 获取语言对应列名
+        /// </summary>
+        /// <param name="lang">语言</param>
+        /// <param name="name">基本名称</param>
+        /// <returns>列名</returns>
+        public static string GetGameRowNameForLanguage(EnumLanguage lang, string name)
+        {
+            return string.Format("{0}_{1}", Enum.GetName(lang.GetType(), lang), name);
+        }
+
+        /// <summary>
+        /// 获取枚举值对应的文本
+        /// </summary>
+        /// <param name="lang">语言</param>
+        /// <param name="value">枚举值</param>
+        /// <returns>翻译名称</returns>
+        public static string GetEnumNameInLanguage(EnumLanguage lang, Enum value)
+        {
+            string key = string.Format("ENUM_{0}_{1}", value.GetType().Name, Enum.GetName(value.GetType(), value));
+            return Globals.DictUILanguages[lang][key] as string;
+        }
+
+        /// <summary>
+        /// 生成语言对应的DataColumn配置
+        /// </summary>
+        /// <param name="lang">语言</param>
+        private void GenerateDataColumnForLanguage(EnumLanguage lang)
+        {
+            string columnName;
+            DataColumn column;
+            DataTable table;
+
+            table = Tables[TN_GameText];
+
+            // Text Status
+            columnName = GetGameRowNameForLanguage(lang, RN_GameText_TextStatus);
+            column = new DataColumn(columnName, typeof(EnumGameTextStatus), "", MappingType.Attribute)
+            {
+                Caption = columnName,
+                DefaultValue = EnumGameTextStatus.None,
+                AllowDBNull = false,
+                Unique = false,
+            };
+            table.Columns.Add(column);
+
+            // Use Status
+            columnName = GetGameRowNameForLanguage(lang, RN_GameText_UseStatus);
+            column = new DataColumn(columnName, typeof(EnumGameUseStatus), "", MappingType.Attribute)
+            {
+                Caption = columnName,
+                DefaultValue = EnumGameUseStatus.None,
+                AllowDBNull = false,
+                Unique = false,
+            };
+            table.Columns.Add(column);
+
+            // Drop Text
+            columnName = GetGameRowNameForLanguage(lang, RN_GameText_DropedText);
+            column = new DataColumn(columnName, typeof(string), "", MappingType.Element)
+            {
+                Caption = columnName,
+                DefaultValue = null,
+                AllowDBNull = true,
+                Unique = false,
+            };
+            table.Columns.Add(column);
+
+            // Source Text
+            columnName = GetGameRowNameForLanguage(lang, RN_GameText_SourceText);
+            column = new DataColumn(columnName, typeof(string), "", MappingType.Element)
+            {
+                Caption = columnName,
+                DefaultValue = null,
+                AllowDBNull = true,
+                Unique = false,
+            };
+            table.Columns.Add(column);
+
+            // Edited Text
+            columnName = GetGameRowNameForLanguage(lang, RN_GameText_EditedText);
+            column = new DataColumn(columnName, typeof(string), "", MappingType.Element)
+            {
+                Caption = columnName,
+                DefaultValue = null,
+                AllowDBNull = true,
+                Unique = false,
+            };
+            table.Columns.Add(column);
+        }
+
+        /// <summary>
+        /// 生成文本文件路径
+        /// </summary>
+        /// <param name="lang">语言</param>
+        /// <param name="file">文件类型</param>
+        /// <returns>路径</returns>
+        public string TextFilePath(EnumLanguage lang, EnumGameTextFile file)
+        {
+            string path = Enum.GetName(lang.GetType(), lang) + Const_String_GameTextMainPath;
+            switch (file)
+            {
+                case EnumGameTextFile.GameStrings:
+                    path += Const_String_FileGameStringsPath;
+                    break;
+                case EnumGameTextFile.ObjectStrings:
+                    path += Const_String_FileObjectStringsPath;
+                    break;
+                case EnumGameTextFile.TriggerStrings:
+                    path += Const_String_FileTriggerStringsPath;
+                    break;
+                default:
+                    Log.Assert(false);
+                    break;
+            }
+            return path;
+        }
+
+        /// <summary>
+        /// 批量设置值（行）
+        /// </summary>
+        /// <param name="rows">列表</param>
+        /// <param name="column">行</param>
+        /// <param name="value">值</param>
+        private void SetDataValue(List<DataRow> rows, string column, object value)
+        {
+            foreach (DataRow select in rows)
+            {
+                select[column] = value;
+            }
+        }
+
+        /// <summary>
+        /// 批量设置值(整个表)
+        /// </summary>
+        /// <param name="table">表名</param>
+        /// <param name="column">行</param>
+        /// <param name="value">值</param>
+        private void SetDataValue(string table, string column, object value)
+        {
+            foreach (DataRow select in Tables[table].Rows)
+            {
+                select[column] = value;
+            }
+        }
+
+        /// <summary>
+        /// 游戏文本文件数量
+        /// </summary>
+        /// <param name="baseDir">基础目录</param>
+        /// <returns>数量</returns>
+        private int GameTextFilesCount(DirectoryInfo baseDir)
+        {
+            int count = 0;
+            foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
+            {
+                string path;
+                path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, EnumGameTextFile.GameStrings));
+                if (File.Exists(path)) count++;
+                path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, EnumGameTextFile.ObjectStrings));
+                if (File.Exists(path)) count++;
+                path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, EnumGameTextFile.TriggerStrings));
+                if (File.Exists(path)) count++;
+            }
+            return count;
+        }
+
+        #endregion
+
+        #region 重载
+
+        /// <summary>
+        /// 批量设置使用状态为新增
+        /// </summary>
+        private void SetTextToNew()
+        {
+            foreach (EnumLanguage lang in LangaugeList)
+            {
+                SetDataValue(TN_GameText, GetGameRowNameForLanguage(lang, RN_GameText_UseStatus), EnumGameUseStatus.New);
+            }
+        }
+
+        #endregion
+
+        #region 基类方法
 
         public new void EndInit()
         {
             base.EndInit();
+
+            DataTable table = Tables[TN_Language];
+
+            // Use Status for Language Table
+            string columnName = RN_Language_Status;
+            DataColumn column = new DataColumn(columnName, typeof(EnumGameUseStatus), "", MappingType.Attribute)
+            {
+                Caption = columnName,
+                DefaultValue = EnumGameUseStatus.None,
+                AllowDBNull = false,
+                Unique = false,
+            };
+            table.Columns.Add(column);
+
+
             foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
             {
                 GenerateDataColumnForLanguage(lang);
@@ -256,7 +466,7 @@ namespace SC2_GameTranslater.Source
         public void ThreadInitialization(object argu)
         {
             KeyValuePair<FileInfo, SC2_GameTranslater_Window.Delegate_ProgressEvent> pair = (KeyValuePair<FileInfo, SC2_GameTranslater_Window.Delegate_ProgressEvent>)argu;
-               FileInfo file = pair.Key;
+            FileInfo file = pair.Key;
             CleanGalaxyTable();
 
             List<FileInfo> galaxyFiles = new List<FileInfo>();
@@ -278,7 +488,7 @@ namespace SC2_GameTranslater.Source
         public void Initialization(FileInfo file, SC2_GameTranslater_Window.Delegate_ProgressEvent func)
         {
             Clear();
-            Threads.StartThread(ThreadInitialization, new KeyValuePair<FileInfo, SC2_GameTranslater_Window.Delegate_ProgressEvent>( file, func), true);
+            Threads.StartThread(ThreadInitialization, new KeyValuePair<FileInfo, SC2_GameTranslater_Window.Delegate_ProgressEvent>(file, func), true);
             SC2Components = file;
         }
 
@@ -380,7 +590,7 @@ namespace SC2_GameTranslater.Source
                 if (!backFile.Directory.Exists) backFile.Directory.Create();
                 File.Copy(originpath, backFile.FullName, true);
                 StreamWriter sw = new StreamWriter(originpath, false);
-                string key = GetGameTextNameForLanguage(lang, RN_GameText_EditedText);
+                string key = GetGameRowNameForLanguage(lang, RN_GameText_EditedText);
                 foreach (DataRow row in data)
                 {
                     sw.WriteLine(string.Format("{0}={1}", row[RN_GameText_ID], row[key]));
@@ -414,176 +624,7 @@ namespace SC2_GameTranslater.Source
 
         #endregion
 
-        #region 文本功能
-
-        #region 通用
-
-        /// <summary>
-        /// 获取语言对应列名
-        /// </summary>
-        /// <param name="lang">语言</param>
-        /// <param name="name">基本名称</param>
-        /// <returns>列名</returns>
-        public static string GetGameTextNameForLanguage(EnumLanguage lang, string name)
-        {
-            return string.Format("{0}_{1}", Enum.GetName(lang.GetType(), lang), name);
-        }
-
-        /// <summary>
-        /// 获取枚举值对应的文本
-        /// </summary>
-        /// <param name="lang">语言</param>
-        /// <param name="value">枚举值</param>
-        /// <returns>翻译名称</returns>
-        public static string GetEnumNameInLanguage(EnumLanguage lang, Enum value)
-        {
-            string key = string.Format("ENUM_{0}_{1}", value.GetType().Name, Enum.GetName(value.GetType(), value));
-            return Globals.DictUILanguages[lang][key] as string;
-        }
-
-        /// <summary>
-        /// 生成语言对应的DataColumn配置
-        /// </summary>
-        /// <param name="lang">语言</param>
-        private void GenerateDataColumnForLanguage(EnumLanguage lang)
-        {
-            string columnName;
-            DataColumn column;
-            DataTable table = Tables[TN_GameText];
-
-            // Text Status
-            columnName = GetGameTextNameForLanguage(lang, RN_GameText_TextStatus);
-            column = new DataColumn(columnName, typeof(int), "", MappingType.Attribute)
-            {
-                Caption = columnName,
-                DefaultValue = EnumGameTextStatus.Empty,
-                AllowDBNull = false,
-                Unique = false,
-            };
-            table.Columns.Add(column);
-
-            // Use Status
-            columnName = GetGameTextNameForLanguage(lang, RN_GameText_UseStatus);
-            column = new DataColumn(columnName, typeof(int), "", MappingType.Attribute)
-            {
-                Caption = columnName,
-                DefaultValue = EnumGameTextStatus.Empty,
-                AllowDBNull = false,
-                Unique = false,
-            };
-            table.Columns.Add(column);
-
-            // Drop Text
-            columnName = GetGameTextNameForLanguage(lang, RN_GameText_DropedText);
-            column = new DataColumn(columnName, typeof(string), "", MappingType.Element)
-            {
-                Caption = columnName,
-                DefaultValue = null,
-                AllowDBNull = true,
-                Unique = false,
-            };
-            table.Columns.Add(column);
-
-            // Source Text
-            columnName = GetGameTextNameForLanguage(lang, RN_GameText_SourceText);
-            column = new DataColumn(columnName, typeof(string), "", MappingType.Element)
-            {
-                Caption = columnName,
-                DefaultValue = null,
-                AllowDBNull = true,
-                Unique = false,
-            };
-            table.Columns.Add(column);
-
-            // Edited Text
-            columnName = GetGameTextNameForLanguage(lang, RN_GameText_EditedText);
-            column = new DataColumn(columnName, typeof(string), "", MappingType.Element)
-            {
-                Caption = columnName,
-                DefaultValue = null,
-                AllowDBNull = true,
-                Unique = false,
-            };
-            table.Columns.Add(column);
-        }
-
-        /// <summary>
-        /// 生成文本文件路径
-        /// </summary>
-        /// <param name="lang">语言</param>
-        /// <param name="file">文件类型</param>
-        /// <returns>路径</returns>
-        public string TextFilePath(EnumLanguage lang, EnumGameTextFile file)
-        {
-            string path = Enum.GetName(lang.GetType(), lang) + Const_String_GameTextMainPath;
-            switch (file)
-            {
-                case EnumGameTextFile.GameStrings:
-                    path += Const_String_FileGameStringsPath;
-                    break;
-                case EnumGameTextFile.ObjectStrings:
-                    path += Const_String_FileObjectStringsPath;
-                    break;
-                case EnumGameTextFile.TriggerStrings:
-                    path += Const_String_FileTriggerStringsPath;
-                    break;
-                default:
-                    Log.Assert(false);
-                    break;
-            }
-            return path;
-        }
-
-        /// <summary>
-        /// 批量设置值（行）
-        /// </summary>
-        /// <param name="rows">列表</param>
-        /// <param name="column">行</param>
-        /// <param name="value">值</param>
-        private void SetDataValue(List<DataRow> rows, string column, object value)
-        {
-            foreach (DataRow select in rows)
-            {
-                select[column] = value;
-            }
-        }
-
-        /// <summary>
-        /// 批量设置值(整个表)
-        /// </summary>
-        /// <param name="name">表名</param>
-        /// <param name="column">行</param>
-        /// <param name="value">值</param>
-        private void SetDataValue(string name, string column, object value)
-        {
-            foreach (DataRow select in Tables[name].Rows)
-            {
-                select[column] = value;
-            }
-        }
-
-        /// <summary>
-        /// 游戏文本文件数量
-        /// </summary>
-        /// <param name="baseDir">基础目录</param>
-        /// <returns>数量</returns>
-        private int GameTextFilesCount(DirectoryInfo baseDir)
-        {
-            int count = 0;
-            foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
-            {
-                string path;
-                path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, EnumGameTextFile.GameStrings));
-                if (File.Exists(path)) count++;
-                path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, EnumGameTextFile.ObjectStrings));
-                if (File.Exists(path)) count++;
-                path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(lang, EnumGameTextFile.TriggerStrings));
-                if (File.Exists(path)) count++;
-            }
-            return count;
-        }
-
-        #endregion
+        #region 文本
 
         #region 加载
 
@@ -677,6 +718,7 @@ namespace SC2_GameTranslater.Source
             {
                 row = table.NewRow();
                 row[RN_Language_ID] = lang;
+                row[RN_Language_Status] = EnumGameUseStatus.Normal;
                 table.Rows.Add(row);
             }
             return row;
@@ -714,11 +756,11 @@ namespace SC2_GameTranslater.Source
         public DataRow SetTextValue(EnumLanguage lang, EnumGameTextFile file, string key, string value)
         {
             DataRow row = GetGameTextRow(file, key);
-            row[GetGameTextNameForLanguage(lang, RN_GameText_TextStatus)] = EnumGameTextStatus.Normal;
-            row[GetGameTextNameForLanguage(lang, RN_GameText_UseStatus)] = EnumGameUseStatus.Normal;
-            row[GetGameTextNameForLanguage(lang, RN_GameText_DropedText)] = value;
-            row[GetGameTextNameForLanguage(lang, RN_GameText_SourceText)] = value;
-            row[GetGameTextNameForLanguage(lang, RN_GameText_EditedText)] = value;
+            row[GetGameRowNameForLanguage(lang, RN_GameText_TextStatus)] = EnumGameTextStatus.Normal;
+            row[GetGameRowNameForLanguage(lang, RN_GameText_UseStatus)] = EnumGameUseStatus.Normal;
+            row[GetGameRowNameForLanguage(lang, RN_GameText_DropedText)] = value;
+            row[GetGameRowNameForLanguage(lang, RN_GameText_SourceText)] = value;
+            row[GetGameRowNameForLanguage(lang, RN_GameText_EditedText)] = value;
             return row;
         }
 
@@ -726,7 +768,7 @@ namespace SC2_GameTranslater.Source
 
         #endregion
 
-        #region 脚本功能
+        #region 脚本
 
         /// <summary>
         /// 清理Galaxy相关的表

@@ -1026,14 +1026,14 @@ namespace SC2_GameTranslater
             }
             if (TextStatusFilter != EnumGameTextStatus.All)
             {
-                string keyStatus = Data_GameText.GetGameTextNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus);
+                string keyStatus = Data_GameText.GetGameRowNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus);
                 query = from row in query
                         where ((EnumGameTextStatus)row[keyStatus]).HasFlag(TextStatusFilter)
                         select row;
             }
             if (UseStatusFilter != EnumGameUseStatus.All)
             {
-                string keyStatus = Data_GameText.GetGameTextNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus);
+                string keyStatus = Data_GameText.GetGameRowNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus);
                 query = from row in query
                         where ((EnumGameUseStatus)row[keyStatus]).HasFlag(UseStatusFilter)
                         select row;
@@ -1076,11 +1076,11 @@ namespace SC2_GameTranslater
                 List<EnumLanguage> languageList = (CurrentTextData.DataSet as Data_GameText).LangaugeList;
                 if (item.Tag == null)
                 {
-                    keyList.AddRange(languageList.Select(r => Data_GameText.GetGameTextNameForLanguage(r, Data_GameText.RN_GameText_DropedText)).ToList());
+                    keyList.AddRange(languageList.Select(r => Data_GameText.GetGameRowNameForLanguage(r, Data_GameText.RN_GameText_DropedText)).ToList());
                 }
                 else
                 {
-                    keyList.Add(Data_GameText.GetGameTextNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_DropedText));
+                    keyList.Add(Data_GameText.GetGameRowNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_DropedText));
                 }
             }
 
@@ -1091,11 +1091,11 @@ namespace SC2_GameTranslater
                 List<EnumLanguage> languageList = (CurrentTextData.DataSet as Data_GameText).LangaugeList;
                 if (item.Tag == null)
                 {
-                    keyList.AddRange(languageList.Select(r => Data_GameText.GetGameTextNameForLanguage(r, Data_GameText.RN_GameText_SourceText)).ToList());
+                    keyList.AddRange(languageList.Select(r => Data_GameText.GetGameRowNameForLanguage(r, Data_GameText.RN_GameText_SourceText)).ToList());
                 }
                 else
                 {
-                    keyList.Add(Data_GameText.GetGameTextNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_SourceText));
+                    keyList.Add(Data_GameText.GetGameRowNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_SourceText));
                 }
             }
 
@@ -1106,11 +1106,11 @@ namespace SC2_GameTranslater
                 List<EnumLanguage> languageList = (CurrentTextData.DataSet as Data_GameText).LangaugeList;
                 if (item.Tag == null)
                 {
-                    keyList.AddRange(languageList.Select(r => Data_GameText.GetGameTextNameForLanguage(r, Data_GameText.RN_GameText_EditedText)).ToList());
+                    keyList.AddRange(languageList.Select(r => Data_GameText.GetGameRowNameForLanguage(r, Data_GameText.RN_GameText_EditedText)).ToList());
                 }
                 else
                 {
-                    keyList.Add(Data_GameText.GetGameTextNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_EditedText));
+                    keyList.Add(Data_GameText.GetGameRowNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_EditedText));
                 }
             }
             return keyList;
@@ -1472,7 +1472,7 @@ namespace SC2_GameTranslater
                 Globals.MainWindow.InRibbonGallery_TranslateLanguage.SelectedItem = button;
                 if (button.Tag != null)
                 {
-                    Binding binding = new Binding(Data_GameText.GetGameTextNameForLanguage((EnumLanguage) button.Tag, Data_GameText.RN_GameText_EditedText))
+                    Binding binding = new Binding(Data_GameText.GetGameRowNameForLanguage((EnumLanguage) button.Tag, Data_GameText.RN_GameText_EditedText))
                     {
                         Mode = BindingMode.TwoWay,
                     };

@@ -565,17 +565,6 @@
                             Tag="{x:Static source:EnumGameUseStatus.Droped}"
                             Unchecked="ToggleButton_UseStatusFilterButton_CheckEvent" />
                         <Fluent:ToggleButton
-                            Name="ToggleButton_UseStatusFilterNormal"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Top"
-                            VerticalContentAlignment="Center"
-                            Checked="ToggleButton_UseStatusFilterButton_CheckEvent"
-                            Header="{DynamicResource ResourceKey=ENUM_EnumGameUseStatus_Normal}"
-                            Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
-                            SizeDefinition="Middle"
-                            Tag="{x:Static source:EnumGameUseStatus.Normal}"
-                            Unchecked="ToggleButton_UseStatusFilterButton_CheckEvent" />
-                        <Fluent:ToggleButton
                             Name="ToggleButton_UseStatusFilterNew"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"

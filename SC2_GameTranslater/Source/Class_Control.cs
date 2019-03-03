@@ -76,7 +76,7 @@ namespace SC2_GameTranslater.Source
             DataRowView rowView = values[0] as DataRowView;
             EnumLanguage language = (EnumLanguage)values[1];
             string column = parameter as string;
-            string key = Data_GameText.GetGameTextNameForLanguage(language, column);
+            string key = Data_GameText.GetGameRowNameForLanguage(language, column);
             return rowView.Row[key].ToString();
         }
 
@@ -151,7 +151,7 @@ namespace SC2_GameTranslater.Source
             EnumLanguage translateLanguage = (EnumLanguage)values[1];
             EnumLanguage softeareLanguage = (EnumLanguage)values[2];
             string column = parameter as string;
-            string key = Data_GameText.GetGameTextNameForLanguage(translateLanguage, column);
+            string key = Data_GameText.GetGameRowNameForLanguage(translateLanguage, column);
             var var = rowView.Row[key];
             EnumGameTextStatus value = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), var);
             return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
@@ -191,7 +191,7 @@ namespace SC2_GameTranslater.Source
             EnumLanguage translateLanguage = (EnumLanguage)values[1];
             EnumLanguage softeareLanguage = (EnumLanguage)values[2];
             string column = parameter as string;
-            string key = Data_GameText.GetGameTextNameForLanguage(translateLanguage, column);
+            string key = Data_GameText.GetGameRowNameForLanguage(translateLanguage, column);
             var var = rowView.Row[key];
             EnumGameUseStatus value = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), var);
             return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
