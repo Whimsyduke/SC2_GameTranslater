@@ -565,15 +565,15 @@
                             Tag="{x:Static source:EnumGameUseStatus.Droped}"
                             Unchecked="ToggleButton_UseStatusFilterButton_CheckEvent" />
                         <Fluent:ToggleButton
-                            Name="ToggleButton_UseStatusFilterNew"
+                            Name="ToggleButton_UseStatusFilterAdded"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_UseStatusFilterButton_CheckEvent"
-                            Header="{DynamicResource ResourceKey=ENUM_EnumGameUseStatus_New}"
+                            Header="{DynamicResource ResourceKey=ENUM_EnumGameUseStatus_Added}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
-                            Tag="{x:Static source:EnumGameUseStatus.New}"
+                            Tag="{x:Static source:EnumGameUseStatus.Added}"
                             Unchecked="ToggleButton_UseStatusFilterButton_CheckEvent" />
                     </Fluent:InRibbonGallery>
                 </Fluent:RibbonGroupBox>

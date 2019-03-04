@@ -20,33 +20,6 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// 文本状态
     /// </summary>
-    public enum EnumGameUseStatus
-    {
-        /// <summary>
-        /// 无效
-        /// </summary>
-        None = 0,
-        /// 过期
-        /// </summary>
-        Droped = 1,
-        /// <summary>
-        /// 正常
-        /// </summary>
-        Normal = 2,
-        /// <summary>
-        /// <summary>
-        /// 新增
-        /// </summary>
-        New = 4,
-        /// <summary>
-        /// 全部
-        /// </summary>
-        All = 7,
-    }
-
-    /// <summary>
-    /// 文本状态
-    /// </summary>
     public enum EnumGameTextStatus
     {
         /// <summary>
@@ -70,6 +43,34 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         All = 7,
     }
+
+    /// <summary>
+    /// 文本状态
+    /// </summary>
+    public enum EnumGameUseStatus
+    {
+        /// <summary>
+        /// 无效
+        /// </summary>
+        None = 0,
+        /// <summary>
+        /// 过期
+        /// </summary>
+        Droped = 1,
+        /// <summary>
+        /// 正常
+        /// </summary>
+        Normal = 2,
+        /// <summary>
+        /// 新增
+        /// </summary>
+        Added = 4,
+        /// <summary>
+        /// 全部
+        /// </summary>
+        All = 7,
+    }
+
 
     /// <summary>
     /// 文本文件
@@ -135,6 +136,7 @@ namespace SC2_GameTranslater.Source
 
         public const string RN_ModInfo_CompontentsPath = "CompontentsPath";
         public const string RN_Language_ID = "ID";
+        public const string RN_Language_Name = "Name";
         public const string RN_Language_Status = "Status";
         public const string RN_GalaxyFile_Path = "Path";
         public const string RN_GalaxyFile_Name = "Name";
@@ -259,7 +261,7 @@ namespace SC2_GameTranslater.Source
 
             // Text Status
             columnName = GetGameRowNameForLanguage(lang, RN_GameText_TextStatus);
-            column = new DataColumn(columnName, typeof(EnumGameTextStatus), "", MappingType.Attribute)
+            column = new DataColumn(columnName, typeof(Int32), "", MappingType.Attribute)
             {
                 Caption = columnName,
                 DefaultValue = EnumGameTextStatus.None,
@@ -270,7 +272,7 @@ namespace SC2_GameTranslater.Source
 
             // Use Status
             columnName = GetGameRowNameForLanguage(lang, RN_GameText_UseStatus);
-            column = new DataColumn(columnName, typeof(EnumGameUseStatus), "", MappingType.Attribute)
+            column = new DataColumn(columnName, typeof(Int32), "", MappingType.Attribute)
             {
                 Caption = columnName,
                 DefaultValue = EnumGameUseStatus.None,
@@ -394,37 +396,53 @@ namespace SC2_GameTranslater.Source
         #region 重载
 
         /// <summary>
+        /// 重载语言配置
+        /// </summary>
+        /// <param name="oldProject">旧项目</param>
+        private void ReloadLanguageStatus(Data_GameText oldProject)
+        {
+            EnumerableRowCollection<DataRow> newRows = Tables[TN_Language].AsEnumerable();
+            EnumerableRowCollection<DataRow> oldRows = oldProject.Tables[TN_Language].AsEnumerable();
+            IEnumerable<DataRow> dropRows = oldRows.Except(newRows, DataRowComparer.Default);
+            IEnumerable<DataRow> addRows = newRows.Except(oldRows, DataRowComparer.Default);
+            foreach (DataRow row in dropRows)
+            {
+                row[RN_Language_Status] = EnumGameUseStatus.Droped;
+                Tables[TN_Language].ImportRow(row);
+            }
+            foreach (DataRow row in addRows)
+            {
+                row[RN_Language_Status] = EnumGameUseStatus.Added;
+            }
+        }
+
+        /// <summary>
         /// 批量设置使用状态为新增
         /// </summary>
         private void SetTextToNew()
         {
             foreach (EnumLanguage lang in LangaugeList)
             {
-                SetDataValue(TN_GameText, GetGameRowNameForLanguage(lang, RN_GameText_UseStatus), EnumGameUseStatus.New);
+                SetDataValue(TN_GameText, GetGameRowNameForLanguage(lang, RN_GameText_UseStatus), EnumGameUseStatus.Added);
             }
+        }
+
+        /// <summary>
+        /// 重载项目数据
+        /// </summary>
+        /// <param name="oldProject">旧项目</param>
+        public void ReloadProjectData(Data_GameText oldProject)
+        {
+            ReloadLanguageStatus(oldProject);
         }
 
         #endregion
 
-        #region 基类方法
+        #region 基类
 
         public new void EndInit()
         {
             base.EndInit();
-
-            DataTable table = Tables[TN_Language];
-
-            // Use Status for Language Table
-            string columnName = RN_Language_Status;
-            DataColumn column = new DataColumn(columnName, typeof(EnumGameUseStatus), "", MappingType.Attribute)
-            {
-                Caption = columnName,
-                DefaultValue = EnumGameUseStatus.None,
-                AllowDBNull = false,
-                Unique = false,
-            };
-            table.Columns.Add(column);
-
 
             foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
             {
@@ -718,6 +736,7 @@ namespace SC2_GameTranslater.Source
             {
                 row = table.NewRow();
                 row[RN_Language_ID] = lang;
+                row[RN_Language_Name] = Enum.GetName(lang.GetType(), lang);
                 row[RN_Language_Status] = EnumGameUseStatus.Normal;
                 table.Rows.Add(row);
             }

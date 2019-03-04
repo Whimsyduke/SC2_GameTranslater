@@ -1382,7 +1382,7 @@ namespace SC2_GameTranslater
         /// <param name="project">项目文件</param>
         public static void ProjectReload(Data_GameText project)
         {
-
+            project.ReloadProjectData(Globals.CurrentProject);
         }
 
         /// <summary>
