@@ -1,8 +1,0 @@
-Library/Name/LIB1=庫1
-Library/Name/LIB2=庫2
-Trigger/Name/lib_LIB1_04A0D8C7=觸發器1
-Trigger/Name/lib_LIB1_F18196F3=庫中觸發器1
-Trigger/Name/lib_LIB2_7B3D3878=觸發器2
-Trigger/Name/lib_LIB2_F18196F3=庫中觸發器2
-Variable/Name/lib_LIB1_AF5C38AB=區域變數
-Variable/Name/lib_LIB2_58814005=區域變數

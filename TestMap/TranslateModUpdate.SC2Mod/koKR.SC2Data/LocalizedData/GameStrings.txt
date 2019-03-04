@@ -1,0 +1,6 @@
+﻿DocInfo/DescLong=翻译描述
+DocInfo/DescShort=Translate Player Count
+DocInfo/Name=Translate Mod
+Param/Value/lib_LIB1_2254CCC2=Translate Text
+Param/Value/lib_LIB2_43EF0FA3=翻译文本
+Unit/Name/TranslateUnit=翻译单位
