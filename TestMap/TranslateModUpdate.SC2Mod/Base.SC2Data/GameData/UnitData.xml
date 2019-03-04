@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CUnit id="TranslateUnit2">
+        <ReviveType value="TranslateUnit"/>
+        <Race value="Zerg"/>
+        <EditorCategories value=""/>
+        <TacticalAI value="TranslateUnit"/>
+        <LeaderAlias value="TranslateUnit"/>
+        <HotkeyAlias value="TranslateUnit"/>
+        <SelectAlias value="TranslateUnit"/>
+        <SubgroupAlias value="TranslateUnit"/>
+        <AIEvaluateAlias value="TranslateUnit"/>
+        <ReviveInfoBase>
+            <Charge Link="TranslateUnit/Revive"/>
+            <Cooldown Link="TranslateUnit/Revive"/>
+        </ReviveInfoBase>
+    </CUnit>
+</Catalog>

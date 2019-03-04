@@ -1,0 +1,9 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ???3
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger libLib3_gt_Trigger;
+trigger libLib3_gt_TriggerInLibrary;
+

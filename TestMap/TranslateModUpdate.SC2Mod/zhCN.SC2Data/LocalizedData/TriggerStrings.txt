@@ -1,0 +1,8 @@
+﻿Library/Name/LIB1=库1
+Library/Name/Lib3=库3
+Trigger/Name/lib_LIB1_04A0D8C7=触发器1
+Trigger/Name/lib_LIB1_F18196F3=库中触发器1
+Trigger/Name/lib_Lib3_A8935C67=触发器3
+Trigger/Name/lib_Lib3_BEF07059=库中触发器3
+Variable/Name/lib_LIB1_AF5C38AB=局部变量
+Variable/Name/lib_Lib3_7F2D0B6B=局部变量

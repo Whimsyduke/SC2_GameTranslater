@@ -1,0 +1,71 @@
+include "TriggerLibs/NativeLib"
+
+include "LibLib3_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ???3
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libLib3_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: ?????????3
+//--------------------------------------------------------------------------------------------------
+bool libLib3_gt_Trigger_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_Text;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_Text = StringExternal("Param/Value/lib_Lib3_817A2555");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libLib3_gt_Trigger_Init () {
+    libLib3_gt_Trigger = TriggerCreate("libLib3_gt_Trigger_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: ???????????????3
+//--------------------------------------------------------------------------------------------------
+bool libLib3_gt_TriggerInLibrary_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libLib3_gt_TriggerInLibrary_Init () {
+    libLib3_gt_TriggerInLibrary = TriggerCreate("libLib3_gt_TriggerInLibrary_Func");
+}
+
+void libLib3_InitTriggers () {
+    libLib3_gt_Trigger_Init();
+    libLib3_gt_TriggerInLibrary_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libLib3_InitLib_completed = false;
+
+void libLib3_InitLib () {
+    if (libLib3_InitLib_completed) {
+        return;
+    }
+
+    libLib3_InitLib_completed = true;
+
+    libLib3_InitLibraries();
+    libLib3_InitTriggers();
+}
+

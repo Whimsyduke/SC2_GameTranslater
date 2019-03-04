@@ -1,0 +1,2 @@
+Unit/EditorPrefix/TranslateUnit=首碼
+Unit/EditorSuffix/TranslateUnit=尾碼

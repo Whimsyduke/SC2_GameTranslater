@@ -1,0 +1,2 @@
+Unit/EditorPrefix/TranslateUnit=前缀
+Unit/EditorSuffix/TranslateUnit=后缀

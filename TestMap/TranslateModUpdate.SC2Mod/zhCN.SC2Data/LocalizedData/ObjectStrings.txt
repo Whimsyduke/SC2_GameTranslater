@@ -1,0 +1,2 @@
+﻿Unit/EditorPrefix/TranslateUnit2=前缀2
+Unit/EditorSuffix/TranslateUnit2=后缀2
