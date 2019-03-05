@@ -204,6 +204,11 @@ namespace SC2_GameTranslater.Source
         public List<EnumLanguage> LangaugeList { get; private set; }
 
         /// <summary>
+        /// 语言数据
+        /// </summary>
+        public EnumerableRowCollection<DataRow> LangaugeRowList { get => Tables[TN_Language].AsEnumerable(); }
+
+        /// <summary>
         /// 项目信息行
         /// </summary>
         public DataRow ProjectInfoRow
@@ -453,15 +458,6 @@ namespace SC2_GameTranslater.Source
         #endregion
 
         #region 数据
-
-        /// <summary>
-        /// 获取项目语言列表
-        /// </summary>
-        /// <returns></returns>
-        public List<EnumLanguage> GetLanguageList()
-        {
-            return Tables[TN_Language].AsEnumerable().Select(r => (EnumLanguage)r[RN_Language_ID]).ToList();
-        }
 
         /// <summary>
         /// 写入组件文件夹路径

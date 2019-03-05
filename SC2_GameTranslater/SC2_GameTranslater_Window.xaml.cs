@@ -745,7 +745,7 @@ namespace SC2_GameTranslater
 
         #endregion
 
-        #region 语言筛选项
+        #region 翻译语言筛选项
 
         /// <summary>
         /// 刷新翻译选项
@@ -753,49 +753,65 @@ namespace SC2_GameTranslater
         /// <param name="project">项目</param>
         public void RefreshTranslateAndSearchLanguageButtons(Data_GameText project)
         {
-            if (project == null)
+            ResetTranslateAndSearchLanguageButtons();
+            if (project == null || project.LangaugeRowList.Count() == 0)
             {
-                RefreshNoTranslateAndSearchLanguageButtons();
+                InRibbonGallery_TranslateLanguage.Items.Add(TranslateAndSearchLanguage[0].Key);
+                ComboBox_SearchLanguage.Items.Add(TranslateAndSearchLanguage[0].Value);
+                TranslateAndSearchLanguage[0].Key.IsChecked = false;
                 InRibbonGallery_TranslateLanguage.Selectable = false;
             }
             else
-            {
-                InRibbonGallery_TranslateLanguage.Items.Clear();
-                List<EnumLanguage> list = project.GetLanguageList();
-                if (list.Count == 0)
-                {
-                    RefreshNoTranslateAndSearchLanguageButtons();
-                    InRibbonGallery_TranslateLanguage.Selectable = false;
-                    return;
-                }
+            {        
                 ToggleButton selectButton = null;
-                foreach (KeyValuePair<EnumLanguage, KeyValuePair<ToggleButton, ComboBoxItem>> select in TranslateAndSearchLanguage)
+                foreach (DataRow row in project.LangaugeRowList)
                 {
-                    if (list.Contains(select.Key))
+                    EnumLanguage lang = (EnumLanguage)row[Data_GameText.RN_Language_ID];
+                    ToggleButton button = TranslateAndSearchLanguage[lang].Key;
+                    ComboBoxItem item = TranslateAndSearchLanguage[lang].Value;
+                    InRibbonGallery_TranslateLanguage.Items.Add(button);
+                    ComboBox_SearchLanguage.Items.Add(item);
+                    switch ((EnumGameUseStatus)row[Data_GameText.RN_Language_Status])
                     {
-                        InRibbonGallery_TranslateLanguage.Items.Add(select.Value.Key);
-                        ComboBox_SearchLanguage.Items.Add(select.Value.Value);
-                        if (selectButton == null || (int)select.Key == CultureInfo.CurrentCulture.LCID)
-                        {
-                            selectButton = select.Value.Key;
-                        }
+                        case EnumGameUseStatus.Droped:
+                            button.FontStyle = FontStyles.Italic;
+                            item.FontStyle = FontStyles.Italic;
+                            break;
+                        case EnumGameUseStatus.Added:
+                            button.FontWeight = FontWeights.Bold;
+                            item.FontWeight = FontWeights.Bold;
+                            break;
+                        default:
+                            break;
+                    }
+                    if (selectButton == null || (int)lang == CultureInfo.CurrentCulture.LCID)
+                    {
+                        selectButton = button;
                     }
                 }
                 selectButton.IsChecked = true;
                 InRibbonGallery_TranslateLanguage.Selectable = true;
             }
         }
-
+        
         /// <summary>
-        /// 没有可用的翻译语言
+        /// 重置翻译和搜索语言项
         /// </summary>
-        private void RefreshNoTranslateAndSearchLanguageButtons()
+        private void ResetTranslateAndSearchLanguageButtons()
         {
             InRibbonGallery_TranslateLanguage.Items.Clear();
-            InRibbonGallery_TranslateLanguage.Items.Add(TranslateAndSearchLanguage[0].Key);
-            TranslateAndSearchLanguage[0].Key.IsChecked = false;
             ComboBox_SearchLanguage.Items.Clear();
-            ComboBox_SearchLanguage.Items.Add(TranslateAndSearchLanguage[0].Value);
+            foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
+            {
+                ToggleButton button = TranslateAndSearchLanguage[lang].Key;
+                ComboBoxItem item = TranslateAndSearchLanguage[lang].Value;
+                button.IsChecked = false;
+                button.FontWeight = FontWeights.Normal;
+                button.FontStyle = FontStyles.Normal;
+                item.IsSelected = false;
+                item.FontWeight = FontWeights.Normal;
+                item.FontStyle = FontStyles.Normal;
+            }
         }
 
         /// <summary>
