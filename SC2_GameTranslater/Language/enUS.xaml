@@ -109,6 +109,7 @@
     <sys:String x:Key="ENUM_EnumGameUseStatus_Droped">Droped</sys:String>
     <sys:String x:Key="ENUM_EnumGameUseStatus_Normal">Normal</sys:String>
     <sys:String x:Key="ENUM_EnumGameUseStatus_Added">Added</sys:String>
+    <sys:String x:Key="ENUM_EnumGameUseStatus_Modified">Modified</sys:String>
     <!--#endregion-->
 
     <!--#region Error-->

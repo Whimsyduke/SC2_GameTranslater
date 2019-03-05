@@ -66,9 +66,13 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         Added = 4,
         /// <summary>
+        /// 修改
+        /// </summary>
+        Modified = 8,
+        /// <summary>
         /// 全部
         /// </summary>
-        All = 7,
+        All = 15,
     }
 
 
@@ -353,7 +357,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="rows">列表</param>
         /// <param name="column">行</param>
         /// <param name="value">值</param>
-        private void SetDataValue(List<DataRow> rows, string column, object value)
+        private void SetDataValue(IEnumerable<DataRow> rows, string column, object value)
         {
             foreach (DataRow select in rows)
             {
@@ -424,13 +428,51 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 批量设置使用状态为新增
         /// </summary>
-        private void SetTextToNew()
+        /// <param name="oldProject">旧项目</param>
+        private void ReloadText(Data_GameText oldProject)
         {
-            foreach (EnumLanguage lang in LangaugeList)
+            EnumerableRowCollection<DataRow> newRows = Tables[TN_GameText].AsEnumerable();
+            EnumerableRowCollection<DataRow> oldRows = oldProject.Tables[TN_Language].AsEnumerable();
+            IEnumerable<DataRow> dropRows = oldRows.Except(newRows, DataRowComparer.Default);
+            IEnumerable<DataRow> addRows = newRows.Except(oldRows, DataRowComparer.Default);
+            IEnumerable<DataRow> normalRows = newRows.Except(addRows, DataRowComparer.Default);
+
+            Dictionary<EnumLanguage, EnumGameUseStatus> dictUseStatus = new Dictionary<EnumLanguage, EnumGameUseStatus>();
+            foreach (DataRow row in LangaugeRowList)
             {
-                SetDataValue(TN_GameText, GetGameRowNameForLanguage(lang, RN_GameText_UseStatus), EnumGameUseStatus.Added);
+                //dictUseStatus.Add((EnumLanguage)row[RN_Language_ID], (EnumGameUseStatus)row[RN_Language_Status]);
+                EnumLanguage lang = (EnumLanguage)row[RN_Language_ID];
+                string key = GetGameRowNameForLanguage(lang, RN_GameText_UseStatus); ;
+                switch ((EnumGameUseStatus)row[RN_Language_Status])
+                {
+                    case EnumGameUseStatus.Droped:
+                        SetDataValue(addRows, key, EnumGameUseStatus.Droped);
+                        SetDataValue(normalRows, key, EnumGameUseStatus.Droped);
+                        SetDataValue(dropRows, key, EnumGameUseStatus.Droped);
+                        break;
+                    case EnumGameUseStatus.Normal:
+                        SetDataValue(addRows, key, EnumGameUseStatus.Added);
+                        SetDataValue(normalRows, key, EnumGameUseStatus.Normal);
+                        SetDataValue(dropRows, key, EnumGameUseStatus.Droped);
+                        break;
+                    case EnumGameUseStatus.Added:
+                        SetDataValue(addRows, key, EnumGameUseStatus.Added);
+                        SetDataValue(normalRows, key, EnumGameUseStatus.Added);
+                        SetDataValue(dropRows, key, EnumGameUseStatus.Droped);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
+            foreach (DataRow row in LangaugeRowList)
+            {
+                EnumLanguage lang = (EnumLanguage)row[RN_Language_ID];
+                EnumGameUseStatus status = (EnumGameUseStatus)row[RN_Language_Status];
+                SetDataValue(TN_GameText, GetGameRowNameForLanguage(lang, RN_GameText_UseStatus), status);
             }
         }
+
 
         /// <summary>
         /// 重载项目数据
