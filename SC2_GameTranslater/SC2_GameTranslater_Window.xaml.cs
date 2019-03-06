@@ -1399,6 +1399,7 @@ namespace SC2_GameTranslater
         public static void ProjectReload(Data_GameText project)
         {
             project.ReloadProjectData(Globals.CurrentProject);
+            Globals.CurrentProject = project;
         }
 
         /// <summary>

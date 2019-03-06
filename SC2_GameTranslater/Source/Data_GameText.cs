@@ -108,6 +108,52 @@ namespace SC2_GameTranslater.Source
     {
         #region 声明常量
 
+        #region 子类声明
+
+        /// <summary>
+        /// 游戏文本DataRow比较类
+        /// </summary>
+        /// <typeparam name="TRow">DataRow</typeparam>
+        public class GameTextComparer<TRow> : IEqualityComparer<TRow>
+        {
+            #region 属性
+
+            /// <summary>
+            /// 默认比较器
+            /// </summary>
+            public static GameTextComparer<TRow> Default { get; } = new GameTextComparer<TRow>();
+
+            #endregion
+
+            #region 方法
+
+            /// <summary>
+            /// 比较函数
+            /// </summary>
+            /// <param name="x">行x</param>
+            /// <param name="y">行y</param>
+            /// <returns>比较结果</returns>
+            bool IEqualityComparer<TRow>.Equals(TRow x, TRow y)
+            {
+                return (x as DataRow)[RN_GameText_ID] as string == (y as DataRow)[RN_GameText_ID] as string;
+            }
+
+            /// <summary>
+            /// 获取哈希值
+            /// </summary>
+            /// <param name="obj">获取对象</param>
+            /// <returns>哈希值</returns>
+            int IEqualityComparer<TRow>.GetHashCode(TRow obj)
+            {
+                return (obj as DataRow).GetHashCode();
+            }
+
+            #endregion
+
+        }
+
+        #endregion
+
         #region 正则表达式常量
         /// <summary>
         /// Galaxy文本函数
@@ -431,19 +477,27 @@ namespace SC2_GameTranslater.Source
         /// <param name="oldProject">旧项目</param>
         private void ReloadText(Data_GameText oldProject)
         {
+            // GetRows
             EnumerableRowCollection<DataRow> newRows = Tables[TN_GameText].AsEnumerable();
-            EnumerableRowCollection<DataRow> oldRows = oldProject.Tables[TN_Language].AsEnumerable();
-            IEnumerable<DataRow> dropRows = oldRows.Except(newRows, DataRowComparer.Default);
-            IEnumerable<DataRow> addRows = newRows.Except(oldRows, DataRowComparer.Default);
-            IEnumerable<DataRow> normalRows = newRows.Except(addRows, DataRowComparer.Default);
-
-            Dictionary<EnumLanguage, EnumGameUseStatus> dictUseStatus = new Dictionary<EnumLanguage, EnumGameUseStatus>();
-            foreach (DataRow row in LangaugeRowList)
+            EnumerableRowCollection<DataRow> oldRows = oldProject.Tables[TN_GameText].AsEnumerable();
+            IEnumerable<DataRow> dropRows = oldRows.Except(newRows, GameTextComparer<DataRow>.Default);
+            IEnumerable<DataRow> addRows = newRows.Except(oldRows, GameTextComparer<DataRow>.Default);
+            IEnumerable<DataRow> normalRows = newRows.Except(addRows, GameTextComparer<DataRow>.Default);
+            DataTable table = Tables[TN_GameText];
+            foreach (DataRow row in dropRows)
             {
-                //dictUseStatus.Add((EnumLanguage)row[RN_Language_ID], (EnumGameUseStatus)row[RN_Language_Status]);
-                EnumLanguage lang = (EnumLanguage)row[RN_Language_ID];
-                string key = GetGameRowNameForLanguage(lang, RN_GameText_UseStatus); ;
-                switch ((EnumGameUseStatus)row[RN_Language_Status])
+                table.ImportRow(row);
+            }
+            dropRows = table.AsEnumerable().Except(normalRows, GameTextComparer<DataRow>.Default).Except(addRows, GameTextComparer<DataRow>.Default);
+
+            // SetStatuse
+            Dictionary<EnumLanguage, EnumGameUseStatus> dictUseStatus = new Dictionary<EnumLanguage, EnumGameUseStatus>();
+            List<EnumLanguage> normalLanguages = new List<EnumLanguage>();
+            foreach (DataRow langRow in LangaugeRowList)
+            {
+                EnumLanguage lang = (EnumLanguage)langRow[RN_Language_ID];
+                string key = GetGameRowNameForLanguage(lang, RN_GameText_UseStatus);
+                switch ((EnumGameUseStatus)langRow[RN_Language_Status])
                 {
                     case EnumGameUseStatus.Droped:
                         SetDataValue(addRows, key, EnumGameUseStatus.Droped);
@@ -452,8 +506,8 @@ namespace SC2_GameTranslater.Source
                         break;
                     case EnumGameUseStatus.Normal:
                         SetDataValue(addRows, key, EnumGameUseStatus.Added);
-                        SetDataValue(normalRows, key, EnumGameUseStatus.Normal);
                         SetDataValue(dropRows, key, EnumGameUseStatus.Droped);
+                        normalLanguages.Add(lang);
                         break;
                     case EnumGameUseStatus.Added:
                         SetDataValue(addRows, key, EnumGameUseStatus.Added);
@@ -464,12 +518,25 @@ namespace SC2_GameTranslater.Source
                         break;
                 }
             }
-            
-            foreach (DataRow row in LangaugeRowList)
+
+            // DropText
+            table = oldProject.Tables[TN_GameText];
+            string dropKey;
+            string srcKey;
+            string statusKey;
+            string text;
+            foreach (EnumLanguage lang in normalLanguages)
             {
-                EnumLanguage lang = (EnumLanguage)row[RN_Language_ID];
-                EnumGameUseStatus status = (EnumGameUseStatus)row[RN_Language_Status];
-                SetDataValue(TN_GameText, GetGameRowNameForLanguage(lang, RN_GameText_UseStatus), status);
+                dropKey = GetGameRowNameForLanguage(lang, RN_GameText_DropedText);
+                srcKey = GetGameRowNameForLanguage(lang, RN_GameText_SourceText);
+                statusKey = GetGameRowNameForLanguage(lang, RN_GameText_UseStatus);
+                foreach (DataRow textRow in normalRows)
+                {
+                    DataRow oldRow = table.Rows.Find(textRow[RN_GameText_ID]);
+                    text = oldRow[dropKey] as string;
+                    textRow[dropKey] = text;
+                    textRow[statusKey] = (text == textRow[srcKey] as string) ? EnumGameUseStatus.Normal : EnumGameUseStatus.Modified;
+                }
             }
         }
 
@@ -481,6 +548,7 @@ namespace SC2_GameTranslater.Source
         public void ReloadProjectData(Data_GameText oldProject)
         {
             ReloadLanguageStatus(oldProject);
+            ReloadText(oldProject);
         }
 
         #endregion
