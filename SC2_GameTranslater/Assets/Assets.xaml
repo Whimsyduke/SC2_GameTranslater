@@ -11,7 +11,7 @@
     <BitmapImage x:Key="IMAGE_GalaxyFile" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_minimap.dds" />
     <BitmapImage x:Key="IMAGE_TextFile" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_story.dds" />
     <BitmapImage x:Key="IMAGE_SearchComboBox" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_parameter.dds" />
-    <BitmapImage x:Key="IMAGE_SearchCheckBox" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_techpurchase.dds" />
+    <BitmapImage x:Key="IMAGE_SearchConfigure" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_techpurchase.dds" />
     <BitmapImage x:Key="IMAGE_SearchTextBox" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_dialog.dds" />
     <!--#endregion-->
 

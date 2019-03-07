@@ -306,8 +306,8 @@
                         SelectionChanged="ComboBox_Search_SelectionChanged">
                         <Fluent:ComboBox.IsEnabled>
                             <MultiBinding Converter="{StaticResource Converter_SerachLocationByRegexControl}">
-                                <Binding ElementName="CheckBox_SearchRegex" Path="IsEnabled" />
-                                <Binding ElementName="CheckBox_SearchRegex" Path="IsChecked" />
+                                <Binding ElementName="RadioButton_SearchRegex" Path="IsEnabled" />
+                                <Binding ElementName="RadioButton_SearchRegex" Path="IsChecked" />
                             </MultiBinding>
                         </Fluent:ComboBox.IsEnabled>
                         <ComboBoxItem
@@ -323,44 +323,46 @@
                             Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchLocationRight_Header}"
                             Tag="{x:Static local:EnumSearchTextLocation.Right}" />
                     </Fluent:ComboBox>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Fluent:CheckBox
-                            Name="CheckBox_SearchRegex"
-                            Grid.Column="0"
+                    <Fluent:RadioButton
+                            Name="RadioButton_SearchNull"
                             HorizontalAlignment="Left"
                             VerticalContentAlignment="Center"
-                            Checked="CheckBox_SearchCheckBox_CheckEvent"
-                            Header="{DynamicResource ResourceKey=UI_CheckBox_SearchRegex_Header}"
-                            Icon="{StaticResource ResourceKey=IMAGE_SearchCheckBox}"
-                            Unchecked="CheckBox_SearchCheckBox_CheckEvent" />
-                        <Fluent:CheckBox
+                            Checked="CheckBox_SearchConfigure_CheckEvent"
+                            GroupName="SerachConfigure"
+                            Header="{DynamicResource ResourceKey=UI_RadioButton_SearchNull_Header}"
+                            Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
+                            IsChecked="True"
+                            Unchecked="CheckBox_SearchConfigure_CheckEvent" />
+                    <Fluent:RadioButton
+                            Name="RadioButton_SearchRegex"
+                            HorizontalAlignment="Left"
+                            VerticalContentAlignment="Center"
+                            Checked="CheckBox_SearchConfigure_CheckEvent"
+                            GroupName="SerachConfigure"
+                            Header="{DynamicResource ResourceKey=UI_RadioButton_SearchRegex_Header}"
+                            Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
+                            Unchecked="CheckBox_SearchConfigure_CheckEvent" />
+                    <Fluent:RadioButton
+                            Name="RadioButton_SearchText"
+                            HorizontalAlignment="Left"
+                            VerticalContentAlignment="Center"
+                            Checked="CheckBox_SearchConfigure_CheckEvent"
+                            GroupName="SerachConfigure"
+                            Header="{DynamicResource ResourceKey=UI_RadioButton_SearchText_Header}"
+                            Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
+                            Unchecked="CheckBox_SearchConfigure_CheckEvent" />
+                    <Fluent:CheckBox
                             Name="CheckBox_SearchCase"
-                            Grid.Column="1"
                             HorizontalAlignment="Left"
                             VerticalContentAlignment="Center"
-                            Checked="CheckBox_SearchCheckBox_CheckEvent"
+                            Checked="CheckBox_SearchConfigure_CheckEvent"
                             Header="{DynamicResource ResourceKey=UI_CheckBox_SearchCase_Header}"
-                            Icon="{StaticResource ResourceKey=IMAGE_SearchCheckBox}"
-                            Unchecked="CheckBox_SearchCheckBox_CheckEvent" />
-                        <Fluent:CheckBox
-                            Name="CheckBox_SearchNull"
-                            Grid.Column="2"
-                            HorizontalAlignment="Left"
-                            VerticalContentAlignment="Center"
-                            Checked="CheckBox_SearchCheckBox_CheckEvent"
-                            Header="{DynamicResource ResourceKey=UI_CheckBox_SearchNull_Header}"
-                            Icon="{StaticResource ResourceKey=IMAGE_SearchCheckBox}"
-                            Unchecked="CheckBox_SearchCheckBox_CheckEvent" />
-                    </Grid>
+                            Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
+                            Unchecked="CheckBox_SearchConfigure_CheckEvent" />
                     <Fluent:TextBox
                         Name="TextBox_SearchText"
-                        MinWidth="300"
                         Height="44"
+                        MinWidth="300"
                         HorizontalContentAlignment="Left"
                         VerticalContentAlignment="Top"
                         Fluent:RibbonGroupBoxWrapPanel.SharedSizeGroupName="Group_Serach"

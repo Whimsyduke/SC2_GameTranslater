@@ -101,12 +101,13 @@ namespace SC2_GameTranslater
         public delegate void Delegate_ProgressEvent(double count, double max, object param);
 
         /// <summary>
-        /// 
+        /// 在搜索结果委托
         /// </summary>
-        /// <param name="row"></param>
-        /// <param name="key"></param>
-        /// <param name="match"></param>
-        /// <returns></returns>
+        /// <param name="row">行</param>
+        /// <param name="key">数据列名</param>
+        /// <param name="match">匹配字符串</param>
+        /// <param name="ignoreCase">忽略大小写</param>
+        /// <returns>判断结果</returns>
         private delegate bool Delegate_IsInSearchResult(DataRow row, string key, string match, bool ignoreCase);
 
         #endregion
@@ -281,9 +282,9 @@ namespace SC2_GameTranslater
 
         private Dictionary<EnumSearchTextLocation, Delegate_IsInSearchResult> DictTextSearchLocationFunc { get; } = new Dictionary<EnumSearchTextLocation, Delegate_IsInSearchResult>
         {
-            { EnumSearchTextLocation.All, IsInSearchResult_All},
-            { EnumSearchTextLocation.Left, IsInSearchResult_Left},
-            { EnumSearchTextLocation.Right, IsInSearchResult_Right},
+            { EnumSearchTextLocation.All, IsInSearchResult_MatchAll},
+            { EnumSearchTextLocation.Left, IsInSearchResult_MatchLeft},
+            { EnumSearchTextLocation.Right, IsInSearchResult_MatchRight},
         };
 
 
@@ -992,8 +993,12 @@ namespace SC2_GameTranslater
             ComboBox_SearchLocation.SelectedIndex = 0;
             ComboBox_SearchLanguage.IsEnabled = isEnable;
             ComboBox_SearchLanguage.SelectedIndex = 0;
-            CheckBox_SearchRegex.IsEnabled = isEnable;
-            CheckBox_SearchRegex.IsChecked = false;
+            RadioButton_SearchNull.IsEnabled = isEnable;
+            RadioButton_SearchNull.IsChecked = false;
+            RadioButton_SearchRegex.IsEnabled = isEnable;
+            RadioButton_SearchRegex.IsChecked = false;
+            RadioButton_SearchText.IsEnabled = isEnable;
+            RadioButton_SearchText.IsChecked = true;
             CheckBox_SearchCase.IsEnabled = isEnable;
             CheckBox_SearchCase.IsChecked = false;
             TextBox_SearchText.IsEnabled = isEnable;
@@ -1060,7 +1065,11 @@ namespace SC2_GameTranslater
                         where IsUseInGalaxyFiles(row)
                         select row;
             }
-            if (CheckBox_SearchRegex.IsChecked == true)
+            if (RadioButton_SearchNull.IsChecked == true)
+            {
+                SereachText_NullMod(ref query);
+            }
+            else if (RadioButton_SearchRegex.IsChecked == true)
             {
                 SereachText_RegexMod(ref query);
             }
@@ -1136,6 +1145,24 @@ namespace SC2_GameTranslater
         /// 搜索文本（正则表达式模式）
         /// </summary>
         /// <param name="query">查询数据</param>
+        private void SereachText_NullMod(ref EnumerableRowCollection<DataRow> query)
+        {
+            try
+            {
+                query = from row in query
+                        where IsInSearchResult_NullLangauge(row, GetSearchKeyList())
+                        select row;
+            }
+            catch
+            {
+                SereachText_MatchMod(ref query);
+            }
+        }
+
+        /// <summary>
+        /// 搜索文本（正则表达式模式）
+        /// </summary>
+        /// <param name="query">查询数据</param>
         private void SereachText_RegexMod(ref EnumerableRowCollection<DataRow> query)
         {
             string match = TextBox_SearchText.Text;
@@ -1168,7 +1195,7 @@ namespace SC2_GameTranslater
             bool ignoreCase = CheckBox_SearchCase.IsChecked == false;
             if (ignoreCase) match = match.ToLower();
             query = from row in query
-                    where IsInSearchResult_Langauge(row, GetSearchKeyList(), match, ignoreCase, searchMatchFunc)
+                    where IsInSearchResult_MatchLangauge(row, GetSearchKeyList(), match, ignoreCase, searchMatchFunc)
                     select row;
         }
 
@@ -1191,7 +1218,26 @@ namespace SC2_GameTranslater
         }
 
         /// <summary>
-        /// 在搜索结果中（多语言）
+        /// 在搜索结果中（空文本）
+        /// </summary>
+        /// <param name="row">行</param>
+        /// <param name="keyList">数据列名列表</param>
+        /// <param name="match">测试正则表达式</param>
+        /// <returns>判断结果</returns>
+        private static bool IsInSearchResult_NullLangauge(DataRow row, List<string> keyList)
+        {
+            foreach (string key in keyList)
+            {
+                if (row[key] == DBNull.Value)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 在搜索结果中（正则表达式）
         /// </summary>
         /// <param name="row">行</param>
         /// <param name="keyList">数据列名列表</param>
@@ -1217,7 +1263,7 @@ namespace SC2_GameTranslater
         /// <param name="match">匹配字符串</param>
         /// <param name="ignoreCase">忽略大小写</param>
         /// <returns>判断结果</returns>
-        private static bool IsInSearchResult_All(DataRow row, string key, string match, bool ignoreCase)
+        private static bool IsInSearchResult_MatchAll(DataRow row, string key, string match, bool ignoreCase)
         {
             if (row[key] == DBNull.Value) return false;
             string value = row[key] as string;
@@ -1233,7 +1279,7 @@ namespace SC2_GameTranslater
         /// <param name="match">匹配字符串</param>
         /// <param name="ignoreCase">忽略大小写</param>
         /// <returns>判断结果</returns>
-        private static bool IsInSearchResult_Left(DataRow row, string key, string match, bool ignoreCase)
+        private static bool IsInSearchResult_MatchLeft(DataRow row, string key, string match, bool ignoreCase)
         {
             if (row[key] == DBNull.Value) return false;
             string value = row[key] as string;
@@ -1249,7 +1295,7 @@ namespace SC2_GameTranslater
         /// <param name="match">匹配字符串</param>
         /// <param name="ignoreCase">忽略大小写</param>
         /// <returns>判断结果</returns>
-        private static bool IsInSearchResult_Right(DataRow row, string key, string match, bool ignoreCase)
+        private static bool IsInSearchResult_MatchRight(DataRow row, string key, string match, bool ignoreCase)
         {
             if (row[key] == DBNull.Value) return false;
             string value = row[key] as string;
@@ -1258,7 +1304,7 @@ namespace SC2_GameTranslater
         }
 
         /// <summary>
-        /// 在搜索结果中（多语言）
+        /// 在搜索结果中（文本匹配）
         /// </summary>
         /// <param name="row">行</param>
         /// <param name="keyList">数据列名列表</param>
@@ -1266,7 +1312,7 @@ namespace SC2_GameTranslater
         /// <param name="ignoreCase">忽略大小写</param>
         /// <param name="func">匹配函数</param>
         /// <returns>判断结果</returns>
-        private static bool IsInSearchResult_Langauge(DataRow row, List<string> keyList, string match, bool ignoreCase, Delegate_IsInSearchResult func)
+        private static bool IsInSearchResult_MatchLangauge(DataRow row, List<string> keyList, string match, bool ignoreCase, Delegate_IsInSearchResult func)
         {
             foreach (string key in keyList)
             {
@@ -1762,7 +1808,7 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="sender">事件控件</param>
         /// <param name="e">响应参数</param>
-        private void CheckBox_SearchCheckBox_CheckEvent(object sender, RoutedEventArgs e)
+        private void CheckBox_SearchConfigure_CheckEvent(object sender, RoutedEventArgs e)
         {
             RefreshTranslatedText();
             e.Handled = true;
