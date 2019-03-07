@@ -10,6 +10,7 @@
     <sys:String x:Key="TEXT_ProjectFile">Project File</sys:String>
     <sys:String x:Key="TEXT_SelectALL">Select All</sys:String>
     <sys:String x:Key="TEXT_SelectNone">Select None</sys:String>
+    <sys:String x:Key="TEXT_All">All</sys:String>
     <sys:String x:Key="TEXT_Null">Null</sys:String>
     <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
     <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
@@ -83,7 +84,6 @@
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeDropedText_Header">Drop Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeSourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeEditedText_Header">Edited Text</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchLanguageALL_Header">All</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">In Galaxy File</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy File</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>

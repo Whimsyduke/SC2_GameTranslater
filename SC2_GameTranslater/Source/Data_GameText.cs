@@ -478,12 +478,12 @@ namespace SC2_GameTranslater.Source
         private void ReloadText(Data_GameText oldProject)
         {
             // GetRows
-            EnumerableRowCollection<DataRow> newRows = Tables[TN_GameText].AsEnumerable();
+            DataTable table = Tables[TN_GameText];
+            EnumerableRowCollection<DataRow> newRows = table.AsEnumerable();
             EnumerableRowCollection<DataRow> oldRows = oldProject.Tables[TN_GameText].AsEnumerable();
             IEnumerable<DataRow> dropRows = oldRows.Except(newRows, GameTextComparer<DataRow>.Default);
             IEnumerable<DataRow> addRows = newRows.Except(oldRows, GameTextComparer<DataRow>.Default);
             IEnumerable<DataRow> normalRows = newRows.Except(addRows, GameTextComparer<DataRow>.Default);
-            DataTable table = Tables[TN_GameText];
             foreach (DataRow row in dropRows)
             {
                 table.ImportRow(row);
@@ -492,50 +492,72 @@ namespace SC2_GameTranslater.Source
 
             // SetStatuse
             Dictionary<EnumLanguage, EnumGameUseStatus> dictUseStatus = new Dictionary<EnumLanguage, EnumGameUseStatus>();
-            List<EnumLanguage> normalLanguages = new List<EnumLanguage>();
-            foreach (DataRow langRow in LangaugeRowList)
-            {
-                EnumLanguage lang = (EnumLanguage)langRow[RN_Language_ID];
-                string key = GetGameRowNameForLanguage(lang, RN_GameText_UseStatus);
-                switch ((EnumGameUseStatus)langRow[RN_Language_Status])
-                {
-                    case EnumGameUseStatus.Droped:
-                        SetDataValue(addRows, key, EnumGameUseStatus.Droped);
-                        SetDataValue(normalRows, key, EnumGameUseStatus.Droped);
-                        SetDataValue(dropRows, key, EnumGameUseStatus.Droped);
-                        break;
-                    case EnumGameUseStatus.Normal:
-                        SetDataValue(addRows, key, EnumGameUseStatus.Added);
-                        SetDataValue(dropRows, key, EnumGameUseStatus.Droped);
-                        normalLanguages.Add(lang);
-                        break;
-                    case EnumGameUseStatus.Added:
-                        SetDataValue(addRows, key, EnumGameUseStatus.Added);
-                        SetDataValue(normalRows, key, EnumGameUseStatus.Added);
-                        SetDataValue(dropRows, key, EnumGameUseStatus.Droped);
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            // DropText
-            table = oldProject.Tables[TN_GameText];
             string dropKey;
             string srcKey;
             string statusKey;
             string text;
-            foreach (EnumLanguage lang in normalLanguages)
+            foreach (DataRow langRow in LangaugeRowList)
             {
+                EnumLanguage lang = (EnumLanguage)langRow[RN_Language_ID];
                 dropKey = GetGameRowNameForLanguage(lang, RN_GameText_DropedText);
                 srcKey = GetGameRowNameForLanguage(lang, RN_GameText_SourceText);
                 statusKey = GetGameRowNameForLanguage(lang, RN_GameText_UseStatus);
-                foreach (DataRow textRow in normalRows)
+                switch ((EnumGameUseStatus)langRow[RN_Language_Status])
                 {
-                    DataRow oldRow = table.Rows.Find(textRow[RN_GameText_ID]);
-                    text = oldRow[dropKey] as string;
-                    textRow[dropKey] = text;
-                    textRow[statusKey] = (text == textRow[srcKey] as string) ? EnumGameUseStatus.Normal : EnumGameUseStatus.Modified;
+                    case EnumGameUseStatus.Droped:
+                        foreach (DataRow textRow in addRows)
+                        {
+                            textRow[statusKey] = EnumGameUseStatus.Droped;
+                        }
+                        foreach (DataRow textRow in normalRows)
+                        {
+                            DataRow oldRow = table.Rows.Find(textRow[RN_GameText_ID]);
+                            text = oldRow[dropKey] as string;
+                            textRow[dropKey] = text;
+                            textRow[statusKey] = EnumGameUseStatus.Droped;
+                        }
+                        foreach (DataRow textRow in dropRows)
+                        {
+                            textRow[statusKey] = EnumGameUseStatus.Droped;
+                        }
+                        break;
+                    case EnumGameUseStatus.Normal:
+                        foreach (DataRow textRow in addRows)
+                        {
+                            textRow[statusKey] = EnumGameUseStatus.Added;
+                        }
+                        foreach (DataRow textRow in normalRows)
+                        {
+                            DataRow oldRow = table.Rows.Find(textRow[RN_GameText_ID]);
+                            text = oldRow[dropKey] as string;
+                            textRow[dropKey] = text;
+                            textRow[statusKey] = (text == textRow[srcKey] as string) ? EnumGameUseStatus.Normal : EnumGameUseStatus.Modified;
+                        }
+                        foreach (DataRow textRow in dropRows)
+                        {
+                            textRow[statusKey] = EnumGameUseStatus.Droped;
+                        }
+                        break;
+                    case EnumGameUseStatus.Added:
+                        foreach (DataRow textRow in addRows)
+                        {
+                            textRow[statusKey] = EnumGameUseStatus.Added;
+                        }
+                        foreach (DataRow textRow in normalRows)
+                        {
+                            DataRow oldRow = table.Rows.Find(textRow[RN_GameText_ID]);
+                            text = oldRow[dropKey] as string;
+                            textRow[dropKey] = text;
+                            textRow[statusKey] = EnumGameUseStatus.Added;
+                            ;
+                        }
+                        foreach (DataRow textRow in dropRows)
+                        {
+                            textRow[statusKey] = EnumGameUseStatus.Droped;
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
         }

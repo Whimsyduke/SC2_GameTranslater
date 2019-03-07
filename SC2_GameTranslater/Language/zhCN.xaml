@@ -10,6 +10,7 @@
     <sys:String x:Key="TEXT_ProjectFile">翻译项目文件</sys:String>
     <sys:String x:Key="TEXT_SelectALL">全选</sys:String>
     <sys:String x:Key="TEXT_SelectNone">全不选</sys:String>
+    <sys:String x:Key="TEXT_All">全部</sys:String>
     <sys:String x:Key="TEXT_Null">空</sys:String>
     <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
     <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
@@ -83,7 +84,6 @@
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeDropedText_Header">舍弃文本</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeSourceText_Header">原始文本</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeEditedText_Header">修改文本</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchLanguageALL_Header">全部</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">所属Galaxy文件</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy文件</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
