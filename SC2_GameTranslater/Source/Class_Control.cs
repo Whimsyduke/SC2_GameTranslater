@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace SC2_GameTranslater.Source
 {
@@ -77,7 +78,15 @@ namespace SC2_GameTranslater.Source
             EnumLanguage language = (EnumLanguage)values[1];
             string column = parameter as string;
             string key = Data_GameText.GetGameRowNameForLanguage(language, column);
-            return rowView.Row[key].ToString();
+            object display = rowView.Row[key];
+            if (display == DBNull.Value)
+            {
+                return Globals.CurrentLanguage["TEXT_NoText"];
+            }
+            else
+            {
+                return display as string;
+            }
         }
 
         /// <summary>
@@ -211,6 +220,47 @@ namespace SC2_GameTranslater.Source
         }
 
     }
+
+
+    /// <summary>
+    /// 空文本表格边框
+    /// </summary>
+    public class DataGridColumnNullTextBorderConverter : IMultiValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="values">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (values[1] == DependencyProperty.UnsetValue) return ConsoleColor.Gray;
+            DataRowView rowView = values[0] as DataRowView;
+            EnumLanguage translateLanguage = (EnumLanguage)values[1];
+            string column = parameter as string;
+            string key = Data_GameText.GetGameRowNameForLanguage(translateLanguage, column);
+            var var = rowView.Row[key];
+            return var == System.DBNull.Value ? FontWeights.Bold: FontWeights.Normal;
+        }
+
+        /// <summary>
+        /// 逆向转换函数
+        /// </summary>
+        /// <param name="value">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+
+    }
+
     /// <summary>
     /// 取反转换
     /// </summary>

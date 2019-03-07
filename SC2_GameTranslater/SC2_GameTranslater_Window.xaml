@@ -325,8 +325,9 @@
                     </Fluent:ComboBox>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Fluent:CheckBox
                             Name="CheckBox_SearchRegex"
@@ -346,10 +347,19 @@
                             Header="{DynamicResource ResourceKey=UI_CheckBox_SearchCase_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_SearchCheckBox}"
                             Unchecked="CheckBox_SearchCheckBox_CheckEvent" />
+                        <Fluent:CheckBox
+                            Name="CheckBox_SearchNull"
+                            Grid.Column="2"
+                            HorizontalAlignment="Left"
+                            VerticalContentAlignment="Center"
+                            Checked="CheckBox_SearchCheckBox_CheckEvent"
+                            Header="{DynamicResource ResourceKey=UI_CheckBox_SearchNull_Header}"
+                            Icon="{StaticResource ResourceKey=IMAGE_SearchCheckBox}"
+                            Unchecked="CheckBox_SearchCheckBox_CheckEvent" />
                     </Grid>
                     <Fluent:TextBox
                         Name="TextBox_SearchText"
-                        Width="300"
+                        MinWidth="300"
                         Height="44"
                         HorizontalContentAlignment="Left"
                         VerticalContentAlignment="Top"
@@ -819,7 +829,7 @@
                         IsReadOnly="True"
                         Visibility="{Binding Source={StaticResource MenuItem_UseStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Binding>
-                            <MultiBinding Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_UseStatus}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_TextStatus}">
+                            <MultiBinding Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_UseStatus}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_UseStatus}">
                                 <Binding />
                                 <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
                                 <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
@@ -860,6 +870,14 @@
                                 <Setter Property="VerticalAlignment" Value="Center" />
                                 <Setter Property="Margin" Value="2" />
                                 <Setter Property="TextWrapping" Value="NoWrap" />
+                                <Setter Property="FontWeight">
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextBorder}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_EditedText}">
+                                            <Binding />
+                                            <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
@@ -886,6 +904,14 @@
                                 <Setter Property="VerticalAlignment" Value="Center" />
                                 <Setter Property="Margin" Value="2" />
                                 <Setter Property="TextWrapping" Value="NoWrap" />
+                                <Setter Property="FontWeight">
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextBorder}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_EditedText}">
+                                            <Binding />
+                                            <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>

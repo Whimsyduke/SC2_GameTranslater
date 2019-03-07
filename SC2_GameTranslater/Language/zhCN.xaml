@@ -23,6 +23,7 @@
     <sys:String x:Key="TEXT_ptBR">ptBR</sys:String>
     <sys:String x:Key="TEXT_ruRU">ruRU</sys:String>
     <sys:String x:Key="TEXT_koKR">koKR</sys:String>
+    <sys:String x:Key="TEXT_NoText">【无文本】</sys:String>
     <!--#endregion-->
 
     <!--#region 界面文本-->
@@ -69,6 +70,7 @@
     <sys:String x:Key="UI_ComboBox_SearchLanguage_Header">语言：</sys:String>
     <sys:String x:Key="UI_CheckBox_SearchRegex_Header">正则表达式</sys:String>
     <sys:String x:Key="UI_CheckBox_SearchCase_Header">匹配大小写</sys:String>
+    <sys:String x:Key="UI_CheckBox_SearchNull_Header">空文本</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchText_Header">文本：</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationALL_Header">全文</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationLeft_Header">左起</sys:String>

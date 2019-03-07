@@ -145,7 +145,7 @@ namespace SC2_GameTranslater.Source
             /// <returns>哈希值</returns>
             int IEqualityComparer<TRow>.GetHashCode(TRow obj)
             {
-                return (obj as DataRow).GetHashCode();
+                return 0;
             }
 
             #endregion

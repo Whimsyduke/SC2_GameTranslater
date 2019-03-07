@@ -23,6 +23,7 @@
     <sys:String x:Key="TEXT_ptBR">ptBR</sys:String>
     <sys:String x:Key="TEXT_ruRU">ruRU</sys:String>
     <sys:String x:Key="TEXT_koKR">koKR</sys:String>
+    <sys:String x:Key="TEXT_NoText">[No Text]</sys:String>
     <!--#endregion-->
 
     <!--#region UI Text-->
@@ -69,6 +70,7 @@
     <sys:String x:Key="UI_ComboBox_SearchLanguage_Header">Language:</sys:String>
     <sys:String x:Key="UI_CheckBox_SearchRegex_Header">Regex Expression</sys:String>
     <sys:String x:Key="UI_CheckBox_SearchCase_Header">Match Case</sys:String>
+    <sys:String x:Key="UI_CheckBox_SearchNull_Header">Find Null</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchText_Header">Text:</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationALL_Header">All Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationLeft_Header">Start Left</sys:String>
