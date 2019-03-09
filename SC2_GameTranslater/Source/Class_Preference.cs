@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
@@ -31,6 +32,10 @@ namespace SC2_GameTranslater.Source
 
         // 字段
         public const string Preference_ElementConfig = "Preference";
+        public const string Preference_AttributeMajorVer = "Major";
+        public const string Preference_AttributeMinorVer = "Minor";
+        public const string Preference_AttributeBuildVer = "Build";
+        public const string Preference_AttributeRevisedVer = "Revised";
         public const string Preference_AttributeWidth = "Width";
         public const string Preference_AttributeHeight = "Height";
         public const string Preference_AttributeLastFolderPath = "LastFolder";
@@ -43,6 +48,30 @@ namespace SC2_GameTranslater.Source
         #region 属性字段
 
         #region 属性
+
+        /// <summary>
+        /// 主版本号
+        /// </summary>
+        [XmlAttribute(Preference_AttributeMajorVer)]
+        public int MajorVersion { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.Major;
+
+        /// <summary>
+        /// 次版本号
+        /// </summary>
+        [XmlAttribute(Preference_AttributeMinorVer)]
+        public int MinorVersion { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.Minor;
+
+        /// <summary>
+        /// 编译版本号
+        /// </summary>
+        [XmlAttribute(Preference_AttributeBuildVer)]
+        public int BuildVersion { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.Build;
+
+        /// <summary>
+        /// 修订本号
+        /// </summary>
+        [XmlAttribute(Preference_AttributeRevisedVer)]
+        public int RevisedVersion { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.Revision;
 
         /// <summary>
         /// 窗口宽度
@@ -85,7 +114,7 @@ namespace SC2_GameTranslater.Source
             true,  // MenuItem_SourceText
             true,  // MenuItem_EditedText
 
-	        #endregion
+            #endregion
             
             #region GroupBox_GameTextForLanguage
 
@@ -96,12 +125,14 @@ namespace SC2_GameTranslater.Source
             true,  // MenuItem_SourceText
             true,  // MenuItem_EditedText
 
-	        #endregion
+            #endregion
         };
 
         #endregion
 
         #endregion
+
+        #region 方法
 
         #region 生成加载存储
 
@@ -113,6 +144,7 @@ namespace SC2_GameTranslater.Source
             Globals.Preference.Preference_SaveWindowSize();
             Globals.Preference.Preference_SaveColumnVisibility();
             SerializerCompression();
+
         }
 
         /// <summary>
@@ -278,5 +310,8 @@ namespace SC2_GameTranslater.Source
         }
 
         #endregion
+
+        #endregion
+
     }
 }

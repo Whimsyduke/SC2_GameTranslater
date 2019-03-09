@@ -805,9 +805,9 @@ namespace SC2_GameTranslater.Source
                 return true;
             }
 #if !DEBUG
-            cache
+            catch
             {
-                returen false;
+                return false;
             }
 #endif
         }

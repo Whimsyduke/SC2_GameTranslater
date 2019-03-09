@@ -90,7 +90,7 @@ namespace SC2_GameTranslater.Source
 #if DEBUG
             throw NewException("Assert!");
 #else
-            ShowSystemMessage(ExceptiionMsg("Assert!"));
+            //ShowSystemMessage(ExceptiionMsg("Assert!"));
 #endif
         }
 
