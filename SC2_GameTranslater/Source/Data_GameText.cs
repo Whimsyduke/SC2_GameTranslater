@@ -178,7 +178,7 @@ namespace SC2_GameTranslater.Source
         public const string TN_GalaxyLocation = "Table_GalaxyLocation";
         public const string TN_GameText = "Table_GameText";
         public const string TN_TextValue = "Table_TextValue";
-        public const string TN_Log = "Table_Log";
+        public const string TN_GameTextForLanguage = "Table_GameTextForLanguage";
 
         #endregion
 
@@ -206,6 +206,12 @@ namespace SC2_GameTranslater.Source
         public const string RN_GameText_DropedText = "Droped";
         public const string RN_GameText_SourceText = "Source";
         public const string RN_GameText_EditedText = "Edited";
+        public const string RN_GameTextForLanguage_Language = "Language";
+        public const string RN_GameTextForLanguage_TextStatus = "TextStatus";
+        public const string RN_GameTextForLanguage_UseStatus = "UseStatus";
+        public const string RN_GameTextForLanguage_DropedText = "Droped";
+        public const string RN_GameTextForLanguage_SourceText = "Source";
+        public const string RN_GameTextForLanguage_EditedText = "Edited";
 
         #endregion
 
@@ -272,6 +278,11 @@ namespace SC2_GameTranslater.Source
                 return Tables[TN_ProjectInfo].Rows[0];
             }
         }
+
+        /// <summary>
+        /// 游戏文本单语言数据表
+        /// </summary>
+        public static DataTable GameTextForLanguageTable { get; } = NewGameTextForLanguageTable();
 
         #endregion
 
@@ -446,6 +457,29 @@ namespace SC2_GameTranslater.Source
             return count;
         }
 
+        /// <summary>
+        /// 新建游戏文本单语言数据表
+        /// </summary>
+        /// <returns>数据表</returns>
+        private static DataTable NewGameTextForLanguageTable()
+        {
+            DataTable table = new DataTable(TN_GameTextForLanguage);
+            DataColumn column;
+            column = new DataColumn(RN_GameTextForLanguage_Language,typeof(int));
+            table.Columns.Add(column);
+            column = new DataColumn(RN_GameTextForLanguage_TextStatus, typeof(int));
+            table.Columns.Add(column);
+            column = new DataColumn(RN_GameTextForLanguage_UseStatus, typeof(int));
+            table.Columns.Add(column);
+            column = new DataColumn(RN_GameTextForLanguage_DropedText, typeof(string));
+            table.Columns.Add(column);
+            column = new DataColumn(RN_GameTextForLanguage_SourceText, typeof(string));
+            table.Columns.Add(column);
+            column = new DataColumn(RN_GameTextForLanguage_EditedText, typeof(string));
+            table.Columns.Add(column);
+            return table;
+        }
+
         #endregion
 
         #region 重载
@@ -597,8 +631,34 @@ namespace SC2_GameTranslater.Source
         /// <param name="path">路径</param>
         private void WriteCompontentsPath(string path)
         {
-
             ProjectInfoRow[RN_ModInfo_CompontentsPath] = path;
+        }
+
+        /// <summary>
+        /// 刷新游戏文本单语言数据表
+        /// </summary>
+        /// <param name="textRow">语言数据</param>
+        /// <param name="langList">语言列表</param>
+        public static void RefreshGameTextForLanguageTable(DataRow textRow, List<EnumLanguage> langList)
+        {
+            GameTextForLanguageTable.Clear();
+            if (textRow == null) return;
+            foreach (EnumLanguage lang in langList)
+            {
+                string langName = Enum.GetName(lang.GetType(), lang);
+                string key;
+                key = GetGameRowNameForLanguage(lang, RN_GameText_TextStatus);
+                object dataTextStatus = textRow[key];
+                key = GetGameRowNameForLanguage(lang, RN_GameText_UseStatus);
+                object dataUseStatus = textRow[key];
+                key = GetGameRowNameForLanguage(lang, RN_GameText_DropedText);
+                object dataDropedText = textRow[key];
+                key = GetGameRowNameForLanguage(lang, RN_GameText_SourceText);
+                object dataSourceText = textRow[key];
+                key = GetGameRowNameForLanguage(lang, RN_GameText_EditedText);
+                object dataEditedText = textRow[key];
+                GameTextForLanguageTable.Rows.Add(lang, dataTextStatus, dataUseStatus, dataDropedText, dataSourceText, dataEditedText);
+            }
         }
 
         #endregion

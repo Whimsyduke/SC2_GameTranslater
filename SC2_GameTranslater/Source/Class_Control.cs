@@ -60,6 +60,24 @@ namespace SC2_GameTranslater.Source
     }
 
     /// <summary>
+    /// 布尔值可见性转换器
+    /// </summary>
+    public class EnumLanguageToTreslateNameConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            EnumLanguage lang = (EnumLanguage)value;
+            string langName = Enum.GetName(lang.GetType(), lang);
+            return Globals.CurrentLanguage[string.Format("TEXT_{0}", langName)];
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return 0;
+        }
+    }
+
+    /// <summary>
     /// 翻译语言对应数据Converter
     /// </summary>
     public class EnumTranslateLanguageDataConverter : IMultiValueConverter
@@ -160,7 +178,15 @@ namespace SC2_GameTranslater.Source
             EnumLanguage translateLanguage = (EnumLanguage)values[1];
             EnumLanguage softeareLanguage = (EnumLanguage)values[2];
             string column = parameter as string;
-            string key = Data_GameText.GetGameRowNameForLanguage(translateLanguage, column);
+            string key;
+            if (rowView.Row.Table == Data_GameText.GameTextForLanguageTable)
+            {
+                key = column;
+            }
+            else
+            {
+                key = Data_GameText.GetGameRowNameForLanguage(translateLanguage, column);
+            }
             var var = rowView.Row[key];
             EnumGameTextStatus value = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), var);
             return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
@@ -200,7 +226,15 @@ namespace SC2_GameTranslater.Source
             EnumLanguage translateLanguage = (EnumLanguage)values[1];
             EnumLanguage softeareLanguage = (EnumLanguage)values[2];
             string column = parameter as string;
-            string key = Data_GameText.GetGameRowNameForLanguage(translateLanguage, column);
+            string key;
+            if (rowView.Row.Table == Data_GameText.GameTextForLanguageTable)
+            {
+                key = column;
+            }
+            else
+            {
+                key = Data_GameText.GetGameRowNameForLanguage(translateLanguage, column);
+            }
             var var = rowView.Row[key];
             EnumGameUseStatus value = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), var);
             return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
@@ -241,7 +275,15 @@ namespace SC2_GameTranslater.Source
             DataRowView rowView = values[0] as DataRowView;
             EnumLanguage translateLanguage = (EnumLanguage)values[1];
             string column = parameter as string;
-            string key = Data_GameText.GetGameRowNameForLanguage(translateLanguage, column);
+            string key;
+            if (rowView.Row.Table == Data_GameText.GameTextForLanguageTable)
+            {
+                key = column;
+            }
+            else
+            {
+                key = Data_GameText.GetGameRowNameForLanguage(translateLanguage, column);
+            }
             var var = rowView.Row[key];
             return var == System.DBNull.Value ? FontWeights.Bold: FontWeights.Normal;
         }
@@ -324,6 +366,7 @@ namespace SC2_GameTranslater.Source
             }
         }
     }
+
     /// <summary>
     /// 枚举值翻译Converter
     /// </summary>

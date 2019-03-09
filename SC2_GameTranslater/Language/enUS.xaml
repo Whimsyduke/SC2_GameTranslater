@@ -93,7 +93,16 @@
     <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">Text Status</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_UseStatusFilter_Header">Use Status</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">Use Status</sys:String>
-    <sys:String x:Key="UI_TabItem_LanguageText_Header">Text In Language</sys:String>
+    <sys:String x:Key="UI_TabItem_GameTextForLanguage_Header">Text In Language</sys:String>
+    <sys:String x:Key="UI_GroupBox_GameTextShowLanguage_Header">Show Language</sys:String>
+    <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">Game Text Details</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsLanguage_Header">Language</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsTextStatus_Header">Text Status</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsUseStatus_Header">Use Status</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsDropedText_Header">Droped Text</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsSourceText_Header">Source Text</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsEditedText_Header">Edited Text</sys:String>
+    
     <!--#endregion-->
 
     <!--#region Tooltip-->

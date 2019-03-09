@@ -8,6 +8,7 @@
     mc:Ignorable="d">
     <!--#region Converter-->
     <source:AutoNumberValueConverter x:Key="Converter_AutoNumberValue" />
+    <source:EnumLanguageToTreslateNameConverter x:Key="Converter_EnumLanguageToTreslateName" />
     <source:EnumTranslateLanguageDataConverter x:Key="Converter_TranslateLanguageData" />
     <source:EnumNameInLanguage_TextFileConverter x:Key="Converter_EnumNameInLanguage_TextFile" />
     <source:EnumNameInLanguage_TextStatusConverter x:Key="Converter_EnumNameInLanguage_TextStatus" />

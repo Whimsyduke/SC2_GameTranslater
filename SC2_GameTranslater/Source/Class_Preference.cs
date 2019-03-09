@@ -72,8 +72,10 @@ namespace SC2_GameTranslater.Source
         /// 最后打开保存文件路径
         /// </summary>
         [XmlArray(Preference_AttributeColumnVisiblility)]
-        public bool [] ColumnVisiblity { get; set; } = 
+        public bool [] ColumnVisiblity { get; set; } =
         {
+            #region DataGrid_TranslatedTexts
+
             true,  // MenuItem_TextID
             true,  // MenuItem_Index
             true,  // MenuItem_TextFile
@@ -82,6 +84,19 @@ namespace SC2_GameTranslater.Source
             false, // MenuItem_DropedText
             true,  // MenuItem_SourceText
             true,  // MenuItem_EditedText
+
+	        #endregion
+            
+            #region GroupBox_GameTextForLanguage
+
+            true,  // MenuItem_Language
+            true,  // MenuItem_TextStatus
+            false,  // MenuItem_UseStatus
+            false,  // MenuItem_DropedText
+            true,  // MenuItem_SourceText
+            true,  // MenuItem_EditedText
+
+	        #endregion
         };
 
         #endregion
@@ -165,6 +180,13 @@ namespace SC2_GameTranslater.Source
                     ColumnVisiblity[int.Parse(item.Tag as string)] = item.IsChecked == true;
                 }
             }
+            foreach (System.Collections.DictionaryEntry select in Globals.MainWindow.DataGrid_GameTextForLanguage.Resources)
+            {
+                if (select.Value is MenuItem item)
+                {
+                    ColumnVisiblity[int.Parse(item.Tag as string)] = item.IsChecked == true;
+                }
+            }
         }
 
         /// <summary>
@@ -173,6 +195,13 @@ namespace SC2_GameTranslater.Source
         private void Preference_LoadColumnVisibility()
         {
             foreach (System.Collections.DictionaryEntry select in Globals.MainWindow.DataGrid_TranslatedTexts.Resources)
+            {
+                if (select.Value is MenuItem item)
+                {
+                    item.IsChecked = ColumnVisiblity[int.Parse(item.Tag as string)];
+                }
+            }
+            foreach (System.Collections.DictionaryEntry select in Globals.MainWindow.DataGrid_GameTextForLanguage.Resources)
             {
                 if (select.Value is MenuItem item)
                 {

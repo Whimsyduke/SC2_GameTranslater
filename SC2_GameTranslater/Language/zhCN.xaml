@@ -93,7 +93,16 @@
     <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">文本状态</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_UseStatusFilter_Header">使用状态</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">使用状态</sys:String>
-    <sys:String x:Key="UI_TabItem_LanguageText_Header">全语言文本</sys:String>
+    <sys:String x:Key="UI_TabItem_GameTextForLanguage_Header">全语言文本</sys:String>
+    <sys:String x:Key="UI_GroupBox_GameTextShowLanguage_Header">显示语言</sys:String>
+    <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">游戏文本数据</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsLanguage_Header">语言</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsTextStatus_Header">文本状态</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsUseStatus_Header">使用状态</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsDropedText_Header">舍弃文本</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsSourceText_Header">原始文本</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsEditedText_Header">修改文本</sys:String>
+    
     <!--#endregion-->
 
     <!--#region Tooltip-->
