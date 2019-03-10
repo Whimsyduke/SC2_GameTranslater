@@ -1766,11 +1766,11 @@ namespace SC2_GameTranslater
                     {
                         Mode = BindingMode.TwoWay,
                     };
-                    Globals.MainWindow.DataGridColumn_EditedText.Binding = binding;
+                    Globals.MainWindow.DataGridColumn_TranslateEditedText.Binding = binding;
                 }
                 else
                 {
-                    Globals.MainWindow.DataGridColumn_EditedText.Binding = null;
+                    Globals.MainWindow.DataGridColumn_TranslateEditedText.Binding = null;
                 }
                 Globals.MainWindow.CurrentTranslateLanguage = (EnumLanguage)button.Tag;
                 Globals.MainWindow.RefreshTranslatedText();

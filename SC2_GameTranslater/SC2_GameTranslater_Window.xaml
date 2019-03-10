@@ -40,49 +40,49 @@
             AutomaticStateManagement="False"
             IsAutomaticCollapseEnabled="True">
             <Fluent:Ribbon.Menu>
-                <Fluent:Backstage Name="Backstage_Menu" Header="{DynamicResource ResourceKey=UI_Backstage_Menu_Header}">
+                <Fluent:Backstage Name="Backstage_Menu" Header="{DynamicResource UI_Backstage_Menu_Header}">
                     <Fluent:BackstageTabControl>
                         <Fluent:SeparatorTabItem
                             Name="SeparatorTabItem_Projects"
                             Margin="0,0,0,0"
                             HorizontalContentAlignment="Left"
-                            Header="{DynamicResource ResourceKey=UI_SeparatorTabItem_Projects_Header}" />
+                            Header="{DynamicResource UI_SeparatorTabItem_Projects_Header}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuNew"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandNew}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_New_Header}"
+                            Header="{DynamicResource UI_RibbonButton_New_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_New}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuOpen"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandOpen}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}"
+                            Header="{DynamicResource UI_RibbonButton_Open_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Open}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuSave"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSave}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}"
+                            Header="{DynamicResource UI_RibbonButton_Save_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Save}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuSaveAs"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSaveAs}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_SaveAs_Header}"
+                            Header="{DynamicResource UI_RibbonButton_SaveAs_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Save}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuClose"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandClose}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}"
+                            Header="{DynamicResource UI_RibbonButton_Close_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Close}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuAccept"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandAccept}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}"
+                            Header="{DynamicResource UI_RibbonButton_Accept_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Accept}" />
                         <Fluent:SeparatorTabItem
                             Name="SeparatorTabItem_RecentProjects"
                             Margin="0,20,0,0"
                             HorizontalContentAlignment="Left"
-                            Header="{DynamicResource ResourceKey=UI_SeparatorTabItem_RecentProjects_Header}" />
-                        <Fluent:BackstageTabItem x:Name="BackstageTabItem_MenuRecentProjects" Header="{DynamicResource ResourceKey=UI_BackstageTabItem_MenuRecentProjects_Header}">
+                            Header="{DynamicResource UI_SeparatorTabItem_RecentProjects_Header}" />
+                        <Fluent:BackstageTabItem x:Name="BackstageTabItem_MenuRecentProjects" Header="{DynamicResource UI_BackstageTabItem_MenuRecentProjects_Header}">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -97,7 +97,7 @@
                                         VerticalAlignment="Center"
                                         FontSize="20"
                                         FontWeight="Bold"
-                                        Text="{DynamicResource ResourceKey=UI_TextBlock_RecentProjects_Text}" />
+                                        Text="{DynamicResource UI_TextBlock_RecentProjects_Text}" />
                                 </Label>
                                 <Separator Grid.Row="1" />
                                 <ItemsControl
@@ -111,10 +111,10 @@
                             Name="SeparatorTabItem_Preferences"
                             Margin="0,20,0,0"
                             HorizontalContentAlignment="Left"
-                            Header="{DynamicResource ResourceKey=UI_SeparatorTabItem_Preferences_Header}" />
+                            Header="{DynamicResource UI_SeparatorTabItem_Preferences_Header}" />
                         <Fluent:BackstageTabItem
                             x:Name="BackstageTabItem_Preference"
-                            Header="{DynamicResource ResourceKey=UI_BackstageTabItem_Preference_Header}"
+                            Header="{DynamicResource UI_BackstageTabItem_Preference_Header}"
                             KeyTip="P">
                             <ScrollViewer Name="ScrollViewer_Preference">
                                 <Grid>
@@ -132,7 +132,7 @@
                                             VerticalAlignment="Center"
                                             FontSize="20"
                                             FontWeight="Bold"
-                                            Text="{DynamicResource ResourceKey=UI_TextBlock_Preference_Text}" />
+                                            Text="{DynamicResource UI_TextBlock_Preference_Text}" />
                                     </Label>
                                     <Separator Grid.Row="1" />
                                     <GroupBox
@@ -141,7 +141,7 @@
                                         Margin="3">
                                         <GroupBox.Header>
                                             <Label>
-                                                <TextBlock Text="{DynamicResource ResourceKey=UI_GroupBox_Language_Header}" />
+                                                <TextBlock Text="{DynamicResource UI_GroupBox_Language_Header}" />
                                             </Label>
                                         </GroupBox.Header>
                                         <ComboBox
@@ -152,7 +152,7 @@
                                     <GroupBox Name="GroupBox_ComponentsPath" Grid.Row="3">
                                         <GroupBox.Header>
                                             <Label>
-                                                <TextBlock Text="{DynamicResource ResourceKey=UI_GroupBox_ComponentsPath_Header}" />
+                                                <TextBlock Text="{DynamicResource UI_GroupBox_ComponentsPath_Header}" />
                                             </Label>
                                         </GroupBox.Header>
                                         <Grid>
@@ -184,7 +184,7 @@
                 </Fluent:Backstage>
             </Fluent:Ribbon.Menu>
             <Fluent:Ribbon.ToolBarItems>
-                <Fluent:Button Icon="{DynamicResource ResourceKey=IMAGE_HELP}" Size="Small">
+                <Fluent:Button Icon="{DynamicResource IMAGE_HELP}" Size="Small">
                     <!--<Fluent:Button.ToolTip>
                         <Fluent:ScreenTip Title="Insert Chart"
                                           Text="Insert a chart to illustarate and compare data. &#xa;&#xa;Bar, Pie, Line, Area and Surface are same of the available types."
@@ -201,23 +201,23 @@
                 <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Save}}" />
                 <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Close}}" />
             </Fluent:Ribbon.QuickAccessItems>
-            <Fluent:RibbonTabItem Name="RibbonTabItem_Start" Header="{DynamicResource ResourceKey=UI_RibbonTabItem_Start_Header}">
+            <Fluent:RibbonTabItem Name="RibbonTabItem_Start" Header="{DynamicResource UI_RibbonTabItem_Start_Header}">
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_File"
                     Width="Auto"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_File_Header}">
+                    Header="{DynamicResource UI_RibbonGroupBox_File_Header}">
                     <Fluent:SplitButton
                         x:Name="RibbonButton_Open"
                         Command="{Binding ElementName=RibbonWindow_Main, Path=CommandOpen}"
-                        Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}"
+                        Header="{DynamicResource UI_RibbonButton_Open_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Open}"
                         KeyTip="O"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Open}">
                         <Fluent:Button
                             x:Name="RibbonButton_New"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandNew}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_New_Header}"
+                            Header="{DynamicResource UI_RibbonButton_New_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_New}"
                             KeyTip="N"
                             LargeIcon="{StaticResource ResourceKey=IMAGE_New}" />
@@ -225,14 +225,14 @@
                     <Fluent:SplitButton
                         x:Name="RibbonButton_Save"
                         Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSave}"
-                        Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}"
+                        Header="{DynamicResource UI_RibbonButton_Save_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Save}"
                         KeyTip="S"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Save}">
                         <Fluent:Button
                             x:Name="RibbonButton_SaveAs"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSaveAs}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_SaveAs_Header}"
+                            Header="{DynamicResource UI_RibbonButton_SaveAs_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Save}"
                             KeyTip="S"
                             LargeIcon="{StaticResource ResourceKey=IMAGE_Save}" />
@@ -240,7 +240,7 @@
                     <Fluent:Button
                         x:Name="RibbonButton_Close"
                         Command="{Binding ElementName=RibbonWindow_Main, Path=CommandClose}"
-                        Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}"
+                        Header="{DynamicResource UI_RibbonButton_Close_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Close}"
                         KeyTip="S"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" />
@@ -248,20 +248,20 @@
                     <Fluent:Button
                         x:Name="RibbonButton_Accept"
                         Command="{Binding ElementName=RibbonWindow_Main, Path=CommandAccept}"
-                        Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}"
+                        Header="{DynamicResource UI_RibbonButton_Accept_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Accept}"
                         KeyTip="E"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" />
                     <Fluent:SplitButton
                         Name="SplitButton_Reload"
                         Command="{Binding ElementName=RibbonWindow_Main, Path=CommandReload}"
-                        Header="{DynamicResource ResourceKey=UI_RibbonButton_Reload_Header}"
+                        Header="{DynamicResource UI_RibbonButton_Reload_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Reload}"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Reload}">
                         <Fluent:Button
                             Name="SplitButton_ReloadSC2"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandReloadSC2}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_ReloadSC2_Header}"
+                            Header="{DynamicResource UI_RibbonButton_ReloadSC2_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Reload}"
                             LargeIcon="{StaticResource ResourceKey=IMAGE_Reload}" />
                     </Fluent:SplitButton>
@@ -270,12 +270,12 @@
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_TranslateLanguage"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TranslateLanguage_Header}">
+                    Header="{DynamicResource UI_RibbonGroupBox_TranslateLanguage_Header}">
                     <Fluent:InRibbonGallery
                         Name="InRibbonGallery_TranslateLanguage"
                         MinWidth="120"
                         CanCollapseToButton="False"
-                        Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TranslateLanguage_Header}"
+                        Header="{DynamicResource UI_InRibbonGallery_TranslateLanguage_Header}"
                         IsCollapsed="False"
                         MaxItemsInDropDownRow="3"
                         MaxItemsInRow="3"
@@ -297,41 +297,41 @@
                     Fluent:RibbonGroupBoxWrapPanel.SharedSizeGroupName="Group_Serach"
                     FlowDirection="LeftToRight"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_Search_Header}">
+                    Header="{DynamicResource UI_RibbonGroupBox_Search_Header}">
                     <Fluent:ComboBox
                         Name="ComboBox_SearchType"
-                        Header="{DynamicResource ResourceKey=UI_ComboBox_SearchType_Header}"
+                        Header="{DynamicResource UI_ComboBox_SearchType_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchComboBox}"
                         IsEditable="False"
                         SelectedIndex="0"
                         SelectionChanged="ComboBox_Search_SelectionChanged">
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeAll"
-                            Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeALL_Header}"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchTypeALL_Header}"
                             Tag="{x:Static local:EnumSearchTextType.All}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeTextID"
-                            Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeTextID_Header}"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchTypeTextID_Header}"
                             Tag="{x:Static local:EnumSearchTextType.ID}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeIndex"
-                            Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeIndex_Header}"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchTypeIndex_Header}"
                             Tag="{x:Static local:EnumSearchTextType.Index}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeAllText"
-                            Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeALLText_Header}"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchTypeALLText_Header}"
                             Tag="{x:Static local:EnumSearchTextType.AllText}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeSourceText"
-                            Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeSourceText_Header}"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchTypeSourceText_Header}"
                             Tag="{x:Static local:EnumSearchTextType.Source}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeDropedText"
-                            Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeDropedText_Header}"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchTypeDropedText_Header}"
                             Tag="{x:Static local:EnumSearchTextType.Droped}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeEditedText"
-                            Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchTypeEditedText_Header}"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchTypeEditedText_Header}"
                             Tag="{x:Static local:EnumSearchTextType.Edited}" />
                     </Fluent:ComboBox>
                     <Fluent:ComboBox
@@ -342,7 +342,7 @@
                         Height="22"
                         VerticalAlignment="Bottom"
                         Fluent:RibbonGroupBoxWrapPanel.SharedSizeGroupName="Group_Serach"
-                        Header="{DynamicResource ResourceKey=UI_ComboBox_SearchLanguage_Header}"
+                        Header="{DynamicResource UI_ComboBox_SearchLanguage_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchComboBox}"
                         IsEditable="False"
                         SelectedIndex="0"
@@ -352,7 +352,7 @@
                         Height="22"
                         VerticalAlignment="Bottom"
                         Fluent:RibbonGroupBoxWrapPanel.SharedSizeGroupName="Group_Serach"
-                        Header="{DynamicResource ResourceKey=UI_ComboBox_SearchLcation_Header}"
+                        Header="{DynamicResource UI_ComboBox_SearchLcation_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchComboBox}"
                         IsEditable="False"
                         SelectedIndex="0"
@@ -365,15 +365,15 @@
                         </Fluent:ComboBox.IsEnabled>
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchLocationAll"
-                            Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchLocationALL_Header}"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchLocationALL_Header}"
                             Tag="{x:Static local:EnumSearchTextLocation.All}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchLocationLeft"
-                            Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchLocationLeft_Header}"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchLocationLeft_Header}"
                             Tag="{x:Static local:EnumSearchTextLocation.Left}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchLocationRight"
-                            Content="{DynamicResource ResourceKey=UI_ComboBoxItem_SearchLocationRight_Header}"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchLocationRight_Header}"
                             Tag="{x:Static local:EnumSearchTextLocation.Right}" />
                     </Fluent:ComboBox>
                     <Fluent:RadioButton
@@ -382,7 +382,7 @@
                         VerticalContentAlignment="Center"
                         Checked="CheckBox_SearchConfigure_CheckEvent"
                         GroupName="SerachConfigure"
-                        Header="{DynamicResource ResourceKey=UI_RadioButton_SearchNull_Header}"
+                        Header="{DynamicResource UI_RadioButton_SearchNull_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
                         IsChecked="True"
                         Unchecked="CheckBox_SearchConfigure_CheckEvent" />
@@ -392,7 +392,7 @@
                         VerticalContentAlignment="Center"
                         Checked="CheckBox_SearchConfigure_CheckEvent"
                         GroupName="SerachConfigure"
-                        Header="{DynamicResource ResourceKey=UI_RadioButton_SearchRegex_Header}"
+                        Header="{DynamicResource UI_RadioButton_SearchRegex_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
                         Unchecked="CheckBox_SearchConfigure_CheckEvent" />
                     <Fluent:RadioButton
@@ -401,7 +401,7 @@
                         VerticalContentAlignment="Center"
                         Checked="CheckBox_SearchConfigure_CheckEvent"
                         GroupName="SerachConfigure"
-                        Header="{DynamicResource ResourceKey=UI_RadioButton_SearchText_Header}"
+                        Header="{DynamicResource UI_RadioButton_SearchText_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
                         Unchecked="CheckBox_SearchConfigure_CheckEvent" />
                     <Fluent:CheckBox
@@ -409,7 +409,7 @@
                         HorizontalAlignment="Left"
                         VerticalContentAlignment="Center"
                         Checked="CheckBox_SearchConfigure_CheckEvent"
-                        Header="{DynamicResource ResourceKey=UI_CheckBox_SearchCase_Header}"
+                        Header="{DynamicResource UI_CheckBox_SearchCase_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
                         Unchecked="CheckBox_SearchConfigure_CheckEvent" />
                     <Fluent:TextBox
@@ -420,7 +420,7 @@
                         VerticalContentAlignment="Top"
                         Fluent:RibbonGroupBoxWrapPanel.SharedSizeGroupName="Group_Serach"
                         AcceptsReturn="True"
-                        Header="{DynamicResource ResourceKey=UI_ComboBox_SearchText_Header}"
+                        Header="{DynamicResource UI_ComboBox_SearchText_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchTextBox}"
                         TextChanged="TextBox_SearchText_TextChanged"
                         TextWrapping="WrapWithOverflow"
@@ -429,12 +429,12 @@
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_GalaxyFilter"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_GalaxyFilter_Header}">
+                    Header="{DynamicResource UI_RibbonGroupBox_GalaxyFilter_Header}">
                     <Fluent:InRibbonGallery
                         Name="InRibbonGallery_GalaxyFilter"
                         MinWidth="100"
                         CanCollapseToButton="False"
-                        Header="{DynamicResource ResourceKey=UI_InRibbonGallery_GalaxyFilter_Header}"
+                        Header="{DynamicResource UI_InRibbonGallery_GalaxyFilter_Header}"
                         IsCollapsed="False"
                         MaxItemsInDropDownRow="1"
                         MinItemsInDropDownRow="1"
@@ -446,11 +446,11 @@
                                 <Fluent:MenuItem
                                     Name="MenuItem_GalaxyFilterSelectAll"
                                     Click="MenuItem_GalaxyFilterSelectAll_Click"
-                                    Header="{DynamicResource ResourceKey=TEXT_SelectALL}" />
+                                    Header="{DynamicResource TEXT_SelectALL}" />
                                 <Fluent:MenuItem
                                     Name="MenuItem_GalaxyFilterSelectNone"
                                     Click="MenuItem_GalaxyFilterSelectNone_Click"
-                                    Header="{DynamicResource ResourceKey=TEXT_SelectNone}" />
+                                    Header="{DynamicResource TEXT_SelectNone}" />
                             </Fluent:RibbonMenu>
                         </Fluent:InRibbonGallery.Menu>
                         <Fluent:ToggleButton
@@ -459,23 +459,23 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_FilterGalaxyButton_CheckEvent"
-                            Header="{DynamicResource ResourceKey=UI_ToggleButton_FilterGalaxyFileNone_Header}"
+                            Header="{DynamicResource UI_ToggleButton_FilterGalaxyFileNone_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_GalaxyNone}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:Class_Globals.Const_NoUseInGalaxy}"
-                            ToolTip="{DynamicResource ResourceKey=TipToggleButton_FilterGalaxyFileNone_ToolTip}"
+                            ToolTip="{DynamicResource TipToggleButton_FilterGalaxyFileNone_ToolTip}"
                             Unchecked="ToggleButton_FilterGalaxyButton_CheckEvent" />
                     </Fluent:InRibbonGallery>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_TextFileFilter"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TextFileFilter_Header}">
+                    Header="{DynamicResource UI_RibbonGroupBox_TextFileFilter_Header}">
                     <Fluent:InRibbonGallery
                         Name="InRibbonGallery_TextFileFilter"
                         MinWidth="100"
                         CanCollapseToButton="False"
-                        Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TextFileFilter_Header}"
+                        Header="{DynamicResource UI_InRibbonGallery_TextFileFilter_Header}"
                         IsCollapsed="False"
                         MaxItemsInDropDownRow="1"
                         MinItemsInDropDownRow="1"
@@ -487,11 +487,11 @@
                                 <Fluent:MenuItem
                                     Name="MenuItem_TextFileFilterSelectAll"
                                     Click="MenuItem_TextFileFilterSelectAll_Click"
-                                    Header="{DynamicResource ResourceKey=TEXT_SelectALL}" />
+                                    Header="{DynamicResource TEXT_SelectALL}" />
                                 <Fluent:MenuItem
                                     Name="MenuItem_TextFileFilterSelectNone"
                                     Click="MenuItem_TextFileFilterSelectNone_Click"
-                                    Header="{DynamicResource ResourceKey=TEXT_SelectNone}" />
+                                    Header="{DynamicResource TEXT_SelectNone}" />
                             </Fluent:RibbonMenu>
                         </Fluent:InRibbonGallery.Menu>
                         <Fluent:ToggleButton
@@ -500,7 +500,7 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextFileFilterButton_CheckEvent"
-                            Header="{DynamicResource ResourceKey=ENUM_EnumGameTextFile_GameStrings}"
+                            Header="{DynamicResource ENUM_EnumGameTextFile_GameStrings}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameTextFile.GameStrings}"
@@ -511,7 +511,7 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextFileFilterButton_CheckEvent"
-                            Header="{DynamicResource ResourceKey=ENUM_EnumGameTextFile_ObjectStrings}"
+                            Header="{DynamicResource ENUM_EnumGameTextFile_ObjectStrings}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameTextFile.ObjectStrings}"
@@ -522,7 +522,7 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextFileFilterButton_CheckEvent"
-                            Header="{DynamicResource ResourceKey=ENUM_EnumGameTextFile_TriggerStrings}"
+                            Header="{DynamicResource ENUM_EnumGameTextFile_TriggerStrings}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameTextFile.TriggerStrings}"
@@ -532,12 +532,12 @@
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_TextStatusFilter"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_TextStatusFilter_Header}">
+                    Header="{DynamicResource UI_RibbonGroupBox_TextStatusFilter_Header}">
                     <Fluent:InRibbonGallery
                         Name="InRibbonGallery_TextStatusFilter"
                         MinWidth="100"
                         CanCollapseToButton="False"
-                        Header="{DynamicResource ResourceKey=UI_InRibbonGallery_TextStatusFilter_Header}"
+                        Header="{DynamicResource UI_InRibbonGallery_TextStatusFilter_Header}"
                         IsCollapsed="False"
                         MaxItemsInDropDownRow="1"
                         MinItemsInDropDownRow="1"
@@ -549,11 +549,11 @@
                                 <Fluent:MenuItem
                                     Name="MenuItem_TextStatusFilterSelectAll"
                                     Click="MenuItem_TextStatusFilterSelectAll_Click"
-                                    Header="{DynamicResource ResourceKey=TEXT_SelectALL}" />
+                                    Header="{DynamicResource TEXT_SelectALL}" />
                                 <Fluent:MenuItem
                                     Name="MenuItem_TextStatusFilterSelectNone"
                                     Click="MenuItem_TextStatusFilterSelectNone_Click"
-                                    Header="{DynamicResource ResourceKey=TEXT_SelectNone}" />
+                                    Header="{DynamicResource TEXT_SelectNone}" />
                             </Fluent:RibbonMenu>
                         </Fluent:InRibbonGallery.Menu>
                         <Fluent:ToggleButton
@@ -562,7 +562,7 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextStatusFilterButton_CheckEvent"
-                            Header="{DynamicResource ResourceKey=ENUM_EnumGameTextStatus_Empty}"
+                            Header="{DynamicResource ENUM_EnumGameTextStatus_Empty}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameTextStatus.Empty}"
@@ -573,7 +573,7 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextStatusFilterButton_CheckEvent"
-                            Header="{DynamicResource ResourceKey=ENUM_EnumGameTextStatus_Normal}"
+                            Header="{DynamicResource ENUM_EnumGameTextStatus_Normal}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameTextStatus.Normal}"
@@ -584,7 +584,7 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_TextStatusFilterButton_CheckEvent"
-                            Header="{DynamicResource ResourceKey=ENUM_EnumGameTextStatus_Modified}"
+                            Header="{DynamicResource ENUM_EnumGameTextStatus_Modified}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameTextStatus.Modified}"
@@ -594,12 +594,12 @@
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_UseStatusFilter"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource ResourceKey=UI_RibbonGroupBox_UseStatusFilter_Header}">
+                    Header="{DynamicResource UI_RibbonGroupBox_UseStatusFilter_Header}">
                     <Fluent:InRibbonGallery
                         Name="InRibbonGallery_UseStatusFilter"
                         MinWidth="100"
                         CanCollapseToButton="False"
-                        Header="{DynamicResource ResourceKey=UI_InRibbonGallery_UseStatusFilter_Header}"
+                        Header="{DynamicResource UI_InRibbonGallery_UseStatusFilter_Header}"
                         IsCollapsed="False"
                         MaxItemsInDropDownRow="1"
                         MinItemsInDropDownRow="1"
@@ -611,11 +611,11 @@
                                 <Fluent:MenuItem
                                     Name="MenuItem_UseStatusFilterSelectAll"
                                     Click="MenuItem_UseStatusFilterSelectAll_Click"
-                                    Header="{DynamicResource ResourceKey=TEXT_SelectALL}" />
+                                    Header="{DynamicResource TEXT_SelectALL}" />
                                 <Fluent:MenuItem
                                     Name="MenuItem_UseStatusFilterSelectNone"
                                     Click="MenuItem_UseStatusFilterSelectNone_Click"
-                                    Header="{DynamicResource ResourceKey=TEXT_SelectNone}" />
+                                    Header="{DynamicResource TEXT_SelectNone}" />
                             </Fluent:RibbonMenu>
                         </Fluent:InRibbonGallery.Menu>
                         <Fluent:ToggleButton
@@ -624,7 +624,7 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_UseStatusFilterButton_CheckEvent"
-                            Header="{DynamicResource ResourceKey=ENUM_EnumGameUseStatus_Droped}"
+                            Header="{DynamicResource ENUM_EnumGameUseStatus_Droped}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameUseStatus.Droped}"
@@ -635,7 +635,7 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_UseStatusFilterButton_CheckEvent"
-                            Header="{DynamicResource ResourceKey=ENUM_EnumGameUseStatus_Normal}"
+                            Header="{DynamicResource ENUM_EnumGameUseStatus_Normal}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameUseStatus.Normal}"
@@ -646,7 +646,7 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_UseStatusFilterButton_CheckEvent"
-                            Header="{DynamicResource ResourceKey=ENUM_EnumGameUseStatus_Added}"
+                            Header="{DynamicResource ENUM_EnumGameUseStatus_Added}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameUseStatus.Added}"
@@ -657,7 +657,7 @@
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_UseStatusFilterButton_CheckEvent"
-                            Header="{DynamicResource ResourceKey=ENUM_EnumGameUseStatus_Modified}"
+                            Header="{DynamicResource ENUM_EnumGameUseStatus_Modified}"
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameUseStatus.Modified}"
@@ -672,7 +672,7 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Margin="3"
-            Header="{DynamicResource ResourceKey=UI_GroupBox_TranslatedTexts_Header}">
+            Header="{DynamicResource UI_GroupBox_TranslatedTexts_Header}">
             <DataGrid
                 Name="DataGrid_TranslatedTexts"
                 VerticalContentAlignment="Center"
@@ -687,49 +687,49 @@
                 <DataGrid.Resources>
                     <MenuItem
                         x:Key="MenuItem_TextID"
-                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_TextID_Header}"
+                        Header="{DynamicResource UI_DataGridColumn_TranslateTextID_Header}"
                         IsCheckable="True"
                         IsChecked="True"
                         Tag="0" />
                     <MenuItem
                         x:Key="MenuItem_Index"
-                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_Index_Header}"
+                        Header="{DynamicResource UI_DataGridColumn_TranslateIndex_Header}"
                         IsCheckable="True"
                         IsChecked="True"
                         Tag="1" />
                     <MenuItem
                         x:Key="MenuItem_TextFile"
-                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_TextFile_Header}"
+                        Header="{DynamicResource UI_DataGridColumn_TranslateTextFile_Header}"
                         IsCheckable="True"
                         IsChecked="True"
                         Tag="2" />
                     <MenuItem
                         x:Key="MenuItem_TextStatus"
-                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_TextStatus_Header}"
+                        Header="{DynamicResource UI_DataGridColumn_TranslateTextStatus_Header}"
                         IsCheckable="True"
                         IsChecked="True"
                         Tag="3" />
                     <MenuItem
                         x:Key="MenuItem_UseStatus"
-                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_UseStatus_Header}"
+                        Header="{DynamicResource UI_DataGridColumn_TranslateUseStatus_Header}"
                         IsCheckable="True"
                         IsChecked="False"
                         Tag="4" />
                     <MenuItem
                         x:Key="MenuItem_DropedText"
-                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_DropedText_Header}"
+                        Header="{DynamicResource UI_DataGridColumn_TranslateDropedText_Header}"
                         IsCheckable="True"
                         IsChecked="False"
                         Tag="5" />
                     <MenuItem
                         x:Key="MenuItem_SourceText"
-                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_SourceText_Header}"
+                        Header="{DynamicResource UI_DataGridColumn_TranslateSourceText_Header}"
                         IsCheckable="True"
                         IsChecked="True"
                         Tag="6" />
                     <MenuItem
                         x:Key="MenuItem_EditedText"
-                        Header="{DynamicResource ResourceKey=UI_DataGridColumn_EditedText_Header}"
+                        Header="{DynamicResource UI_DataGridColumn_TranslateEditedText_Header}"
                         IsCheckable="True"
                         IsChecked="True"
                         Tag="7" />
@@ -781,7 +781,7 @@
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_TextID"
+                        x:Name="DataGridColumn_TranslateTextID"
                         Width="*"
                         Binding="{Binding ID}"
                         CanUserReorder="True"
@@ -790,7 +790,7 @@
                         IsReadOnly="True"
                         Visibility="{Binding Source={StaticResource MenuItem_TextID}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TextID_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateTextID_Header}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -802,7 +802,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_Index"
+                        x:Name="DataGridColumn_TranslateIndex"
                         Width="Auto"
                         Binding="{Binding Index}"
                         CanUserReorder="True"
@@ -811,7 +811,7 @@
                         IsReadOnly="True"
                         Visibility="{Binding Source={StaticResource MenuItem_Index}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_Index_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateIndex_Header}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -822,7 +822,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_TextFile"
+                        x:Name="DataGridColumn_TranslateTextFile"
                         Width="Auto"
                         CanUserReorder="True"
                         CanUserResize="True"
@@ -836,7 +836,7 @@
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TextFile_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateTextFile_Header}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -848,7 +848,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_TextStatus"
+                        x:Name="DataGridColumn_TranslateTextStatus"
                         Width="Auto"
                         CanUserReorder="True"
                         CanUserResize="True"
@@ -863,7 +863,7 @@
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TextStatus_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateTextStatus_Header}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -875,7 +875,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_UseStatus"
+                        x:Name="DataGridColumn_TranslateUseStatus"
                         Width="Auto"
                         CanUserReorder="True"
                         CanUserResize="True"
@@ -890,7 +890,7 @@
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_UseStatus_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateUseStatus_Header}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -902,7 +902,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_DropedText"
+                        x:Name="DataGridColumn_TranslateDropedText"
                         Width="2*"
                         CanUserReorder="True"
                         CanUserResize="True"
@@ -916,7 +916,7 @@
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_DropedText_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateDropedText_Header}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -936,7 +936,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_SourceText"
+                        x:Name="DataGridColumn_TranslateSourceText"
                         Width="2*"
                         CanUserReorder="True"
                         CanUserResize="True"
@@ -950,7 +950,7 @@
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_SourceText_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateSourceText_Header}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -970,14 +970,14 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_EditedText"
+                        x:Name="DataGridColumn_TranslateEditedText"
                         Width="2*"
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="False"
                         Visibility="{Binding Source={StaticResource MenuItem_EditedText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_EditedText_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateEditedText_Header}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -1016,9 +1016,9 @@
                 Name="GroupBox_Details"
                 Grid.Column="0"
                 Margin="3"
-                Header="{DynamicResource ResourceKey=UI_GroupBox_Details_Header}">
+                Header="{DynamicResource UI_GroupBox_Details_Header}">
                 <TabControl Name="TabControl_Details">
-                    <TabItem Name="TabItem_GameTextForLanguage" Header="{DynamicResource ResourceKey=UI_TabItem_GameTextForLanguage_Header}">
+                    <TabItem Name="TabItem_GameTextForLanguage" Header="{DynamicResource UI_TabItem_GameTextForLanguage_Header}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" MinWidth="150" />
@@ -1027,7 +1027,7 @@
                             <GroupBox
                                 Name="GroupBox_GameTextShowLanguage"
                                 Grid.Column="0"
-                                Header="{DynamicResource ResourceKey=UI_GroupBox_GameTextShowLanguage_Header}">
+                                Header="{DynamicResource UI_GroupBox_GameTextShowLanguage_Header}">
                                 <ListBox
                                     Name="ListBox_GameTextShowLanguage"
                                     SelectionChanged="ListBox_GameTextShowLanguage_SelectionChanged"
@@ -1036,7 +1036,7 @@
                             <GroupBox
                                 Name="GroupBox_GameTextForLanguage"
                                 Grid.Column="1"
-                                Header="{DynamicResource ResourceKey=UI_GroupBox_GameTextForLanguage_Header}">
+                                Header="{DynamicResource UI_GroupBox_GameTextForLanguage_Header}">
                                 <DataGrid
                                     Name="DataGrid_GameTextForLanguage"
                                     VerticalContentAlignment="Center"
@@ -1045,43 +1045,42 @@
                                     AutoGenerateColumns="False"
                                     CanUserAddRows="False"
                                     ItemsSource="{Binding}"
-                                    SelectedCellsChanged="DataGrid_TranslatedTexts_SelectedCellsChanged"
                                     SelectionMode="Extended"
                                     SelectionUnit="CellOrRowHeader">
                                     <DataGrid.Resources>
                                         <MenuItem
                                             x:Key="MenuItem_Language"
-                                            Header="{DynamicResource ResourceKey=UI_DataGridColumn_DeatilsLanguage_Header}"
+                                            Header="{DynamicResource UI_DataGridColumn_DeatilsLanguage_Header}"
                                             IsCheckable="True"
                                             IsChecked="True"
                                             Tag="8" />
                                         <MenuItem
                                             x:Key="MenuItem_TextStatus"
-                                            Header="{DynamicResource ResourceKey=UI_DataGridColumn_DeatilsTextStatus_Header}"
+                                            Header="{DynamicResource UI_DataGridColumn_DeatilsTextStatus_Header}"
                                             IsCheckable="True"
                                             IsChecked="True"
                                             Tag="9" />
                                         <MenuItem
                                             x:Key="MenuItem_UseStatus"
-                                            Header="{DynamicResource ResourceKey=UI_DataGridColumn_DeatilsUseStatus_Header}"
+                                            Header="{DynamicResource UI_DataGridColumn_DeatilsUseStatus_Header}"
                                             IsCheckable="True"
                                             IsChecked="False"
                                             Tag="10" />
                                         <MenuItem
                                             x:Key="MenuItem_DropedText"
-                                            Header="{DynamicResource ResourceKey=UI_DataGridColumn_DeatilsDropedText_Header}"
+                                            Header="{DynamicResource UI_DataGridColumn_DeatilsDropedText_Header}"
                                             IsCheckable="True"
                                             IsChecked="False"
                                             Tag="11" />
                                         <MenuItem
                                             x:Key="MenuItem_SourceText"
-                                            Header="{DynamicResource ResourceKey=UI_DataGridColumn_DeatilsSourceText_Header}"
+                                            Header="{DynamicResource UI_DataGridColumn_DeatilsSourceText_Header}"
                                             IsCheckable="True"
                                             IsChecked="True"
                                             Tag="12" />
                                         <MenuItem
                                             x:Key="MenuItem_EditedText"
-                                            Header="{DynamicResource ResourceKey=UI_DataGridColumn_DeatilsEditedText_Header}"
+                                            Header="{DynamicResource UI_DataGridColumn_DeatilsEditedText_Header}"
                                             IsCheckable="True"
                                             IsChecked="True"
                                             Tag="13" />
@@ -1296,6 +1295,59 @@
                                 </DataGrid>
                             </GroupBox>
                         </Grid>
+                    </TabItem>
+                    <TabItem Name="TabItem_GameTextInGalaxy" Header="{DynamicResource UI_TabItem_GameTextInGalaxy_Header}">
+                        <GroupBox
+                            Name="GroupBox_GameTextInGalaxy"
+                            Header="{DynamicResource UI_GroupBox_GameTextInGalaxy_Header}">
+                            <DataGrid
+                                Name="DataGrid_GameTextInGalaxy"
+                                VerticalContentAlignment="Center"
+                                AlternatingRowBackground="LightGray"
+                                AlternationCount="2"
+                                AutoGenerateColumns="False"
+                                CanUserAddRows="False"
+                                ItemsSource="{Binding}"
+                                SelectionMode="Extended"
+                                SelectionUnit="CellOrRowHeader">
+                                <DataGrid.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="BorderThickness" Value="0" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="SkyBlue" />
+                                                <Setter Property="Foreground" Value="Black" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.CellStyle>
+                                <DataGrid.RowHeaderStyle>
+                                    <Style TargetType="{x:Type DataGridRowHeader}">
+                                        <Setter Property="Content">
+                                            <Setter.Value>
+                                                <MultiBinding Converter="{StaticResource Converter_AutoNumberValue}">
+                                                    <Binding />
+                                                    <Binding Path="Items" RelativeSource="{RelativeSource AncestorType={x:Type DataGrid}}" />
+                                                </MultiBinding>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGrid.RowHeaderStyle>
+                                <DataGrid.RowStyle>
+                                    <Style TargetType="{x:Type DataGridRow}">
+                                        <Setter Property="VerticalAlignment" Value="Stretch" />
+                                    </Style>
+                                </DataGrid.RowStyle>
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
+                                <DataGrid.Columns>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </GroupBox>
                     </TabItem>
                 </TabControl>
             </GroupBox>
