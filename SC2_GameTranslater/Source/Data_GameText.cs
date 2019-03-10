@@ -25,23 +25,27 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 无效
         /// </summary>
-        None = 0,
+        None = 1,
         /// <summary>
         /// 空
         /// </summary>
-        Empty = 1,
+        Empty = 2,
         /// <summary>
         /// 正常
         /// </summary>
-        Normal = 2,
+        Normal = 4,
         /// <summary>
         /// 已修改
         /// </summary>
-        Modified = 4,
+        Modified = 8,
+        /// <summary>
+        /// 已使用
+        /// </summary>
+        Useable = 12,
         /// <summary>
         /// 全部复选
         /// </summary>
-        All = 7,
+        All = 15,
     }
 
     /// <summary>
@@ -52,27 +56,31 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 无效
         /// </summary>
-        None = 0,
+        None = 1,
         /// <summary>
         /// 过期
         /// </summary>
-        Droped = 1,
+        Droped = 2,
         /// <summary>
         /// 正常
         /// </summary>
-        Normal = 2,
+        Normal = 4,
         /// <summary>
         /// 新增
         /// </summary>
-        Added = 4,
+        Added = 8,
         /// <summary>
         /// 修改
         /// </summary>
-        Modified = 8,
+        Modified = 16,
+        /// <summary>
+        /// 已使用
+        /// </summary>
+        Useable = 28,
         /// <summary>
         /// 全部
         /// </summary>
-        All = 15,
+        All = 31,
     }
 
 
@@ -764,11 +772,18 @@ namespace SC2_GameTranslater.Source
             EnumerableRowCollection<DataRow> gameStringRows = GetGameTextRows(EnumGameTextFile.GameStrings);
             EnumerableRowCollection<DataRow> objectStringRows = GetGameTextRows(EnumGameTextFile.ObjectStrings);
             EnumerableRowCollection<DataRow> triggerStringRows = GetGameTextRows(EnumGameTextFile.TriggerStrings);
-            foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
+            EnumLanguage lang;
+            EnumGameUseStatus useStatus;
+            foreach (DataRow row in LangaugeRowList)
             {
-                WriteToTextFile(baseDir, lang, EnumGameTextFile.GameStrings, ref backFiles, gameStringRows);
-                WriteToTextFile(baseDir, lang, EnumGameTextFile.ObjectStrings, ref backFiles, objectStringRows);
-                WriteToTextFile(baseDir, lang, EnumGameTextFile.TriggerStrings, ref backFiles, triggerStringRows);
+                lang = (EnumLanguage)row[RN_Language_ID];
+                useStatus = (EnumGameUseStatus)row[RN_Language_Status];
+                if (EnumGameUseStatus.Useable.HasFlag(useStatus))
+                {
+                    WriteToTextFile(baseDir, lang, EnumGameTextFile.GameStrings, ref backFiles, gameStringRows);
+                    WriteToTextFile(baseDir, lang, EnumGameTextFile.ObjectStrings, ref backFiles, objectStringRows);
+                    WriteToTextFile(baseDir, lang, EnumGameTextFile.TriggerStrings, ref backFiles, triggerStringRows);
+                }
             }
             return true;
         }
@@ -796,10 +811,15 @@ namespace SC2_GameTranslater.Source
                 if (!backFile.Directory.Exists) backFile.Directory.Create();
                 File.Copy(originpath, backFile.FullName, true);
                 StreamWriter sw = new StreamWriter(originpath, false);
-                string key = GetGameRowNameForLanguage(lang, RN_GameText_EditedText);
+                string statusKey = GetGameRowNameForLanguage(lang, RN_GameText_TextStatus);
+                string useKey = GetGameRowNameForLanguage(lang, RN_GameText_UseStatus);
+                string editedKey = GetGameRowNameForLanguage(lang, RN_GameText_EditedText);
                 foreach (DataRow row in data)
                 {
-                    sw.WriteLine(string.Format("{0}={1}", row[RN_GameText_ID], row[key]));
+                    if (EnumGameUseStatus.Useable.HasFlag((EnumGameUseStatus)row[useKey]) && EnumGameTextStatus.Useable.HasFlag((EnumGameTextStatus)row[statusKey]))
+                    {
+                        sw.WriteLine(string.Format("{0}={1}", row[RN_GameText_ID], row[editedKey]));
+                    }
                 }
                 sw.Close();
                 return true;
