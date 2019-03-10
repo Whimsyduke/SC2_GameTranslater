@@ -29,80 +29,86 @@
 
     <!--#region UI Text-->
     <sys:String x:Key="UI_Backstage_Menu_Header">Menu</sys:String>
-    <sys:String x:Key="UI_RibbonButton_New_Header">New</sys:String>
-    <sys:String x:Key="UI_RibbonButton_Open_Header">Open</sys:String>
-    <sys:String x:Key="UI_RibbonButton_Save_Header">Save</sys:String>
-    <sys:String x:Key="UI_RibbonButton_SaveAs_Header">Save As</sys:String>
-    <sys:String x:Key="UI_RibbonButton_Reload_Header">Reload</sys:String>
-    <sys:String x:Key="UI_RibbonButton_ReloadSC2_Header">Reload (Mod/Map)</sys:String>
-    <sys:String x:Key="UI_RibbonButton_Accept_Header">Accept</sys:String>
-    <sys:String x:Key="UI_RibbonButton_Close_Header">Close</sys:String>
-    <sys:String x:Key="UI_GroupBox_Language_Header">UI Language:</sys:String>
-    <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Mod/Map Path:</sys:String>
+    <sys:String x:Key="UI_BackstageTabItem_MenuRecentProjects_Header">Recent Projects</sys:String>
     <sys:String x:Key="UI_BackstageTabItem_Preference_Header">Preference</sys:String>
-    <sys:String x:Key="UI_RibbonTabItem_Start_Header">Start</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_File_Header">File</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">Translate Language</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_TranslateLanguage_Header">Translate Language</sys:String>
-    <sys:String x:Key="UI_OpenFileDialog_New_Title">New Project</sys:String>
-    <sys:String x:Key="UI_OpenFileDialog_Open_Title">Open Project</sys:String>
-    <sys:String x:Key="UI_OpenFileDialog_Save_Title">Save Project</sys:String>
-    <sys:String x:Key="UI_OpenFileDialog_SaveAs_Title">Save Project As</sys:String>
-    <sys:String x:Key="UI_OpenFileDialog_Reload_Title">Reload Project</sys:String>
-    <sys:String x:Key="UI_OpenFileDialog_CompontentsPath_Title">Select SC2 Map/Mod Compontents</sys:String>
-    <sys:String x:Key="UI_GroupBox_Details_Header">Details</sys:String>
-    <sys:String x:Key="UI_GroupBox_Log_Header">Log</sys:String>
-    <sys:String x:Key="UI_MenuItem_LogClear_Header">Clear Log</sys:String>
     <sys:String x:Key="UI_Button_SelectComponentsPath_Content">Select</sys:String>
-    <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">Load</sys:String>
-    <sys:String x:Key="UI_GroupBox_TranslatedTexts_Header">Translated Text</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_LineNumber_Header">Index</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TextID_Header">Text ID</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_Index_Header">Index</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TextFile_Header">In File</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TextStatus_Header">Text Status</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_UseStatus_Header">Use Status</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_DropedText_Header">Droped Text</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_SourceText_Header">Source Text</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_EditedText_Header">Edited Text</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_Search_Header">Search</sys:String>
-    <sys:String x:Key="UI_ComboBox_SearchType_Header">Type:</sys:String>
-    <sys:String x:Key="UI_ComboBox_SearchLcation_Header">Location:</sys:String>
-    <sys:String x:Key="UI_ComboBox_SearchLanguage_Header">Language:</sys:String>
-    <sys:String x:Key="UI_RadioButton_SearchNull_Header">Find Null</sys:String>
-    <sys:String x:Key="UI_RadioButton_SearchText_Header">SearchText</sys:String>
-    <sys:String x:Key="UI_RadioButton_SearchRegex_Header">Regex Expression</sys:String>
     <sys:String x:Key="UI_CheckBox_SearchCase_Header">Match Case</sys:String>
+    <sys:String x:Key="UI_ComboBox_SearchLanguage_Header">Language:</sys:String>
+    <sys:String x:Key="UI_ComboBox_SearchLcation_Header">Location:</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchText_Header">Text:</sys:String>
+    <sys:String x:Key="UI_ComboBox_SearchType_Header">Type:</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationALL_Header">All Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationLeft_Header">Start Left</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationRight_Header">Start Right</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeALL_Header">All</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeTextID_Header">Text ID</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeIndex_Header">Index</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeALLText_Header">All Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeDropedText_Header">Drop Text</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeSourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeEditedText_Header">Edited Text</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">In Galaxy File</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy File</sys:String>
-    <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_TextFileFilter_Header">In Record File</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">Record File</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_TextStatusFilter_Header">Text Status</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">Text Status</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_UseStatusFilter_Header">Use Status</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">Use Status</sys:String>
-    <sys:String x:Key="UI_TabItem_GameTextForLanguage_Header">Text In Language</sys:String>
-    <sys:String x:Key="UI_GroupBox_GameTextShowLanguage_Header">Show Language</sys:String>
-    <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">Game Text Details</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchTypeIndex_Header">Index</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchTypeSourceText_Header">Source Text</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchTypeTextID_Header">Text ID</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsDropedText_Header">Droped Text</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsEditedText_Header">Edited Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_DeatilsLanguage_Header">Language</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsSourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_DeatilsTextStatus_Header">Text Status</sys:String>
     <sys:String x:Key="UI_DataGridColumn_DeatilsUseStatus_Header">Use Status</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_DeatilsDropedText_Header">Droped Text</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_DeatilsSourceText_Header">Source Text</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_DeatilsEditedText_Header">Edited Text</sys:String>
-    
+    <sys:String x:Key="UI_DataGridColumn_DropedText_Header">Droped Text</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_EditedText_Header">Edited Text</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_Index_Header">Index</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_LineNumber_Header">Index</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_SourceText_Header">Source Text</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TextFile_Header">In File</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TextID_Header">Text ID</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TextStatus_Header">Text Status</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_UseStatus_Header">Use Status</sys:String>
+    <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Mod/Map Path:</sys:String>
+    <sys:String x:Key="UI_GroupBox_Details_Header">Details</sys:String>
+    <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">Game Text Details</sys:String>
+    <sys:String x:Key="UI_GroupBox_GameTextShowLanguage_Header">Show Language</sys:String>
+    <sys:String x:Key="UI_GroupBox_Language_Header">UI Language:</sys:String>
+    <sys:String x:Key="UI_GroupBox_Log_Header">Log</sys:String>
+    <sys:String x:Key="UI_GroupBox_TranslatedTexts_Header">Translated Text</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy File</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">Record File</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">Text Status</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TranslateLanguage_Header">Translate Language</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">Use Status</sys:String>
+    <sys:String x:Key="UI_MenuItem_LogClear_Header">Clear Log</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_CompontentsPath_Title">Select SC2 Map/Mod Compontents</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_New_Title">New Project</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_Open_Title">Open Project</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_Reload_Title">Reload Project</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_Save_Title">Save Project</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_SaveAs_Title">Save Project As</sys:String>
+    <sys:String x:Key="UI_RadioButton_SearchNull_Header">Find Null</sys:String>
+    <sys:String x:Key="UI_RadioButton_SearchRegex_Header">Regex Expression</sys:String>
+    <sys:String x:Key="UI_RadioButton_SearchText_Header">SearchText</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Accept_Header">Accept</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Close_Header">Close</sys:String>
+    <sys:String x:Key="UI_RibbonButton_New_Header">New</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Open_Header">Open</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Reload_Header">Reload</sys:String>
+    <sys:String x:Key="UI_RibbonButton_ReloadSC2_Header">Reload (Mod/Map)</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Save_Header">Save</sys:String>
+    <sys:String x:Key="UI_RibbonButton_SaveAs_Header">Save As</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_File_Header">File</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">In Galaxy File</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_Search_Header">Search</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_TextFileFilter_Header">In Record File</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_TextStatusFilter_Header">Text Status</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">Translate Language</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_UseStatusFilter_Header">Use Status</sys:String>
+    <sys:String x:Key="UI_RibbonTabItem_Start_Header">Start</sys:String>
+    <sys:String x:Key="UI_SeparatorTabItem_Preferences_Header">Preferences Setting</sys:String>
+    <sys:String x:Key="UI_SeparatorTabItem_Projects_Header">Projects file</sys:String>
+    <sys:String x:Key="UI_SeparatorTabItem_RecentProjects_Header">Recent Projects</sys:String>
+    <sys:String x:Key="UI_TabItem_GameTextForLanguage_Header">Text In Language</sys:String>
+    <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">Load</sys:String>
+    <sys:String x:Key="UI_TextBlock_RecentProjects_Text">Recent Projects</sys:String>
+    <sys:String x:Key="UI_TextBlock_Preference_Text">Preferences Setting</sys:String>
+    <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
+
     <!--#endregion-->
 
     <!--#region Tooltip-->
@@ -126,6 +132,11 @@
 
     <!--#region Error-->
     <sys:String x:Key="ERR_CommonNewException">{0} &#160; File:{1}  Class:{2} Method:{3} Line:{4} &#160;</sys:String>
+    <!--#endregion-->
+
+    <!--#region Message-->
+    <sys:String x:Key="MSG_CanNotFindProjectFile_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_CanNotFindProjectFile_Message">Can not find project file {0}. Do you want to delete it?</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

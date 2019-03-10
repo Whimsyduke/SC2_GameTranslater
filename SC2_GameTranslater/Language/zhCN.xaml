@@ -29,80 +29,86 @@
 
     <!--#region 界面文本-->
     <sys:String x:Key="UI_Backstage_Menu_Header">目录</sys:String>
-    <sys:String x:Key="UI_RibbonButton_New_Header">新建</sys:String>
-    <sys:String x:Key="UI_RibbonButton_Open_Header">打开</sys:String>
-    <sys:String x:Key="UI_RibbonButton_Save_Header">保存</sys:String>
-    <sys:String x:Key="UI_RibbonButton_SaveAs_Header">另存为</sys:String>
-    <sys:String x:Key="UI_RibbonButton_Reload_Header">重载</sys:String>
-    <sys:String x:Key="UI_RibbonButton_ReloadSC2_Header">重载（地图/Mod）</sys:String>
-    <sys:String x:Key="UI_RibbonButton_Accept_Header">应用</sys:String>
-    <sys:String x:Key="UI_RibbonButton_Close_Header">关闭</sys:String>
-    <sys:String x:Key="UI_GroupBox_Language_Header">界面语言：</sys:String>
-    <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Mod/Map路径：</sys:String>
+    <sys:String x:Key="UI_BackstageTabItem_MenuRecentProjects_Header">最近项目</sys:String>
     <sys:String x:Key="UI_BackstageTabItem_Preference_Header">配置</sys:String>
-    <sys:String x:Key="UI_RibbonTabItem_Start_Header">开始</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_File_Header">文件</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">翻译语言</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_TranslateLanguage_Header">翻译语言</sys:String>
-    <sys:String x:Key="UI_OpenFileDialog_New_Title">新建项目</sys:String>
-    <sys:String x:Key="UI_OpenFileDialog_Open_Title">打开项目</sys:String>
-    <sys:String x:Key="UI_OpenFileDialog_Save_Title">保存项目</sys:String>
-    <sys:String x:Key="UI_OpenFileDialog_SaveAs_Title">保存项目到</sys:String>
-    <sys:String x:Key="UI_OpenFileDialog_Reload_Title">重载项目</sys:String>
-    <sys:String x:Key="UI_OpenFileDialog_CompontentsPath_Title">选择SC2地图/Mod组件文件夹</sys:String>
-    <sys:String x:Key="UI_GroupBox_Details_Header">详情</sys:String>
-    <sys:String x:Key="UI_GroupBox_Log_Header">日志</sys:String>
-    <sys:String x:Key="UI_MenuItem_LogClear_Header">清除日志</sys:String>
     <sys:String x:Key="UI_Button_SelectComponentsPath_Content">选择</sys:String>
-    <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">加载</sys:String>
-    <sys:String x:Key="UI_GroupBox_TranslatedTexts_Header">翻译文本</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_LineNumber_Header">行号</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TextID_Header">文本ID</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_Index_Header">编号</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TextFile_Header">所在文件</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TextStatus_Header">文本状态</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_UseStatus_Header">使用状态</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_DropedText_Header">舍弃文本</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_SourceText_Header">原始文本</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_EditedText_Header">修改文本</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_Search_Header">搜索</sys:String>
-    <sys:String x:Key="UI_ComboBox_SearchType_Header">类型：</sys:String>
-    <sys:String x:Key="UI_ComboBox_SearchLcation_Header">位置：</sys:String>
-    <sys:String x:Key="UI_ComboBox_SearchLanguage_Header">语言：</sys:String>
-    <sys:String x:Key="UI_RadioButton_SearchNull_Header">空文本</sys:String>
-    <sys:String x:Key="UI_RadioButton_SearchText_Header">搜索文本</sys:String>
-    <sys:String x:Key="UI_RadioButton_SearchRegex_Header">正则表达式</sys:String>
     <sys:String x:Key="UI_CheckBox_SearchCase_Header">匹配大小写</sys:String>
+    <sys:String x:Key="UI_ComboBox_SearchLanguage_Header">语言：</sys:String>
+    <sys:String x:Key="UI_ComboBox_SearchLcation_Header">位置：</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchText_Header">文本：</sys:String>
+    <sys:String x:Key="UI_ComboBox_SearchType_Header">类型：</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationALL_Header">全文</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationLeft_Header">左起</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationRight_Header">右起</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeALL_Header">全部</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeTextID_Header">文本ID:</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeIndex_Header">编号</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeALLText_Header">全部文本</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeDropedText_Header">舍弃文本</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeSourceText_Header">原始文本</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeEditedText_Header">修改文本</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">所属Galaxy文件</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy文件</sys:String>
-    <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_TextFileFilter_Header">所属文本文件</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">文本文件</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_TextStatusFilter_Header">文本状态</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">文本状态</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_UseStatusFilter_Header">使用状态</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">使用状态</sys:String>
-    <sys:String x:Key="UI_TabItem_GameTextForLanguage_Header">全语言文本</sys:String>
-    <sys:String x:Key="UI_GroupBox_GameTextShowLanguage_Header">显示语言</sys:String>
-    <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">游戏文本数据</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchTypeIndex_Header">编号</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchTypeSourceText_Header">原始文本</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchTypeTextID_Header">文本ID:</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsDropedText_Header">舍弃文本</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsEditedText_Header">修改文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_DeatilsLanguage_Header">语言</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsSourceText_Header">原始文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_DeatilsTextStatus_Header">文本状态</sys:String>
     <sys:String x:Key="UI_DataGridColumn_DeatilsUseStatus_Header">使用状态</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_DeatilsDropedText_Header">舍弃文本</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_DeatilsSourceText_Header">原始文本</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_DeatilsEditedText_Header">修改文本</sys:String>
-    
+    <sys:String x:Key="UI_DataGridColumn_DropedText_Header">舍弃文本</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_EditedText_Header">修改文本</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_Index_Header">编号</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_LineNumber_Header">行号</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_SourceText_Header">原始文本</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TextFile_Header">所在文件</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TextID_Header">文本ID</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TextStatus_Header">文本状态</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_UseStatus_Header">使用状态</sys:String>
+    <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Mod/Map路径：</sys:String>
+    <sys:String x:Key="UI_GroupBox_Details_Header">详情</sys:String>
+    <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">游戏文本数据</sys:String>
+    <sys:String x:Key="UI_GroupBox_GameTextShowLanguage_Header">显示语言</sys:String>
+    <sys:String x:Key="UI_GroupBox_Language_Header">界面语言：</sys:String>
+    <sys:String x:Key="UI_GroupBox_Log_Header">日志</sys:String>
+    <sys:String x:Key="UI_GroupBox_TranslatedTexts_Header">翻译文本</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy文件</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">文本文件</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">文本状态</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TranslateLanguage_Header">翻译语言</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">使用状态</sys:String>
+    <sys:String x:Key="UI_MenuItem_LogClear_Header">清除日志</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_CompontentsPath_Title">选择SC2地图/Mod组件文件夹</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_New_Title">新建项目</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_Open_Title">打开项目</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_Reload_Title">重载项目</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_Save_Title">保存项目</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_SaveAs_Title">保存项目到</sys:String>
+    <sys:String x:Key="UI_RadioButton_SearchNull_Header">空文本</sys:String>
+    <sys:String x:Key="UI_RadioButton_SearchRegex_Header">正则表达式</sys:String>
+    <sys:String x:Key="UI_RadioButton_SearchText_Header">搜索文本</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Accept_Header">应用</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Close_Header">关闭</sys:String>
+    <sys:String x:Key="UI_RibbonButton_New_Header">新建</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Open_Header">打开</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Reload_Header">重载</sys:String>
+    <sys:String x:Key="UI_RibbonButton_ReloadSC2_Header">重载（地图/Mod）</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Save_Header">保存</sys:String>
+    <sys:String x:Key="UI_RibbonButton_SaveAs_Header">另存为</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_File_Header">文件</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">所属Galaxy文件</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_Search_Header">搜索</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_TextFileFilter_Header">所属文本文件</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_TextStatusFilter_Header">文本状态</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">翻译语言</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_UseStatusFilter_Header">使用状态</sys:String>
+    <sys:String x:Key="UI_RibbonTabItem_Start_Header">开始</sys:String>
+    <sys:String x:Key="UI_SeparatorTabItem_Preferences_Header">配置设置</sys:String>
+    <sys:String x:Key="UI_SeparatorTabItem_Projects_Header">项目文件</sys:String>
+    <sys:String x:Key="UI_SeparatorTabItem_RecentProjects_Header">最近项目</sys:String>
+    <sys:String x:Key="UI_TabItem_GameTextForLanguage_Header">全语言文本</sys:String>
+    <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">加载</sys:String>
+    <sys:String x:Key="UI_TextBlock_RecentProjects_Text">最近项目</sys:String>
+    <sys:String x:Key="UI_TextBlock_Preference_Text">配置设置</sys:String>
+    <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
+
     <!--#endregion-->
 
     <!--#region Tooltip-->
@@ -127,5 +133,10 @@
     <!--#region Error-->
     <sys:String x:Key="ERR_CommonNewException">{0} &#160; 文件：{1}  类：{2} 方法：{3} 行号：{4} &#160;</sys:String>
     <!--#endregion-->
-    
+
+    <!--#region Message-->
+    <sys:String x:Key="MSG_CanNotFindProjectFile_Title">消息</sys:String>
+    <sys:String x:Key="MSG_CanNotFindProjectFile_Message">无法找到项目文件{0}。是否将此条记录删除？</sys:String>
+    <!--#endregion-->
+
 </ResourceDictionary>

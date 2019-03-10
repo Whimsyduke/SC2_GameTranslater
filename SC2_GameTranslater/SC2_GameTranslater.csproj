@@ -178,6 +178,9 @@
     <Content Include="Assets\Image\ui-editoricon-triggercategories_techpurchase.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Image\ui-editoricon-triggereditor_newcomment.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Image\ui-editoricon-triggereditor_newconditiondefinition.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -296,6 +296,17 @@ namespace SC2_GameTranslater
         /// </summary>
         public RoutedUICommand CommandComponentsPath { set => SetValue(CommandComponentsPathProperty, value); get => (RoutedUICommand)GetValue(CommandComponentsPathProperty); }
 
+        /// <summary>
+        /// 近期项目命令依赖项
+        /// </summary>
+        public static DependencyProperty CommandRecentProjectsProperty = DependencyProperty.Register(nameof(CommandRecentProjects), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+
+        /// <summary>
+        /// 近期项目依赖项属性
+        /// </summary>
+        public RoutedUICommand CommandRecentProjects { set => SetValue(CommandRecentProjectsProperty, value); get => (RoutedUICommand)GetValue(CommandRecentProjectsProperty); }
+
+
         #endregion
 
         #region 字段属性
@@ -474,6 +485,8 @@ namespace SC2_GameTranslater
             binding = new CommandBinding(CommandReloadSC2, Executed_ReloadSC2, CanExecuted_ReloadSC2);
             Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandComponentsPath, Executed_ComponentsPath, CanExecuted_ComponentsPath);
+            Globals.MainWindow.CommandBindings.Add(binding);
+            binding = new CommandBinding(CommandRecentProjects, Executed_RecentProjects, CanExecuted_RecentProjects);
             Globals.MainWindow.CommandBindings.Add(binding);
 
             #endregion
@@ -833,6 +846,40 @@ namespace SC2_GameTranslater
         public static void CanExecuted_ComponentsPath(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = CheckCurrentProjectExist();
+            e.Handled = true;
+        }
+        
+        /// <summary>
+        /// 浏览Mod/Map执行函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void Executed_RecentProjects(object sender, ExecutedRoutedEventArgs e)
+        {
+            FileInfo file = new FileInfo(e.Parameter as string);
+            if (file.Exists)
+            {
+                bool result = ProjectOpen(file);
+                Globals.MainWindow.Backstage_Menu.IsOpen = false;
+            }
+            else
+            {
+                if (Log.ShowSystemMessage(true, MessageBoxButton.YesNo, MessageBoxImage.None, "MSG_CanNotFindProjectFile", file.FullName) == MessageBoxResult.Yes)
+                {
+                    RemoveRecentProject(file);
+                }
+            }
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 浏览Mod/Map判断函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void CanExecuted_RecentProjects(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
             e.Handled = true;
         }
 
@@ -1455,7 +1502,16 @@ namespace SC2_GameTranslater
             Data_GameText project = Data_GameText.LoadProject(file);
             Globals.CurrentProject = project;
             Globals.MainWindow.RibbonGroupBox_File.UpdateLayout();
-            return project != null ;
+            if (project != null)
+            {
+                AddRecentProject(file);
+                return true;
+            }
+            else
+            {
+                Globals.CurrentProjectPath = null;
+                return false;
+            }
         }
 
         /// <summary>
@@ -1492,6 +1548,7 @@ namespace SC2_GameTranslater
                     Globals.Preference.LastFolderPath = file.DirectoryName;
                     Globals.CurrentProjectPath = file;
                     ProjectSave(file);
+                    AddRecentProject(file);
                 }
             }
         }
@@ -1597,11 +1654,88 @@ namespace SC2_GameTranslater
             RefreshTranslatedText(newPro);
         }
 
-        #endregion
+#endregion
 
-        #endregion
+#region 最近打开项目
 
-        #region 控件事件
+        /// <summary>
+        /// 添加最近项目
+        /// </summary>
+        /// <param name="file">项目文件</param>
+        private static void AddRecentProject(FileInfo file)
+        {
+            Globals.Preference.Preference_AddRecentRecord(file);
+            Globals.MainWindow.RefreshRecentProjects();
+        }
+
+        /// <summary>
+        /// 删除最近项目
+        /// </summary>
+        /// <param name="file">项目文件</param>
+        private static void RemoveRecentProject(FileInfo file)
+        {
+            Globals.Preference.Preference_RemoveRecentRecord(file);
+            Globals.MainWindow.RefreshRecentProjects();
+        }
+
+        /// <summary>
+        /// 刷新最近打开的项目
+        /// </summary>
+        public void RefreshRecentProjects()
+        {
+            ItemsControl_RecentFiles.Items.Clear();
+            foreach (string path in Globals.Preference.RecentProjectList)
+            {
+                if (path != null) NewRecentProejct(path);
+            }
+        }
+
+        /// <summary>
+        /// 新建最近文件按钮
+        /// </summary>
+        /// <param name="path">路径</param>
+        private void NewRecentProejct(string path)
+        {
+            BitmapImage bitmap = new BitmapImage(new Uri("pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newcomment.dds"));
+            Image image = new Image
+            {
+                Source = bitmap,
+                Margin = new Thickness(3),
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Left,
+            };
+            TextBlock text = new TextBlock
+            {
+                Text = path,
+                Margin = new Thickness(3),
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Left,
+            };
+            StackPanel panel = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                Margin = new Thickness(3),
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+            };
+            panel.Children.Add(image);
+            panel.Children.Add(text);
+            System.Windows.Controls.Button button = new System.Windows.Controls.Button
+            {
+                Content = panel,
+                Command = CommandRecentProjects,
+                CommandParameter = path,
+                HorizontalContentAlignment = HorizontalAlignment.Left,
+                Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)),
+                BorderThickness = new Thickness(0),
+            };
+            ItemsControl_RecentFiles.Items.Add(button);
+        }
+
+#endregion
+
+#endregion
+
+#region 控件事件
 
         /// <summary>
         /// 语言选择下拉列表选择事件
@@ -1927,7 +2061,7 @@ namespace SC2_GameTranslater
             RefreshGameTextDetails(false);
         }
 
-        #endregion
+#endregion
 
     }
 }

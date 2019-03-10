@@ -39,15 +39,18 @@ namespace SC2_GameTranslater.Source
         /// 显示消息
         /// </summary>
         /// <param name="isShow">是否显示</param>
+        /// <param name="button">显示按钮</param>
+        /// <param name="image">显示图片</param>
         /// <param name="msgKey">消息文本密钥</param>
         /// <param name="args">参数</param>
-        public static void ShowSystemMessage(bool isShow, string msgKey, params object[] args)
+        /// <returns>按钮结果</returns>
+        public static MessageBoxResult ShowSystemMessage(bool isShow, MessageBoxButton button, MessageBoxImage image, string msgKey, params object[] args)
         {
             string caption = Globals.CurrentLanguage[msgKey + "_Title"] as string;
             string msg = Globals.CurrentLanguage[msgKey + "_Message"] as string;
             msg = string.Format(msg, args);
             DisplayLogOnUI(msg);
-            MessageBox.Show(msg, caption, MessageBoxButton.OK);
+            return MessageBox.Show(msg, caption, button, image);
         }
 
         /// <summary>

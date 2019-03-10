@@ -40,38 +40,78 @@
             AutomaticStateManagement="False"
             IsAutomaticCollapseEnabled="True">
             <Fluent:Ribbon.Menu>
-                <Fluent:Backstage Header="{DynamicResource ResourceKey=UI_Backstage_Menu_Header}">
+                <Fluent:Backstage Name="Backstage_Menu" Header="{DynamicResource ResourceKey=UI_Backstage_Menu_Header}">
                     <Fluent:BackstageTabControl>
+                        <Fluent:SeparatorTabItem
+                            Name="SeparatorTabItem_Projects"
+                            Margin="0,0,0,0"
+                            HorizontalContentAlignment="Left"
+                            Header="{DynamicResource ResourceKey=UI_SeparatorTabItem_Projects_Header}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuNew"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandNew}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_New_Header}" />
-                        <Separator />
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_New_Header}"
+                            Icon="{StaticResource ResourceKey=IMAGE_New}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuOpen"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandOpen}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}" />
-                        <Separator />
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Open_Header}"
+                            Icon="{StaticResource ResourceKey=IMAGE_Open}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuSave"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSave}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}" />
-                        <Separator />
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Save_Header}"
+                            Icon="{StaticResource ResourceKey=IMAGE_Save}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuSaveAs"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSaveAs}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_SaveAs_Header}" />
-                        <Separator />
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_SaveAs_Header}"
+                            Icon="{StaticResource ResourceKey=IMAGE_Save}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuClose"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandClose}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}" />
-                        <Separator />
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Close_Header}"
+                            Icon="{StaticResource ResourceKey=IMAGE_Close}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuAccept"
                             Command="{Binding ElementName=RibbonWindow_Main, Path=CommandAccept}"
-                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}" />
-                        <Separator />
+                            Header="{DynamicResource ResourceKey=UI_RibbonButton_Accept_Header}"
+                            Icon="{StaticResource ResourceKey=IMAGE_Accept}" />
+                        <Fluent:SeparatorTabItem
+                            Name="SeparatorTabItem_RecentProjects"
+                            Margin="0,20,0,0"
+                            HorizontalContentAlignment="Left"
+                            Header="{DynamicResource ResourceKey=UI_SeparatorTabItem_RecentProjects_Header}" />
+                        <Fluent:BackstageTabItem x:Name="BackstageTabItem_MenuRecentProjects" Header="{DynamicResource ResourceKey=UI_BackstageTabItem_MenuRecentProjects_Header}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0">
+                                    <TextBlock
+                                        Name="TextBlock_RecentProjects"
+                                        Margin="3"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Text="{DynamicResource ResourceKey=UI_TextBlock_RecentProjects_Text}" />
+                                </Label>
+                                <Separator Grid.Row="1" />
+                                <ItemsControl
+                                    Name="ItemsControl_RecentFiles"
+                                    Grid.Row="2"
+                                    Margin="3"
+                                    BorderThickness="0" />
+                            </Grid>
+                        </Fluent:BackstageTabItem>
+                        <Fluent:SeparatorTabItem
+                            Name="SeparatorTabItem_Preferences"
+                            Margin="0,20,0,0"
+                            HorizontalContentAlignment="Left"
+                            Header="{DynamicResource ResourceKey=UI_SeparatorTabItem_Preferences_Header}" />
                         <Fluent:BackstageTabItem
                             x:Name="BackstageTabItem_Preference"
                             Header="{DynamicResource ResourceKey=UI_BackstageTabItem_Preference_Header}"
@@ -81,10 +121,23 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
+                                    <Label Grid.Row="0">
+                                        <TextBlock
+                                            Name="TextBlock_Preference"
+                                            Margin="3"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            FontSize="20"
+                                            FontWeight="Bold"
+                                            Text="{DynamicResource ResourceKey=UI_TextBlock_Preference_Text}" />
+                                    </Label>
+                                    <Separator Grid.Row="1" />
                                     <GroupBox
                                         Name="GroupBox_Language"
-                                        Grid.Row="0"
+                                        Grid.Row="2"
                                         Margin="3">
                                         <GroupBox.Header>
                                             <Label>
@@ -96,7 +149,7 @@
                                             Margin="3"
                                             SelectionChanged="ComboBox_Language_SelectionChanged" />
                                     </GroupBox>
-                                    <GroupBox Name="GroupBox_ComponentsPath" Grid.Row="1">
+                                    <GroupBox Name="GroupBox_ComponentsPath" Grid.Row="3">
                                         <GroupBox.Header>
                                             <Label>
                                                 <TextBlock Text="{DynamicResource ResourceKey=UI_GroupBox_ComponentsPath_Header}" />
@@ -1080,7 +1133,7 @@
                                         <DataGridTextColumn
                                             x:Name="DataGridColumn_DetailsLanguage"
                                             Width="*"
-                                            Binding="{Binding Path=Language,Converter={StaticResource ResourceKey=Converter_EnumLanguageToTreslateName}}"
+                                            Binding="{Binding Path=Language, Converter={StaticResource ResourceKey=Converter_EnumLanguageToTreslateName}}"
                                             CanUserReorder="True"
                                             CanUserResize="True"
                                             CanUserSort="True"

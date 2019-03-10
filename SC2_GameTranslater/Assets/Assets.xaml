@@ -13,6 +13,7 @@
     <BitmapImage x:Key="IMAGE_SearchComboBox" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_parameter.dds" />
     <BitmapImage x:Key="IMAGE_SearchConfigure" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_techpurchase.dds" />
     <BitmapImage x:Key="IMAGE_SearchTextBox" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_dialog.dds" />
+    <BitmapImage x:Key="IMAGE_ProjectFile" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newcomment.dds" />
     <!--#endregion-->
 
     <!--#region Translate Language-->

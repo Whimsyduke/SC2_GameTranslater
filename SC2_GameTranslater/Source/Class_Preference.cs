@@ -29,6 +29,7 @@ namespace SC2_GameTranslater.Source
         public static readonly FileInfo Preference_ConfigFile = new FileInfo("Config.cfg");
         public static readonly Size Preference_DefaultWindowSize = new Size(1366, 768);
         public static readonly string Preference_DefaultLastFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        public static readonly int Prefrence_MaxRecentProjectCount = 20;
 
         // 字段
         public const string Preference_ElementConfig = "Preference";
@@ -95,7 +96,8 @@ namespace SC2_GameTranslater.Source
         /// 最近打开文件列表
         /// </summary>
         [XmlArray(Preference_ElementRecentProjectList), XmlArrayItem(Preference_AttributeRecentProject)]
-        public List<string> RecentProjectList { get; set; } = new List<string>();
+
+        public string [] RecentProjectList { get; set; } = new string[Prefrence_MaxRecentProjectCount];
 
         /// <summary>
         /// 最后打开保存文件路径
@@ -169,8 +171,11 @@ namespace SC2_GameTranslater.Source
             {
                 Globals.Preference.Preference_LoadWindowSize();
                 Globals.Preference.Preference_LoadColumnVisibility();
+                Globals.MainWindow.RefreshRecentProjects();
             }
         }
+
+
 
         #endregion
 
@@ -240,6 +245,45 @@ namespace SC2_GameTranslater.Source
                     item.IsChecked = ColumnVisiblity[int.Parse(item.Tag as string)];
                 }
             }
+        }
+
+        #endregion
+
+        #region 最近项目
+
+        /// <summary>
+        /// 增加最近打开记录
+        /// </summary>
+        /// <param name="file">打开文件</param>
+        public void Preference_AddRecentRecord(FileInfo file)
+        {
+            List<string> list = RecentProjectList.ToList();
+            string path = file.FullName;
+            if (list.Contains(path))
+            {
+                list.Remove(path);
+            }
+            list.Insert(0, path);
+            while (list.Count > Prefrence_MaxRecentProjectCount)
+            {
+                list.RemoveAt(list.Count - 1);
+            }
+            RecentProjectList = list.ToArray();
+        }
+
+        /// <summary>
+        /// 移除最近打开记录
+        /// </summary>
+        /// <param name="file">打开文件</param>
+        public void Preference_RemoveRecentRecord(FileInfo file)
+        {
+            List<string> list = RecentProjectList.ToList();
+            string path = file.FullName;
+            if (list.Contains(path))
+            {
+                list.Remove(path);
+            }
+            RecentProjectList = list.ToArray();
         }
 
         #endregion
