@@ -1317,6 +1317,8 @@ namespace SC2_GameTranslater.Source {
             
             private global::System.Data.DataColumn columnFile;
             
+            private global::System.Data.DataColumn columnLineNumber;
+            
             private global::System.Data.DataColumn columnScript;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1370,6 +1372,14 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LineNumberColumn {
+                get {
+                    return this.columnLineNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn ScriptColumn {
                 get {
                     return this.columnScript;
@@ -1413,11 +1423,12 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_GalaxyLineRow AddTable_GalaxyLineRow(Table_GalaxyFileRow parentTable_GalaxyFileRowByRelation_GalaxyFile_GalaxyLine_File, string Script) {
+            public Table_GalaxyLineRow AddTable_GalaxyLineRow(Table_GalaxyFileRow parentTable_GalaxyFileRowByRelation_GalaxyFile_GalaxyLine_File, int LineNumber, string Script) {
                 Table_GalaxyLineRow rowTable_GalaxyLineRow = ((Table_GalaxyLineRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
+                        LineNumber,
                         Script};
                 if ((parentTable_GalaxyFileRowByRelation_GalaxyFile_GalaxyLine_File != null)) {
                     columnValuesArray[1] = parentTable_GalaxyFileRowByRelation_GalaxyFile_GalaxyLine_File[0];
@@ -1453,6 +1464,7 @@ namespace SC2_GameTranslater.Source {
             internal void InitVars() {
                 this.columnIndex = base.Columns["Index"];
                 this.columnFile = base.Columns["File"];
+                this.columnLineNumber = base.Columns["LineNumber"];
                 this.columnScript = base.Columns["Script"];
             }
             
@@ -1463,6 +1475,8 @@ namespace SC2_GameTranslater.Source {
                 base.Columns.Add(this.columnIndex);
                 this.columnFile = new global::System.Data.DataColumn("File", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFile);
+                this.columnLineNumber = new global::System.Data.DataColumn("LineNumber", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLineNumber);
                 this.columnScript = new global::System.Data.DataColumn("Script", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnScript);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Table_GalaxyLineKey_Index", new global::System.Data.DataColumn[] {
@@ -1470,6 +1484,7 @@ namespace SC2_GameTranslater.Source {
                 this.columnIndex.AutoIncrement = true;
                 this.columnIndex.AllowDBNull = false;
                 this.columnIndex.Unique = true;
+                this.columnLineNumber.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2435,6 +2450,17 @@ namespace SC2_GameTranslater.Source {
                 }
                 set {
                     this[this.tableTable_GalaxyLine.FileColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int LineNumber {
+                get {
+                    return ((int)(this[this.tableTable_GalaxyLine.LineNumberColumn]));
+                }
+                set {
+                    this[this.tableTable_GalaxyLine.LineNumberColumn] = value;
                 }
             }
             

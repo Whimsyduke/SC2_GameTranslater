@@ -201,6 +201,7 @@ namespace SC2_GameTranslater.Source
         public const string RN_GalaxyFile_Count = "Count";
         public const string RN_GalaxyLine_Index = "Index";
         public const string RN_GalaxyLine_File = "File";
+        public const string RN_GalaxyLine_LineNumber = "LineNumber";
         public const string RN_GalaxyLine_Script = "Script";
         public const string RN_GalaxyLocation_Index = "Index";
         public const string RN_GalaxyLocation_Line = "Line";
@@ -473,7 +474,7 @@ namespace SC2_GameTranslater.Source
         {
             DataTable table = new DataTable(TN_GameTextForLanguage);
             DataColumn column;
-            column = new DataColumn(RN_GameTextForLanguage_Language,typeof(int));
+            column = new DataColumn(RN_GameTextForLanguage_Language, typeof(int));
             table.Columns.Add(column);
             column = new DataColumn(RN_GameTextForLanguage_TextStatus, typeof(int));
             table.Columns.Add(column);
@@ -1070,12 +1071,14 @@ namespace SC2_GameTranslater.Source
             int indexLocation = tableLocation.Rows.Count;
             StreamReader sr = new StreamReader(file.FullName);
             string line;
+            int lineNumber = 0;
             while (!sr.EndOfStream)
             {
+                lineNumber++;
                 line = sr.ReadLine();
                 MatchCollection matchs = Const_Regex_StringExternal.Matches(line);
                 if (matchs.Count == 0) continue;
-                tableLine.Rows.Add(indexLine, path, line);
+                tableLine.Rows.Add(indexLine, path, lineNumber, line);
                 foreach (var select in matchs)
                 {
                     count++;
@@ -1085,6 +1088,20 @@ namespace SC2_GameTranslater.Source
             }
             sr.Close();
             row[RN_GalaxyFile_Count] = count;
+        }
+
+        /// <summary>
+        /// 获取应用的Galaxyline
+        /// </summary>
+        /// <param name="textRow">文本Row</param>
+        /// <returns>相关row列表</returns>
+        public DataView GetRelateGalaxyLineRows(DataRow textRow)
+        {
+            DataRow[] locations = textRow.GetChildRows(RSN_GameText_GalaxyLocation_Key);
+            List<DataRow> lines = locations.Select(r => r.GetParentRow(RSN_GalaxyLine_GameLocation_Line)).Distinct().Select(r => r).ToList();
+            EnumerableRowCollection<DataRow> query = Tables[TN_GalaxyLine].AsEnumerable();
+            query = query.Where(r => lines.Contains(r)).Select(r => r);            
+            return query.AsDataView();
         }
 
         #endregion

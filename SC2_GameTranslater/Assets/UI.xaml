@@ -13,6 +13,7 @@
     <source:EnumNameInLanguage_TextFileConverter x:Key="Converter_EnumNameInLanguage_TextFile" />
     <source:EnumNameInLanguage_TextStatusConverter x:Key="Converter_EnumNameInLanguage_TextStatus" />
     <source:EnumNameInLanguage_UseStatusConverter x:Key="Converter_EnumNameInLanguage_UseStatus" />
+    <source:TextInGalaxyFileNameConverter x:Key="Converter_TextInGalaxyFileName" />
     <source:DataGridColumnNullTextBorderConverter x:Key="Converter_DataGridColumnNullTextBorder" />
     <source:CommonNotValueConverter x:Key="Converter_CommonNotValue" />
     <source:SerachLocationByRegexControlConverter x:Key="Converter_SerachLocationByRegexControl" />

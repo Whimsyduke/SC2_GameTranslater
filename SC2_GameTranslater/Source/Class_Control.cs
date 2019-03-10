@@ -64,6 +64,14 @@ namespace SC2_GameTranslater.Source
     /// </summary>
     public class EnumLanguageToTreslateNameConverter : IValueConverter
     {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             EnumLanguage lang = (EnumLanguage)value;
@@ -71,6 +79,14 @@ namespace SC2_GameTranslater.Source
             return Globals.CurrentLanguage[string.Format("TEXT_{0}", langName)];
         }
 
+        /// <summary>
+        /// 反向转回函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return 0;
@@ -257,6 +273,40 @@ namespace SC2_GameTranslater.Source
 
 
     /// <summary>
+    /// 所在Galaxy文件名转换器Converter
+    /// </summary>
+    public class TextInGalaxyFileNameConverter : IValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            DataRowView view = value as DataRowView;
+            DataRow rowFile = view.Row.GetParentRow(Data_GameText.RSN_GalaxyFile_GalaxyLine_File);
+            return rowFile[Data_GameText.RN_GalaxyFile_Name];
+        }
+
+        /// <summary>
+        /// 反向转回函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return 0;
+        }
+    }
+
+    /// <summary>
     /// 空文本表格边框
     /// </summary>
     public class DataGridColumnNullTextBorderConverter : IMultiValueConverter
@@ -308,6 +358,14 @@ namespace SC2_GameTranslater.Source
     /// </summary>
     public class CommonNotValueConverter : IValueConverter
     {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             switch ((bool?)value)
@@ -321,6 +379,14 @@ namespace SC2_GameTranslater.Source
             }
         }
 
+        /// <summary>
+        /// 反向转回函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             switch ((bool?)value)
@@ -340,6 +406,14 @@ namespace SC2_GameTranslater.Source
     /// </summary>
     public class BooleanToVisibilityConverter : IValueConverter
     {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             switch ((bool?)value)
@@ -353,6 +427,14 @@ namespace SC2_GameTranslater.Source
             }
         }
 
+        /// <summary>
+        /// 反向转回函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             switch ((Visibility)value)

@@ -1463,6 +1463,22 @@ namespace SC2_GameTranslater
             DataGrid_GameTextForLanguage.ItemsSource = query.AsDataView();
         }
 
+        /// <summary>
+        /// 刷新Galaxy中文本
+        /// </summary>
+        private void RefreshInGalaxyTextDetails()
+        {
+            if(DataGrid_TranslatedTexts.CurrentItem is DataRowView rowView)
+            {
+                DataView view = Globals.CurrentProject.GetRelateGalaxyLineRows(rowView.Row);
+                DataGrid_GameTextInGalaxy.ItemsSource = view;
+            }
+            else
+            {
+                DataGrid_GameTextInGalaxy.ItemsSource = null;
+            }
+        }
+
         #endregion
 
         #region 功能
@@ -2017,6 +2033,7 @@ namespace SC2_GameTranslater
         private void DataGrid_TranslatedTexts_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
             RefreshGameTextDetails(true);
+            RefreshInGalaxyTextDetails();
         }
 
         /// <summary>
