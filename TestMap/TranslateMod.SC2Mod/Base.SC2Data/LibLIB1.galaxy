@@ -40,6 +40,10 @@ bool libLIB1_gt_Trigger_Func (bool testConds, bool runActions) {
     }
 
     lv_Text = StringExternal("Param/Value/lib_LIB1_2254CCC2");
+    TextExpressionSetToken("Param/Expression/lib_LIB1_4B316151", "A", UnitGetName(EventUnit()));
+    TextExpressionSetToken("Param/Expression/lib_LIB1_4B316151", "B", ConversationReplyGetText(EventConversation(), EventConversationReply()));
+    lv_Text = TextExpressionAssemble("Param/Expression/lib_LIB1_4B316151");
+    lv_Text = (StringExternal("Param/Value/lib_LIB1_003243C8") + StringExternal("Param/Value/lib_LIB1_E72893F1") + StringExternal("Param/Value/lib_LIB1_CABF2509"));
     return true;
 }
 

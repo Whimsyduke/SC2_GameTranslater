@@ -27,6 +27,8 @@ bool libLIB2_gt_Trigger_Func (bool testConds, bool runActions) {
     }
 
     lv_Text = StringExternal("Param/Value/lib_LIB2_43EF0FA3");
+    lv_Text = StringExternal("DOCSTR_0000");
+    lv_Text = (StringExternal("DOCSTR_0000") + StringExternal("Param/Value/lib_LIB2_CA632EE9") + StringExternal("DOCSTR_0000") + StringExternal("DOCSTR_0001") + StringToText("1233333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333331312"));
     return true;
 }
 
