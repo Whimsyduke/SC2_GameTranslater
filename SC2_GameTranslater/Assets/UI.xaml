@@ -15,6 +15,7 @@
     <source:EnumNameInLanguage_UseStatusConverter x:Key="Converter_EnumNameInLanguage_UseStatus" />
     <source:TextInGalaxyFileNameConverter x:Key="Converter_TextInGalaxyFileName" />
     <source:DataGridColumnNullTextBorderConverter x:Key="Converter_DataGridColumnNullTextBorder" />
+    <source:RichTextBoxInGalaxyTextConverter x:Key="Converter_RichTextBoxInGalaxyText" />
     <source:CommonNotValueConverter x:Key="Converter_CommonNotValue" />
     <source:SerachLocationByRegexControlConverter x:Key="Converter_SerachLocationByRegexControl" />
     <BooleanToVisibilityConverter x:Key="Converter_BooleanToVisibility" />

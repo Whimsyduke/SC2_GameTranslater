@@ -314,7 +314,7 @@ namespace SC2_GameTranslater
         #region 属性
 
         /// <summary>
-        /// 语言依赖项属性
+        /// 当前语言依赖项属性
         /// </summary>
         public static DependencyProperty EnumCurrentLanguageProperty = DependencyProperty.Register(nameof(EnumCurrentLanguage), typeof(EnumLanguage), typeof(SC2_GameTranslater_Window));
 

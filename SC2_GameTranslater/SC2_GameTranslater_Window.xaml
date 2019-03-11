@@ -1410,6 +1410,19 @@
                                         <DataGridTemplateColumn.Header>
                                             <TextBlock Text="{DynamicResource UI_DataGridColumn_GalaxyText_Header}" />
                                         </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <FlowDocumentScrollViewer 
+                                                    x:Name="DataGridRichTextBoxTemplate_InGalaxyText"
+                                                    HorizontalContentAlignment="Left"
+                                                    VerticalContentAlignment="Center"
+                                                    BorderThickness="0"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Document="{Binding Converter={StaticResource Converter_RichTextBoxInGalaxyText}}"
+                                                    IsHitTestVisible="True"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
