@@ -58,7 +58,7 @@
     <sys:String x:Key="UI_DataGridColumn_GalaxyText_Header">Galaxy文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateDropedText_Header">舍弃文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateEditedText_Header">修改文本</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateIndex_Header">编号</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslateGalaxyIndex_Header">Galaxy编号</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateSourceText_Header">原始文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateTextFile_Header">所在文件</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateTextID_Header">文本ID</sys:String>

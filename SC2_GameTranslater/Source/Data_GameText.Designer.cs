@@ -1622,7 +1622,7 @@ namespace SC2_GameTranslater.Source {
             
             private global::System.Data.DataColumn columnLine;
             
-            private global::System.Data.DataColumn columnTextID;
+            private global::System.Data.DataColumn columnLineIndex;
             
             private global::System.Data.DataColumn columnKey;
             
@@ -1677,9 +1677,9 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn TextIDColumn {
+            public global::System.Data.DataColumn LineIndexColumn {
                 get {
-                    return this.columnTextID;
+                    return this.columnLineIndex;
                 }
             }
             
@@ -1728,12 +1728,12 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Table_GalaxyLocationRow AddTable_GalaxyLocationRow(string Index, Table_GalaxyLineRow parentTable_GalaxyLineRowByRelation_GalaxyLine_GameLocation_Line, int TextID, Table_GameTextRow parentTable_GameTextRowByRelation_GameText_GalaxyLocation_Key) {
+            public Table_GalaxyLocationRow AddTable_GalaxyLocationRow(string Index, Table_GalaxyLineRow parentTable_GalaxyLineRowByRelation_GalaxyLine_GameLocation_Line, int LineIndex, Table_GameTextRow parentTable_GameTextRowByRelation_GameText_GalaxyLocation_Key) {
                 Table_GalaxyLocationRow rowTable_GalaxyLocationRow = ((Table_GalaxyLocationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Index,
                         null,
-                        TextID,
+                        LineIndex,
                         null};
                 if ((parentTable_GalaxyLineRowByRelation_GalaxyLine_GameLocation_Line != null)) {
                     columnValuesArray[1] = parentTable_GalaxyLineRowByRelation_GalaxyLine_GameLocation_Line[0];
@@ -1772,7 +1772,7 @@ namespace SC2_GameTranslater.Source {
             internal void InitVars() {
                 this.columnIndex = base.Columns["Index"];
                 this.columnLine = base.Columns["Line"];
-                this.columnTextID = base.Columns["TextID"];
+                this.columnLineIndex = base.Columns["LineIndex"];
                 this.columnKey = base.Columns["Key"];
             }
             
@@ -1783,8 +1783,8 @@ namespace SC2_GameTranslater.Source {
                 base.Columns.Add(this.columnIndex);
                 this.columnLine = new global::System.Data.DataColumn("Line", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLine);
-                this.columnTextID = new global::System.Data.DataColumn("TextID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTextID);
+                this.columnLineIndex = new global::System.Data.DataColumn("LineIndex", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLineIndex);
                 this.columnKey = new global::System.Data.DataColumn("Key", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKey);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Table_GalaxyLocationKey_ID", new global::System.Data.DataColumn[] {
@@ -1792,7 +1792,7 @@ namespace SC2_GameTranslater.Source {
                 this.columnIndex.AllowDBNull = false;
                 this.columnIndex.Unique = true;
                 this.columnLine.AllowDBNull = false;
-                this.columnTextID.AllowDBNull = false;
+                this.columnLineIndex.AllowDBNull = false;
                 this.columnKey.AllowDBNull = false;
                 this.columnKey.DefaultValue = ((string)(""));
             }
@@ -1930,7 +1930,7 @@ namespace SC2_GameTranslater.Source {
             
             private global::System.Data.DataColumn columnID;
             
-            private global::System.Data.DataColumn columnIndex;
+            private global::System.Data.DataColumn columnGalaxyIndex;
             
             private global::System.Data.DataColumn columnFile;
             
@@ -1977,9 +1977,9 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn IndexColumn {
+            public global::System.Data.DataColumn GalaxyIndexColumn {
                 get {
-                    return this.columnIndex;
+                    return this.columnGalaxyIndex;
                 }
             }
             
@@ -2064,7 +2064,7 @@ namespace SC2_GameTranslater.Source {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnID = base.Columns["ID"];
-                this.columnIndex = base.Columns["Index"];
+                this.columnGalaxyIndex = base.Columns["GalaxyIndex"];
                 this.columnFile = base.Columns["File"];
             }
             
@@ -2073,8 +2073,8 @@ namespace SC2_GameTranslater.Source {
             private void InitClass() {
                 this.columnID = new global::System.Data.DataColumn("ID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
-                this.columnIndex = new global::System.Data.DataColumn("Index", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIndex);
+                this.columnGalaxyIndex = new global::System.Data.DataColumn("GalaxyIndex", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGalaxyIndex);
                 this.columnFile = new global::System.Data.DataColumn("File", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFile);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -2082,9 +2082,9 @@ namespace SC2_GameTranslater.Source {
                 this.columnID.AllowDBNull = false;
                 this.columnID.Unique = true;
                 this.columnID.Caption = "LanguageID";
-                this.columnIndex.AutoIncrement = true;
-                this.columnIndex.AutoIncrementSeed = 1;
-                this.columnIndex.AllowDBNull = false;
+                this.columnGalaxyIndex.AutoIncrement = true;
+                this.columnGalaxyIndex.AutoIncrementSeed = 1;
+                this.columnGalaxyIndex.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2565,12 +2565,12 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int TextID {
+            public int LineIndex {
                 get {
-                    return ((int)(this[this.tableTable_GalaxyLocation.TextIDColumn]));
+                    return ((int)(this[this.tableTable_GalaxyLocation.LineIndexColumn]));
                 }
                 set {
-                    this[this.tableTable_GalaxyLocation.TextIDColumn] = value;
+                    this[this.tableTable_GalaxyLocation.LineIndexColumn] = value;
                 }
             }
             
@@ -2635,12 +2635,12 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Index {
+            public int GalaxyIndex {
                 get {
-                    return ((int)(this[this.tableTable_GameText.IndexColumn]));
+                    return ((int)(this[this.tableTable_GameText.GalaxyIndexColumn]));
                 }
                 set {
-                    this[this.tableTable_GameText.IndexColumn] = value;
+                    this[this.tableTable_GameText.GalaxyIndexColumn] = value;
                 }
             }
             

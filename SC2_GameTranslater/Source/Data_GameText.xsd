@@ -52,7 +52,7 @@
             <xs:sequence>
               <xs:element name="Index" msprop:Generator_ColumnVarNameInTable="columnIndex" msprop:Generator_ColumnPropNameInRow="Index" msprop:Generator_ColumnPropNameInTable="IndexColumn" msprop:Generator_UserColumnName="Index" type="xs:string" />
               <xs:element name="Line" msprop:Generator_ColumnVarNameInTable="columnLine" msprop:Generator_ColumnPropNameInRow="Line" msprop:Generator_ColumnPropNameInTable="LineColumn" msprop:Generator_UserColumnName="Line" type="xs:int" />
-              <xs:element name="TextID" msprop:Generator_ColumnVarNameInTable="columnTextID" msprop:Generator_ColumnPropNameInRow="TextID" msprop:Generator_ColumnPropNameInTable="TextIDColumn" msprop:Generator_UserColumnName="TextID" type="xs:int" />
+              <xs:element name="LineIndex" msprop:Generator_ColumnVarNameInTable="columnLineIndex" msprop:Generator_ColumnPropNameInRow="LineIndex" msprop:Generator_ColumnPropNameInTable="LineIndexColumn" msprop:Generator_UserColumnName="LineIndex" type="xs:int" />
               <xs:element name="Key" msprop:Generator_ColumnVarNameInTable="columnKey" msprop:Generator_ColumnPropNameInRow="Key" msprop:Generator_ColumnPropNameInTable="KeyColumn" msprop:Generator_UserColumnName="Key" type="xs:string" default="" />
             </xs:sequence>
           </xs:complexType>
@@ -61,7 +61,7 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:Caption="LanguageID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
-              <xs:element name="Index" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnIndex" msprop:Generator_ColumnPropNameInRow="Index" msprop:Generator_ColumnPropNameInTable="IndexColumn" msprop:Generator_UserColumnName="Index" type="xs:int" />
+              <xs:element name="GalaxyIndex" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnGalaxyIndex" msprop:Generator_ColumnPropNameInRow="GalaxyIndex" msprop:Generator_ColumnPropNameInTable="GalaxyIndexColumn" msprop:Generator_UserColumnName="GalaxyIndex" type="xs:int" />
               <xs:element name="File" msprop:Generator_ColumnVarNameInTable="columnFile" msprop:Generator_ColumnPropNameInRow="File" msprop:Generator_ColumnPropNameInTable="FileColumn" msprop:Generator_UserColumnName="File" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>

@@ -692,8 +692,8 @@
                         IsChecked="True"
                         Tag="0" />
                     <MenuItem
-                        x:Key="MenuItem_Index"
-                        Header="{DynamicResource UI_DataGridColumn_TranslateIndex_Header}"
+                        x:Key="MenuItem_GalaxyIndex"
+                        Header="{DynamicResource UI_DataGridColumn_TranslateGalaxyIndex_Header}"
                         IsCheckable="True"
                         IsChecked="True"
                         Tag="1" />
@@ -735,7 +735,7 @@
                         Tag="7" />
                     <ContextMenu x:Key="ContextMenu_ColumnVisible">
                         <StaticResource ResourceKey="MenuItem_TextID" />
-                        <StaticResource ResourceKey="MenuItem_Index" />
+                        <StaticResource ResourceKey="MenuItem_GalaxyIndex" />
                         <StaticResource ResourceKey="MenuItem_TextFile" />
                         <StaticResource ResourceKey="MenuItem_TextStatus" />
                         <StaticResource ResourceKey="MenuItem_UseStatus" />
@@ -804,14 +804,14 @@
                     <DataGridTextColumn
                         x:Name="DataGridColumn_TranslateIndex"
                         Width="Auto"
-                        Binding="{Binding Index}"
+                        Binding="{Binding GalaxyIndex}"
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="True"
                         IsReadOnly="True"
-                        Visibility="{Binding Source={StaticResource MenuItem_Index}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
+                        Visibility="{Binding Source={StaticResource MenuItem_GalaxyIndex}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateIndex_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateGalaxyIndex_Header}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">

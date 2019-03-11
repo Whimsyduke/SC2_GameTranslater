@@ -1190,7 +1190,9 @@ namespace SC2_GameTranslater
             {
                 SereachText_MatchMod(ref query);
             }
-            DataGrid_TranslatedTexts.ItemsSource = query.AsDataView();
+            DataView view = query.AsDataView();
+            view.Sort = Data_GameText.RN_GameText_GalaxyIndex + " ASC";
+            DataGrid_TranslatedTexts.ItemsSource = view;
         }
 
         /// <summary>
@@ -1672,7 +1674,7 @@ namespace SC2_GameTranslater
 
 #endregion
 
-#region 最近打开项目
+        #region 最近打开项目
 
         /// <summary>
         /// 添加最近项目
@@ -1749,9 +1751,9 @@ namespace SC2_GameTranslater
 
 #endregion
 
-#endregion
+        #endregion
 
-#region 控件事件
+        #region 控件事件
 
         /// <summary>
         /// 语言选择下拉列表选择事件

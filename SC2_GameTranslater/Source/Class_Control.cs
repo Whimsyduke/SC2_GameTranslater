@@ -377,8 +377,10 @@ namespace SC2_GameTranslater.Source
             string text = row[Data_GameText.RN_GalaxyLine_Script] as string;
             FlowDocument doc = new FlowDocument();
             Paragraph paragraph = new Paragraph();
-            Run r = new Run(text);
-            r.ToolTip = text;
+            Run r = new Run(text)
+            {
+                ToolTip = text
+            };
             r.MouseLeftButtonDown += R_MouseLeftButtonDown;
             paragraph.Inlines.Add(r);
             doc.Blocks.Add(paragraph);

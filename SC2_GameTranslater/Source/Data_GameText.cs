@@ -167,7 +167,6 @@ namespace SC2_GameTranslater.Source
         /// Galaxy文本函数
         /// </summary>
         public static Regex Const_Regex_StringExternal = new Regex("(?<=StringExternal\\(\")[^\"\\\\\\r\\n]*(?:\\\\.[^\"\\\\\\r\\n]*)*(?=\"\\))", RegexOptions.Compiled);
-        public const int UnuseID = -1;
         public static string Const_String_GameTextMainPath = ".SC2Data\\LocalizedData\\";
         public static string Const_String_FileGameStringsPath = "GameStrings.txt";
         public static string Const_String_FileObjectStringsPath = "ObjectStrings.txt";
@@ -205,10 +204,10 @@ namespace SC2_GameTranslater.Source
         public const string RN_GalaxyLine_Script = "Script";
         public const string RN_GalaxyLocation_Index = "Index";
         public const string RN_GalaxyLocation_Line = "Line";
-        public const string RN_GalaxyLocation_TextID = "TextID";
+        public const string RN_GalaxyLocation_LineIndex = "LineIndex";
         public const string RN_GalaxyLocation_Key = "Key";
         public const string RN_GameText_ID = "ID";
-        public const string RN_GameText_Index = "Index";
+        public const string RN_GameText_GalaxyIndex = "GalaxyIndex";
         public const string RN_GameText_File = "File";
         public const string RN_GameText_TextStatus = "TextStatus";
         public const string RN_GameText_UseStatus = "UseStatus";
@@ -232,12 +231,13 @@ namespace SC2_GameTranslater.Source
 
         #endregion
 
+
+        #endregion
+
         #region 其他
 
         public const string PATH_TempFolder = "Temp\\";
         public const string PATH_BackupFolder = "Backup\\";
-
-        #endregion
 
         #endregion
 
@@ -691,6 +691,7 @@ namespace SC2_GameTranslater.Source
 
             LoadGalaxyFile(galaxyFiles);
             LoadGameTextFile(file.Directory);
+            SortGameTextRow();
 
             Globals.MainWindow.ProgressBarClean(this, pair.Value);
         }
@@ -994,6 +995,62 @@ namespace SC2_GameTranslater.Source
 
         #endregion
 
+        #region 排序
+
+        /// <summary>
+        /// 排序游戏文本
+        /// </summary>
+        public void SortGameTextRow()
+        {
+            DataTable table = Tables[TN_GameText];
+            EnumerableRowCollection<DataRow> rows = table.AsEnumerable();
+            rows = rows.OrderBy(r => GetTextInGalaxyFileSortValue(r)).ThenBy(r => GetTextInGalaxyLineNumberSortValue(r)).ThenBy(r => GetTextInGalaxyIndexSortValue(r)).Select(r => r);
+            int index = 0;
+            foreach (DataRow row in rows)
+            {
+                row[RN_GameText_GalaxyIndex] = ++index;
+            }
+        }
+
+        /// <summary>
+        /// 获取Galaxy文件排序(文件名)
+        /// </summary>
+        /// <param name="row">被排序行</param>
+        /// <returns>文件名</returns>
+        private string GetTextInGalaxyFileSortValue(DataRow row)
+        {
+            DataRow[] locations = row.GetChildRows(RSN_GameText_GalaxyLocation_Key);
+            if (locations.Count() == 0) return "";
+            DataRow line = locations[0].GetParentRow(RSN_GalaxyLine_GameLocation_Line);
+            return line[RN_GalaxyLine_File] as string;
+        }
+
+        /// <summary>
+        /// 获取Galaxy文件排序(行号)
+        /// </summary>
+        /// <param name="row">被排序行</param>
+        /// <returns>行号</returns>
+        private int GetTextInGalaxyLineNumberSortValue(DataRow row)
+        {
+            DataRow[] locations = row.GetChildRows(RSN_GameText_GalaxyLocation_Key);
+            if (locations.Count() == 0) return 0x7FFFFFFF;
+            DataRow line = locations[0].GetParentRow(RSN_GalaxyLine_GameLocation_Line);
+            return (int)line[RN_GalaxyLine_LineNumber];
+        }
+
+        /// <summary>
+        /// 获取Galaxy文件排序（行内序号）
+        /// </summary>
+        /// <param name="row">被排序行</param>
+        /// <returns>行号</returns>
+        private int GetTextInGalaxyIndexSortValue(DataRow row)
+        {
+            DataRow[] locations = row.GetChildRows(RSN_GameText_GalaxyLocation_Key);
+            if (locations.Count() == 0) return 0x7FFFFFFF;
+            return (int)locations[0][RN_GalaxyLocation_LineIndex];
+        }
+        #endregion
+
         #endregion
 
         #region 脚本
@@ -1079,10 +1136,11 @@ namespace SC2_GameTranslater.Source
                 MatchCollection matchs = Const_Regex_StringExternal.Matches(line);
                 if (matchs.Count == 0) continue;
                 tableLine.Rows.Add(indexLine, path, lineNumber, line);
+                int lineIndex = 0;
                 foreach (var select in matchs)
                 {
                     count++;
-                    tableLocation.Rows.Add(indexLocation++, indexLine, UnuseID, select.ToString());
+                    tableLocation.Rows.Add(indexLocation++, indexLine, lineIndex++, select.ToString());
                 }
                 indexLine++;
             }
@@ -1100,7 +1158,7 @@ namespace SC2_GameTranslater.Source
             DataRow[] locations = textRow.GetChildRows(RSN_GameText_GalaxyLocation_Key);
             List<DataRow> lines = locations.Select(r => r.GetParentRow(RSN_GalaxyLine_GameLocation_Line)).Distinct().Select(r => r).ToList();
             EnumerableRowCollection<DataRow> query = Tables[TN_GalaxyLine].AsEnumerable();
-            query = query.Where(r => lines.Contains(r)).Select(r => r);            
+            query = query.Where(r => lines.Contains(r)).Select(r => r);
             return query.AsDataView();
         }
 
