@@ -252,16 +252,16 @@ namespace SC2_GameTranslater.Source
         {
             set
             {
-                m_ComponentsPath = value;
+                mComponentsPath = value;
                 WriteCompontentsPath(value.FullName);
                 Globals.MainWindow.TextBox_ComponentsPath.Text = value.FullName;
             }
             get
             {
-                return m_ComponentsPath;
+                return mComponentsPath;
             }
         }
-        private FileInfo m_ComponentsPath = null;
+        private FileInfo mComponentsPath = null;
 
         /// <summary>
         /// 使用语言列表

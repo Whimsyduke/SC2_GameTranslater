@@ -309,7 +309,7 @@ namespace SC2_GameTranslater
 
         #endregion
 
-        #region 字段属性
+        #region 属性字段
 
         #region 属性
 
@@ -406,7 +406,7 @@ namespace SC2_GameTranslater
 
         #region 字段
 
-        private List<ToggleButton> m_GalaxyButtons = new List<ToggleButton>();
+        private List<ToggleButton> mGalaxyButtons = new List<ToggleButton>();
 
         #endregion
 
@@ -1009,18 +1009,18 @@ namespace SC2_GameTranslater
         /// <param name="project">项目数据</param>
         private void RefreshGalaxyTextFileFilterButton(Data_GameText project)
         {
-            foreach (ToggleButton button in m_GalaxyButtons)
+            foreach (ToggleButton button in mGalaxyButtons)
             {
                 InRibbonGallery_GalaxyFilter.Items.Remove(button);
             }
-            m_GalaxyButtons.Clear();
+            mGalaxyButtons.Clear();
             if (project != null)
             {
                 ToggleButton button;
                 foreach (DataRow row in project.Tables[Data_GameText.TN_GalaxyFile].Rows)
                 {
                     button = NewGalaxyTextFileFilterButton(row);
-                    m_GalaxyButtons.Add(button);
+                    mGalaxyButtons.Add(button);
                     InRibbonGallery_GalaxyFilter.Items.Insert(InRibbonGallery_GalaxyFilter.Items.Count - 1, button);
                 }
                 ToggleButton_FilterGalaxyFileNone.IsChecked = true;
@@ -1833,6 +1833,20 @@ namespace SC2_GameTranslater
         private void RibbonWindow_Main_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Globals.Preference.SavePreference();
+
+#if DEBUG
+            #region 测试
+            List<EnumLanguage> languages = new List<EnumLanguage>()
+            {
+                EnumLanguage.zhCN,
+                EnumLanguage.zhTW,
+                EnumLanguage.enUS,
+            };
+
+            SC2_GameTranslater_Reload window = new SC2_GameTranslater_Reload(languages, CallBackReloadTranslateConfig);
+            window.Show();
+            #endregion
+#endif
         }
 
         /// <summary>
@@ -1844,7 +1858,7 @@ namespace SC2_GameTranslater
         {
             CanRefreshTranslatedText = false;
             ToggleButton_FilterGalaxyFileNone.IsChecked = true;
-            foreach (ToggleButton button in m_GalaxyButtons)
+            foreach (ToggleButton button in mGalaxyButtons)
             {
                 button.IsChecked = true;
             }
@@ -1861,7 +1875,7 @@ namespace SC2_GameTranslater
         {
             CanRefreshTranslatedText = false;
             ToggleButton_FilterGalaxyFileNone.IsChecked = false;
-            foreach (ToggleButton button in m_GalaxyButtons)
+            foreach (ToggleButton button in mGalaxyButtons)
             {
                 button.IsChecked = false;
             }
@@ -1879,7 +1893,7 @@ namespace SC2_GameTranslater
             GalaxyFilter.Clear();
             IsSelectAllGalaxyFilter = ToggleButton_FilterGalaxyFileNone.IsChecked == true;
             if (IsSelectAllGalaxyFilter) GalaxyFilter.Add(Globals.Const_NoUseInGalaxy);
-            foreach (ToggleButton button in m_GalaxyButtons)
+            foreach (ToggleButton button in mGalaxyButtons)
             {
                 if (button.IsChecked == false)
                 {

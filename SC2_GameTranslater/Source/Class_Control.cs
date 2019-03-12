@@ -377,9 +377,11 @@ namespace SC2_GameTranslater.Source
             string text = row[Data_GameText.RN_GalaxyLine_Script] as string;
             string[] texts = Data_GameText.Const_Regex_StringExternal.Split(text);
             FlowDocument doc = new FlowDocument();
-            Paragraph paragraph = new Paragraph();
-            paragraph.FontSize = Globals.MainWindow.FontSize;
-            paragraph.FontWeight = FontWeights.Normal;
+            Paragraph paragraph = new Paragraph
+            {
+                FontSize = Globals.MainWindow.FontSize,
+                FontWeight = FontWeights.Normal
+            };
             DataTable table = Globals.CurrentProject.Tables[Data_GameText.TN_GameText];
             foreach (string select in texts)
             {
@@ -544,6 +546,40 @@ namespace SC2_GameTranslater.Source
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+
+    }
+
+    /// <summary>
+    /// 重载翻译启用Converter
+    /// </summary>
+    public class ReloadLanguageCheckBoxEnableConverter : IMultiValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="values">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (values[0] == DependencyProperty.UnsetValue || values[1] == DependencyProperty.UnsetValue) return false;
+            return !((bool)values[0] && (values[1] as List<EnumLanguage>).Count == 1);
+        }
+
+        /// <summary>
+        /// 逆向转换函数
+        /// </summary>
+        /// <param name="value">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
         }
 
     }

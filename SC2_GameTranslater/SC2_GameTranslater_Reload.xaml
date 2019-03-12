@@ -30,7 +30,17 @@
             Grid.Row="0"
             Margin="3"
             Header="{DynamicResource UI_GroupBox_ReloadLanguage_Header}">
-            <Grid Name="Grid_TranslateLanguage" />
+            <Grid Name="Grid_TranslateLanguage">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+            </Grid>
         </GroupBox>
         <GroupBox
             Name="GroupBox_ReloadConfig"

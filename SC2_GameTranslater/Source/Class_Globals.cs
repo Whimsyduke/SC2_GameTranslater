@@ -121,7 +121,7 @@ namespace SC2_GameTranslater.Source
         {
             set
             {
-                m_EnableShowLogInUI = value;
+                mEnableShowLogInUI = value;
                 if (!value)
                 {
                     MainWindow.AvalonTextEditor_Log.Text = "";
@@ -129,10 +129,10 @@ namespace SC2_GameTranslater.Source
             }
             get
             {
-                return m_EnableShowLogInUI;
+                return mEnableShowLogInUI;
             }
         }
-        private static bool m_EnableShowLogInUI = true;
+        private static bool mEnableShowLogInUI = true;
 
         /// <summary>
         /// 当前处理的数据
