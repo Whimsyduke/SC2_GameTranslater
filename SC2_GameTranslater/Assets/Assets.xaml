@@ -17,6 +17,7 @@
     <!--#endregion-->
 
     <!--#region Translate Language-->
+    <BitmapImage x:Key="IMAGE_Null" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_Null.png" />
     <BitmapImage x:Key="IMAGE_deDE" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_deDE.png" />
     <BitmapImage x:Key="IMAGE_enUS" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_enUS.png" />
     <BitmapImage x:Key="IMAGE_esES" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_esES.png" />
@@ -29,7 +30,30 @@
     <BitmapImage x:Key="IMAGE_ruRU" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_ruRU.png" />
     <BitmapImage x:Key="IMAGE_zhCN" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_zhCN.png" />
     <BitmapImage x:Key="IMAGE_zhTW" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_zhTW.png" />
-    <BitmapImage x:Key="IMAGE_Null" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Language_Null.png" />
+    <BitmapImage x:Key="IMAGE_AdddeDE" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Add_Language_deDE.png" />
+    <BitmapImage x:Key="IMAGE_AddenUS" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Add_Language_enUS.png" />
+    <BitmapImage x:Key="IMAGE_AddesES" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Add_Language_esES.png" />
+    <BitmapImage x:Key="IMAGE_AddesMX" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Add_Language_esMX.png" />
+    <BitmapImage x:Key="IMAGE_AddfrFR" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Add_Language_frFR.png" />
+    <BitmapImage x:Key="IMAGE_AdditIT" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Add_Language_itIT.png" />
+    <BitmapImage x:Key="IMAGE_AddkoKR" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Add_Language_koKR.png" />
+    <BitmapImage x:Key="IMAGE_AddplPL" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Add_Language_plPL.png" />
+    <BitmapImage x:Key="IMAGE_AddptBR" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Add_Language_ptBR.png" />
+    <BitmapImage x:Key="IMAGE_AddruRU" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Add_Language_ruRU.png" />
+    <BitmapImage x:Key="IMAGE_AddzhCN" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Add_Language_zhCN.png" />
+    <BitmapImage x:Key="IMAGE_AddzhTW" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Add_Language_zhTW.png" />
+    <BitmapImage x:Key="IMAGE_RemovedeDE" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Remove_Language_deDE.png" />
+    <BitmapImage x:Key="IMAGE_RemoveenUS" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Remove_Language_enUS.png" />
+    <BitmapImage x:Key="IMAGE_RemoveesES" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Remove_Language_esES.png" />
+    <BitmapImage x:Key="IMAGE_RemoveesMX" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Remove_Language_esMX.png" />
+    <BitmapImage x:Key="IMAGE_RemovefrFR" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Remove_Language_frFR.png" />
+    <BitmapImage x:Key="IMAGE_RemoveitIT" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Remove_Language_itIT.png" />
+    <BitmapImage x:Key="IMAGE_RemovekoKR" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Remove_Language_koKR.png" />
+    <BitmapImage x:Key="IMAGE_RemoveplPL" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Remove_Language_plPL.png" />
+    <BitmapImage x:Key="IMAGE_RemoveptBR" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Remove_Language_ptBR.png" />
+    <BitmapImage x:Key="IMAGE_RemoveruRU" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Remove_Language_ruRU.png" />
+    <BitmapImage x:Key="IMAGE_RemovezhCN" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Remove_Language_zhCN.png" />
+    <BitmapImage x:Key="IMAGE_RemovezhTW" UriSource="pack://application:,,,/Assets/Image/TranslationTool_Remove_Language_zhTW.png" />
     <!--#endregion-->
 
     <!--#region Drawing Image-->

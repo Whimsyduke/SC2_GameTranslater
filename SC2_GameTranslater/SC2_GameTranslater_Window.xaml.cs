@@ -848,7 +848,7 @@ namespace SC2_GameTranslater
             e.CanExecute = CheckCurrentProjectExist();
             e.Handled = true;
         }
-        
+
         /// <summary>
         /// 浏览Mod/Map执行函数
         /// </summary>
@@ -901,35 +901,47 @@ namespace SC2_GameTranslater
                 InRibbonGallery_TranslateLanguage.Selectable = false;
             }
             else
-            {        
+            {
                 ToggleButton selectButton = null;
                 ToggleButton firstButton = null;
                 foreach (DataRow row in project.LangaugeRowList)
                 {
-                    EnumLanguage lang = (EnumLanguage)row[Data_GameText.RN_Language_ID];
-                    InRibbonGallery_TranslateLanguage.Items.Add(TranslateAndSearchLanguage[lang].Button);
-                    ComboBox_SearchLanguage.Items.Add(TranslateAndSearchLanguage[lang].ComboItem);
-                    ListBox_GameTextShowLanguage.Items.Add(TranslateAndSearchLanguage[lang].ListItem);
+                    EnumLanguage language = (EnumLanguage)row[Data_GameText.RN_Language_ID];
+                    TranslateLanguageControls controls = TranslateAndSearchLanguage[language];
+                    InRibbonGallery_TranslateLanguage.Items.Add(controls.Button);
+                    ComboBox_SearchLanguage.Items.Add(controls.ComboItem);
+                    ListBox_GameTextShowLanguage.Items.Add(controls.ListItem);
                     switch ((EnumGameUseStatus)row[Data_GameText.RN_Language_Status])
                     {
                         case EnumGameUseStatus.Droped:
-                            TranslateAndSearchLanguage[lang].ComboItemText.TextDecorations = TextDecorations.Strikethrough;
-                            TranslateAndSearchLanguage[lang].ListItemText.TextDecorations = TextDecorations.Strikethrough;
+                            controls.Button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_Remove{0}", language));
+                            controls.Button.SetResourceReference(ToggleButton.IconProperty, string.Format("IMAGE_Remove{0}", language));
+                            controls.Button.SetResourceReference(ToggleButton.LargeIconProperty, string.Format("IMAGE_Remove{0}", language));
+                            controls.ComboItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_Remove{0}", language));
+                            controls.ListItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_Remove{0}", language));
                             break;
                         case EnumGameUseStatus.Added:
-                            TranslateAndSearchLanguage[lang].ComboItemText.FontWeight = FontWeights.Bold;
-                            TranslateAndSearchLanguage[lang].ListItemText.FontWeight = FontWeights.Bold;
+                            controls.Button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_Add{0}", language));
+                            controls.Button.SetResourceReference(ToggleButton.IconProperty, string.Format("IMAGE_Add{0}", language));
+                            controls.Button.SetResourceReference(ToggleButton.LargeIconProperty, string.Format("IMAGE_Add{0}", language));
+                            controls.ComboItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_Add{0}", language));
+                            controls.ListItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_Add{0}", language));
                             break;
                         default:
+                            controls.Button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_{0}", language));
+                            controls.Button.SetResourceReference(ToggleButton.IconProperty, string.Format("IMAGE_{0}", language));
+                            controls.Button.SetResourceReference(ToggleButton.LargeIconProperty, string.Format("IMAGE_{0}", language));
+                            controls.ComboItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_{0}", language));
+                            controls.ListItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_{0}", language));
                             break;
                     }
-                    if (selectButton == null || (int)lang == CultureInfo.CurrentCulture.LCID)
+                    if (selectButton == null || (int)language == CultureInfo.CurrentCulture.LCID)
                     {
-                        selectButton = TranslateAndSearchLanguage[lang].Button;
+                        selectButton = controls.Button;
                     }
                     if (firstButton == null)
                     {
-                        firstButton = TranslateAndSearchLanguage[lang].Button;
+                        firstButton = controls.Button;
                     }
                 }
                 if (firstButton != null)
@@ -941,7 +953,7 @@ namespace SC2_GameTranslater
                 InRibbonGallery_TranslateLanguage.Selectable = true;
             }
         }
-        
+
         /// <summary>
         /// 重置翻译和搜索语言项
         /// </summary>
@@ -951,15 +963,18 @@ namespace SC2_GameTranslater
             ComboBox_SearchLanguage.Items.Clear();
             ComboBox_SearchLanguage.Items.Add(TranslateAndSearchLanguage[0].ComboItem);
             ListBox_GameTextShowLanguage.Items.Clear();
-            foreach (EnumLanguage lang in Enum.GetValues(typeof(EnumLanguage)))
+
+            foreach (EnumLanguage language in Enum.GetValues(typeof(EnumLanguage)))
             {
-                TranslateAndSearchLanguage[lang].Button.IsChecked = false;
-                TranslateAndSearchLanguage[lang].ComboItem.IsSelected = false;
-                TranslateAndSearchLanguage[lang].ComboItemText.TextDecorations = null;
-                TranslateAndSearchLanguage[lang].ComboItemText.FontWeight = FontWeights.Normal;
-                TranslateAndSearchLanguage[lang].ListItem.IsSelected = true;
-                TranslateAndSearchLanguage[lang].ListItemText.TextDecorations = null;
-                TranslateAndSearchLanguage[lang].ListItemText.FontWeight = FontWeights.Normal;
+                TranslateLanguageControls controls = TranslateAndSearchLanguage[language];
+                controls.Button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_{0}", language));
+                controls.Button.SetResourceReference(ToggleButton.IconProperty, string.Format("IMAGE_{0}", language));
+                controls.Button.SetResourceReference(ToggleButton.LargeIconProperty, string.Format("IMAGE_{0}", language));
+                controls.ComboItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_{0}", language));
+                controls.ListItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_{0}", language));
+                controls.Button.IsChecked = false;
+                controls.ComboItem.IsSelected = false;
+                controls.ListItem.IsSelected = true;
             }
         }
 
@@ -976,9 +991,9 @@ namespace SC2_GameTranslater
 
             EnumLanguage[] array = Enum.GetValues(typeof(EnumLanguage)).Cast<EnumLanguage>().ToArray();
             Array.Sort(array, (p1, p2) => Enum.GetName(typeof(EnumLanguage), p1).CompareTo(Enum.GetName(typeof(EnumLanguage), p2)));
-            foreach (EnumLanguage lang in array)
+            foreach (EnumLanguage language in array)
             {
-                list.Add(lang, new TranslateLanguageControls(lang));
+                list.Add(language, new TranslateLanguageControls(language));
             }
             return list;
         }
@@ -1455,7 +1470,7 @@ namespace SC2_GameTranslater
                 }
                 Data_GameText.RefreshGameTextForLanguageTable(row, langList);
             }
-            List<EnumLanguage> showLanguages = ListBox_GameTextShowLanguage.SelectedItems.Cast<ListBoxItem>().Select(r=>(EnumLanguage)r.Tag).ToList();
+            List<EnumLanguage> showLanguages = ListBox_GameTextShowLanguage.SelectedItems.Cast<ListBoxItem>().Select(r => (EnumLanguage)r.Tag).ToList();
             EnumerableRowCollection<DataRow> query = Data_GameText.GameTextForLanguageTable.AsEnumerable();
 
             query = from row in query
@@ -1470,7 +1485,7 @@ namespace SC2_GameTranslater
         /// </summary>
         private void RefreshInGalaxyTextDetails()
         {
-            if(DataGrid_TranslatedTexts.CurrentItem is DataRowView rowView)
+            if (DataGrid_TranslatedTexts.CurrentItem is DataRowView rowView)
             {
                 DataView view = Globals.CurrentProject.GetRelateGalaxyLineRows(rowView.Row);
                 DataGrid_GameTextInGalaxy.ItemsSource = view;
@@ -1672,7 +1687,7 @@ namespace SC2_GameTranslater
             RefreshTranslatedText(newPro);
         }
 
-#endregion
+        #endregion
 
         #region 最近打开项目
 
@@ -1749,7 +1764,7 @@ namespace SC2_GameTranslater
             ItemsControl_RecentFiles.Items.Add(button);
         }
 
-#endregion
+        #endregion
 
         #endregion
 
@@ -1780,7 +1795,7 @@ namespace SC2_GameTranslater
                 Globals.MainWindow.InRibbonGallery_TranslateLanguage.SelectedItem = button;
                 if (button.Tag != null)
                 {
-                    Binding binding = new Binding(Data_GameText.GetGameRowNameForLanguage((EnumLanguage) button.Tag, Data_GameText.RN_GameText_EditedText))
+                    Binding binding = new Binding(Data_GameText.GetGameRowNameForLanguage((EnumLanguage)button.Tag, Data_GameText.RN_GameText_EditedText))
                     {
                         Mode = BindingMode.TwoWay,
                     };

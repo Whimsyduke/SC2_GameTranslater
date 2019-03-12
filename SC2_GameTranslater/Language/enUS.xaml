@@ -24,6 +24,30 @@
     <sys:String x:Key="TEXT_ptBR">ptBR</sys:String>
     <sys:String x:Key="TEXT_ruRU">ruRU</sys:String>
     <sys:String x:Key="TEXT_koKR">koKR</sys:String>
+    <sys:String x:Key="TEXT_AddzhCN">[+]zhCN</sys:String>
+    <sys:String x:Key="TEXT_AddzhTW">[+]zhTW</sys:String>
+    <sys:String x:Key="TEXT_AddenUS">[+]enUS</sys:String>
+    <sys:String x:Key="TEXT_AdddeDE">[+]deDE</sys:String>
+    <sys:String x:Key="TEXT_AddesMX">[+]esMX</sys:String>
+    <sys:String x:Key="TEXT_AddesES">[+]esES</sys:String>
+    <sys:String x:Key="TEXT_AddfrFR">[+]frFR</sys:String>
+    <sys:String x:Key="TEXT_AdditIT">[+]itIT</sys:String>
+    <sys:String x:Key="TEXT_AddplPL">[+]plPL</sys:String>
+    <sys:String x:Key="TEXT_AddptBR">[+]ptBR</sys:String>
+    <sys:String x:Key="TEXT_AddruRU">[+]ruRU</sys:String>
+    <sys:String x:Key="TEXT_AddkoKR">[+]koKR</sys:String>
+    <sys:String x:Key="TEXT_RemovezhCN">[-]zhCN</sys:String>
+    <sys:String x:Key="TEXT_RemovezhTW">[-]zhTW</sys:String>
+    <sys:String x:Key="TEXT_RemoveenUS">[-]enUS</sys:String>
+    <sys:String x:Key="TEXT_RemovedeDE">[-]deDE</sys:String>
+    <sys:String x:Key="TEXT_RemoveesMX">[-]esMX</sys:String>
+    <sys:String x:Key="TEXT_RemoveesES">[-]esES</sys:String>
+    <sys:String x:Key="TEXT_RemovefrFR">[-]frFR</sys:String>
+    <sys:String x:Key="TEXT_RemoveitIT">[-]itIT</sys:String>
+    <sys:String x:Key="TEXT_RemoveplPL">[-]plPL</sys:String>
+    <sys:String x:Key="TEXT_RemoveptBR">[-]ptBR</sys:String>
+    <sys:String x:Key="TEXT_RemoveruRU">[-]ruRU</sys:String>
+    <sys:String x:Key="TEXT_RemovekoKR">[-]koKR</sys:String>
     <sys:String x:Key="TEXT_NoText">[No Text]</sys:String>
     <!--#endregion-->
 

@@ -78,8 +78,8 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            EnumLanguage lang = (EnumLanguage)value;
-            string langName = Enum.GetName(lang.GetType(), lang);
+            EnumLanguage language = (EnumLanguage)value;
+            string langName = Enum.GetName(language.GetType(), language);
             return Globals.CurrentLanguage[string.Format("TEXT_{0}", langName)];
         }
 
