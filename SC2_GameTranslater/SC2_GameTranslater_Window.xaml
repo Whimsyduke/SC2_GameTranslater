@@ -1104,12 +1104,6 @@
                                     <DataGrid.CellStyle>
                                         <Style TargetType="DataGridCell">
                                             <Setter Property="BorderThickness" Value="0" />
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="SkyBlue" />
-                                                    <Setter Property="Foreground" Value="Black" />
-                                                </Trigger>
-                                            </Style.Triggers>
                                         </Style>
                                     </DataGrid.CellStyle>
                                     <DataGrid.RowHeaderStyle>
@@ -1328,12 +1322,6 @@
                                 <DataGrid.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="BorderThickness" Value="0" />
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="SkyBlue" />
-                                                <Setter Property="Foreground" Value="Black" />
-                                            </Trigger>
-                                        </Style.Triggers>
                                     </Style>
                                 </DataGrid.CellStyle>
                                 <DataGrid.RowHeaderStyle>
@@ -1412,15 +1400,21 @@
                                         </DataGridTemplateColumn.Header>
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <FlowDocumentScrollViewer 
+                                                <FlowDocumentScrollViewer
                                                     x:Name="DataGridRichTextBoxTemplate_InGalaxyText"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
                                                     HorizontalContentAlignment="Left"
                                                     VerticalContentAlignment="Center"
                                                     BorderThickness="0"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    Document="{Binding Converter={StaticResource Converter_RichTextBoxInGalaxyText}}"
-                                                    IsHitTestVisible="True"/>
+                                                    IsHitTestVisible="True">
+                                                    <FlowDocumentScrollViewer.Document>
+                                                        <MultiBinding Converter="{StaticResource ResourceKey=Converter_RichTextBoxInGalaxyText}">
+                                                            <Binding />
+                                                            <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                                        </MultiBinding>
+                                                    </FlowDocumentScrollViewer.Document>
+                                                </FlowDocumentScrollViewer>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>

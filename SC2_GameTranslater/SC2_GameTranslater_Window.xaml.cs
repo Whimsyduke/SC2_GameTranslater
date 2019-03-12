@@ -2080,7 +2080,15 @@ namespace SC2_GameTranslater
             RefreshGameTextDetails(false);
         }
 
-#endregion
-
+        /// <summary>
+        /// Galaxy文本点击事件
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        public static void Run_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+        }
+        #endregion
     }
 }

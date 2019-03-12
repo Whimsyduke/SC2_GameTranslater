@@ -360,50 +360,63 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// Galaxy使用文本转换器
     /// </summary>
-    public class RichTextBoxInGalaxyTextConverter : IValueConverter
+    public class RichTextBoxInGalaxyTextConverter : IMultiValueConverter
     {
         /// <summary>
         /// 转换函数
         /// </summary>
-        /// <param name="value">值</param>
+        /// <param name="values">值数组</param>
         /// <param name="targetType">目标类型</param>
         /// <param name="parameter">参数</param>
-        /// <param name="culture">本地化信息</param>
+        /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            DataRowView rowView = value as DataRowView;
+            DataRowView rowView = values[0] as DataRowView;
             DataRow row = rowView.Row;
             string text = row[Data_GameText.RN_GalaxyLine_Script] as string;
+            string[] texts = Data_GameText.Const_Regex_StringExternal.Split(text);
             FlowDocument doc = new FlowDocument();
             Paragraph paragraph = new Paragraph();
-            Run r = new Run(text)
+            paragraph.FontSize = Globals.MainWindow.FontSize;
+            paragraph.FontWeight = FontWeights.Normal;
+            DataTable table = Globals.CurrentProject.Tables[Data_GameText.TN_GameText];
+            foreach (string select in texts)
             {
-                ToolTip = text
-            };
-            r.MouseLeftButtonDown += R_MouseLeftButtonDown;
-            paragraph.Inlines.Add(r);
+                Run r = new Run();
+                DataRow textRow = table.Rows.Find(select);
+                if (textRow != null)
+                {
+                    r.MouseLeftButtonDown += SC2_GameTranslater_Window.Run_MouseLeftButtonDown;
+                    r.FontWeight = FontWeights.Bold;
+                    r.ToolTip = select;
+                    string key = Data_GameText.GetGameRowNameForLanguage((EnumLanguage)values[1], Data_GameText.RN_GameText_EditedText);
+                    r.Text = textRow[key] as string;
+                    r.Foreground = Brushes.Red;
+                }
+                else
+                {
+                    r.Text = select;
+                }
+                paragraph.Inlines.Add(r);
+            }
             doc.Blocks.Add(paragraph);
             return doc;
         }
 
-        private void R_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
-        /// 反向转回函数
+        /// 逆向转换函数
         /// </summary>
-        /// <param name="value">值</param>
+        /// <param name="value">值数组</param>
         /// <param name="targetType">目标类型</param>
         /// <param name="parameter">参数</param>
-        /// <param name="culture">本地化信息</param>
+        /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
         {
             return null;
         }
+
     }
 
     /// <summary>

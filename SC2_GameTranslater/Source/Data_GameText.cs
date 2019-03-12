@@ -166,7 +166,7 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// Galaxy文本函数
         /// </summary>
-        public static Regex Const_Regex_StringExternal = new Regex("(?<=StringExternal\\(\")[^\"\\\\\\r\\n]*(?:\\\\.[^\"\\\\\\r\\n]*)*(?=\"\\))", RegexOptions.Compiled);
+        public static Regex Const_Regex_StringExternal = new Regex("((?<=StringExternal\\(\")[^\"\\\\\\r\\n]*(?:\\\\.[^\"\\\\\\r\\n]*)*(?=\"\\)))", RegexOptions.Compiled);
         public static string Const_String_GameTextMainPath = ".SC2Data\\LocalizedData\\";
         public static string Const_String_FileGameStringsPath = "GameStrings.txt";
         public static string Const_String_FileObjectStringsPath = "ObjectStrings.txt";
