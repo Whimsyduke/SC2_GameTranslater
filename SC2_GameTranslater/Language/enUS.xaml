@@ -48,6 +48,8 @@
     <sys:String x:Key="TEXT_RemoveptBR">[-]ptBR</sys:String>
     <sys:String x:Key="TEXT_RemoveruRU">[-]ruRU</sys:String>
     <sys:String x:Key="TEXT_RemovekoKR">[-]koKR</sys:String>
+    <sys:String x:Key="TEXT_Confirm">Confirm</sys:String>
+    <sys:String x:Key="TEXT_Cancel">Cancel</sys:String>
     <sys:String x:Key="TEXT_NoText">[No Text]</sys:String>
     <!--#endregion-->
 
@@ -111,12 +113,12 @@
     <sys:String x:Key="UI_RadioButton_SearchNull_Header">Find Null</sys:String>
     <sys:String x:Key="UI_RadioButton_SearchRegex_Header">Regex Expression</sys:String>
     <sys:String x:Key="UI_RadioButton_SearchText_Header">SearchText</sys:String>
-    <sys:String x:Key="UI_RibbonButton_Accept_Header">Accept</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Accept_Header">Accept Project</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">Close</sys:String>
     <sys:String x:Key="UI_RibbonButton_New_Header">New</sys:String>
     <sys:String x:Key="UI_RibbonButton_Open_Header">Open</sys:String>
-    <sys:String x:Key="UI_RibbonButton_Reload_Header">Reload</sys:String>
-    <sys:String x:Key="UI_RibbonButton_ReloadSC2_Header">Reload (Mod/Map)</sys:String>
+    <sys:String x:Key="UI_RibbonButton_ReloadTranslate_Header">Reload Translated</sys:String>
+    <sys:String x:Key="UI_RibbonButton_ReloadSC2_Header">Reload Compontends</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">Save</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">Save As</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">File</sys:String>
@@ -136,6 +138,10 @@
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">Load</sys:String>
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">Recent Projects</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
+    <sys:String x:Key="UI_Window_ReloadConfig_Title">Reload Config</sys:String>
+    <sys:String x:Key="UI_GroupBox_ReloadLanguage_Header">Reload Language</sys:String>
+    <sys:String x:Key="UI_GroupBox_ReloadConfig_Header">Reload Configure</sys:String>
+    <sys:String x:Key="UI_CheckBox_ReloadOnlyModify_Content">Only Modified Text</sys:String>
 
     <!--#endregion-->
 

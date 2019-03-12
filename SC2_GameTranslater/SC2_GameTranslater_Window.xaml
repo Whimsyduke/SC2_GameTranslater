@@ -253,9 +253,9 @@
                         KeyTip="E"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" />
                     <Fluent:SplitButton
-                        Name="SplitButton_Reload"
-                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandReload}"
-                        Header="{DynamicResource UI_RibbonButton_Reload_Header}"
+                        Name="SplitButton_ReloadTranslate"
+                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandReloadTranslate}"
+                        Header="{DynamicResource UI_RibbonButton_ReloadTranslate_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Reload}"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Reload}">
                         <Fluent:Button

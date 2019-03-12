@@ -48,6 +48,8 @@
     <sys:String x:Key="TEXT_RemoveptBR">[-]ptBR</sys:String>
     <sys:String x:Key="TEXT_RemoveruRU">[-]ruRU</sys:String>
     <sys:String x:Key="TEXT_RemovekoKR">[-]koKR</sys:String>
+    <sys:String x:Key="TEXT_Confirm">确定</sys:String>
+    <sys:String x:Key="TEXT_Cancel">取消</sys:String>
     <sys:String x:Key="TEXT_NoText">【无文本】</sys:String>
     <!--#endregion-->
 
@@ -111,12 +113,12 @@
     <sys:String x:Key="UI_RadioButton_SearchNull_Header">空文本</sys:String>
     <sys:String x:Key="UI_RadioButton_SearchRegex_Header">正则表达式</sys:String>
     <sys:String x:Key="UI_RadioButton_SearchText_Header">搜索文本</sys:String>
-    <sys:String x:Key="UI_RibbonButton_Accept_Header">应用</sys:String>
+    <sys:String x:Key="UI_RibbonButton_Accept_Header">应用翻译</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">关闭</sys:String>
     <sys:String x:Key="UI_RibbonButton_New_Header">新建</sys:String>
     <sys:String x:Key="UI_RibbonButton_Open_Header">打开</sys:String>
-    <sys:String x:Key="UI_RibbonButton_Reload_Header">重载</sys:String>
-    <sys:String x:Key="UI_RibbonButton_ReloadSC2_Header">重载（地图/Mod）</sys:String>
+    <sys:String x:Key="UI_RibbonButton_ReloadTranslate_Header">重载翻译</sys:String>
+    <sys:String x:Key="UI_RibbonButton_ReloadSC2_Header">重载文本</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">保存</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">另存为</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">文件</sys:String>
@@ -136,7 +138,11 @@
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">加载</sys:String>
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">最近项目</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
-
+    <sys:String x:Key="UI_Window_ReloadConfig_Title">重载选项</sys:String>
+    <sys:String x:Key="UI_GroupBox_ReloadLanguage_Header">重载语言</sys:String>
+    <sys:String x:Key="UI_GroupBox_ReloadConfig_Header">重载配置</sys:String>
+    <sys:String x:Key="UI_CheckBox_ReloadOnlyModify_Content">仅已修改内容</sys:String>
+    
     <!--#endregion-->
 
     <!--#region Tooltip-->
