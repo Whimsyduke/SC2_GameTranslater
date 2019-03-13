@@ -38,26 +38,13 @@ namespace SC2_GameTranslater
 
         #region 属性字段
 
-        #region 属性
-
-        /// <summary>
-        /// 重载语言列表依赖项
-        /// </summary>
-        public static DependencyProperty ReloadLanguageListProperty = DependencyProperty.Register(nameof(ReloadLanguageList), typeof(List<EnumLanguage>), typeof(SC2_GameTranslater_Reload), new PropertyMetadata(new List<EnumLanguage>()));
-
-        /// <summary>
-        /// 重载语言列表依赖项属性
-        /// </summary>
-        public List<EnumLanguage> ReloadLanguageList { set => SetValue(ReloadLanguageListProperty, value); get => (List<EnumLanguage>)GetValue(ReloadLanguageListProperty); }
-
-        #endregion
-
         #region 字段
 
         /// <summary>
         /// 接受回调
         /// </summary>
         private Delegate_CallBackReloadTranslateConfig mCallbackApprove = null;
+        private Dictionary<EnumLanguage, CheckBox> mDirtLanguageCheckBox = new Dictionary<EnumLanguage, CheckBox>();
 
         #endregion
 
@@ -88,36 +75,33 @@ namespace SC2_GameTranslater
                     Grid_TranslateLanguage.RowDefinitions.Add(rowDef);
                 }
                 string langName = Enum.GetName(language.GetType(), language);
-                CheckBox checkBox = new CheckBox()
-                {
-                    IsChecked = true,
-                    Content = Globals.CurrentLanguage["TEXT_" + langName],
-                    Tag = language,
-                    Name = langName,
-                };
+                CheckBox checkBox = ResourceDictionary_MainGrid["CheckBox_" + langName] as CheckBox;
                 checkBox.SetValue(Grid.ColumnProperty, x++);
                 checkBox.SetValue(Grid.RowProperty, y++);
-                checkBox.Checked += CheckBox_ReloadLanguge_CheckEvent;
-                checkBox.Unchecked += CheckBox_ReloadLanguge_CheckEvent;
-
-                ReloadLanguageCheckBoxEnableConverter converter = new ReloadLanguageCheckBoxEnableConverter();
-                MultiBinding multiBinding = new MultiBinding()
-                {
-                    Converter = converter,
-                };
-                Binding binding = new Binding();
-                binding.Path = new PropertyPath("IsEnable");
-                binding.ElementName = langName;
-                multiBinding.Bindings.Add(binding);
-                binding = new Binding();
-                binding.Path = new PropertyPath("ReloadLanguageList");
-                binding.ElementName = "Window_ReloadConfig";
-                multiBinding.Bindings.Add(binding);
-
-                checkBox.SetBinding(IsEnabledProperty, multiBinding);
-
-                ReloadLanguageList.Add(language);
+                mDirtLanguageCheckBox.Add(language, checkBox);
                 Grid_TranslateLanguage.Children.Add(checkBox);
+            }
+        }
+
+        /// <summary>
+        /// 刷新重载语言CheckBox
+        /// </summary>
+        private void RefreshReloadLanguageCheckBox()
+        {
+            int count = 0;
+            CheckBox enableCheckBox = null;
+            foreach (KeyValuePair<EnumLanguage, CheckBox> item in mDirtLanguageCheckBox)
+            {
+                if (item.Value.IsChecked == true)
+                {
+                    count++;
+                    enableCheckBox = item.Value;
+                }
+                item.Value.IsEnabled = true;
+            }
+            if (count == 1)
+            {
+                enableCheckBox.IsEnabled = false;
             }
         }
 
@@ -133,7 +117,12 @@ namespace SC2_GameTranslater
         private void Button_Confirm_Click(object sender, RoutedEventArgs e)
         {
             Close();
-            mCallbackApprove?.Invoke(ReloadLanguageList, CheckBox_ReloadOnlyModify.IsChecked == true);
+            List<EnumLanguage> languages = new List<EnumLanguage>();
+            foreach (KeyValuePair<EnumLanguage, CheckBox> item in mDirtLanguageCheckBox)
+            {
+                languages.Add(item.Key);
+            }
+            mCallbackApprove?.Invoke(languages, CheckBox_ReloadOnlyModify.IsChecked == true);
         }
 
         /// <summary>
@@ -153,19 +142,7 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void CheckBox_ReloadLanguge_CheckEvent(object sender, RoutedEventArgs e)
         {
-            if (sender is CheckBox box)
-            {
-                EnumLanguage language = (EnumLanguage)box.Tag;
-                if (box.IsChecked == true)
-                {
-                    ReloadLanguageList.Add(language);
-                }
-                else
-                {
-                    ReloadLanguageList.Remove(language);
-                }
-                e.Handled = true;
-            }
+            RefreshReloadLanguageCheckBox();
         }
 
         #endregion

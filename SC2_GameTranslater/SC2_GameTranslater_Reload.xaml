@@ -5,12 +5,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SC2_GameTranslater"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:source="clr-namespace:SC2_GameTranslater.Source"
     Name="Window_ReloadConfig"
     Title="{DynamicResource UI_Window_ReloadConfig_Title}"
     d:DesignHeight="200"
     d:DesignWidth="600"
     ResizeMode="NoResize"
-    SizeToContent="Manual"
+    SizeToContent="WidthAndHeight"
     mc:Ignorable="d">
     <Window.Resources>
         <ResourceDictionary x:Name="ResourceDictionary_WindowLanguage">
@@ -19,7 +20,107 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Name="Grid_Main">
+        <Grid.Resources>
+            <ResourceDictionary x:Name="ResourceDictionary_MainGrid">
+                <CheckBox
+                    x:Key="CheckBox_zhCN"
+                    Name="CheckBox_zhCN"
+                    Checked="CheckBox_ReloadLanguge_CheckEvent"
+                    Content="{DynamicResource TEXT_zhCN}"
+                    IsChecked="True"
+                    Margin="5,3,10,3"
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                <CheckBox
+                    x:Key="CheckBox_zhTW"
+                    Name="CheckBox_zhTW"
+                    Checked="CheckBox_ReloadLanguge_CheckEvent"
+                    Content="{DynamicResource TEXT_zhTW}"
+                    IsChecked="True"
+                    Margin="5,3,10,3"
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                <CheckBox
+                    x:Key="CheckBox_enUS"
+                    Name="CheckBox_enUS"
+                    Checked="CheckBox_ReloadLanguge_CheckEvent"
+                    Content="{DynamicResource TEXT_enUS}"
+                    IsChecked="True"
+                    Margin="5,3,10,3"
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                <CheckBox
+                    x:Key="CheckBox_deDE"
+                    Name="CheckBox_deDE"
+                    Checked="CheckBox_ReloadLanguge_CheckEvent"
+                    Content="{DynamicResource TEXT_deDE}"
+                    IsChecked="True"
+                    Margin="5,3,10,3"
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                <CheckBox
+                    x:Key="CheckBox_esMX"
+                    Name="CheckBox_esMX"
+                    Checked="CheckBox_ReloadLanguge_CheckEvent"
+                    Content="{DynamicResource TEXT_esMX}"
+                    IsChecked="True"
+                    Margin="5,3,10,3"
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                <CheckBox
+                    x:Key="CheckBox_esES"
+                    Name="CheckBox_esES"
+                    Checked="CheckBox_ReloadLanguge_CheckEvent"
+                    Content="{DynamicResource TEXT_esES}"
+                    IsChecked="True"
+                    Margin="5,3,10,3"
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                <CheckBox
+                    x:Key="CheckBox_frFR"
+                    Name="CheckBox_frFR"
+                    Checked="CheckBox_ReloadLanguge_CheckEvent"
+                    Content="{DynamicResource TEXT_frFR}"
+                    IsChecked="True"
+                    Margin="5,3,10,3"
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                <CheckBox
+                    x:Key="CheckBox_itIT"
+                    Name="CheckBox_itIT"
+                    Checked="CheckBox_ReloadLanguge_CheckEvent"
+                    Content="{DynamicResource TEXT_itIT}"
+                    IsChecked="True"
+                    Margin="5,3,10,3"
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                <CheckBox
+                    x:Key="CheckBox_plPL"
+                    Name="CheckBox_plPL"
+                    Checked="CheckBox_ReloadLanguge_CheckEvent"
+                    Content="{DynamicResource TEXT_plPL}"
+                    IsChecked="True"
+                    Margin="5,3,10,3"
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                <CheckBox
+                    x:Key="CheckBox_ptBR"
+                    Name="CheckBox_ptBR"
+                    Checked="CheckBox_ReloadLanguge_CheckEvent"
+                    Content="{DynamicResource TEXT_ptBR}"
+                    IsChecked="True"
+                    Margin="5,3,10,3"
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                <CheckBox
+                    x:Key="CheckBox_ruRU"
+                    Name="CheckBox_ruRU"
+                    Checked="CheckBox_ReloadLanguge_CheckEvent"
+                    Content="{DynamicResource TEXT_ruRU}"
+                    IsChecked="True"
+                    Margin="5,3,10,3"
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                <CheckBox
+                    x:Key="CheckBox_koKR"
+                    Name="CheckBox_koKR"
+                    Checked="CheckBox_ReloadLanguge_CheckEvent"
+                    Content="{DynamicResource TEXT_koKR}"
+                    IsChecked="True"
+                    Margin="5,3,10,3"
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+            </ResourceDictionary>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -32,13 +133,13 @@
             Header="{DynamicResource UI_GroupBox_ReloadLanguage_Header}">
             <Grid Name="Grid_TranslateLanguage">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
             </Grid>
         </GroupBox>
@@ -62,12 +163,14 @@
                 Name="Button_Confirm"
                 Width="80"
                 Margin="3"
-                Content="{DynamicResource TEXT_Confirm}" Click="Button_Confirm_Click" />
+                Click="Button_Confirm_Click"
+                Content="{DynamicResource TEXT_Confirm}" />
             <Button
                 Name="Button_Cancel"
                 Width="80"
                 Margin="3"
-                Content="{DynamicResource TEXT_Cancel}" Click="Button_Cancel_Click" />
+                Click="Button_Cancel_Click"
+                Content="{DynamicResource TEXT_Cancel}" />
         </StackPanel>
     </Grid>
 </Window>

@@ -550,40 +550,6 @@ namespace SC2_GameTranslater.Source
 
     }
 
-    /// <summary>
-    /// 重载翻译启用Converter
-    /// </summary>
-    public class ReloadLanguageCheckBoxEnableConverter : IMultiValueConverter
-    {
-        /// <summary>
-        /// 转换函数
-        /// </summary>
-        /// <param name="values">值数组</param>
-        /// <param name="targetType">目标类型</param>
-        /// <param name="parameter">参数</param>
-        /// <param name="culture">本地化</param>
-        /// <returns>转换结果</returns>
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            if (values[0] == DependencyProperty.UnsetValue || values[1] == DependencyProperty.UnsetValue) return false;
-            return !((bool)values[0] && (values[1] as List<EnumLanguage>).Count == 1);
-        }
-
-        /// <summary>
-        /// 逆向转换函数
-        /// </summary>
-        /// <param name="value">值数组</param>
-        /// <param name="targetType">目标类型</param>
-        /// <param name="parameter">参数</param>
-        /// <param name="culture">本地化</param>
-        /// <returns>转换结果</returns>
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
-        {
-            return null;
-        }
-
-    }
-
     #endregion
 
     #region Control
