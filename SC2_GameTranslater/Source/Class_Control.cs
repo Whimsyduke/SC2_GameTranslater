@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Xml;
@@ -593,6 +594,42 @@ namespace SC2_GameTranslater.Source
             RichTextBox textBox = (RichTextBox)dp;
             textBox.Document = (FlowDocument)args.NewValue;
         }
+        #endregion
+    }
+
+    /// <summary>
+    /// 搜索文本框
+    /// </summary>
+    public class RibbonSearchTextBox : Fluent.TextBox
+    {
+        #region 属性字段
+
+        #region 属性
+
+        /// <summary>
+        /// 按钮点击依赖项
+        /// </summary>
+        public static DependencyProperty ClickProperty = DependencyProperty.Register(nameof(Command), typeof(ICommand), typeof(RibbonSearchTextBox));
+
+        /// <summary>
+        /// 按钮点击依赖项属性
+        /// </summary>
+        public ICommand Command { set => SetValue(ClickProperty, value); get => (ICommand)GetValue(ClipProperty); }
+
+
+        /// <summary>
+        /// 按钮文本依赖项
+        /// </summary>
+        public static DependencyProperty ButtonContentProperty = DependencyProperty.Register(nameof(ButtonContent), typeof(object), typeof(RibbonSearchTextBox));
+
+        /// <summary>
+        /// 按钮文本依赖项属性
+        /// </summary>
+        public object ButtonContent { set => SetValue(ButtonContentProperty, value); get => GetValue(ButtonContentProperty); }
+
+
+        #endregion
+
         #endregion
     }
 

@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:source="clr-namespace:SC2_GameTranslater.Source"
     mc:Ignorable="d">
+
     <!--#region Converter-->
     <source:AutoNumberValueConverter x:Key="Converter_AutoNumberValue" />
     <source:EnumLanguageToTreslateNameConverter x:Key="Converter_EnumLanguageToTreslateName" />
@@ -32,7 +33,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Image
-                x:Name="iconImage"
+                x:Name="PART_IconImage"
                 Grid.Column="0"
                 Width="16"
                 Height="16"
@@ -114,8 +115,8 @@
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="contentPresenter" Property="Opacity" Value=".55" />
                 <Setter TargetName="DisabledVisualElement" Property="Opacity" Value=".55" />
-                <Setter TargetName="iconImage" Property="Opacity" Value="0.5" />
-                <Setter TargetName="iconImage" Property="Effect">
+                <Setter TargetName="PART_IconImage" Property="Opacity" Value="0.5" />
+                <Setter TargetName="PART_IconImage" Property="Effect">
                     <Setter.Value>
                         <Fluent:GrayscaleEffect />
                     </Setter.Value>
@@ -149,7 +150,7 @@
     <!--#endregion-->
 
     <!--#region TextBox-->
-    <ControlTemplate x:Key="Fluent.Ribbon.ControlTemplates.TextBox" TargetType="{x:Type Fluent:TextBox}">
+    <ControlTemplate x:Key="Fluent.Ribbon.ControlTemplates.TextBox" TargetType="{x:Type source:RibbonSearchTextBox}">
         <Grid
             Width="Auto"
             Height="Auto"
@@ -158,15 +159,20 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
             <StackPanel
                 x:Name="PART_HeaderAndIconPanel"
-                Grid.ColumnSpan="1"
+                Grid.Row="0"
+                Grid.Column="0"
                 Margin="0,0,4,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Orientation="Horizontal">
                 <Image
-                    x:Name="iconImage"
+                    x:Name="PART_IconImage"
                     Grid.Column="0"
                     Width="16"
                     Height="16"
@@ -179,16 +185,31 @@
                         <ColumnDefinition SharedSizeGroup="{Binding Path=(Fluent:RibbonGroupBoxWrapPanel.SharedSizeGroupName), RelativeSource={RelativeSource TemplatedParent}}" />
                     </Grid.ColumnDefinitions>
                     <TextBlock
-                        x:Name="headerTextBlock"
+                        x:Name="PART_HeaderTextBlock"
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
                         Text="{TemplateBinding Header}"
                         TextWrapping="Wrap" />
                 </Grid>
             </StackPanel>
-
+            <Button
+                x:Name="PART_SearchButton"
+                Grid.Row="1"
+                Grid.Column="0"
+                Command="{Binding Path=Command, RelativeSource={RelativeSource TemplatedParent}}"
+                Margin="3,0,3,0"
+                Padding="10,2,10,2"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                VerticalAlignment="Center"
+                Background="{DynamicResource Fluent.Ribbon.Brushes.TextBox.Background}"
+                BorderBrush="{DynamicResource Fluent.Ribbon.Brushes.TextBox.BorderBrush}"
+                Content="{Binding Path=ButtonContent, RelativeSource={RelativeSource TemplatedParent}}" />
             <Border
                 x:Name="PART_ContentBorder"
+                Grid.Row="0"
+                Grid.RowSpan="2"
                 Grid.Column="1"
                 Grid.ColumnSpan="1"
                 Width="{TemplateBinding InputWidth}"
@@ -203,16 +224,15 @@
                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
             </Border>
         </Grid>
-
         <ControlTemplate.Triggers>
             <Trigger Property="Icon" Value="{x:Null}">
-                <Setter TargetName="iconImage" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="PART_IconImage" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <Trigger Property="InputWidth" Value="NaN">
                 <Setter TargetName="PART_ContentBorder" Property="HorizontalAlignment" Value="Stretch" />
             </Trigger>
             <Trigger Property="Size" Value="Middle">
-                <Setter TargetName="headerTextBlock" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="PART_HeaderTextBlock" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <Trigger Property="Size" Value="Small">
                 <Setter TargetName="PART_HeaderAndIconPanel" Property="Visibility" Value="Collapsed" />
@@ -221,9 +241,15 @@
                 <Setter TargetName="PART_ContentBorder" Property="Background" Value="{DynamicResource Fluent.Ribbon.Brushes.TextBox.Disabled.Background}" />
                 <Setter TargetName="PART_ContentBorder" Property="BorderBrush" Value="{DynamicResource Fluent.Ribbon.Brushes.TextBox.Disabled.BorderBrush}" />
                 <Setter TargetName="PART_ContentHost" Property="BorderBrush" Value="{DynamicResource Fluent.Ribbon.Brushes.TextBox.Disabled.Background}" />
-                <Setter TargetName="iconImage" Property="Opacity" Value="0.5" />
-                <Setter TargetName="headerTextBlock" Property="Opacity" Value="0.5" />
-                <Setter TargetName="iconImage" Property="Effect">
+                <Setter TargetName="PART_IconImage" Property="Opacity" Value="0.5" />
+                <Setter TargetName="PART_SearchButton" Property="Opacity" Value="0.5" />
+                <Setter TargetName="PART_SearchButton" Property="Effect">
+                    <Setter.Value>
+                        <Fluent:GrayscaleEffect />
+                    </Setter.Value>
+                </Setter>
+                <Setter TargetName="PART_HeaderTextBlock" Property="Opacity" Value="0.5" />
+                <Setter TargetName="PART_IconImage" Property="Effect">
                     <Setter.Value>
                         <Fluent:GrayscaleEffect />
                     </Setter.Value>
@@ -242,7 +268,7 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <Style BasedOn="{StaticResource {x:Type TextBoxBase}}" TargetType="{x:Type Fluent:TextBox}">
+    <Style BasedOn="{StaticResource {x:Type TextBoxBase}}" TargetType="{x:Type source:RibbonSearchTextBox}">
         <Setter Property="Template" Value="{DynamicResource Fluent.Ribbon.ControlTemplates.TextBox}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="FocusVisualStyle" Value="{DynamicResource ControlStyleEmptyFocus}" />
@@ -292,7 +318,7 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Image
-                                    x:Name="iconImage"
+                                    x:Name="PART_IconImage"
                                     Grid.Column="0"
                                     Width="16"
                                     Height="16"
@@ -340,7 +366,7 @@
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="bulletDecorator" Property="Opacity" Value="0.3" />
-                            <Setter TargetName="iconImage" Property="Effect">
+                            <Setter TargetName="PART_IconImage" Property="Effect">
                                 <Setter.Value>
                                     <Fluent:GrayscaleEffect />
                                 </Setter.Value>

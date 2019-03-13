@@ -26,99 +26,99 @@
                 <CheckBox
                     x:Key="CheckBox_zhCN"
                     Name="CheckBox_zhCN"
+                    Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
                     Content="{DynamicResource TEXT_zhCN}"
                     IsChecked="True"
-                    Margin="5,3,10,3"
-                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
                     x:Key="CheckBox_zhTW"
                     Name="CheckBox_zhTW"
+                    Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
                     Content="{DynamicResource TEXT_zhTW}"
                     IsChecked="True"
-                    Margin="5,3,10,3"
-                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
                     x:Key="CheckBox_enUS"
                     Name="CheckBox_enUS"
+                    Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
                     Content="{DynamicResource TEXT_enUS}"
                     IsChecked="True"
-                    Margin="5,3,10,3"
-                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
                     x:Key="CheckBox_deDE"
                     Name="CheckBox_deDE"
+                    Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
                     Content="{DynamicResource TEXT_deDE}"
                     IsChecked="True"
-                    Margin="5,3,10,3"
-                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
                     x:Key="CheckBox_esMX"
                     Name="CheckBox_esMX"
+                    Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
                     Content="{DynamicResource TEXT_esMX}"
                     IsChecked="True"
-                    Margin="5,3,10,3"
-                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
                     x:Key="CheckBox_esES"
                     Name="CheckBox_esES"
+                    Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
                     Content="{DynamicResource TEXT_esES}"
                     IsChecked="True"
-                    Margin="5,3,10,3"
-                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
                     x:Key="CheckBox_frFR"
                     Name="CheckBox_frFR"
+                    Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
                     Content="{DynamicResource TEXT_frFR}"
                     IsChecked="True"
-                    Margin="5,3,10,3"
-                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
                     x:Key="CheckBox_itIT"
                     Name="CheckBox_itIT"
+                    Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
                     Content="{DynamicResource TEXT_itIT}"
                     IsChecked="True"
-                    Margin="5,3,10,3"
-                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
                     x:Key="CheckBox_plPL"
                     Name="CheckBox_plPL"
+                    Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
                     Content="{DynamicResource TEXT_plPL}"
                     IsChecked="True"
-                    Margin="5,3,10,3"
-                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
                     x:Key="CheckBox_ptBR"
                     Name="CheckBox_ptBR"
+                    Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
                     Content="{DynamicResource TEXT_ptBR}"
                     IsChecked="True"
-                    Margin="5,3,10,3"
-                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
                     x:Key="CheckBox_ruRU"
                     Name="CheckBox_ruRU"
+                    Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
                     Content="{DynamicResource TEXT_ruRU}"
                     IsChecked="True"
-                    Margin="5,3,10,3"
-                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
                     x:Key="CheckBox_koKR"
                     Name="CheckBox_koKR"
+                    Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
                     Content="{DynamicResource TEXT_koKR}"
                     IsChecked="True"
-                    Margin="5,3,10,3"
-                    Unchecked="CheckBox_ReloadLanguge_CheckEvent"/>
+                    Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
             </ResourceDictionary>
         </Grid.Resources>
         <Grid.RowDefinitions>

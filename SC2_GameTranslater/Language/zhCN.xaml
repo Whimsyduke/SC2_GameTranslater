@@ -142,6 +142,7 @@
     <sys:String x:Key="UI_GroupBox_ReloadLanguage_Header">重载语言</sys:String>
     <sys:String x:Key="UI_GroupBox_ReloadConfig_Header">重载配置</sys:String>
     <sys:String x:Key="UI_CheckBox_ReloadOnlyModify_Content">仅已修改内容</sys:String>
+    <sys:String x:Key="UI_TextBox_SearchText_ButtonContent">搜索文本</sys:String>
     
     <!--#endregion-->
 

@@ -412,10 +412,11 @@
                         Header="{DynamicResource UI_CheckBox_SearchCase_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
                         Unchecked="CheckBox_SearchConfigure_CheckEvent" />
-                    <Fluent:TextBox
-                        Name="TextBox_SearchText"
+                    <source:RibbonSearchTextBox
+                        x:Name="TextBox_SearchText"
                         Height="44"
                         MinWidth="300"
+                        ButtonContent="{DynamicResource UI_TextBox_SearchText_ButtonContent}"
                         HorizontalContentAlignment="Left"
                         VerticalContentAlignment="Top"
                         Fluent:RibbonGroupBoxWrapPanel.SharedSizeGroupName="Group_Serach"

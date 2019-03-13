@@ -142,6 +142,7 @@
     <sys:String x:Key="UI_GroupBox_ReloadLanguage_Header">Reload Language</sys:String>
     <sys:String x:Key="UI_GroupBox_ReloadConfig_Header">Reload Configure</sys:String>
     <sys:String x:Key="UI_CheckBox_ReloadOnlyModify_Content">Only Modified Text</sys:String>
+    <sys:String x:Key="UI_TextBox_SearchText_ButtonContent">Search Text</sys:String>
 
     <!--#endregion-->
 
