@@ -779,7 +779,13 @@ namespace SC2_GameTranslater
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
                 Globals.Preference.LastFolderPath = file.DirectoryName;
-                ProjectReload(GetProjectDataFile(file));
+                Data_GameText project = GetProjectDataFile(file);
+                SC2_GameTranslater_Reload dialog = new SC2_GameTranslater_Reload(project.LangaugeList);
+                dialog.Owner = Globals.MainWindow;
+                if (!dialog.ShowDialog() == true) return;
+                List<EnumLanguage> languages = dialog.DirtLanguageCheckBox.Where(r => r.Value.IsChecked == true).Select(r => r.Key).ToList();
+                Globals.CurrentProject.ReloadTranslateText(project, languages, dialog.CheckBox_ReloadOnlyModify.IsChecked == true);
+                Globals.MainWindow.RefreshTranslatedText(Globals.CurrentProject);
             }
             e.Handled = true;
         }
@@ -1766,20 +1772,6 @@ namespace SC2_GameTranslater
 
         #endregion
 
-        #region 回调
-
-        /// <summary>
-        /// 重载翻译配置回调
-        /// </summary>
-        /// <param name="languages">重载语言列表</param>
-        /// <param name="onlyModified">仅重载修改内容</param>
-        public void CallBackReloadTranslateConfig(List<EnumLanguage> languages, bool onlyModified)
-        {
-
-        }
-
-        #endregion
-
         #endregion
 
         #region 控件事件
@@ -1833,20 +1825,6 @@ namespace SC2_GameTranslater
         private void RibbonWindow_Main_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Globals.Preference.SavePreference();
-
-#if DEBUG
-            #region 测试
-            List<EnumLanguage> languages = new List<EnumLanguage>()
-            {
-                EnumLanguage.zhCN,
-                EnumLanguage.zhTW,
-                EnumLanguage.enUS,
-            };
-
-            SC2_GameTranslater_Reload window = new SC2_GameTranslater_Reload(languages, CallBackReloadTranslateConfig);
-            window.Show();
-            #endregion
-#endif
         }
 
         /// <summary>

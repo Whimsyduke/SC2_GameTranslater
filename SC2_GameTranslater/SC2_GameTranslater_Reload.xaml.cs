@@ -25,26 +25,14 @@ namespace SC2_GameTranslater
     /// </summary>
     public partial class SC2_GameTranslater_Reload : Window
     {
-        #region 声明
-
-        /// <summary>
-        /// 重载翻译配置回调委托
-        /// </summary>
-        /// <param name="languages">重载语言列表</param>
-        /// <param name="onlyModified">仅重载修改内容</param>
-        public delegate void Delegate_CallBackReloadTranslateConfig(List<EnumLanguage> languages, bool onlyModified);
-
-        #endregion
-
         #region 属性字段
 
-        #region 字段
+        #region 属性
 
         /// <summary>
-        /// 接受回调
+        /// CheckBox字典
         /// </summary>
-        private Delegate_CallBackReloadTranslateConfig mCallbackApprove = null;
-        private Dictionary<EnumLanguage, CheckBox> mDirtLanguageCheckBox = new Dictionary<EnumLanguage, CheckBox>();
+        public Dictionary<EnumLanguage, CheckBox> DirtLanguageCheckBox { set; get; } = new Dictionary<EnumLanguage, CheckBox>();
 
         #endregion
 
@@ -55,11 +43,10 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 构造函数
         /// </summary>
-        public SC2_GameTranslater_Reload(List<EnumLanguage> listLang, Delegate_CallBackReloadTranslateConfig callback)
+        public SC2_GameTranslater_Reload(List<EnumLanguage> listLang)
         {
             InitializeComponent();
             ResourceDictionary_WindowLanguage = Globals.CurrentLanguage;
-            mCallbackApprove = callback;
             int x = 0;
             int y = 0;
             foreach (EnumLanguage language in listLang)
@@ -78,7 +65,7 @@ namespace SC2_GameTranslater
                 CheckBox checkBox = ResourceDictionary_MainGrid["CheckBox_" + langName] as CheckBox;
                 checkBox.SetValue(Grid.ColumnProperty, x++);
                 checkBox.SetValue(Grid.RowProperty, y++);
-                mDirtLanguageCheckBox.Add(language, checkBox);
+                DirtLanguageCheckBox.Add(language, checkBox);
                 Grid_TranslateLanguage.Children.Add(checkBox);
             }
         }
@@ -90,7 +77,7 @@ namespace SC2_GameTranslater
         {
             int count = 0;
             CheckBox enableCheckBox = null;
-            foreach (KeyValuePair<EnumLanguage, CheckBox> item in mDirtLanguageCheckBox)
+            foreach (KeyValuePair<EnumLanguage, CheckBox> item in DirtLanguageCheckBox)
             {
                 if (item.Value.IsChecked == true)
                 {
@@ -116,13 +103,8 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void Button_Confirm_Click(object sender, RoutedEventArgs e)
         {
+            DialogResult = true;
             Close();
-            List<EnumLanguage> languages = new List<EnumLanguage>();
-            foreach (KeyValuePair<EnumLanguage, CheckBox> item in mDirtLanguageCheckBox)
-            {
-                languages.Add(item.Key);
-            }
-            mCallbackApprove?.Invoke(languages, CheckBox_ReloadOnlyModify.IsChecked == true);
         }
 
         /// <summary>
@@ -132,6 +114,7 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void Button_Cancel_Click(object sender, RoutedEventArgs e)
         {
+            DialogResult = false;
             Close();
         }
 

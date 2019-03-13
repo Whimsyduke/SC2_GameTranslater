@@ -616,6 +616,35 @@ namespace SC2_GameTranslater.Source
             ReloadText(oldProject);
         }
 
+        /// <summary>
+        /// 重载翻译文本
+        /// </summary>
+        /// <param name="dataProject">数据项目</param>
+        /// <param name="languages">翻译语言</param>
+        /// <param name="onlyModified">仅修改内容</param>
+        public void ReloadTranslateText(Data_GameText dataProject, List<EnumLanguage> languages, bool onlyModified)
+        {
+            DataTable dataTable = dataProject.Tables[TN_GameText];
+            DataTable targetTable = Tables[TN_GameText];
+            DataRow targetRow;
+            string keyStatus;
+            string keyEdited;
+            foreach (DataRow dataRow in dataTable.Rows)
+            {
+                targetRow = targetTable.Rows.Find(dataRow[RN_GameText_ID]);
+                if (targetRow == null) continue;
+
+                foreach (EnumLanguage language in languages)
+                {
+                    keyStatus = GetGameRowNameForLanguage(language, RN_GameText_TextStatus);
+                    if (onlyModified && (EnumGameTextStatus)dataRow[keyStatus] != EnumGameTextStatus.Modified) continue;
+                    keyEdited = GetGameRowNameForLanguage(language, RN_GameText_EditedText);
+                    targetRow[keyStatus] = EnumGameTextStatus.Modified;
+                    targetRow[keyEdited] = dataRow[keyEdited];
+                }
+            }
+        }
+
         #endregion
 
         #region 基类
