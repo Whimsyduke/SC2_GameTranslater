@@ -1839,6 +1839,7 @@ namespace SC2_GameTranslater
                     Binding binding = new Binding(Data_GameText.GetGameRowNameForLanguage((EnumLanguage)button.Tag, Data_GameText.RN_GameText_EditedText))
                     {
                         Mode = BindingMode.TwoWay,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
                     };
                     Globals.MainWindow.DataGridColumn_TranslateEditedText.Binding = binding;
                 }
@@ -2135,6 +2136,46 @@ namespace SC2_GameTranslater
         {
             e.Handled = true;
         }
+
+        /// <summary>
+        /// 表格数据结束编辑
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void DataGrid_TranslatedTexts_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (e.Column == DataGridColumn_TranslateEditedText)
+            {
+                DataRowView view = e.Row.Item as DataRowView;
+                DataRow row = view.Row;
+                string keyStatus = Data_GameText.GetGameRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_TextStatus);
+                string keySource = Data_GameText.GetGameRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_SourceText);
+                string value = (e.EditingElement as System.Windows.Controls.TextBox).Text;
+                switch ((EnumGameTextStatus)row[keyStatus])
+                {
+                    case EnumGameTextStatus.Empty:
+                        if (string.IsNullOrEmpty(value))
+                        {
+                            e.Cancel = true;
+                        }
+                        else
+                        {
+                            row[keyStatus] = EnumGameTextStatus.Modified;
+                        }
+                        break;
+                    case EnumGameTextStatus.Normal:
+                        if (value != row[keySource] as string)
+                        {
+                            row[keyStatus] = EnumGameTextStatus.Modified;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        }
+
         #endregion
     }
 }

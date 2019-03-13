@@ -23,33 +23,29 @@ namespace SC2_GameTranslater.Source
     public enum EnumGameTextStatus
     {
         /// <summary>
-        /// 无效
-        /// </summary>
-        None = 1,
-        /// <summary>
         /// 空
         /// </summary>
-        Empty = 2,
+        Empty = 1,
         /// <summary>
         /// 正常
         /// </summary>
-        Normal = 4,
+        Normal = 2,
         /// <summary>
         /// 已修改
         /// </summary>
-        Modified = 8,
+        Modified = 4,
         /// <summary>
         /// 已使用
         /// </summary>
-        Useable = 12,
+        Useable = 6,
         /// <summary>
         /// 全部复选
         /// </summary>
-        All = 15,
+        All = 7,
     }
 
     /// <summary>
-    /// 文本状态
+    /// 使用状态
     /// </summary>
     public enum EnumGameUseStatus
     {
@@ -339,7 +335,7 @@ namespace SC2_GameTranslater.Source
             column = new DataColumn(columnName, typeof(Int32), "", MappingType.Attribute)
             {
                 Caption = columnName,
-                DefaultValue = EnumGameTextStatus.None,
+                DefaultValue = EnumGameTextStatus.Empty,
                 AllowDBNull = false,
                 Unique = false,
             };
