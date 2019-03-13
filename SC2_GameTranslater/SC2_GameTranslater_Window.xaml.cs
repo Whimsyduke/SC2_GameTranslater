@@ -305,7 +305,16 @@ namespace SC2_GameTranslater
         /// 近期项目依赖项属性
         /// </summary>
         public RoutedUICommand CommandRecentProjects { set => SetValue(CommandRecentProjectsProperty, value); get => (RoutedUICommand)GetValue(CommandRecentProjectsProperty); }
+        
+        /// <summary>
+        /// 搜索点击依赖项
+        /// </summary>
+        public static DependencyProperty SearchClickProperty = DependencyProperty.Register(nameof(SearchClick), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
 
+        /// <summary>
+        /// 搜索点击依赖项属性
+        /// </summary>
+        public RoutedUICommand SearchClick { set => SetValue(SearchClickProperty, value); get => (RoutedUICommand)GetValue(SearchClickProperty); }
 
         #endregion
 
@@ -487,6 +496,8 @@ namespace SC2_GameTranslater
             binding = new CommandBinding(CommandComponentsPath, Executed_ComponentsPath, CanExecuted_ComponentsPath);
             Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(CommandRecentProjects, Executed_RecentProjects, CanExecuted_RecentProjects);
+            Globals.MainWindow.CommandBindings.Add(binding);
+            binding = new CommandBinding(SearchClick, Executed_SearchClick, CanExecuted_SearchClick);
             Globals.MainWindow.CommandBindings.Add(binding);
 
             #endregion
@@ -888,6 +899,28 @@ namespace SC2_GameTranslater
         public static void CanExecuted_RecentProjects(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 浏览Mod/Map执行函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void Executed_SearchClick(object sender, ExecutedRoutedEventArgs e)
+        {
+            Globals.MainWindow.RefreshTranslatedText();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 浏览Mod/Map判断函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void CanExecuted_SearchClick(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = CheckCurrentProjectExist();
             e.Handled = true;
         }
 
@@ -2082,17 +2115,7 @@ namespace SC2_GameTranslater
             RefreshTranslatedText();
             e.Handled = true;
         }
-
-        /// <summary>
-        /// 文本变化换事件
-        /// </summary>
-        /// <param name="sender">事件控件</param>
-        /// <param name="e">响应参数</param>
-        private void TextBox_SearchText_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            RefreshTranslatedText();
-        }
-
+        
         /// <summary>
         /// 显示语言选择变化
         /// </summary>

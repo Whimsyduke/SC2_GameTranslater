@@ -421,9 +421,9 @@
                         VerticalContentAlignment="Top"
                         Fluent:RibbonGroupBoxWrapPanel.SharedSizeGroupName="Group_Serach"
                         AcceptsReturn="True"
+                        Command="{Binding ElementName=RibbonWindow_Main,Path=SearchClick}"
                         Header="{DynamicResource UI_ComboBox_SearchText_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchTextBox}"
-                        TextChanged="TextBox_SearchText_TextChanged"
                         TextWrapping="WrapWithOverflow"
                         VerticalScrollBarVisibility="Auto" />
                 </Fluent:RibbonGroupBox>
