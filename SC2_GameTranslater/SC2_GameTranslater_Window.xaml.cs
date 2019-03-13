@@ -780,8 +780,10 @@ namespace SC2_GameTranslater
                 FileInfo file = new FileInfo(fileDialog.FileName);
                 Globals.Preference.LastFolderPath = file.DirectoryName;
                 Data_GameText project = GetProjectDataFile(file);
-                SC2_GameTranslater_Reload dialog = new SC2_GameTranslater_Reload(project.LangaugeList);
-                dialog.Owner = Globals.MainWindow;
+                SC2_GameTranslater_Reload dialog = new SC2_GameTranslater_Reload(project.LangaugeList)
+                {
+                    Owner = Globals.MainWindow
+                };
                 if (!dialog.ShowDialog() == true) return;
                 List<EnumLanguage> languages = dialog.DirtLanguageCheckBox.Where(r => r.Value.IsChecked == true).Select(r => r.Key).ToList();
                 Globals.CurrentProject.ReloadTranslateText(project, languages, dialog.CheckBox_ReloadOnlyModify.IsChecked == true);
