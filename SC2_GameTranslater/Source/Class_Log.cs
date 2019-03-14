@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Threading;
 using Globals = SC2_GameTranslater.Source.Class_Globals;
 
 namespace SC2_GameTranslater.Source
@@ -48,7 +42,7 @@ namespace SC2_GameTranslater.Source
         {
             string caption = Globals.CurrentLanguage[msgKey + "_Title"] as string;
             string msg = Globals.CurrentLanguage[msgKey + "_Message"] as string;
-            msg = string.Format(msg, args);
+            msg = string.Format(msg ?? throw new InvalidOperationException(), args);
             DisplayLogOnUI(msg);
             return MessageBox.Show(msg, caption, button, image);
         }
@@ -65,9 +59,10 @@ namespace SC2_GameTranslater.Source
             //得到当前的所以堆栈  
             StackFrame[] sf = st.GetFrames();
             string format = Globals.CurrentLanguage["ERR_CommonNewException"] as string;
+            Debug.Assert(sf != null, nameof(sf) + " != null");
             for (int i = 1; i < sf.Length; ++i)
             {
-                info = string.Format(format, info, sf[i].GetFileName(), sf[i].GetMethod().DeclaringType.FullName, sf[i].GetMethod().Name, sf[i].GetFileLineNumber());
+                info = string.Format(format ?? throw new InvalidOperationException(), info, sf[i].GetFileName(), sf[i].GetMethod().DeclaringType?.FullName, sf[i].GetMethod().Name, sf[i].GetFileLineNumber());
             }
             return info;
         }
@@ -75,7 +70,6 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 抛出异常
         /// </summary>
-        /// <param name="caption">标题</param>
         /// <param name="msg">消息</param>
         public static Exception NewException(string msg)
         {

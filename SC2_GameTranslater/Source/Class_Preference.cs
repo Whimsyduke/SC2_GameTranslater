@@ -4,13 +4,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace SC2_GameTranslater.Source
@@ -214,14 +209,14 @@ namespace SC2_GameTranslater.Source
             {
                 if (select.Value is MenuItem item)
                 {
-                    ColumnVisiblity[int.Parse(item.Tag as string)] = item.IsChecked == true;
+                    ColumnVisiblity[int.Parse(item.Tag as string ?? throw new InvalidOperationException())] = item.IsChecked;
                 }
             }
             foreach (System.Collections.DictionaryEntry select in Globals.MainWindow.DataGrid_GameTextForLanguage.Resources)
             {
                 if (select.Value is MenuItem item)
                 {
-                    ColumnVisiblity[int.Parse(item.Tag as string)] = item.IsChecked == true;
+                    ColumnVisiblity[int.Parse(item.Tag as string ?? throw new InvalidOperationException())] = item.IsChecked;
                 }
             }
         }
@@ -235,14 +230,14 @@ namespace SC2_GameTranslater.Source
             {
                 if (select.Value is MenuItem item)
                 {
-                    item.IsChecked = ColumnVisiblity[int.Parse(item.Tag as string)];
+                    item.IsChecked = ColumnVisiblity[int.Parse(item.Tag as string ?? throw new InvalidOperationException())];
                 }
             }
             foreach (System.Collections.DictionaryEntry select in Globals.MainWindow.DataGrid_GameTextForLanguage.Resources)
             {
                 if (select.Value is MenuItem item)
                 {
-                    item.IsChecked = ColumnVisiblity[int.Parse(item.Tag as string)];
+                    item.IsChecked = ColumnVisiblity[int.Parse(item.Tag as string ?? throw new InvalidOperationException())];
                 }
             }
         }
@@ -303,7 +298,7 @@ namespace SC2_GameTranslater.Source
             byte[] buffer = ms.ToArray();
             ms.Close();
             ms.Dispose();
-            if (!Preference_ConfigFile.Directory.Exists)
+            if (Preference_ConfigFile.Directory != null && !Preference_ConfigFile.Directory.Exists)
             {
                 Preference_ConfigFile.Directory.Create();
             }
@@ -326,7 +321,7 @@ namespace SC2_GameTranslater.Source
             fs.Position = 0;
             GZipStream gzipStream = new GZipStream(fs, CompressionMode.Decompress);
             byte[] buffer = new byte[4096];
-            int offset = 0;
+            int offset;
             MemoryStream ms = new MemoryStream();
             while ((offset = gzipStream.Read(buffer, 0, buffer.Length)) != 0)
             {
@@ -337,10 +332,6 @@ namespace SC2_GameTranslater.Source
             try
             {
                 Globals.Preference = serializer.Deserialize(ms) as Class_Preference;
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

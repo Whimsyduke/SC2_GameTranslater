@@ -1,17 +1,8 @@
-﻿using SC2_GameTranslater.Source;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SC2_GameTranslater
 {
@@ -23,7 +14,7 @@ namespace SC2_GameTranslater
     /// <summary>
     /// Interaction logic for SC2_GameTranslater_Reload.xaml
     /// </summary>
-    public partial class SC2_GameTranslater_Reload : Window
+    public partial class SC2_GameTranslater_Reload
     {
         #region 属性字段
 
@@ -64,6 +55,7 @@ namespace SC2_GameTranslater
                 }
                 string langName = Enum.GetName(language.GetType(), language);
                 CheckBox checkBox = ResourceDictionary_MainGrid["CheckBox_" + langName] as CheckBox;
+                Debug.Assert(checkBox != null, nameof(checkBox) + " != null");
                 checkBox.SetValue(Grid.ColumnProperty, x++);
                 checkBox.SetValue(Grid.RowProperty, y++);
                 DirtLanguageCheckBox.Add(language, checkBox);
@@ -89,6 +81,7 @@ namespace SC2_GameTranslater
             }
             if (count == 1)
             {
+                Debug.Assert(enableCheckBox != null, nameof(enableCheckBox) + " != null");
                 enableCheckBox.IsEnabled = false;
             }
         }

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.IO;
-using System.Windows;
 using System.Text.RegularExpressions;
 using System.Data;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Windows.Threading;
-using System.Threading;
-using System.Text;
 
 namespace SC2_GameTranslater.Source
 {
@@ -20,6 +17,7 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// 文本状态
     /// </summary>
+    [Flags]
     public enum EnumGameTextStatus
     {
         /// <summary>
@@ -47,6 +45,7 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// 使用状态
     /// </summary>
+    [Flags]
     public enum EnumGameUseStatus
     {
         /// <summary>
@@ -83,6 +82,7 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// 文本文件
     /// </summary>
+    [Flags]
     public enum EnumGameTextFile
     {
         /// <summary>
@@ -139,7 +139,7 @@ namespace SC2_GameTranslater.Source
             /// <returns>比较结果</returns>
             bool IEqualityComparer<TRow>.Equals(TRow x, TRow y)
             {
-                return (x as DataRow)[RN_GameText_ID] as string == (y as DataRow)[RN_GameText_ID] as string;
+                return (x as DataRow)?[RN_GameText_ID] as string == (y as DataRow)?[RN_GameText_ID] as string;
             }
 
             /// <summary>
@@ -257,7 +257,7 @@ namespace SC2_GameTranslater.Source
                 return mComponentsPath;
             }
         }
-        private FileInfo mComponentsPath = null;
+        private FileInfo mComponentsPath;
 
         /// <summary>
         /// 使用语言列表
@@ -520,17 +520,16 @@ namespace SC2_GameTranslater.Source
             DataTable table = Tables[TN_GameText];
             EnumerableRowCollection<DataRow> newRows = table.AsEnumerable();
             EnumerableRowCollection<DataRow> oldRows = oldProject.Tables[TN_GameText].AsEnumerable();
-            IEnumerable<DataRow> dropRows = oldRows.Except(newRows, GameTextComparer<DataRow>.Default);
-            IEnumerable<DataRow> addRows = newRows.Except(oldRows, GameTextComparer<DataRow>.Default);
-            IEnumerable<DataRow> normalRows = newRows.Except(addRows, GameTextComparer<DataRow>.Default);
+            List<DataRow> dropRows = oldRows.Except(newRows, GameTextComparer<DataRow>.Default).ToList();
+            List<DataRow> addRows = newRows.Except(oldRows, GameTextComparer<DataRow>.Default).ToList();
+            List<DataRow> normalRows = newRows.Except(addRows, GameTextComparer<DataRow>.Default).ToList();
             foreach (DataRow row in dropRows)
             {
                 table.ImportRow(row);
             }
-            dropRows = table.AsEnumerable().Except(normalRows, GameTextComparer<DataRow>.Default).Except(addRows, GameTextComparer<DataRow>.Default);
+            dropRows = table.AsEnumerable().Except(normalRows, GameTextComparer<DataRow>.Default).Except(addRows, GameTextComparer<DataRow>.Default).ToList();
 
             // SetStatuse
-            Dictionary<EnumLanguage, EnumGameUseStatus> dictUseStatus = new Dictionary<EnumLanguage, EnumGameUseStatus>();
             string dropKey;
             string srcKey;
             string statusKey;
@@ -588,14 +587,11 @@ namespace SC2_GameTranslater.Source
                             text = oldRow[dropKey] as string;
                             textRow[dropKey] = text;
                             textRow[statusKey] = EnumGameUseStatus.Added;
-                            ;
                         }
                         foreach (DataRow textRow in dropRows)
                         {
                             textRow[statusKey] = EnumGameUseStatus.Droped;
                         }
-                        break;
-                    default:
                         break;
                 }
             }
@@ -679,7 +675,6 @@ namespace SC2_GameTranslater.Source
             if (textRow == null) return;
             foreach (EnumLanguage language in langList)
             {
-                string langName = Enum.GetName(language.GetType(), language);
                 string key;
                 key = GetGameRowNameForLanguage(language, RN_GameText_TextStatus);
                 object dataTextStatus = textRow[key];
@@ -724,7 +719,7 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 从Mod初始化数据集
         /// </summary>
-        /// <param name="path">文件路径</param>
+        /// <param name="file">文件</param>
         /// <param name="func">结束回调</param>
         public void Initialization(FileInfo file, SC2_GameTranslater_Window.Delegate_ProgressEvent func)
         {
@@ -757,6 +752,7 @@ namespace SC2_GameTranslater.Source
         public static Data_GameText LoadProject(FileInfo path)
         {
             Data_GameText proj = Globals.ObjectDeserializeDecompress(path) as Data_GameText;
+            Debug.Assert(proj != null, nameof(proj) + " != null");
             proj.RefreshAttribute();
             return proj;
         }
@@ -771,7 +767,7 @@ namespace SC2_GameTranslater.Source
             try
 #endif
             {
-                SC2Components = new FileInfo(ProjectInfoRow[RN_ModInfo_CompontentsPath] as string);
+                SC2Components = new FileInfo(ProjectInfoRow[RN_ModInfo_CompontentsPath] as string ?? throw new InvalidOperationException());
                 LangaugeList = Tables[TN_Language].AsEnumerable().Select(r => (EnumLanguage)r[RN_Language_ID]).ToList();
                 return true;
             }
@@ -794,6 +790,7 @@ namespace SC2_GameTranslater.Source
         public bool WriteToComponents()
         {
             if (SC2Components != null && !SC2Components.Exists) return false;
+            Debug.Assert(SC2Components != null, nameof(SC2Components) + " != null");
             DirectoryInfo baseDir = SC2Components.Directory;
             List<FileInfo> backFiles = new List<FileInfo>();
             EnumerableRowCollection<DataRow> gameStringRows = GetGameTextRows(EnumGameTextFile.GameStrings);
@@ -824,17 +821,18 @@ namespace SC2_GameTranslater.Source
         /// <param name="backFiles">备份文件列表</param>
         /// <param name="data">文件数据</param>
         /// <returns>写入成功</returns>
-        private bool WriteToTextFile(DirectoryInfo baseDir, EnumLanguage language, EnumGameTextFile fileTyperef, ref List<FileInfo> backFiles, EnumerableRowCollection<DataRow> data)
+        private bool WriteToTextFile(DirectoryInfo baseDir, EnumLanguage language, EnumGameTextFile fileType, ref List<FileInfo> backFiles, EnumerableRowCollection<DataRow> data)
         {
 #if !DEBUG
             try
 #endif
             {
-                string backPath = TextFilePath(language, fileTyperef);
+                string backPath = TextFilePath(language, fileType);
                 string originpath = string.Format("{0}\\{1}", baseDir.FullName, backPath);
                 if (!File.Exists(originpath)) return true;
                 FileInfo backFile = new FileInfo(PATH_TempFolder + backPath);
                 backFiles.Add(backFile);
+                Debug.Assert(backFile.Directory != null, "backFile.Directory != null");
                 if (!backFile.Directory.Exists) backFile.Directory.Create();
                 File.Copy(originpath, backFile.FullName, true);
                 StreamWriter sw = new StreamWriter(originpath, false);
@@ -845,7 +843,7 @@ namespace SC2_GameTranslater.Source
                 {
                     if (EnumGameUseStatus.Useable.HasFlag((EnumGameUseStatus)row[useKey]) && EnumGameTextStatus.Useable.HasFlag((EnumGameTextStatus)row[statusKey]))
                     {
-                        sw.WriteLine(string.Format("{0}={1}", row[RN_GameText_ID], row[editedKey]));
+                        sw.WriteLine("{0}={1}", row[RN_GameText_ID], row[editedKey]);
                     }
                 }
                 sw.Close();
@@ -939,15 +937,15 @@ namespace SC2_GameTranslater.Source
             if (!File.Exists(path)) return false;
             Globals.MainWindow.ProgressBarUpadte(1, name, this, null);
             StreamReader sr = new StreamReader(path);
-            DataRow rowValue;
             while (!sr.EndOfStream)
             {
                 line = sr.ReadLine();
+                Debug.Assert(line != null, nameof(line) + " != null");
                 if (line.StartsWith("//")) continue;
-                length = line.IndexOf("=");
+                length = line.IndexOf("=", StringComparison.Ordinal);
                 key = line.Substring(0, length++);
                 value = line.Substring(length);
-                rowValue = SetTextValue(language, file, key, value);
+                SetTextValue(language, file, key, value);
             }
 
             sr.Close();
@@ -1005,8 +1003,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="file">文件</param>
         /// <param name="key">关键字</param>
         /// <param name="value">值</param>
-        /// <param name="textRow">文本列</param>
-        /// <returns></returns>
+        /// <returns>文本行</returns>
         public DataRow SetTextValue(EnumLanguage language, EnumGameTextFile file, string key, string value)
         {
             DataRow row = GetGameTextRow(file, key);
@@ -1141,6 +1138,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="file">Galaxy文件</param>
         private void LoadGalaxyFile(FileInfo file)
         {
+            Debug.Assert(SC2Components.DirectoryName != null, "SC2Components.DirectoryName != null");
             string path = file.FullName.Substring(SC2Components.DirectoryName.Length);
             DataRow row = Tables[TN_GalaxyFile].NewRow();
             row[RN_GalaxyFile_Path] = path;
@@ -1158,7 +1156,7 @@ namespace SC2_GameTranslater.Source
             {
                 lineNumber++;
                 line = sr.ReadLine();
-                MatchCollection matchs = Const_Regex_StringExternal.Matches(line);
+                MatchCollection matchs = Const_Regex_StringExternal.Matches(line ?? throw new InvalidOperationException());
                 if (matchs.Count == 0) continue;
                 tableLine.Rows.Add(indexLine, path, lineNumber, line);
                 int lineIndex = 0;

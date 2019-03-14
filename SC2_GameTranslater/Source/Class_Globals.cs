@@ -1,16 +1,16 @@
 ﻿using Fluent.Localization;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
-using System.Xml.Linq;
 
 namespace SC2_GameTranslater.Source
 {
-    using Log = SC2_GameTranslater.Source.Class_Log;
+    using Log = Class_Log;
 
     #region 声明
 
@@ -141,12 +141,13 @@ namespace SC2_GameTranslater.Source
         {
             set
             {
+                Debug.Assert(_EventProjectChange != null, nameof(_EventProjectChange) + " != null");
                 _EventProjectChange(mCurrentProject, value);
                 mCurrentProject = value;
             }
             get => mCurrentProject;
         }
-        private static Data_GameText mCurrentProject = null;
+        private static Data_GameText mCurrentProject;
 
         /// <summary>
         /// 当前处理数据切换事件
@@ -226,6 +227,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="baseFolder">默认打开目录</param>
         /// <param name="filter">文件类型验证</param>
         /// <param name="title">标题</param>
+        /// <param name="fileDialog">对话框</param>
         /// <returns>打开结果</returns>
         public static System.Windows.Forms.DialogResult OpenFilePathDialog(string baseFolder, string filter, string title, out System.Windows.Forms.OpenFileDialog fileDialog)
         {
@@ -251,6 +253,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="baseFolder">默认保存目录</param>
         /// <param name="filter">文件类型验证</param>
         /// <param name="title">标题</param>
+        /// <param name="fileDialog">对话框</param>
         /// <returns>打开结果</returns>
         public static System.Windows.Forms.DialogResult SaveFilePathDialog(string baseFolder, string filter, string title, out System.Windows.Forms.SaveFileDialog fileDialog)
         {
@@ -286,6 +289,7 @@ namespace SC2_GameTranslater.Source
             byte[] buffer = ms.ToArray();//把内存流对象写入字节数组   
             ms.Close();//关闭内存流对象   
             ms.Dispose();//释放资源   
+            Debug.Assert(savePath.Directory != null, "savePath.Directory != null");
             if (!savePath.Directory.Exists)
             {
                 savePath.Directory.Create();
@@ -311,7 +315,7 @@ namespace SC2_GameTranslater.Source
             fs.Position = 0;//设置文件流的位置   
             GZipStream gzipStream = new GZipStream(fs, CompressionMode.Decompress);//创建解压对象   
             byte[] buffer = new byte[4096];//定义数据缓冲   
-            int offset = 0;//定义读取位置   
+            int offset;//定义读取位置   
             MemoryStream ms = new MemoryStream();//定义内存流   
             while ((offset = gzipStream.Read(buffer, 0, buffer.Length)) != 0)
             {
@@ -323,10 +327,6 @@ namespace SC2_GameTranslater.Source
             try
             {
                 ds = sfFormatter.Deserialize(ms);//反序列化   
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

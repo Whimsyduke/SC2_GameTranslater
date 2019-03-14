@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Markup;
 using System.Windows.Media;
-using System.Xml;
 
 namespace SC2_GameTranslater.Source
 {
@@ -34,7 +28,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values[0] == null || values[1] == null) return 0;
             var item = values[0];
@@ -53,11 +47,11 @@ namespace SC2_GameTranslater.Source
         /// 逆向转换函数
         /// </summary>
         /// <param name="value">值数组</param>
-        /// <param name="targetType">目标类型</param>
+        /// <param name="targetTypes">目标类型</param>
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             return null;
         }
@@ -79,6 +73,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            Debug.Assert(value != null, nameof(value) + " != null");
             EnumLanguage language = (EnumLanguage)value;
             string langName = Enum.GetName(language.GetType(), language);
             return Globals.CurrentLanguage[string.Format("TEXT_{0}", langName)];
@@ -111,12 +106,13 @@ namespace SC2_GameTranslater.Source
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             DataRowView rowView = values[0] as DataRowView;
             EnumLanguage language = (EnumLanguage)values[1];
             string column = parameter as string;
             string key = Data_GameText.GetGameRowNameForLanguage(language, column);
+            Debug.Assert(rowView != null, nameof(rowView) + " != null");
             object display = rowView.Row[key];
             if (display == DBNull.Value)
             {
@@ -132,11 +128,11 @@ namespace SC2_GameTranslater.Source
         /// 逆向转换函数
         /// </summary>
         /// <param name="value">值数组</param>
-        /// <param name="targetType">目标类型</param>
+        /// <param name="targetTypes">目标类型</param>
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             return null;
         }
@@ -156,10 +152,11 @@ namespace SC2_GameTranslater.Source
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             DataRowView rowView = values[0] as DataRowView;
             EnumLanguage language = (EnumLanguage)values[1];
+            Debug.Assert(rowView != null, nameof(rowView) + " != null");
             var var = rowView.Row[Data_GameText.RN_GameText_File];
             EnumGameTextFile value = (EnumGameTextFile)Enum.ToObject(typeof(EnumGameTextFile), var);
             return Data_GameText.GetEnumNameInLanguage(language, value);
@@ -169,11 +166,11 @@ namespace SC2_GameTranslater.Source
         /// 逆向转换函数
         /// </summary>
         /// <param name="value">值数组</param>
-        /// <param name="targetType">目标类型</param>
+        /// <param name="targetTypes">目标类型</param>
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             return null;
         }
@@ -193,13 +190,14 @@ namespace SC2_GameTranslater.Source
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             DataRowView rowView = values[0] as DataRowView;
             EnumLanguage translateLanguage = (EnumLanguage)values[1];
             EnumLanguage softeareLanguage = (EnumLanguage)values[2];
             string column = parameter as string;
             string key;
+            Debug.Assert(rowView != null, nameof(rowView) + " != null");
             if (rowView.Row.Table == Data_GameText.GameTextForLanguageTable)
             {
                 key = column;
@@ -208,7 +206,7 @@ namespace SC2_GameTranslater.Source
             {
                 key = Data_GameText.GetGameRowNameForLanguage(translateLanguage, column);
             }
-            var var = rowView.Row[key];
+            var var = rowView.Row[key ?? throw new InvalidOperationException()];
             EnumGameTextStatus value = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), var);
             return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
         }
@@ -217,11 +215,11 @@ namespace SC2_GameTranslater.Source
         /// 逆向转换函数
         /// </summary>
         /// <param name="value">值数组</param>
-        /// <param name="targetType">目标类型</param>
+        /// <param name="targetTypes">目标类型</param>
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             return null;
         }
@@ -241,13 +239,14 @@ namespace SC2_GameTranslater.Source
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             DataRowView rowView = values[0] as DataRowView;
             EnumLanguage translateLanguage = (EnumLanguage)values[1];
             EnumLanguage softeareLanguage = (EnumLanguage)values[2];
             string column = parameter as string;
             string key;
+            Debug.Assert(rowView != null, nameof(rowView) + " != null");
             if (rowView.Row.Table == Data_GameText.GameTextForLanguageTable)
             {
                 key = column;
@@ -256,7 +255,7 @@ namespace SC2_GameTranslater.Source
             {
                 key = Data_GameText.GetGameRowNameForLanguage(translateLanguage, column);
             }
-            var var = rowView.Row[key];
+            var var = rowView.Row[key ?? throw new InvalidOperationException()];
             EnumGameUseStatus value = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), var);
             return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
         }
@@ -265,11 +264,11 @@ namespace SC2_GameTranslater.Source
         /// 逆向转换函数
         /// </summary>
         /// <param name="value">值数组</param>
-        /// <param name="targetType">目标类型</param>
+        /// <param name="targetTypes">目标类型</param>
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             return null;
         }
@@ -293,6 +292,7 @@ namespace SC2_GameTranslater.Source
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             DataRowView view = value as DataRowView;
+            Debug.Assert(view != null, nameof(view) + " != null");
             DataRow rowFile = view.Row.GetParentRow(Data_GameText.RSN_GalaxyFile_GalaxyLine_File);
             return rowFile[Data_GameText.RN_GalaxyFile_Name];
         }
@@ -324,13 +324,14 @@ namespace SC2_GameTranslater.Source
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values[1] == DependencyProperty.UnsetValue) return ConsoleColor.Gray;
             DataRowView rowView = values[0] as DataRowView;
             EnumLanguage translateLanguage = (EnumLanguage)values[1];
             string column = parameter as string;
             string key;
+            Debug.Assert(rowView != null, nameof(rowView) + " != null");
             if (rowView.Row.Table == Data_GameText.GameTextForLanguageTable)
             {
                 key = column;
@@ -339,19 +340,19 @@ namespace SC2_GameTranslater.Source
             {
                 key = Data_GameText.GetGameRowNameForLanguage(translateLanguage, column);
             }
-            var var = rowView.Row[key];
-            return var == System.DBNull.Value ? FontWeights.Bold: FontWeights.Normal;
+            var var = rowView.Row[key ?? throw new InvalidOperationException()];
+            return var == DBNull.Value ? FontWeights.Bold: FontWeights.Normal;
         }
 
         /// <summary>
         /// 逆向转换函数
         /// </summary>
         /// <param name="value">值数组</param>
-        /// <param name="targetType">目标类型</param>
+        /// <param name="targetTypes">目标类型</param>
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             return null;
         }
@@ -371,12 +372,13 @@ namespace SC2_GameTranslater.Source
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             DataRowView rowView = values[0] as DataRowView;
+            Debug.Assert(rowView != null, nameof(rowView) + " != null");
             DataRow row = rowView.Row;
             string text = row[Data_GameText.RN_GalaxyLine_Script] as string;
-            string[] texts = Data_GameText.Const_Regex_StringExternal.Split(text);
+            string[] texts = Data_GameText.Const_Regex_StringExternal.Split(text ?? throw new InvalidOperationException());
             FlowDocument doc = new FlowDocument();
             Paragraph paragraph = new Paragraph
             {
@@ -411,11 +413,11 @@ namespace SC2_GameTranslater.Source
         /// 逆向转换函数
         /// </summary>
         /// <param name="value">值数组</param>
-        /// <param name="targetType">目标类型</param>
+        /// <param name="targetTypes">目标类型</param>
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             return null;
         }
@@ -506,12 +508,11 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            Debug.Assert(value != null, nameof(value) + " != null");
             switch ((Visibility)value)
             {
                 case Visibility.Visible:
-                    return true; ;
-                case Visibility.Hidden:
-                case Visibility.Collapsed:
+                    return true;
                 default:
                     return false;
             }
@@ -531,7 +532,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             return (bool)values[0] && !(bool)values[1];
         }
@@ -540,11 +541,11 @@ namespace SC2_GameTranslater.Source
         /// 逆向转换函数
         /// </summary>
         /// <param name="value">值数组</param>
-        /// <param name="targetType">目标类型</param>
+        /// <param name="targetTypes">目标类型</param>
         /// <param name="parameter">参数</param>
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
@@ -567,7 +568,7 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 富文本内容依赖项属性
         /// </summary>
-        public static readonly DependencyProperty DocumentTextProperty = DependencyProperty.Register("Document", typeof(FlowDocument), typeof(DataGridRichTextBoxTemplate), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDocumentChanged)));
+        public static readonly DependencyProperty DocumentTextProperty = DependencyProperty.Register("Document", typeof(FlowDocument), typeof(DataGridRichTextBoxTemplate), new FrameworkPropertyMetadata(null, OnDocumentChanged));
 
         /// <summary>
         /// 富文本内容依赖项

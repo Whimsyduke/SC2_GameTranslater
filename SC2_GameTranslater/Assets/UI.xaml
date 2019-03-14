@@ -173,7 +173,6 @@
                 Orientation="Horizontal">
                 <Image
                     x:Name="PART_IconImage"
-                    Grid.Column="0"
                     Width="16"
                     Height="16"
                     Margin="3,0,0,0"
@@ -211,7 +210,6 @@
                 Grid.Row="0"
                 Grid.RowSpan="2"
                 Grid.Column="1"
-                Grid.ColumnSpan="1"
                 Width="{TemplateBinding InputWidth}"
                 Height="Auto"
                 HorizontalAlignment="Right"
@@ -288,6 +286,7 @@
         <Setter Property="FocusVisualStyle">
             <Setter.Value>
                 <Style>
+                    <!-- ReSharper disable once Xaml.RedundantPropertyTypeQualifier -->
                     <Setter Property="Control.Template">
                         <Setter.Value>
                             <ControlTemplate>

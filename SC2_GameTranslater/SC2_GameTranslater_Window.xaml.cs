@@ -1,33 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows;
+using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 using Fluent;
 using Fluent.Localization;
-using System.IO;
-using System.Globalization;
-using System.Reflection;
-using System.Threading;
 using SC2_GameTranslater.Source;
-using System.Data;
-using System.Text.RegularExpressions;
+using Binding = System.Windows.Data.Binding;
+using Button = System.Windows.Controls.Button;
+using HorizontalAlignment = System.Windows.HorizontalAlignment;
+using Orientation = System.Windows.Controls.Orientation;
+using TextBox = System.Windows.Controls.TextBox;
 
 namespace SC2_GameTranslater
 {
-    using Globals = Source.Class_Globals;
-    using Preference = Source.Class_Preference;
-    using Log = Source.Class_Log;
-    using EnumLanguage = Source.EnumLanguage;
+    using Globals = Class_Globals;
+    using Preference = Class_Preference;
+    using Log = Class_Log;
 
     #region 声明
 
@@ -63,7 +67,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 全部（全部文本及ID）
         /// </summary>
-        All = 29,
+        All = 29
     }
 
     /// <summary>
@@ -89,7 +93,7 @@ namespace SC2_GameTranslater
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class SC2_GameTranslater_Window : RibbonWindow
+    public partial class SC2_GameTranslater_Window
     {
         #region 声明
 
@@ -153,7 +157,7 @@ namespace SC2_GameTranslater
                 Button = new ToggleButton
                 {
                     Tag = null,
-                    IsEnabled = false,
+                    IsEnabled = false
                 };
                 Button.SetResourceReference(ToggleButton.HeaderProperty, "TEXT_Null");
                 Button.SetResourceReference(ToggleButton.IconProperty, "IMAGE_Null");
@@ -163,7 +167,7 @@ namespace SC2_GameTranslater
                 ComboItem = new ComboBoxItem
                 {
                     Tag = null,
-                    Content = ComboItemText,
+                    Content = ComboItemText
                 };
             }
 
@@ -176,7 +180,7 @@ namespace SC2_GameTranslater
                 Button = new ToggleButton
                 {
                     Tag = language,
-                    GroupName = "TranslateLanguage",
+                    GroupName = "TranslateLanguage"
                 };
                 Button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_{0}", language));
                 Button.SetResourceReference(ToggleButton.IconProperty, string.Format("IMAGE_{0}", language));
@@ -188,7 +192,7 @@ namespace SC2_GameTranslater
                 ComboItem = new ComboBoxItem
                 {
                     Tag = language,
-                    Content = ComboItemText,
+                    Content = ComboItemText
                 };
 
                 ListItemText = new TextBlock();
@@ -196,7 +200,7 @@ namespace SC2_GameTranslater
                 ListItem = new ListBoxItem
                 {
                     Tag = language,
-                    Content = ListItemText,
+                    Content = ListItemText
                 };
             }
             #endregion
@@ -339,7 +343,7 @@ namespace SC2_GameTranslater
                 Globals.CurrentLanguage = Globals.DictUILanguages[value];
                 ResourceDictionary_WindowLanguage.MergedDictionaries.Add(Globals.CurrentLanguage);
                 RibbonLocalization.Current.Localization = Globals.FluentLocalizationMap[value];
-                Title = Globals.CurrentLanguage["TEXT_WindowTitleText"].ToString() + " V" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                Title = Globals.CurrentLanguage["TEXT_WindowTitleText"] + " V" + Assembly.GetExecutingAssembly().GetName().Version;
             }
             get
             {
@@ -396,7 +400,7 @@ namespace SC2_GameTranslater
         {
             { EnumSearchTextLocation.All, IsInSearchResult_MatchAll},
             { EnumSearchTextLocation.Left, IsInSearchResult_MatchLeft},
-            { EnumSearchTextLocation.Right, IsInSearchResult_MatchRight},
+            { EnumSearchTextLocation.Right, IsInSearchResult_MatchRight}
         };
 
 
@@ -458,14 +462,19 @@ namespace SC2_GameTranslater
                     }
                 }
                 string itemName = language["TEXT_LanguageName"] as string;
-                Globals.DictComboBoxItemLanguage.Add(itemName, select);
-                Globals.DictUILanguages.Add(select, language);
-                Globals.FluentLocalizationMap[select] = assembly.CreateInstance("SC2_GameTranslater.Source.RibbonLanguage_" + Enum.GetName(typeof(EnumLanguage), select)) as RibbonLocalizationBase;
-                ComboBox_Language.Items.Add(itemName);
-                if (CultureInfo.CurrentCulture.LCID == (int)select)
+                if (itemName != null)
                 {
-                    ComboBox_Language.SelectedItem = itemName;
-                    useDefault = false;
+                    Globals.DictComboBoxItemLanguage.Add(itemName, @select);
+                    Globals.DictUILanguages.Add(@select, language);
+                    Globals.FluentLocalizationMap[@select] =
+                        assembly.CreateInstance("SC2_GameTranslater.Source.RibbonLanguage_" +
+                                                Enum.GetName(typeof(EnumLanguage), @select)) as RibbonLocalizationBase;
+                    ComboBox_Language.Items.Add(itemName);
+                    if (CultureInfo.CurrentCulture.LCID == (int) @select)
+                    {
+                        ComboBox_Language.SelectedItem = itemName;
+                        useDefault = false;
+                    }
                 }
             }
             if (useDefault)
@@ -516,40 +525,6 @@ namespace SC2_GameTranslater
 
         #region 通用
 
-        /// <summary>
-        /// 打开文件浏览器选择文件
-        /// </summary>
-        /// <param name="pTextBox">设置文件地址的TextBox控件</param>
-        /// <param name="pFilter">文件类型筛选字符串</param>
-        /// <param name="pTitle">标题</param>
-        /// <returns></returns>
-        private FileInfo OpenFileDialogGetOpenFile(System.Windows.Controls.TextBox pTextBox, string pFilter, string pTitle)
-        {
-            System.Windows.Forms.OpenFileDialog fileDialog = new System.Windows.Forms.OpenFileDialog();
-            if (Directory.Exists(pTextBox.Text))
-            {
-                fileDialog.InitialDirectory = pTextBox.Text;
-            }
-            else
-            {
-                fileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            }
-            fileDialog.Filter = pFilter;
-            fileDialog.Multiselect = false;
-            fileDialog.RestoreDirectory = true;
-            fileDialog.Title = pTitle;
-            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                pTextBox.Text = fileDialog.FileName;
-                return new FileInfo(fileDialog.FileName);
-            }
-            else
-            {
-                pTextBox.Text = "";
-                return null;
-            }
-        }
-
         #endregion
 
         #region 进度条
@@ -563,8 +538,8 @@ namespace SC2_GameTranslater
         /// <param name="func">调用委托</param>
         public void ProgressBarInit(int max, string msg, object param, Delegate_ProgressEvent func)
         {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
-                (ThreadStart)delegate ()
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                (ThreadStart)delegate
                 {
                     Grid_Main.IsEnabled = false;
                     ProgressBar_Loading.Visibility = Visibility.Visible;
@@ -584,8 +559,8 @@ namespace SC2_GameTranslater
         /// <param name="func">调用委托</param>
         public void ProgressBarUpadte(int count, string msg, object param, Delegate_ProgressEvent func)
         {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
-                (ThreadStart)delegate ()
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                (ThreadStart)delegate
                 {
                     ProgressBar_Loading.Value += count;
                     TextBlock_ProgressMsg.Text = string.Format("({0}/{1}) {2} {3}", ProgressBar_Loading.Value, ProgressBar_Loading.Maximum, Globals.CurrentLanguage["UI_TextBlock_ProgressMsg_Text"], msg);
@@ -600,8 +575,8 @@ namespace SC2_GameTranslater
         /// <param name="func">调用委托</param>
         public void ProgressBarClean(object param, Delegate_ProgressEvent func)
         {
-            Dispatcher.BeginInvoke(priority: System.Windows.Threading.DispatcherPriority.Normal,
-                method: (ThreadStart)delegate ()
+            Dispatcher.BeginInvoke(priority: DispatcherPriority.Normal,
+                method: (ThreadStart)delegate
                 {
                     ProgressBar_Loading.Visibility = Visibility.Hidden;
                     TextBlock_ProgressMsg.Visibility = Visibility.Hidden;
@@ -623,10 +598,10 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void Executed_New(object sender, ExecutedRoutedEventArgs e)
         {
-            string baseFolder = Globals.Preference.LastFolderPath; ;
+            string baseFolder = Globals.Preference.LastFolderPath;
             string filter = Globals.CurrentLanguage["TEXT_SC2File"] as string + "|" + Globals.FileName_SC2Components;
             string title = Globals.CurrentLanguage["UI_OpenFileDialog_New_Title"] as string;
-            if (Globals.OpenFilePathDialog(baseFolder, filter, title, out System.Windows.Forms.OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
+            if (Globals.OpenFilePathDialog(baseFolder, filter, title, out OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
                 Globals.Preference.LastFolderPath = file.DirectoryName;
@@ -656,11 +631,11 @@ namespace SC2_GameTranslater
             string baseFolder = Globals.Preference.LastFolderPath; ;
             string filter = Globals.CurrentLanguage["TEXT_ProjectFile"] as string + "|*" + Globals.Extension_SC2GameTran;
             string title = Globals.CurrentLanguage["UI_OpenFileDialog_Open_Title"] as string;
-            if (Globals.OpenFilePathDialog(baseFolder, filter, title, out System.Windows.Forms.OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
+            if (Globals.OpenFilePathDialog(baseFolder, filter, title, out OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
                 Globals.Preference.LastFolderPath = file.DirectoryName;
-                bool result = ProjectOpen(file);
+                ProjectOpen(file);
 
             }
 
@@ -752,6 +727,7 @@ namespace SC2_GameTranslater
         public static void Executed_Accept(object sender, ExecutedRoutedEventArgs e)
         {
             Log.Assert(Globals.CurrentProject != null);
+            Debug.Assert(Globals.CurrentProject != null, "Globals.CurrentProject != null");
             if (!Globals.CurrentProject.SC2Components.Exists)
             {
                 if (!SetComponentsPath())
@@ -783,10 +759,10 @@ namespace SC2_GameTranslater
         public static void Executed_ReloadTranslate(object sender, ExecutedRoutedEventArgs e)
         {
             Log.Assert(Globals.CurrentProject != null);
-            string baseFolder = Globals.Preference.LastFolderPath; ;
+            string baseFolder = Globals.Preference.LastFolderPath;
             string filter = Globals.CurrentLanguage["TEXT_ProjectFile"] as string + "|*" + Globals.Extension_SC2GameTran;
             string title = Globals.CurrentLanguage["UI_OpenFileDialog_Reload_Title"] as string;
-            if (Globals.OpenFilePathDialog(baseFolder, filter, title, out System.Windows.Forms.OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
+            if (Globals.OpenFilePathDialog(baseFolder, filter, title, out OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
                 Globals.Preference.LastFolderPath = file.DirectoryName;
@@ -797,6 +773,7 @@ namespace SC2_GameTranslater
                 };
                 if (!dialog.ShowDialog() == true) return;
                 List<EnumLanguage> languages = dialog.DirtLanguageCheckBox.Where(r => r.Value.IsChecked == true).Select(r => r.Key).ToList();
+                Debug.Assert(Globals.CurrentProject != null, "Globals.CurrentProject != null");
                 Globals.CurrentProject.ReloadTranslateText(project, languages, dialog.CheckBox_ReloadOnlyModify.IsChecked == true);
                 Globals.MainWindow.RefreshTranslatedText(Globals.CurrentProject);
             }
@@ -823,10 +800,10 @@ namespace SC2_GameTranslater
         {
             Log.Assert(Globals.CurrentProject != null);
             Log.Assert(Globals.CurrentProject != null);
-            string baseFolder = Globals.Preference.LastFolderPath; ;
+            string baseFolder = Globals.Preference.LastFolderPath;
             string filter = Globals.CurrentLanguage["TEXT_SC2File"] as string + "|" + Globals.FileName_SC2Components;
             string title = Globals.CurrentLanguage["UI_OpenFileDialog_Reload_Title"] as string;
-            if (Globals.OpenFilePathDialog(baseFolder, filter, title, out System.Windows.Forms.OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
+            if (Globals.OpenFilePathDialog(baseFolder, filter, title, out OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
                 Globals.Preference.LastFolderPath = file.DirectoryName;
@@ -875,10 +852,10 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void Executed_RecentProjects(object sender, ExecutedRoutedEventArgs e)
         {
-            FileInfo file = new FileInfo(e.Parameter as string);
+            FileInfo file = new FileInfo(e.Parameter as string ?? throw new InvalidOperationException());
             if (file.Exists)
             {
-                bool result = ProjectOpen(file);
+                ProjectOpen(file);
                 Globals.MainWindow.Backstage_Menu.IsOpen = false;
             }
             else
@@ -1031,7 +1008,7 @@ namespace SC2_GameTranslater
             };
 
             EnumLanguage[] array = Enum.GetValues(typeof(EnumLanguage)).Cast<EnumLanguage>().ToArray();
-            Array.Sort(array, (p1, p2) => Enum.GetName(typeof(EnumLanguage), p1).CompareTo(Enum.GetName(typeof(EnumLanguage), p2)));
+            Array.Sort(array, (p1, p2) => string.Compare(Enum.GetName(typeof(EnumLanguage), p1), Enum.GetName(typeof(EnumLanguage), p2), StringComparison.Ordinal));
             foreach (EnumLanguage language in array)
             {
                 list.Add(language, new TranslateLanguageControls(language));
@@ -1092,7 +1069,7 @@ namespace SC2_GameTranslater
                 IsChecked = true,
                 Height = ToggleButton_FilterGalaxyFileNone.Height,
                 FontSize = ToggleButton_FilterGalaxyFileNone.FontSize,
-                VerticalContentAlignment = VerticalAlignment.Center,
+                VerticalContentAlignment = VerticalAlignment.Center
             };
             button.SetResourceReference(ToggleButton.IconProperty, "IMAGE_GalaxyFile");
             button.SetResourceReference(ToggleButton.LargeIconProperty, "IMAGE_GalaxyFile");
@@ -1258,7 +1235,7 @@ namespace SC2_GameTranslater
         private List<string> GetSearchKeyList()
         {
             List<string> keyList = new List<string>();
-            EnumSearchTextType type = (EnumSearchTextType)(ComboBox_SearchType.SelectedItem as ComboBoxItem).Tag;
+            EnumSearchTextType type = (EnumSearchTextType)((ComboBoxItem) ComboBox_SearchType.SelectedItem).Tag;
             // ID
             if (type.HasFlag(EnumSearchTextType.ID))
             {
@@ -1269,7 +1246,8 @@ namespace SC2_GameTranslater
             if (type.HasFlag(EnumSearchTextType.Droped))
             {
                 ComboBoxItem item = ComboBox_SearchLanguage.SelectedItem as ComboBoxItem;
-                List<EnumLanguage> languageList = (CurrentTextData.DataSet as Data_GameText).LangaugeList;
+                List<EnumLanguage> languageList = ((Data_GameText) CurrentTextData.DataSet).LangaugeList;
+                Debug.Assert(item != null, nameof(item) + " != null");
                 if (item.Tag == null)
                 {
                     keyList.AddRange(languageList.Select(r => Data_GameText.GetGameRowNameForLanguage(r, Data_GameText.RN_GameText_DropedText)).ToList());
@@ -1284,7 +1262,8 @@ namespace SC2_GameTranslater
             if (type.HasFlag(EnumSearchTextType.Source))
             {
                 ComboBoxItem item = ComboBox_SearchLanguage.SelectedItem as ComboBoxItem;
-                List<EnumLanguage> languageList = (CurrentTextData.DataSet as Data_GameText).LangaugeList;
+                List<EnumLanguage> languageList = ((Data_GameText) CurrentTextData.DataSet).LangaugeList;
+                Debug.Assert(item != null, nameof(item) + " != null");
                 if (item.Tag == null)
                 {
                     keyList.AddRange(languageList.Select(r => Data_GameText.GetGameRowNameForLanguage(r, Data_GameText.RN_GameText_SourceText)).ToList());
@@ -1299,7 +1278,8 @@ namespace SC2_GameTranslater
             if (type.HasFlag(EnumSearchTextType.Edited))
             {
                 ComboBoxItem item = ComboBox_SearchLanguage.SelectedItem as ComboBoxItem;
-                List<EnumLanguage> languageList = (CurrentTextData.DataSet as Data_GameText).LangaugeList;
+                List<EnumLanguage> languageList = ((Data_GameText) CurrentTextData.DataSet).LangaugeList;
+                Debug.Assert(item != null, nameof(item) + " != null");
                 if (item.Tag == null)
                 {
                     keyList.AddRange(languageList.Select(r => Data_GameText.GetGameRowNameForLanguage(r, Data_GameText.RN_GameText_EditedText)).ToList());
@@ -1360,8 +1340,7 @@ namespace SC2_GameTranslater
         {
             string match = TextBox_SearchText.Text;
             if (String.IsNullOrEmpty(match)) return;
-            EnumSearchTextType type = (EnumSearchTextType)(ComboBox_SearchType.SelectedItem as ComboBoxItem).Tag;
-            EnumSearchTextLocation location = (EnumSearchTextLocation)(ComboBox_SearchLocation.SelectedItem as ComboBoxItem).Tag;
+            EnumSearchTextLocation location = (EnumSearchTextLocation)((ComboBoxItem) ComboBox_SearchLocation.SelectedItem).Tag;
             Delegate_IsInSearchResult searchMatchFunc = DictTextSearchLocationFunc[location];
             bool ignoreCase = CheckBox_SearchCase.IsChecked == false;
             if (ignoreCase) match = match.ToLower();
@@ -1382,10 +1361,8 @@ namespace SC2_GameTranslater
             {
                 return GalaxyFilter.Contains(Globals.Const_NoUseInGalaxy);
             }
-            else
-            {
-                return locations.Where(r => GalaxyFilter.Contains(r.GetParentRow(Data_GameText.RSN_GalaxyLine_GameLocation_Line)[Data_GameText.RN_GalaxyLine_File])).Count() != 0;
-            }
+
+            return locations.Where(r => GalaxyFilter.Contains(r.GetParentRow(Data_GameText.RSN_GalaxyLine_GameLocation_Line)[Data_GameText.RN_GalaxyLine_File])).Count() != 0;
         }
 
         /// <summary>
@@ -1418,7 +1395,7 @@ namespace SC2_GameTranslater
         {
             foreach (string key in keyList)
             {
-                if (row[key] != DBNull.Value && match.IsMatch(row[key] as string))
+                if (row[key] != DBNull.Value && match.IsMatch(row[key] as string ?? throw new InvalidOperationException()))
                 {
                     return true;
                 }
@@ -1581,11 +1558,9 @@ namespace SC2_GameTranslater
                 AddRecentProject(file);
                 return true;
             }
-            else
-            {
-                Globals.CurrentProjectPath = null;
-                return false;
-            }
+
+            Globals.CurrentProjectPath = null;
+            return false;
         }
 
         /// <summary>
@@ -1608,7 +1583,6 @@ namespace SC2_GameTranslater
             if (!isSaveAs && Globals.CurrentProjectPath != null)
             {
                 ProjectSave(Globals.CurrentProjectPath);
-                return;
             }
             else
             {
@@ -1616,7 +1590,7 @@ namespace SC2_GameTranslater
                 string filter = Globals.CurrentLanguage["TEXT_ProjectFile"] as string + "|*" + Globals.Extension_SC2GameTran;
                 string key = isSaveAs ? "UI_OpenFileDialog_SaveAs_Title" : "UI_OpenFileDialog_Save_Title";
                 string title = Globals.CurrentLanguage[isSaveAs] as string;
-                if (Globals.SaveFilePathDialog(baseFolder, filter, title, out System.Windows.Forms.SaveFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
+                if (Globals.SaveFilePathDialog(baseFolder, filter, title, out SaveFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
                 {
                     FileInfo file = new FileInfo(fileDialog.FileName);
                     Globals.Preference.LastFolderPath = file.DirectoryName;
@@ -1689,16 +1663,14 @@ namespace SC2_GameTranslater
             string baseFolder = Globals.MainWindow.TextBox_ComponentsPath.Text; ;
             string filter = Globals.CurrentLanguage["TEXT_SC2File"] as string + "|" + Globals.FileName_SC2Components;
             string title = Globals.CurrentLanguage["UI_OpenFileDialog_CompontentsPath_Title"] as string;
-            if (Globals.OpenFilePathDialog(baseFolder, filter, title, out System.Windows.Forms.OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
+            if (Globals.OpenFilePathDialog(baseFolder, filter, title, out OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
                 Globals.CurrentProject.SC2Components = file;
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         /// <summary>
@@ -1776,31 +1748,31 @@ namespace SC2_GameTranslater
                 Source = bitmap,
                 Margin = new Thickness(3),
                 VerticalAlignment = VerticalAlignment.Center,
-                HorizontalAlignment = HorizontalAlignment.Left,
+                HorizontalAlignment = HorizontalAlignment.Left
             };
             TextBlock text = new TextBlock
             {
                 Text = path,
                 Margin = new Thickness(3),
                 VerticalAlignment = VerticalAlignment.Center,
-                HorizontalAlignment = HorizontalAlignment.Left,
+                HorizontalAlignment = HorizontalAlignment.Left
             };
             StackPanel panel = new StackPanel
             {
                 Orientation = Orientation.Horizontal,
                 Margin = new Thickness(3),
-                HorizontalAlignment = HorizontalAlignment.Stretch,
+                HorizontalAlignment = HorizontalAlignment.Stretch
             };
             panel.Children.Add(image);
             panel.Children.Add(text);
-            System.Windows.Controls.Button button = new System.Windows.Controls.Button
+            Button button = new Button
             {
                 Content = panel,
                 Command = CommandRecentProjects,
                 CommandParameter = path,
                 HorizontalContentAlignment = HorizontalAlignment.Left,
                 Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)),
-                BorderThickness = new Thickness(0),
+                BorderThickness = new Thickness(0)
             };
             ItemsControl_RecentFiles.Items.Add(button);
         }
@@ -1839,7 +1811,7 @@ namespace SC2_GameTranslater
                     Binding binding = new Binding(Data_GameText.GetGameRowNameForLanguage((EnumLanguage)button.Tag, Data_GameText.RN_GameText_EditedText))
                     {
                         Mode = BindingMode.TwoWay,
-                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
                     };
                     Globals.MainWindow.DataGridColumn_TranslateEditedText.Binding = binding;
                 }
@@ -1858,7 +1830,7 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="sender">事件控件</param>
         /// <param name="e">响应参数</param>
-        private void RibbonWindow_Main_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void RibbonWindow_Main_Closing(object sender, CancelEventArgs e)
         {
             Globals.Preference.SavePreference();
         }
@@ -2084,6 +2056,7 @@ namespace SC2_GameTranslater
             Globals.MainWindow.RefreshTranslatedText();
             e.Handled = true;
         }
+       
         /// <summary>
         /// 翻译文本表选择事件
         /// </summary>
@@ -2150,7 +2123,7 @@ namespace SC2_GameTranslater
                 DataRow row = view.Row;
                 string keyStatus = Data_GameText.GetGameRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_TextStatus);
                 string keySource = Data_GameText.GetGameRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_SourceText);
-                string value = (e.EditingElement as System.Windows.Controls.TextBox).Text;
+                string value = (e.EditingElement as TextBox).Text;
                 switch ((EnumGameTextStatus)row[keyStatus])
                 {
                     case EnumGameTextStatus.Empty:
@@ -2169,10 +2142,7 @@ namespace SC2_GameTranslater
                             row[keyStatus] = EnumGameTextStatus.Modified;
                         }
                         break;
-                    default:
-                        break;
                 }
-
             }
         }
 
