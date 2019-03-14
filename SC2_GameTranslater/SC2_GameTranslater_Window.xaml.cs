@@ -415,6 +415,11 @@ namespace SC2_GameTranslater
         /// </summary>
         private EnumLanguage CurrentTranslateLanguage { set => SetValue(CurrentTranslateLanguageProperty, value); get => (EnumLanguage)GetValue(CurrentTranslateLanguageProperty); }
 
+        /// <summary>
+        /// 翻译语言数据源
+        /// </summary>
+        public static CollectionViewSource TranslateTextItemSource { set; get; } = NewTranslateTextItemSource();
+
         #endregion
 
         #region 字段
@@ -1156,6 +1161,16 @@ namespace SC2_GameTranslater
         #region DataGrid
 
         /// <summary>
+        /// 新建翻译语言数据源
+        /// </summary>
+        private static CollectionViewSource NewTranslateTextItemSource()
+        {
+            CollectionViewSource itemSource = new CollectionViewSource();
+            itemSource.Filter += Globals.MainWindow.TranslateTextItemSource_Filter;
+            return itemSource;
+        }
+
+        /// <summary>
         /// 刷新翻译文本
         /// </summary>
         /// <param name="project">项目数据</param>
@@ -1178,54 +1193,100 @@ namespace SC2_GameTranslater
         public void RefreshTranslatedText()
         {
             if (!CanRefreshTranslatedText) return;
-            if (CurrentTextData == null)
+            TranslateTextItemSource.Source = CurrentTextData == null ? null : CurrentTextData.AsEnumerable();
+            //if (CurrentTextData == null)
+            //{
+            //    DataGrid_TranslatedTexts.ItemsSource = null;
+            //    return;
+            //}
+            //EnumerableRowCollection<DataRow> query = CurrentTextData.AsEnumerable();
+            //if (TextFileFilter != EnumGameTextFile.All)
+            //{
+            //    string keyFile = Data_GameText.RN_GameText_File;
+            //    query = from row in query
+            //            where ((int)row[keyFile] & (int)TextFileFilter) != 0
+            //            select row;
+            //}
+            //if (TextStatusFilter != EnumGameTextStatus.All)
+            //{
+            //    string keyStatus = Data_GameText.GetGameRowNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus);
+            //    query = from row in query
+            //            where ((EnumGameTextStatus)row[keyStatus]).HasFlag(TextStatusFilter)
+            //            select row;
+            //}
+            //if (UseStatusFilter != EnumGameUseStatus.All)
+            //{
+            //    string keyStatus = Data_GameText.GetGameRowNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus);
+            //    query = from row in query
+            //            where ((EnumGameUseStatus)row[keyStatus]).HasFlag(UseStatusFilter)
+            //            select row;
+            //}
+            //if (!IsSelectAllGalaxyFilter)
+            //{
+            //    query = from row in query
+            //            where IsUseInGalaxyFiles(row)
+            //            select row;
+            //}
+            //if (RadioButton_SearchNull.IsChecked == true)
+            //{
+            //    SereachText_NullMod(ref query);
+            //}
+            //else if (RadioButton_SearchRegex.IsChecked == true)
+            //{
+            //    SereachText_RegexMod(ref query);
+            //}
+            //else
+            //{
+            //    SereachText_MatchMod(ref query);
+            //}
+            //DataView view = query.AsDataView();
+            //view.Sort = Data_GameText.RN_GameText_GalaxyIndex + " ASC";
+            //DataGrid_TranslatedTexts.ItemsSource = view;
+        }
+
+        /// <summary>
+        /// 获取翻译对象筛选结果
+        /// </summary>
+        /// <param name="row"></param>
+        /// <returns></returns>
+        private bool GetTranslateItemFilterResult(DataRow row)
+        {
+            if (!TextFileFilter.HasFlag((EnumGameTextFile)row[Data_GameText.RN_GameText_File]))
             {
-                DataGrid_TranslatedTexts.ItemsSource = null;
-                return;
+                return false;
             }
-            EnumerableRowCollection<DataRow> query = CurrentTextData.AsEnumerable();
-            if (TextFileFilter != EnumGameTextFile.All)
+            else if (!TextStatusFilter.HasFlag((EnumGameTextStatus)row[Data_GameText.GetGameRowNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus)]))
             {
-                string keyFile = Data_GameText.RN_GameText_File;
-                query = from row in query
-                        where ((int)row[keyFile] & (int)TextFileFilter) != 0
-                        select row;
+                return false;
             }
-            if (TextStatusFilter != EnumGameTextStatus.All)
+            else if (!UseStatusFilter.HasFlag((EnumGameUseStatus)row[Data_GameText.GetGameRowNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus);]))
+            else if (!IsSelectAllGalaxyFilter && !IsUseInGalaxyFiles(row))
             {
-                string keyStatus = Data_GameText.GetGameRowNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus);
-                query = from row in query
-                        where ((EnumGameTextStatus)row[keyStatus]).HasFlag(TextStatusFilter)
-                        select row;
+                return false;
             }
-            if (UseStatusFilter != EnumGameUseStatus.All)
+            else if (RadioButton_SearchNull.IsChecked == true)
             {
-                string keyStatus = Data_GameText.GetGameRowNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus);
-                query = from row in query
-                        where ((EnumGameUseStatus)row[keyStatus]).HasFlag(UseStatusFilter)
-                        select row;
+                try
+                {
+                    if (!IsInSearchResult_NullLangauge(row, GetSearchKeyList()))
+                    {
+                        return false;
+                    }
+                }
+                catch
+                {
+                    string match = TextBox_SearchText.Text;
+                    if (String.IsNullOrEmpty(match)) return;
+                    EnumSearchTextLocation location = (EnumSearchTextLocation)((ComboBoxItem)ComboBox_SearchLocation.SelectedItem).Tag;
+                    Delegate_IsInSearchResult searchMatchFunc = DictTextSearchLocationFunc[location];
+                    bool ignoreCase = CheckBox_SearchCase.IsChecked == false;
+                    if (ignoreCase) match = match.ToLower();
+                    if (!IsInSearchResult_MatchLangauge(row, GetSearchKeyList(), match, ignoreCase, searchMatchFunc))
+                    {
+                        return false;
+                    }
+                }
             }
-            if (!IsSelectAllGalaxyFilter)
-            {
-                query = from row in query
-                        where IsUseInGalaxyFiles(row)
-                        select row;
-            }
-            if (RadioButton_SearchNull.IsChecked == true)
-            {
-                SereachText_NullMod(ref query);
-            }
-            else if (RadioButton_SearchRegex.IsChecked == true)
-            {
-                SereachText_RegexMod(ref query);
-            }
-            else
-            {
-                SereachText_MatchMod(ref query);
-            }
-            DataView view = query.AsDataView();
-            view.Sort = Data_GameText.RN_GameText_GalaxyIndex + " ASC";
-            DataGrid_TranslatedTexts.ItemsSource = view;
         }
 
         /// <summary>
@@ -2143,6 +2204,28 @@ namespace SC2_GameTranslater
                         }
                         break;
                 }
+            }
+        }
+
+        /// <summary>
+        /// 翻译语言数据源赛选
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void TranslateTextItemSource_Filter(object sender, FilterEventArgs e)
+        {
+            if (e.Item is DataRow row)
+            {
+                if (!TextFileFilter.HasFlag((EnumGameTextFile)row[Data_GameText.RN_GameText_File]))
+                {
+                    e.Accepted = false;
+                    return;
+                }
+                
+            }
+            else
+            {
+                e.Accepted = false;
             }
         }
 

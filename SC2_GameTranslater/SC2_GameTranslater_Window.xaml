@@ -680,7 +680,7 @@
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 CellEditEnding="DataGrid_TranslatedTexts_CellEditEnding"
-                ItemsSource="{Binding}"
+                ItemsSource="{Binding Source={x:Static local:SC2_GameTranslater_Window.TranslateTextItemSource}}"
                 SelectedCellsChanged="DataGrid_TranslatedTexts_SelectedCellsChanged"
                 SelectionMode="Extended"
                 SelectionUnit="CellOrRowHeader">
