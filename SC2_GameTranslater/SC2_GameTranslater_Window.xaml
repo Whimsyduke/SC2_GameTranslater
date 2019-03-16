@@ -851,16 +851,6 @@
                         CanUserSort="True"
                         IsReadOnly="True"
                         Visibility="{Binding Source={StaticResource MenuItem_TextStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
-                        <DataGridTextColumn.Binding>
-                            <MultiBinding x:Name="MulitBinding_TranslateTextStatus"
-                                Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_TextStatus}"
-                                UpdateSourceTrigger="PropertyChanged">
-                                <Binding />
-                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
-                                <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
-                                <Binding />
-                            </MultiBinding>
-                        </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateTextStatus_Header}" />
                         </DataGridTextColumn.Header>
@@ -881,16 +871,6 @@
                         CanUserSort="True"
                         IsReadOnly="True"
                         Visibility="{Binding Source={StaticResource MenuItem_UseStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
-                        <DataGridTextColumn.Binding>
-                            <MultiBinding x:Name="MulitBinding_TranslateUseStatus"
-                                Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_UseStatus}"
-                                UpdateSourceTrigger="PropertyChanged">
-                                <Binding />
-                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
-                                <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
-                                <Binding/>
-                            </MultiBinding>
-                        </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateUseStatus_Header}" />
                         </DataGridTextColumn.Header>
@@ -1017,7 +997,8 @@
             </DataGrid>
         </GroupBox>
         <GridSplitter
-            Grid.Row="2" Grid.Column="0"
+            Grid.Row="2"
+            Grid.Column="0"
             Height="3"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
@@ -1169,13 +1150,10 @@
                                             IsReadOnly="True"
                                             Visibility="{Binding Source={StaticResource MenuItem_TextStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                                             <DataGridTextColumn.Binding>
-                                                <MultiBinding
-                                                    Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_TextStatus}"
-                                                    UpdateSourceTrigger="PropertyChanged">
+                                                <MultiBinding Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_TextStatus}" UpdateSourceTrigger="PropertyChanged">
                                                     <Binding Path="TextStatus" />
                                                     <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
                                                     <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
-                                                    <Binding/>
                                                 </MultiBinding>
                                             </DataGridTextColumn.Binding>
                                             <DataGridTextColumn.Header>
@@ -1199,13 +1177,10 @@
                                             IsReadOnly="True"
                                             Visibility="{Binding Source={StaticResource MenuItem_UseStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                                             <DataGridTextColumn.Binding>
-                                                <MultiBinding
-                                                    Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_UseStatus}"
-                                                    UpdateSourceTrigger="PropertyChanged">
-                                                    <Binding Path="UseStatus"/>
+                                                <MultiBinding Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_UseStatus}" UpdateSourceTrigger="PropertyChanged">
+                                                    <Binding Path="UseStatus" />
                                                     <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
                                                     <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
-                                                    <Binding/>
                                                 </MultiBinding>
                                             </DataGridTextColumn.Binding>
                                             <DataGridTextColumn.Header>
@@ -1385,7 +1360,7 @@
                                     <DataGridTextColumn
                                         x:Name="DataGridColumn_GalaxyLineNumber"
                                         Width="*"
-                                        Binding="{Binding LineNumber,UpdateSourceTrigger=PropertyChanged}"
+                                        Binding="{Binding LineNumber, UpdateSourceTrigger=PropertyChanged}"
                                         CanUserReorder="True"
                                         CanUserResize="True"
                                         CanUserSort="True"
@@ -1463,7 +1438,10 @@
                 </Avalon:TextEditor>
             </GroupBox>
         </Grid>
-        <Fluent:StatusBar Name="StatusBar_Below" Grid.Row="4" Grid.Column="0">
+        <Fluent:StatusBar
+            Name="StatusBar_Below"
+            Grid.Row="4"
+            Grid.Column="0">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>

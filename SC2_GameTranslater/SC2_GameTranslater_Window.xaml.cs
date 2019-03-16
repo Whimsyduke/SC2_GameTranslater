@@ -473,8 +473,7 @@ namespace SC2_GameTranslater
                             continue;
                     }
                 }
-                string itemName = language["TEXT_LanguageName"] as string;
-                if (itemName != null)
+                if (language["TEXT_LanguageName"] is string itemName)
                 {
                     Globals.DictComboBoxItemLanguage.Add(itemName, @select);
                     Globals.DictUILanguages.Add(@select, language);
@@ -482,7 +481,7 @@ namespace SC2_GameTranslater
                         assembly.CreateInstance("SC2_GameTranslater.Source.RibbonLanguage_" +
                                                 Enum.GetName(typeof(EnumLanguage), @select)) as RibbonLocalizationBase;
                     ComboBox_Language.Items.Add(itemName);
-                    if (CultureInfo.CurrentCulture.LCID == (int) @select)
+                    if (CultureInfo.CurrentCulture.LCID == (int)@select)
                     {
                         ComboBox_Language.SelectedItem = itemName;
                         useDefault = false;
@@ -1164,6 +1163,16 @@ namespace SC2_GameTranslater
         #region DataGrid
 
         /// <summary>
+        /// 设置滚动到指定项第一行
+        /// </summary>
+        /// <param name="item">滚动到的第一行</param>
+        private void SetItemFirstRow(object item)
+        {
+            DataGrid_TranslatedTexts.ScrollIntoView(DataGrid_TranslatedTexts.Items.Cast<DataRowView>().Last());
+            DataGrid_TranslatedTexts.ScrollIntoView(item);
+        }
+
+        /// <summary>
         /// 刷新翻译文本
         /// </summary>
         /// <param name="project">项目数据</param>
@@ -1711,7 +1720,7 @@ namespace SC2_GameTranslater
         /// <param name="language">语言</param>
         /// <param name="name">基本名称</param>
         /// <returns>绑定</returns>
-        private Binding GetRowBindingForLanguage(EnumLanguage language, string name)
+        private Binding GetRowBinding(EnumLanguage language, string name)
         {
             Binding binding = new Binding(Data_GameText.GetRowNameForLanguage(language, name))
             {
@@ -1719,6 +1728,34 @@ namespace SC2_GameTranslater
                 UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
             };
             return binding;
+        }
+        
+        /// <summary>
+        /// 获取翻译语言对应的绑定
+        /// </summary>
+        /// <param name="language">语言</param>
+        /// <param name="name">基本名称</param>
+        /// <param name="langPath">使用翻译语言构成路径</param>
+        /// <param name="converter">转换器</param>
+        /// <returns>绑定</returns>
+        private MultiBinding GetStatusRowMultiBinding(Binding binding, IMultiValueConverter converter)
+        {
+            MultiBinding multiBinding = new MultiBinding();            
+            multiBinding.Bindings.Add(binding);
+            Binding childBinding = new Binding("CurrentTranslateLanguage")
+            {
+                ElementName = "RibbonWindow_Main",
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            };
+            multiBinding.Bindings.Add(childBinding);
+            childBinding = new Binding("EnumCurrentLanguage")
+            {
+                ElementName = "RibbonWindow_Main",
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            };
+            multiBinding.Bindings.Add(childBinding);            
+            multiBinding.Converter = converter;
+            return multiBinding;
         }
 
         /// <summary>
@@ -1733,11 +1770,9 @@ namespace SC2_GameTranslater
             }
             else
             {
-                DataGridColumn_TranslateEditedText.Binding = GetRowBindingForLanguage(language, Data_GameText.RN_GameText_EditedText);
-                MulitBinding_TranslateTextStatus.Bindings.RemoveAt(3);
-                MulitBinding_TranslateTextStatus.Bindings.Add(GetRowBindingForLanguage(language, Data_GameText.RN_GameText_TextStatus));
-                MulitBinding_TranslateUseStatus.Bindings.RemoveAt(3);
-                MulitBinding_TranslateUseStatus.Bindings.Add(GetRowBindingForLanguage(language, Data_GameText.RN_GameText_UseStatus));
+                DataGridColumn_TranslateEditedText.Binding = GetRowBinding(language, Data_GameText.RN_GameText_EditedText);
+                DataGridColumn_TranslateTextStatus.Binding = GetStatusRowMultiBinding(GetRowBinding(language, Data_GameText.RN_GameText_TextStatus), new EnumNameInLanguage_TextStatusConverter());
+                DataGridColumn_TranslateUseStatus.Binding = GetStatusRowMultiBinding(GetRowBinding(language, Data_GameText.RN_GameText_TextStatus), new EnumNameInLanguage_TextStatusConverter());
             }
             RefreshTranslatedText();
         }
