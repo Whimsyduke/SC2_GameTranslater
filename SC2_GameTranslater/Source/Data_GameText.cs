@@ -301,7 +301,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="language">语言</param>
         /// <param name="name">基本名称</param>
         /// <returns>列名</returns>
-        public static string GetGameRowNameForLanguage(EnumLanguage language, string name)
+        public static string GetRowNameForLanguage(EnumLanguage language, string name)
         {
             return string.Format("{0}_{1}", Enum.GetName(language.GetType(), language), name);
         }
@@ -331,7 +331,7 @@ namespace SC2_GameTranslater.Source
             table = Tables[TN_GameText];
 
             // Text Status
-            columnName = GetGameRowNameForLanguage(language, RN_GameText_TextStatus);
+            columnName = GetRowNameForLanguage(language, RN_GameText_TextStatus);
             column = new DataColumn(columnName, typeof(Int32), "", MappingType.Attribute)
             {
                 Caption = columnName,
@@ -342,7 +342,7 @@ namespace SC2_GameTranslater.Source
             table.Columns.Add(column);
 
             // Use Status
-            columnName = GetGameRowNameForLanguage(language, RN_GameText_UseStatus);
+            columnName = GetRowNameForLanguage(language, RN_GameText_UseStatus);
             column = new DataColumn(columnName, typeof(Int32), "", MappingType.Attribute)
             {
                 Caption = columnName,
@@ -353,7 +353,7 @@ namespace SC2_GameTranslater.Source
             table.Columns.Add(column);
 
             // Drop Text
-            columnName = GetGameRowNameForLanguage(language, RN_GameText_DropedText);
+            columnName = GetRowNameForLanguage(language, RN_GameText_DropedText);
             column = new DataColumn(columnName, typeof(string), "", MappingType.Element)
             {
                 Caption = columnName,
@@ -364,7 +364,7 @@ namespace SC2_GameTranslater.Source
             table.Columns.Add(column);
 
             // Source Text
-            columnName = GetGameRowNameForLanguage(language, RN_GameText_SourceText);
+            columnName = GetRowNameForLanguage(language, RN_GameText_SourceText);
             column = new DataColumn(columnName, typeof(string), "", MappingType.Element)
             {
                 Caption = columnName,
@@ -375,7 +375,7 @@ namespace SC2_GameTranslater.Source
             table.Columns.Add(column);
 
             // Edited Text
-            columnName = GetGameRowNameForLanguage(language, RN_GameText_EditedText);
+            columnName = GetRowNameForLanguage(language, RN_GameText_EditedText);
             column = new DataColumn(columnName, typeof(string), "", MappingType.Element)
             {
                 Caption = columnName,
@@ -537,9 +537,9 @@ namespace SC2_GameTranslater.Source
             foreach (DataRow langRow in LangaugeRowList)
             {
                 EnumLanguage language = (EnumLanguage)langRow[RN_Language_ID];
-                dropKey = GetGameRowNameForLanguage(language, RN_GameText_DropedText);
-                srcKey = GetGameRowNameForLanguage(language, RN_GameText_SourceText);
-                statusKey = GetGameRowNameForLanguage(language, RN_GameText_UseStatus);
+                dropKey = GetRowNameForLanguage(language, RN_GameText_DropedText);
+                srcKey = GetRowNameForLanguage(language, RN_GameText_SourceText);
+                statusKey = GetRowNameForLanguage(language, RN_GameText_UseStatus);
                 switch ((EnumGameUseStatus)langRow[RN_Language_Status])
                 {
                     case EnumGameUseStatus.Droped:
@@ -628,9 +628,9 @@ namespace SC2_GameTranslater.Source
 
                 foreach (EnumLanguage language in languages)
                 {
-                    keyStatus = GetGameRowNameForLanguage(language, RN_GameText_TextStatus);
+                    keyStatus = GetRowNameForLanguage(language, RN_GameText_TextStatus);
                     if (onlyModified && (EnumGameTextStatus)dataRow[keyStatus] != EnumGameTextStatus.Modified) continue;
-                    keyEdited = GetGameRowNameForLanguage(language, RN_GameText_EditedText);
+                    keyEdited = GetRowNameForLanguage(language, RN_GameText_EditedText);
                     targetRow[keyStatus] = EnumGameTextStatus.Modified;
                     targetRow[keyEdited] = dataRow[keyEdited];
                 }
@@ -676,15 +676,15 @@ namespace SC2_GameTranslater.Source
             foreach (EnumLanguage language in langList)
             {
                 string key;
-                key = GetGameRowNameForLanguage(language, RN_GameText_TextStatus);
+                key = GetRowNameForLanguage(language, RN_GameText_TextStatus);
                 object dataTextStatus = textRow[key];
-                key = GetGameRowNameForLanguage(language, RN_GameText_UseStatus);
+                key = GetRowNameForLanguage(language, RN_GameText_UseStatus);
                 object dataUseStatus = textRow[key];
-                key = GetGameRowNameForLanguage(language, RN_GameText_DropedText);
+                key = GetRowNameForLanguage(language, RN_GameText_DropedText);
                 object dataDropedText = textRow[key];
-                key = GetGameRowNameForLanguage(language, RN_GameText_SourceText);
+                key = GetRowNameForLanguage(language, RN_GameText_SourceText);
                 object dataSourceText = textRow[key];
-                key = GetGameRowNameForLanguage(language, RN_GameText_EditedText);
+                key = GetRowNameForLanguage(language, RN_GameText_EditedText);
                 object dataEditedText = textRow[key];
                 GameTextForLanguageTable.Rows.Add(language, dataTextStatus, dataUseStatus, dataDropedText, dataSourceText, dataEditedText);
             }
@@ -836,9 +836,9 @@ namespace SC2_GameTranslater.Source
                 if (!backFile.Directory.Exists) backFile.Directory.Create();
                 File.Copy(originpath, backFile.FullName, true);
                 StreamWriter sw = new StreamWriter(originpath, false);
-                string statusKey = GetGameRowNameForLanguage(language, RN_GameText_TextStatus);
-                string useKey = GetGameRowNameForLanguage(language, RN_GameText_UseStatus);
-                string editedKey = GetGameRowNameForLanguage(language, RN_GameText_EditedText);
+                string statusKey = GetRowNameForLanguage(language, RN_GameText_TextStatus);
+                string useKey = GetRowNameForLanguage(language, RN_GameText_UseStatus);
+                string editedKey = GetRowNameForLanguage(language, RN_GameText_EditedText);
                 foreach (DataRow row in data)
                 {
                     if (EnumGameUseStatus.Useable.HasFlag((EnumGameUseStatus)row[useKey]) && EnumGameTextStatus.Useable.HasFlag((EnumGameTextStatus)row[statusKey]))
@@ -1007,11 +1007,11 @@ namespace SC2_GameTranslater.Source
         public DataRow SetTextValue(EnumLanguage language, EnumGameTextFile file, string key, string value)
         {
             DataRow row = GetGameTextRow(file, key);
-            row[GetGameRowNameForLanguage(language, RN_GameText_TextStatus)] = EnumGameTextStatus.Normal;
-            row[GetGameRowNameForLanguage(language, RN_GameText_UseStatus)] = EnumGameUseStatus.Normal;
-            row[GetGameRowNameForLanguage(language, RN_GameText_DropedText)] = value;
-            row[GetGameRowNameForLanguage(language, RN_GameText_SourceText)] = value;
-            row[GetGameRowNameForLanguage(language, RN_GameText_EditedText)] = value;
+            row[GetRowNameForLanguage(language, RN_GameText_TextStatus)] = EnumGameTextStatus.Normal;
+            row[GetRowNameForLanguage(language, RN_GameText_UseStatus)] = EnumGameUseStatus.Normal;
+            row[GetRowNameForLanguage(language, RN_GameText_DropedText)] = value;
+            row[GetRowNameForLanguage(language, RN_GameText_SourceText)] = value;
+            row[GetRowNameForLanguage(language, RN_GameText_EditedText)] = value;
             return row;
         }
 

@@ -23,10 +23,6 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid Name="Grid_Main">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="3*" />
@@ -668,8 +664,6 @@
         <GroupBox
             Name="GroupBox_TranslatedTexts"
             Grid.Row="1"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
             Margin="3"
             Header="{DynamicResource UI_GroupBox_TranslatedTexts_Header}">
             <DataGrid
@@ -858,13 +852,13 @@
                         IsReadOnly="True"
                         Visibility="{Binding Source={StaticResource MenuItem_TextStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Binding>
-                            <MultiBinding
+                            <MultiBinding x:Name="MulitBinding_TranslateTextStatus"
                                 Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_TextStatus}"
-                                ConverterParameter="{x:Static source:Data_GameText.RN_GameText_TextStatus}"
                                 UpdateSourceTrigger="PropertyChanged">
                                 <Binding />
                                 <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
                                 <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
+                                <Binding />
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
@@ -888,13 +882,13 @@
                         IsReadOnly="True"
                         Visibility="{Binding Source={StaticResource MenuItem_UseStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Binding>
-                            <MultiBinding
+                            <MultiBinding x:Name="MulitBinding_TranslateUseStatus"
                                 Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_UseStatus}"
-                                ConverterParameter="{x:Static source:Data_GameText.RN_GameText_UseStatus}"
                                 UpdateSourceTrigger="PropertyChanged">
                                 <Binding />
                                 <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
                                 <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
+                                <Binding/>
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
@@ -1028,7 +1022,7 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             ResizeDirection="Rows" />
-        <Grid Grid.Row="3" Grid.Column="0">
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="Auto" />
@@ -1177,11 +1171,11 @@
                                             <DataGridTextColumn.Binding>
                                                 <MultiBinding
                                                     Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_TextStatus}"
-                                                    ConverterParameter="{x:Static source:Data_GameText.RN_GameTextForLanguage_TextStatus}"
                                                     UpdateSourceTrigger="PropertyChanged">
-                                                    <Binding />
+                                                    <Binding Path="TextStatus" />
                                                     <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
                                                     <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
+                                                    <Binding/>
                                                 </MultiBinding>
                                             </DataGridTextColumn.Binding>
                                             <DataGridTextColumn.Header>
@@ -1207,11 +1201,11 @@
                                             <DataGridTextColumn.Binding>
                                                 <MultiBinding
                                                     Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_UseStatus}"
-                                                    ConverterParameter="{x:Static source:Data_GameText.RN_GameTextForLanguage_UseStatus}"
                                                     UpdateSourceTrigger="PropertyChanged">
-                                                    <Binding />
+                                                    <Binding Path="UseStatus"/>
                                                     <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
                                                     <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
+                                                    <Binding/>
                                                 </MultiBinding>
                                             </DataGridTextColumn.Binding>
                                             <DataGridTextColumn.Header>

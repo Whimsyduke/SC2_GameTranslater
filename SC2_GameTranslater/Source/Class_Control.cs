@@ -111,7 +111,7 @@ namespace SC2_GameTranslater.Source
             DataRowView rowView = values[0] as DataRowView;
             EnumLanguage language = (EnumLanguage)values[1];
             string column = parameter as string;
-            string key = Data_GameText.GetGameRowNameForLanguage(language, column);
+            string key = Data_GameText.GetRowNameForLanguage(language, column);
             Debug.Assert(rowView != null, nameof(rowView) + " != null");
             object display = rowView.Row[key];
             if (display == DBNull.Value)
@@ -192,21 +192,18 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            DataRowView rowView = values[0] as DataRowView;
             EnumLanguage translateLanguage = (EnumLanguage)values[1];
             EnumLanguage softeareLanguage = (EnumLanguage)values[2];
-            string column = parameter as string;
-            string key;
-            Debug.Assert(rowView != null, nameof(rowView) + " != null");
-            if (rowView.Row.Table == Data_GameText.GameTextForLanguageTable)
+            object var = null;
+            if (values[0] is DataRowView rowView)
             {
-                key = column;
+                string key = Data_GameText.GetRowNameForLanguage(translateLanguage, Data_GameText.RN_GameText_TextStatus);
+                var = rowView.Row[key];
             }
             else
             {
-                key = Data_GameText.GetGameRowNameForLanguage(translateLanguage, column);
+                var = values[0];
             }
-            var var = rowView.Row[key ?? throw new InvalidOperationException()];
             EnumGameTextStatus value = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), var);
             return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
         }
@@ -241,21 +238,19 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            DataRowView rowView = values[0] as DataRowView;
             EnumLanguage translateLanguage = (EnumLanguage)values[1];
             EnumLanguage softeareLanguage = (EnumLanguage)values[2];
-            string column = parameter as string;
-            string key;
-            Debug.Assert(rowView != null, nameof(rowView) + " != null");
-            if (rowView.Row.Table == Data_GameText.GameTextForLanguageTable)
+            object var = null;
+            if (values[0] is DataRowView rowView)
             {
-                key = column;
+                string key = Data_GameText.GetRowNameForLanguage(translateLanguage, Data_GameText.RN_GameText_UseStatus);
+                var = rowView.Row[key];
             }
             else
             {
-                key = Data_GameText.GetGameRowNameForLanguage(translateLanguage, column);
+                var = values[0];
             }
-            var var = rowView.Row[key ?? throw new InvalidOperationException()];
+
             EnumGameUseStatus value = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), var);
             return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
         }
@@ -338,7 +333,7 @@ namespace SC2_GameTranslater.Source
             }
             else
             {
-                key = Data_GameText.GetGameRowNameForLanguage(translateLanguage, column);
+                key = Data_GameText.GetRowNameForLanguage(translateLanguage, column);
             }
             var var = rowView.Row[key ?? throw new InvalidOperationException()];
             return var == DBNull.Value ? FontWeights.Bold: FontWeights.Normal;
@@ -395,7 +390,7 @@ namespace SC2_GameTranslater.Source
                     r.MouseLeftButtonDown += SC2_GameTranslater_Window.Run_MouseLeftButtonDown;
                     r.FontWeight = FontWeights.Bold;
                     r.ToolTip = select;
-                    string key = Data_GameText.GetGameRowNameForLanguage((EnumLanguage)values[1], Data_GameText.RN_GameText_EditedText);
+                    string key = Data_GameText.GetRowNameForLanguage((EnumLanguage)values[1], Data_GameText.RN_GameText_EditedText);
                     r.Text = textRow[key] as string;
                     r.Foreground = Brushes.Red;
                 }
