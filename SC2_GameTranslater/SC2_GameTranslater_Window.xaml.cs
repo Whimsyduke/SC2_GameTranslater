@@ -734,8 +734,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void Executed_Accept(object sender, ExecutedRoutedEventArgs e)
         {
-            Log.Assert(Globals.CurrentProject != null);
-            Debug.Assert(Globals.CurrentProject != null, "Globals.CurrentProject != null");
+            Log.Assert(Globals.CurrentProject != null, "Globals.CurrentProject != null");
             if (!Globals.CurrentProject.SC2Components.Exists)
             {
                 if (!SetComponentsPath())
@@ -766,7 +765,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void Executed_ReloadTranslate(object sender, ExecutedRoutedEventArgs e)
         {
-            Log.Assert(Globals.CurrentProject != null);
+            Log.Assert(Globals.CurrentProject != null, "Globals.CurrentProject != null");
             string baseFolder = Globals.Preference.LastFolderPath;
             string filter = Globals.CurrentLanguage["TEXT_ProjectFile"] as string + "|*" + Globals.Extension_SC2GameTran;
             string title = Globals.CurrentLanguage["UI_OpenFileDialog_Reload_Title"] as string;
@@ -781,7 +780,6 @@ namespace SC2_GameTranslater
                 };
                 if (!dialog.ShowDialog() == true) return;
                 List<EnumLanguage> languages = dialog.DirtLanguageCheckBox.Where(r => r.Value.IsChecked == true).Select(r => r.Key).ToList();
-                Debug.Assert(Globals.CurrentProject != null, "Globals.CurrentProject != null");
                 Globals.CurrentProject.ReloadTranslateText(project, languages, dialog.CheckBox_ReloadOnlyModify.IsChecked == true);
                 Globals.MainWindow.RefreshTranslatedText(Globals.CurrentProject);
             }
@@ -806,8 +804,7 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void Executed_ReloadSC2(object sender, ExecutedRoutedEventArgs e)
         {
-            Log.Assert(Globals.CurrentProject != null);
-            Log.Assert(Globals.CurrentProject != null);
+            Log.Assert(Globals.CurrentProject != null, "Globals.CurrentProject != null");
             string baseFolder = Globals.Preference.LastFolderPath;
             string filter = Globals.CurrentLanguage["TEXT_SC2File"] as string + "|" + Globals.FileName_SC2Components;
             string title = Globals.CurrentLanguage["UI_OpenFileDialog_Reload_Title"] as string;
@@ -1253,51 +1250,48 @@ namespace SC2_GameTranslater
                 keyList.Add(Data_GameText.RN_GameText_ID);
             }
 
-            // Droped Text
-            if (type.HasFlag(EnumSearchTextType.Droped))
+            if (ComboBox_SearchLanguage.SelectedItem is ComboBoxItem item)
             {
-                ComboBoxItem item = ComboBox_SearchLanguage.SelectedItem as ComboBoxItem;
-                List<EnumLanguage> languageList = ((Data_GameText) CurrentTextData.DataSet).LangaugeList;
-                Debug.Assert(item != null, nameof(item) + " != null");
-                if (item.Tag == null)
+                // Droped Text
+                if (type.HasFlag(EnumSearchTextType.Droped))
                 {
-                    keyList.AddRange(languageList.Select(r => Data_GameText.GetRowNameForLanguage(r, Data_GameText.RN_GameText_DropedText)).ToList());
+                    List<EnumLanguage> languageList = ((Data_GameText)CurrentTextData.DataSet).LangaugeList;
+                    if (item.Tag == null)
+                    {
+                        keyList.AddRange(languageList.Select(r => Data_GameText.GetRowNameForLanguage(r, Data_GameText.RN_GameText_DropedText)).ToList());
+                    }
+                    else
+                    {
+                        keyList.Add(Data_GameText.GetRowNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_DropedText));
+                    }
                 }
-                else
-                {
-                    keyList.Add(Data_GameText.GetRowNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_DropedText));
-                }
-            }
 
-            // Source Text
-            if (type.HasFlag(EnumSearchTextType.Source))
-            {
-                ComboBoxItem item = ComboBox_SearchLanguage.SelectedItem as ComboBoxItem;
-                List<EnumLanguage> languageList = ((Data_GameText) CurrentTextData.DataSet).LangaugeList;
-                Debug.Assert(item != null, nameof(item) + " != null");
-                if (item.Tag == null)
+                // Source Text
+                if (type.HasFlag(EnumSearchTextType.Source))
                 {
-                    keyList.AddRange(languageList.Select(r => Data_GameText.GetRowNameForLanguage(r, Data_GameText.RN_GameText_SourceText)).ToList());
+                    List<EnumLanguage> languageList = ((Data_GameText)CurrentTextData.DataSet).LangaugeList;
+                    if (item.Tag == null)
+                    {
+                        keyList.AddRange(languageList.Select(r => Data_GameText.GetRowNameForLanguage(r, Data_GameText.RN_GameText_SourceText)).ToList());
+                    }
+                    else
+                    {
+                        keyList.Add(Data_GameText.GetRowNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_SourceText));
+                    }
                 }
-                else
-                {
-                    keyList.Add(Data_GameText.GetRowNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_SourceText));
-                }
-            }
 
-            // Edited Text
-            if (type.HasFlag(EnumSearchTextType.Edited))
-            {
-                ComboBoxItem item = ComboBox_SearchLanguage.SelectedItem as ComboBoxItem;
-                List<EnumLanguage> languageList = ((Data_GameText) CurrentTextData.DataSet).LangaugeList;
-                Debug.Assert(item != null, nameof(item) + " != null");
-                if (item.Tag == null)
+                // Edited Text
+                if (type.HasFlag(EnumSearchTextType.Edited))
                 {
-                    keyList.AddRange(languageList.Select(r => Data_GameText.GetRowNameForLanguage(r, Data_GameText.RN_GameText_EditedText)).ToList());
-                }
-                else
-                {
-                    keyList.Add(Data_GameText.GetRowNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_EditedText));
+                    List<EnumLanguage> languageList = ((Data_GameText)CurrentTextData.DataSet).LangaugeList;
+                    if (item.Tag == null)
+                    {
+                        keyList.AddRange(languageList.Select(r => Data_GameText.GetRowNameForLanguage(r, Data_GameText.RN_GameText_EditedText)).ToList());
+                    }
+                    else
+                    {
+                        keyList.Add(Data_GameText.GetRowNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_EditedText));
+                    }
                 }
             }
             return keyList;
@@ -1580,7 +1574,7 @@ namespace SC2_GameTranslater
         /// <param name="file">保存路径</param>
         public static void ProjectSave(FileInfo file)
         {
-            Log.Assert(Globals.CurrentProject != null);
+            Log.Assert(Globals.CurrentProject != null, "Globals.CurrentProject == null");
             Globals.CurrentProject.SaveProject(file);
         }
 
@@ -1590,7 +1584,7 @@ namespace SC2_GameTranslater
         /// <param name="isSaveAs">是否另存为</param>
         public static void ProjectSave(bool isSaveAs)
         {
-            Log.Assert(Globals.CurrentProject != null);
+            Log.Assert(Globals.CurrentProject != null, "Globals.CurrentProject == null");
             if (!isSaveAs && Globals.CurrentProjectPath != null)
             {
                 ProjectSave(Globals.CurrentProjectPath);

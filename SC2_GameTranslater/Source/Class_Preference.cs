@@ -207,16 +207,16 @@ namespace SC2_GameTranslater.Source
         {
             foreach (System.Collections.DictionaryEntry select in Globals.MainWindow.DataGrid_TranslatedTexts.Resources)
             {
-                if (select.Value is MenuItem item)
+                if (select.Value is MenuItem item && item.Tag is string value)
                 {
-                    ColumnVisiblity[int.Parse(item.Tag as string ?? throw new InvalidOperationException())] = item.IsChecked;
+                    ColumnVisiblity[int.Parse(value)] = item.IsChecked;
                 }
             }
             foreach (System.Collections.DictionaryEntry select in Globals.MainWindow.DataGrid_GameTextForLanguage.Resources)
             {
-                if (select.Value is MenuItem item)
+                if (select.Value is MenuItem item && item.Tag is string value)
                 {
-                    ColumnVisiblity[int.Parse(item.Tag as string ?? throw new InvalidOperationException())] = item.IsChecked;
+                    ColumnVisiblity[int.Parse(value)] = item.IsChecked;
                 }
             }
         }
@@ -228,16 +228,16 @@ namespace SC2_GameTranslater.Source
         {
             foreach (System.Collections.DictionaryEntry select in Globals.MainWindow.DataGrid_TranslatedTexts.Resources)
             {
-                if (select.Value is MenuItem item)
+                if (select.Value is MenuItem item && item.Tag is string value)
                 {
-                    item.IsChecked = ColumnVisiblity[int.Parse(item.Tag as string ?? throw new InvalidOperationException())];
+                    item.IsChecked = ColumnVisiblity[int.Parse(value)];
                 }
             }
             foreach (System.Collections.DictionaryEntry select in Globals.MainWindow.DataGrid_GameTextForLanguage.Resources)
             {
-                if (select.Value is MenuItem item)
+                if (select.Value is MenuItem item && item.Tag is string value)
                 {
-                    item.IsChecked = ColumnVisiblity[int.Parse(item.Tag as string ?? throw new InvalidOperationException())];
+                    item.IsChecked = ColumnVisiblity[int.Parse(value)];
                 }
             }
         }

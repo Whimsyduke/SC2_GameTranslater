@@ -51,6 +51,8 @@
     <sys:String x:Key="TEXT_Confirm">Confirm</sys:String>
     <sys:String x:Key="TEXT_Cancel">Cancel</sys:String>
     <sys:String x:Key="TEXT_NoText">[No Text]</sys:String>
+    <sys:String x:Key="TEXT_Error">[Error]</sys:String>
+    
     <!--#endregion-->
 
     <!--#region UI Text-->

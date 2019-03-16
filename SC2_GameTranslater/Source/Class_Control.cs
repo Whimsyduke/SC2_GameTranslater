@@ -73,10 +73,14 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Debug.Assert(value != null, nameof(value) + " != null");
-            EnumLanguage language = (EnumLanguage)value;
-            string langName = Enum.GetName(language.GetType(), language);
-            return Globals.CurrentLanguage[string.Format("TEXT_{0}", langName)];
+            
+            if (value != null)
+            {
+                EnumLanguage language = (EnumLanguage)value;
+                string langName = Enum.GetName(language.GetType(), language);
+                return Globals.CurrentLanguage[string.Format("TEXT_{0}", langName)];
+            }
+            return Globals.CurrentLanguage["TEXT_Error"];
         }
 
         /// <summary>
@@ -108,19 +112,25 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            DataRowView rowView = values[0] as DataRowView;
-            EnumLanguage language = (EnumLanguage)values[1];
-            string column = parameter as string;
-            string key = Data_GameText.GetRowNameForLanguage(language, column);
-            Debug.Assert(rowView != null, nameof(rowView) + " != null");
-            object display = rowView.Row[key];
-            if (display == DBNull.Value)
+            if (values[0] is DataRowView rowView)
             {
-                return Globals.CurrentLanguage["TEXT_NoText"];
+                EnumLanguage language = (EnumLanguage)values[1];
+                string column = parameter as string;
+                string key = Data_GameText.GetRowNameForLanguage(language, column);
+                object display = rowView.Row[key];
+                if (display == DBNull.Value)
+                {
+                    return Globals.CurrentLanguage["TEXT_NoText"];
+                }
+                else
+                {
+
+                }
+                return display as string;
             }
             else
             {
-                return display as string;
+                return Globals.CurrentLanguage["TEXT_Error"];
             }
         }
 
@@ -154,12 +164,17 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            DataRowView rowView = values[0] as DataRowView;
-            EnumLanguage language = (EnumLanguage)values[1];
-            Debug.Assert(rowView != null, nameof(rowView) + " != null");
-            var var = rowView.Row[Data_GameText.RN_GameText_File];
-            EnumGameTextFile value = (EnumGameTextFile)Enum.ToObject(typeof(EnumGameTextFile), var);
-            return Data_GameText.GetEnumNameInLanguage(language, value);
+            if (values[0] is DataRowView rowView)
+            {
+                EnumLanguage language = (EnumLanguage)values[1];
+                var var = rowView.Row[Data_GameText.RN_GameText_File];
+                EnumGameTextFile value = (EnumGameTextFile)Enum.ToObject(typeof(EnumGameTextFile), var);
+                return Data_GameText.GetEnumNameInLanguage(language, value);
+            }
+            else
+            {
+                return Globals.CurrentLanguage["TEXT_Error"];
+            }
         }
 
         /// <summary>
@@ -286,10 +301,15 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            DataRowView view = value as DataRowView;
-            Debug.Assert(view != null, nameof(view) + " != null");
-            DataRow rowFile = view.Row.GetParentRow(Data_GameText.RSN_GalaxyFile_GalaxyLine_File);
-            return rowFile[Data_GameText.RN_GalaxyFile_Name];
+            if (value is DataRowView view)
+            {
+                DataRow rowFile = view.Row.GetParentRow(Data_GameText.RSN_GalaxyFile_GalaxyLine_File);
+                return rowFile[Data_GameText.RN_GalaxyFile_Name];
+            }
+            else
+            {
+                return Globals.CurrentLanguage["TEXT_Error"];
+            }
         }
 
         /// <summary>
@@ -325,17 +345,12 @@ namespace SC2_GameTranslater.Source
             DataRowView rowView = values[0] as DataRowView;
             EnumLanguage translateLanguage = (EnumLanguage)values[1];
             string column = parameter as string;
-            string key;
-            Debug.Assert(rowView != null, nameof(rowView) + " != null");
-            if (rowView.Row.Table == Data_GameText.GameTextForLanguageTable)
-            {
-                key = column;
-            }
-            else
+            string key = column;
+            if (rowView.Row.Table != Data_GameText.GameTextForLanguageTable)
             {
                 key = Data_GameText.GetRowNameForLanguage(translateLanguage, column);
             }
-            var var = rowView.Row[key ?? throw new InvalidOperationException()];
+            var var = rowView.Row[key];
             return var == DBNull.Value ? FontWeights.Bold: FontWeights.Normal;
         }
 
@@ -369,11 +384,11 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            DataRowView rowView = values[0] as DataRowView;
-            Debug.Assert(rowView != null, nameof(rowView) + " != null");
-            DataRow row = rowView.Row;
-            string text = row[Data_GameText.RN_GalaxyLine_Script] as string;
-            string[] texts = Data_GameText.Const_Regex_StringExternal.Split(text ?? throw new InvalidOperationException());
+            string[] texts = new string[0];
+            if (values[0] is DataRowView rowView && rowView.Row[Data_GameText.RN_GalaxyLine_Script] is string text && string.IsNullOrEmpty(text))
+            {
+                texts = Data_GameText.Const_Regex_StringExternal.Split(text);
+            }
             FlowDocument doc = new FlowDocument();
             Paragraph paragraph = new Paragraph
             {
@@ -503,14 +518,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Debug.Assert(value != null, nameof(value) + " != null");
-            switch ((Visibility)value)
-            {
-                case Visibility.Visible:
-                    return true;
-                default:
-                    return false;
-            }
+            return value is Visibility && (Visibility)value == Visibility.Visible;
         }
     }
 

@@ -54,12 +54,13 @@ namespace SC2_GameTranslater
                     Grid_TranslateLanguage.RowDefinitions.Add(rowDef);
                 }
                 string langName = Enum.GetName(language.GetType(), language);
-                CheckBox checkBox = ResourceDictionary_MainGrid["CheckBox_" + langName] as CheckBox;
-                Debug.Assert(checkBox != null, nameof(checkBox) + " != null");
-                checkBox.SetValue(Grid.ColumnProperty, x++);
-                checkBox.SetValue(Grid.RowProperty, y++);
-                DirtLanguageCheckBox.Add(language, checkBox);
-                Grid_TranslateLanguage.Children.Add(checkBox);
+                if (ResourceDictionary_MainGrid["CheckBox_" + langName] is CheckBox checkBox)
+                {
+                    checkBox.SetValue(Grid.ColumnProperty, x++);
+                    checkBox.SetValue(Grid.RowProperty, y++);
+                    DirtLanguageCheckBox.Add(language, checkBox);
+                    Grid_TranslateLanguage.Children.Add(checkBox);
+                }
             }
         }
 
@@ -81,7 +82,6 @@ namespace SC2_GameTranslater
             }
             if (count == 1)
             {
-                Debug.Assert(enableCheckBox != null, nameof(enableCheckBox) + " != null");
                 enableCheckBox.IsEnabled = false;
             }
         }

@@ -42,7 +42,7 @@ namespace SC2_GameTranslater.Source
         {
             string caption = Globals.CurrentLanguage[msgKey + "_Title"] as string;
             string msg = Globals.CurrentLanguage[msgKey + "_Message"] as string;
-            msg = string.Format(msg ?? throw new InvalidOperationException(), args);
+            msg = string.IsNullOrEmpty(msg) ? "" : string.Format(msg, args);
             DisplayLogOnUI(msg);
             return MessageBox.Show(msg, caption, button, image);
         }
@@ -58,11 +58,10 @@ namespace SC2_GameTranslater.Source
             StackTrace st = new StackTrace(true);
             //得到当前的所以堆栈  
             StackFrame[] sf = st.GetFrames();
-            string format = Globals.CurrentLanguage["ERR_CommonNewException"] as string;
-            Debug.Assert(sf != null, nameof(sf) + " != null");
+            string format = Globals.CurrentLanguage["ERR_CommonNewException"] is string text? text : "{0}";
             for (int i = 1; i < sf.Length; ++i)
             {
-                info = string.Format(format ?? throw new InvalidOperationException(), info, sf[i].GetFileName(), sf[i].GetMethod().DeclaringType?.FullName, sf[i].GetMethod().Name, sf[i].GetFileLineNumber());
+                info = string.Format(format, info, sf[i].GetFileName(), sf[i].GetMethod().DeclaringType?.FullName, sf[i].GetMethod().Name, sf[i].GetFileLineNumber());
             }
             return info;
         }
@@ -76,21 +75,11 @@ namespace SC2_GameTranslater.Source
             return new Exception(ExceptiionMsg(msg));
         }
 
-        /// <summary>
-        /// 测试代码
-        /// </summary>
-        /// <param name="val">测试表达式</param>
-        public static void Assert(bool val)
+        public static void Assert(bool check, string msg)
         {
-            if (val) return;
-
-#if DEBUG
-            throw NewException("Assert!");
-#else
-            //ShowSystemMessage(ExceptiionMsg("Assert!"));
-#endif
+            Debug.Assert(check, ExceptiionMsg(msg));
         }
-
+        
         #endregion
     }
 }

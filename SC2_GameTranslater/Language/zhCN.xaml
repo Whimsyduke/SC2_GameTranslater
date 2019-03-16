@@ -51,6 +51,8 @@
     <sys:String x:Key="TEXT_Confirm">确定</sys:String>
     <sys:String x:Key="TEXT_Cancel">取消</sys:String>
     <sys:String x:Key="TEXT_NoText">【无文本】</sys:String>
+    <sys:String x:Key="TEXT_Error">【错误】</sys:String>
+    
     <!--#endregion-->
 
     <!--#region 界面文本-->

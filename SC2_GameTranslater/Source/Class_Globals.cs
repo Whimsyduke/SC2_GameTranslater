@@ -141,8 +141,7 @@ namespace SC2_GameTranslater.Source
         {
             set
             {
-                Debug.Assert(_EventProjectChange != null, nameof(_EventProjectChange) + " != null");
-                _EventProjectChange(mCurrentProject, value);
+                _EventProjectChange?.Invoke(mCurrentProject, value);
                 mCurrentProject = value;
             }
             get => mCurrentProject;
@@ -289,8 +288,7 @@ namespace SC2_GameTranslater.Source
             byte[] buffer = ms.ToArray();//把内存流对象写入字节数组   
             ms.Close();//关闭内存流对象   
             ms.Dispose();//释放资源   
-            Debug.Assert(savePath.Directory != null, "savePath.Directory != null");
-            if (!savePath.Directory.Exists)
+            if (savePath.Directory != null && !savePath.Directory.Exists)
             {
                 savePath.Directory.Create();
             }
@@ -350,7 +348,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="file">文件路径</param>
         public static bool OpenProjectData(FileInfo file)
         {
-            Log.Assert(CurrentProject == null);
+            Log.Assert(CurrentProject != null, "Globals.CurrentProject == null");
             Data_GameText project = Data_GameText.LoadProject(file);
             CurrentProject = project;
             return project != null;

@@ -407,7 +407,7 @@ namespace SC2_GameTranslater.Source
                     path += Const_String_FileTriggerStringsPath;
                     break;
                 default:
-                    Log.Assert(false);
+                    Log.Assert(Globals.CurrentProject != null, "");
                     break;
             }
             return path;
@@ -751,10 +751,12 @@ namespace SC2_GameTranslater.Source
         /// <param name="path">路径</param>
         public static Data_GameText LoadProject(FileInfo path)
         {
-            Data_GameText proj = Globals.ObjectDeserializeDecompress(path) as Data_GameText;
-            Debug.Assert(proj != null, nameof(proj) + " != null");
-            proj.RefreshAttribute();
-            return proj;
+            if (Globals.ObjectDeserializeDecompress(path) is Data_GameText proj)
+            {
+                proj.RefreshAttribute();
+                return proj;
+            }
+            return null;
         }
 
         /// <summary>
@@ -767,7 +769,11 @@ namespace SC2_GameTranslater.Source
             try
 #endif
             {
-                SC2Components = new FileInfo(ProjectInfoRow[RN_ModInfo_CompontentsPath] as string ?? throw new InvalidOperationException());
+                if (ProjectInfoRow[RN_ModInfo_CompontentsPath] is string path)
+                {
+                    SC2Components = new FileInfo(path);
+                }
+
                 LangaugeList = Tables[TN_Language].AsEnumerable().Select(r => (EnumLanguage)r[RN_Language_ID]).ToList();
                 return true;
             }
@@ -789,8 +795,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>写入成功</returns>
         public bool WriteToComponents()
         {
-            if (SC2Components != null && !SC2Components.Exists) return false;
-            Debug.Assert(SC2Components != null, nameof(SC2Components) + " != null");
+            if (!(SC2Components == null || SC2Components.Exists)) return false;
             DirectoryInfo baseDir = SC2Components.Directory;
             List<FileInfo> backFiles = new List<FileInfo>();
             EnumerableRowCollection<DataRow> gameStringRows = GetGameTextRows(EnumGameTextFile.GameStrings);
@@ -832,8 +837,7 @@ namespace SC2_GameTranslater.Source
                 if (!File.Exists(originpath)) return true;
                 FileInfo backFile = new FileInfo(PATH_TempFolder + backPath);
                 backFiles.Add(backFile);
-                Debug.Assert(backFile.Directory != null, "backFile.Directory != null");
-                if (!backFile.Directory.Exists) backFile.Directory.Create();
+                if (backFile.Directory != null && !backFile.Directory.Exists) backFile.Directory.Create();
                 File.Copy(originpath, backFile.FullName, true);
                 StreamWriter sw = new StreamWriter(originpath, false);
                 string statusKey = GetRowNameForLanguage(language, RN_GameText_TextStatus);
@@ -940,8 +944,7 @@ namespace SC2_GameTranslater.Source
             while (!sr.EndOfStream)
             {
                 line = sr.ReadLine();
-                Debug.Assert(line != null, nameof(line) + " != null");
-                if (line.StartsWith("//")) continue;
+                if (string.IsNullOrEmpty(line) || line.StartsWith("//")) continue;
                 length = line.IndexOf("=", StringComparison.Ordinal);
                 key = line.Substring(0, length++);
                 value = line.Substring(length);
@@ -1138,7 +1141,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="file">Galaxy文件</param>
         private void LoadGalaxyFile(FileInfo file)
         {
-            Debug.Assert(SC2Components.DirectoryName != null, "SC2Components.DirectoryName != null");
+            Log.Assert(SC2Components.DirectoryName != null, "SC2Components.DirectoryName != null");
             string path = file.FullName.Substring(SC2Components.DirectoryName.Length);
             DataRow row = Tables[TN_GalaxyFile].NewRow();
             row[RN_GalaxyFile_Path] = path;
@@ -1156,16 +1159,19 @@ namespace SC2_GameTranslater.Source
             {
                 lineNumber++;
                 line = sr.ReadLine();
-                MatchCollection matchs = Const_Regex_StringExternal.Matches(line ?? throw new InvalidOperationException());
-                if (matchs.Count == 0) continue;
-                tableLine.Rows.Add(indexLine, path, lineNumber, line);
-                int lineIndex = 0;
-                foreach (var select in matchs)
+                if (!string.IsNullOrEmpty(line))
                 {
-                    count++;
-                    tableLocation.Rows.Add(indexLocation++, indexLine, lineIndex++, select.ToString());
+                    MatchCollection matchs = Const_Regex_StringExternal.Matches(line);
+                    if (matchs.Count == 0) continue;
+                    tableLine.Rows.Add(indexLine, path, lineNumber, line);
+                    int lineIndex = 0;
+                    foreach (var select in matchs)
+                    {
+                        count++;
+                        tableLocation.Rows.Add(indexLocation++, indexLine, lineIndex++, select.ToString());
+                    }
+                    indexLine++;
                 }
-                indexLine++;
             }
             sr.Close();
             row[RN_GalaxyFile_Count] = count;
