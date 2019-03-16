@@ -414,34 +414,6 @@ namespace SC2_GameTranslater.Source
         }
 
         /// <summary>
-        /// 批量设置值（行）
-        /// </summary>
-        /// <param name="rows">列表</param>
-        /// <param name="column">行</param>
-        /// <param name="value">值</param>
-        private void SetDataValue(IEnumerable<DataRow> rows, string column, object value)
-        {
-            foreach (DataRow select in rows)
-            {
-                select[column] = value;
-            }
-        }
-
-        /// <summary>
-        /// 批量设置值(整个表)
-        /// </summary>
-        /// <param name="table">表名</param>
-        /// <param name="column">行</param>
-        /// <param name="value">值</param>
-        private void SetDataValue(string table, string column, object value)
-        {
-            foreach (DataRow select in Tables[table].Rows)
-            {
-                select[column] = value;
-            }
-        }
-
-        /// <summary>
         /// 游戏文本文件数量
         /// </summary>
         /// <param name="baseDir">基础目录</param>

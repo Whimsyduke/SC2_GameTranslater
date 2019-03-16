@@ -78,9 +78,9 @@ namespace SC2_GameTranslater.Source
             {
                 EnumLanguage language = (EnumLanguage)value;
                 string langName = Enum.GetName(language.GetType(), language);
-                return Globals.CurrentLanguage[string.Format("TEXT_{0}", langName)];
+                return Globals.GetStringFromCurrentLanguage(string.Format("TEXT_{0}", langName));
             }
-            return Globals.CurrentLanguage["TEXT_Error"];
+            return Globals.GetStringFromCurrentLanguage("TEXT_Error");
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace SC2_GameTranslater.Source
                 object display = rowView.Row[key];
                 if (display == DBNull.Value)
                 {
-                    return Globals.CurrentLanguage["TEXT_NoText"];
+                    return Globals.GetStringFromCurrentLanguage("TEXT_NoText");
                 }
                 else
                 {
@@ -130,7 +130,7 @@ namespace SC2_GameTranslater.Source
             }
             else
             {
-                return Globals.CurrentLanguage["TEXT_Error"];
+                return Globals.GetStringFromCurrentLanguage("TEXT_Error");
             }
         }
 
@@ -173,7 +173,7 @@ namespace SC2_GameTranslater.Source
             }
             else
             {
-                return Globals.CurrentLanguage["TEXT_Error"];
+                return Globals.GetStringFromCurrentLanguage("TEXT_Error");
             }
         }
 
@@ -207,8 +207,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            EnumLanguage translateLanguage = (EnumLanguage)values[1];
-            EnumLanguage softeareLanguage = (EnumLanguage)values[2];
+            EnumLanguage softeareLanguage = (EnumLanguage)values[1];
             EnumGameTextStatus value = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), values[0]);
             return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
         }
@@ -243,8 +242,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            EnumLanguage translateLanguage = (EnumLanguage)values[1];
-            EnumLanguage softeareLanguage = (EnumLanguage)values[2];
+            EnumLanguage softeareLanguage = (EnumLanguage)values[1];
             EnumGameUseStatus value = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), values[0]);
             return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
         }
@@ -287,7 +285,7 @@ namespace SC2_GameTranslater.Source
             }
             else
             {
-                return Globals.CurrentLanguage["TEXT_Error"];
+                return Globals.GetStringFromCurrentLanguage("TEXT_Error");
             }
         }
 

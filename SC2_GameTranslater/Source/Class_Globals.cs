@@ -141,7 +141,7 @@ namespace SC2_GameTranslater.Source
         {
             set
             {
-                _EventProjectChange?.Invoke(mCurrentProject, value);
+                PEventProjectChange?.Invoke(mCurrentProject, value);
                 mCurrentProject = value;
             }
             get => mCurrentProject;
@@ -153,10 +153,10 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         public static event Delegate_CurrentProjectChange EventProjectChange
         {
-            add { _EventProjectChange += value; }
-            remove { _EventProjectChange -= value; }
+            add { PEventProjectChange += value; }
+            remove { PEventProjectChange -= value; }
         }
-        private static event Delegate_CurrentProjectChange _EventProjectChange;
+        private static event Delegate_CurrentProjectChange PEventProjectChange;
 
         /// <summary>
         /// 项目对应的Mod或Map路径
@@ -352,6 +352,27 @@ namespace SC2_GameTranslater.Source
             Data_GameText project = Data_GameText.LoadProject(file);
             CurrentProject = project;
             return project != null;
+        }
+
+        #endregion
+
+        #region 通用
+
+        /// <summary>
+        /// 获取当前语言对应的文本内容
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <returns>文本</returns>
+        public static string GetStringFromCurrentLanguage(string key)
+        {
+            if (CurrentLanguage[key] is string text)
+            {
+                return text;
+            }
+            else
+            {
+                return "";
+            }
         }
 
         #endregion

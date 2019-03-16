@@ -374,38 +374,35 @@
                         Name="RadioButton_SearchNull"
                         HorizontalAlignment="Left"
                         VerticalContentAlignment="Center"
-                        Checked="CheckBox_SearchConfigure_CheckEvent"
+                        Checked="RadioButton_SearchConfigure_CheckEvent"
                         GroupName="SerachConfigure"
                         Header="{DynamicResource UI_RadioButton_SearchNull_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
-                        IsChecked="True"
-                        Unchecked="CheckBox_SearchConfigure_CheckEvent" />
+                        IsChecked="True"/>
                     <Fluent:RadioButton
                         Name="RadioButton_SearchRegex"
                         HorizontalAlignment="Left"
                         VerticalContentAlignment="Center"
-                        Checked="CheckBox_SearchConfigure_CheckEvent"
+                        Checked="RadioButton_SearchConfigure_CheckEvent"
                         GroupName="SerachConfigure"
                         Header="{DynamicResource UI_RadioButton_SearchRegex_Header}"
-                        Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
-                        Unchecked="CheckBox_SearchConfigure_CheckEvent" />
+                        Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"/>
                     <Fluent:RadioButton
                         Name="RadioButton_SearchText"
                         HorizontalAlignment="Left"
                         VerticalContentAlignment="Center"
-                        Checked="CheckBox_SearchConfigure_CheckEvent"
+                        Checked="RadioButton_SearchConfigure_CheckEvent"
                         GroupName="SerachConfigure"
                         Header="{DynamicResource UI_RadioButton_SearchText_Header}"
-                        Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
-                        Unchecked="CheckBox_SearchConfigure_CheckEvent" />
+                        Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"/>
                     <Fluent:CheckBox
                         Name="CheckBox_SearchCase"
                         HorizontalAlignment="Left"
                         VerticalContentAlignment="Center"
-                        Checked="CheckBox_SearchConfigure_CheckEvent"
+                        Checked="RadioButton_SearchConfigure_CheckEvent"
                         Header="{DynamicResource UI_CheckBox_SearchCase_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
-                        Unchecked="CheckBox_SearchConfigure_CheckEvent" />
+                        Unchecked="RadioButton_SearchConfigure_CheckEvent" />
                     <source:RibbonSearchTextBox
                         x:Name="TextBox_SearchText"
                         Height="44"
@@ -1034,265 +1031,278 @@
                                 Name="GroupBox_GameTextForLanguage"
                                 Grid.Column="1"
                                 Header="{DynamicResource UI_GroupBox_GameTextForLanguage_Header}">
-                                <DataGrid
-                                    Name="DataGrid_GameTextForLanguage"
-                                    VerticalContentAlignment="Center"
-                                    AlternatingRowBackground="LightGray"
-                                    AlternationCount="2"
-                                    AutoGenerateColumns="False"
-                                    CanUserAddRows="False"
-                                    ItemsSource="{Binding}"
-                                    SelectionMode="Extended"
-                                    SelectionUnit="CellOrRowHeader">
-                                    <DataGrid.Resources>
-                                        <MenuItem
-                                            x:Key="MenuItem_Language"
-                                            Header="{DynamicResource UI_DataGridColumn_DeatilsLanguage_Header}"
-                                            IsCheckable="True"
-                                            IsChecked="True"
-                                            Tag="8" />
-                                        <MenuItem
-                                            x:Key="MenuItem_TextStatus"
-                                            Header="{DynamicResource UI_DataGridColumn_DeatilsTextStatus_Header}"
-                                            IsCheckable="True"
-                                            IsChecked="True"
-                                            Tag="9" />
-                                        <MenuItem
-                                            x:Key="MenuItem_UseStatus"
-                                            Header="{DynamicResource UI_DataGridColumn_DeatilsUseStatus_Header}"
-                                            IsCheckable="True"
-                                            IsChecked="False"
-                                            Tag="10" />
-                                        <MenuItem
-                                            x:Key="MenuItem_DropedText"
-                                            Header="{DynamicResource UI_DataGridColumn_DeatilsDropedText_Header}"
-                                            IsCheckable="True"
-                                            IsChecked="False"
-                                            Tag="11" />
-                                        <MenuItem
-                                            x:Key="MenuItem_SourceText"
-                                            Header="{DynamicResource UI_DataGridColumn_DeatilsSourceText_Header}"
-                                            IsCheckable="True"
-                                            IsChecked="True"
-                                            Tag="12" />
-                                        <MenuItem
-                                            x:Key="MenuItem_EditedText"
-                                            Header="{DynamicResource UI_DataGridColumn_DeatilsEditedText_Header}"
-                                            IsCheckable="True"
-                                            IsChecked="True"
-                                            Tag="13" />
-                                        <ContextMenu x:Key="ContextMenu_ColumnVisible">
-                                            <StaticResource ResourceKey="MenuItem_Language" />
-                                            <StaticResource ResourceKey="MenuItem_TextStatus" />
-                                            <StaticResource ResourceKey="MenuItem_UseStatus" />
-                                            <StaticResource ResourceKey="MenuItem_DropedText" />
-                                            <StaticResource ResourceKey="MenuItem_SourceText" />
-                                            <StaticResource ResourceKey="MenuItem_EditedText" />
-                                        </ContextMenu>
-                                    </DataGrid.Resources>
-                                    <DataGrid.CellStyle>
-                                        <Style TargetType="DataGridCell">
-                                            <Setter Property="BorderThickness" Value="0" />
-                                        </Style>
-                                    </DataGrid.CellStyle>
-                                    <DataGrid.RowHeaderStyle>
-                                        <Style TargetType="{x:Type DataGridRowHeader}">
-                                            <Setter Property="Content">
-                                                <Setter.Value>
-                                                    <MultiBinding Converter="{StaticResource Converter_AutoNumberValue}">
-                                                        <Binding />
-                                                        <Binding Path="Items" RelativeSource="{RelativeSource AncestorType={x:Type DataGrid}}" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="TextBlock_DetailsID" Grid.Column="0" Grid.Row="0" Text="" Margin="3"/>
+                                    <TextBlock Name="TextBlock_DetailsIndex" Grid.Column="1" Grid.Row="0" Text="" Margin="3"/>
+                                    <DataGrid
+                                        Name="DataGrid_GameTextForLanguage"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        Grid.Row="1"
+                                        VerticalContentAlignment="Center"
+                                        AlternatingRowBackground="LightGray"
+                                        AlternationCount="2"
+                                        AutoGenerateColumns="False"
+                                        CanUserAddRows="False"
+                                        ItemsSource="{Binding}"
+                                        SelectionMode="Extended"
+                                        SelectionUnit="CellOrRowHeader">
+                                        <DataGrid.Resources>
+                                            <MenuItem
+                                                x:Key="MenuItem_Language"
+                                                Header="{DynamicResource UI_DataGridColumn_DeatilsLanguage_Header}"
+                                                IsCheckable="True"
+                                                IsChecked="True"
+                                                Tag="8" />
+                                            <MenuItem
+                                                x:Key="MenuItem_TextStatus"
+                                                Header="{DynamicResource UI_DataGridColumn_DeatilsTextStatus_Header}"
+                                                IsCheckable="True"
+                                                IsChecked="True"
+                                                Tag="9" />
+                                            <MenuItem
+                                                x:Key="MenuItem_UseStatus"
+                                                Header="{DynamicResource UI_DataGridColumn_DeatilsUseStatus_Header}"
+                                                IsCheckable="True"
+                                                IsChecked="False"
+                                                Tag="10" />
+                                            <MenuItem
+                                                x:Key="MenuItem_DropedText"
+                                                Header="{DynamicResource UI_DataGridColumn_DeatilsDropedText_Header}"
+                                                IsCheckable="True"
+                                                IsChecked="False"
+                                                Tag="11" />
+                                            <MenuItem
+                                                x:Key="MenuItem_SourceText"
+                                                Header="{DynamicResource UI_DataGridColumn_DeatilsSourceText_Header}"
+                                                IsCheckable="True"
+                                                IsChecked="True"
+                                                Tag="12" />
+                                            <MenuItem
+                                                x:Key="MenuItem_EditedText"
+                                                Header="{DynamicResource UI_DataGridColumn_DeatilsEditedText_Header}"
+                                                IsCheckable="True"
+                                                IsChecked="True"
+                                                Tag="13" />
+                                            <ContextMenu x:Key="ContextMenu_ColumnVisible">
+                                                <StaticResource ResourceKey="MenuItem_Language" />
+                                                <StaticResource ResourceKey="MenuItem_TextStatus" />
+                                                <StaticResource ResourceKey="MenuItem_UseStatus" />
+                                                <StaticResource ResourceKey="MenuItem_DropedText" />
+                                                <StaticResource ResourceKey="MenuItem_SourceText" />
+                                                <StaticResource ResourceKey="MenuItem_EditedText" />
+                                            </ContextMenu>
+                                        </DataGrid.Resources>
+                                        <DataGrid.CellStyle>
+                                            <Style TargetType="DataGridCell">
+                                                <Setter Property="BorderThickness" Value="0" />
+                                            </Style>
+                                        </DataGrid.CellStyle>
+                                        <DataGrid.RowHeaderStyle>
+                                            <Style TargetType="{x:Type DataGridRowHeader}">
+                                                <Setter Property="Content">
+                                                    <Setter.Value>
+                                                        <MultiBinding Converter="{StaticResource Converter_AutoNumberValue}">
+                                                            <Binding />
+                                                            <Binding Path="Items" RelativeSource="{RelativeSource AncestorType={x:Type DataGrid}}" />
+                                                        </MultiBinding>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </DataGrid.RowHeaderStyle>
+                                        <DataGrid.RowStyle>
+                                            <Style TargetType="{x:Type DataGridRow}">
+                                                <Setter Property="VerticalAlignment" Value="Stretch" />
+                                            </Style>
+                                        </DataGrid.RowStyle>
+                                        <DataGrid.ColumnHeaderStyle>
+                                            <Style TargetType="DataGridColumnHeader">
+                                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                                <Setter Property="ContextMenu" Value="{StaticResource ResourceKey=ContextMenu_ColumnVisible}" />
+                                            </Style>
+                                        </DataGrid.ColumnHeaderStyle>
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn
+                                                x:Name="DataGridColumn_DetailsLanguage"
+                                                Width="*"
+                                                Binding="{Binding Path=Language, Converter={StaticResource ResourceKey=Converter_EnumLanguageToTreslateName}, UpdateSourceTrigger=PropertyChanged}"
+                                                CanUserReorder="True"
+                                                CanUserResize="True"
+                                                CanUserSort="True"
+                                                IsReadOnly="True"
+                                                Visibility="{Binding Source={StaticResource MenuItem_Language}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
+                                                <DataGridTextColumn.Header>
+                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsLanguage_Header}" />
+                                                </DataGridTextColumn.Header>
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="HorizontalAlignment" Value="Left" />
+                                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                                        <Setter Property="Margin" Value="2" />
+                                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                            </DataGridTextColumn>
+                                            <DataGridTextColumn
+                                                x:Name="DataGridColumn_DetailsTextStatus"
+                                                Width="Auto"
+                                                CanUserReorder="True"
+                                                CanUserResize="True"
+                                                CanUserSort="True"
+                                                IsReadOnly="True"
+                                                Visibility="{Binding Source={StaticResource MenuItem_TextStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
+                                                <DataGridTextColumn.Binding>
+                                                    <MultiBinding Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_TextStatus}" UpdateSourceTrigger="PropertyChanged">
+                                                        <Binding Path="TextStatus" />
+                                                        <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
                                                     </MultiBinding>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </DataGrid.RowHeaderStyle>
-                                    <DataGrid.RowStyle>
-                                        <Style TargetType="{x:Type DataGridRow}">
-                                            <Setter Property="VerticalAlignment" Value="Stretch" />
-                                        </Style>
-                                    </DataGrid.RowStyle>
-                                    <DataGrid.ColumnHeaderStyle>
-                                        <Style TargetType="DataGridColumnHeader">
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="VerticalContentAlignment" Value="Center" />
-                                            <Setter Property="ContextMenu" Value="{StaticResource ResourceKey=ContextMenu_ColumnVisible}" />
-                                        </Style>
-                                    </DataGrid.ColumnHeaderStyle>
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn
-                                            x:Name="DataGridColumn_DetailsLanguage"
-                                            Width="*"
-                                            Binding="{Binding Path=Language, Converter={StaticResource ResourceKey=Converter_EnumLanguageToTreslateName}, UpdateSourceTrigger=PropertyChanged}"
-                                            CanUserReorder="True"
-                                            CanUserResize="True"
-                                            CanUserSort="True"
-                                            IsReadOnly="True"
-                                            Visibility="{Binding Source={StaticResource MenuItem_Language}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
-                                            <DataGridTextColumn.Header>
-                                                <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsLanguage_Header}" />
-                                            </DataGridTextColumn.Header>
-                                            <DataGridTextColumn.ElementStyle>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="HorizontalAlignment" Value="Left" />
-                                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                                    <Setter Property="Margin" Value="2" />
-                                                    <Setter Property="TextWrapping" Value="Wrap" />
-                                                </Style>
-                                            </DataGridTextColumn.ElementStyle>
-                                        </DataGridTextColumn>
-                                        <DataGridTextColumn
-                                            x:Name="DataGridColumn_DetailsTextStatus"
-                                            Width="Auto"
-                                            CanUserReorder="True"
-                                            CanUserResize="True"
-                                            CanUserSort="True"
-                                            IsReadOnly="True"
-                                            Visibility="{Binding Source={StaticResource MenuItem_TextStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
-                                            <DataGridTextColumn.Binding>
-                                                <MultiBinding Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_TextStatus}" UpdateSourceTrigger="PropertyChanged">
-                                                    <Binding Path="TextStatus" />
-                                                    <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
-                                                    <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
-                                                </MultiBinding>
-                                            </DataGridTextColumn.Binding>
-                                            <DataGridTextColumn.Header>
-                                                <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsTextStatus_Header}" />
-                                            </DataGridTextColumn.Header>
-                                            <DataGridTextColumn.ElementStyle>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                                    <Setter Property="Margin" Value="2" />
-                                                    <Setter Property="TextWrapping" Value="NoWrap" />
-                                                </Style>
-                                            </DataGridTextColumn.ElementStyle>
-                                        </DataGridTextColumn>
-                                        <DataGridTextColumn
-                                            x:Name="DataGridColumn_DetailsUseStatus"
-                                            Width="Auto"
-                                            CanUserReorder="True"
-                                            CanUserResize="True"
-                                            CanUserSort="True"
-                                            IsReadOnly="True"
-                                            Visibility="{Binding Source={StaticResource MenuItem_UseStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
-                                            <DataGridTextColumn.Binding>
-                                                <MultiBinding Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_UseStatus}" UpdateSourceTrigger="PropertyChanged">
-                                                    <Binding Path="UseStatus" />
-                                                    <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
-                                                    <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
-                                                </MultiBinding>
-                                            </DataGridTextColumn.Binding>
-                                            <DataGridTextColumn.Header>
-                                                <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsUseStatus_Header}" />
-                                            </DataGridTextColumn.Header>
-                                            <DataGridTextColumn.ElementStyle>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                                    <Setter Property="Margin" Value="2" />
-                                                    <Setter Property="TextWrapping" Value="NoWrap" />
-                                                </Style>
-                                            </DataGridTextColumn.ElementStyle>
-                                        </DataGridTextColumn>
-                                        <DataGridTextColumn
-                                            x:Name="DataGridColumn_DetailsDropedText"
-                                            Width="2*"
-                                            Binding="{Binding Droped, UpdateSourceTrigger=PropertyChanged}"
-                                            CanUserReorder="True"
-                                            CanUserResize="True"
-                                            CanUserSort="True"
-                                            IsReadOnly="True"
-                                            Visibility="{Binding Source={StaticResource MenuItem_DropedText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
-                                            <DataGridTextColumn.Header>
-                                                <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsDropedText_Header}" />
-                                            </DataGridTextColumn.Header>
-                                            <DataGridTextColumn.ElementStyle>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                                    <Setter Property="Margin" Value="2" />
-                                                    <Setter Property="TextWrapping" Value="NoWrap" />
-                                                    <Setter Property="FontWeight">
-                                                        <Setter.Value>
-                                                            <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextBorder}" ConverterParameter="{x:Static source:Data_GameText.RN_GameTextForLanguage_DropedText}">
-                                                                <Binding />
-                                                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
-                                                            </MultiBinding>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Style>
-                                            </DataGridTextColumn.ElementStyle>
-                                        </DataGridTextColumn>
-                                        <DataGridTextColumn
-                                            x:Name="DataGridColumn_DetailsSourceText"
-                                            Width="2*"
-                                            Binding="{Binding Source, UpdateSourceTrigger=PropertyChanged}"
-                                            CanUserReorder="True"
-                                            CanUserResize="True"
-                                            CanUserSort="True"
-                                            IsReadOnly="True"
-                                            Visibility="{Binding Source={StaticResource MenuItem_SourceText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
-                                            <DataGridTextColumn.Header>
-                                                <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsSourceText_Header}" />
-                                            </DataGridTextColumn.Header>
-                                            <DataGridTextColumn.ElementStyle>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                                    <Setter Property="Margin" Value="2" />
-                                                    <Setter Property="TextWrapping" Value="NoWrap" />
-                                                    <Setter Property="FontWeight">
-                                                        <Setter.Value>
-                                                            <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextBorder}" ConverterParameter="{x:Static source:Data_GameText.RN_GameTextForLanguage_SourceText}">
-                                                                <Binding />
-                                                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
-                                                            </MultiBinding>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Style>
-                                            </DataGridTextColumn.ElementStyle>
-                                        </DataGridTextColumn>
-                                        <DataGridTextColumn
-                                            x:Name="DataGridColumn_DetailsEditedText"
-                                            Width="2*"
-                                            Binding="{Binding Edited, UpdateSourceTrigger=PropertyChanged}"
-                                            CanUserReorder="True"
-                                            CanUserResize="True"
-                                            CanUserSort="False"
-                                            IsReadOnly="True"
-                                            Visibility="{Binding Source={StaticResource MenuItem_EditedText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
-                                            <DataGridTextColumn.Header>
-                                                <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsEditedText_Header}" />
-                                            </DataGridTextColumn.Header>
-                                            <DataGridTextColumn.ElementStyle>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="HorizontalAlignment" Value="Left" />
-                                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                                    <Setter Property="Margin" Value="2" />
-                                                    <Setter Property="TextWrapping" Value="Wrap" />
-                                                    <Setter Property="FontWeight">
-                                                        <Setter.Value>
-                                                            <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextBorder}" ConverterParameter="{x:Static source:Data_GameText.RN_GameTextForLanguage_EditedText}">
-                                                                <Binding />
-                                                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
-                                                            </MultiBinding>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Style>
-                                            </DataGridTextColumn.ElementStyle>
-                                            <DataGridTextColumn.EditingElementStyle>
-                                                <Style TargetType="TextBox">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
-                                                    <Setter Property="VerticalContentAlignment" Value="Center" />
-                                                    <Setter Property="Margin" Value="2" />
-                                                    <Setter Property="AcceptsReturn" Value="True" />
-                                                    <Setter Property="TextWrapping" Value="Wrap" />
-                                                </Style>
-                                            </DataGridTextColumn.EditingElementStyle>
-                                        </DataGridTextColumn>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                                </DataGridTextColumn.Binding>
+                                                <DataGridTextColumn.Header>
+                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsTextStatus_Header}" />
+                                                </DataGridTextColumn.Header>
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                                        <Setter Property="Margin" Value="2" />
+                                                        <Setter Property="TextWrapping" Value="NoWrap" />
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                            </DataGridTextColumn>
+                                            <DataGridTextColumn
+                                                x:Name="DataGridColumn_DetailsUseStatus"
+                                                Width="Auto"
+                                                CanUserReorder="True"
+                                                CanUserResize="True"
+                                                CanUserSort="True"
+                                                IsReadOnly="True"
+                                                Visibility="{Binding Source={StaticResource MenuItem_UseStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
+                                                <DataGridTextColumn.Binding>
+                                                    <MultiBinding Converter="{StaticResource ResourceKey=Converter_EnumNameInLanguage_UseStatus}" UpdateSourceTrigger="PropertyChanged">
+                                                        <Binding Path="UseStatus" />
+                                                        <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
+                                                    </MultiBinding>
+                                                </DataGridTextColumn.Binding>
+                                                <DataGridTextColumn.Header>
+                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsUseStatus_Header}" />
+                                                </DataGridTextColumn.Header>
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                                        <Setter Property="Margin" Value="2" />
+                                                        <Setter Property="TextWrapping" Value="NoWrap" />
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                            </DataGridTextColumn>
+                                            <DataGridTextColumn
+                                                x:Name="DataGridColumn_DetailsDropedText"
+                                                Width="2*"
+                                                Binding="{Binding Droped, UpdateSourceTrigger=PropertyChanged}"
+                                                CanUserReorder="True"
+                                                CanUserResize="True"
+                                                CanUserSort="True"
+                                                IsReadOnly="True"
+                                                Visibility="{Binding Source={StaticResource MenuItem_DropedText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
+                                                <DataGridTextColumn.Header>
+                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsDropedText_Header}" />
+                                                </DataGridTextColumn.Header>
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                                        <Setter Property="Margin" Value="2" />
+                                                        <Setter Property="TextWrapping" Value="NoWrap" />
+                                                        <Setter Property="FontWeight">
+                                                            <Setter.Value>
+                                                                <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextBorder}" ConverterParameter="{x:Static source:Data_GameText.RN_GameTextForLanguage_DropedText}">
+                                                                    <Binding />
+                                                                    <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                                                </MultiBinding>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                            </DataGridTextColumn>
+                                            <DataGridTextColumn
+                                                x:Name="DataGridColumn_DetailsSourceText"
+                                                Width="2*"
+                                                Binding="{Binding Source, UpdateSourceTrigger=PropertyChanged}"
+                                                CanUserReorder="True"
+                                                CanUserResize="True"
+                                                CanUserSort="True"
+                                                IsReadOnly="True"
+                                                Visibility="{Binding Source={StaticResource MenuItem_SourceText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
+                                                <DataGridTextColumn.Header>
+                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsSourceText_Header}" />
+                                                </DataGridTextColumn.Header>
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                                        <Setter Property="Margin" Value="2" />
+                                                        <Setter Property="TextWrapping" Value="NoWrap" />
+                                                        <Setter Property="FontWeight">
+                                                            <Setter.Value>
+                                                                <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextBorder}" ConverterParameter="{x:Static source:Data_GameText.RN_GameTextForLanguage_SourceText}">
+                                                                    <Binding />
+                                                                    <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                                                </MultiBinding>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                            </DataGridTextColumn>
+                                            <DataGridTextColumn
+                                                x:Name="DataGridColumn_DetailsEditedText"
+                                                Width="2*"
+                                                Binding="{Binding Edited, UpdateSourceTrigger=PropertyChanged}"
+                                                CanUserReorder="True"
+                                                CanUserResize="True"
+                                                CanUserSort="False"
+                                                IsReadOnly="True"
+                                                Visibility="{Binding Source={StaticResource MenuItem_EditedText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
+                                                <DataGridTextColumn.Header>
+                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsEditedText_Header}" />
+                                                </DataGridTextColumn.Header>
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="HorizontalAlignment" Value="Left" />
+                                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                                        <Setter Property="Margin" Value="2" />
+                                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                                        <Setter Property="FontWeight">
+                                                            <Setter.Value>
+                                                                <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextBorder}" ConverterParameter="{x:Static source:Data_GameText.RN_GameTextForLanguage_EditedText}">
+                                                                    <Binding />
+                                                                    <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                                                </MultiBinding>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                                <DataGridTextColumn.EditingElementStyle>
+                                                    <Style TargetType="TextBox">
+                                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                                        <Setter Property="Margin" Value="2" />
+                                                        <Setter Property="AcceptsReturn" Value="True" />
+                                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                                    </Style>
+                                                </DataGridTextColumn.EditingElementStyle>
+                                            </DataGridTextColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
                             </GroupBox>
                         </Grid>
                     </TabItem>
