@@ -669,6 +669,8 @@
                 AlternatingRowBackground="LightGray"
                 AlternationCount="2"
                 AutoGenerateColumns="False"
+                EnableColumnVirtualization="True"
+                EnableRowVirtualization="True"
                 CanUserAddRows="False"
                 CellEditEnding="DataGrid_TranslatedTexts_CellEditEnding"
                 SelectedCellsChanged="DataGrid_TranslatedTexts_SelectedCellsChanged"

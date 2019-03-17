@@ -115,6 +115,17 @@ namespace SC2_GameTranslater
         private delegate bool Delegate_IsInSearchResult(DataRow row, string key, string match, bool ignoreCase);
 
         /// <summary>
+        /// 滚动表格到指定项委托
+        /// </summary>
+        /// <param name="row">滚动到的行</param>
+        private delegate void Delegate_ScrollItemToFirstRow(DataRow row, Delegate_ScrollItemToFirstRow_Callback callback);
+
+        /// <summary>
+        /// 滚动表格到指定项委托回调
+        /// </summary>
+        private delegate void Delegate_ScrollItemToFirstRow_Callback();
+
+        /// <summary>
         /// 翻译语言控件
         /// </summary>
         public class TranslateLanguageControls
@@ -425,6 +436,8 @@ namespace SC2_GameTranslater
             { EnumSearchTextLocation.Left, IsInSearchResult_MatchLeft},
             { EnumSearchTextLocation.Right, IsInSearchResult_MatchRight}
         };
+
+        public DataView CurrentFilterResultView { private set; get; } = null;
 
         #endregion
 
@@ -1164,13 +1177,56 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 设置滚动到指定项第一行
         /// </summary>
-        /// <param name="item">滚动到的第一行</param>
-        private void ScrollItemToFirstRow(object item)
+        /// <param name="row">滚动到的第一行</param>
+        /// <param name="callback">回调</param>
+        private void ThreadScrollItemToFirstRow(DataRow row, Delegate_ScrollItemToFirstRow_Callback callback)
         {
-            DataGrid_TranslatedTexts.SelectedItem = item;
-            DataGrid_TranslatedTexts.CurrentItem = item;
-            DataGrid_TranslatedTexts.ScrollIntoView(DataGrid_TranslatedTexts.Items.Cast<DataRowView>().Last());
-            DataGrid_TranslatedTexts.ScrollIntoView(item);
+            if (CurrentFilterResultView == null) return;
+            object selectItem = CurrentFilterResultView[0];
+            for (int i = 0; i < CurrentFilterResultView.Count; i++)
+            {
+                if (CurrentFilterResultView[i].Row == row)
+                {
+                    selectItem = CurrentFilterResultView[i];
+                    break;
+                }
+            }
+            DataGrid_TranslatedTexts.SelectedItem = selectItem;
+            DataGrid_TranslatedTexts.CurrentItem = selectItem;
+            DataGrid_TranslatedTexts.ScrollIntoView(CurrentFilterResultView.Cast<DataRowView>().Last());
+            DataGrid_TranslatedTexts.ScrollIntoView(selectItem);
+            callback?.Invoke();
+        }
+
+        /// <summary>
+        /// 设置滚动到指定项第一行
+        /// </summary>
+        /// <param name="row">滚动到的第一行</param>
+        /// <param name="callback">回调</param>
+        private void ScrollItemToFirstRow(DataRow row, Delegate_ScrollItemToFirstRow_Callback callback)
+        {
+            Delegate_ScrollItemToFirstRow scroll = ThreadScrollItemToFirstRow;
+            DataGrid_TranslatedTexts.Dispatcher.BeginInvoke(scroll, DispatcherPriority.Background, row, callback);
+        }
+
+        /// <summary>
+        /// 设置表格数据并滚动到指定行回调
+        /// </summary>
+        private void SetViewAndScollTranslateText_CallBack()
+        {
+            IsEnabled = true;
+        }
+
+        /// <summary>
+        /// 设置表格数据并滚动到指定行
+        /// </summary>
+        /// <param name="view">表格数据</param>
+        /// <param name="row">行</param>
+        public void SetViewAndScollTranslateText(DataView view , DataRow row)
+        {
+            IsEnabled = false;
+            DataGrid_TranslatedTexts.ItemsSource = view;
+            ScrollItemToFirstRow(row, SetViewAndScollTranslateText_CallBack);
         }
 
         /// <summary>
@@ -1182,6 +1238,7 @@ namespace SC2_GameTranslater
             if (project == null)
             {
                 CurrentTextData = null;
+                CurrentFilterResultView = null;
             }
             else
             {
@@ -1252,17 +1309,8 @@ namespace SC2_GameTranslater
             }
             DataView view = query.AsDataView();
             view.Sort = Data_GameText.RN_GameText_Index + " ASC";
-            DataGrid_TranslatedTexts.ItemsSource = view;
-            object selectItem = DataGrid_TranslatedTexts.Items[0];
-            for (int i = 0; i < view.Count; i++)
-            {
-                if (view[i].Row == selectDataRow)
-                {
-                    selectItem = DataGrid_TranslatedTexts.Items[i];
-                    break;
-                }
-            }
-            ScrollItemToFirstRow(selectItem);
+            CurrentFilterResultView = view;
+            SetViewAndScollTranslateText(view, selectDataRow);
         }
         
         /// <summary>
