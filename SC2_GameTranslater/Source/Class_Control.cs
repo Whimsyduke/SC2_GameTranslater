@@ -409,16 +409,19 @@ namespace SC2_GameTranslater.Source
                 DataRow textRow = table.Rows.Find(select);
                 if (textRow != null)
                 {
-                    string key = Data_GameText.GetRowNameForLanguage((EnumLanguage)values[1], Data_GameText.RN_GameText_EditedText);
                     Run run = new Run
                     {
                         FontWeight = FontWeights.Bold,
-                        ToolTip = select,
                         Foreground = Brushes.White,
                         Background = Brushes.Black,
                         Tag = select,
                     };
-                    if (textRow[key] is string runText && !string.IsNullOrEmpty(runText))
+                    if (textRow[Data_GameText.RN_GameText_Index] is int index)
+                    {
+                        run.ToolTip = Globals.GetStringFromCurrentLanguage("TP_RichTextBoxInGalaxyTextConverter_ToolTip", select, textRow[Data_GameText.RN_GameText_Index]);
+                    }
+                    string keyEdited = Data_GameText.GetRowNameForLanguage((EnumLanguage)values[1], Data_GameText.RN_GameText_EditedText);
+                    if (textRow[keyEdited] is string runText && !string.IsNullOrEmpty(runText))
                     {
                         run.Text = runText;
                     }

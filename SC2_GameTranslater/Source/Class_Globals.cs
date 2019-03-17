@@ -356,6 +356,23 @@ namespace SC2_GameTranslater.Source
             }
         }
 
+        /// <summary>
+        /// 获取当前语言对应的文本内容
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <returns>文本</returns>
+        public static string GetStringFromCurrentLanguage(string key, params object[] args)
+        {
+            if (CurrentLanguage[key] is string text)
+            {
+                return string.Format(text, args);
+            }
+            else
+            {
+                return "";
+            }
+        }
+
         #endregion
 
         #endregion

@@ -52,7 +52,7 @@
     <sys:String x:Key="TEXT_Cancel">取消</sys:String>
     <sys:String x:Key="TEXT_NoText">【无文本】</sys:String>
     <sys:String x:Key="TEXT_Error">【错误】</sys:String>
-    
+
     <!--#endregion-->
 
     <!--#region 界面文本-->
@@ -149,12 +149,16 @@
     <sys:String x:Key="UI_TextBlock_DetailsIndex_Text">数据编号：{0}</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">清空脚本</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateResetEditedText_Header">重置脚本</sys:String>
+    <sys:String x:Key="UI_MenuItem_TranslateGoToDataIndex_Header">跳转数据编号</sys:String>
     <sys:String x:Key="UI_CheckBox_InGalaxyShowScript_Content">显示脚本）</sys:String>
-    
+    <sys:String x:Key="UI_Window_GoToIndex_Title">跳转数据编号</sys:String>
+    <sys:String x:Key="UI_GroupBox_GoToIndex_Header">最大编号：{0}</sys:String>
+
     <!--#endregion-->
 
     <!--#region Tooltip-->
-    <sys:String x:Key="TipToggleButton_FilterGalaxyFileNone_ToolTip">筛选所有未被Galaxy文件使用的文本。</sys:String>
+    <sys:String x:Key="TP_ToggleButton_FilterGalaxyFileNone_ToolTip">筛选所有未被Galaxy文件使用的文本。</sys:String>
+    <sys:String x:Key="TP_RichTextBoxInGalaxyTextConverter_ToolTip">ID：{0}, 数据编号：{1}</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

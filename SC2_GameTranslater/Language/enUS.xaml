@@ -149,12 +149,16 @@
     <sys:String x:Key="UI_TextBlock_DetailsIndex_Text">Data Index: {0}</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">Empty Text</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateResetEditedText_Header">Reset Text</sys:String>
+    <sys:String x:Key="UI_MenuItem_TranslateGoToDataIndex_Header">Go To Data Index</sys:String>
     <sys:String x:Key="UI_CheckBox_InGalaxyShowScript_Content">Show Script )</sys:String>
+    <sys:String x:Key="UI_Window_GoToIndex_Title">Go To Data Index</sys:String>
+    <sys:String x:Key="UI_GroupBox_GoToIndex_Header">Max Index: {0}</sys:String>
 
     <!--#endregion-->
 
     <!--#region Tooltip-->
-    <sys:String x:Key="TipToggleButton_FilterGalaxyFileNone_ToolTip">Filtrate all text that not use in any galaxy files.</sys:String>
+    <sys:String x:Key="TP_ToggleButton_FilterGalaxyFileNone_ToolTip">Filtrate all text that not use in any galaxy files.</sys:String>
+    <sys:String x:Key="TP_RichTextBoxInGalaxyTextConverter_ToolTip">ID: {0}, Data Index: {1}</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

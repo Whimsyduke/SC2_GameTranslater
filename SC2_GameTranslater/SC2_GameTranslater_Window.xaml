@@ -455,7 +455,7 @@
                             Icon="{StaticResource ResourceKey=IMAGE_GalaxyNone}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:Class_Globals.Const_NoUseInGalaxy}"
-                            ToolTip="{DynamicResource TipToggleButton_FilterGalaxyFileNone_ToolTip}"
+                            ToolTip="{DynamicResource TP_ToggleButton_FilterGalaxyFileNone_ToolTip}"
                             Unchecked="ToggleButton_FilterGalaxyButton_CheckEvent" />
                     </Fluent:InRibbonGallery>
                 </Fluent:RibbonGroupBox>
@@ -740,6 +740,8 @@
                     <ContextMenu>
                         <MenuItem Header="{DynamicResource UI_MenuItem_TranslateEmptyEditedText_Header}" Click="MenuItem_TranslateEmptyEditedText_Click"/>
                         <MenuItem Header="{DynamicResource UI_MenuItem_TranslateResetEditedText_Header}" Click="MenuItem_TranslateResetEditedText_Click"/>
+                        <Separator/>
+                        <MenuItem Header="{DynamicResource UI_MenuItem_TranslateGoToDataIndex_Header}" Click="MenuItem_TranslateGoToDataIndex_Click"/>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.CellStyle>

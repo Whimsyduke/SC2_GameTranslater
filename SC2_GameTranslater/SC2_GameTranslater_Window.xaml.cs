@@ -383,12 +383,12 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 当前文本数据依赖项属性
         /// </summary>
-        public static DependencyProperty CurrentTextDataProperty = DependencyProperty.Register(nameof(CurrentTextData), typeof(DataTable), typeof(SC2_GameTranslater_Window));
+        public static DependencyProperty GoToIndexProperty = DependencyProperty.Register(nameof(GoToIndex), typeof(DataTable), typeof(SC2_GameTranslater_Window));
 
         /// <summary>
         /// 当前文本数据依赖项
         /// </summary>
-        public DataTable CurrentTextData { get => (DataTable)GetValue(CurrentTextDataProperty); set => SetValue(CurrentTextDataProperty, value); }
+        public DataTable GoToIndex { get => (DataTable)GetValue(GoToIndexProperty); set => SetValue(GoToIndexProperty, value); }
 
         #endregion
 
@@ -541,6 +541,9 @@ namespace SC2_GameTranslater
             OnProjectChangeRefresh(null, null);
 
             #endregion
+
+            SC2_GameTranslater_GoToIndex win = new SC2_GameTranslater_GoToIndex(200);
+            win.Show();
         }
 
         #endregion
@@ -1281,7 +1284,7 @@ namespace SC2_GameTranslater
         /// <returns>是否找到滚动目标</returns>
         private bool? ScrollToItemByID(string id, Delegate_ScrollItemToFirstRow_Callback callback)
         {
-            DataRow row = CurrentTextData.Rows.Find(id);
+            DataRow row = GoToIndex.Rows.Find(id);
             if (row == null) return null;
             object selectItem = null;
             for (int i = 0; i < CurrentFilterResultView.Count; i++)
@@ -1335,12 +1338,12 @@ namespace SC2_GameTranslater
         {
             if (project == null)
             {
-                CurrentTextData = null;
+                GoToIndex = null;
                 CurrentFilterResultView = null;
             }
             else
             {
-                CurrentTextData = project.Tables[Data_GameText.TN_GameText];
+                GoToIndex = project.Tables[Data_GameText.TN_GameText];
             }
             RefreshTranslatedText();
         }
@@ -1351,7 +1354,7 @@ namespace SC2_GameTranslater
         public void RefreshTranslatedText()
         {
             if (!CanRefreshTranslatedText) return;
-            if (CurrentTextData == null)
+            if (GoToIndex == null)
             {
                 DataGrid_TranslatedTexts.ItemsSource = null;
                 return;
@@ -1365,7 +1368,7 @@ namespace SC2_GameTranslater
                     selectDataRow = rowView.Row;
                 }
             }
-            EnumerableRowCollection<DataRow> query = CurrentTextData.AsEnumerable();
+            EnumerableRowCollection<DataRow> query = GoToIndex.AsEnumerable();
             if (TextFileFilter != EnumGameTextFile.All)
             {
                 string keyFile = Data_GameText.RN_GameText_File;
@@ -1430,7 +1433,7 @@ namespace SC2_GameTranslater
                 // Droped Text
                 if (type.HasFlag(EnumSearchTextType.Droped))
                 {
-                    List<EnumLanguage> languageList = ((Data_GameText)CurrentTextData.DataSet).LangaugeList;
+                    List<EnumLanguage> languageList = ((Data_GameText)GoToIndex.DataSet).LangaugeList;
                     if (item.Tag == null)
                     {
                         keyList.AddRange(languageList.Select(r => Data_GameText.GetRowNameForLanguage(r, Data_GameText.RN_GameText_DropedText)).ToList());
@@ -1444,7 +1447,7 @@ namespace SC2_GameTranslater
                 // Source Text
                 if (type.HasFlag(EnumSearchTextType.Source))
                 {
-                    List<EnumLanguage> languageList = ((Data_GameText)CurrentTextData.DataSet).LangaugeList;
+                    List<EnumLanguage> languageList = ((Data_GameText)GoToIndex.DataSet).LangaugeList;
                     if (item.Tag == null)
                     {
                         keyList.AddRange(languageList.Select(r => Data_GameText.GetRowNameForLanguage(r, Data_GameText.RN_GameText_SourceText)).ToList());
@@ -1458,7 +1461,7 @@ namespace SC2_GameTranslater
                 // Edited Text
                 if (type.HasFlag(EnumSearchTextType.Edited))
                 {
-                    List<EnumLanguage> languageList = ((Data_GameText)CurrentTextData.DataSet).LangaugeList;
+                    List<EnumLanguage> languageList = ((Data_GameText)GoToIndex.DataSet).LangaugeList;
                     if (item.Tag == null)
                     {
                         keyList.AddRange(languageList.Select(r => Data_GameText.GetRowNameForLanguage(r, Data_GameText.RN_GameText_EditedText)).ToList());
@@ -1691,14 +1694,14 @@ namespace SC2_GameTranslater
             {
                 DataView view = Globals.CurrentProject.GetRelateGalaxyLineRows(rowView.Row);
                 DataGrid_GameTextInGalaxy.ItemsSource = view;
-                TextBlock_DetailsID.Text = string.Format(Globals.GetStringFromCurrentLanguage("UI_TextBlock_DetailsID_Text"), rowView.Row[Data_GameText.RN_GameText_ID]);
-                TextBlock_DetailsIndex.Text = string.Format(Globals.GetStringFromCurrentLanguage("UI_TextBlock_DetailsIndex_Text"), rowView.Row[Data_GameText.RN_GameText_Index]);
+                TextBlock_DetailsID.Text = Globals.GetStringFromCurrentLanguage("UI_TextBlock_DetailsID_Text", rowView.Row[Data_GameText.RN_GameText_ID]);
+                TextBlock_DetailsIndex.Text = Globals.GetStringFromCurrentLanguage("UI_TextBlock_DetailsIndex_Text", rowView.Row[Data_GameText.RN_GameText_Index]);
             }
             else
             {
                 DataGrid_GameTextInGalaxy.ItemsSource = null;
-                TextBlock_DetailsID.Text = string.Format(Globals.GetStringFromCurrentLanguage("UI_TextBlock_DetailsID_Text"), "");
-                TextBlock_DetailsIndex.Text = string.Format(Globals.GetStringFromCurrentLanguage("UI_TextBlock_DetailsIndex_Text"), "");
+                TextBlock_DetailsID.Text = Globals.GetStringFromCurrentLanguage("UI_TextBlock_DetailsID_Text", "");
+                TextBlock_DetailsIndex.Text = Globals.GetStringFromCurrentLanguage("UI_TextBlock_DetailsIndex_Text", "");
             }
         }
 
@@ -2414,8 +2417,17 @@ namespace SC2_GameTranslater
                 view.Row[Data_GameText.GetRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_TextStatus)] = source == DBNull.Value ? EnumGameTextStatus.Empty : EnumGameTextStatus.Normal;
             }
         }
-                
-        #endregion
 
+        /// <summary>
+        /// 跳至指定编号
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void MenuItem_TranslateGoToDataIndex_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
     }
 }

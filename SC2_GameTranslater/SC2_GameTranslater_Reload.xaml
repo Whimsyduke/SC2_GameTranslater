@@ -8,8 +8,6 @@
     xmlns:source="clr-namespace:SC2_GameTranslater.Source"
     Name="Window_ReloadConfig"
     Title="{DynamicResource UI_Window_ReloadConfig_Title}"
-    d:DesignHeight="200"
-    d:DesignWidth="600"
     ResizeMode="NoResize"
     SizeToContent="WidthAndHeight"
     mc:Ignorable="d">
@@ -156,7 +154,7 @@
         </GroupBox>
         <StackPanel
             Grid.Row="2"
-            Margin="5,5,20,5"
+            Margin="5,5,5,5"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
             <Button
