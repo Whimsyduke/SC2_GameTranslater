@@ -86,7 +86,7 @@
     <sys:String x:Key="UI_DataGridColumn_GalaxyText_Header">Galaxy文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateDropedText_Header">舍弃文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateEditedText_Header">修改文本</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateGalaxyIndex_Header">数据编号</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslateIndex_Header">数据编号</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateSourceText_Header">原始文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateTextFile_Header">所在文件</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateTextID_Header">文本ID</sys:String>
@@ -147,6 +147,8 @@
     <sys:String x:Key="UI_TextBox_SearchText_ButtonContent">搜索文本</sys:String>
     <sys:String x:Key="UI_TextBlock_DetailsID_Text">文本ID：{0}</sys:String>
     <sys:String x:Key="UI_TextBlock_DetailsIndex_Text">数据编号：{0}</sys:String>
+    <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">清空脚本</sys:String>
+    <sys:String x:Key="UI_MenuItem_TranslateResetEditedText_Header">重置脚本</sys:String>
     
     <!--#endregion-->
 
@@ -176,6 +178,8 @@
     <!--#region Message-->
     <sys:String x:Key="MSG_CanNotFindProjectFile_Title">消息</sys:String>
     <sys:String x:Key="MSG_CanNotFindProjectFile_Message">无法找到项目文件{0}。是否将此条记录删除？</sys:String>
+    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Title">消息</sys:String>
+    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Message">项目文件版本号（{0}）与软件支持项目文件版本号（{1}）不匹配。</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

@@ -340,12 +340,12 @@ namespace SC2_GameTranslater
         {
             set
             {
-                SetValue(EnumCurrentLanguageProperty, value);
                 ResourceDictionary_WindowLanguage.MergedDictionaries.Clear();
                 Globals.CurrentLanguage = Globals.DictUILanguages[value];
                 ResourceDictionary_WindowLanguage.MergedDictionaries.Add(Globals.CurrentLanguage);
                 RibbonLocalization.Current.Localization = Globals.FluentLocalizationMap[value];
                 Title = Globals.GetStringFromCurrentLanguage("TEXT_WindowTitleText") + " V" + Assembly.GetExecutingAssembly().GetName().Version;
+                SetValue(EnumCurrentLanguageProperty, value);
             }
             get => ((EnumLanguage)GetValue(EnumCurrentLanguageProperty));
         }
@@ -1251,7 +1251,7 @@ namespace SC2_GameTranslater
                 SereachText_MatchMod(ref query);
             }
             DataView view = query.AsDataView();
-            view.Sort = Data_GameText.RN_GameText_GalaxyIndex + " ASC";
+            view.Sort = Data_GameText.RN_GameText_Index + " ASC";
             DataGrid_TranslatedTexts.ItemsSource = view;
             object selectItem = DataGrid_TranslatedTexts.Items[0];
             for (int i = 0; i < view.Count; i++)
@@ -1542,7 +1542,7 @@ namespace SC2_GameTranslater
                 DataView view = Globals.CurrentProject.GetRelateGalaxyLineRows(rowView.Row);
                 DataGrid_GameTextInGalaxy.ItemsSource = view;
                 TextBlock_DetailsID.Text = string.Format(Globals.GetStringFromCurrentLanguage("UI_TextBlock_DetailsID_Text"), rowView.Row[Data_GameText.RN_GameText_ID]);
-                TextBlock_DetailsIndex.Text = string.Format(Globals.GetStringFromCurrentLanguage("UI_TextBlock_DetailsIndex_Text"), rowView.Row[Data_GameText.RN_GameText_GalaxyIndex]);
+                TextBlock_DetailsIndex.Text = string.Format(Globals.GetStringFromCurrentLanguage("UI_TextBlock_DetailsIndex_Text"), rowView.Row[Data_GameText.RN_GameText_Index]);
             }
             else
             {
@@ -1757,7 +1757,7 @@ namespace SC2_GameTranslater
         }
         
         /// <summary>
-        /// 获取翻译语言对应的绑定
+        /// 获取文本状态对应翻译语言的绑定
         /// </summary>
         /// <param name="language">语言</param>
         /// <param name="name">基本名称</param>
@@ -1777,7 +1777,7 @@ namespace SC2_GameTranslater
             multiBinding.Converter = converter;
             return multiBinding;
         }
-
+        
         /// <summary>
         /// 刷新当前翻译语言
         /// </summary>
@@ -1889,7 +1889,6 @@ namespace SC2_GameTranslater
         {
             string itemName = ComboBox_Language.SelectedItem as string;
             EnumCurrentLanguage = Globals.DictComboBoxItemLanguage[itemName];
-            RefreshTranslatedText();
             e.Handled = true;
         }
 
@@ -2229,6 +2228,37 @@ namespace SC2_GameTranslater
             }
         }
 
+        /// <summary>
+        /// 清空当前文本
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void MenuItem_TranslateEmptyEditedText_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGrid_TranslatedTexts.CurrentItem is DataRowView view)
+            {
+                
+                view.Row[Data_GameText.GetRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_EditedText)] = DBNull.Value;
+                view.Row[Data_GameText.GetRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_TextStatus)] = EnumGameTextStatus.Empty;
+            }
+        }
+
+        /// <summary>
+        /// 重置当前文本
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void MenuItem_TranslateResetEditedText_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGrid_TranslatedTexts.CurrentItem is DataRowView view)
+            {
+                object source = view.Row[Data_GameText.GetRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_SourceText)];
+                view.Row[Data_GameText.GetRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_EditedText)] = source;
+                view.Row[Data_GameText.GetRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_TextStatus)] = source == DBNull.Value ? EnumGameTextStatus.Empty : EnumGameTextStatus.Normal;
+            }
+        }
+                
         #endregion
+
     }
 }

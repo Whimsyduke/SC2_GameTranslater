@@ -86,7 +86,7 @@
     <sys:String x:Key="UI_DataGridColumn_GalaxyText_Header">Galaxy Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateDropedText_Header">Droped Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateEditedText_Header">Edited Text</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateGalaxyIndex_Header">Data Index</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslateIndex_Header">Data Index</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateSourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateTextFile_Header">In File</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateTextID_Header">Text ID</sys:String>
@@ -147,6 +147,8 @@
     <sys:String x:Key="UI_TextBox_SearchText_ButtonContent">Search Text</sys:String>
     <sys:String x:Key="UI_TextBlock_DetailsID_Text">Text ID: {0}</sys:String>
     <sys:String x:Key="UI_TextBlock_DetailsIndex_Text">Data Index: {0}</sys:String>
+    <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">Empty Text</sys:String>
+    <sys:String x:Key="UI_MenuItem_TranslateResetEditedText_Header">Reset Text</sys:String>
 
     <!--#endregion-->
 
@@ -176,6 +178,8 @@
     <!--#region Message-->
     <sys:String x:Key="MSG_CanNotFindProjectFile_Title">Notice</sys:String>
     <sys:String x:Key="MSG_CanNotFindProjectFile_Message">Can not find project file {0}. Do you want to delete it?</sys:String>
+    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Message">Project file Version ({0}) is mismatched the supported file version ({1}) of the software.</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

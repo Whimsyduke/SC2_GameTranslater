@@ -128,6 +128,14 @@ namespace SC2_GameTranslater.Source
                 }
                 return display as string;
             }
+            else if (values[0] is string text)
+            {
+                return text;
+            }
+            else if (values[0] == DBNull.Value || values[0] == DependencyProperty.UnsetValue)
+            {
+                return Globals.GetStringFromCurrentLanguage("TEXT_NoText");
+            }
             else
             {
                 return Globals.GetStringFromCurrentLanguage("TEXT_Error");

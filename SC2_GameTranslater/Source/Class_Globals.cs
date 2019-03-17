@@ -103,6 +103,7 @@ namespace SC2_GameTranslater.Source
         /// 未在Galaxy文件中使用
         /// </summary>
         public static string Const_NoUseInGalaxy { get;} = "-";
+        public static string ProjectInfoVersion = "1.0.0";
 
         #endregion
 

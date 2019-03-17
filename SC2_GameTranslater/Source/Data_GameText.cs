@@ -187,6 +187,7 @@ namespace SC2_GameTranslater.Source
 
         #region 列名
 
+        public const string RN_ModInfo_ProjectInfo = "ProjectInfo";
         public const string RN_ModInfo_CompontentsPath = "CompontentsPath";
         public const string RN_Language_ID = "ID";
         public const string RN_Language_Name = "Name";
@@ -203,7 +204,7 @@ namespace SC2_GameTranslater.Source
         public const string RN_GalaxyLocation_LineIndex = "LineIndex";
         public const string RN_GalaxyLocation_Key = "Key";
         public const string RN_GameText_ID = "ID";
-        public const string RN_GameText_GalaxyIndex = "GalaxyIndex";
+        public const string RN_GameText_Index = "Index";
         public const string RN_GameText_File = "File";
         public const string RN_GameText_TextStatus = "TextStatus";
         public const string RN_GameText_UseStatus = "UseStatus";
@@ -278,7 +279,7 @@ namespace SC2_GameTranslater.Source
             {
                 if (Tables[TN_ProjectInfo].Rows.Count == 0)
                 {
-                    Tables[TN_ProjectInfo].Rows.Add(Tables[TN_ProjectInfo].NewRow());
+                    Tables[TN_ProjectInfo].Rows.Add(Globals.ProjectInfoVersion, "");
                 }
                 return Tables[TN_ProjectInfo].Rows[0];
             }
@@ -718,6 +719,15 @@ namespace SC2_GameTranslater.Source
         #region 加载
 
         /// <summary>
+        /// 获取项目文件版本号
+        /// </summary>
+        /// <returns></returns>
+        public string GetProjectInforVersion()
+        {
+            return ProjectInfoRow[RN_ModInfo_ProjectInfo] as string;
+        }
+
+        /// <summary>
         /// 加载项目
         /// </summary>
         /// <param name="path">路径</param>
@@ -725,6 +735,11 @@ namespace SC2_GameTranslater.Source
         {
             if (Globals.ObjectDeserializeDecompress(path) is Data_GameText proj)
             {
+                string projectVer = proj.GetProjectInforVersion();
+                if (projectVer != Globals.ProjectInfoVersion)
+                {
+                    Log.ShowSystemMessage(true, System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.None, "MSG_ProjectFileVersionMismatched", projectVer, Globals.ProjectInfoVersion);
+                }
                 proj.RefreshAttribute();
                 return proj;
             }
@@ -1001,11 +1016,11 @@ namespace SC2_GameTranslater.Source
         {
             DataTable table = Tables[TN_GameText];
             EnumerableRowCollection<DataRow> rows = table.AsEnumerable();
-            rows = rows.OrderBy(r => GetTextInGalaxyFileSortValue(r)).ThenBy(r => GetTextInGalaxyLineNumberSortValue(r)).ThenBy(r => GetTextInGalaxyIndexSortValue(r)).Select(r => r);
+            rows = rows.OrderBy(r => GetTextInGalaxyFileSortValue(r)).ThenBy(r => GetTextInGalaxyLineNumberSortValue(r)).ThenBy(r => GetTextInIndexSortValue(r)).Select(r => r);
             int index = 0;
             foreach (DataRow row in rows)
             {
-                row[RN_GameText_GalaxyIndex] = ++index;
+                row[RN_GameText_Index] = ++index;
             }
         }
 
@@ -1040,7 +1055,7 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         /// <param name="row">被排序行</param>
         /// <returns>行号</returns>
-        private int GetTextInGalaxyIndexSortValue(DataRow row)
+        private int GetTextInIndexSortValue(DataRow row)
         {
             DataRow[] locations = row.GetChildRows(RSN_GameText_GalaxyLocation_Key);
             if (locations.Count() == 0) return 0x7FFFFFFF;
