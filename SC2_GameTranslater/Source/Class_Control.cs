@@ -410,24 +410,25 @@ namespace SC2_GameTranslater.Source
                 if (textRow != null)
                 {
                     string key = Data_GameText.GetRowNameForLanguage((EnumLanguage)values[1], Data_GameText.RN_GameText_EditedText);
-                    Run r = new Run
+                    Run run = new Run
                     {
                         FontWeight = FontWeights.Bold,
                         ToolTip = select,
                         Foreground = Brushes.White,
                         Background = Brushes.Black,
+                        Tag = select,
                     };
                     if (textRow[key] is string runText && !string.IsNullOrEmpty(runText))
                     {
-                        r.Text = runText;
+                        run.Text = runText;
                     }
                     else
                     {
-                        r.TextDecorations = TextDecorations.Strikethrough;
-                        r.Text = Globals.GetStringFromCurrentLanguage("TEXT_NoText");
+                        run.TextDecorations = TextDecorations.Strikethrough;
+                        run.Text = Globals.GetStringFromCurrentLanguage("TEXT_NoText");
                     }
-                    r.MouseLeftButtonDown += SC2_GameTranslater_Window.Run_MouseLeftButtonDown;
-                    paragraph.Inlines.Add(r);
+                    run.MouseLeftButtonDown += SC2_GameTranslater_Window.Run_MouseLeftButtonDown;
+                    paragraph.Inlines.Add(run);
                     if (!showScript)
                     {
                         lastSpace = new Run()

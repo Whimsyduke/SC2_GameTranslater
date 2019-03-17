@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -1170,9 +1171,49 @@ namespace SC2_GameTranslater
             TextBox_SearchText.Text = "";
         }
 
+        /// <summary>
+        /// 刷新搜索相关控件状态
+        /// </summary>
+        /// <param name="enable">项目数据</param>
+        private void ResetSearchControlToDefault(bool isEnable)
+        {
+            ComboBox_SearchType.IsEnabled = isEnable;
+            ComboBox_SearchType.SelectedIndex = 0;
+            ComboBox_SearchLocation.SelectedIndex = 0;
+            ComboBox_SearchLanguage.IsEnabled = isEnable;
+            ComboBox_SearchLanguage.SelectedIndex = 0;
+            RadioButton_SearchNull.IsEnabled = isEnable;
+            RadioButton_SearchNull.IsChecked = false;
+            RadioButton_SearchRegex.IsEnabled = isEnable;
+            RadioButton_SearchRegex.IsChecked = false;
+            RadioButton_SearchText.IsEnabled = isEnable;
+            RadioButton_SearchText.IsChecked = true;
+            CheckBox_SearchCase.IsEnabled = isEnable;
+            CheckBox_SearchCase.IsChecked = false;
+            TextBox_SearchText.IsEnabled = isEnable;
+            TextBox_SearchText.Text = "";
+            foreach (ToggleButton button in InRibbonGallery_GalaxyFilter.Items)
+            {
+                button.IsChecked = true;
+            }
+            foreach (ToggleButton button in InRibbonGallery_TextFileFilter.Items)
+            {
+                button.IsChecked = true;
+            }
+            foreach (ToggleButton button in InRibbonGallery_TextStatusFilter.Items)
+            {
+                button.IsChecked = true;
+            }
+            foreach (ToggleButton button in InRibbonGallery_UseStatusFilter.Items)
+            {
+                button.IsChecked = true;
+            }
+        }
         #endregion
 
         #region DataGrid
+
+        #region Scroll
 
         /// <summary>
         /// 设置滚动到指定项第一行
@@ -1181,20 +1222,23 @@ namespace SC2_GameTranslater
         /// <param name="callback">回调</param>
         private void ThreadScrollItemToFirstRow(DataRow row, Delegate_ScrollItemToFirstRow_Callback callback)
         {
-            if (CurrentFilterResultView == null) return;
-            object selectItem = CurrentFilterResultView[0];
-            for (int i = 0; i < CurrentFilterResultView.Count; i++)
+            if (CurrentFilterResultView != null && CurrentFilterResultView.Count != 0)
             {
-                if (CurrentFilterResultView[i].Row == row)
+                object selectItem = CurrentFilterResultView[0];
+                for (int i = 0; i < CurrentFilterResultView.Count; i++)
                 {
-                    selectItem = CurrentFilterResultView[i];
-                    break;
+                    if (CurrentFilterResultView[i].Row == row)
+                    {
+                        selectItem = CurrentFilterResultView[i];
+                        break;
+                    }
                 }
+                DataGrid_TranslatedTexts.UnselectAllCells();
+                DataGrid_TranslatedTexts.SelectedItem = selectItem;
+                DataGrid_TranslatedTexts.CurrentItem = selectItem;
+                DataGrid_TranslatedTexts.ScrollIntoView(CurrentFilterResultView.Cast<DataRowView>().Last());
+                DataGrid_TranslatedTexts.ScrollIntoView(selectItem);
             }
-            DataGrid_TranslatedTexts.SelectedItem = selectItem;
-            DataGrid_TranslatedTexts.CurrentItem = selectItem;
-            DataGrid_TranslatedTexts.ScrollIntoView(CurrentFilterResultView.Cast<DataRowView>().Last());
-            DataGrid_TranslatedTexts.ScrollIntoView(selectItem);
             callback?.Invoke();
         }
 
@@ -1205,6 +1249,7 @@ namespace SC2_GameTranslater
         /// <param name="callback">回调</param>
         private void ScrollItemToFirstRow(DataRow row, Delegate_ScrollItemToFirstRow_Callback callback)
         {
+            IsEnabled = false;
             Delegate_ScrollItemToFirstRow scroll = ThreadScrollItemToFirstRow;
             DataGrid_TranslatedTexts.Dispatcher.BeginInvoke(scroll, DispatcherPriority.Background, row, callback);
         }
@@ -1224,10 +1269,63 @@ namespace SC2_GameTranslater
         /// <param name="row">行</param>
         public void SetViewAndScollTranslateText(DataView view , DataRow row)
         {
-            IsEnabled = false;
             DataGrid_TranslatedTexts.ItemsSource = view;
             ScrollItemToFirstRow(row, SetViewAndScollTranslateText_CallBack);
         }
+
+        /// <summary>
+        /// 通过Key滚动到目标项
+        /// </summary>
+        /// <param name="id">滚动到的ID</param>
+        /// <param name="callback">回调</param>
+        /// <returns>是否找到滚动目标</returns>
+        private bool? ScrollToItemByID(string id, Delegate_ScrollItemToFirstRow_Callback callback)
+        {
+            DataRow row = CurrentTextData.Rows.Find(id);
+            if (row == null) return null;
+            object selectItem = null;
+            for (int i = 0; i < CurrentFilterResultView.Count; i++)
+            {
+                if (CurrentFilterResultView[i].Row == row)
+                {
+                    selectItem = CurrentFilterResultView[i];
+                    break;
+                }
+            }
+            if (selectItem == null) return false;
+            ScrollItemToFirstRow(row, callback);
+            return true;
+        }
+
+        /// <summary>
+        /// 通过Key滚动到目标项
+        /// </summary>
+        /// <param name="id">滚动到的ID</param>
+        private void ScrollToItemByID(string id)
+        {
+            switch (ScrollToItemByID(id, SetViewAndScollTranslateText_CallBack))
+            {
+                case false:
+                    break;
+                case null:
+                    Log.Assert(false, "Error ID");
+                    break;
+                default:
+                    return;
+            }
+            if (Log.ShowSystemMessage(true, MessageBoxButton.YesNo, MessageBoxImage.None, "MSG_SrollToItemFindOutID", id) == MessageBoxResult.Yes)
+            {
+                CanRefreshTranslatedText = false;
+                ResetSearchControlToDefault(true);
+                CanRefreshTranslatedText = true;
+                RefreshTranslatedText();
+                ScrollToItemByID(id, SetViewAndScollTranslateText_CallBack);
+            }
+        }
+
+        #endregion
+
+        #region Refresh
 
         /// <summary>
         /// 刷新翻译文本
@@ -1554,6 +1652,10 @@ namespace SC2_GameTranslater
             return false;
         }
 
+        #endregion
+
+        #region Other
+
         /// <summary>
         /// 刷新游戏文本单语言数据表
         /// </summary>
@@ -1600,6 +1702,8 @@ namespace SC2_GameTranslater
             }
         }
 
+        #endregion
+        
         #endregion
 
         #region 功能
@@ -2238,7 +2342,11 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         public static void Run_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            e.Handled = true;
+            if (sender is Run run && run.Tag is string id)
+            {
+                Globals.MainWindow.ScrollToItemByID(id);
+                e.Handled = true;
+            }
         }
 
         /// <summary>

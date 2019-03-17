@@ -181,6 +181,8 @@
     <sys:String x:Key="MSG_CanNotFindProjectFile_Message">无法找到项目文件{0}。是否将此条记录删除？</sys:String>
     <sys:String x:Key="MSG_ProjectFileVersionMismatched_Title">消息</sys:String>
     <sys:String x:Key="MSG_ProjectFileVersionMismatched_Message">项目文件版本号（{0}）与软件支持项目文件版本号（{1}）不匹配。</sys:String>
+    <sys:String x:Key="MSG_SrollToItemFindOutID_Title">消息</sys:String>
+    <sys:String x:Key="MSG_SrollToItemFindOutID_Message">无法在当前搜索结果中找到ID（{0}），是否在重置筛选设置后再次尝试？</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

@@ -181,6 +181,8 @@
     <sys:String x:Key="MSG_CanNotFindProjectFile_Message">Can not find project file {0}. Do you want to delete it?</sys:String>
     <sys:String x:Key="MSG_ProjectFileVersionMismatched_Title">Notice</sys:String>
     <sys:String x:Key="MSG_ProjectFileVersionMismatched_Message">Project file Version ({0}) is mismatched the supported file version ({1}) of the software.</sys:String>
+    <sys:String x:Key="MSG_SrollToItemFindOutID_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_SrollToItemFindOutID_Message">Can not find the ID {0} in current search result, do you want to retry after reset filter?</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

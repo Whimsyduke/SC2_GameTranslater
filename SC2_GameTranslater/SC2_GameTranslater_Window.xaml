@@ -746,6 +746,10 @@
                     <Style TargetType="DataGridCell">
                         <Setter Property="BorderThickness" Value="0" />
                         <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="Gray" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" Value="SkyBlue" />
                                 <Setter Property="Foreground" Value="Black" />
@@ -768,6 +772,12 @@
                 <DataGrid.RowStyle>
                     <Style TargetType="{x:Type DataGridRow}">
                         <Setter Property="VerticalAlignment" Value="Stretch" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="Gray" />
+                                <Setter Property="Foreground" Value="Wheat" />
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                 </DataGrid.RowStyle>
                 <DataGrid.ColumnHeaderStyle>
