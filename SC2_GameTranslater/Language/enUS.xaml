@@ -95,7 +95,7 @@
     <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Mod/Map Path:</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">Details</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">Game Text Details</sys:String>
-    <sys:String x:Key="UI_GroupBox_GameTextInGalaxy_Header">Galaxy Text Details</sys:String>
+    <sys:String x:Key="UI_GroupBox_GameTextInGalaxy_Header">Galaxy Text Details (</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextShowLanguage_Header">Show Language</sys:String>
     <sys:String x:Key="UI_GroupBox_Language_Header">UI Language:</sys:String>
     <sys:String x:Key="UI_GroupBox_Log_Header">Log</sys:String>
@@ -149,6 +149,7 @@
     <sys:String x:Key="UI_TextBlock_DetailsIndex_Text">Data Index: {0}</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">Empty Text</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateResetEditedText_Header">Reset Text</sys:String>
+    <sys:String x:Key="UI_CheckBox_InGalaxyShowScript_Content">Show Script )</sys:String>
 
     <!--#endregion-->
 

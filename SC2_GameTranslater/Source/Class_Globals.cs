@@ -116,26 +116,6 @@ namespace SC2_GameTranslater.Source
         #region 属性
 
         /// <summary>
-        /// 允许在静态类中显示日志
-        /// </summary>
-        public static bool EnableShowLogInUI
-        {
-            set
-            {
-                mEnableShowLogInUI = value;
-                if (!value)
-                {
-                    MainWindow.AvalonTextEditor_Log.Text = "";
-                }
-            }
-            get
-            {
-                return mEnableShowLogInUI;
-            }
-        }
-        private static bool mEnableShowLogInUI = true;
-
-        /// <summary>
         /// 当前处理的数据
         /// </summary>
         public static Data_GameText CurrentProject

@@ -215,9 +215,16 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            EnumLanguage softeareLanguage = (EnumLanguage)values[1];
-            EnumGameTextStatus value = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), values[0]);
-            return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
+            try
+            {
+                EnumLanguage softeareLanguage = (EnumLanguage)values[1];
+                EnumGameTextStatus value = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), values[0]);
+                return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
+            }
+            catch
+            {
+                return Globals.GetStringFromCurrentLanguage("TEXT_Error");
+            }
         }
 
         /// <summary>
@@ -250,9 +257,16 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            EnumLanguage softeareLanguage = (EnumLanguage)values[1];
-            EnumGameUseStatus value = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), values[0]);
-            return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
+            try
+            {
+                EnumLanguage softeareLanguage = (EnumLanguage)values[1];
+                EnumGameUseStatus value = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), values[0]);
+                return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
+            }
+            catch
+            {
+                return Globals.GetStringFromCurrentLanguage("TEXT_Error");
+            }
         }
 
         /// <summary>
@@ -314,7 +328,7 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// 空文本表格边框
     /// </summary>
-    public class DataGridColumnNullTextBorderConverter : IMultiValueConverter
+    public class DataGridColumnNullTextFontWeightConverter : IMultiValueConverter
     {
         /// <summary>
         /// 转换函数
@@ -326,17 +340,24 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[1] == DependencyProperty.UnsetValue) return ConsoleColor.Gray;
-            DataRowView rowView = values[0] as DataRowView;
-            EnumLanguage translateLanguage = (EnumLanguage)values[1];
-            string column = parameter as string;
-            string key = column;
-            if (rowView.Row.Table != Data_GameText.GameTextForLanguageTable)
+            try
             {
-                key = Data_GameText.GetRowNameForLanguage(translateLanguage, column);
+                if (values[1] == DependencyProperty.UnsetValue) return ConsoleColor.Gray;
+                DataRowView rowView = values[0] as DataRowView;
+                EnumLanguage translateLanguage = (EnumLanguage)values[1];
+                string column = parameter as string;
+                string key = column;
+                if (rowView.Row.Table != Data_GameText.GameTextForLanguageTable)
+                {
+                    key = Data_GameText.GetRowNameForLanguage(translateLanguage, column);
+                }
+                var var = rowView.Row[key];
+                return var == DBNull.Value ? FontWeights.Bold : FontWeights.Normal;
             }
-            var var = rowView.Row[key];
-            return var == DBNull.Value ? FontWeights.Bold: FontWeights.Normal;
+            catch
+            {
+                return FontWeights.Normal;
+            }
         }
 
         /// <summary>
@@ -370,7 +391,8 @@ namespace SC2_GameTranslater.Source
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             string[] texts = new string[0];
-            if (values[0] is DataRowView rowView && rowView.Row[Data_GameText.RN_GalaxyLine_Script] is string text && string.IsNullOrEmpty(text))
+            bool showScript = (bool?)values[2] == true;
+            if (values[0] is DataRowView rowView && rowView.Row[Data_GameText.RN_GalaxyLine_Script] is string text && !string.IsNullOrEmpty(text))
             {
                 texts = Data_GameText.Const_Regex_StringExternal.Split(text);
             }
@@ -381,25 +403,53 @@ namespace SC2_GameTranslater.Source
                 FontWeight = FontWeights.Normal
             };
             DataTable table = Globals.CurrentProject.Tables[Data_GameText.TN_GameText];
+            Run lastSpace = null;
             foreach (string select in texts)
             {
-                Run r = new Run();
                 DataRow textRow = table.Rows.Find(select);
                 if (textRow != null)
                 {
-                    r.MouseLeftButtonDown += SC2_GameTranslater_Window.Run_MouseLeftButtonDown;
-                    r.FontWeight = FontWeights.Bold;
-                    r.ToolTip = select;
                     string key = Data_GameText.GetRowNameForLanguage((EnumLanguage)values[1], Data_GameText.RN_GameText_EditedText);
-                    r.Text = textRow[key] as string;
-                    r.Foreground = Brushes.Red;
+                    Run r = new Run
+                    {
+                        FontWeight = FontWeights.Bold,
+                        ToolTip = select,
+                        Foreground = Brushes.White,
+                        Background = Brushes.Black,
+                    };
+                    if (textRow[key] is string runText && !string.IsNullOrEmpty(runText))
+                    {
+                        r.Text = runText;
+                    }
+                    else
+                    {
+                        r.TextDecorations = TextDecorations.Strikethrough;
+                        r.Text = Globals.GetStringFromCurrentLanguage("TEXT_NoText");
+                    }
+                    r.MouseLeftButtonDown += SC2_GameTranslater_Window.Run_MouseLeftButtonDown;
+                    paragraph.Inlines.Add(r);
+                    if (!showScript)
+                    {
+                        lastSpace = new Run()
+                        {
+                            Text = " + ",
+                        };
+                        paragraph.Inlines.Add(lastSpace);
+                    }
                 }
                 else
                 {
-                    r.Text = select;
+                    if (showScript)
+                    {
+                        Run r = new Run
+                        {
+                            Text = select
+                        };
+                        paragraph.Inlines.Add(r);
+                    }
                 }
-                paragraph.Inlines.Add(r);
             }
+            if (lastSpace != null) paragraph.Inlines.Remove(lastSpace);
             doc.Blocks.Add(paragraph);
             return doc;
         }

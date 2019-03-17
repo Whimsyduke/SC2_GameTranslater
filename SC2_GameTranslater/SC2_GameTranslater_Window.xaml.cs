@@ -1794,7 +1794,8 @@ namespace SC2_GameTranslater
                 DataGridColumn_TranslateTextStatus.Binding = GetStatusRowMultiBinding(GetRowBinding(language, Data_GameText.RN_GameText_TextStatus), new EnumNameInLanguage_TextStatusConverter());
                 DataGridColumn_TranslateUseStatus.Binding = GetStatusRowMultiBinding(GetRowBinding(language, Data_GameText.RN_GameText_TextStatus), new EnumNameInLanguage_TextStatusConverter());
             }
-            RefreshTranslatedText();
+            //RefreshTranslatedText();
+            RefreshInGalaxyTextDetails();
         }
 
         #endregion

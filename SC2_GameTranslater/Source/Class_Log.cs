@@ -13,23 +13,6 @@ namespace SC2_GameTranslater.Source
         #region 方法
 
         /// <summary>
-        /// UI上显示日志
-        /// </summary>
-        /// <param name="msg">日志信息</param>
-        public static void DisplayLogOnUI(string msg)
-        {
-            if (!Globals.EnableShowLogInUI) return;
-            if (Globals.MainWindow.AvalonTextEditor_Log.Text == "")
-            {
-                Globals.MainWindow.AvalonTextEditor_Log.Text = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss ") + (msg.Contains("\n") ? "\r\n" : "") + msg;
-            }
-            else
-            {
-                Globals.MainWindow.AvalonTextEditor_Log.Text = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss ") + (msg.Contains("\n") ? "\r\n" : "") + msg + "\r\n" + Globals.MainWindow.AvalonTextEditor_Log.Text;
-            }
-        }
-
-        /// <summary>
         /// 显示消息
         /// </summary>
         /// <param name="button">显示按钮</param>
@@ -43,7 +26,6 @@ namespace SC2_GameTranslater.Source
             string caption = Globals.GetStringFromCurrentLanguage(msgKey + "_Title") as string;
             string msg = Globals.GetStringFromCurrentLanguage(msgKey + "_Message") as string;
             msg = string.IsNullOrEmpty(msg) ? "" : string.Format(msg, args);
-            DisplayLogOnUI(msg);
             return MessageBox.Show(msg, caption, button, image);
         }
 

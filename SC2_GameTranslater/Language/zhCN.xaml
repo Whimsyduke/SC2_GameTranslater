@@ -95,7 +95,7 @@
     <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Mod/Map路径：</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">详情</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">游戏文本数据</sys:String>
-    <sys:String x:Key="UI_GroupBox_GameTextInGalaxy_Header">Galaxy文本数据</sys:String>
+    <sys:String x:Key="UI_GroupBox_GameTextInGalaxy_Header">Galaxy文本数据（</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextShowLanguage_Header">显示语言</sys:String>
     <sys:String x:Key="UI_GroupBox_Language_Header">界面语言：</sys:String>
     <sys:String x:Key="UI_GroupBox_Log_Header">日志</sys:String>
@@ -149,6 +149,7 @@
     <sys:String x:Key="UI_TextBlock_DetailsIndex_Text">数据编号：{0}</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">清空脚本</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateResetEditedText_Header">重置脚本</sys:String>
+    <sys:String x:Key="UI_CheckBox_InGalaxyShowScript_Content">显示脚本）</sys:String>
     
     <!--#endregion-->
 
