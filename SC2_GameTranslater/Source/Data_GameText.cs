@@ -188,6 +188,7 @@ namespace SC2_GameTranslater.Source
 
         public const string RN_ModInfo_ProjectInfo = "ProjectInfo";
         public const string RN_ModInfo_CompontentsPath = "CompontentsPath";
+        public const string RN_ModInfo_SearchConfig = "SearchConfig";
         public const string RN_Language_ID = "ID";
         public const string RN_Language_Name = "Name";
         public const string RN_Language_Status = "Status";
@@ -278,7 +279,7 @@ namespace SC2_GameTranslater.Source
             {
                 if (Tables[TN_ProjectInfo].Rows.Count == 0)
                 {
-                    Tables[TN_ProjectInfo].Rows.Add(Globals.ProjectInfoVersion, "");
+                    Tables[TN_ProjectInfo].Rows.Add(Globals.ProjectInfoVersion, "", null);
                 }
                 return Tables[TN_ProjectInfo].Rows[0];
             }
@@ -730,11 +731,27 @@ namespace SC2_GameTranslater.Source
         #region 保存
 
         /// <summary>
+        /// 生成搜索配置数据
+        /// </summary>
+        private void GenerateSearchConfigData()
+        {
+            Class_SearchConfig config = new Class_SearchConfig()
+            {
+                SearchLanguage = EnumLanguage.deDE,
+                SearchType = EnumSearchTextType.AllText,
+                SearchText = (new Random()).Next().ToString(),
+            };
+            byte[] data = Class_SearchConfig.Serializer(config);
+            ProjectInfoRow[RN_ModInfo_SearchConfig] = data;
+        }
+
+        /// <summary>
         /// 保存当前项目
         /// </summary>
         /// <param name="path">保存路径</param>
         public void SaveProject(FileInfo path)
         {
+            GenerateSearchConfigData();
             NeedSave = true;
             Globals.ObjectSerializerCompression(path, this);
         }
@@ -747,9 +764,18 @@ namespace SC2_GameTranslater.Source
         /// 获取项目文件版本号
         /// </summary>
         /// <returns></returns>
-        public string GetProjectInforVersion()
+        public string GetProjectInfoVersion()
         {
             return ProjectInfoRow[RN_ModInfo_ProjectInfo] as string;
+        }
+
+        /// <summary>
+        /// 使用搜索配置数据
+        /// </summary>
+        private void UseSerachConfigData()
+        {
+            byte[] data = ProjectInfoRow[RN_ModInfo_SearchConfig] as byte[];
+            Class_SearchConfig config = Class_SearchConfig.Deserialize(data);
         }
 
         /// <summary>
@@ -760,7 +786,7 @@ namespace SC2_GameTranslater.Source
         {
             if (Globals.ObjectDeserializeDecompress(path) is Data_GameText proj)
             {
-                string projectVer = proj.GetProjectInforVersion();
+                string projectVer = proj.GetProjectInfoVersion();
                 if (projectVer != Globals.ProjectInfoVersion)
                 {
                     Log.ShowSystemMessage(true, System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.None, "MSG_ProjectFileVersionMismatched", projectVer, Globals.ProjectInfoVersion);
@@ -787,6 +813,7 @@ namespace SC2_GameTranslater.Source
                 }
 
                 LangaugeList = Tables[TN_Language].AsEnumerable().Select(r => (EnumLanguage)r[RN_Language_ID]).ToList();
+                UseSerachConfigData();
                 return true;
             }
 #if !DEBUG

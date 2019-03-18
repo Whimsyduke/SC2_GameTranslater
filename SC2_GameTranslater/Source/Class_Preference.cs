@@ -15,19 +15,23 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// 配置文件类
     /// </summary>
-    [XmlRoot(Preference_ElementConfig)]
+    [XmlRoot(Preference_ElementConfigRoot)]
     public class Class_Preference
     {
         #region 常量
 
-        // 默认值
+        #region 默认值
+
         public static readonly FileInfo Preference_ConfigFile = new FileInfo("Config.cfg");
         public static readonly Size Preference_DefaultWindowSize = new Size(1366, 768);
         public static readonly string Preference_DefaultLastFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         public static readonly int Prefrence_MaxRecentProjectCount = 20;
 
-        // 字段
-        public const string Preference_ElementConfig = "Preference";
+        #endregion
+
+        #region 字段
+
+        public const string Preference_ElementConfigRoot = "Preference";
         public const string Preference_AttributeMajorVer = "Major";
         public const string Preference_AttributeMinorVer = "Minor";
         public const string Preference_AttributeBuildVer = "Build";
@@ -38,6 +42,8 @@ namespace SC2_GameTranslater.Source
         public const string Preference_ElementRecentProjectList = "RecentProjectList";
         public const string Preference_AttributeRecentProject = "RecentProject";
         public const string Preference_AttributeColumnVisiblility = "ColumnVisiblility";
+
+        #endregion
 
         #endregion
 

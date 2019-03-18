@@ -12,15 +12,16 @@
   <xs:element name="Data_GameText" msdata:IsDataSet="true" msdata:Locale="" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Data_GameText" msprop:Generator_UserDSName="Data_GameText">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Table_ProjectInfo" msprop:Generator_TableClassName="Table_ProjectInfoDataTable" msprop:Generator_TableVarName="tableTable_ProjectInfo" msprop:Generator_RowChangedName="Table_ProjectInfoRowChanged" msprop:Generator_TablePropName="Table_ProjectInfo" msprop:Generator_RowDeletingName="Table_ProjectInfoRowDeleting" msprop:Generator_RowChangingName="Table_ProjectInfoRowChanging" msprop:Generator_RowEvHandlerName="Table_ProjectInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="Table_ProjectInfoRowDeleted" msprop:Generator_RowClassName="Table_ProjectInfoRow" msprop:Generator_UserTableName="Table_ProjectInfo" msprop:Generator_RowEvArgName="Table_ProjectInfoRowChangeEvent">
+        <xs:element name="Table_ProjectInfo" msprop:Generator_TableClassName="Table_ProjectInfoDataTable" msprop:Generator_TableVarName="tableTable_ProjectInfo" msprop:Generator_TablePropName="Table_ProjectInfo" msprop:Generator_RowDeletingName="Table_ProjectInfoRowDeleting" msprop:Generator_RowChangingName="Table_ProjectInfoRowChanging" msprop:Generator_RowEvHandlerName="Table_ProjectInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="Table_ProjectInfoRowDeleted" msprop:Generator_UserTableName="Table_ProjectInfo" msprop:Generator_RowChangedName="Table_ProjectInfoRowChanged" msprop:Generator_RowEvArgName="Table_ProjectInfoRowChangeEvent" msprop:Generator_RowClassName="Table_ProjectInfoRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ProjectInfo" msprop:Generator_ColumnVarNameInTable="columnProjectInfo" msprop:Generator_ColumnPropNameInRow="ProjectInfo" msprop:Generator_ColumnPropNameInTable="ProjectInfoColumn" msprop:Generator_UserColumnName="ProjectInfo" type="xs:string" minOccurs="0" />
               <xs:element name="CompontentsPath" msprop:Generator_ColumnVarNameInTable="columnCompontentsPath" msprop:Generator_ColumnPropNameInRow="CompontentsPath" msprop:Generator_ColumnPropNameInTable="CompontentsPathColumn" msprop:Generator_UserColumnName="CompontentsPath" type="xs:string" minOccurs="0" />
+              <xs:element name="SearchConfig" msprop:Generator_ColumnVarNameInTable="columnSearchConfig" msprop:Generator_ColumnPropNameInRow="SearchConfig" msprop:Generator_ColumnPropNameInTable="SearchConfigColumn" msprop:Generator_UserColumnName="SearchConfig" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Table_Language" msprop:Generator_TableClassName="Table_LanguageDataTable" msprop:Generator_TableVarName="tableTable_Language" msprop:Generator_RowChangedName="Table_LanguageRowChanged" msprop:Generator_TablePropName="Table_Language" msprop:Generator_RowDeletingName="Table_LanguageRowDeleting" msprop:Generator_RowChangingName="Table_LanguageRowChanging" msprop:Generator_RowEvHandlerName="Table_LanguageRowChangeEventHandler" msprop:Generator_RowDeletedName="Table_LanguageRowDeleted" msprop:Generator_RowClassName="Table_LanguageRow" msprop:Generator_UserTableName="Table_Language" msprop:Generator_RowEvArgName="Table_LanguageRowChangeEvent">
+        <xs:element name="Table_Language" msprop:Generator_TableClassName="Table_LanguageDataTable" msprop:Generator_TableVarName="tableTable_Language" msprop:Generator_TablePropName="Table_Language" msprop:Generator_RowDeletingName="Table_LanguageRowDeleting" msprop:Generator_RowChangingName="Table_LanguageRowChanging" msprop:Generator_RowEvHandlerName="Table_LanguageRowChangeEventHandler" msprop:Generator_RowDeletedName="Table_LanguageRowDeleted" msprop:Generator_UserTableName="Table_Language" msprop:Generator_RowChangedName="Table_LanguageRowChanged" msprop:Generator_RowEvArgName="Table_LanguageRowChangeEvent" msprop:Generator_RowClassName="Table_LanguageRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -29,7 +30,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Table_GalaxyFile" msprop:Generator_TableClassName="Table_GalaxyFileDataTable" msprop:Generator_TableVarName="tableTable_GalaxyFile" msprop:Generator_RowChangedName="Table_GalaxyFileRowChanged" msprop:Generator_TablePropName="Table_GalaxyFile" msprop:Generator_RowDeletingName="Table_GalaxyFileRowDeleting" msprop:Generator_RowChangingName="Table_GalaxyFileRowChanging" msprop:Generator_RowEvHandlerName="Table_GalaxyFileRowChangeEventHandler" msprop:Generator_RowDeletedName="Table_GalaxyFileRowDeleted" msprop:Generator_RowClassName="Table_GalaxyFileRow" msprop:Generator_UserTableName="Table_GalaxyFile" msprop:Generator_RowEvArgName="Table_GalaxyFileRowChangeEvent">
+        <xs:element name="Table_GalaxyFile" msprop:Generator_TableClassName="Table_GalaxyFileDataTable" msprop:Generator_TableVarName="tableTable_GalaxyFile" msprop:Generator_TablePropName="Table_GalaxyFile" msprop:Generator_RowDeletingName="Table_GalaxyFileRowDeleting" msprop:Generator_RowChangingName="Table_GalaxyFileRowChanging" msprop:Generator_RowEvHandlerName="Table_GalaxyFileRowChangeEventHandler" msprop:Generator_RowDeletedName="Table_GalaxyFileRowDeleted" msprop:Generator_UserTableName="Table_GalaxyFile" msprop:Generator_RowChangedName="Table_GalaxyFileRowChanged" msprop:Generator_RowEvArgName="Table_GalaxyFileRowChangeEvent" msprop:Generator_RowClassName="Table_GalaxyFileRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Path" msprop:Generator_ColumnVarNameInTable="columnPath" msprop:Generator_ColumnPropNameInRow="Path" msprop:Generator_ColumnPropNameInTable="PathColumn" msprop:Generator_UserColumnName="Path" type="xs:string" default="MapScript.galaxy" />
@@ -38,7 +39,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Table_GalaxyLine" msprop:Generator_TableClassName="Table_GalaxyLineDataTable" msprop:Generator_TableVarName="tableTable_GalaxyLine" msprop:Generator_RowChangedName="Table_GalaxyLineRowChanged" msprop:Generator_TablePropName="Table_GalaxyLine" msprop:Generator_RowDeletingName="Table_GalaxyLineRowDeleting" msprop:Generator_RowChangingName="Table_GalaxyLineRowChanging" msprop:Generator_RowEvHandlerName="Table_GalaxyLineRowChangeEventHandler" msprop:Generator_RowDeletedName="Table_GalaxyLineRowDeleted" msprop:Generator_RowClassName="Table_GalaxyLineRow" msprop:Generator_UserTableName="Table_GalaxyLine" msprop:Generator_RowEvArgName="Table_GalaxyLineRowChangeEvent">
+        <xs:element name="Table_GalaxyLine" msprop:Generator_TableClassName="Table_GalaxyLineDataTable" msprop:Generator_TableVarName="tableTable_GalaxyLine" msprop:Generator_TablePropName="Table_GalaxyLine" msprop:Generator_RowDeletingName="Table_GalaxyLineRowDeleting" msprop:Generator_RowChangingName="Table_GalaxyLineRowChanging" msprop:Generator_RowEvHandlerName="Table_GalaxyLineRowChangeEventHandler" msprop:Generator_RowDeletedName="Table_GalaxyLineRowDeleted" msprop:Generator_UserTableName="Table_GalaxyLine" msprop:Generator_RowChangedName="Table_GalaxyLineRowChanged" msprop:Generator_RowEvArgName="Table_GalaxyLineRowChangeEvent" msprop:Generator_RowClassName="Table_GalaxyLineRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Index" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnIndex" msprop:Generator_ColumnPropNameInRow="Index" msprop:Generator_ColumnPropNameInTable="IndexColumn" msprop:Generator_UserColumnName="Index" type="xs:int" />
@@ -48,7 +49,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Table_GalaxyLocation" msprop:Generator_TableClassName="Table_GalaxyLocationDataTable" msprop:Generator_TableVarName="tableTable_GalaxyLocation" msprop:Generator_RowChangedName="Table_GalaxyLocationRowChanged" msprop:Generator_TablePropName="Table_GalaxyLocation" msprop:Generator_RowDeletingName="Table_GalaxyLocationRowDeleting" msprop:Generator_RowChangingName="Table_GalaxyLocationRowChanging" msprop:Generator_RowEvHandlerName="Table_GalaxyLocationRowChangeEventHandler" msprop:Generator_RowDeletedName="Table_GalaxyLocationRowDeleted" msprop:Generator_RowClassName="Table_GalaxyLocationRow" msprop:Generator_UserTableName="Table_GalaxyLocation" msprop:Generator_RowEvArgName="Table_GalaxyLocationRowChangeEvent">
+        <xs:element name="Table_GalaxyLocation" msprop:Generator_TableClassName="Table_GalaxyLocationDataTable" msprop:Generator_TableVarName="tableTable_GalaxyLocation" msprop:Generator_TablePropName="Table_GalaxyLocation" msprop:Generator_RowDeletingName="Table_GalaxyLocationRowDeleting" msprop:Generator_RowChangingName="Table_GalaxyLocationRowChanging" msprop:Generator_RowEvHandlerName="Table_GalaxyLocationRowChangeEventHandler" msprop:Generator_RowDeletedName="Table_GalaxyLocationRowDeleted" msprop:Generator_UserTableName="Table_GalaxyLocation" msprop:Generator_RowChangedName="Table_GalaxyLocationRowChanged" msprop:Generator_RowEvArgName="Table_GalaxyLocationRowChangeEvent" msprop:Generator_RowClassName="Table_GalaxyLocationRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Index" msprop:Generator_ColumnVarNameInTable="columnIndex" msprop:Generator_ColumnPropNameInRow="Index" msprop:Generator_ColumnPropNameInTable="IndexColumn" msprop:Generator_UserColumnName="Index" type="xs:string" />
@@ -58,7 +59,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Table_GameText" msprop:Generator_TableClassName="Table_GameTextDataTable" msprop:Generator_TableVarName="tableTable_GameText" msprop:Generator_RowChangedName="Table_GameTextRowChanged" msprop:Generator_TablePropName="Table_GameText" msprop:Generator_RowDeletingName="Table_GameTextRowDeleting" msprop:Generator_RowChangingName="Table_GameTextRowChanging" msprop:Generator_RowEvHandlerName="Table_GameTextRowChangeEventHandler" msprop:Generator_RowDeletedName="Table_GameTextRowDeleted" msprop:Generator_RowClassName="Table_GameTextRow" msprop:Generator_UserTableName="Table_GameText" msprop:Generator_RowEvArgName="Table_GameTextRowChangeEvent">
+        <xs:element name="Table_GameText" msprop:Generator_TableClassName="Table_GameTextDataTable" msprop:Generator_TableVarName="tableTable_GameText" msprop:Generator_TablePropName="Table_GameText" msprop:Generator_RowDeletingName="Table_GameTextRowDeleting" msprop:Generator_RowChangingName="Table_GameTextRowChanging" msprop:Generator_RowEvHandlerName="Table_GameTextRowChangeEventHandler" msprop:Generator_RowDeletedName="Table_GameTextRowDeleted" msprop:Generator_UserTableName="Table_GameText" msprop:Generator_RowChangedName="Table_GameTextRowChanged" msprop:Generator_RowEvArgName="Table_GameTextRowChangeEvent" msprop:Generator_RowClassName="Table_GameTextRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:Caption="LanguageID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -89,18 +90,18 @@
       <xs:selector xpath=".//mstns:Table_GameText" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>
-    <xs:keyref name="Relation_GalaxyLine_GameLocation_Line" refer="Table_GalaxyLineKey_Index" msprop:rel_Generator_UserChildTable="Table_GalaxyLocation" msprop:rel_Generator_ChildPropName="GetTable_GalaxyLocationRows" msprop:rel_Generator_UserRelationName="Relation_GalaxyLine_GameLocation_Line" msprop:rel_Generator_RelationVarName="relationRelation_GalaxyLine_GameLocation_Line" msprop:rel_Generator_UserParentTable="Table_GalaxyLine" msprop:rel_Generator_ParentPropName="Table_GalaxyLineRow" msdata:UpdateRule="None" msdata:DeleteRule="None">
+    <xs:keyref name="Relation_GalaxyLine_GameLocation_Line" refer="Table_GalaxyLineKey_Index" msprop:rel_Generator_UserChildTable="Table_GalaxyLocation" msprop:rel_Generator_ChildPropName="GetTable_GalaxyLocationRows" msprop:rel_Generator_UserRelationName="Relation_GalaxyLine_GameLocation_Line" msprop:rel_Generator_ParentPropName="Table_GalaxyLineRow" msprop:rel_Generator_RelationVarName="relationRelation_GalaxyLine_GameLocation_Line" msprop:rel_Generator_UserParentTable="Table_GalaxyLine" msdata:UpdateRule="None" msdata:DeleteRule="None">
       <xs:selector xpath=".//mstns:Table_GalaxyLocation" />
       <xs:field xpath="mstns:Line" />
     </xs:keyref>
-    <xs:keyref name="Relation_GalaxyFile_GalaxyLine_File" refer="Table_GalaxyFileKey_ID" msprop:rel_Generator_UserChildTable="Table_GalaxyLine" msprop:rel_Generator_ChildPropName="GetTable_GalaxyLineRows" msprop:rel_Generator_UserRelationName="Relation_GalaxyFile_GalaxyLine_File" msprop:rel_Generator_RelationVarName="relationRelation_GalaxyFile_GalaxyLine_File" msprop:rel_Generator_UserParentTable="Table_GalaxyFile" msprop:rel_Generator_ParentPropName="Table_GalaxyFileRow">
+    <xs:keyref name="Relation_GalaxyFile_GalaxyLine_File" refer="Table_GalaxyFileKey_ID" msprop:rel_Generator_UserChildTable="Table_GalaxyLine" msprop:rel_Generator_ChildPropName="GetTable_GalaxyLineRows" msprop:rel_Generator_UserRelationName="Relation_GalaxyFile_GalaxyLine_File" msprop:rel_Generator_ParentPropName="Table_GalaxyFileRow" msprop:rel_Generator_RelationVarName="relationRelation_GalaxyFile_GalaxyLine_File" msprop:rel_Generator_UserParentTable="Table_GalaxyFile">
       <xs:selector xpath=".//mstns:Table_GalaxyLine" />
       <xs:field xpath="mstns:File" />
     </xs:keyref>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="Relation_GameText_GalaxyLocation_Key" msdata:parent="Table_GameText" msdata:child="Table_GalaxyLocation" msdata:parentkey="ID" msdata:childkey="Key" msprop:Generator_UserChildTable="Table_GalaxyLocation" msprop:Generator_ChildPropName="GetTable_GalaxyLocationRows" msprop:Generator_UserRelationName="Relation_GameText_GalaxyLocation_Key" msprop:Generator_RelationVarName="relationRelation_GameText_GalaxyLocation_Key" msprop:Generator_UserParentTable="Table_GameText" msprop:Generator_ParentPropName="Table_GameTextRow" />
+      <msdata:Relationship name="Relation_GameText_GalaxyLocation_Key" msdata:parent="Table_GameText" msdata:child="Table_GalaxyLocation" msdata:parentkey="ID" msdata:childkey="Key" msprop:Generator_UserChildTable="Table_GalaxyLocation" msprop:Generator_ChildPropName="GetTable_GalaxyLocationRows" msprop:Generator_UserRelationName="Relation_GameText_GalaxyLocation_Key" msprop:Generator_ParentPropName="Table_GameTextRow" msprop:Generator_RelationVarName="relationRelation_GameText_GalaxyLocation_Key" msprop:Generator_UserParentTable="Table_GameText" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

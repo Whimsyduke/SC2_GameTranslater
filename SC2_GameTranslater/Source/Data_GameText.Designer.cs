@@ -495,6 +495,8 @@ namespace SC2_GameTranslater.Source {
             
             private global::System.Data.DataColumn columnCompontentsPath;
             
+            private global::System.Data.DataColumn columnSearchConfig;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public Table_ProjectInfoDataTable() {
@@ -546,6 +548,14 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn SearchConfigColumn {
+                get {
+                    return this.columnSearchConfig;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -581,11 +591,12 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public Table_ProjectInfoRow AddTable_ProjectInfoRow(string ProjectInfo, string CompontentsPath) {
+            public Table_ProjectInfoRow AddTable_ProjectInfoRow(string ProjectInfo, string CompontentsPath, byte[] SearchConfig) {
                 Table_ProjectInfoRow rowTable_ProjectInfoRow = ((Table_ProjectInfoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ProjectInfo,
-                        CompontentsPath};
+                        CompontentsPath,
+                        SearchConfig};
                 rowTable_ProjectInfoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTable_ProjectInfoRow);
                 return rowTable_ProjectInfoRow;
@@ -610,6 +621,7 @@ namespace SC2_GameTranslater.Source {
             internal void InitVars() {
                 this.columnProjectInfo = base.Columns["ProjectInfo"];
                 this.columnCompontentsPath = base.Columns["CompontentsPath"];
+                this.columnSearchConfig = base.Columns["SearchConfig"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -619,6 +631,8 @@ namespace SC2_GameTranslater.Source {
                 base.Columns.Add(this.columnProjectInfo);
                 this.columnCompontentsPath = new global::System.Data.DataColumn("CompontentsPath", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCompontentsPath);
+                this.columnSearchConfig = new global::System.Data.DataColumn("SearchConfig", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSearchConfig);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2273,6 +2287,22 @@ namespace SC2_GameTranslater.Source {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public byte[] SearchConfig {
+                get {
+                    try {
+                        return ((byte[])(this[this.tableTable_ProjectInfo.SearchConfigColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Table_ProjectInfo”中列“SearchConfig”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableTable_ProjectInfo.SearchConfigColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsProjectInfoNull() {
                 return this.IsNull(this.tableTable_ProjectInfo.ProjectInfoColumn);
             }
@@ -2293,6 +2323,18 @@ namespace SC2_GameTranslater.Source {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetCompontentsPathNull() {
                 this[this.tableTable_ProjectInfo.CompontentsPathColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsSearchConfigNull() {
+                return this.IsNull(this.tableTable_ProjectInfo.SearchConfigColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetSearchConfigNull() {
+                this[this.tableTable_ProjectInfo.SearchConfigColumn] = global::System.Convert.DBNull;
             }
         }
         

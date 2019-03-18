@@ -610,6 +610,17 @@
                             </Fluent:RibbonMenu>
                         </Fluent:InRibbonGallery.Menu>
                         <Fluent:ToggleButton
+                            Name="ToggleButton_UseStatusFilterNone"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            Checked="ToggleButton_UseStatusFilterButton_CheckEvent"
+                            Header="{DynamicResource ENUM_EnumGameUseStatus_None}"
+                            Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
+                            SizeDefinition="Middle"
+                            Tag="{x:Static source:EnumGameUseStatus.None}"
+                            Unchecked="ToggleButton_UseStatusFilterButton_CheckEvent" />
+                        <Fluent:ToggleButton
                             Name="ToggleButton_UseStatusFilterDroped"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"
