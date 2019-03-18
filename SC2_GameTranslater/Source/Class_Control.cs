@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Diagnostics;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +11,7 @@ using System.Windows.Media;
 namespace SC2_GameTranslater.Source
 {
     using Globals = Class_Globals;
+    using Log = Class_Log;
 
     #region Converter
 
@@ -347,6 +347,7 @@ namespace SC2_GameTranslater.Source
                 EnumLanguage translateLanguage = (EnumLanguage)values[1];
                 string column = parameter as string;
                 string key = column;
+                Log.Assert(rowView != null, nameof(rowView) + " != null");
                 if (rowView.Row.Table != Data_GameText.GameTextForLanguageTable)
                 {
                     key = Data_GameText.GetRowNameForLanguage(translateLanguage, column);
@@ -416,7 +417,7 @@ namespace SC2_GameTranslater.Source
                         Background = Brushes.Black,
                         Tag = select,
                     };
-                    if (textRow[Data_GameText.RN_GameText_Index] is int index)
+                    if (textRow[Data_GameText.RN_GameText_Index] is int)
                     {
                         run.ToolTip = Globals.GetStringFromCurrentLanguage("TP_RichTextBoxInGalaxyTextConverter_ToolTip", select, textRow[Data_GameText.RN_GameText_Index]);
                     }

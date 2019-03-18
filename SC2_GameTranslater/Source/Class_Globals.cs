@@ -1,7 +1,6 @@
 ﻿using Fluent.Localization;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Runtime.Serialization;
@@ -360,6 +359,7 @@ namespace SC2_GameTranslater.Source
         /// 获取当前语言对应的文本内容
         /// </summary>
         /// <param name="key">Key</param>
+        /// <param name="args">参数</param>
         /// <returns>文本</returns>
         public static string GetStringFromCurrentLanguage(string key, params object[] args)
         {

@@ -3,7 +3,6 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Data;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace SC2_GameTranslater.Source
@@ -461,6 +460,7 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 查找数据编号对应的ID
         /// </summary>
+        /// <param name="table">表</param>
         /// <param name="index">编号</param>
         /// <returns>ID</returns>
         public static string FindIDByDataIndex(DataTable table, int index)
@@ -800,7 +800,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>写入成功</returns>
         public bool WriteToComponents()
         {
-            if (!(SC2Components == null || SC2Components.Exists)) return false;
+            if (SC2Components == null || !SC2Components.Exists) return false;
             DirectoryInfo baseDir = SC2Components.Directory;
             List<FileInfo> backFiles = new List<FileInfo>();
             EnumerableRowCollection<DataRow> gameStringRows = GetGameTextRows(EnumGameTextFile.GameStrings);

@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 
 namespace SC2_GameTranslater.Source
 {
-    using Globals = SC2_GameTranslater.Source.Class_Globals;
+    using Globals = Class_Globals;
 
     /// <summary>
     /// 配置文件类

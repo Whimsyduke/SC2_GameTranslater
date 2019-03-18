@@ -195,15 +195,15 @@
                 x:Name="PART_SearchButton"
                 Grid.Row="1"
                 Grid.Column="0"
-                Command="{Binding Path=Command, RelativeSource={RelativeSource TemplatedParent}}"
                 Margin="3,0,3,0"
                 Padding="10,2,10,2"
                 HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
-                VerticalAlignment="Center"
                 Background="{DynamicResource Fluent.Ribbon.Brushes.TextBox.Background}"
                 BorderBrush="{DynamicResource Fluent.Ribbon.Brushes.TextBox.BorderBrush}"
+                Command="{Binding Path=Command, RelativeSource={RelativeSource TemplatedParent}}"
                 Content="{Binding Path=ButtonContent, RelativeSource={RelativeSource TemplatedParent}}" />
             <Border
                 x:Name="PART_ContentBorder"
@@ -286,7 +286,7 @@
         <Setter Property="FocusVisualStyle">
             <Setter.Value>
                 <Style>
-                    <!-- ReSharper disable once Xaml.RedundantPropertyTypeQualifier -->
+                    <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
                     <Setter Property="Control.Template">
                         <Setter.Value>
                             <ControlTemplate>

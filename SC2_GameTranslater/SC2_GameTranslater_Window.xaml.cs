@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -10,7 +9,6 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows;
-using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -438,7 +436,7 @@ namespace SC2_GameTranslater
             { EnumSearchTextLocation.Right, IsInSearchResult_MatchRight}
         };
 
-        public DataView CurrentFilterResultView { private set; get; } = null;
+        public DataView CurrentFilterResultView { private set; get; }
 
         #endregion
 
@@ -619,8 +617,8 @@ namespace SC2_GameTranslater
         public static void Executed_New(object sender, ExecutedRoutedEventArgs e)
         {
             string baseFolder = Globals.Preference.LastFolderPath;
-            string filter = Globals.GetStringFromCurrentLanguage("TEXT_SC2File") as string + "|" + Globals.FileName_SC2Components;
-            string title = Globals.GetStringFromCurrentLanguage("UI_OpenFileDialog_New_Title") as string;
+            string filter = Globals.GetStringFromCurrentLanguage("TEXT_SC2File") + "|" + Globals.FileName_SC2Components;
+            string title = Globals.GetStringFromCurrentLanguage("UI_OpenFileDialog_New_Title");
             if (Globals.OpenFilePathDialog(baseFolder, filter, title, out OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
@@ -648,9 +646,9 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void Executed_Open(object sender, ExecutedRoutedEventArgs e)
         {
-            string baseFolder = Globals.Preference.LastFolderPath; ;
-            string filter = Globals.GetStringFromCurrentLanguage("TEXT_ProjectFile") as string + "|*" + Globals.Extension_SC2GameTran;
-            string title = Globals.GetStringFromCurrentLanguage("UI_OpenFileDialog_Open_Title") as string;
+            string baseFolder = Globals.Preference.LastFolderPath;
+            string filter = Globals.GetStringFromCurrentLanguage("TEXT_ProjectFile") + "|*" + Globals.Extension_SC2GameTran;
+            string title = Globals.GetStringFromCurrentLanguage("UI_OpenFileDialog_Open_Title");
             if (Globals.OpenFilePathDialog(baseFolder, filter, title, out OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
@@ -779,8 +777,8 @@ namespace SC2_GameTranslater
         {
             Log.Assert(Globals.CurrentProject != null, "Globals.CurrentProject != null");
             string baseFolder = Globals.Preference.LastFolderPath;
-            string filter = Globals.GetStringFromCurrentLanguage("TEXT_ProjectFile") as string + "|*" + Globals.Extension_SC2GameTran;
-            string title = Globals.GetStringFromCurrentLanguage("UI_OpenFileDialog_Reload_Title") as string;
+            string filter = Globals.GetStringFromCurrentLanguage("TEXT_ProjectFile") + "|*" + Globals.Extension_SC2GameTran;
+            string title = Globals.GetStringFromCurrentLanguage("UI_OpenFileDialog_Reload_Title");
             if (Globals.OpenFilePathDialog(baseFolder, filter, title, out OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
@@ -818,8 +816,8 @@ namespace SC2_GameTranslater
         {
             Log.Assert(Globals.CurrentProject != null, "Globals.CurrentProject != null");
             string baseFolder = Globals.Preference.LastFolderPath;
-            string filter = Globals.GetStringFromCurrentLanguage("TEXT_SC2File") as string + "|" + Globals.FileName_SC2Components;
-            string title = Globals.GetStringFromCurrentLanguage("UI_OpenFileDialog_Reload_Title") as string;
+            string filter = Globals.GetStringFromCurrentLanguage("TEXT_SC2File") + "|" + Globals.FileName_SC2Components;
+            string title = Globals.GetStringFromCurrentLanguage("UI_OpenFileDialog_Reload_Title");
             if (Globals.OpenFilePathDialog(baseFolder, filter, title, out OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
@@ -1174,7 +1172,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 刷新搜索相关控件状态
         /// </summary>
-        /// <param name="enable">项目数据</param>
+        /// <param name="isEnable">项目数据</param>
         private void ResetSearchControlToDefault(bool isEnable)
         {
             ComboBox_SearchType.IsEnabled = isEnable;
@@ -1550,7 +1548,6 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="row">行</param>
         /// <param name="keyList">数据列名列表</param>
-        /// <param name="match">测试正则表达式</param>
         /// <returns>判断结果</returns>
         private static bool IsInSearchResult_NullLangauge(DataRow row, List<string> keyList)
         {
@@ -1594,9 +1591,15 @@ namespace SC2_GameTranslater
         private static bool IsInSearchResult_MatchAll(DataRow row, string key, string match, bool ignoreCase)
         {
             if (row[key] == DBNull.Value) return false;
-            string value = row[key] as string;
-            if (ignoreCase) value = value.ToLower();
-            return value.Contains(match);
+            if (ignoreCase && row[key] is string value)
+            {
+                value = value.ToLower();
+                return value.Contains(match);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -1610,9 +1613,15 @@ namespace SC2_GameTranslater
         private static bool IsInSearchResult_MatchLeft(DataRow row, string key, string match, bool ignoreCase)
         {
             if (row[key] == DBNull.Value) return false;
-            string value = row[key] as string;
-            if (ignoreCase) value = value.ToLower();
-            return value.StartsWith(match);
+            if (ignoreCase && row[key] is string value)
+            {
+                value = value.ToLower();
+                return value.StartsWith(match);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -1626,9 +1635,15 @@ namespace SC2_GameTranslater
         private static bool IsInSearchResult_MatchRight(DataRow row, string key, string match, bool ignoreCase)
         {
             if (row[key] == DBNull.Value) return false;
-            string value = row[key] as string;
-            if (ignoreCase) value = value.ToLower();
-            return value.EndsWith(match);
+            if (ignoreCase && row[key] is string value)
+            {
+                value = value.ToLower();
+                return value.EndsWith(match);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -1776,7 +1791,7 @@ namespace SC2_GameTranslater
             }
             else
             {
-                string baseFolder = Globals.Preference.LastFolderPath; ;
+                string baseFolder = Globals.Preference.LastFolderPath;
                 string filter = Globals.GetStringFromCurrentLanguage("TEXT_ProjectFile") as string + "|*" + Globals.Extension_SC2GameTran;
                 string key = isSaveAs ? "UI_OpenFileDialog_SaveAs_Title" : "UI_OpenFileDialog_Save_Title";
                 string title = Globals.GetStringFromCurrentLanguage(key) as string;
@@ -1851,9 +1866,9 @@ namespace SC2_GameTranslater
         /// <returns>设置成功</returns>
         public static bool SetComponentsPath()
         {
-            string baseFolder = Globals.MainWindow.TextBox_ComponentsPath.Text; ;
-            string filter = Globals.GetStringFromCurrentLanguage("TEXT_SC2File") as string + "|" + Globals.FileName_SC2Components;
-            string title = Globals.GetStringFromCurrentLanguage("UI_OpenFileDialog_CompontentsPath_Title") as string;
+            string baseFolder = Globals.MainWindow.TextBox_ComponentsPath.Text;
+            string filter = Globals.GetStringFromCurrentLanguage("TEXT_SC2File") + "|" + Globals.FileName_SC2Components;
+            string title = Globals.GetStringFromCurrentLanguage("UI_OpenFileDialog_CompontentsPath_Title");
             if (Globals.OpenFilePathDialog(baseFolder, filter, title, out OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
@@ -1907,13 +1922,11 @@ namespace SC2_GameTranslater
             };
             return binding;
         }
-        
+
         /// <summary>
         /// 获取文本状态对应翻译语言的绑定
         /// </summary>
-        /// <param name="language">语言</param>
-        /// <param name="name">基本名称</param>
-        /// <param name="langPath">使用翻译语言构成路径</param>
+        /// <param name="binding">基本绑定</param>
         /// <param name="converter">转换器</param>
         /// <returns>绑定</returns>
         private MultiBinding GetStatusRowMultiBinding(Binding binding, IMultiValueConverter converter)
@@ -2041,6 +2054,7 @@ namespace SC2_GameTranslater
         private void ComboBox_Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string itemName = ComboBox_Language.SelectedItem as string;
+            if (itemName == null) return;
             EnumCurrentLanguage = Globals.DictComboBoxItemLanguage[itemName];
             e.Handled = true;
         }
@@ -2176,6 +2190,7 @@ namespace SC2_GameTranslater
         private void ToggleButton_TextFileFilterButton_CheckEvent(object sender, RoutedEventArgs e)
         {
             ToggleButton button = sender as ToggleButton;
+            if (button == null) return;
             if (button.IsChecked == true)
             {
                 TextFileFilter |= (EnumGameTextFile)button.Tag;
@@ -2228,6 +2243,7 @@ namespace SC2_GameTranslater
         private void ToggleButton_TextStatusFilterButton_CheckEvent(object sender, RoutedEventArgs e)
         {
             ToggleButton button = sender as ToggleButton;
+            if (button == null) return;
             if (button.IsChecked == true)
             {
                 TextStatusFilter |= (EnumGameTextStatus)button.Tag;
@@ -2280,6 +2296,7 @@ namespace SC2_GameTranslater
         private void ToggleButton_UseStatusFilterButton_CheckEvent(object sender, RoutedEventArgs e)
         {
             ToggleButton button = sender as ToggleButton;
+            if (button == null) return;
             if (button.IsChecked == true)
             {
                 UseStatusFilter |= (EnumGameUseStatus)button.Tag;
@@ -2359,10 +2376,11 @@ namespace SC2_GameTranslater
             if (e.Column == DataGridColumn_TranslateEditedText)
             {
                 DataRowView view = e.Row.Item as DataRowView;
+                if (view == null) return;
                 DataRow row = view.Row;
                 string keyStatus = Data_GameText.GetRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_TextStatus);
                 string keySource = Data_GameText.GetRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_SourceText);
-                string value = (e.EditingElement as TextBox).Text;
+                string value = ((TextBox) e.EditingElement).Text;
                 switch ((EnumGameTextStatus)row[keyStatus])
                 {
                     case EnumGameTextStatus.Empty:

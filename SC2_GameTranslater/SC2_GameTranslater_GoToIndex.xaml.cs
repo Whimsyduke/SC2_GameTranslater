@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using SC2_GameTranslater.Source;
 
 namespace SC2_GameTranslater
@@ -21,7 +9,7 @@ namespace SC2_GameTranslater
     /// <summary>
     /// SC2_GameTranslater_GoToIndex.xaml 的交互逻辑
     /// </summary>
-    public partial class SC2_GameTranslater_GoToIndex : Window
+    public partial class SC2_GameTranslater_GoToIndex
     {
 
         #region 属性字段
