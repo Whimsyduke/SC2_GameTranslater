@@ -23,11 +23,6 @@ namespace SC2_GameTranslater
     /// </summary>
     public partial class SC2_GameTranslater_GoToIndex : Window
     {
-        #region 声明
-
-        public static Regex Const_Regex_AcceptText = new Regex("\\d+", RegexOptions.Compiled);
-
-        #endregion
 
         #region 属性字段
 
@@ -67,39 +62,18 @@ namespace SC2_GameTranslater
             InitializeComponent();
             ResourceDictionary_WindowLanguage.MergedDictionaries.Clear();
             ResourceDictionary_WindowLanguage.MergedDictionaries.Add(Globals.CurrentLanguage);
-            MaxIndex = maxIndex;
             GroupBox_GoToIndex.Header = Globals.GetStringFromCurrentLanguage("UI_GroupBox_GoToIndex_Header", maxIndex);
+            MaxIndex = maxIndex;
+            Binding binding = new Binding("Value")
+            {
+                ElementName = "IntegerUpDown_GoToIndex",
+            };
+            SetBinding(GoToIndexProperty, binding);
         }
 
         #endregion
 
         #region 控件事件
-
-        /// <summary>
-        /// 预输入事件
-        /// </summary>
-        /// <param name="sender">事件控件</param>
-        /// <param name="e">响应参数</param>
-        private void TextBox_GoToIndex_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (string.IsNullOrEmpty(e.Text))
-            {
-                GoToIndex = 0;
-                e.Handled = true;
-                return;
-            }
-            if (Const_Regex_AcceptText.IsMatch(e.Text))
-            {
-                int value = int.Parse(e.Text);
-                if (value < MaxIndex)
-                {
-                    GoToIndex = value;
-                    e.Handled = true;
-                    return;
-                }
-            }
-            e.Handled = false;
-        }
 
         /// <summary>
         /// 确定
@@ -124,5 +98,6 @@ namespace SC2_GameTranslater
         }
 
         #endregion
+
     }
 }

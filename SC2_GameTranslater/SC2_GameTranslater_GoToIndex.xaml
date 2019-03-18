@@ -3,15 +3,16 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:input="clr-namespace:System.Windows.Input;assembly=PresentationCore"
     xmlns:local="clr-namespace:SC2_GameTranslater"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:input="clr-namespace:System.Windows.Input;assembly=PresentationCore"
+    xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
     Name="Window_GoToIndex"
+    Title="{DynamicResource UI_Window_GoToIndex_Title}"
     d:DesignHeight="100"
     d:DesignWidth="200"
     ResizeMode="NoResize"
     SizeToContent="WidthAndHeight"
-    Title="{DynamicResource UI_Window_GoToIndex_Title}"
     mc:Ignorable="d">
     <Window.Resources>
         <ResourceDictionary x:Name="ResourceDictionary_WindowLanguage">
@@ -25,8 +26,20 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <GroupBox Grid.Row="0" Name="GroupBox_GoToIndex" Header="">
-            <TextBox Name="TextBox_GoToIndex"   input:InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TextBox_GoToIndex_PreviewTextInput" />
+        <GroupBox
+            Name="GroupBox_GoToIndex"
+            Grid.Row="0"
+            Header="">
+            <toolkit:IntegerUpDown
+                Name="IntegerUpDown_GoToIndex"
+                AllowSpin="False"
+                ClipValueToMinMax="True"
+                DefaultValue="0"
+                DisplayDefaultValueOnEmptyText="True"
+                Maximum="{Binding ElementName=Window_GoToIndex, Path=MaxIndex}"
+                Minimum="0"
+                ParsingNumberStyle="Integer"
+                ShowButtonSpinner="False" />
         </GroupBox>
         <StackPanel
             Grid.Row="1"
