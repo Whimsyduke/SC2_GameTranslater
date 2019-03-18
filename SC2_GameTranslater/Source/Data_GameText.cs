@@ -458,6 +458,24 @@ namespace SC2_GameTranslater.Source
             return table;
         }
 
+        /// <summary>
+        /// 查找数据编号对应的ID
+        /// </summary>
+        /// <param name="index">编号</param>
+        /// <returns>ID</returns>
+        public static string FindIDByDataIndex(DataTable table, int index)
+        {
+            List<DataRow> rows = table.AsEnumerable().Where(r => (int)r[RN_GameText_Index] == index).Select(r => r).ToList();
+            if (rows.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return rows.First()[RN_GameText_ID] as string;
+            }
+        }
+
         #endregion
 
         #region 重载
