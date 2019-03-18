@@ -187,6 +187,8 @@
     <sys:String x:Key="MSG_ProjectFileVersionMismatched_Message">Project file Version ({0}) is mismatched the supported file version ({1}) of the software.</sys:String>
     <sys:String x:Key="MSG_SrollToItemFindOutID_Title">Notice</sys:String>
     <sys:String x:Key="MSG_SrollToItemFindOutID_Message">Can not find the ID {0} in current search result, do you want to retry after reset filter?</sys:String>
+    <sys:String x:Key="MSG_AskForSave_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_AskForSave_Message">Have unsaved change. Do you want to save it before closing?</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

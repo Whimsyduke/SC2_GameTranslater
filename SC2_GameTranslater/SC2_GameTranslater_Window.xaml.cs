@@ -1804,7 +1804,17 @@ namespace SC2_GameTranslater
                     AddRecentProject(file);
                 }
             }
-            //Log.ShowSystemMessage()
+        }
+
+        /// <summary>
+        /// 询问保存
+        /// </summary>
+        public static void AskForSave()
+        {
+            if (Log.ShowSystemMessage(true, MessageBoxButton.YesNo, MessageBoxImage.None, "MSG_AskForSave") == MessageBoxResult.Yes)
+            {
+                ProjectSave(false);
+            }
         }
 
         /// <summary>
@@ -1812,9 +1822,12 @@ namespace SC2_GameTranslater
         /// </summary>
         public static void ProjectClose()
         {
-            ///To Do Save
             if (Globals.CurrentProject != null)
             {
+                if (Globals.CurrentProject.NeedSave)
+                {
+                    AskForSave();
+                }
                 Globals.CurrentProject = null;
                 Globals.CurrentProjectPath = null;
             }
@@ -2053,8 +2066,7 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void ComboBox_Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string itemName = ComboBox_Language.SelectedItem as string;
-            if (itemName == null) return;
+            if (!(ComboBox_Language.SelectedItem is string itemName)) return;
             EnumCurrentLanguage = Globals.DictComboBoxItemLanguage[itemName];
             e.Handled = true;
         }
@@ -2189,8 +2201,7 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void ToggleButton_TextFileFilterButton_CheckEvent(object sender, RoutedEventArgs e)
         {
-            ToggleButton button = sender as ToggleButton;
-            if (button == null) return;
+            if (!(sender is ToggleButton button)) return;
             if (button.IsChecked == true)
             {
                 TextFileFilter |= (EnumGameTextFile)button.Tag;
@@ -2242,8 +2253,7 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void ToggleButton_TextStatusFilterButton_CheckEvent(object sender, RoutedEventArgs e)
         {
-            ToggleButton button = sender as ToggleButton;
-            if (button == null) return;
+            if (!(sender is ToggleButton button)) return;
             if (button.IsChecked == true)
             {
                 TextStatusFilter |= (EnumGameTextStatus)button.Tag;
@@ -2295,8 +2305,7 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void ToggleButton_UseStatusFilterButton_CheckEvent(object sender, RoutedEventArgs e)
         {
-            ToggleButton button = sender as ToggleButton;
-            if (button == null) return;
+            if (!(sender is ToggleButton button)) return;
             if (button.IsChecked == true)
             {
                 UseStatusFilter |= (EnumGameUseStatus)button.Tag;
@@ -2375,8 +2384,7 @@ namespace SC2_GameTranslater
         {
             if (e.Column == DataGridColumn_TranslateEditedText)
             {
-                DataRowView view = e.Row.Item as DataRowView;
-                if (view == null) return;
+                if (!(e.Row.Item is DataRowView view)) return;
                 DataRow row = view.Row;
                 string keyStatus = Data_GameText.GetRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_TextStatus);
                 string keySource = Data_GameText.GetRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_SourceText);
@@ -2400,6 +2408,7 @@ namespace SC2_GameTranslater
                         }
                         break;
                 }
+                if (Globals.CurrentProject != null) Globals.CurrentProject.NeedSave = true;
             }
         }
 
