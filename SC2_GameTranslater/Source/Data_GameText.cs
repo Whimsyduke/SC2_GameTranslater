@@ -735,9 +735,7 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         private void GenerateSearchConfigData()
         {
-            Class_SearchConfig config = new Class_SearchConfig();
-            config.LoadFromUI();
-            byte[] data = Class_SearchConfig.Serializer(config);
+            byte[] data = Class_SearchConfig.Serializer(Class_SearchConfig.NewSearchConfig());
             ProjectInfoRow[RN_ModInfo_SearchConfig] = data;
         }
 

@@ -123,7 +123,26 @@ namespace SC2_GameTranslater.Source
 
         #endregion
 
+        #region 构造函数
+
+        #endregion
+
         #region 方法
+
+        #region 生成
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <returns>筛选记录对象</returns>
+        public static Class_SearchConfig NewSearchConfig()
+        {
+            Class_SearchConfig config = new Class_SearchConfig();
+            config.LoadFromUI();
+            return config;
+        }
+
+        #endregion
 
         #region 序列化
 
@@ -206,6 +225,80 @@ namespace SC2_GameTranslater.Source
             Globals.MainWindow.SetFileterTextStatus(TextStatus);
             Globals.MainWindow.SetFileterUseStatus(UseStatus);
         }
+
+        #endregion
+
+        #region 重载
+
+        /// <summary>
+        /// 重载等于运算
+        /// </summary>
+        /// <param name="obj">比较对象</param>
+        /// <returns>返回结果</returns>
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Class_SearchConfig config)) return false;
+            if (TraslateLanguage != config.TraslateLanguage) return false;
+            if (SearchType != config.SearchType) return false;
+            if (SearchLocation != config.SearchLocation) return false;
+            if (SearchWay != config.SearchWay) return false;
+            if (SearchCase != config.SearchCase) return false;
+            if (SearchText != config.SearchText) return false;
+            if (TextFile != config.TextFile) return false;
+            if (TextStatus != config.TextStatus) return false;
+            if (UseStatus != config.UseStatus) return false;
+            if (GalaxyFile != null && config.GalaxyFile != null)
+            {
+                if (GalaxyFile.Count() != config.GalaxyFile.Count())
+                {
+                    return false;
+                }
+                else
+                {
+                    for (int i = 0; i < GalaxyFile.Count(); i++)
+                    {
+                        if (GalaxyFile[i] != config.GalaxyFile[i]) return false;
+                    }
+                }
+            }
+            else if (GalaxyFile != config.GalaxyFile)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// 当前对象的哈希代码
+        /// </summary>
+        /// <returns>哈希值</returns>
+        public override int GetHashCode()
+        {
+            return 0;
+        }
+
+        ///// <summary>
+        ///// 重载等于运算符
+        ///// </summary>
+        ///// <param name="A">数据A</param>
+        ///// <param name="B">数据B</param>
+        ///// <returns>比较结果</returns>
+        //public static  bool operator == (Class_SearchConfig A, Class_SearchConfig B)
+        //{
+
+        //}
+
+        ///// <summary>
+        ///// 重载不等于运算符
+        ///// </summary>
+        ///// <param name="A">数据A</param>
+        ///// <param name="B">数据B</param>
+        ///// <returns>比较结果</returns>
+        //public static bool operator !=(Class_SearchConfig A, Class_SearchConfig B)
+        //{
+
+        //}
 
         #endregion
 

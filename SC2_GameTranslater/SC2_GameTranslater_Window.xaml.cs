@@ -368,7 +368,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 翻译语言
         /// </summary>
-        public Dictionary<EnumLanguage, TranslateLanguageControls> TranslateAndSearchLanguage { set; get; } = NewTranslateAndSerachLanguageButton();
+        public Dictionary<EnumLanguage, TranslateLanguageControls> DictTranslateAndSearchLanguage { set; get; } = NewTranslateAndSerachLanguageButton();
 
         /// <summary>
         /// 是否选择全部Galaxy文件筛选
@@ -400,6 +400,9 @@ namespace SC2_GameTranslater
         /// </summary>
         public bool CanRefreshTranslatedText { set; get; }
 
+        /// <summary>
+        /// 搜索位置委托字典
+        /// </summary>
         private Dictionary<EnumSearchTextLocation, Delegate_IsInSearchResult> DictTextSearchLocationFunc { get; } = new Dictionary<EnumSearchTextLocation, Delegate_IsInSearchResult>
         {
             { EnumSearchTextLocation.All, IsInSearchResult_MatchAll},
@@ -407,7 +410,20 @@ namespace SC2_GameTranslater
             { EnumSearchTextLocation.Right, IsInSearchResult_MatchRight}
         };
 
+        /// <summary>
+        /// 当前筛选结果视图
+        /// </summary>
         public DataView CurrentFilterResultView { private set; get; }
+
+        /// <summary>
+        /// 筛选器记录列表
+        /// </summary>
+        public List<Class_SearchConfig> ListFilterRecord { set; get; } = new List<Class_SearchConfig>();
+
+        /// <summary>
+        /// 筛选器记录指针
+        /// </summary>
+        public int ListFilterRecordPointer { set; get; } = 0;
 
         #endregion
 
@@ -905,8 +921,8 @@ namespace SC2_GameTranslater
             ResetTranslateAndSearchLanguageButtons();
             if (project == null || project.LangaugeRowList.Count() == 0)
             {
-                InRibbonGallery_TranslateLanguage.Items.Add(TranslateAndSearchLanguage[0].Button);
-                TranslateAndSearchLanguage[0].Button.IsChecked = false;
+                InRibbonGallery_TranslateLanguage.Items.Add(DictTranslateAndSearchLanguage[0].Button);
+                DictTranslateAndSearchLanguage[0].Button.IsChecked = false;
                 InRibbonGallery_TranslateLanguage.Selectable = false;
             }
             else
@@ -916,7 +932,7 @@ namespace SC2_GameTranslater
                 foreach (DataRow row in project.LangaugeRowList)
                 {
                     EnumLanguage language = (EnumLanguage)row[Data_GameText.RN_Language_ID];
-                    TranslateLanguageControls controls = TranslateAndSearchLanguage[language];
+                    TranslateLanguageControls controls = DictTranslateAndSearchLanguage[language];
                     InRibbonGallery_TranslateLanguage.Items.Add(controls.Button);
                     ListBox_GameTextShowLanguage.Items.Add(controls.ListItem);
                     switch ((EnumGameUseStatus)row[Data_GameText.RN_Language_Status])
@@ -969,7 +985,7 @@ namespace SC2_GameTranslater
 
             foreach (EnumLanguage language in Globals.AllLanguage)
             {
-                TranslateLanguageControls controls = TranslateAndSearchLanguage[language];
+                TranslateLanguageControls controls = DictTranslateAndSearchLanguage[language];
                 controls.Button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_{0}", language));
                 controls.Button.SetResourceReference(ToggleButton.IconProperty, string.Format("IMAGE_{0}", language));
                 controls.Button.SetResourceReference(ToggleButton.LargeIconProperty, string.Format("IMAGE_{0}", language));
@@ -1475,6 +1491,67 @@ namespace SC2_GameTranslater
 
         #endregion
 
+        #region 筛选记录
+
+        /// <summary>
+        /// 清理筛选记录
+        /// </summary>
+        public void ListFilterRecordClear()
+        {
+            ListFilterRecordPointer = 0;
+            ListFilterRecord.Clear();
+            ListFilterRecord.Add(Class_SearchConfig.NewSearchConfig());
+        }
+
+        /// <summary>
+        /// 新建 筛选记录
+        /// </summary>
+        public void ListFilterRecordNew()
+        {
+            Class_SearchConfig config = Class_SearchConfig.NewSearchConfig();
+            if (config == ListFilterRecord[ListFilterRecordPointer]) return;
+            ListFilterRecordPointer++;
+            int skipCount = ListFilterRecord.Count - ListFilterRecordPointer;
+            if (skipCount > 0) ListFilterRecord = ListFilterRecord.Skip(skipCount).Select(r=>r).ToList();
+            ListFilterRecord.Add(config);
+        }
+
+        /// <summary>
+        /// 是否可以应用下一条记录
+        /// </summary>
+        /// <returns>结果</returns>
+        public bool ListFilterRecordCanNext()
+        {
+            return ListFilterRecordPointer < ListFilterRecord.Count - 1;
+        }
+
+        /// <summary>
+        /// 应用下一条记录
+        /// </summary>
+        public void ListFilterRecordNext()
+        {
+            if (ListFilterRecordCanNext()) ListFilterRecord[++ListFilterRecordPointer].ApplyToUI();
+        }
+
+        /// <summary>
+        /// 是否可以应用上一条记录
+        /// </summary>
+        /// <returns>结果</returns>
+        public bool ListFilterRecordCanPrev()
+        {
+            return ListFilterRecordPointer > 0;
+        }
+
+        /// <summary>
+        /// 应用上一条记录
+        /// </summary>
+        public void ListFilterRecordPrev()
+        {
+            if (ListFilterRecordCanPrev()) ListFilterRecord[--ListFilterRecordPointer].ApplyToUI();
+        }
+
+        #endregion
+
         #endregion
 
         #region DataGrid
@@ -1675,6 +1752,7 @@ namespace SC2_GameTranslater
             view.Sort = Data_GameText.RN_GameText_Index + " ASC";
             CurrentFilterResultView = view;
             SetViewAndScollTranslateText(view, selectDataRow);
+            ListFilterRecordNew();
         }
 
         /// <summary>
@@ -2157,6 +2235,7 @@ namespace SC2_GameTranslater
             RefreshUseStatusFilterButton(newPro);
             RefreshSearchControl(newPro);
             newPro?.UseSerachConfigData();
+            ListFilterRecordClear();
             CanRefreshTranslatedText = true;
             RefreshTranslatedText(newPro);
             RefreshInGalaxyTextDetails();
@@ -2214,7 +2293,6 @@ namespace SC2_GameTranslater
                 DataGridColumn_TranslateTextStatus.Binding = GetStatusRowMultiBinding(GetRowBinding(language, Data_GameText.RN_GameText_TextStatus), new EnumNameInLanguage_TextStatusConverter());
                 DataGridColumn_TranslateUseStatus.Binding = GetStatusRowMultiBinding(GetRowBinding(language, Data_GameText.RN_GameText_UseStatus), new EnumNameInLanguage_UseStatusConverter());
             }
-            //RefreshTranslatedText();
             RefreshInGalaxyTextDetails();
         }
 
