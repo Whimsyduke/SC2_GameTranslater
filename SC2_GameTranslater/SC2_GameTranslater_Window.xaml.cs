@@ -460,7 +460,7 @@ namespace SC2_GameTranslater
             #region 多语言配置
             bool useDefault = true;
             Assembly assembly = Assembly.GetExecutingAssembly();
-            foreach (EnumLanguage select in Enum.GetValues(typeof(EnumLanguage)))
+            foreach (EnumLanguage select in Globals.AllLanguage)
             {
                 string TEXT_LanguageName = Enum.GetName(typeof(EnumLanguage), select);
                 string fileName = "Language/" + TEXT_LanguageName + ".xaml";
@@ -1000,7 +1000,7 @@ namespace SC2_GameTranslater
             ComboBox_SearchLanguage.Items.Add(TranslateAndSearchLanguage[0].ComboItem);
             ListBox_GameTextShowLanguage.Items.Clear();
 
-            foreach (EnumLanguage language in Enum.GetValues(typeof(EnumLanguage)))
+            foreach (EnumLanguage language in Globals.AllLanguage)
             {
                 TranslateLanguageControls controls = TranslateAndSearchLanguage[language];
                 controls.Button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_{0}", language));
@@ -1025,7 +1025,7 @@ namespace SC2_GameTranslater
                 { 0, new TranslateLanguageControls() }
             };
 
-            EnumLanguage[] array = Enum.GetValues(typeof(EnumLanguage)).Cast<EnumLanguage>().ToArray();
+            EnumLanguage[] array = Globals.AllLanguage.Cast<EnumLanguage>().ToArray();
             Array.Sort(array, (p1, p2) => string.Compare(Enum.GetName(typeof(EnumLanguage), p1), Enum.GetName(typeof(EnumLanguage), p2), StringComparison.Ordinal));
             foreach (EnumLanguage language in array)
             {
@@ -2388,7 +2388,7 @@ namespace SC2_GameTranslater
                 DataRow row = view.Row;
                 string keyStatus = Data_GameText.GetRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_TextStatus);
                 string keySource = Data_GameText.GetRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_SourceText);
-                string value = ((TextBox) e.EditingElement).Text;
+                string value = ((TextBox)e.EditingElement).Text;
                 switch ((EnumGameTextStatus)row[keyStatus])
                 {
                     case EnumGameTextStatus.Empty:
@@ -2398,17 +2398,16 @@ namespace SC2_GameTranslater
                         }
                         else
                         {
-                            row[keyStatus] = EnumGameTextStatus.Modified;
+                            row[keyStatus] = EnumGameTextStatus.Modified;                    Globals.CurrentProject.NeedSave = true;
                         }
                         break;
                     case EnumGameTextStatus.Normal:
                         if (value != row[keySource] as string)
                         {
-                            row[keyStatus] = EnumGameTextStatus.Modified;
+                            row[keyStatus] = EnumGameTextStatus.Modified;                    Globals.CurrentProject.NeedSave = true;
                         }
                         break;
                 }
-                if (Globals.CurrentProject != null) Globals.CurrentProject.NeedSave = true;
             }
         }
 

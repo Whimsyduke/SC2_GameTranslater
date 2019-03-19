@@ -427,7 +427,7 @@ namespace SC2_GameTranslater.Source
         private int GameTextFilesCount(DirectoryInfo baseDir)
         {
             int count = 0;
-            foreach (EnumLanguage language in Enum.GetValues(typeof(EnumLanguage)))
+            foreach (EnumLanguage language in Globals.AllLanguage)
             {
                 string path;
                 path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(language, EnumGameTextFile.GameStrings));
@@ -643,7 +643,7 @@ namespace SC2_GameTranslater.Source
         {
             base.EndInit();
 
-            foreach (EnumLanguage language in Enum.GetValues(typeof(EnumLanguage)))
+            foreach (EnumLanguage language in Globals.AllLanguage)
             {
                 GenerateDataColumnForLanguage(language);
             }
@@ -929,7 +929,7 @@ namespace SC2_GameTranslater.Source
         public void LoadGameTextFile(DirectoryInfo baseDir)
         {
             LangaugeList = new List<EnumLanguage>();
-            foreach (EnumLanguage language in Enum.GetValues(typeof(EnumLanguage)))
+            foreach (EnumLanguage language in Globals.AllLanguage)
             {
                 if (ExistGameTextFileOfLanguage(baseDir, language))
                 {

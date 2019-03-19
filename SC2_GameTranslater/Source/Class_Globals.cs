@@ -19,6 +19,10 @@ namespace SC2_GameTranslater.Source
     public enum EnumLanguage
     {
         /// <summary>
+        /// 其它
+        /// </summary>
+        Other = 0,
+        /// <summary>
         /// 简体中文
         /// </summary>
         zhCN = 0x0804,
@@ -180,6 +184,11 @@ namespace SC2_GameTranslater.Source
         /// 配置文件
         /// </summary>
         public static Class_Preference Preference { set; get; } = new Class_Preference();
+
+        /// <summary>
+        /// 全部语言
+        /// </summary>
+        public static List<EnumLanguage> AllLanguage { get; } = AllLanguageList();
 
         #endregion
 
@@ -371,6 +380,17 @@ namespace SC2_GameTranslater.Source
             {
                 return "";
             }
+        }
+
+        /// <summary>
+        /// 全部语言列表
+        /// </summary>
+        /// <returns>语言列表</returns>
+        public static List<EnumLanguage> AllLanguageList()
+        {
+            List<EnumLanguage> languages = new List<EnumLanguage>((EnumLanguage[])Enum.GetValues(typeof(EnumLanguage)));
+            languages.Remove(EnumLanguage.Other);
+            return languages;
         }
 
         #endregion
