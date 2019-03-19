@@ -166,7 +166,6 @@
     <sys:String x:Key="ENUM_EnumGameTextFile_TriggerStrings">Trigger Strings</sys:String>
     <sys:String x:Key="ENUM_EnumGameTextStatus_Empty">Empty</sys:String>
     <sys:String x:Key="ENUM_EnumGameTextStatus_Modified">Modified</sys:String>
-    <sys:String x:Key="ENUM_EnumGameTextStatus_None">None</sys:String>
     <sys:String x:Key="ENUM_EnumGameTextStatus_Normal">Normal</sys:String>
     <sys:String x:Key="ENUM_EnumGameUseStatus_Added">Added</sys:String>
     <sys:String x:Key="ENUM_EnumGameUseStatus_Droped">Droped</sys:String>

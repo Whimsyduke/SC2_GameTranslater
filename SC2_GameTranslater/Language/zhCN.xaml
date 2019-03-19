@@ -166,7 +166,6 @@
     <sys:String x:Key="ENUM_EnumGameTextFile_TriggerStrings">触发文本</sys:String>
     <sys:String x:Key="ENUM_EnumGameTextStatus_Empty">空文本</sys:String>
     <sys:String x:Key="ENUM_EnumGameTextStatus_Modified">已修改</sys:String>
-    <sys:String x:Key="ENUM_EnumGameTextStatus_None">无</sys:String>
     <sys:String x:Key="ENUM_EnumGameTextStatus_Normal">未修改</sys:String>
     <sys:String x:Key="ENUM_EnumGameUseStatus_Added">新增</sys:String>
     <sys:String x:Key="ENUM_EnumGameUseStatus_Droped">放弃</sys:String>

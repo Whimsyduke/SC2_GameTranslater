@@ -2212,7 +2212,7 @@ namespace SC2_GameTranslater
             {
                 DataGridColumn_TranslateEditedText.Binding = GetRowBinding(language, Data_GameText.RN_GameText_EditedText);
                 DataGridColumn_TranslateTextStatus.Binding = GetStatusRowMultiBinding(GetRowBinding(language, Data_GameText.RN_GameText_TextStatus), new EnumNameInLanguage_TextStatusConverter());
-                DataGridColumn_TranslateUseStatus.Binding = GetStatusRowMultiBinding(GetRowBinding(language, Data_GameText.RN_GameText_TextStatus), new EnumNameInLanguage_TextStatusConverter());
+                DataGridColumn_TranslateUseStatus.Binding = GetStatusRowMultiBinding(GetRowBinding(language, Data_GameText.RN_GameText_UseStatus), new EnumNameInLanguage_UseStatusConverter());
             }
             //RefreshTranslatedText();
             RefreshInGalaxyTextDetails();
@@ -2352,6 +2352,7 @@ namespace SC2_GameTranslater
                 button.IsChecked = true;
             }
             CanRefreshTranslatedText = true;
+            Globals.MainWindow.RefreshTranslatedText();
             e.Handled = true;
         }
 
@@ -2369,6 +2370,7 @@ namespace SC2_GameTranslater
                 button.IsChecked = false;
             }
             CanRefreshTranslatedText = true;
+            Globals.MainWindow.RefreshTranslatedText();
             e.Handled = true;
         }
 
@@ -2417,6 +2419,7 @@ namespace SC2_GameTranslater
                 button.IsChecked = true;
             }
             CanRefreshTranslatedText = true;
+            Globals.MainWindow.RefreshTranslatedText();
             e.Handled = true;
         }
 
@@ -2433,6 +2436,7 @@ namespace SC2_GameTranslater
                 button.IsChecked = false;
             }
             CanRefreshTranslatedText = true;
+            Globals.MainWindow.RefreshTranslatedText();
             e.Handled = true;
         }
 
@@ -2469,6 +2473,7 @@ namespace SC2_GameTranslater
                 button.IsChecked = true;
             }
             CanRefreshTranslatedText = true;
+            Globals.MainWindow.RefreshTranslatedText();
             e.Handled = true;
         }
 
@@ -2485,6 +2490,7 @@ namespace SC2_GameTranslater
                 button.IsChecked = false;
             }
             CanRefreshTranslatedText = false;
+            Globals.MainWindow.RefreshTranslatedText();
             e.Handled = true;
         }
 
@@ -2521,6 +2527,7 @@ namespace SC2_GameTranslater
                 button.IsChecked = true;
             }
             CanRefreshTranslatedText = true;
+            Globals.MainWindow.RefreshTranslatedText();
             e.Handled = true;
         }
 
@@ -2537,6 +2544,7 @@ namespace SC2_GameTranslater
                 button.IsChecked = false;
             }
             CanRefreshTranslatedText = false;
+            Globals.MainWindow.RefreshTranslatedText();
             e.Handled = true;
         }
 
