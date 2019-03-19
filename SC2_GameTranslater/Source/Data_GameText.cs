@@ -768,11 +768,13 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 使用搜索配置数据
         /// </summary>
-        private void UseSerachConfigData()
+        public void UseSerachConfigData()
         {
-            byte[] data = ProjectInfoRow[RN_ModInfo_SearchConfig] as byte[];
-            Class_SearchConfig config = Class_SearchConfig.Deserialize(data);
-            config.ApplyToUI();
+            if (ProjectInfoRow[RN_ModInfo_SearchConfig] is byte[] data)
+            {
+                Class_SearchConfig config = Class_SearchConfig.Deserialize(data);
+                config.ApplyToUI();
+            }
         }
 
         /// <summary>
@@ -810,7 +812,6 @@ namespace SC2_GameTranslater.Source
                 }
 
                 LangaugeList = Tables[TN_Language].AsEnumerable().Select(r => (EnumLanguage)r[RN_Language_ID]).ToList();
-                UseSerachConfigData();
                 return true;
             }
 #if !DEBUG

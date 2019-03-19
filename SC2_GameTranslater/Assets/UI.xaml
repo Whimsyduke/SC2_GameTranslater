@@ -198,12 +198,13 @@
                 Grid.RowSpan="2"
                 Grid.Column="0"
                 Margin="3,0,3,0"
-                Padding="10,2,10,2"
-                Height="36"
+                Padding="10,0,10,0"
+                Height="40"
                 HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
+                VerticalAlignment="Bottom" 
                 HorizontalContentAlignment="Stretch"
                 VerticalContentAlignment="Center"
+                BorderThickness="3"
                 Background="{DynamicResource Fluent.Ribbon.Brushes.TextBox.Background}"
                 BorderBrush="{DynamicResource Fluent.Ribbon.Brushes.TextBox.BorderBrush}"
                 Command="{Binding Path=Command, RelativeSource={RelativeSource TemplatedParent}}"
@@ -218,7 +219,7 @@
                 HorizontalAlignment="Right"
                 Background="{DynamicResource Fluent.Ribbon.Brushes.TextBox.Background}"
                 BorderBrush="{DynamicResource Fluent.Ribbon.Brushes.TextBox.BorderBrush}"
-                BorderThickness="1,1,1,1">
+                BorderThickness="2">
                 <ScrollViewer
                     x:Name="PART_ContentHost"
                     Margin="0"

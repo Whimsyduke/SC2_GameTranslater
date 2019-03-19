@@ -1251,7 +1251,7 @@ namespace SC2_GameTranslater
         /// <returns>搜索位置</returns>
         public EnumSearchTextLocation GetFileterSearchLocation()
         {
-            if (ComboBox_SearchType.SelectedItem != null && ComboBox_SearchType.SelectedItem is ComboBoxItem item)
+            if (ComboBox_SearchLocation.SelectedItem != null && ComboBox_SearchLocation.SelectedItem is ComboBoxItem item)
             {
                 return item.Tag == null ? EnumSearchTextLocation.All : (EnumSearchTextLocation)item.Tag;
             }
@@ -1267,13 +1267,13 @@ namespace SC2_GameTranslater
         /// <param name="value">搜索位置</param>
         public void SetFileterSearchLocation(EnumSearchTextLocation value)
         {
-            foreach (object select in ComboBox_SearchType.Items)
+            foreach (object select in ComboBox_SearchLocation.Items)
             {
                 if (select is ComboBoxItem item && item.Tag != null)
                 {
                     if ((EnumSearchTextLocation)item.Tag == value)
                     {
-                        ComboBox_SearchType.SelectedItem = item;
+                        ComboBox_SearchLocation.SelectedItem = item;
                         break;
                     }
                 }
@@ -1365,7 +1365,7 @@ namespace SC2_GameTranslater
             {
                 if (select.Tag is DataRow row && row[Data_GameText.RN_GalaxyFile_Path] is string path)
                 {
-                    files.Add(path);
+                    if (select.IsChecked == true) files.Add(path);
                 }
             }
             return files.ToArray();
@@ -1405,7 +1405,7 @@ namespace SC2_GameTranslater
         /// <param name="value">搜索文本文件</param>
         public void SetFileterTextFile(EnumGameTextFile value)
         {
-            foreach (object select in RibbonGroupBox_TextFileFilter.Items)
+            foreach (object select in InRibbonGallery_TextFileFilter.Items)
             {
                 if (select is ToggleButton button && button.Tag != null)
                 {
@@ -1434,7 +1434,7 @@ namespace SC2_GameTranslater
         /// <param name="value">搜索文本状态</param>
         public void SetFileterTextStatus(EnumGameTextStatus value)
         {
-            foreach (object select in RibbonGroupBox_TextStatusFilter.Items)
+            foreach (object select in InRibbonGallery_TextStatusFilter.Items)
             {
                 if (select is ToggleButton button && button.Tag != null)
                 {
@@ -1462,7 +1462,7 @@ namespace SC2_GameTranslater
         /// <param name="value">搜索使用状态</param>
         public void SetFileterUseStatus(EnumGameUseStatus value)
         {
-            foreach (object select in RibbonGroupBox_UseStatusFilter.Items)
+            foreach (object select in InRibbonGallery_UseStatusFilter.Items)
             {
                 if (select is ToggleButton button && button.Tag != null)
                 {
@@ -2156,6 +2156,7 @@ namespace SC2_GameTranslater
             RefreshTextStatusFilterButton(newPro);
             RefreshUseStatusFilterButton(newPro);
             RefreshSearchControl(newPro);
+            newPro?.UseSerachConfigData();
             CanRefreshTranslatedText = true;
             RefreshTranslatedText(newPro);
             RefreshInGalaxyTextDetails();
