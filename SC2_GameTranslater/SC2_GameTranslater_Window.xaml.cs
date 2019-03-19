@@ -166,7 +166,7 @@ namespace SC2_GameTranslater
             {
                 Button = new ToggleButton
                 {
-                    Tag = null,
+                    Tag = EnumLanguage.Other,
                     IsEnabled = false
                 };
                 Button.SetResourceReference(ToggleButton.HeaderProperty, "TEXT_Null");
@@ -176,7 +176,7 @@ namespace SC2_GameTranslater
                 ComboItemText.SetResourceReference(TextBlock.TextProperty, "TEXT_All");
                 ComboItem = new ComboBoxItem
                 {
-                    Tag = null,
+                    Tag = EnumLanguage.Other,
                     Content = ComboItemText
                 };
             }
@@ -369,7 +369,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 当前翻译语言文本数据依赖项
         /// </summary>
-        private EnumLanguage CurrentTranslateLanguage
+        public EnumLanguage CurrentTranslateLanguage
         {
             set
             {
@@ -921,6 +921,8 @@ namespace SC2_GameTranslater
 
         #endregion
 
+        #region 筛选项
+
         #region 翻译语言筛选项
 
         /// <summary>
@@ -1207,6 +1209,352 @@ namespace SC2_GameTranslater
                 button.IsChecked = true;
             }
         }
+        #endregion
+
+        #region 筛选项数据
+
+        #region 搜索翻译语言
+
+        /// <summary>
+        /// 获取搜索翻译语言
+        /// </summary>
+        /// <returns>搜索翻译语言</returns>
+        public EnumLanguage GetFileterTranslateLanguage()
+        {
+            return CurrentTranslateLanguage;
+        }
+
+        /// <summary>
+        /// 设置搜索翻译语言
+        /// </summary>
+        /// <param name="value">搜索翻译语言</param>
+        public void SetFileterTranslateLanguage(EnumLanguage value)
+        {
+            foreach (object select in InRibbonGallery_TranslateLanguage.Items)
+            {
+                if (select is ToggleButton button && button.Tag != null)
+                {
+                    if ((EnumLanguage)button.Tag == value)
+                    {
+                        button.IsChecked = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        #endregion
+
+        #region 搜索类型
+
+        /// <summary>
+        /// 获取搜索类型
+        /// </summary>
+        /// <returns>搜索类型</returns>
+        public EnumSearchTextType GetFileterSearchTextType()
+        {
+            if (ComboBox_SearchType.SelectedItem != null && ComboBox_SearchType.SelectedItem is ComboBoxItem item)
+            {
+                return item.Tag == null ? EnumSearchTextType.All : (EnumSearchTextType)item.Tag;
+            }
+            else
+            {
+                return EnumSearchTextType.All;
+            }
+        }
+
+        /// <summary>
+        /// 设置搜索类型
+        /// </summary>
+        /// <param name="value">搜索类型</param>
+        public void SetFileterSearchTextType(EnumSearchTextType value)
+        {
+            foreach (object select in ComboBox_SearchType.Items)
+            {
+                if (select is ComboBoxItem item && item.Tag != null)
+                {
+                    if ((EnumSearchTextType)item.Tag == value)
+                    {
+                        ComboBox_SearchType.SelectedItem = item;
+                    }
+                }
+            }
+        }
+
+        #endregion
+
+        #region 搜索语言
+
+        /// <summary>
+        /// 获取搜索语言
+        /// </summary>
+        /// <returns>搜索语言</returns>
+        public EnumLanguage GetFileterSearchLanguage()
+        {
+            if (ComboBox_SearchLanguage.SelectedItem != null && ComboBox_SearchLanguage.SelectedItem is ComboBoxItem item)
+            {
+                return item.Tag == null ? EnumLanguage.Other : (EnumLanguage)item.Tag;
+            }
+            else
+            {
+                return EnumLanguage.Other;
+            }
+        }
+
+        /// <summary>
+        /// 设置搜索语言
+        /// </summary>
+        /// <param name="value">搜索语言</param>
+        public void SetFileterSearchLanguage(EnumLanguage value)
+        {
+            foreach (object select in ComboBox_SearchLanguage.Items)
+            {
+                if (select is ComboBoxItem item && item.Tag != null)
+                {
+                    if ((EnumLanguage)item.Tag == value)
+                    {
+                        ComboBox_SearchLanguage.SelectedItem = item;
+                        break;
+                    }
+                }
+            }
+        }
+
+        #endregion
+
+        #region 搜索位置
+
+        /// <summary>
+        /// 获取搜索位置
+        /// </summary>
+        /// <returns>搜索位置</returns>
+        public EnumSearchTextLocation GetFileterSearchLocation()
+        {
+            if (ComboBox_SearchType.SelectedItem != null && ComboBox_SearchType.SelectedItem is ComboBoxItem item)
+            {
+                return item.Tag == null ? EnumSearchTextLocation.All : (EnumSearchTextLocation)item.Tag;
+            }
+            else
+            {
+                return EnumSearchTextLocation.All;
+            }
+        }
+
+        /// <summary>
+        /// 设置搜索位置
+        /// </summary>
+        /// <param name="value">搜索位置</param>
+        public void SetFileterSearchLocation(EnumSearchTextLocation value)
+        {
+            foreach (object select in ComboBox_SearchType.Items)
+            {
+                if (select is ComboBoxItem item && item.Tag != null)
+                {
+                    if ((EnumSearchTextLocation)item.Tag == value)
+                    {
+                        ComboBox_SearchType.SelectedItem = item;
+                        break;
+                    }
+                }
+            }
+        }
+
+        #endregion
+
+        #region 搜索方式
+
+        /// <summary>
+        /// 获取搜索方式
+        /// </summary>
+        /// <returns>搜索方式</returns>
+        public EnumSearchWay GetFileterSearchWay()
+        {
+            if (RadioButton_SearchNull.IsChecked == true)
+            {
+                return EnumSearchWay.Null;
+            }
+            else if (RadioButton_SearchRegex.IsChecked == true)
+            {
+                return EnumSearchWay.Regex;
+            }
+            else
+            {
+                return EnumSearchWay.Text;
+            }
+        }
+
+        /// <summary>
+        /// 设置搜索位置
+        /// </summary>
+        /// <param name="value">搜索方式</param>
+        public void SetFileterSearchWay(EnumSearchWay value)
+        {
+            switch (value)
+            {
+                case EnumSearchWay.Null:
+                    RadioButton_SearchNull.IsChecked = true;
+                    break;
+                case EnumSearchWay.Regex:
+                    RadioButton_SearchRegex.IsChecked = true;
+                    break;
+                case EnumSearchWay.Text:
+                    RadioButton_SearchText.IsChecked = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        #endregion
+
+        #region 搜索大小写
+
+
+        /// <summary>
+        /// 获取搜索大小写
+        /// </summary>
+        /// <returns>搜索大小写</returns>
+        public bool GetFileterSearchCase()
+        {
+            return CheckBox_SearchCase.IsChecked == true;
+        }
+
+        /// <summary>
+        /// 设置搜索大小写
+        /// </summary>
+        /// <param name="value">搜索大小写</param>
+        public void SetFileterSearchCase(bool value)
+        {
+            CheckBox_SearchCase.IsChecked = value;
+        }
+
+        #endregion
+
+        #region 搜索Galaxy
+        
+        /// <summary>
+        /// 获取搜索方式
+        /// </summary>
+        /// <returns>搜索方式</returns>
+        public string[] GetFileterGalaxyFile()
+        {
+            List<string> files = new List<string>();
+            if (ToggleButton_FilterGalaxyFileNone.IsChecked == true) files.Add("");
+            foreach (ToggleButton select in mGalaxyButtons)
+            {
+                if (select.Tag is DataRow row && row[Data_GameText.RN_GalaxyFile_Path] is string path)
+                {
+                    files.Add(path);
+                }
+            }
+            return files.ToArray();
+        }
+
+        /// <summary>
+        /// 设置搜索位置
+        /// </summary>
+        /// <param name="files">搜索方式</param>
+        public void SetFileterGalaxyFile(string[] files)
+        {
+            ToggleButton_FilterGalaxyFileNone.IsChecked = files.Contains("");
+            List<ToggleButton> buttons = mGalaxyButtons.Where(r => r.Tag is DataRow row && row[Data_GameText.RN_GalaxyFile_Path] is string path && files.Contains(path)).Select(r => r).ToList();
+            foreach (ToggleButton button in mGalaxyButtons)
+            {
+                button.IsChecked = buttons.Contains(button);
+            }
+        }
+
+        #endregion
+
+        #region 搜索文本文件
+
+
+        /// <summary>
+        /// 获取搜索文本文件
+        /// </summary>
+        /// <returns>搜索文本文件</returns>
+        public EnumGameTextFile GetFileterTextFile()
+        {
+            return TextFileFilter;
+        }
+
+        /// <summary>
+        /// 设置搜索文本文件
+        /// </summary>
+        /// <param name="value">搜索文本文件</param>
+        public void SetFileterTextFile(EnumGameTextFile value)
+        {
+            foreach (object select in RibbonGroupBox_TextFileFilter.Items)
+            {
+                if (select is ToggleButton button && button.Tag != null)
+                {
+                    button.IsChecked = value.HasFlag((EnumGameTextFile)button.Tag);
+                }
+            }
+        }
+
+
+        #endregion
+
+        #region 搜索文本状态
+        
+        /// <summary>
+        /// 获取搜索文本状态
+        /// </summary>
+        /// <returns>搜索文本状态</returns>
+        public EnumGameTextStatus GetFileterTextStatus()
+        {
+            return TextStatusFilter;
+        }
+
+        /// <summary>
+        /// 设置搜索文本状态
+        /// </summary>
+        /// <param name="value">搜索文本状态</param>
+        public void SetFileterTextStatus(EnumGameTextStatus value)
+        {
+            foreach (object select in RibbonGroupBox_TextStatusFilter.Items)
+            {
+                if (select is ToggleButton button && button.Tag != null)
+                {
+                    button.IsChecked = value.HasFlag((EnumGameTextStatus)button.Tag);
+                }
+            }
+        }
+
+        #endregion
+
+        #region 搜索使用状态
+
+        /// <summary>
+        /// 获取搜索使用状态
+        /// </summary>
+        /// <returns>搜索使用状态</returns>
+        public EnumGameUseStatus GetFileterUseStatus()
+        {
+            return UseStatusFilter;
+        }
+
+        /// <summary>
+        /// 设置搜索使用状态
+        /// </summary>
+        /// <param name="value">搜索使用状态</param>
+        public void SetFileterUseStatus(EnumGameUseStatus value)
+        {
+            foreach (object select in RibbonGroupBox_UseStatusFilter.Items)
+            {
+                if (select is ToggleButton button && button.Tag != null)
+                {
+                    button.IsChecked = value.HasFlag((EnumGameUseStatus)button.Tag);
+                }
+            }
+        }
+
+        #endregion
+
+        #endregion
+
         #endregion
 
         #region DataGrid

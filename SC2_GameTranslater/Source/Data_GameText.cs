@@ -735,12 +735,8 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         private void GenerateSearchConfigData()
         {
-            Class_SearchConfig config = new Class_SearchConfig()
-            {
-                SearchLanguage = EnumLanguage.deDE,
-                SearchType = EnumSearchTextType.AllText,
-                SearchText = (new Random()).Next().ToString(),
-            };
+            Class_SearchConfig config = new Class_SearchConfig();
+            config.LoadFromUI();
             byte[] data = Class_SearchConfig.Serializer(config);
             ProjectInfoRow[RN_ModInfo_SearchConfig] = data;
         }
@@ -776,6 +772,7 @@ namespace SC2_GameTranslater.Source
         {
             byte[] data = ProjectInfoRow[RN_ModInfo_SearchConfig] as byte[];
             Class_SearchConfig config = Class_SearchConfig.Deserialize(data);
+            config.ApplyToUI();
         }
 
         /// <summary>

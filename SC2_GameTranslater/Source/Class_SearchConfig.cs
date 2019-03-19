@@ -8,6 +8,10 @@ using System.Xml.Serialization;
 
 namespace SC2_GameTranslater.Source
 {
+    using Globals = Class_Globals;
+
+    #region 声明
+
     /// <summary>
     /// 搜索基本方式枚举
     /// </summary>
@@ -26,6 +30,8 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         Text,
     }
+
+    #endregion
 
     /// <summary>
     /// 搜索配置
@@ -126,6 +132,8 @@ namespace SC2_GameTranslater.Source
 
         #region 方法
 
+        #region 序列化
+
         /// <summary>
         /// 序列化数据
         /// </summary>
@@ -167,6 +175,48 @@ namespace SC2_GameTranslater.Source
             }
             return config;
         }
+
+        #endregion
+
+        #region UI读写
+
+        /// <summary>
+        /// 加载数据自UI
+        /// </summary>
+        public void LoadFromUI()
+        {
+            TraslateLanguage = Globals.MainWindow.GetFileterTranslateLanguage();
+            SearchType = Globals.MainWindow.GetFileterSearchTextType();
+            SearchLanguage = Globals.MainWindow.GetFileterSearchLanguage();
+            SearchLocation = Globals.MainWindow.GetFileterSearchLocation();
+            SearchWay = Globals.MainWindow.GetFileterSearchWay();
+            SearchCase = Globals.MainWindow.GetFileterSearchCase();
+            SearchText = Globals.MainWindow.TextBox_SearchText.Text;
+            GalaxyFile = Globals.MainWindow.GetFileterGalaxyFile();
+            TextFile = Globals.MainWindow.GetFileterTextFile();
+            TextStatus = Globals.MainWindow.GetFileterTextStatus();
+            UseStatus = Globals.MainWindow.GetFileterUseStatus();
+        }
+
+        /// <summary>
+        /// 加载数据自UI
+        /// </summary>
+        public void ApplyToUI()
+        {
+            Globals.MainWindow.SetFileterTranslateLanguage(TraslateLanguage);
+            Globals.MainWindow.SetFileterSearchTextType(SearchType);
+            Globals.MainWindow.SetFileterSearchLanguage(SearchLanguage);
+            Globals.MainWindow.SetFileterSearchLocation(SearchLocation);
+            Globals.MainWindow.SetFileterSearchWay(SearchWay);
+            Globals.MainWindow.SetFileterSearchCase(SearchCase);
+            Globals.MainWindow.TextBox_SearchText.Text = SearchText;
+            Globals.MainWindow.SetFileterGalaxyFile(GalaxyFile);
+            Globals.MainWindow.SetFileterTextFile(TextFile);
+            Globals.MainWindow.SetFileterTextStatus(TextStatus);
+            Globals.MainWindow.SetFileterUseStatus(UseStatus);
+        }
+
+        #endregion
 
         #endregion
     }
