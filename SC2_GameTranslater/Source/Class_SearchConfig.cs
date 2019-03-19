@@ -73,13 +73,6 @@ namespace SC2_GameTranslater.Source
         public EnumSearchTextType SearchType { set; get; } = EnumSearchTextType.All;
 
         /// <summary>
-        /// 搜索语言
-        /// </summary>
-        /// <remarks>特殊值0代表全部语言</remarks>
-        [XmlAttribute(SearchConfig_AttributeSearchLanguage)]
-        public EnumLanguage SearchLanguage { set; get; } = 0;
-
-        /// <summary>
         /// 搜索位置
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeSearchLocation)]
@@ -187,7 +180,6 @@ namespace SC2_GameTranslater.Source
         {
             TraslateLanguage = Globals.MainWindow.GetFileterTranslateLanguage();
             SearchType = Globals.MainWindow.GetFileterSearchTextType();
-            SearchLanguage = Globals.MainWindow.GetFileterSearchLanguage();
             SearchLocation = Globals.MainWindow.GetFileterSearchLocation();
             SearchWay = Globals.MainWindow.GetFileterSearchWay();
             SearchCase = Globals.MainWindow.GetFileterSearchCase();
@@ -205,7 +197,6 @@ namespace SC2_GameTranslater.Source
         {
             Globals.MainWindow.SetFileterTranslateLanguage(TraslateLanguage);
             Globals.MainWindow.SetFileterSearchTextType(SearchType);
-            Globals.MainWindow.SetFileterSearchLanguage(SearchLanguage);
             Globals.MainWindow.SetFileterSearchLocation(SearchLocation);
             Globals.MainWindow.SetFileterSearchWay(SearchWay);
             Globals.MainWindow.SetFileterSearchCase(SearchCase);

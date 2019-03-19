@@ -162,6 +162,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <StackPanel
                 x:Name="PART_HeaderAndIconPanel"
@@ -194,12 +195,14 @@
             <Button
                 x:Name="PART_SearchButton"
                 Grid.Row="1"
+                Grid.RowSpan="2"
                 Grid.Column="0"
                 Margin="3,0,3,0"
                 Padding="10,2,10,2"
+                Height="36"
                 HorizontalAlignment="Stretch"
-                VerticalAlignment="Center"
-                HorizontalContentAlignment="Center"
+                VerticalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
                 VerticalContentAlignment="Center"
                 Background="{DynamicResource Fluent.Ribbon.Brushes.TextBox.Background}"
                 BorderBrush="{DynamicResource Fluent.Ribbon.Brushes.TextBox.BorderBrush}"
@@ -208,7 +211,7 @@
             <Border
                 x:Name="PART_ContentBorder"
                 Grid.Row="0"
-                Grid.RowSpan="2"
+                Grid.RowSpan="3"
                 Grid.Column="1"
                 Width="{TemplateBinding InputWidth}"
                 Height="Auto"

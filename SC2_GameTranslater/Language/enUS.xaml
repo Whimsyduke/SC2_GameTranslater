@@ -72,7 +72,6 @@
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeALLText_Header">All Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeDropedText_Header">Drop Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeEditedText_Header">Edited Text</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeIndex_Header">Index</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeSourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchTypeTextID_Header">Text ID</sys:String>
     <sys:String x:Key="UI_DataGridColumn_DeatilsDropedText_Header">Droped Text</sys:String>

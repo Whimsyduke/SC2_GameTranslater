@@ -299,8 +299,7 @@
                         Header="{DynamicResource UI_ComboBox_SearchType_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchComboBox}"
                         IsEditable="False"
-                        SelectedIndex="0"
-                        SelectionChanged="ComboBox_Search_SelectionChanged">
+                        SelectedIndex="0">
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeAll"
                             Content="{DynamicResource UI_ComboBoxItem_SearchTypeALL_Header}"
@@ -309,10 +308,6 @@
                             Name="ComboBoxItem_SearchTypeTextID"
                             Content="{DynamicResource UI_ComboBoxItem_SearchTypeTextID_Header}"
                             Tag="{x:Static local:EnumSearchTextType.ID}" />
-                        <ComboBoxItem
-                            Name="ComboBoxItem_SearchTypeIndex"
-                            Content="{DynamicResource UI_ComboBoxItem_SearchTypeIndex_Header}"
-                            Tag="{x:Static local:EnumSearchTextType.Index}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeAllText"
                             Content="{DynamicResource UI_ComboBoxItem_SearchTypeALLText_Header}"
@@ -331,16 +326,6 @@
                             Tag="{x:Static local:EnumSearchTextType.Edited}" />
                     </Fluent:ComboBox>
                     <Fluent:ComboBox
-                        Name="ComboBox_SearchLanguage"
-                        Height="22"
-                        VerticalAlignment="Bottom"
-                        Fluent:RibbonGroupBoxWrapPanel.SharedSizeGroupName="Group_Serach"
-                        Header="{DynamicResource UI_ComboBox_SearchLanguage_Header}"
-                        Icon="{StaticResource ResourceKey=IMAGE_SearchComboBox}"
-                        IsEditable="False"
-                        SelectedIndex="0"
-                        SelectionChanged="ComboBox_Search_SelectionChanged" />
-                    <Fluent:ComboBox
                         Name="ComboBox_SearchLocation"
                         Height="22"
                         VerticalAlignment="Bottom"
@@ -348,8 +333,7 @@
                         Header="{DynamicResource UI_ComboBox_SearchLcation_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchComboBox}"
                         IsEditable="False"
-                        SelectedIndex="0"
-                        SelectionChanged="ComboBox_Search_SelectionChanged">
+                        SelectedIndex="0">
                         <Fluent:ComboBox.IsEnabled>
                             <MultiBinding Converter="{StaticResource Converter_SerachLocationByRegexControl}">
                                 <Binding ElementName="RadioButton_SearchRegex" Path="IsEnabled" />
@@ -369,11 +353,16 @@
                             Content="{DynamicResource UI_ComboBoxItem_SearchLocationRight_Header}"
                             Tag="{x:Static local:EnumSearchTextLocation.Right}" />
                     </Fluent:ComboBox>
+                    <Fluent:CheckBox
+                        Name="CheckBox_SearchCase"
+                        HorizontalAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        Header="{DynamicResource UI_CheckBox_SearchCase_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}" />
                     <Fluent:RadioButton
                         Name="RadioButton_SearchNull"
                         HorizontalAlignment="Left"
                         VerticalContentAlignment="Center"
-                        Checked="RadioButton_SearchConfigure_CheckEvent"
                         GroupName="SerachConfigure"
                         Header="{DynamicResource UI_RadioButton_SearchNull_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
@@ -382,7 +371,6 @@
                         Name="RadioButton_SearchRegex"
                         HorizontalAlignment="Left"
                         VerticalContentAlignment="Center"
-                        Checked="RadioButton_SearchConfigure_CheckEvent"
                         GroupName="SerachConfigure"
                         Header="{DynamicResource UI_RadioButton_SearchRegex_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}" />
@@ -390,21 +378,12 @@
                         Name="RadioButton_SearchText"
                         HorizontalAlignment="Left"
                         VerticalContentAlignment="Center"
-                        Checked="RadioButton_SearchConfigure_CheckEvent"
                         GroupName="SerachConfigure"
                         Header="{DynamicResource UI_RadioButton_SearchText_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}" />
-                    <Fluent:CheckBox
-                        Name="CheckBox_SearchCase"
-                        HorizontalAlignment="Left"
-                        VerticalContentAlignment="Center"
-                        Checked="RadioButton_SearchConfigure_CheckEvent"
-                        Header="{DynamicResource UI_CheckBox_SearchCase_Header}"
-                        Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
-                        Unchecked="RadioButton_SearchConfigure_CheckEvent" />
                     <source:RibbonSearchTextBox
                         x:Name="TextBox_SearchText"
-                        Height="44"
+                        Height="65"
                         MinWidth="300"
                         HorizontalContentAlignment="Left"
                         VerticalContentAlignment="Top"

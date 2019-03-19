@@ -44,29 +44,25 @@ namespace SC2_GameTranslater
         /// </summary>
         ID = 1,
         /// <summary>
-        /// Index
-        /// </summary>
-        Index = 2,
-        /// <summary>
         /// 原文本
         /// </summary>
-        Source = 4,
+        Source = 2,
         /// <summary>
         /// 旧文本
         /// </summary>
-        Droped = 8,
+        Droped = 4,
         /// <summary>
         /// 修改文本
         /// </summary>
-        Edited = 16,
+        Edited = 8,
         /// <summary>
         /// 全部文本
         /// </summary>
-        AllText = 28,
+        AllText = 14,
         /// <summary>
         /// 全部（全部文本及ID）
         /// </summary>
-        All = 29
+        All = 15
     }
 
     /// <summary>
@@ -136,16 +132,6 @@ namespace SC2_GameTranslater
             public ToggleButton Button { private set; get; }
 
             /// <summary>
-            /// 搜索列表项
-            /// </summary>
-            public ComboBoxItem ComboItem { private set; get; }
-
-            /// <summary>
-            /// 搜索列表项文本
-            /// </summary>
-            public TextBlock ComboItemText { private set; get; }
-
-            /// <summary>
             /// 显示列表项
             /// </summary>
             public ListBoxItem ListItem { private set; get; }
@@ -172,13 +158,6 @@ namespace SC2_GameTranslater
                 Button.SetResourceReference(ToggleButton.HeaderProperty, "TEXT_Null");
                 Button.SetResourceReference(ToggleButton.IconProperty, "IMAGE_Null");
                 Button.SetResourceReference(ToggleButton.LargeIconProperty, "IMAGE_Null");
-                ComboItemText = new TextBlock();
-                ComboItemText.SetResourceReference(TextBlock.TextProperty, "TEXT_All");
-                ComboItem = new ComboBoxItem
-                {
-                    Tag = EnumLanguage.Other,
-                    Content = ComboItemText
-                };
             }
 
             /// <summary>
@@ -196,14 +175,6 @@ namespace SC2_GameTranslater
                 Button.SetResourceReference(ToggleButton.IconProperty, string.Format("IMAGE_{0}", language));
                 Button.SetResourceReference(ToggleButton.LargeIconProperty, string.Format("IMAGE_{0}", language));
                 Button.Checked += Button_TranslateLanguage_Checked;
-
-                ComboItemText = new TextBlock();
-                ComboItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_{0}", language));
-                ComboItem = new ComboBoxItem
-                {
-                    Tag = language,
-                    Content = ComboItemText
-                };
 
                 ListItemText = new TextBlock();
                 ListItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_{0}", language));
@@ -947,7 +918,6 @@ namespace SC2_GameTranslater
                     EnumLanguage language = (EnumLanguage)row[Data_GameText.RN_Language_ID];
                     TranslateLanguageControls controls = TranslateAndSearchLanguage[language];
                     InRibbonGallery_TranslateLanguage.Items.Add(controls.Button);
-                    ComboBox_SearchLanguage.Items.Add(controls.ComboItem);
                     ListBox_GameTextShowLanguage.Items.Add(controls.ListItem);
                     switch ((EnumGameUseStatus)row[Data_GameText.RN_Language_Status])
                     {
@@ -955,21 +925,18 @@ namespace SC2_GameTranslater
                             controls.Button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_Remove{0}", language));
                             controls.Button.SetResourceReference(ToggleButton.IconProperty, string.Format("IMAGE_Remove{0}", language));
                             controls.Button.SetResourceReference(ToggleButton.LargeIconProperty, string.Format("IMAGE_Remove{0}", language));
-                            controls.ComboItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_Remove{0}", language));
                             controls.ListItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_Remove{0}", language));
                             break;
                         case EnumGameUseStatus.Added:
                             controls.Button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_Add{0}", language));
                             controls.Button.SetResourceReference(ToggleButton.IconProperty, string.Format("IMAGE_Add{0}", language));
                             controls.Button.SetResourceReference(ToggleButton.LargeIconProperty, string.Format("IMAGE_Add{0}", language));
-                            controls.ComboItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_Add{0}", language));
                             controls.ListItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_Add{0}", language));
                             break;
                         default:
                             controls.Button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_{0}", language));
                             controls.Button.SetResourceReference(ToggleButton.IconProperty, string.Format("IMAGE_{0}", language));
                             controls.Button.SetResourceReference(ToggleButton.LargeIconProperty, string.Format("IMAGE_{0}", language));
-                            controls.ComboItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_{0}", language));
                             controls.ListItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_{0}", language));
                             break;
                     }
@@ -998,8 +965,6 @@ namespace SC2_GameTranslater
         private void ResetTranslateAndSearchLanguageButtons()
         {
             InRibbonGallery_TranslateLanguage.Items.Clear();
-            ComboBox_SearchLanguage.Items.Clear();
-            ComboBox_SearchLanguage.Items.Add(TranslateAndSearchLanguage[0].ComboItem);
             ListBox_GameTextShowLanguage.Items.Clear();
 
             foreach (EnumLanguage language in Globals.AllLanguage)
@@ -1008,10 +973,8 @@ namespace SC2_GameTranslater
                 controls.Button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_{0}", language));
                 controls.Button.SetResourceReference(ToggleButton.IconProperty, string.Format("IMAGE_{0}", language));
                 controls.Button.SetResourceReference(ToggleButton.LargeIconProperty, string.Format("IMAGE_{0}", language));
-                controls.ComboItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_{0}", language));
                 controls.ListItemText.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_{0}", language));
                 controls.Button.IsChecked = false;
-                controls.ComboItem.IsSelected = false;
                 controls.ListItem.IsSelected = true;
             }
         }
@@ -1157,8 +1120,6 @@ namespace SC2_GameTranslater
             ComboBox_SearchType.IsEnabled = isEnable;
             ComboBox_SearchType.SelectedIndex = 0;
             ComboBox_SearchLocation.SelectedIndex = 0;
-            ComboBox_SearchLanguage.IsEnabled = isEnable;
-            ComboBox_SearchLanguage.SelectedIndex = 0;
             RadioButton_SearchNull.IsEnabled = isEnable;
             RadioButton_SearchNull.IsChecked = false;
             RadioButton_SearchRegex.IsEnabled = isEnable;
@@ -1180,8 +1141,6 @@ namespace SC2_GameTranslater
             ComboBox_SearchType.IsEnabled = isEnable;
             ComboBox_SearchType.SelectedIndex = 0;
             ComboBox_SearchLocation.SelectedIndex = 0;
-            ComboBox_SearchLanguage.IsEnabled = isEnable;
-            ComboBox_SearchLanguage.SelectedIndex = 0;
             RadioButton_SearchNull.IsEnabled = isEnable;
             RadioButton_SearchNull.IsChecked = false;
             RadioButton_SearchRegex.IsEnabled = isEnable;
@@ -1283,46 +1242,7 @@ namespace SC2_GameTranslater
         }
 
         #endregion
-
-        #region 搜索语言
-
-        /// <summary>
-        /// 获取搜索语言
-        /// </summary>
-        /// <returns>搜索语言</returns>
-        public EnumLanguage GetFileterSearchLanguage()
-        {
-            if (ComboBox_SearchLanguage.SelectedItem != null && ComboBox_SearchLanguage.SelectedItem is ComboBoxItem item)
-            {
-                return item.Tag == null ? EnumLanguage.Other : (EnumLanguage)item.Tag;
-            }
-            else
-            {
-                return EnumLanguage.Other;
-            }
-        }
-
-        /// <summary>
-        /// 设置搜索语言
-        /// </summary>
-        /// <param name="value">搜索语言</param>
-        public void SetFileterSearchLanguage(EnumLanguage value)
-        {
-            foreach (object select in ComboBox_SearchLanguage.Items)
-            {
-                if (select is ComboBoxItem item && item.Tag != null)
-                {
-                    if ((EnumLanguage)item.Tag == value)
-                    {
-                        ComboBox_SearchLanguage.SelectedItem = item;
-                        break;
-                    }
-                }
-            }
-        }
-
-        #endregion
-
+        
         #region 搜索位置
 
         /// <summary>
@@ -1716,21 +1636,21 @@ namespace SC2_GameTranslater
             {
                 string keyFile = Data_GameText.RN_GameText_File;
                 query = from row in query
-                        where ((int)row[keyFile] & (int)TextFileFilter) != 0
+                        where TextFileFilter.HasFlag((EnumGameTextFile)row[keyFile])
                         select row;
             }
             if (TextStatusFilter != EnumGameTextStatus.All)
             {
                 string keyStatus = Data_GameText.GetRowNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus);
                 query = from row in query
-                        where ((EnumGameTextStatus)row[keyStatus]).HasFlag(TextStatusFilter)
+                        where (TextStatusFilter).HasFlag((EnumGameTextStatus)row[keyStatus])
                         select row;
             }
             if (UseStatusFilter != EnumGameUseStatus.All)
             {
-                string keyStatus = Data_GameText.GetRowNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_TextStatus);
+                string keyStatus = Data_GameText.GetRowNameForLanguage(EnumCurrentLanguage, Data_GameText.RN_GameText_UseStatus);
                 query = from row in query
-                        where ((EnumGameUseStatus)row[keyStatus]).HasFlag(UseStatusFilter)
+                        where (UseStatusFilter).HasFlag((EnumGameUseStatus)row[keyStatus])
                         select row;
             }
             if (!IsSelectAllGalaxyFilter)
@@ -1756,7 +1676,7 @@ namespace SC2_GameTranslater
             CurrentFilterResultView = view;
             SetViewAndScollTranslateText(view, selectDataRow);
         }
-        
+
         /// <summary>
         /// 获取需要搜索的Key的列表
         /// </summary>
@@ -1764,56 +1684,29 @@ namespace SC2_GameTranslater
         private List<string> GetSearchKeyList()
         {
             List<string> keyList = new List<string>();
-            EnumSearchTextType type = (EnumSearchTextType)((ComboBoxItem) ComboBox_SearchType.SelectedItem).Tag;
+            EnumSearchTextType type = (EnumSearchTextType)((ComboBoxItem)ComboBox_SearchType.SelectedItem).Tag;
             // ID
             if (type.HasFlag(EnumSearchTextType.ID))
             {
                 keyList.Add(Data_GameText.RN_GameText_ID);
             }
 
-            if (ComboBox_SearchLanguage.SelectedItem is ComboBoxItem item)
+            // Droped Text
+            if (type.HasFlag(EnumSearchTextType.Droped))
             {
-                // Droped Text
-                if (type.HasFlag(EnumSearchTextType.Droped))
-                {
-                    List<EnumLanguage> languageList = ((Data_GameText)CurrentTextData.DataSet).LangaugeList;
-                    if (item.Tag == null)
-                    {
-                        keyList.AddRange(languageList.Select(r => Data_GameText.GetRowNameForLanguage(r, Data_GameText.RN_GameText_DropedText)).ToList());
-                    }
-                    else
-                    {
-                        keyList.Add(Data_GameText.GetRowNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_DropedText));
-                    }
-                }
+                keyList.Add(Data_GameText.GetRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_DropedText));
+            }
 
-                // Source Text
-                if (type.HasFlag(EnumSearchTextType.Source))
-                {
-                    List<EnumLanguage> languageList = ((Data_GameText)CurrentTextData.DataSet).LangaugeList;
-                    if (item.Tag == null)
-                    {
-                        keyList.AddRange(languageList.Select(r => Data_GameText.GetRowNameForLanguage(r, Data_GameText.RN_GameText_SourceText)).ToList());
-                    }
-                    else
-                    {
-                        keyList.Add(Data_GameText.GetRowNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_SourceText));
-                    }
-                }
+            // Source Text
+            if (type.HasFlag(EnumSearchTextType.Source))
+            {
+                keyList.Add(Data_GameText.GetRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_SourceText));
+            }
 
-                // Edited Text
-                if (type.HasFlag(EnumSearchTextType.Edited))
-                {
-                    List<EnumLanguage> languageList = ((Data_GameText)CurrentTextData.DataSet).LangaugeList;
-                    if (item.Tag == null)
-                    {
-                        keyList.AddRange(languageList.Select(r => Data_GameText.GetRowNameForLanguage(r, Data_GameText.RN_GameText_EditedText)).ToList());
-                    }
-                    else
-                    {
-                        keyList.Add(Data_GameText.GetRowNameForLanguage((EnumLanguage)item.Tag, Data_GameText.RN_GameText_EditedText));
-                    }
-                }
+            // Edited Text
+            if (type.HasFlag(EnumSearchTextType.Edited))
+            {
+                keyList.Add(Data_GameText.GetRowNameForLanguage(CurrentTranslateLanguage, Data_GameText.RN_GameText_EditedText));
             }
             return keyList;
         }
@@ -2676,18 +2569,7 @@ namespace SC2_GameTranslater
             RefreshGameTextDetails(true);
             RefreshInGalaxyTextDetails();
         }
-
-        /// <summary>
-        /// 搜索类型选择事件
-        /// </summary>
-        /// <param name="sender">事件控件</param>
-        /// <param name="e">响应参数</param>
-        private void ComboBox_Search_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            RefreshTranslatedText();
-            e.Handled = true;
-        }
-
+        
         /// <summary>
         /// 搜索正则表达式状态切换事件
         /// </summary>
