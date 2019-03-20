@@ -64,62 +64,62 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         /// <remarks>特殊值0代表当前软件语言</remarks>
         [XmlAttribute(SearchConfig_AttributeTraslateLanguage)]
-        public EnumLanguage TraslateLanguage { set; get; } = 0;
+        public EnumLanguage TraslateLanguage { private set; get; } = 0;
 
         /// <summary>
         /// 搜索类型
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeSearchType)]
-        public EnumSearchTextType SearchType { set; get; } = EnumSearchTextType.All;
+        public EnumSearchTextType SearchType { private set; get; } = EnumSearchTextType.All;
 
         /// <summary>
         /// 搜索位置
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeSearchLocation)]
-        public EnumSearchTextLocation SearchLocation { set; get; } = EnumSearchTextLocation.All;
+        public EnumSearchTextLocation SearchLocation { private set; get; } = EnumSearchTextLocation.All;
 
         /// <summary>
         /// 搜索基本方式
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeSearchWay)]
-        public EnumSearchWay SearchWay { set; get; } = EnumSearchWay.Text;
+        public EnumSearchWay SearchWay { private set; get; } = EnumSearchWay.Text;
 
         /// <summary>
         /// 搜索匹配大小写
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeSearchCase)]
-        public bool SearchCase { set; get; } = false;
+        public bool SearchCase { private set; get; } = false;
         
         /// <summary>
         /// 搜索文本
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeSearchText)]
-        public string SearchText { set; get; } = "";
+        public string SearchText { private set; get; } = "";
         
         /// <summary>
         /// 搜索Galaxy文件
         /// </summary>
         /// <remarks>特殊值null代表全部选择，数组中值""代表不在Galaxy文件中的文本</remarks>
         [XmlArray(SearchConfig_ArrayGalaxyFile)]
-        public string[] GalaxyFile { set; get; } = null;
+        public string[] GalaxyFile { private set; get; } = null;
         
         /// <summary>
         /// 所属文本文件
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeTextFile)]
-        public EnumGameTextFile TextFile { set; get; } = EnumGameTextFile.All;
+        public EnumGameTextFile TextFile { private set; get; } = EnumGameTextFile.All;
 
         /// <summary>
         /// 所属文本状态
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeTextStatuse)]
-        public EnumGameTextStatus TextStatus { set; get; } = EnumGameTextStatus.All;
+        public EnumGameTextStatus TextStatus { private set; get; } = EnumGameTextStatus.All;
 
         /// <summary>
         /// 所属使用状态
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeUseStatus)]
-        public EnumGameUseStatus UseStatus { set; get; } = EnumGameUseStatus.All;
+        public EnumGameUseStatus UseStatus { private set; get; } = EnumGameUseStatus.All;
 
         #endregion
 

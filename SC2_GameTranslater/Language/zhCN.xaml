@@ -4,55 +4,54 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!--#region 通用文本-->
-    <sys:String x:Key="TEXT_LanguageName">简体中文</sys:String>
-    <sys:String x:Key="TEXT_WindowTitleText">《星际争霸II》游戏翻译器</sys:String>
-    <sys:String x:Key="TEXT_SC2File">SC II Mod地图或组件文件夹</sys:String>
-    <sys:String x:Key="TEXT_ProjectFile">翻译项目文件</sys:String>
-    <sys:String x:Key="TEXT_SelectALL">全选</sys:String>
-    <sys:String x:Key="TEXT_SelectNone">全不选</sys:String>
-    <sys:String x:Key="TEXT_All">全部</sys:String>
-    <sys:String x:Key="TEXT_Null">空</sys:String>
-    <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
-    <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
-    <sys:String x:Key="TEXT_enUS">enUS</sys:String>
-    <sys:String x:Key="TEXT_deDE">deDE</sys:String>
-    <sys:String x:Key="TEXT_esMX">esMX</sys:String>
-    <sys:String x:Key="TEXT_esES">esES</sys:String>
-    <sys:String x:Key="TEXT_frFR">frFR</sys:String>
-    <sys:String x:Key="TEXT_itIT">itIT</sys:String>
-    <sys:String x:Key="TEXT_plPL">plPL</sys:String>
-    <sys:String x:Key="TEXT_ptBR">ptBR</sys:String>
-    <sys:String x:Key="TEXT_ruRU">ruRU</sys:String>
-    <sys:String x:Key="TEXT_koKR">koKR</sys:String>
-    <sys:String x:Key="TEXT_AddzhCN">[+]zhCN</sys:String>
-    <sys:String x:Key="TEXT_AddzhTW">[+]zhTW</sys:String>
-    <sys:String x:Key="TEXT_AddenUS">[+]enUS</sys:String>
     <sys:String x:Key="TEXT_AdddeDE">[+]deDE</sys:String>
-    <sys:String x:Key="TEXT_AddesMX">[+]esMX</sys:String>
+    <sys:String x:Key="TEXT_AddenUS">[+]enUS</sys:String>
     <sys:String x:Key="TEXT_AddesES">[+]esES</sys:String>
+    <sys:String x:Key="TEXT_AddesMX">[+]esMX</sys:String>
     <sys:String x:Key="TEXT_AddfrFR">[+]frFR</sys:String>
     <sys:String x:Key="TEXT_AdditIT">[+]itIT</sys:String>
+    <sys:String x:Key="TEXT_AddkoKR">[+]koKR</sys:String>
     <sys:String x:Key="TEXT_AddplPL">[+]plPL</sys:String>
     <sys:String x:Key="TEXT_AddptBR">[+]ptBR</sys:String>
     <sys:String x:Key="TEXT_AddruRU">[+]ruRU</sys:String>
-    <sys:String x:Key="TEXT_AddkoKR">[+]koKR</sys:String>
-    <sys:String x:Key="TEXT_RemovezhCN">[-]zhCN</sys:String>
-    <sys:String x:Key="TEXT_RemovezhTW">[-]zhTW</sys:String>
-    <sys:String x:Key="TEXT_RemoveenUS">[-]enUS</sys:String>
+    <sys:String x:Key="TEXT_AddzhCN">[+]zhCN</sys:String>
+    <sys:String x:Key="TEXT_AddzhTW">[+]zhTW</sys:String>
+    <sys:String x:Key="TEXT_All">全部</sys:String>
+    <sys:String x:Key="TEXT_Cancel">取消</sys:String>
+    <sys:String x:Key="TEXT_Confirm">确定</sys:String>
+    <sys:String x:Key="TEXT_deDE">deDE</sys:String>
+    <sys:String x:Key="TEXT_enUS">enUS</sys:String>
+    <sys:String x:Key="TEXT_Error">【错误】</sys:String>
+    <sys:String x:Key="TEXT_esES">esES</sys:String>
+    <sys:String x:Key="TEXT_esMX">esMX</sys:String>
+    <sys:String x:Key="TEXT_frFR">frFR</sys:String>
+    <sys:String x:Key="TEXT_itIT">itIT</sys:String>
+    <sys:String x:Key="TEXT_koKR">koKR</sys:String>
+    <sys:String x:Key="TEXT_LanguageName">简体中文</sys:String>
+    <sys:String x:Key="TEXT_NoText">【无文本】</sys:String>
+    <sys:String x:Key="TEXT_Null">空</sys:String>
+    <sys:String x:Key="TEXT_plPL">plPL</sys:String>
+    <sys:String x:Key="TEXT_ProjectFile">翻译项目文件</sys:String>
+    <sys:String x:Key="TEXT_ptBR">ptBR</sys:String>
     <sys:String x:Key="TEXT_RemovedeDE">[-]deDE</sys:String>
-    <sys:String x:Key="TEXT_RemoveesMX">[-]esMX</sys:String>
+    <sys:String x:Key="TEXT_RemoveenUS">[-]enUS</sys:String>
     <sys:String x:Key="TEXT_RemoveesES">[-]esES</sys:String>
+    <sys:String x:Key="TEXT_RemoveesMX">[-]esMX</sys:String>
     <sys:String x:Key="TEXT_RemovefrFR">[-]frFR</sys:String>
     <sys:String x:Key="TEXT_RemoveitIT">[-]itIT</sys:String>
+    <sys:String x:Key="TEXT_RemovekoKR">[-]koKR</sys:String>
     <sys:String x:Key="TEXT_RemoveplPL">[-]plPL</sys:String>
     <sys:String x:Key="TEXT_RemoveptBR">[-]ptBR</sys:String>
     <sys:String x:Key="TEXT_RemoveruRU">[-]ruRU</sys:String>
-    <sys:String x:Key="TEXT_RemovekoKR">[-]koKR</sys:String>
-    <sys:String x:Key="TEXT_Confirm">确定</sys:String>
-    <sys:String x:Key="TEXT_Cancel">取消</sys:String>
-    <sys:String x:Key="TEXT_NoText">【无文本】</sys:String>
-    <sys:String x:Key="TEXT_Error">【错误】</sys:String>
-
+    <sys:String x:Key="TEXT_RemovezhCN">[-]zhCN</sys:String>
+    <sys:String x:Key="TEXT_RemovezhTW">[-]zhTW</sys:String>
+    <sys:String x:Key="TEXT_ruRU">ruRU</sys:String>
+    <sys:String x:Key="TEXT_SC2File">SC II Mod地图或组件文件夹</sys:String>
+    <sys:String x:Key="TEXT_SelectALL">全选</sys:String>
+    <sys:String x:Key="TEXT_SelectNone">全不选</sys:String>
+    <sys:String x:Key="TEXT_WindowTitleText">《星际争霸II》游戏翻译器</sys:String>
+    <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
+    <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
     <!--#endregion-->
 
     <!--#region 界面文本-->
@@ -60,6 +59,8 @@
     <sys:String x:Key="UI_BackstageTabItem_MenuRecentProjects_Header">最近项目</sys:String>
     <sys:String x:Key="UI_BackstageTabItem_Preference_Header">配置</sys:String>
     <sys:String x:Key="UI_Button_SelectComponentsPath_Content">选择</sys:String>
+    <sys:String x:Key="UI_CheckBox_InGalaxyShowScript_Content">显示脚本）</sys:String>
+    <sys:String x:Key="UI_CheckBox_ReloadOnlyModify_Content">仅已修改内容</sys:String>
     <sys:String x:Key="UI_CheckBox_SearchCase_Header">匹配大小写</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchLanguage_Header">语言：</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchLcation_Header">位置：</sys:String>
@@ -96,8 +97,11 @@
     <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">游戏文本数据</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextInGalaxy_Header">Galaxy文本数据（</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextShowLanguage_Header">显示语言</sys:String>
+    <sys:String x:Key="UI_GroupBox_GoToIndex_Header">最大编号：{0}</sys:String>
     <sys:String x:Key="UI_GroupBox_Language_Header">界面语言：</sys:String>
     <sys:String x:Key="UI_GroupBox_Log_Header">日志</sys:String>
+    <sys:String x:Key="UI_GroupBox_ReloadConfig_Header">重载配置</sys:String>
+    <sys:String x:Key="UI_GroupBox_ReloadLanguage_Header">重载语言</sys:String>
     <sys:String x:Key="UI_GroupBox_TranslatedTexts_Header">翻译文本</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy文件</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">文本文件</sys:String>
@@ -105,6 +109,9 @@
     <sys:String x:Key="UI_InRibbonGallery_TranslateLanguage_Header">翻译语言</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">使用状态</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">清除日志</sys:String>
+    <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">清空脚本</sys:String>
+    <sys:String x:Key="UI_MenuItem_TranslateGoToDataIndex_Header">跳转数据编号</sys:String>
+    <sys:String x:Key="UI_MenuItem_TranslateResetEditedText_Header">重置脚本</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_CompontentsPath_Title">选择SC2地图/Mod组件文件夹</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_New_Title">新建项目</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">打开项目</sys:String>
@@ -116,13 +123,16 @@
     <sys:String x:Key="UI_RadioButton_SearchText_Header">搜索文本</sys:String>
     <sys:String x:Key="UI_RibbonButton_Accept_Header">应用翻译</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">关闭</sys:String>
+    <sys:String x:Key="UI_RibbonButton_FilterNext_Header">下一记录</sys:String>
+    <sys:String x:Key="UI_RibbonButton_FilterPrev_Header">上一记录</sys:String>
     <sys:String x:Key="UI_RibbonButton_New_Header">新建</sys:String>
     <sys:String x:Key="UI_RibbonButton_Open_Header">打开</sys:String>
-    <sys:String x:Key="UI_RibbonButton_ReloadTranslate_Header">重载翻译</sys:String>
     <sys:String x:Key="UI_RibbonButton_ReloadSC2_Header">重载文本</sys:String>
+    <sys:String x:Key="UI_RibbonButton_ReloadTranslate_Header">重载翻译</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">保存</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">另存为</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">文件</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_FilterRecord_Header">筛选记录</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">所属Galaxy文件</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_Search_Header">搜索</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TextFileFilter_Header">所属文本文件</sys:String>
@@ -135,27 +145,15 @@
     <sys:String x:Key="UI_SeparatorTabItem_RecentProjects_Header">最近项目</sys:String>
     <sys:String x:Key="UI_TabItem_GameTextForLanguage_Header">全语言文本</sys:String>
     <sys:String x:Key="UI_TabItem_GameTextInGalaxy_Header">Galaxy拼接结果</sys:String>
+    <sys:String x:Key="UI_TextBlock_DetailsID_Text">文本ID：{0}</sys:String>
+    <sys:String x:Key="UI_TextBlock_DetailsIndex_Text">数据编号：{0}</sys:String>
     <sys:String x:Key="UI_TextBlock_Preference_Text">配置设置</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">加载</sys:String>
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">最近项目</sys:String>
-    <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
-    <sys:String x:Key="UI_Window_ReloadConfig_Title">重载选项</sys:String>
-    <sys:String x:Key="UI_GroupBox_ReloadLanguage_Header">重载语言</sys:String>
-    <sys:String x:Key="UI_GroupBox_ReloadConfig_Header">重载配置</sys:String>
-    <sys:String x:Key="UI_CheckBox_ReloadOnlyModify_Content">仅已修改内容</sys:String>
     <sys:String x:Key="UI_TextBox_SearchText_ButtonContent">搜索文本</sys:String>
-    <sys:String x:Key="UI_TextBlock_DetailsID_Text">文本ID：{0}</sys:String>
-    <sys:String x:Key="UI_TextBlock_DetailsIndex_Text">数据编号：{0}</sys:String>
-    <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">清空脚本</sys:String>
-    <sys:String x:Key="UI_MenuItem_TranslateResetEditedText_Header">重置脚本</sys:String>
-    <sys:String x:Key="UI_MenuItem_TranslateGoToDataIndex_Header">跳转数据编号</sys:String>
-    <sys:String x:Key="UI_CheckBox_InGalaxyShowScript_Content">显示脚本）</sys:String>
+    <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
     <sys:String x:Key="UI_Window_GoToIndex_Title">跳转数据编号</sys:String>
-    <sys:String x:Key="UI_GroupBox_GoToIndex_Header">最大编号：{0}</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_FilterRecord_Header">筛选记录</sys:String>
-    <sys:String x:Key="UI_RibbonButton_FilterPrev_Header">上一记录</sys:String>
-    <sys:String x:Key="UI_RibbonButton_FilterNext_Header">下一记录</sys:String>
-
+    <sys:String x:Key="UI_Window_ReloadConfig_Title">重载选项</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->
@@ -182,14 +180,14 @@
     <!--#endregion-->
 
     <!--#region Message-->
-    <sys:String x:Key="MSG_CanNotFindProjectFile_Title">消息</sys:String>
-    <sys:String x:Key="MSG_CanNotFindProjectFile_Message">无法找到项目文件{0}。是否将此条记录删除？</sys:String>
-    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Title">消息</sys:String>
-    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Message">项目文件版本号（{0}）与软件支持项目文件版本号（{1}）不匹配。</sys:String>
-    <sys:String x:Key="MSG_SrollToItemFindOutID_Title">消息</sys:String>
-    <sys:String x:Key="MSG_SrollToItemFindOutID_Message">无法在当前搜索结果中找到ID（{0}），是否在重置筛选设置后再次尝试？</sys:String>
-    <sys:String x:Key="MSG_AskForSave_Title">消息</sys:String>
     <sys:String x:Key="MSG_AskForSave_Message">存在未保存的更改，是否在关闭前保存它们？</sys:String>
+    <sys:String x:Key="MSG_AskForSave_Title">消息</sys:String>
+    <sys:String x:Key="MSG_CanNotFindProjectFile_Message">无法找到项目文件{0}。是否将此条记录删除？</sys:String>
+    <sys:String x:Key="MSG_CanNotFindProjectFile_Title">消息</sys:String>
+    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Message">项目文件版本号（{0}）与软件支持项目文件版本号（{1}）不匹配。</sys:String>
+    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Title">消息</sys:String>
+    <sys:String x:Key="MSG_SrollToItemFindOutID_Message">无法在当前搜索结果中找到ID（{0}），是否在重置筛选设置后再次尝试？</sys:String>
+    <sys:String x:Key="MSG_SrollToItemFindOutID_Title">消息</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

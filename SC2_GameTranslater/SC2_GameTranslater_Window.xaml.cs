@@ -366,7 +366,6 @@ namespace SC2_GameTranslater
             {
                 SetValue(CurrentTranslateLanguageProperty, value);
                 RefreshCurrentTranslateLanguage(value);
-                ListFilterRecordNew();
             }
             get => (EnumLanguage)GetValue(CurrentTranslateLanguageProperty); }
 

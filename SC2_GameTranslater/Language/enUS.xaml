@@ -4,55 +4,54 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!--#region Common Text-->
-    <sys:String x:Key="TEXT_LanguageName">English</sys:String>
-    <sys:String x:Key="TEXT_WindowTitleText">StarcraftII Game Translater</sys:String>
-    <sys:String x:Key="TEXT_SC2File">SCII Map, Mod Or Component Folders</sys:String>
-    <sys:String x:Key="TEXT_ProjectFile">Project File</sys:String>
-    <sys:String x:Key="TEXT_SelectALL">Select All</sys:String>
-    <sys:String x:Key="TEXT_SelectNone">Select None</sys:String>
-    <sys:String x:Key="TEXT_All">All</sys:String>
-    <sys:String x:Key="TEXT_Null">Null</sys:String>
-    <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
-    <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
-    <sys:String x:Key="TEXT_enUS">enUS</sys:String>
-    <sys:String x:Key="TEXT_deDE">deDE</sys:String>
-    <sys:String x:Key="TEXT_esMX">esMX</sys:String>
-    <sys:String x:Key="TEXT_esES">esES</sys:String>
-    <sys:String x:Key="TEXT_frFR">frFR</sys:String>
-    <sys:String x:Key="TEXT_itIT">itIT</sys:String>
-    <sys:String x:Key="TEXT_plPL">plPL</sys:String>
-    <sys:String x:Key="TEXT_ptBR">ptBR</sys:String>
-    <sys:String x:Key="TEXT_ruRU">ruRU</sys:String>
-    <sys:String x:Key="TEXT_koKR">koKR</sys:String>
-    <sys:String x:Key="TEXT_AddzhCN">[+]zhCN</sys:String>
-    <sys:String x:Key="TEXT_AddzhTW">[+]zhTW</sys:String>
-    <sys:String x:Key="TEXT_AddenUS">[+]enUS</sys:String>
     <sys:String x:Key="TEXT_AdddeDE">[+]deDE</sys:String>
-    <sys:String x:Key="TEXT_AddesMX">[+]esMX</sys:String>
+    <sys:String x:Key="TEXT_AddenUS">[+]enUS</sys:String>
     <sys:String x:Key="TEXT_AddesES">[+]esES</sys:String>
+    <sys:String x:Key="TEXT_AddesMX">[+]esMX</sys:String>
     <sys:String x:Key="TEXT_AddfrFR">[+]frFR</sys:String>
     <sys:String x:Key="TEXT_AdditIT">[+]itIT</sys:String>
+    <sys:String x:Key="TEXT_AddkoKR">[+]koKR</sys:String>
     <sys:String x:Key="TEXT_AddplPL">[+]plPL</sys:String>
     <sys:String x:Key="TEXT_AddptBR">[+]ptBR</sys:String>
     <sys:String x:Key="TEXT_AddruRU">[+]ruRU</sys:String>
-    <sys:String x:Key="TEXT_AddkoKR">[+]koKR</sys:String>
-    <sys:String x:Key="TEXT_RemovezhCN">[-]zhCN</sys:String>
-    <sys:String x:Key="TEXT_RemovezhTW">[-]zhTW</sys:String>
-    <sys:String x:Key="TEXT_RemoveenUS">[-]enUS</sys:String>
+    <sys:String x:Key="TEXT_AddzhCN">[+]zhCN</sys:String>
+    <sys:String x:Key="TEXT_AddzhTW">[+]zhTW</sys:String>
+    <sys:String x:Key="TEXT_All">All</sys:String>
+    <sys:String x:Key="TEXT_Cancel">Cancel</sys:String>
+    <sys:String x:Key="TEXT_Confirm">Confirm</sys:String>
+    <sys:String x:Key="TEXT_deDE">deDE</sys:String>
+    <sys:String x:Key="TEXT_enUS">enUS</sys:String>
+    <sys:String x:Key="TEXT_Error">[Error]</sys:String>
+    <sys:String x:Key="TEXT_esES">esES</sys:String>
+    <sys:String x:Key="TEXT_esMX">esMX</sys:String>
+    <sys:String x:Key="TEXT_frFR">frFR</sys:String>
+    <sys:String x:Key="TEXT_itIT">itIT</sys:String>
+    <sys:String x:Key="TEXT_koKR">koKR</sys:String>
+    <sys:String x:Key="TEXT_LanguageName">English</sys:String>
+    <sys:String x:Key="TEXT_NoText">[No Text]</sys:String>
+    <sys:String x:Key="TEXT_Null">Null</sys:String>
+    <sys:String x:Key="TEXT_plPL">plPL</sys:String>
+    <sys:String x:Key="TEXT_ProjectFile">Project File</sys:String>
+    <sys:String x:Key="TEXT_ptBR">ptBR</sys:String>
     <sys:String x:Key="TEXT_RemovedeDE">[-]deDE</sys:String>
-    <sys:String x:Key="TEXT_RemoveesMX">[-]esMX</sys:String>
+    <sys:String x:Key="TEXT_RemoveenUS">[-]enUS</sys:String>
     <sys:String x:Key="TEXT_RemoveesES">[-]esES</sys:String>
+    <sys:String x:Key="TEXT_RemoveesMX">[-]esMX</sys:String>
     <sys:String x:Key="TEXT_RemovefrFR">[-]frFR</sys:String>
     <sys:String x:Key="TEXT_RemoveitIT">[-]itIT</sys:String>
+    <sys:String x:Key="TEXT_RemovekoKR">[-]koKR</sys:String>
     <sys:String x:Key="TEXT_RemoveplPL">[-]plPL</sys:String>
     <sys:String x:Key="TEXT_RemoveptBR">[-]ptBR</sys:String>
     <sys:String x:Key="TEXT_RemoveruRU">[-]ruRU</sys:String>
-    <sys:String x:Key="TEXT_RemovekoKR">[-]koKR</sys:String>
-    <sys:String x:Key="TEXT_Confirm">Confirm</sys:String>
-    <sys:String x:Key="TEXT_Cancel">Cancel</sys:String>
-    <sys:String x:Key="TEXT_NoText">[No Text]</sys:String>
-    <sys:String x:Key="TEXT_Error">[Error]</sys:String>
-
+    <sys:String x:Key="TEXT_RemovezhCN">[-]zhCN</sys:String>
+    <sys:String x:Key="TEXT_RemovezhTW">[-]zhTW</sys:String>
+    <sys:String x:Key="TEXT_ruRU">ruRU</sys:String>
+    <sys:String x:Key="TEXT_SC2File">SCII Map, Mod Or Component Folders</sys:String>
+    <sys:String x:Key="TEXT_SelectALL">Select All</sys:String>
+    <sys:String x:Key="TEXT_SelectNone">Select None</sys:String>
+    <sys:String x:Key="TEXT_WindowTitleText">StarcraftII Game Translater</sys:String>
+    <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
+    <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
     <!--#endregion-->
 
     <!--#region UI Text-->
@@ -60,6 +59,8 @@
     <sys:String x:Key="UI_BackstageTabItem_MenuRecentProjects_Header">Recent Projects</sys:String>
     <sys:String x:Key="UI_BackstageTabItem_Preference_Header">Preference</sys:String>
     <sys:String x:Key="UI_Button_SelectComponentsPath_Content">Select</sys:String>
+    <sys:String x:Key="UI_CheckBox_InGalaxyShowScript_Content">Show Script )</sys:String>
+    <sys:String x:Key="UI_CheckBox_ReloadOnlyModify_Content">Only Modified Text</sys:String>
     <sys:String x:Key="UI_CheckBox_SearchCase_Header">Match Case</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchLanguage_Header">Language:</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchLcation_Header">Location:</sys:String>
@@ -96,8 +97,11 @@
     <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">Game Text Details</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextInGalaxy_Header">Galaxy Text Details (</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextShowLanguage_Header">Show Language</sys:String>
+    <sys:String x:Key="UI_GroupBox_GoToIndex_Header">Max Index: {0}</sys:String>
     <sys:String x:Key="UI_GroupBox_Language_Header">UI Language:</sys:String>
     <sys:String x:Key="UI_GroupBox_Log_Header">Log</sys:String>
+    <sys:String x:Key="UI_GroupBox_ReloadConfig_Header">Reload Configure</sys:String>
+    <sys:String x:Key="UI_GroupBox_ReloadLanguage_Header">Reload Language</sys:String>
     <sys:String x:Key="UI_GroupBox_TranslatedTexts_Header">Translated Text</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy File</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">Record File</sys:String>
@@ -105,6 +109,9 @@
     <sys:String x:Key="UI_InRibbonGallery_TranslateLanguage_Header">Translate Language</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">Use Status</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">Clear Log</sys:String>
+    <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">Empty Text</sys:String>
+    <sys:String x:Key="UI_MenuItem_TranslateGoToDataIndex_Header">Go To Data Index</sys:String>
+    <sys:String x:Key="UI_MenuItem_TranslateResetEditedText_Header">Reset Text</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_CompontentsPath_Title">Select SC2 Map/Mod Compontents</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_New_Title">New Project</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">Open Project</sys:String>
@@ -116,13 +123,16 @@
     <sys:String x:Key="UI_RadioButton_SearchText_Header">SearchText</sys:String>
     <sys:String x:Key="UI_RibbonButton_Accept_Header">Accept Project</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">Close</sys:String>
+    <sys:String x:Key="UI_RibbonButton_FilterNext_Header">Next Record</sys:String>
+    <sys:String x:Key="UI_RibbonButton_FilterPrev_Header">Previous Record</sys:String>
     <sys:String x:Key="UI_RibbonButton_New_Header">New</sys:String>
     <sys:String x:Key="UI_RibbonButton_Open_Header">Open</sys:String>
-    <sys:String x:Key="UI_RibbonButton_ReloadTranslate_Header">Reload Translated</sys:String>
     <sys:String x:Key="UI_RibbonButton_ReloadSC2_Header">Reload Compontends</sys:String>
+    <sys:String x:Key="UI_RibbonButton_ReloadTranslate_Header">Reload Translated</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">Save</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">Save As</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">File</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_FilterRecord_Header">Filter Record</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">In Galaxy File</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_Search_Header">Search</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TextFileFilter_Header">In Record File</sys:String>
@@ -135,27 +145,15 @@
     <sys:String x:Key="UI_SeparatorTabItem_RecentProjects_Header">Recent Projects</sys:String>
     <sys:String x:Key="UI_TabItem_GameTextForLanguage_Header">Text In Language</sys:String>
     <sys:String x:Key="UI_TabItem_GameTextInGalaxy_Header">Text Combine In Galaxy</sys:String>
+    <sys:String x:Key="UI_TextBlock_DetailsID_Text">Text ID: {0}</sys:String>
+    <sys:String x:Key="UI_TextBlock_DetailsIndex_Text">Data Index: {0}</sys:String>
     <sys:String x:Key="UI_TextBlock_Preference_Text">Preferences Setting</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">Load</sys:String>
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">Recent Projects</sys:String>
-    <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
-    <sys:String x:Key="UI_Window_ReloadConfig_Title">Reload Config</sys:String>
-    <sys:String x:Key="UI_GroupBox_ReloadLanguage_Header">Reload Language</sys:String>
-    <sys:String x:Key="UI_GroupBox_ReloadConfig_Header">Reload Configure</sys:String>
-    <sys:String x:Key="UI_CheckBox_ReloadOnlyModify_Content">Only Modified Text</sys:String>
     <sys:String x:Key="UI_TextBox_SearchText_ButtonContent">Search Text</sys:String>
-    <sys:String x:Key="UI_TextBlock_DetailsID_Text">Text ID: {0}</sys:String>
-    <sys:String x:Key="UI_TextBlock_DetailsIndex_Text">Data Index: {0}</sys:String>
-    <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">Empty Text</sys:String>
-    <sys:String x:Key="UI_MenuItem_TranslateResetEditedText_Header">Reset Text</sys:String>
-    <sys:String x:Key="UI_MenuItem_TranslateGoToDataIndex_Header">Go To Data Index</sys:String>
-    <sys:String x:Key="UI_CheckBox_InGalaxyShowScript_Content">Show Script )</sys:String>
+    <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
     <sys:String x:Key="UI_Window_GoToIndex_Title">Go To Data Index</sys:String>
-    <sys:String x:Key="UI_GroupBox_GoToIndex_Header">Max Index: {0}</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_FilterRecord_Header">Filter Record</sys:String>
-    <sys:String x:Key="UI_RibbonButton_FilterPrev_Header">Previous Record</sys:String>
-    <sys:String x:Key="UI_RibbonButton_FilterNext_Header">Next Record</sys:String>
-
+    <sys:String x:Key="UI_Window_ReloadConfig_Title">Reload Config</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->
@@ -182,14 +180,14 @@
     <!--#endregion-->
 
     <!--#region Message-->
-    <sys:String x:Key="MSG_CanNotFindProjectFile_Title">Notice</sys:String>
-    <sys:String x:Key="MSG_CanNotFindProjectFile_Message">Can not find project file {0}. Do you want to delete it?</sys:String>
-    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Title">Notice</sys:String>
-    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Message">Project file Version ({0}) is mismatched the supported file version ({1}) of the software.</sys:String>
-    <sys:String x:Key="MSG_SrollToItemFindOutID_Title">Notice</sys:String>
-    <sys:String x:Key="MSG_SrollToItemFindOutID_Message">Can not find the ID {0} in current search result, do you want to retry after reset filter?</sys:String>
-    <sys:String x:Key="MSG_AskForSave_Title">Notice</sys:String>
     <sys:String x:Key="MSG_AskForSave_Message">Have unsaved change. Do you want to save it before closing?</sys:String>
+    <sys:String x:Key="MSG_AskForSave_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_CanNotFindProjectFile_Message">Can not find project file {0}. Do you want to delete it?</sys:String>
+    <sys:String x:Key="MSG_CanNotFindProjectFile_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Message">Project file Version ({0}) is mismatched the supported file version ({1}) of the software.</sys:String>
+    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_SrollToItemFindOutID_Message">Can not find the ID {0} in current search result, do you want to retry after reset filter?</sys:String>
+    <sys:String x:Key="MSG_SrollToItemFindOutID_Title">Notice</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>
