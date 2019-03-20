@@ -197,7 +197,7 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         public void LoadFromUI()
         {
-            TraslateLanguage = Globals.MainWindow.GetFileterTranslateLanguage();
+            TraslateLanguage = Globals.MainWindow.GetFileterTranslatedLanguage();
             SearchType = Globals.MainWindow.GetFileterSearchTextType();
             SearchLocation = Globals.MainWindow.GetFileterSearchLocation();
             SearchWay = Globals.MainWindow.GetFileterSearchWay();
@@ -215,7 +215,7 @@ namespace SC2_GameTranslater.Source
         public void ApplyToUI()
         {
             SC2_GameTranslater_Window.CanSaveRecord = false;
-            Globals.MainWindow.SetFileterTranslateLanguage(TraslateLanguage);
+            Globals.MainWindow.SetFileterTranslatedLanguage(TraslateLanguage);
             Globals.MainWindow.SetFileterSearchTextType(SearchType);
             Globals.MainWindow.SetFileterSearchLocation(SearchLocation);
             Globals.MainWindow.SetFileterSearchWay(SearchWay);

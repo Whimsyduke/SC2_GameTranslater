@@ -50,7 +50,7 @@ namespace SC2_GameTranslater
                     {
                         Height = new GridLength(1, GridUnitType.Star)
                     };
-                    Grid_TranslateLanguage.RowDefinitions.Add(rowDef);
+                    Grid_TranslatedLanguage.RowDefinitions.Add(rowDef);
                 }
                 string langName = Enum.GetName(language.GetType(), language);
                 if (ResourceDictionary_MainGrid["CheckBox_" + langName] is CheckBox checkBox)
@@ -58,7 +58,7 @@ namespace SC2_GameTranslater
                     checkBox.SetValue(Grid.ColumnProperty, x++);
                     checkBox.SetValue(Grid.RowProperty, y++);
                     DirtLanguageCheckBox.Add(language, checkBox);
-                    Grid_TranslateLanguage.Children.Add(checkBox);
+                    Grid_TranslatedLanguage.Children.Add(checkBox);
                 }
             }
         }

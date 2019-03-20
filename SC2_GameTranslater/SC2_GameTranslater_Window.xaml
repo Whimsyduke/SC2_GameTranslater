@@ -35,7 +35,7 @@
             Grid.ColumnSpan="2"
             AutomaticStateManagement="False"
             IsAutomaticCollapseEnabled="True"
-            SelectedTabIndex="0">
+            SelectedTabIndex="1">
             <Fluent:Ribbon.Menu>
                 <Fluent:Backstage Name="Backstage_Menu" Header="{DynamicResource UI_Backstage_Menu_Header}">
                     <Fluent:BackstageTabControl>
@@ -287,14 +287,14 @@
                         LargeIcon="{StaticResource ResourceKey=IMAGE_FilterNext}" />
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
-                    Name="RibbonGroupBox_TranslateLanguage"
+                    Name="RibbonGroupBox_TranslatedLanguage"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource UI_RibbonGroupBox_TranslateLanguage_Header}">
+                    Header="{DynamicResource UI_RibbonGroupBox_TranslatedLanguage_Header}">
                     <Fluent:InRibbonGallery
-                        Name="InRibbonGallery_TranslateLanguage"
+                        Name="InRibbonGallery_TranslatedLanguage"
                         MinWidth="120"
                         CanCollapseToButton="False"
-                        Header="{DynamicResource UI_InRibbonGallery_TranslateLanguage_Header}"
+                        Header="{DynamicResource UI_InRibbonGallery_TranslatedLanguage_Header}"
                         IsCollapsed="False"
                         MaxItemsInDropDownRow="3"
                         MaxItemsInRow="3"
@@ -669,12 +669,43 @@
                     </Fluent:InRibbonGallery>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
-            <Fluent:RibbonTabItem Name="RibbonTabItem_Tool" Header="{DynamicResource UI_RibbonTabItem_Tool_Header}">
+            <Fluent:RibbonTabItem Name="RibbonTabItem_ToolCopyTranslatedText" Header="{DynamicResource UI_RibbonTabItem_ToolCopyTranslatedText_Header}">
                 <Fluent:RibbonGroupBox
-                    Name="RibbonGroupBox_CopyBetweenLanguage"
+                    Name="RibbonGroupBox_CopyTranslatedText"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource UI_RibbonGroupBox_CopyBetweenLanguage_Header}" >
-                    
+                    Header="{DynamicResource UI_RibbonGroupBox_CopyTranslatedText_Header}">
+                    <Fluent:InRibbonGallery
+                        Name="InRibbonGallery_TragetLanguages"
+                        MinWidth="120"
+                        CanCollapseToButton="False"
+                        Header="{DynamicResource UI_InRibbonGallery_TragetLanguages_Header}"
+                        IsCollapsed="False"
+                        MaxItemsInDropDownRow="3"
+                        MaxItemsInRow="3"
+                        MinItemsInDropDownRow="1"
+                        MinItemsInRow="1"
+                        Orientation="Horizontal"
+                        ResizeMode="Both"
+                        SizeDefinition="Large" />
+                    <Fluent:InRibbonGallery
+                        Name="InRibbonGallery_CopySource"
+                        Header="{Binding ElementName=InRibbonGallery_CopySource, Path=SelectedItem, Converter={StaticResource Converter_CopySourceButtonHeader}}"
+                        Icon="{Binding ElementName=InRibbonGallery_CopySource, Path=SelectedItem, Converter={StaticResource Converter_CopySourceButtonIcon}}"
+                        IsCollapsed="True"
+                        LargeIcon="{Binding ElementName=InRibbonGallery_CopySource, Path=SelectedItem, Converter={StaticResource Converter_CopySourceButtonLargeIcon}}"
+                        MaxItemsInDropDownRow="3"
+                        MaxItemsInRow="3"
+                        MinItemsInDropDownRow="1"
+                        MinItemsInRow="1"
+                        ResizeMode="Both"
+                        Selectable="True"
+                        SizeDefinition="Large"
+                        Tag="{Binding ElementName=InRibbonGallery_CopySource, Path=SelectedItem, Converter={StaticResource Converter_CopySourceButtonTag}}" />
+                    <Fluent:Button
+                        Name="RibbonButton_DoCopy"
+                        Header="{DynamicResource UI_RibbonButton_DoCopy_Header}"
+                        Icon="{StaticResource IMAGE_DoCopy}"
+                        LargeIcon="{StaticResource IMAGE_DoCopy}" />
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
@@ -699,7 +730,7 @@
                 <DataGrid.Resources>
                     <MenuItem
                         x:Key="MenuItem_TextID"
-                        Header="{DynamicResource UI_DataGridColumn_TranslateTextID_Header}"
+                        Header="{DynamicResource UI_DataGridColumn_TranslatedTextID_Header}"
                         IsCheckable="True"
                         IsChecked="True"
                         Tag="0" />
@@ -711,13 +742,13 @@
                         Tag="1" />
                     <MenuItem
                         x:Key="MenuItem_TextFile"
-                        Header="{DynamicResource UI_DataGridColumn_TranslateTextFile_Header}"
+                        Header="{DynamicResource UI_DataGridColumn_TranslatedTextFile_Header}"
                         IsCheckable="True"
                         IsChecked="True"
                         Tag="2" />
                     <MenuItem
                         x:Key="MenuItem_TextStatus"
-                        Header="{DynamicResource UI_DataGridColumn_TranslateTextStatus_Header}"
+                        Header="{DynamicResource UI_DataGridColumn_TranslatedTextStatus_Header}"
                         IsCheckable="True"
                         IsChecked="True"
                         Tag="3" />
@@ -831,7 +862,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_TranslateTextID"
+                        x:Name="DataGridColumn_TranslatedTextID"
                         Width="*"
                         Binding="{Binding ID, UpdateSourceTrigger=PropertyChanged}"
                         CanUserReorder="True"
@@ -840,7 +871,7 @@
                         IsReadOnly="True"
                         Visibility="{Binding Source={StaticResource MenuItem_TextID}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateTextID_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedTextID_Header}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -852,7 +883,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_TranslateTextFile"
+                        x:Name="DataGridColumn_TranslatedTextFile"
                         Width="Auto"
                         CanUserReorder="True"
                         CanUserResize="True"
@@ -869,7 +900,7 @@
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateTextFile_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedTextFile_Header}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -881,7 +912,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_TranslateTextStatus"
+                        x:Name="DataGridColumn_TranslatedTextStatus"
                         Width="Auto"
                         CanUserReorder="True"
                         CanUserResize="True"
@@ -889,7 +920,7 @@
                         IsReadOnly="True"
                         Visibility="{Binding Source={StaticResource MenuItem_TextStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateTextStatus_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedTextStatus_Header}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -930,11 +961,11 @@
                         Visibility="{Binding Source={StaticResource MenuItem_DropedText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Binding>
                             <MultiBinding
-                                Converter="{StaticResource ResourceKey=Converter_TranslateLanguageData}"
+                                Converter="{StaticResource ResourceKey=Converter_TranslatedLanguageData}"
                                 ConverterParameter="{x:Static source:Data_GameText.RN_GameText_DropedText}"
                                 UpdateSourceTrigger="PropertyChanged">
                                 <Binding />
-                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguage" />
                                 <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
@@ -967,11 +998,11 @@
                         Visibility="{Binding Source={StaticResource MenuItem_SourceText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Binding>
                             <MultiBinding
-                                Converter="{StaticResource ResourceKey=Converter_TranslateLanguageData}"
+                                Converter="{StaticResource ResourceKey=Converter_TranslatedLanguageData}"
                                 ConverterParameter="{x:Static source:Data_GameText.RN_GameText_SourceText}"
                                 UpdateSourceTrigger="PropertyChanged">
                                 <Binding />
-                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguage" />
                                 <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
@@ -988,7 +1019,7 @@
                                     <Setter.Value>
                                         <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextFontWeight}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_SourceText}">
                                             <Binding />
-                                            <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                            <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguage" />
                                         </MultiBinding>
                                     </Setter.Value>
                                 </Setter>
@@ -1015,7 +1046,7 @@
                                     <Setter.Value>
                                         <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextFontWeight}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_EditedText}">
                                             <Binding />
-                                            <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                            <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguage" />
                                         </MultiBinding>
                                     </Setter.Value>
                                 </Setter>
@@ -1259,9 +1290,9 @@
                                             IsReadOnly="True"
                                             Visibility="{Binding Source={StaticResource MenuItem_DropedText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                                             <DataGridTextColumn.Binding>
-                                                <MultiBinding Converter="{StaticResource ResourceKey=Converter_TranslateLanguageData}" UpdateSourceTrigger="PropertyChanged">
+                                                <MultiBinding Converter="{StaticResource ResourceKey=Converter_TranslatedLanguageData}" UpdateSourceTrigger="PropertyChanged">
                                                     <Binding Path="Droped" />
-                                                    <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                                    <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguage" />
                                                     <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
                                                 </MultiBinding>
                                             </DataGridTextColumn.Binding>
@@ -1278,7 +1309,7 @@
                                                         <Setter.Value>
                                                             <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextFontWeight}" ConverterParameter="{x:Static source:Data_GameText.RN_GameTextForLanguage_DropedText}">
                                                                 <Binding />
-                                                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguage" />
                                                             </MultiBinding>
                                                         </Setter.Value>
                                                     </Setter>
@@ -1294,9 +1325,9 @@
                                             IsReadOnly="True"
                                             Visibility="{Binding Source={StaticResource MenuItem_SourceText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                                             <DataGridTextColumn.Binding>
-                                                <MultiBinding Converter="{StaticResource ResourceKey=Converter_TranslateLanguageData}" UpdateSourceTrigger="PropertyChanged">
+                                                <MultiBinding Converter="{StaticResource ResourceKey=Converter_TranslatedLanguageData}" UpdateSourceTrigger="PropertyChanged">
                                                     <Binding Path="Source" />
-                                                    <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                                    <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguage" />
                                                     <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
                                                 </MultiBinding>
                                             </DataGridTextColumn.Binding>
@@ -1313,7 +1344,7 @@
                                                         <Setter.Value>
                                                             <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextFontWeight}" ConverterParameter="{x:Static source:Data_GameText.RN_GameTextForLanguage_SourceText}">
                                                                 <Binding />
-                                                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguage" />
                                                             </MultiBinding>
                                                         </Setter.Value>
                                                     </Setter>
@@ -1329,9 +1360,9 @@
                                             IsReadOnly="True"
                                             Visibility="{Binding Source={StaticResource MenuItem_EditedText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                                             <DataGridTextColumn.Binding>
-                                                <MultiBinding Converter="{StaticResource ResourceKey=Converter_TranslateLanguageData}" UpdateSourceTrigger="PropertyChanged">
+                                                <MultiBinding Converter="{StaticResource ResourceKey=Converter_TranslatedLanguageData}" UpdateSourceTrigger="PropertyChanged">
                                                     <Binding Path="Edited" />
-                                                    <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                                    <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguage" />
                                                     <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
                                                 </MultiBinding>
                                             </DataGridTextColumn.Binding>
@@ -1348,7 +1379,7 @@
                                                         <Setter.Value>
                                                             <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextFontWeight}" ConverterParameter="{x:Static source:Data_GameText.RN_GameTextForLanguage_EditedText}">
                                                                 <Binding />
-                                                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguage" />
                                                             </MultiBinding>
                                                         </Setter.Value>
                                                     </Setter>
@@ -1485,7 +1516,7 @@
                                                 <FlowDocumentScrollViewer.Document>
                                                     <MultiBinding Converter="{StaticResource ResourceKey=Converter_RichTextBoxInGalaxyText}" UpdateSourceTrigger="PropertyChanged">
                                                         <Binding />
-                                                        <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslateLanguage" />
+                                                        <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguage" />
                                                         <Binding ElementName="CheckBox_InGalaxyShowScript" Path="IsChecked" />
                                                         <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
                                                     </MultiBinding>

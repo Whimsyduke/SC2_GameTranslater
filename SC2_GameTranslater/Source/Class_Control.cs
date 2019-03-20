@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fluent;
+using System;
 using System.Data;
 using System.Globalization;
 using System.Windows;
@@ -100,7 +101,7 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// 翻译语言对应数据Converter
     /// </summary>
-    public class EnumTranslateLanguageDataConverter : IMultiValueConverter
+    public class EnumTranslatedLanguageDataConverter : IMultiValueConverter
     {
         /// <summary>
         /// 转换函数
@@ -344,13 +345,13 @@ namespace SC2_GameTranslater.Source
             {
                 if (values[1] == DependencyProperty.UnsetValue) return ConsoleColor.Gray;
                 DataRowView rowView = values[0] as DataRowView;
-                EnumLanguage translateLanguage = (EnumLanguage)values[1];
+                EnumLanguage TranslatedLanguage = (EnumLanguage)values[1];
                 string column = parameter as string;
                 string key = column;
                 Log.Assert(rowView != null, nameof(rowView) + " != null");
                 if (rowView.Row.Table != Data_GameText.GameTextForLanguageTable)
                 {
-                    key = Data_GameText.GetRowNameForLanguage(translateLanguage, column);
+                    key = Data_GameText.GetRowNameForLanguage(TranslatedLanguage, column);
                 }
                 var var = rowView.Row[key];
                 return var == DBNull.Value ? FontWeights.Bold : FontWeights.Normal;
@@ -592,7 +593,186 @@ namespace SC2_GameTranslater.Source
         {
             throw new NotImplementedException();
         }
+    }
 
+    /// <summary>
+    /// 复制源Header可用性转换器
+    /// </summary>
+    public class CopySourceButtonHeaderConverter : IValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is Fluent.Button button)
+            {
+                return button.Header;
+            }
+            return "";
+        }
+
+        /// <summary>
+        /// 反向转回函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// 复制源Tag可用性转换器
+    /// </summary>
+    public class CopySourceButtonTagConverter : IValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is Fluent.Button button)
+            {
+                return button.Tag;
+            }
+            return EnumLanguage.Other;
+        }
+
+        /// <summary>
+        /// 反向转回函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// 复制源Icon可用性转换器
+    /// </summary>
+    public class CopySourceButtonIconConverter : IValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is Fluent.Button button)
+            {
+                return button.Icon;
+            }
+            return App.Current.FindResource("IMAGE_Null");
+        }
+
+        /// <summary>
+        /// 反向转回函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// 复制源LargeIcon可用性转换器
+    /// </summary>
+    public class CopySourceButtonLargeIconConverter : IValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is Fluent.Button button)
+            {
+                return button.LargeIcon;
+            }
+            return App.Current.FindResource("IMAGE_Null");
+        }
+
+        /// <summary>
+        /// 反向转回函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// 复制目标语言可用性转换器
+    /// </summary>
+    public class CopyTargetLanguageButtonEnableConverter : IValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is EnumLanguage sourceLanguage && parameter is ToggleButton targetButton && targetButton.Tag is EnumLanguage targetLanguage)
+            {
+                return targetLanguage != sourceLanguage;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 反向转回函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
     }
 
     #endregion

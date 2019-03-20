@@ -88,9 +88,9 @@
     <sys:String x:Key="UI_DataGridColumn_TranslateEditedText_Header">修改文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateIndex_Header">数据编号</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateSourceText_Header">原始文本</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateTextFile_Header">所在文件</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateTextID_Header">文本ID</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateTextStatus_Header">文本状态</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedTextFile_Header">所在文件</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">文本ID</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">文本状态</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateUseStatus_Header">使用状态</sys:String>
     <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Mod/Map路径：</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">详情</sys:String>
@@ -106,7 +106,7 @@
     <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy文件</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">文本文件</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">文本状态</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_TranslateLanguage_Header">翻译语言</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TranslatedLanguage_Header">翻译语言</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">使用状态</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">清除日志</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">清空脚本</sys:String>
@@ -137,10 +137,10 @@
     <sys:String x:Key="UI_RibbonGroupBox_Search_Header">搜索</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TextFileFilter_Header">所属文本文件</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TextStatusFilter_Header">文本状态</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">翻译语言</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_TranslatedLanguage_Header">翻译语言</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_UseStatusFilter_Header">使用状态</sys:String>
     <sys:String x:Key="UI_RibbonTabItem_Start_Header">开始</sys:String>
-    <sys:String x:Key="UI_RibbonTabItem_Tool_Header">工具</sys:String>
+    <sys:String x:Key="UI_RibbonTabItem_ToolCopyTranslatedText_Header">翻译复制工具</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_Preferences_Header">配置设置</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_Projects_Header">项目文件</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_RecentProjects_Header">最近项目</sys:String>
@@ -155,7 +155,9 @@
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
     <sys:String x:Key="UI_Window_GoToIndex_Title">跳转数据编号</sys:String>
     <sys:String x:Key="UI_Window_ReloadConfig_Title">重载选项</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_CopyBetweenLanguage_Header">跨语言复制翻译</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">复制翻译语言</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TragetLanguages_Header">复制目标语言</sys:String>
+    <sys:String x:Key="UI_RibbonButton_DoCopy_Header">开始复制</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->

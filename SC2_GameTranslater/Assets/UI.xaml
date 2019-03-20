@@ -10,7 +10,7 @@
     <!--#region Converter-->
     <source:AutoNumberValueConverter x:Key="Converter_AutoNumberValue" />
     <source:EnumLanguageToTreslateNameConverter x:Key="Converter_EnumLanguageToTreslateName" />
-    <source:EnumTranslateLanguageDataConverter x:Key="Converter_TranslateLanguageData" />
+    <source:EnumTranslatedLanguageDataConverter x:Key="Converter_TranslatedLanguageData" />
     <source:EnumNameInLanguage_TextFileConverter x:Key="Converter_EnumNameInLanguage_TextFile" />
     <source:EnumNameInLanguage_TextStatusConverter x:Key="Converter_EnumNameInLanguage_TextStatus" />
     <source:EnumNameInLanguage_UseStatusConverter x:Key="Converter_EnumNameInLanguage_UseStatus" />
@@ -20,6 +20,11 @@
     <source:CommonNotValueConverter x:Key="Converter_CommonNotValue" />
     <source:SerachLocationByRegexControlConverter x:Key="Converter_SerachLocationByRegexControl" />
     <BooleanToVisibilityConverter x:Key="Converter_BooleanToVisibility" />
+    <source:CopySourceButtonHeaderConverter x:Key="Converter_CopySourceButtonHeader" />
+    <source:CopySourceButtonTagConverter x:Key="Converter_CopySourceButtonTag" />
+    <source:CopySourceButtonIconConverter x:Key="Converter_CopySourceButtonIcon" />
+    <source:CopySourceButtonLargeIconConverter x:Key="Converter_CopySourceButtonLargeIcon" />
+    <source:CopyTargetLanguageButtonEnableConverter x:Key="Converter_CopyTargetLanguageButtonEnable" />
     <!--#endregion-->
 
     <!--#region Template-->

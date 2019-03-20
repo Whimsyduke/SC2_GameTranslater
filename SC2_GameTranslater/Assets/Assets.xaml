@@ -16,6 +16,7 @@
     <BitmapImage x:Key="IMAGE_ProjectFile" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newcomment.dds" />
     <BitmapImage x:Key="IMAGE_FilterPrev" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-toolbar_findprev.dds" />
     <BitmapImage x:Key="IMAGE_FilterNext" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-toolbar_findnext.dds" />
+    <BitmapImage x:Key="IMAGE_DoCopy" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-general_copy.dds" />
     <!--#endregion-->
 
     <!--#region Translate Language-->

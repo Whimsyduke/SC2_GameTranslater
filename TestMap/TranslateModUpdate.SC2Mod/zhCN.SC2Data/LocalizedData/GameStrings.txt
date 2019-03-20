@@ -1,4 +1,4 @@
-﻿DocInfo/DescLong=翻译描述
+DocInfo/DescLong=翻译描述
 DocInfo/DescShort=翻译玩家数
 DocInfo/Name=翻译Mod
 Param/Value/lib_LIB1_2254CCC2=翻译文本1

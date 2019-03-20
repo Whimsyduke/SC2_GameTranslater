@@ -611,7 +611,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="dataProject">数据项目</param>
         /// <param name="languages">翻译语言</param>
         /// <param name="onlyModified">仅修改内容</param>
-        public void ReloadTranslateText(Data_GameText dataProject, List<EnumLanguage> languages, bool onlyModified)
+        public void ReloadTranslatedText(Data_GameText dataProject, List<EnumLanguage> languages, bool onlyModified)
         {
             DataTable dataTable = dataProject.Tables[TN_GameText];
             DataTable targetTable = Tables[TN_GameText];

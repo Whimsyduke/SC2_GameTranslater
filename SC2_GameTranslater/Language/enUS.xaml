@@ -88,9 +88,9 @@
     <sys:String x:Key="UI_DataGridColumn_TranslateEditedText_Header">Edited Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateIndex_Header">Data Index</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateSourceText_Header">Source Text</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateTextFile_Header">In File</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateTextID_Header">Text ID</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateTextStatus_Header">Text Status</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedTextFile_Header">In File</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">Text ID</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">Text Status</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateUseStatus_Header">Use Status</sys:String>
     <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Mod/Map Path:</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">Details</sys:String>
@@ -106,7 +106,7 @@
     <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy File</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">Record File</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">Text Status</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_TranslateLanguage_Header">Translate Language</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TranslatedLanguage_Header">Translate Language</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">Use Status</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">Clear Log</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">Empty Text</sys:String>
@@ -137,10 +137,10 @@
     <sys:String x:Key="UI_RibbonGroupBox_Search_Header">Search</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TextFileFilter_Header">In Record File</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TextStatusFilter_Header">Text Status</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">Translate Language</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_TranslatedLanguage_Header">Translate Language</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_UseStatusFilter_Header">Use Status</sys:String>
     <sys:String x:Key="UI_RibbonTabItem_Start_Header">Start</sys:String>
-    <sys:String x:Key="UI_RibbonTabItem_Tool_Header">Tool</sys:String>
+    <sys:String x:Key="UI_RibbonTabItem_ToolCopyTranslatedText_Header">Translated Copy Tool</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_Preferences_Header">Preferences Setting</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_Projects_Header">Projects file</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_RecentProjects_Header">Recent Projects</sys:String>
@@ -155,7 +155,9 @@
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
     <sys:String x:Key="UI_Window_GoToIndex_Title">Go To Data Index</sys:String>
     <sys:String x:Key="UI_Window_ReloadConfig_Title">Reload Config</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_CopyBetweenLanguage_Header">Copy Between Language</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">Copy Translated Text</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_TragetLanguages_Header">Copy Target Text</sys:String>
+    <sys:String x:Key="UI_RibbonButton_DoCopy_Header">Do Copy</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->
