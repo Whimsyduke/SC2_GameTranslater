@@ -214,6 +214,7 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         public void ApplyToUI()
         {
+            SC2_GameTranslater_Window.CanSaveRecord = false;
             Globals.MainWindow.SetFileterTranslateLanguage(TraslateLanguage);
             Globals.MainWindow.SetFileterSearchTextType(SearchType);
             Globals.MainWindow.SetFileterSearchLocation(SearchLocation);
@@ -224,6 +225,8 @@ namespace SC2_GameTranslater.Source
             Globals.MainWindow.SetFileterTextFile(TextFile);
             Globals.MainWindow.SetFileterTextStatus(TextStatus);
             Globals.MainWindow.SetFileterUseStatus(UseStatus);
+            Globals.MainWindow.RefreshTranslatedText();
+            SC2_GameTranslater_Window.CanSaveRecord = true;
         }
 
         #endregion

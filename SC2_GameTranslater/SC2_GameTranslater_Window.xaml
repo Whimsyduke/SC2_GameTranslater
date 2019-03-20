@@ -196,6 +196,8 @@
                 <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Open}}" />
                 <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Save}}" />
                 <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Close}}" />
+                <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_FilterPrev}}" />
+                <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_FilterNext}}" />
             </Fluent:Ribbon.QuickAccessItems>
             <Fluent:RibbonTabItem Name="RibbonTabItem_Start" Header="{DynamicResource UI_RibbonTabItem_Start_Header}">
                 <Fluent:RibbonGroupBox
@@ -262,6 +264,26 @@
                             LargeIcon="{StaticResource ResourceKey=IMAGE_Reload}" />
                     </Fluent:SplitButton>
                     <Separator />
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox
+                    Name="RibbonGroupBox_FilterRecord"
+                    Width="Auto"
+                    Grid.IsSharedSizeScope="True"
+                    Header="{DynamicResource UI_RibbonGroupBox_FilterRecord_Header}">
+                    <Fluent:Button
+                        x:Name="RibbonButton_FilterPrev"
+                        Command="{Binding ElementName=RibbonWindow_Main, Path=FilterRecordPrev}"
+                        Header="{DynamicResource UI_RibbonButton_FilterPrev_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_FilterPrev}"
+                        KeyTip="+"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_FilterPrev}" />
+                    <Fluent:Button
+                        x:Name="RibbonButton_FilterNext"
+                        Command="{Binding ElementName=RibbonWindow_Main, Path=FilterRecordNext}"
+                        Header="{DynamicResource UI_RibbonButton_FilterNext_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_FilterNext}"
+                        KeyTip="-"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_FilterNext}" />
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_TranslateLanguage"

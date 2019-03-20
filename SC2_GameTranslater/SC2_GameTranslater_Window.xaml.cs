@@ -305,6 +305,26 @@ namespace SC2_GameTranslater
         /// </summary>
         public RoutedUICommand SearchClick { set => SetValue(SearchClickProperty, value); get => (RoutedUICommand)GetValue(SearchClickProperty); }
 
+        /// <summary>
+        /// 上一记录依赖项
+        /// </summary>
+        public static DependencyProperty FilterRecordPrevProperty = DependencyProperty.Register(nameof(FilterRecordPrev), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+
+        /// <summary>
+        /// 上一记录依赖项属性
+        /// </summary>
+        public RoutedUICommand FilterRecordPrev { set => SetValue(FilterRecordPrevProperty, value); get => (RoutedUICommand)GetValue(FilterRecordPrevProperty); }
+
+        /// <summary>
+        /// 下一记录依赖项
+        /// </summary>
+        public static DependencyProperty FilterRecordNextProperty = DependencyProperty.Register(nameof(FilterRecordNext), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
+
+        /// <summary>
+        /// 下一记录依赖项属性
+        /// </summary>
+        public RoutedUICommand FilterRecordNext { set => SetValue(FilterRecordNextProperty, value); get => (RoutedUICommand)GetValue(FilterRecordNextProperty); }
+
         #endregion
 
         #region 其它
@@ -346,6 +366,7 @@ namespace SC2_GameTranslater
             {
                 SetValue(CurrentTranslateLanguageProperty, value);
                 RefreshCurrentTranslateLanguage(value);
+                ListFilterRecordNew();
             }
             get => (EnumLanguage)GetValue(CurrentTranslateLanguageProperty); }
 
@@ -398,7 +419,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 允许刷新翻译文本
         /// </summary>
-        public bool CanRefreshTranslatedText { set; get; }
+        public static bool CanRefreshTranslatedText { set; get; }
 
         /// <summary>
         /// 搜索位置委托字典
@@ -418,12 +439,17 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 筛选器记录列表
         /// </summary>
-        public List<Class_SearchConfig> ListFilterRecord { set; get; } = new List<Class_SearchConfig>();
+        public static List<Class_SearchConfig> ListFilterRecord { set; get; } = new List<Class_SearchConfig>();
 
         /// <summary>
         /// 筛选器记录指针
         /// </summary>
-        public int ListFilterRecordPointer { set; get; } = 0;
+        public static int ListFilterRecordPointer { set; get; } = -1;
+
+        /// <summary>
+        /// 允许保存记录
+        /// </summary>
+        public static bool CanSaveRecord { set; get; } = true;
 
         #endregion
 
@@ -516,6 +542,10 @@ namespace SC2_GameTranslater
             binding = new CommandBinding(CommandRecentProjects, Executed_RecentProjects, CanExecuted_RecentProjects);
             Globals.MainWindow.CommandBindings.Add(binding);
             binding = new CommandBinding(SearchClick, Executed_SearchClick, CanExecuted_SearchClick);
+            Globals.MainWindow.CommandBindings.Add(binding);
+            binding = new CommandBinding(FilterRecordPrev, Executed_FilterRecordPrev, CanExecuted_FilterRecordPrev);
+            Globals.MainWindow.CommandBindings.Add(binding);
+            binding = new CommandBinding(FilterRecordNext, Executed_FilterRecordNext, CanExecuted_FilterRecordNext);
             Globals.MainWindow.CommandBindings.Add(binding);
 
             #endregion
@@ -903,6 +933,50 @@ namespace SC2_GameTranslater
         public static void CanExecuted_SearchClick(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = CheckCurrentProjectExist();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 上一记录执行函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void Executed_FilterRecordPrev(object sender, ExecutedRoutedEventArgs e)
+        {
+            ListFilterRecordPrev();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 上一记录判断函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void CanExecuted_FilterRecordPrev(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = ListFilterRecordCanPrev();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 下一记录执行函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void Executed_FilterRecordNext(object sender, ExecutedRoutedEventArgs e)
+        {
+            ListFilterRecordNext();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 下一记录判断函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void CanExecuted_FilterRecordNext(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = ListFilterRecordCanNext();
             e.Handled = true;
         }
 
@@ -1496,23 +1570,22 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 清理筛选记录
         /// </summary>
-        public void ListFilterRecordClear()
+        public static void ListFilterRecordClear()
         {
-            ListFilterRecordPointer = 0;
+            ListFilterRecordPointer = -1;
             ListFilterRecord.Clear();
-            ListFilterRecord.Add(Class_SearchConfig.NewSearchConfig());
         }
 
         /// <summary>
         /// 新建 筛选记录
         /// </summary>
-        public void ListFilterRecordNew()
+        public static void ListFilterRecordNew()
         {
+            if (!CanSaveRecord || !CanRefreshTranslatedText) return;
             Class_SearchConfig config = Class_SearchConfig.NewSearchConfig();
-            if (config == ListFilterRecord[ListFilterRecordPointer]) return;
+            if (ListFilterRecordPointer >= 0 && config.Equals(ListFilterRecord[ListFilterRecordPointer])) return;
             ListFilterRecordPointer++;
-            int skipCount = ListFilterRecord.Count - ListFilterRecordPointer;
-            if (skipCount > 0) ListFilterRecord = ListFilterRecord.Skip(skipCount).Select(r=>r).ToList();
+            ListFilterRecord = ListFilterRecord.Take(ListFilterRecordPointer).Select(r=>r).ToList();
             ListFilterRecord.Add(config);
         }
 
@@ -1520,7 +1593,7 @@ namespace SC2_GameTranslater
         /// 是否可以应用下一条记录
         /// </summary>
         /// <returns>结果</returns>
-        public bool ListFilterRecordCanNext()
+        public static bool ListFilterRecordCanNext()
         {
             return ListFilterRecordPointer < ListFilterRecord.Count - 1;
         }
@@ -1528,7 +1601,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 应用下一条记录
         /// </summary>
-        public void ListFilterRecordNext()
+        public static void ListFilterRecordNext()
         {
             if (ListFilterRecordCanNext()) ListFilterRecord[++ListFilterRecordPointer].ApplyToUI();
         }
@@ -1537,7 +1610,7 @@ namespace SC2_GameTranslater
         /// 是否可以应用上一条记录
         /// </summary>
         /// <returns>结果</returns>
-        public bool ListFilterRecordCanPrev()
+        public static bool ListFilterRecordCanPrev()
         {
             return ListFilterRecordPointer > 0;
         }
@@ -1545,7 +1618,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 应用上一条记录
         /// </summary>
-        public void ListFilterRecordPrev()
+        public static void ListFilterRecordPrev()
         {
             if (ListFilterRecordCanPrev()) ListFilterRecord[--ListFilterRecordPointer].ApplyToUI();
         }
@@ -1691,6 +1764,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 刷新翻译文本
         /// </summary>
+        /// <param name="saveRecord">保存记录</param>
         public void RefreshTranslatedText()
         {
             if (!CanRefreshTranslatedText) return;

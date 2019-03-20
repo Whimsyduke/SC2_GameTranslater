@@ -152,6 +152,9 @@
     <sys:String x:Key="UI_CheckBox_InGalaxyShowScript_Content">显示脚本）</sys:String>
     <sys:String x:Key="UI_Window_GoToIndex_Title">跳转数据编号</sys:String>
     <sys:String x:Key="UI_GroupBox_GoToIndex_Header">最大编号：{0}</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_FilterRecord_Header">筛选记录</sys:String>
+    <sys:String x:Key="UI_RibbonButton_FilterPrev_Header">上一记录</sys:String>
+    <sys:String x:Key="UI_RibbonButton_FilterNext_Header">下一记录</sys:String>
 
     <!--#endregion-->
 

@@ -52,7 +52,7 @@
     <sys:String x:Key="TEXT_Cancel">Cancel</sys:String>
     <sys:String x:Key="TEXT_NoText">[No Text]</sys:String>
     <sys:String x:Key="TEXT_Error">[Error]</sys:String>
-    
+
     <!--#endregion-->
 
     <!--#region UI Text-->
@@ -152,6 +152,9 @@
     <sys:String x:Key="UI_CheckBox_InGalaxyShowScript_Content">Show Script )</sys:String>
     <sys:String x:Key="UI_Window_GoToIndex_Title">Go To Data Index</sys:String>
     <sys:String x:Key="UI_GroupBox_GoToIndex_Header">Max Index: {0}</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_FilterRecord_Header">Filter Record</sys:String>
+    <sys:String x:Key="UI_RibbonButton_FilterPrev_Header">Previous Record</sys:String>
+    <sys:String x:Key="UI_RibbonButton_FilterNext_Header">Next Record</sys:String>
 
     <!--#endregion-->
 
