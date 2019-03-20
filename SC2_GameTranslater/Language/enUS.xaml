@@ -140,6 +140,7 @@
     <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">Translate Language</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_UseStatusFilter_Header">Use Status</sys:String>
     <sys:String x:Key="UI_RibbonTabItem_Start_Header">Start</sys:String>
+    <sys:String x:Key="UI_RibbonTabItem_Tool_Header">Tool</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_Preferences_Header">Preferences Setting</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_Projects_Header">Projects file</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_RecentProjects_Header">Recent Projects</sys:String>
@@ -154,6 +155,7 @@
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
     <sys:String x:Key="UI_Window_GoToIndex_Title">Go To Data Index</sys:String>
     <sys:String x:Key="UI_Window_ReloadConfig_Title">Reload Config</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_CopyBetweenLanguage_Header">Copy Between Language</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->

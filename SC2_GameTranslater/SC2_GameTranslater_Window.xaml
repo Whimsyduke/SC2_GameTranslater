@@ -34,7 +34,8 @@
             Grid.Row="0"
             Grid.ColumnSpan="2"
             AutomaticStateManagement="False"
-            IsAutomaticCollapseEnabled="True">
+            IsAutomaticCollapseEnabled="True"
+            SelectedTabIndex="0">
             <Fluent:Ribbon.Menu>
                 <Fluent:Backstage Name="Backstage_Menu" Header="{DynamicResource UI_Backstage_Menu_Header}">
                     <Fluent:BackstageTabControl>
@@ -666,6 +667,14 @@
                             Tag="{x:Static source:EnumGameUseStatus.Modified}"
                             Unchecked="ToggleButton_UseStatusFilterButton_CheckEvent" />
                     </Fluent:InRibbonGallery>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem Name="RibbonTabItem_Tool" Header="{DynamicResource UI_RibbonTabItem_Tool_Header}">
+                <Fluent:RibbonGroupBox
+                    Name="RibbonGroupBox_CopyBetweenLanguage"
+                    Grid.IsSharedSizeScope="True"
+                    Header="{DynamicResource UI_RibbonGroupBox_CopyBetweenLanguage_Header}" >
+                    
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>

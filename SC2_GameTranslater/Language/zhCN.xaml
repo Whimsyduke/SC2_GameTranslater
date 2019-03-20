@@ -140,6 +140,7 @@
     <sys:String x:Key="UI_RibbonGroupBox_TranslateLanguage_Header">翻译语言</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_UseStatusFilter_Header">使用状态</sys:String>
     <sys:String x:Key="UI_RibbonTabItem_Start_Header">开始</sys:String>
+    <sys:String x:Key="UI_RibbonTabItem_Tool_Header">工具</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_Preferences_Header">配置设置</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_Projects_Header">项目文件</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_RecentProjects_Header">最近项目</sys:String>
@@ -154,6 +155,7 @@
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
     <sys:String x:Key="UI_Window_GoToIndex_Title">跳转数据编号</sys:String>
     <sys:String x:Key="UI_Window_ReloadConfig_Title">重载选项</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_CopyBetweenLanguage_Header">跨语言复制翻译</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->
