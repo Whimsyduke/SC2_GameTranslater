@@ -52,6 +52,7 @@
     <sys:String x:Key="TEXT_WindowTitleText">StarcraftII Game Translater</sys:String>
     <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
     <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
+    <sys:String x:Key="TEXT_Comma">, {0}</sys:String>
     <!--#endregion-->
 
     <!--#region UI Text-->
@@ -156,7 +157,7 @@
     <sys:String x:Key="UI_Window_GoToIndex_Title">Go To Data Index</sys:String>
     <sys:String x:Key="UI_Window_ReloadConfig_Title">Reload Config</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">Copy Translated Text</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_TragetLanguages_Header">Copy Target Text</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_CopyTargets_Header">Copy Target Text</sys:String>
     <sys:String x:Key="UI_RibbonButton_DoCopy_Header">Do Copy</sys:String>
     <!--#endregion-->
 
@@ -192,6 +193,8 @@
     <sys:String x:Key="MSG_ProjectFileVersionMismatched_Title">Notice</sys:String>
     <sys:String x:Key="MSG_SrollToItemFindOutID_Message">Can not find the ID {0} in current search result, do you want to retry after reset filter?</sys:String>
     <sys:String x:Key="MSG_SrollToItemFindOutID_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_DoCopyTranslateText_Message">Are you sure copy translated text form {0} to {1}? You will  not go back to the search filter before.</sys:String>
+    <sys:String x:Key="MSG_DoCopyTranslateText_Title">Notice</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

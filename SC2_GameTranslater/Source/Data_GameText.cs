@@ -484,7 +484,42 @@ namespace SC2_GameTranslater.Source
 
         #endregion
 
-        #region 重载
+        #region 基类
+
+        public new void EndInit()
+        {
+            base.EndInit();
+
+            foreach (EnumLanguage language in Globals.AllLanguage)
+            {
+                GenerateDataColumnForLanguage(language);
+            }
+        }
+
+        #endregion
+
+        #region 数据
+
+        /// <summary>
+        /// 复制翻译文本
+        /// </summary>
+        /// <param name="from">复制来源</param>
+        /// <param name="to">复制目标</param>
+        public void CopyTranslateText(EnumLanguage from, EnumLanguage to)
+        {
+            string textStatusFromKey = GetRowNameForLanguage(from, RN_GameText_TextStatus);
+            string textStatusToKey = GetRowNameForLanguage(to, RN_GameText_TextStatus);
+            string useStatusFromKey = GetRowNameForLanguage(from, RN_GameText_UseStatus);
+            string useStatusToKey = GetRowNameForLanguage(to, RN_GameText_UseStatus);
+            string editedFromKey = GetRowNameForLanguage(from, RN_GameText_EditedText);
+            string editedToKey = GetRowNameForLanguage(to, RN_GameText_EditedText);
+            foreach (DataRow row in Tables[TN_GameText].Rows)
+            {
+                row[textStatusToKey] = row[textStatusFromKey];
+                row[useStatusToKey] = row[useStatusFromKey];
+                row[editedToKey] = row[editedFromKey];
+            }
+        }
 
         /// <summary>
         /// 重载语言配置
@@ -634,24 +669,6 @@ namespace SC2_GameTranslater.Source
             }
             dataProject.NeedSave = true;
         }
-
-        #endregion
-
-        #region 基类
-
-        public new void EndInit()
-        {
-            base.EndInit();
-
-            foreach (EnumLanguage language in Globals.AllLanguage)
-            {
-                GenerateDataColumnForLanguage(language);
-            }
-        }
-
-        #endregion
-
-        #region 数据
 
         /// <summary>
         /// 写入组件文件夹路径
@@ -913,6 +930,8 @@ namespace SC2_GameTranslater.Source
         }
 
         #endregion
+
+        #region 读取
 
         #region 文本
 
@@ -1225,6 +1244,8 @@ namespace SC2_GameTranslater.Source
             query = query.Where(r => lines.Contains(r)).Select(r => r);
             return query.AsDataView();
         }
+
+        #endregion
 
         #endregion
 

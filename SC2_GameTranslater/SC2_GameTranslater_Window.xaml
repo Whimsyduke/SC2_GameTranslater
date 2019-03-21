@@ -675,10 +675,10 @@
                     Grid.IsSharedSizeScope="True"
                     Header="{DynamicResource UI_RibbonGroupBox_CopyTranslatedText_Header}">
                     <Fluent:InRibbonGallery
-                        Name="InRibbonGallery_TragetLanguages"
+                        Name="InRibbonGallery_CopyTargets"
                         MinWidth="120"
                         CanCollapseToButton="False"
-                        Header="{DynamicResource UI_InRibbonGallery_TragetLanguages_Header}"
+                        Header="{DynamicResource UI_InRibbonGallery_CopyTargets_Header}"
                         IsCollapsed="False"
                         MaxItemsInDropDownRow="3"
                         MaxItemsInRow="3"
@@ -689,7 +689,6 @@
                         SizeDefinition="Large" />
                     <Fluent:InRibbonGallery
                         Name="InRibbonGallery_CopySource"
-                        Header="{Binding ElementName=InRibbonGallery_CopySource, Path=SelectedItem, Converter={StaticResource Converter_CopySourceButtonHeader}}"
                         Icon="{Binding ElementName=InRibbonGallery_CopySource, Path=SelectedItem, Converter={StaticResource Converter_CopySourceButtonIcon}}"
                         IsCollapsed="True"
                         LargeIcon="{Binding ElementName=InRibbonGallery_CopySource, Path=SelectedItem, Converter={StaticResource Converter_CopySourceButtonLargeIcon}}"
@@ -700,9 +699,17 @@
                         ResizeMode="Both"
                         Selectable="True"
                         SizeDefinition="Large"
-                        Tag="{Binding ElementName=InRibbonGallery_CopySource, Path=SelectedItem, Converter={StaticResource Converter_CopySourceButtonTag}}" />
+                        Tag="{Binding ElementName=InRibbonGallery_CopySource, Path=SelectedItem, Converter={StaticResource Converter_CopySourceButtonTag}}">
+                        <Fluent:InRibbonGallery.Header>
+                            <MultiBinding Converter="{StaticResource Converter_CopySourceButtonHeader}">
+                                <Binding ElementName="InRibbonGallery_CopySource" Path="SelectedItem" />
+                                <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
+                            </MultiBinding>
+                        </Fluent:InRibbonGallery.Header>
+                    </Fluent:InRibbonGallery>
                     <Fluent:Button
                         Name="RibbonButton_DoCopy"
+                        Click="RibbonButton_DoCopy_Click"
                         Header="{DynamicResource UI_RibbonButton_DoCopy_Header}"
                         Icon="{StaticResource IMAGE_DoCopy}"
                         LargeIcon="{StaticResource IMAGE_DoCopy}" />

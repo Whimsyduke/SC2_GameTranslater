@@ -193,6 +193,8 @@ namespace SC2_GameTranslater
                 ButtonCopyTarget.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_{0}", language));
                 ButtonCopyTarget.SetResourceReference(ToggleButton.IconProperty, string.Format("IMAGE_{0}", language));
                 ButtonCopyTarget.SetResourceReference(ToggleButton.LargeIconProperty, string.Format("IMAGE_{0}", language));
+                ButtonCopyTarget.Checked += ToggleButton_ButtonCopyTarget_CheckedEvent;
+                ButtonCopyTarget.Unchecked += ToggleButton_ButtonCopyTarget_CheckedEvent;
 
                 ButtonCopySource = new Fluent.Button
                 {
@@ -211,11 +213,35 @@ namespace SC2_GameTranslater
                     Content = ListItemTextDetail
                 };
             }
+
+            #region 方法
+
+            /// <summary>
+            /// 复制目标语言选中事件
+            /// </summary>
+            /// <param name="sender">事件控件</param>
+            /// <param name="e">响应参数</param>
+            private void ToggleButton_ButtonCopyTarget_CheckedEvent(object sender, RoutedEventArgs e)
+            {
+                bool isEnable = false;
+                foreach (object select in Globals.MainWindow.InRibbonGallery_CopyTargets.Items)
+                {
+                    if (select is ToggleButton button && button.IsChecked == true && button.IsEnabled == true)
+                    {
+                        isEnable = true;
+                        break;
+                    }
+                }
+                Globals.MainWindow.RibbonButton_DoCopy.IsEnabled = isEnable;
+            }
+
+            #endregion
+
             #endregion
         }
 
         #endregion
-        
+
         #region 属性字段
 
         #region 依赖项属性
@@ -1045,6 +1071,9 @@ namespace SC2_GameTranslater
                 InRibbonGallery_TranslatedLanguage.Items.Add(DictTranslateAndSearchLanguage[0].ButtonTranslate);
                 DictTranslateAndSearchLanguage[0].ButtonTranslate.IsChecked = false;
                 InRibbonGallery_TranslatedLanguage.Selectable = false;
+                InRibbonGallery_CopySource.IsEnabled = false;
+                InRibbonGallery_CopyTargets.IsEnabled = false;
+                RibbonButton_DoCopy.IsEnabled = false;
             }
             else
             {
@@ -1054,7 +1083,7 @@ namespace SC2_GameTranslater
                     EnumLanguage language = (EnumLanguage)row[Data_GameText.RN_Language_ID];
                     TranslatedLanguageControls controls = DictTranslateAndSearchLanguage[language];
                     InRibbonGallery_TranslatedLanguage.Items.Add(controls.ButtonTranslate);
-                    InRibbonGallery_TragetLanguages.Items.Add(controls.ButtonCopyTarget);
+                    InRibbonGallery_CopyTargets.Items.Add(controls.ButtonCopyTarget);
                     Binding binding = new Binding("Tag")
                     {
                         ElementName = "InRibbonGallery_CopySource",
@@ -1088,6 +1117,8 @@ namespace SC2_GameTranslater
                     CurrentTranslatedLanguage = selectLanguage;
                 }
                 InRibbonGallery_TranslatedLanguage.Selectable = true;
+                InRibbonGallery_CopySource.IsEnabled = true;
+                InRibbonGallery_CopyTargets.IsEnabled = true;
             }
         }
 
@@ -1097,7 +1128,7 @@ namespace SC2_GameTranslater
         private void ResetTranslateAndSearchLanguageButtons()
         {
             InRibbonGallery_TranslatedLanguage.Items.Clear();
-            InRibbonGallery_TragetLanguages.Items.Clear();
+            InRibbonGallery_CopyTargets.Items.Clear();
             InRibbonGallery_CopySource.Items.Clear();
             ListBox_GameTextShowLanguage.Items.Clear();
 
@@ -2875,7 +2906,7 @@ namespace SC2_GameTranslater
         }
 
         /// <summary>
-        /// 跳至指定编号
+        /// 跳至指定编号事件
         /// </summary>
         /// <param name="sender">事件控件</param>
         /// <param name="e">响应参数</param>
@@ -2888,6 +2919,40 @@ namespace SC2_GameTranslater
             ScrollToItemByID(id);
         }
 
+        /// <summary>
+        /// 进行复制翻译文本点击事件
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void RibbonButton_DoCopy_Click(object sender, RoutedEventArgs e)
+        {
+            if (Globals.CurrentProject == null) return;
+            if (!(InRibbonGallery_CopySource.Tag is EnumLanguage sourceLanguage)) return;
+            string srcLangName = Enum.GetName(sourceLanguage.GetType(), sourceLanguage);
+            string srcLangText = Globals.GetStringFromCurrentLanguage(string.Format("TEXT_{0}", srcLangName));
+            List<EnumLanguage> targetLanguages = new List<EnumLanguage>();
+            string tarLangText = "";
+            foreach (object select in InRibbonGallery_CopyTargets.Items)
+            {
+                if (select is ToggleButton button && button.IsEnabled == true && button.IsChecked == true && button.Tag is EnumLanguage targetLanguage)
+                {
+                    targetLanguages.Add(targetLanguage);
+                    string tarLangName = Enum.GetName(sourceLanguage.GetType(), targetLanguage);
+                    tarLangText += Globals.GetCommaStringFromCurrentLanguage(Globals.GetStringFromCurrentLanguage(string.Format("TEXT_{0}", tarLangName)));
+                }
+            }
+            tarLangText = tarLangText.Substring(2);
+            if (Log.ShowSystemMessage(true, MessageBoxButton.YesNo, MessageBoxImage.None, "MSG_DoCopyTranslateText", srcLangText, tarLangText) != MessageBoxResult.Yes) return;
+            ListFilterRecordClear();
+            foreach (EnumLanguage language in targetLanguages)
+            {
+                Globals.CurrentProject.CopyTranslateText(sourceLanguage, language);
+            }
+            RefreshTranslatedText();
+            Globals.CurrentProject.NeedSave = true;
+        }
+
         #endregion
+
     }
 }

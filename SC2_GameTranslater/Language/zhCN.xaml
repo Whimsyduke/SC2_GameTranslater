@@ -52,6 +52,7 @@
     <sys:String x:Key="TEXT_WindowTitleText">《星际争霸II》游戏翻译器</sys:String>
     <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
     <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
+    <sys:String x:Key="TEXT_Comma">，{0}</sys:String>
     <!--#endregion-->
 
     <!--#region 界面文本-->
@@ -156,7 +157,7 @@
     <sys:String x:Key="UI_Window_GoToIndex_Title">跳转数据编号</sys:String>
     <sys:String x:Key="UI_Window_ReloadConfig_Title">重载选项</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">复制翻译语言</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_TragetLanguages_Header">复制目标语言</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_CopyTargets_Header">复制目标语言</sys:String>
     <sys:String x:Key="UI_RibbonButton_DoCopy_Header">开始复制</sys:String>
     <!--#endregion-->
 
@@ -192,6 +193,8 @@
     <sys:String x:Key="MSG_ProjectFileVersionMismatched_Title">消息</sys:String>
     <sys:String x:Key="MSG_SrollToItemFindOutID_Message">无法在当前搜索结果中找到ID（{0}），是否在重置筛选设置后再次尝试？</sys:String>
     <sys:String x:Key="MSG_SrollToItemFindOutID_Title">消息</sys:String>
+    <sys:String x:Key="MSG_DoCopyTranslateText_Message">是否确认自{0}复制翻译文本到{1}？这将导致无法切换到过去的筛选条件。</sys:String>
+    <sys:String x:Key="MSG_DoCopyTranslateText_Title">消息</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

@@ -368,6 +368,23 @@ namespace SC2_GameTranslater.Source
         /// 获取当前语言对应的文本内容
         /// </summary>
         /// <param name="key">Key</param>
+        /// <returns>文本</returns>
+        public static string GetCommaStringFromCurrentLanguage(string origin)
+        {
+            if (CurrentLanguage["TEXT_Comma"] is string text)
+            {
+                return string.Format(text, origin);
+            }
+            else
+            {
+                return "," + origin;
+            }
+        }
+
+        /// <summary>
+        /// 获取当前语言对应的文本内容
+        /// </summary>
+        /// <param name="key">Key</param>
         /// <param name="args">参数</param>
         /// <returns>文本</returns>
         public static string GetStringFromCurrentLanguage(string key, params object[] args)
