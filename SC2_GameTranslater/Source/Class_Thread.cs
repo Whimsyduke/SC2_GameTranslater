@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 
 namespace SC2_GameTranslater.Source
 {
@@ -31,9 +32,8 @@ namespace SC2_GameTranslater.Source
                 thread.Start(argu);
             }
 #if !DEBUG
-            catch (Exception err)
+            catch
             {
-                Log.DisplayLogOnUI(err.Message);
                 return false;
             }
 #endif
