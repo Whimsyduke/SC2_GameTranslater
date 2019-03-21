@@ -786,6 +786,50 @@ namespace SC2_GameTranslater.Source
         }
     }
 
+    /// <summary>
+    /// 跳转窗口确定可用性转换器
+    /// </summary>
+    public class GoToIndexConfirmButtonEnableConverter : IMultiValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="values">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] is string text && values[1] is int max)
+            {
+                try
+                {
+                    int index = int.Parse(text);
+                    return index >= 0 && index < max;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 逆向转换函数
+        /// </summary>
+        /// <param name="value">值数组</param>
+        /// <param name="targetTypes">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     #endregion
 
     #region Control

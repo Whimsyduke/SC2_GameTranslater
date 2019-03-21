@@ -25,6 +25,7 @@
     <source:CopySourceButtonIconConverter x:Key="Converter_CopySourceButtonIcon" />
     <source:CopySourceButtonLargeIconConverter x:Key="Converter_CopySourceButtonLargeIcon" />
     <source:CopyTargetLanguageButtonEnableConverter x:Key="Converter_CopyTargetLanguageButtonEnable" />
+    <source:GoToIndexConfirmButtonEnableConverter x:Key="Converter_GoToIndexConfirmButtonEnable" />
     <!--#endregion-->
 
     <!--#region Template-->

@@ -70,6 +70,14 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void Button_Confirm_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                GoToIndex = int.Parse(TextBox_GoToIndex.Text);
+            }
+            catch
+            {
+                GoToIndex = 0;
+            }
             DialogResult = true;
             Close();
         }

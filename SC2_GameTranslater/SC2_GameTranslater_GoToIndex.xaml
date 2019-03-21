@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
     Name="Window_GoToIndex"
     Title="{DynamicResource UI_Window_GoToIndex_Title}"
     d:DesignHeight="100"
@@ -28,16 +27,8 @@
             Name="GroupBox_GoToIndex"
             Grid.Row="0"
             Header="">
-            <toolkit:IntegerUpDown
-                Name="IntegerUpDown_GoToIndex"
-                AllowSpin="False"
-                ClipValueToMinMax="True"
-                DefaultValue="0"
-                DisplayDefaultValueOnEmptyText="True"
-                Maximum="{Binding ElementName=Window_GoToIndex, Path=MaxIndex}"
-                Minimum="0"
-                ParsingNumberStyle="Integer"
-                ShowButtonSpinner="False" />
+            <TextBox
+                Name="TextBox_GoToIndex" Text="0" HorizontalContentAlignment="Right"/>
         </GroupBox>
         <StackPanel
             Grid.Row="1"
@@ -49,7 +40,14 @@
                 Width="80"
                 Margin="3"
                 Click="Button_Confirm_Click"
-                Content="{DynamicResource TEXT_Confirm}" />
+                Content="{DynamicResource TEXT_Confirm}" >
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource Converter_GoToIndexConfirmButtonEnable}">
+                        <Binding ElementName="TextBox_GoToIndex" Path="Text"/>
+                        <Binding ElementName="Window_GoToIndex" Path="MaxIndex"/>
+                    </MultiBinding>
+                </Button.IsEnabled>
+            </Button>
             <Button
                 Name="Button_Cancel"
                 Width="80"
