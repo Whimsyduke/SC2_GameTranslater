@@ -167,172 +167,65 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Assets\Image\TranslationTool_Add_Language_deDE.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Add_Language_enUS.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Add_Language_esES.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Add_Language_esMX.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Add_Language_frFR.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Add_Language_itIT.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Add_Language_koKR.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Add_Language_plPL.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Add_Language_ptBR.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Add_Language_ruRU.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Add_Language_zhCN.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Add_Language_zhTW.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Remove_Language_deDE.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Remove_Language_enUS.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Remove_Language_esES.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Remove_Language_esMX.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Remove_Language_frFR.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Remove_Language_itIT.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Remove_Language_koKR.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Remove_Language_plPL.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Remove_Language_ptBR.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Remove_Language_ruRU.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Remove_Language_zhCN.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Remove_Language_zhTW.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Content Include="Assets\Image\ui-editoricon-general_copy.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\ui-editoricon-general_new.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\ui-editoricon-toolbar_findnext.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\ui-editoricon-toolbar_findprev.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\ui-editoricon-triggercategories_dialog.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\ui-editoricon-triggercategories_game.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\ui-editoricon-triggercategories_logic.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\ui-editoricon-triggercategories_parameter.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\ui-editoricon-triggercategories_story.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\ui-editoricon-triggercategories_techpurchase.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\ui-editoricon-triggereditor_newcomment.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\ui-editoricon-triggereditor_newconditiondefinition.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Resource Include="Assets\Image\TranslationTool_Language_deDE.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Language_enUS.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Language_esES.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Language_esMX.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Language_frFR.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Language_itIT.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Language_koKR.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Language_plPL.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Language_ptBR.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Language_ruRU.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Language_zhCN.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Language_zhTW.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Image\TranslationTool_Language_Null.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Content Include="Assets\Image\ui-editoricon-triggercategories_minimap.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\ui-editoricon-triggereditor_newcondition.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Assets\Image\ui-editoricon-data_types_buttons.png" />
+    <Resource Include="Assets\Image\ui-editoricon-general_copy.png" />
+    <Resource Include="Assets\Image\ui-editoricon-general_new.png" />
+    <Resource Include="Assets\Image\ui-editoricon-general_open.png" />
+    <Resource Include="Assets\Image\ui-editoricon-general_save.png" />
+    <Resource Include="Assets\Image\ui-editoricon-toolbar_findnext.png" />
+    <Resource Include="Assets\Image\ui-editoricon-toolbar_findprev.png" />
+    <Resource Include="Assets\Image\ui-editoricon-triggercategories_dialog.png" />
+    <Resource Include="Assets\Image\ui-editoricon-triggercategories_game.png" />
+    <Resource Include="Assets\Image\ui-editoricon-triggercategories_logic.png" />
+    <Resource Include="Assets\Image\ui-editoricon-triggercategories_minimap.png" />
+    <Resource Include="Assets\Image\ui-editoricon-triggercategories_parameter.png" />
+    <Resource Include="Assets\Image\ui-editoricon-triggercategories_story.png" />
+    <Resource Include="Assets\Image\ui-editoricon-triggercategories_techpurchase.png" />
+    <Resource Include="Assets\Image\ui-editoricon-triggereditor_newcomment.png" />
+    <Resource Include="Assets\Image\ui-editoricon-triggereditor_newcondition.png" />
+    <Resource Include="Assets\Image\ui-editoricon-triggereditor_newconditiondefinition.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\TranslationTool_Add_Language_deDE.png" />
+    <Resource Include="Assets\Image\TranslationTool_Add_Language_enUS.png" />
+    <Resource Include="Assets\Image\TranslationTool_Add_Language_esES.png" />
+    <Resource Include="Assets\Image\TranslationTool_Add_Language_esMX.png" />
+    <Resource Include="Assets\Image\TranslationTool_Add_Language_frFR.png" />
+    <Resource Include="Assets\Image\TranslationTool_Add_Language_itIT.png" />
+    <Resource Include="Assets\Image\TranslationTool_Add_Language_koKR.png" />
+    <Resource Include="Assets\Image\TranslationTool_Add_Language_plPL.png" />
+    <Resource Include="Assets\Image\TranslationTool_Add_Language_ptBR.png" />
+    <Resource Include="Assets\Image\TranslationTool_Add_Language_ruRU.png" />
+    <Resource Include="Assets\Image\TranslationTool_Add_Language_zhCN.png" />
+    <Resource Include="Assets\Image\TranslationTool_Add_Language_zhTW.png" />
+    <Resource Include="Assets\Image\TranslationTool_Remove_Language_deDE.png" />
+    <Resource Include="Assets\Image\TranslationTool_Remove_Language_enUS.png" />
+    <Resource Include="Assets\Image\TranslationTool_Remove_Language_esES.png" />
+    <Resource Include="Assets\Image\TranslationTool_Remove_Language_esMX.png" />
+    <Resource Include="Assets\Image\TranslationTool_Remove_Language_frFR.png" />
+    <Resource Include="Assets\Image\TranslationTool_Remove_Language_itIT.png" />
+    <Resource Include="Assets\Image\TranslationTool_Remove_Language_koKR.png" />
+    <Resource Include="Assets\Image\TranslationTool_Remove_Language_plPL.png" />
+    <Resource Include="Assets\Image\TranslationTool_Remove_Language_ptBR.png" />
+    <Resource Include="Assets\Image\TranslationTool_Remove_Language_ruRU.png" />
+    <Resource Include="Assets\Image\TranslationTool_Remove_Language_zhCN.png" />
+    <Resource Include="Assets\Image\TranslationTool_Remove_Language_zhTW.png" />
+    <Resource Include="Assets\Image\TranslationTool_Language_deDE.png" />
+    <Resource Include="Assets\Image\TranslationTool_Language_enUS.png" />
+    <Resource Include="Assets\Image\TranslationTool_Language_esES.png" />
+    <Resource Include="Assets\Image\TranslationTool_Language_esMX.png" />
+    <Resource Include="Assets\Image\TranslationTool_Language_frFR.png" />
+    <Resource Include="Assets\Image\TranslationTool_Language_itIT.png" />
+    <Resource Include="Assets\Image\TranslationTool_Language_koKR.png" />
+    <Resource Include="Assets\Image\TranslationTool_Language_plPL.png" />
+    <Resource Include="Assets\Image\TranslationTool_Language_ptBR.png" />
+    <Resource Include="Assets\Image\TranslationTool_Language_ruRU.png" />
+    <Resource Include="Assets\Image\TranslationTool_Language_zhCN.png" />
+    <Resource Include="Assets\Image\TranslationTool_Language_zhTW.png" />
+    <Resource Include="Assets\Image\TranslationTool_Language_Null.png" />
     <Resource Include="Icon.ico" />
     <Resource Include="Assets\Image\Icon.ico" />
-    <Content Include="Assets\Image\ui-editoricon-data_types_buttons.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\ui-editoricon-general_open.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\ui-editoricon-general_save.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
