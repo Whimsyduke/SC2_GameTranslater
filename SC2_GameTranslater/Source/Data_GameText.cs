@@ -5,6 +5,7 @@ using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 
 namespace SC2_GameTranslater.Source
 {
@@ -242,6 +243,28 @@ namespace SC2_GameTranslater.Source
         #endregion
 
         #region 属性字段
+
+        /// <summary>
+        /// 文本状态对应颜色
+        /// </summary>
+        public static Dictionary<EnumGameTextStatus, Brush> TextStatusColor { get; } = new Dictionary<EnumGameTextStatus, Brush>()
+        {
+            { EnumGameTextStatus.Empty, Brushes.Red },
+            { EnumGameTextStatus.Normal, Brushes.Black },
+            { EnumGameTextStatus.Modified, Brushes.Green },
+        };
+
+        /// <summary>
+        /// 使用状态对应颜色
+        /// </summary>
+        public static Dictionary<EnumGameUseStatus, Brush> UseStatusColor { get; } = new Dictionary<EnumGameUseStatus, Brush>()
+        {
+            { EnumGameUseStatus.None, Brushes.Magenta },
+            { EnumGameUseStatus.Droped, Brushes.Red },
+            { EnumGameUseStatus.Normal, Brushes.Black },
+            { EnumGameUseStatus.Added, Brushes.Red },
+            { EnumGameUseStatus.Modified, Brushes.Green },
+        };
 
         /// <summary>
         /// 组件文件夹路径
