@@ -107,7 +107,6 @@
     <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy文件</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">文本文件</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">文本状态</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_TranslatedLanguage_Header">翻译语言</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">使用状态</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">清除日志</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">清空脚本</sys:String>

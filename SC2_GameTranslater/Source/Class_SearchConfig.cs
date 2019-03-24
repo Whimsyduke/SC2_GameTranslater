@@ -60,11 +60,18 @@ namespace SC2_GameTranslater.Source
         #region 属性字段
 
         /// <summary>
-        /// 翻译语言
+        /// 翻译语言(源)
         /// </summary>
         /// <remarks>特殊值0代表当前软件语言</remarks>
         [XmlAttribute(SearchConfig_AttributeTraslateLanguage)]
-        public EnumLanguage TraslateLanguage { private set; get; } = 0;
+        public EnumLanguage TraslateLanguageSource { private set; get; } = 0;
+
+        /// <summary>
+        /// 翻译语言（目标）
+        /// </summary>
+        /// <remarks>特殊值0代表当前软件语言</remarks>
+        [XmlAttribute(SearchConfig_AttributeTraslateLanguage)]
+        public EnumLanguage TraslateLanguageTarget { private set; get; } = 0;
 
         /// <summary>
         /// 搜索类型
@@ -197,7 +204,8 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         public void LoadFromUI()
         {
-            TraslateLanguage = Globals.MainWindow.GetFileterTranslatedLanguage();
+            TraslateLanguageSource = Globals.MainWindow.GetFileterTranslatedLanguageSource();
+            TraslateLanguageTarget = Globals.MainWindow.GetFileterTranslatedLanguageTarget();
             SearchType = Globals.MainWindow.GetFileterSearchTextType();
             SearchLocation = Globals.MainWindow.GetFileterSearchLocation();
             SearchWay = Globals.MainWindow.GetFileterSearchWay();
@@ -215,7 +223,8 @@ namespace SC2_GameTranslater.Source
         public void ApplyToUI()
         {
             SC2_GameTranslater_Window.CanSaveRecord = false;
-            Globals.MainWindow.SetFileterTranslatedLanguage(TraslateLanguage);
+            Globals.MainWindow.SetFileterTranslatedLanguageSource(TraslateLanguageSource);
+            Globals.MainWindow.SetFileterTranslatedLanguageTarget(TraslateLanguageTarget);
             Globals.MainWindow.SetFileterSearchTextType(SearchType);
             Globals.MainWindow.SetFileterSearchLocation(SearchLocation);
             Globals.MainWindow.SetFileterSearchWay(SearchWay);
@@ -241,7 +250,8 @@ namespace SC2_GameTranslater.Source
         public override bool Equals(object obj)
         {
             if (!(obj is Class_SearchConfig config)) return false;
-            if (TraslateLanguage != config.TraslateLanguage) return false;
+            if (TraslateLanguageSource != config.TraslateLanguageSource) return false;
+            if (TraslateLanguageTarget != config.TraslateLanguageTarget) return false;
             if (SearchType != config.SearchType) return false;
             if (SearchLocation != config.SearchLocation) return false;
             if (SearchWay != config.SearchWay) return false;

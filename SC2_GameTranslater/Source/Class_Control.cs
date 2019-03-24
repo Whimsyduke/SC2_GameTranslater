@@ -78,7 +78,7 @@ namespace SC2_GameTranslater.Source
             if (value != null)
             {
                 EnumLanguage language = (EnumLanguage)value;
-                string langName = Enum.GetName(language.GetType(), language);
+                string langName = Globals.GetEnumLanguageName(language);
                 return Globals.GetStringFromCurrentLanguage(string.Format("TEXT_{0}", langName));
             }
             return Globals.GetStringFromCurrentLanguage("TEXT_Error");
@@ -101,7 +101,7 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// 翻译语言对应数据Converter
     /// </summary>
-    public class EnumTranslatedLanguageDataConverter : IMultiValueConverter
+    public class EnumTranslatedDataTextConverter : IMultiValueConverter
     {
         /// <summary>
         /// 转换函数
@@ -113,9 +113,8 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] is DataRowView rowView)
+            if (values[1] is EnumLanguage language && language != EnumLanguage.Other && values[0] is DataRowView rowView)
             {
-                EnumLanguage language = (EnumLanguage)values[1];
                 string column = parameter as string;
                 string key = Data_GameText.GetRowNameForLanguage(language, column);
                 object display = rowView.Row[key];
@@ -125,11 +124,46 @@ namespace SC2_GameTranslater.Source
                 }
                 else
                 {
-
+                    return display as string;
                 }
-                return display as string;
             }
-            else if (values[0] is string text)
+            else
+            {
+                return Globals.GetStringFromCurrentLanguage("TEXT_Error");
+            }
+        }
+
+        /// <summary>
+        /// 逆向转换函数
+        /// </summary>
+        /// <param name="value">值数组</param>
+        /// <param name="targetTypes">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+
+    }
+
+    /// <summary>
+    /// 翻译语言对应数据Converter
+    /// </summary>
+    public class EnumGameDataTextConverter : IMultiValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="values">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] is string text)
             {
                 return text;
             }
@@ -175,10 +209,9 @@ namespace SC2_GameTranslater.Source
         {
             if (values[0] is DataRowView rowView)
             {
-                EnumLanguage language = (EnumLanguage)values[1];
                 var var = rowView.Row[Data_GameText.RN_GameText_File];
                 EnumGameTextFile value = (EnumGameTextFile)Enum.ToObject(typeof(EnumGameTextFile), var);
-                return Data_GameText.GetEnumNameInLanguage(language, value);
+                return Data_GameText.GetEnumNameInLanguage(value);
             }
             else
             {
@@ -218,9 +251,8 @@ namespace SC2_GameTranslater.Source
         {
             try
             {
-                EnumLanguage softeareLanguage = (EnumLanguage)values[1];
                 EnumGameTextStatus value = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), values[0]);
-                return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
+                return Data_GameText.GetEnumNameInLanguage(value);
             }
             catch
             {
@@ -260,9 +292,8 @@ namespace SC2_GameTranslater.Source
         {
             try
             {
-                EnumLanguage softeareLanguage = (EnumLanguage)values[1];
                 EnumGameUseStatus value = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), values[0]);
-                return Data_GameText.GetEnumNameInLanguage(softeareLanguage, value);
+                return Data_GameText.GetEnumNameInLanguage(value);
             }
             catch
             {
@@ -343,7 +374,6 @@ namespace SC2_GameTranslater.Source
         {
             try
             {
-                if (values[1] == DependencyProperty.UnsetValue) return ConsoleColor.Gray;
                 DataRowView rowView = values[0] as DataRowView;
                 EnumLanguage TranslatedLanguage = (EnumLanguage)values[1];
                 string column = parameter as string;
@@ -598,7 +628,7 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// 复制源Header可用性转换器
     /// </summary>
-    public class CopySourceButtonHeaderConverter : IMultiValueConverter
+    public class LanguageButtonHeaderConverter : IMultiValueConverter
     {
         /// <summary>
         /// 转换函数
@@ -645,7 +675,7 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// 复制源Tag可用性转换器
     /// </summary>
-    public class CopySourceButtonTagConverter : IValueConverter
+    public class LanguageButtonTagConverter : IValueConverter
     {
         /// <summary>
         /// 转换函数
@@ -681,7 +711,7 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// 复制源Icon可用性转换器
     /// </summary>
-    public class CopySourceButtonIconConverter : IValueConverter
+    public class LanguageButtonIconConverter : IValueConverter
     {
         /// <summary>
         /// 转换函数
@@ -717,7 +747,7 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// 复制源LargeIcon可用性转换器
     /// </summary>
-    public class CopySourceButtonLargeIconConverter : IValueConverter
+    public class LanguageButtonLargeIconConverter : IValueConverter
     {
         /// <summary>
         /// 转换函数
@@ -825,6 +855,42 @@ namespace SC2_GameTranslater.Source
         /// <param name="culture">本地化</param>
         /// <returns>转换结果</returns>
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 语言按钮对应语言转换器
+    /// </summary>
+    public class SelectLanguageButtonToLanguageConverter : IValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is EnumLanguage language)
+            {
+                return language;
+            }
+            return EnumLanguage.Other;
+        }
+
+        /// <summary>
+        /// 反向转回函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

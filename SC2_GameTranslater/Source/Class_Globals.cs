@@ -365,7 +365,7 @@ namespace SC2_GameTranslater.Source
         }
 
         /// <summary>
-        /// 获取当前语言对应的文本内容
+        /// 获取当前语言对应逗格式文本内容
         /// </summary>
         /// <param name="key">Key</param>
         /// <returns>文本</returns>
@@ -382,7 +382,7 @@ namespace SC2_GameTranslater.Source
         }
 
         /// <summary>
-        /// 获取当前语言对应的文本内容
+        /// 获取当前语言对应的格式化文本内容
         /// </summary>
         /// <param name="key">Key</param>
         /// <param name="args">参数</param>
@@ -397,6 +397,16 @@ namespace SC2_GameTranslater.Source
             {
                 return "";
             }
+        }
+
+        /// <summary>
+        /// 获取语言枚举对应的名称
+        /// </summary>
+        /// <param name="language">语言</param>
+        /// <returns>名称</returns>
+        public static string GetEnumLanguageName(EnumLanguage language)
+        {
+            return Enum.GetName(language.GetType(), language);
         }
 
         /// <summary>

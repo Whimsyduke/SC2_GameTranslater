@@ -107,7 +107,6 @@
     <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy File</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">Record File</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">Text Status</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_TranslatedLanguage_Header">Translate Language</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">Use Status</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">Clear Log</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">Empty Text</sys:String>

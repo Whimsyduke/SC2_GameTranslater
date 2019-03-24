@@ -52,7 +52,7 @@ namespace SC2_GameTranslater
                     };
                     Grid_TranslatedLanguage.RowDefinitions.Add(rowDef);
                 }
-                string langName = Enum.GetName(language.GetType(), language);
+                string langName = Globals.GetEnumLanguageName(language);
                 if (ResourceDictionary_MainGrid["CheckBox_" + langName] is CheckBox checkBox)
                 {
                     checkBox.SetValue(Grid.ColumnProperty, x++);

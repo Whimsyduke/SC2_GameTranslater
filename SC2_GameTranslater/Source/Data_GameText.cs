@@ -333,19 +333,18 @@ namespace SC2_GameTranslater.Source
         /// <returns>列名</returns>
         public static string GetRowNameForLanguage(EnumLanguage language, string name)
         {
-            return string.Format("{0}_{1}", Enum.GetName(language.GetType(), language), name);
+            return string.Format("{0}_{1}", Globals.GetEnumLanguageName(language), name);
         }
 
         /// <summary>
         /// 获取枚举值对应的文本
         /// </summary>
-        /// <param name="language">语言</param>
         /// <param name="value">枚举值</param>
         /// <returns>翻译名称</returns>
-        public static string GetEnumNameInLanguage(EnumLanguage language, Enum value)
+        public static string GetEnumNameInLanguage(Enum value)
         {
             string key = string.Format("ENUM_{0}_{1}", value.GetType().Name, Enum.GetName(value.GetType(), value));
-            return Globals.DictUILanguages[language][key] as string;
+            return Globals.GetStringFromCurrentLanguage(key);
         }
 
         /// <summary>
@@ -424,7 +423,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>路径</returns>
         public string TextFilePath(EnumLanguage language, EnumGameTextFile file)
         {
-            string path = Enum.GetName(language.GetType(), language) + Const_String_GameTextMainPath;
+            string path = Globals.GetEnumLanguageName(language) + Const_String_GameTextMainPath;
             switch (file)
             {
                 case EnumGameTextFile.GameStrings:
@@ -1050,7 +1049,7 @@ namespace SC2_GameTranslater.Source
             {
                 row = table.NewRow();
                 row[RN_Language_ID] = language;
-                row[RN_Language_Name] = Enum.GetName(language.GetType(), language);
+                row[RN_Language_Name] = Globals.GetEnumLanguageName(language);
                 row[RN_Language_Status] = EnumGameUseStatus.Normal;
                 table.Rows.Add(row);
             }
