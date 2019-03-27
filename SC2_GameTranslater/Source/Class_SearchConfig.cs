@@ -43,7 +43,8 @@ namespace SC2_GameTranslater.Source
 
         // 字段
         public const string SearchConfig_ElementRoot = "SearchConfig";
-        public const string SearchConfig_AttributeTraslateLanguage = "TraslateLanguage";
+        public const string SearchConfig_AttributeTraslateLanguageSource = "TraslateLanguageSource";
+        public const string SearchConfig_AttributeTraslateLanguageTarget = "TraslateLanguageTarget";
         public const string SearchConfig_AttributeSearchType = "SearchType";
         public const string SearchConfig_AttributeSearchLanguage = "SearchLanguage";
         public const string SearchConfig_AttributeSearchLocation = "SearchLocation";
@@ -63,70 +64,70 @@ namespace SC2_GameTranslater.Source
         /// 翻译语言(源)
         /// </summary>
         /// <remarks>特殊值0代表当前软件语言</remarks>
-        [XmlAttribute(SearchConfig_AttributeTraslateLanguage)]
-        public EnumLanguage TraslateLanguageSource { private set; get; } = 0;
+        [XmlAttribute(SearchConfig_AttributeTraslateLanguageSource)]
+        public EnumLanguage TraslateLanguageSource { set; get; } = 0;
 
         /// <summary>
         /// 翻译语言（目标）
         /// </summary>
         /// <remarks>特殊值0代表当前软件语言</remarks>
-        [XmlAttribute(SearchConfig_AttributeTraslateLanguage)]
-        public EnumLanguage TraslateLanguageTarget { private set; get; } = 0;
+        [XmlAttribute(SearchConfig_AttributeTraslateLanguageTarget)]
+        public EnumLanguage TraslateLanguageTarget { set; get; } = 0;
 
         /// <summary>
         /// 搜索类型
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeSearchType)]
-        public EnumSearchTextType SearchType { private set; get; } = EnumSearchTextType.All;
+        public EnumSearchTextType SearchType { set; get; } = EnumSearchTextType.All;
 
         /// <summary>
         /// 搜索位置
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeSearchLocation)]
-        public EnumSearchTextLocation SearchLocation { private set; get; } = EnumSearchTextLocation.All;
+        public EnumSearchTextLocation SearchLocation { set; get; } = EnumSearchTextLocation.All;
 
         /// <summary>
         /// 搜索基本方式
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeSearchWay)]
-        public EnumSearchWay SearchWay { private set; get; } = EnumSearchWay.Text;
+        public EnumSearchWay SearchWay { set; get; } = EnumSearchWay.Text;
 
         /// <summary>
         /// 搜索匹配大小写
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeSearchCase)]
-        public bool SearchCase { private set; get; } = false;
+        public bool SearchCase { set; get; } = false;
         
         /// <summary>
         /// 搜索文本
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeSearchText)]
-        public string SearchText { private set; get; } = "";
+        public string SearchText { set; get; } = "";
         
         /// <summary>
         /// 搜索Galaxy文件
         /// </summary>
         /// <remarks>特殊值null代表全部选择，数组中值""代表不在Galaxy文件中的文本</remarks>
         [XmlArray(SearchConfig_ArrayGalaxyFile)]
-        public string[] GalaxyFile { private set; get; } = null;
+        public string[] GalaxyFile { set; get; } = null;
         
         /// <summary>
         /// 所属文本文件
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeTextFile)]
-        public EnumGameTextFile TextFile { private set; get; } = EnumGameTextFile.All;
+        public EnumGameTextFile TextFile { set; get; } = EnumGameTextFile.All;
 
         /// <summary>
         /// 所属文本状态
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeTextStatuse)]
-        public EnumGameTextStatus TextStatus { private set; get; } = EnumGameTextStatus.All;
+        public EnumGameTextStatus TextStatus { set; get; } = EnumGameTextStatus.All;
 
         /// <summary>
         /// 所属使用状态
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeUseStatus)]
-        public EnumGameUseStatus UseStatus { private set; get; } = EnumGameUseStatus.All;
+        public EnumGameUseStatus UseStatus { set; get; } = EnumGameUseStatus.All;
 
         #endregion
 
