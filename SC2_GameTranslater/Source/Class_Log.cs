@@ -42,9 +42,12 @@ namespace SC2_GameTranslater.Source
             //得到当前的所以堆栈  
             string format = Globals.GetStringFromCurrentLanguage("ERR_CommonNewException") is string text? text : "{0}";
             StackFrame[] sf = st.GetFrames();
-            for (int i = 1; i < sf.Length; ++i)
+            if (sf != null)
             {
-                info = string.Format(format, info, sf[i].GetFileName(), sf[i].GetMethod().DeclaringType?.FullName, sf[i].GetMethod().Name, sf[i].GetFileLineNumber());
+                for (int i = 1; i < sf.Length; ++i)
+                {
+                    info = string.Format(format, info, sf[i].GetFileName(), sf[i].GetMethod().DeclaringType?.FullName, sf[i].GetMethod().Name, sf[i].GetFileLineNumber());
+                }
             }
             return info;
         }

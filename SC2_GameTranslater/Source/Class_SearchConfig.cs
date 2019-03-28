@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace SC2_GameTranslater.Source
@@ -96,7 +92,7 @@ namespace SC2_GameTranslater.Source
         /// 搜索匹配大小写
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeSearchCase)]
-        public bool SearchCase { set; get; } = false;
+        public bool SearchCase { set; get; }
         
         /// <summary>
         /// 搜索文本
@@ -109,7 +105,7 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         /// <remarks>特殊值null代表全部选择，数组中值""代表不在Galaxy文件中的文本</remarks>
         [XmlArray(SearchConfig_ArrayGalaxyFile)]
-        public string[] GalaxyFile { set; get; } = null;
+        public string[] GalaxyFile { set; get; }
         
         /// <summary>
         /// 所属文本文件
@@ -179,7 +175,7 @@ namespace SC2_GameTranslater.Source
             ms.Write(data, 0, data.Length);
             XmlSerializer serializer = new XmlSerializer(typeof(Class_SearchConfig));
             ms.Position = 0;
-            Class_SearchConfig config = null;
+            Class_SearchConfig config;
             try
             {
                 config = serializer.Deserialize(ms) as Class_SearchConfig;

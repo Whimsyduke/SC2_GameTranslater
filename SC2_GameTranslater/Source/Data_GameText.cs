@@ -317,7 +317,7 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 需要存储
         /// </summary>
-        public bool NeedSave { set; get; } = false;
+        public bool NeedSave { set; get; }
 
         #endregion
 
@@ -826,7 +826,7 @@ namespace SC2_GameTranslater.Source
                 string projectVer = proj.GetProjectInfoVersion();
                 if (projectVer != Globals.ProjectInfoVersion)
                 {
-                    Log.ShowSystemMessage(true, System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.None, "MSG_ProjectFileVersionMismatched", projectVer, Globals.ProjectInfoVersion);
+                    Log.ShowSystemMessage(true, MessageBoxButton.OK, MessageBoxImage.None, "MSG_ProjectFileVersionMismatched", projectVer, Globals.ProjectInfoVersion);
                 }
                 proj.RefreshAttribute();
                 return proj;
@@ -1219,6 +1219,7 @@ namespace SC2_GameTranslater.Source
         private void LoadGalaxyFile(FileInfo file)
         {
             Log.Assert(SC2Components.DirectoryName != null, "SC2Components.DirectoryName != null");
+            if (SC2Components.DirectoryName == null) return;
             string path = file.FullName.Substring(SC2Components.DirectoryName.Length);
             DataRow row = Tables[TN_GalaxyFile].NewRow();
             row[RN_GalaxyFile_Path] = path;

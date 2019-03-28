@@ -367,7 +367,7 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 获取当前语言对应逗格式文本内容
         /// </summary>
-        /// <param name="key">Key</param>
+        /// <param name="origin">源文本</param>
         /// <returns>文本</returns>
         public static string GetCommaStringFromCurrentLanguage(string origin)
         {

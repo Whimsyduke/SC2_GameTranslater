@@ -944,7 +944,7 @@
                                 <Grid
                                     Name="Grid_TextStatus"
                                     HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch">
+                                    VerticalAlignment="Stretch" d:DataContext="{d:DesignData }">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="2*" />
@@ -952,7 +952,7 @@
                                     <Grid.Tag>
                                         <MultiBinding Converter="{StaticResource Converter_EnumValue_TextStatus}">
                                             <Binding />
-                                            <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguageTarget" />
+                                            <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentTranLangTarget" />
                                             <Binding Path="zhCN_TextStatus" />
                                             <Binding Path="zhTW_TextStatus" />
                                             <Binding Path="enUS_TextStatus" />
@@ -1022,7 +1022,7 @@
                                     <Grid.Tag>
                                         <MultiBinding Converter="{StaticResource Converter_EnumValue_UseStatus}">
                                             <Binding />
-                                            <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguageTarget" />
+                                            <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentTranLangTarget" />
                                             <Binding Path="zhCN_UseStatus" />
                                             <Binding Path="zhTW_UseStatus" />
                                             <Binding Path="enUS_UseStatus" />
@@ -1082,7 +1082,7 @@
                                 ConverterParameter="{x:Static source:Data_GameText.RN_GameText_DropedText}"
                                 UpdateSourceTrigger="PropertyChanged">
                                 <Binding />
-                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguageTarget" />
+                                <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentTranLangTarget" />
                                 <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
@@ -1099,7 +1099,7 @@
                                     <Setter.Value>
                                         <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextFontWeight}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_DropedText}">
                                             <Binding />
-                                            <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguageTarget" />
+                                            <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentTranLangTarget" />
                                         </MultiBinding>
                                     </Setter.Value>
                                 </Setter>
@@ -1120,7 +1120,7 @@
                                 ConverterParameter="{x:Static source:Data_GameText.RN_GameText_SourceText}"
                                 UpdateSourceTrigger="PropertyChanged">
                                 <Binding />
-                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguageSource" />
+                                <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentTranLangSource" />
                                 <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
@@ -1137,7 +1137,7 @@
                                     <Setter.Value>
                                         <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextFontWeight}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_SourceText}">
                                             <Binding />
-                                            <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguageSource" />
+                                            <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentTranLangSource" />
                                         </MultiBinding>
                                     </Setter.Value>
                                 </Setter>
@@ -1164,7 +1164,7 @@
                                     <Setter.Value>
                                         <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextFontWeight}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_EditedText}">
                                             <Binding />
-                                            <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguageTarget" />
+                                            <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentTranLangTarget" />
                                         </MultiBinding>
                                     </Setter.Value>
                                 </Setter>
@@ -1478,7 +1478,7 @@
                                                         <Setter.Value>
                                                             <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextFontWeight}" ConverterParameter="{x:Static source:Data_GameText.RN_GameTextForLanguage_DropedText}">
                                                                 <Binding />
-                                                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguage" />
+                                                                <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentTranLang" />
                                                             </MultiBinding>
                                                         </Setter.Value>
                                                     </Setter>
@@ -1512,7 +1512,7 @@
                                                         <Setter.Value>
                                                             <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextFontWeight}" ConverterParameter="{x:Static source:Data_GameText.RN_GameTextForLanguage_SourceText}">
                                                                 <Binding />
-                                                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguage" />
+                                                                <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentTranLang" />
                                                             </MultiBinding>
                                                         </Setter.Value>
                                                     </Setter>
@@ -1546,7 +1546,7 @@
                                                         <Setter.Value>
                                                             <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextFontWeight}" ConverterParameter="{x:Static source:Data_GameText.RN_GameTextForLanguage_EditedText}">
                                                                 <Binding />
-                                                                <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguage" />
+                                                                <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentTranLang" />
                                                             </MultiBinding>
                                                         </Setter.Value>
                                                     </Setter>
@@ -1683,7 +1683,7 @@
                                                 <FlowDocumentScrollViewer.Document>
                                                     <MultiBinding Converter="{StaticResource ResourceKey=Converter_RichTextBoxInGalaxyText}" UpdateSourceTrigger="PropertyChanged">
                                                         <Binding />
-                                                        <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguageTarget" />
+                                                        <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentTranLangTarget" />
                                                         <Binding ElementName="CheckBox_InGalaxyShowScript" Path="IsChecked" />
                                                         <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
                                                     </MultiBinding>

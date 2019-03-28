@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -81,7 +80,7 @@ namespace SC2_GameTranslater
             }
             if (count == 1)
             {
-                enableCheckBox.IsEnabled = false;
+                if (enableCheckBox != null) enableCheckBox.IsEnabled = false;
             }
         }
 

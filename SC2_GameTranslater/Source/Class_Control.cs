@@ -550,11 +550,11 @@ namespace SC2_GameTranslater.Source
                 string column = parameter as string;
                 string key = column;
                 Log.Assert(rowView != null, nameof(rowView) + " != null");
-                if (rowView.Row.Table != Data_GameText.GameTextForLanguageTable)
+                if (rowView?.Row.Table != Data_GameText.GameTextForLanguageTable)
                 {
                     key = Data_GameText.GetRowNameForLanguage(TranslatedLanguage, column);
                 }
-                var var = rowView.Row[key];
+                var var = key!= null ? rowView?.Row[key] : DBNull.Value;
                 return var == DBNull.Value ? FontWeights.Bold : FontWeights.Normal;
             }
             catch
@@ -898,7 +898,7 @@ namespace SC2_GameTranslater.Source
             {
                 return button.Icon;
             }
-            return App.Current.FindResource("IMAGE_Null");
+            return Application.Current.FindResource("IMAGE_Null");
         }
 
         /// <summary>
@@ -934,7 +934,7 @@ namespace SC2_GameTranslater.Source
             {
                 return button.LargeIcon;
             }
-            return App.Current.FindResource("IMAGE_Null");
+            return Application.Current.FindResource("IMAGE_Null");
         }
 
         /// <summary>

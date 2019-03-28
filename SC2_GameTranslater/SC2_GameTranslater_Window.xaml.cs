@@ -17,7 +17,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using System.Windows.Controls.Primitives;
 using Fluent;
 using Fluent.Localization;
 using SC2_GameTranslater.Source;
@@ -32,7 +31,6 @@ namespace SC2_GameTranslater
     using Globals = Class_Globals;
     using Preference = Class_Preference;
     using Log = Class_Log;
-    using ToggleButton = Fluent.ToggleButton;
 
     #region 声明
 
@@ -214,7 +212,7 @@ namespace SC2_GameTranslater
             /// </summary>
             /// <param name="button">按钮</param>
             /// <param name="status">使用状态</param>
-            /// <param name="language">使用语言</param>
+            /// <param name="langName">使用语言</param>
             public static void SetRubbonButtonHeaderAndIcon(Fluent.Button button, string status, string langName)
             {
                 button.SetResourceReference(Fluent.Button.HeaderProperty, string.Format("TEXT_{0}{1}", status, langName));
@@ -227,7 +225,7 @@ namespace SC2_GameTranslater
             /// </summary>
             /// <param name="button">按钮</param>
             /// <param name="status">使用状态</param>
-            /// <param name="language">使用语言</param>
+            /// <param name="langName">使用语言</param>
             public static void SetRubbonButtonHeaderAndIcon(ToggleButton button, string status, string langName)
             {
                 button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_{0}{1}", status, langName));
@@ -245,7 +243,7 @@ namespace SC2_GameTranslater
                 bool isEnable = false;
                 foreach (object select in Globals.MainWindow.InRibbonGallery_CopyTargets.Items)
                 {
-                    if (select is ToggleButton button && button.IsChecked == true && button.IsEnabled == true)
+                    if (select is ToggleButton button && button.IsChecked == true && button.IsEnabled)
                     {
                         isEnable = true;
                         break;
@@ -426,37 +424,37 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 当前翻译语言文本数据依赖项属性
         /// </summary>>
-        public static DependencyProperty CurrentTranslatedLanguageSourceProperty = DependencyProperty.Register(nameof(CurrentTranslatedLanguageSource), typeof(EnumLanguage), typeof(SC2_GameTranslater_Window));
+        public static DependencyProperty EnumCurrentTranLangSourceProperty = DependencyProperty.Register(nameof(EnumCurrentTranLangSource), typeof(EnumLanguage), typeof(SC2_GameTranslater_Window));
 
         /// <summary>
         /// 当前翻译语言文本数据依赖项(源)
         /// </summary>
-        public EnumLanguage CurrentTranslatedLanguageSource
+        public EnumLanguage EnumCurrentTranLangSource
         {
             set
             {
-                SetValue(CurrentTranslatedLanguageSourceProperty, value);
-                RefreshCurrentTranslatedLanguageSource(value);
+                SetValue(EnumCurrentTranLangSourceProperty, value);
+                RefreshEnumCurrentTranLangSource(value);
             }
-            get => (EnumLanguage)GetValue(CurrentTranslatedLanguageSourceProperty);
+            get => (EnumLanguage)GetValue(EnumCurrentTranLangSourceProperty);
         }
 
         /// <summary>
         /// 当前翻译语言文本数据依赖项属性
         /// </summary>>
-        public static DependencyProperty CurrentTranslatedLanguageTargetProperty = DependencyProperty.Register(nameof(CurrentTranslatedLanguageTarget), typeof(EnumLanguage), typeof(SC2_GameTranslater_Window));
+        public static DependencyProperty EnumCurrentTranLangTargetProperty = DependencyProperty.Register(nameof(EnumCurrentTranLangTarget), typeof(EnumLanguage), typeof(SC2_GameTranslater_Window));
 
         /// <summary>
         /// 当前翻译语言文本数据依赖项（目标）
         /// </summary>
-        public EnumLanguage CurrentTranslatedLanguageTarget
+        public EnumLanguage EnumCurrentTranLangTarget
         {
             set
             {
-                SetValue(CurrentTranslatedLanguageTargetProperty, value);
-                RefreshCurrentTranslatedLanguageTarget(value);
+                SetValue(EnumCurrentTranLangTargetProperty, value);
+                RefreshEnumCurrentTranLangTarget(value);
             }
-            get => (EnumLanguage)GetValue(CurrentTranslatedLanguageTargetProperty);
+            get => (EnumLanguage)GetValue(EnumCurrentTranLangTargetProperty);
         }
 
         /// <summary>
@@ -851,7 +849,7 @@ namespace SC2_GameTranslater
         public static void Executed_Accept(object sender, ExecutedRoutedEventArgs e)
         {
             Log.Assert(Globals.CurrentProject != null, "Globals.CurrentProject != null");
-            if (!Globals.CurrentProject.SC2Components.Exists)
+            if (!Globals.CurrentProject?.SC2Components?.Exists == true)
             {
                 if (!SetComponentsPath())
                 {
@@ -859,7 +857,7 @@ namespace SC2_GameTranslater
                     return;
                 }
             }
-            Globals.CurrentProject.WriteToComponents();
+            Globals.CurrentProject?.WriteToComponents();
             e.Handled = true;
         }
 
@@ -896,7 +894,7 @@ namespace SC2_GameTranslater
                 };
                 if (!dialog.ShowDialog() == true) return;
                 List<EnumLanguage> languages = dialog.DirtLanguageCheckBox.Where(r => r.Value.IsChecked == true).Select(r => r.Key).ToList();
-                Globals.CurrentProject.ReloadTranslatedText(project, languages, dialog.CheckBox_ReloadOnlyModify.IsChecked == true);
+                Globals.CurrentProject?.ReloadTranslatedText(project, languages, dialog.CheckBox_ReloadOnlyModify.IsChecked == true);
                 Globals.MainWindow.RefreshTranslatedText(Globals.CurrentProject);
             }
             e.Handled = true;
@@ -973,9 +971,9 @@ namespace SC2_GameTranslater
         /// <param name="e">路由事件参数</param>
         public static void Executed_RecentProjects(object sender, ExecutedRoutedEventArgs e)
         {
-            if (e.Parameter != null)
+            if (e.Parameter is string path)
             {
-                FileInfo file = new FileInfo(e.Parameter as string);
+                FileInfo file = new FileInfo(path);
                 if (file.Exists)
                 {
                     ProjectOpen(file);
@@ -1376,7 +1374,7 @@ namespace SC2_GameTranslater
         /// <returns>搜索翻译语言</returns>
         public EnumLanguage GetFileterTranslatedLanguageSource()
         {
-            return CurrentTranslatedLanguageSource;
+            return EnumCurrentTranLangSource;
         }
 
         /// <summary>
@@ -1404,7 +1402,7 @@ namespace SC2_GameTranslater
         /// <returns>搜索翻译语言</returns>
         public EnumLanguage GetFileterTranslatedLanguageTarget()
         {
-            return CurrentTranslatedLanguageTarget;
+            return EnumCurrentTranLangTarget;
         }
 
         /// <summary>
@@ -1544,8 +1542,6 @@ namespace SC2_GameTranslater
                     break;
                 case EnumSearchWay.Text:
                     RadioButton_SearchText.IsChecked = true;
-                    break;
-                default:
                     break;
             }
         }
@@ -1898,7 +1894,6 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 刷新翻译文本
         /// </summary>
-        /// <param name="saveRecord">保存记录</param>
         public void RefreshTranslatedText()
         {
             if (!CanRefreshTranslatedText) return;
@@ -1980,19 +1975,19 @@ namespace SC2_GameTranslater
             // Droped Text
             if (type.HasFlag(EnumSearchTextType.Droped))
             {
-                keyList.Add(Data_GameText.GetRowNameForLanguage(CurrentTranslatedLanguageTarget, Data_GameText.RN_GameText_DropedText));
+                keyList.Add(Data_GameText.GetRowNameForLanguage(EnumCurrentTranLangTarget, Data_GameText.RN_GameText_DropedText));
             }
 
             // Source Text
             if (type.HasFlag(EnumSearchTextType.Source))
             {
-                keyList.Add(Data_GameText.GetRowNameForLanguage(CurrentTranslatedLanguageSource, Data_GameText.RN_GameText_SourceText));
+                keyList.Add(Data_GameText.GetRowNameForLanguage(EnumCurrentTranLangSource, Data_GameText.RN_GameText_SourceText));
             }
 
             // Edited Text
             if (type.HasFlag(EnumSearchTextType.Edited))
             {
-                keyList.Add(Data_GameText.GetRowNameForLanguage(CurrentTranslatedLanguageTarget, Data_GameText.RN_GameText_EditedText));
+                keyList.Add(Data_GameText.GetRowNameForLanguage(EnumCurrentTranLangTarget, Data_GameText.RN_GameText_EditedText));
             }
             return keyList;
         }
@@ -2302,7 +2297,7 @@ namespace SC2_GameTranslater
         public static void ProjectSave(FileInfo file)
         {
             Log.Assert(Globals.CurrentProject != null, "Globals.CurrentProject == null");
-            Globals.CurrentProject.SaveProject(file);
+            Globals.CurrentProject?.SaveProject(file);
         }
 
         /// <summary>
@@ -2319,9 +2314,9 @@ namespace SC2_GameTranslater
             else
             {
                 string baseFolder = Globals.Preference.LastFolderPath;
-                string filter = Globals.GetStringFromCurrentLanguage("TEXT_ProjectFile") as string + "|*" + Globals.Extension_SC2GameTran;
+                string filter = Globals.GetStringFromCurrentLanguage("TEXT_ProjectFile") + "|*" + Globals.Extension_SC2GameTran;
                 string key = isSaveAs ? "UI_OpenFileDialog_SaveAs_Title" : "UI_OpenFileDialog_Save_Title";
-                string title = Globals.GetStringFromCurrentLanguage(key) as string;
+                string title = Globals.GetStringFromCurrentLanguage(key);
                 if (Globals.SaveFilePathDialog(baseFolder, filter, title, out SaveFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
                 {
                     FileInfo file = new FileInfo(fileDialog.FileName);
@@ -2469,7 +2464,7 @@ namespace SC2_GameTranslater
         /// 刷新当前翻译语言(源)
         /// </summary>
         /// <param name="language">翻译语言</param>
-        private void RefreshCurrentTranslatedLanguageSource(EnumLanguage language)
+        private void RefreshEnumCurrentTranLangSource(EnumLanguage language)
         {
             if (language == 0)
             {
@@ -2480,7 +2475,7 @@ namespace SC2_GameTranslater
         /// 刷新当前翻译语言(目标)
         /// </summary>
         /// <param name="language">翻译语言</param>
-        private void RefreshCurrentTranslatedLanguageTarget(EnumLanguage language)
+        private void RefreshEnumCurrentTranLangTarget(EnumLanguage language)
         {
             if (language == 0)
             {
@@ -2838,18 +2833,7 @@ namespace SC2_GameTranslater
             RefreshGameTextDetails(true);
             RefreshInGalaxyTextDetails();
         }
-        
-        /// <summary>
-        /// 搜索正则表达式状态切换事件
-        /// </summary>
-        /// <param name="sender">事件控件</param>
-        /// <param name="e">响应参数</param>
-        private void RadioButton_SearchConfigure_CheckEvent(object sender, RoutedEventArgs e)
-        {
-            RefreshTranslatedText();
-            e.Handled = true;
-        }
-        
+
         /// <summary>
         /// 显示语言选择变化
         /// </summary>
@@ -2885,8 +2869,8 @@ namespace SC2_GameTranslater
             {
                 if (!(e.Row.Item is DataRowView view)) return;
                 DataRow row = view.Row;
-                string keyStatus = Data_GameText.GetRowNameForLanguage(CurrentTranslatedLanguageTarget, Data_GameText.RN_GameText_TextStatus);
-                string keySource = Data_GameText.GetRowNameForLanguage(CurrentTranslatedLanguageSource, Data_GameText.RN_GameText_SourceText);
+                string keyStatus = Data_GameText.GetRowNameForLanguage(EnumCurrentTranLangTarget, Data_GameText.RN_GameText_TextStatus);
+                string keySource = Data_GameText.GetRowNameForLanguage(EnumCurrentTranLangSource, Data_GameText.RN_GameText_SourceText);
                 string value = ((TextBox)e.EditingElement).Text;
                 switch ((EnumGameTextStatus)row[keyStatus])
                 {
@@ -2920,8 +2904,8 @@ namespace SC2_GameTranslater
             if (DataGrid_TranslatedTexts.CurrentItem is DataRowView view)
             {
                 
-                view.Row[Data_GameText.GetRowNameForLanguage(CurrentTranslatedLanguageTarget, Data_GameText.RN_GameText_EditedText)] = DBNull.Value;
-                view.Row[Data_GameText.GetRowNameForLanguage(CurrentTranslatedLanguageTarget, Data_GameText.RN_GameText_TextStatus)] = EnumGameTextStatus.Empty;
+                view.Row[Data_GameText.GetRowNameForLanguage(EnumCurrentTranLangTarget, Data_GameText.RN_GameText_EditedText)] = DBNull.Value;
+                view.Row[Data_GameText.GetRowNameForLanguage(EnumCurrentTranLangTarget, Data_GameText.RN_GameText_TextStatus)] = EnumGameTextStatus.Empty;
             }
         }
 
@@ -2934,9 +2918,9 @@ namespace SC2_GameTranslater
         {
             if (DataGrid_TranslatedTexts.CurrentItem is DataRowView view)
             {
-                object source = view.Row[Data_GameText.GetRowNameForLanguage(CurrentTranslatedLanguageSource, Data_GameText.RN_GameText_SourceText)];
-                view.Row[Data_GameText.GetRowNameForLanguage(CurrentTranslatedLanguageTarget, Data_GameText.RN_GameText_EditedText)] = source;
-                view.Row[Data_GameText.GetRowNameForLanguage(CurrentTranslatedLanguageTarget, Data_GameText.RN_GameText_TextStatus)] = source == DBNull.Value ? EnumGameTextStatus.Empty : EnumGameTextStatus.Normal;
+                object source = view.Row[Data_GameText.GetRowNameForLanguage(EnumCurrentTranLangSource, Data_GameText.RN_GameText_SourceText)];
+                view.Row[Data_GameText.GetRowNameForLanguage(EnumCurrentTranLangTarget, Data_GameText.RN_GameText_EditedText)] = source;
+                view.Row[Data_GameText.GetRowNameForLanguage(EnumCurrentTranLangTarget, Data_GameText.RN_GameText_TextStatus)] = source == DBNull.Value ? EnumGameTextStatus.Empty : EnumGameTextStatus.Normal;
             }
         }
 
@@ -2969,7 +2953,7 @@ namespace SC2_GameTranslater
             string tarLangText = "";
             foreach (object select in InRibbonGallery_CopyTargets.Items)
             {
-                if (select is ToggleButton button && button.IsEnabled == true && button.IsChecked == true && button.Tag is EnumLanguage targetLanguage)
+                if (select is ToggleButton button && button.IsEnabled && button.IsChecked == true && button.Tag is EnumLanguage targetLanguage)
                 {
                     targetLanguages.Add(targetLanguage);
                     string tarLangName = Globals.GetEnumLanguageName(targetLanguage);
@@ -2996,11 +2980,11 @@ namespace SC2_GameTranslater
         {
             if (InRibbonGallery_TranslatedLanguageSource.SelectedItem is Fluent.Button button && button.Tag is EnumLanguage language)
             {
-                CurrentTranslatedLanguageSource = language;
+                EnumCurrentTranLangSource = language;
             }
             else
             {
-                CurrentTranslatedLanguageSource = EnumLanguage.Other;
+                EnumCurrentTranLangSource = EnumLanguage.Other;
             }
         }
 
@@ -3013,11 +2997,11 @@ namespace SC2_GameTranslater
         {
             if (InRibbonGallery_TranslatedLanguageTarget.SelectedItem is Fluent.Button button && button.Tag is EnumLanguage language)
             {
-                CurrentTranslatedLanguageTarget = language;
+                EnumCurrentTranLangTarget = language;
             }
             else
             {
-                CurrentTranslatedLanguageTarget = EnumLanguage.Other;
+                EnumCurrentTranLangTarget = EnumLanguage.Other;
             }
         }
 
