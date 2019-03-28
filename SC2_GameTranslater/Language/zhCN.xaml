@@ -158,6 +158,7 @@
     <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">复制翻译语言</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_CopyTargets_Header">复制目标语言</sys:String>
     <sys:String x:Key="UI_RibbonButton_DoCopy_Header">开始复制</sys:String>
+    <sys:String x:Key="UI_MenuItem_JumpToText_Header">跳至文本</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->

@@ -249,19 +249,12 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            try
+            if (values[0] is DataRowView view && values[1] is EnumLanguage language && language != EnumLanguage.Other)
             {
-                if (values[0] is DataRowView view && values[1] is EnumLanguage language)
-                {
-                    string keyStatus = Data_GameText.GetRowNameForLanguage(language, Data_GameText.RN_GameText_TextStatus);
-                    return view.Row[keyStatus];
-                }
-                return EnumGameTextStatus.Normal;
+                string keyStatus = Data_GameText.GetRowNameForLanguage(language, Data_GameText.RN_GameText_TextStatus);
+                return view.Row[keyStatus];
             }
-            catch
-            {
-                return EnumGameTextStatus.Normal;
-            }
+            return EnumGameTextStatus.Normal;
         }
 
         /// <summary>
@@ -294,19 +287,12 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            try
+            if (values[0] is DataRowView view && values[1] is EnumLanguage language && language != EnumLanguage.Other)
             {
-                if (values[0] is DataRowView view && values[1] is EnumLanguage language)
-                {
-                    string keyStatus = Data_GameText.GetRowNameForLanguage(language, Data_GameText.RN_GameText_UseStatus);
-                    return view.Row[keyStatus];
-                }
-                return EnumGameUseStatus.Normal;
+                string keyStatus = Data_GameText.GetRowNameForLanguage(language, Data_GameText.RN_GameText_UseStatus);
+                return view.Row[keyStatus];
             }
-            catch
-            {
-                return EnumGameUseStatus.Normal;
-            }
+            return EnumGameUseStatus.Normal;
         }
 
         /// <summary>
@@ -339,15 +325,9 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            try
-            {
-                EnumGameTextStatus status = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), values[0]);
-                return Data_GameText.GetEnumNameInLanguage(status);
-            }
-            catch
-            {
-                return Globals.GetStringFromCurrentLanguage("TEXT_Error");
-            }
+            if (values[0] == null) return Globals.GetStringFromCurrentLanguage("TEXT_Error");
+            EnumGameTextStatus status = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), values[0]);
+            return Data_GameText.GetEnumNameInLanguage(status);
         }
 
         /// <summary>
@@ -380,15 +360,9 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            try
-            {
-                EnumGameUseStatus status = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), values[0]);
-                return Data_GameText.GetEnumNameInLanguage(status);
-            }
-            catch
-            {
-                return Globals.GetStringFromCurrentLanguage("TEXT_Error");
-            }
+            if (values[0] == null) return Globals.GetStringFromCurrentLanguage("TEXT_Error");
+            EnumGameUseStatus status = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), values[0]);
+            return Data_GameText.GetEnumNameInLanguage(status);
         }
 
         /// <summary>
@@ -421,15 +395,9 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            try
-            {
-                EnumGameTextStatus status = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), values[0]);
-                return Data_GameText.TextStatusColor[status];
-            }
-            catch
-            {
-                return Data_GameText.TextStatusColor[EnumGameTextStatus.Normal];
-            }
+            if (values[0] == null) return Data_GameText.TextStatusColor[EnumGameTextStatus.Normal];
+            EnumGameTextStatus status = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), values[0]);
+            return Data_GameText.TextStatusColor[status];
         }
 
         /// <summary>
@@ -462,15 +430,9 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            try
-            {
-                EnumGameUseStatus status = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), values[0]);
-                return Data_GameText.UseStatusColor[status];
-            }
-            catch
-            {
-                return Data_GameText.UseStatusColor[EnumGameUseStatus.Normal];
-            }
+            if (values[0] == null) return Data_GameText.UseStatusColor[EnumGameUseStatus.Normal];
+            EnumGameUseStatus status = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), values[0]);
+            return Data_GameText.UseStatusColor[status];
         }
 
         /// <summary>
@@ -615,8 +577,8 @@ namespace SC2_GameTranslater.Source
                     Run run = new Run
                     {
                         FontWeight = FontWeights.Bold,
-                        Foreground = Brushes.White,
-                        Background = Brushes.Black,
+                        Foreground = Brushes.Black,
+                        Background = Brushes.LightGray,
                         Tag = select,
                     };
                     if (textRow[Data_GameText.RN_GameText_Index] is int)
@@ -633,7 +595,15 @@ namespace SC2_GameTranslater.Source
                         run.TextDecorations = TextDecorations.Strikethrough;
                         run.Text = Globals.GetStringFromCurrentLanguage("TEXT_NoText");
                     }
-                    run.MouseLeftButtonDown += SC2_GameTranslater_Window.Run_MouseLeftButtonDown;
+                    System.Windows.Controls.MenuItem item = new System.Windows.Controls.MenuItem()
+                    {
+                        Tag = run,
+                        Header = Globals.GetStringFromCurrentLanguage("UI_MenuItem_JumpToText_Header"),
+                    };
+                    item.Click += SC2_GameTranslater_Window.SC2_GameTranslater_MenuItemJumptToText_Click;
+                    System.Windows.Controls.ContextMenu menu = new System.Windows.Controls.ContextMenu();
+                    menu.Items.Add(item);
+                    run.ContextMenu = menu;
                     paragraph.Inlines.Add(run);
                     if (!showScript)
                     {

@@ -538,11 +538,15 @@ namespace SC2_GameTranslater
         /// </summary>
         public static bool CanSaveRecord { set; get; } = true;
 
-        #endregion
+        /// <summary>
+        /// 上一次选择的数据
+        /// </summary>
+        public DataRowView LastSelectedCell { private set; get; }
 
-        #region 字段
-
-        private readonly List<ToggleButton> mGalaxyButtons = new List<ToggleButton>();
+        /// <summary>
+        /// Galaxy按钮列表
+        /// </summary>
+        public List<ToggleButton> GalaxyButtons { get; } = new List<ToggleButton>();
 
         #endregion
 
@@ -1204,18 +1208,18 @@ namespace SC2_GameTranslater
         /// <param name="project">项目数据</param>
         private void RefreshGalaxyTextFileFilterButton(Data_GameText project)
         {
-            foreach (ToggleButton button in mGalaxyButtons)
+            foreach (ToggleButton button in GalaxyButtons)
             {
                 InRibbonGallery_GalaxyFilter.Items.Remove(button);
             }
-            mGalaxyButtons.Clear();
+            GalaxyButtons.Clear();
             if (project != null)
             {
                 ToggleButton button;
                 foreach (DataRow row in project.Tables[Data_GameText.TN_GalaxyFile].Rows)
                 {
                     button = NewGalaxyTextFileFilterButton(row);
-                    mGalaxyButtons.Add(button);
+                    GalaxyButtons.Add(button);
                     InRibbonGallery_GalaxyFilter.Items.Insert(InRibbonGallery_GalaxyFilter.Items.Count - 1, button);
                 }
                 ToggleButton_FilterGalaxyFileNone.IsChecked = true;
@@ -1581,7 +1585,7 @@ namespace SC2_GameTranslater
         {
             List<string> files = new List<string>();
             if (ToggleButton_FilterGalaxyFileNone.IsChecked == true) files.Add("");
-            foreach (ToggleButton select in mGalaxyButtons)
+            foreach (ToggleButton select in GalaxyButtons)
             {
                 if (select.Tag is DataRow row && row[Data_GameText.RN_GalaxyFile_Path] is string path)
                 {
@@ -1598,8 +1602,8 @@ namespace SC2_GameTranslater
         public void SetFileterGalaxyFile(string[] files)
         {
             ToggleButton_FilterGalaxyFileNone.IsChecked = files.Contains("");
-            List<ToggleButton> buttons = mGalaxyButtons.Where(r => r.Tag is DataRow row && row[Data_GameText.RN_GalaxyFile_Path] is string path && files.Contains(path)).Select(r => r).ToList();
-            foreach (ToggleButton button in mGalaxyButtons)
+            List<ToggleButton> buttons = GalaxyButtons.Where(r => r.Tag is DataRow row && row[Data_GameText.RN_GalaxyFile_Path] is string path && files.Contains(path)).Select(r => r).ToList();
+            foreach (ToggleButton button in GalaxyButtons)
             {
                 button.IsChecked = buttons.Contains(button);
             }
@@ -2199,9 +2203,9 @@ namespace SC2_GameTranslater
         /// <param name="refreshItem">仅筛选</param>
         private void RefreshGameTextDetails(bool refreshItem)
         {
-            if (refreshItem && DataGrid_TranslatedTexts.CurrentItem is DataRowView rowView)
+            if (refreshItem && LastSelectedCell != null)
             {
-                DataRow row = rowView.Row;
+                DataRow row = LastSelectedCell.Row;
                 List<EnumLanguage> langList = new List<EnumLanguage>();
                 foreach (ListBoxItem item in ListBox_GameTextShowLanguage.Items)
                 {
@@ -2224,12 +2228,12 @@ namespace SC2_GameTranslater
         /// </summary>
         private void RefreshInGalaxyTextDetails()
         {
-            if (Globals.CurrentProject != null && DataGrid_TranslatedTexts.CurrentItem is DataRowView rowView)
+            if (Globals.CurrentProject != null && LastSelectedCell != null)
             {
-                DataView view = Globals.CurrentProject.GetRelateGalaxyLineRows(rowView.Row);
+                DataView view = Globals.CurrentProject.GetRelateGalaxyLineRows(LastSelectedCell.Row);
                 DataGrid_GameTextInGalaxy.ItemsSource = view;
-                TextBlock_DetailsID.Text = Globals.GetStringFromCurrentLanguage("UI_TextBlock_DetailsID_Text", rowView.Row[Data_GameText.RN_GameText_ID]);
-                TextBlock_DetailsIndex.Text = Globals.GetStringFromCurrentLanguage("UI_TextBlock_DetailsIndex_Text", rowView.Row[Data_GameText.RN_GameText_Index]);
+                TextBlock_DetailsID.Text = Globals.GetStringFromCurrentLanguage("UI_TextBlock_DetailsID_Text", LastSelectedCell.Row[Data_GameText.RN_GameText_ID]);
+                TextBlock_DetailsIndex.Text = Globals.GetStringFromCurrentLanguage("UI_TextBlock_DetailsIndex_Text", LastSelectedCell.Row[Data_GameText.RN_GameText_Index]);
             }
             else
             {
@@ -2602,7 +2606,7 @@ namespace SC2_GameTranslater
         {
             CanRefreshTranslatedText = false;
             ToggleButton_FilterGalaxyFileNone.IsChecked = true;
-            foreach (ToggleButton button in mGalaxyButtons)
+            foreach (ToggleButton button in GalaxyButtons)
             {
                 button.IsChecked = true;
             }
@@ -2620,7 +2624,7 @@ namespace SC2_GameTranslater
         {
             CanRefreshTranslatedText = false;
             ToggleButton_FilterGalaxyFileNone.IsChecked = false;
-            foreach (ToggleButton button in mGalaxyButtons)
+            foreach (ToggleButton button in GalaxyButtons)
             {
                 button.IsChecked = false;
             }
@@ -2639,7 +2643,7 @@ namespace SC2_GameTranslater
             GalaxyFilter.Clear();
             IsSelectAllGalaxyFilter = ToggleButton_FilterGalaxyFileNone.IsChecked == true;
             if (IsSelectAllGalaxyFilter) GalaxyFilter.Add(Globals.Const_NoUseInGalaxy);
-            foreach (ToggleButton button in mGalaxyButtons)
+            foreach (ToggleButton button in GalaxyButtons)
             {
                 if (button.IsChecked == false)
                 {
@@ -2830,6 +2834,10 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void DataGrid_TranslatedTexts_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
+            if (Globals.CurrentProject == null || DataGrid_TranslatedTexts.CurrentItem is DataRowView)
+            {
+                LastSelectedCell = DataGrid_TranslatedTexts.CurrentItem as DataRowView;
+            }
             RefreshGameTextDetails(true);
             RefreshInGalaxyTextDetails();
         }
@@ -2849,9 +2857,9 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="sender">事件控件</param>
         /// <param name="e">响应参数</param>
-        public static void Run_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        public static void SC2_GameTranslater_MenuItemJumptToText_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Run run && run.Tag is string id)
+            if (sender is System.Windows.Controls.MenuItem item && item.Tag is Run run && run.Tag is string id)
             {
                 Globals.MainWindow.ScrollToItemByID(id);
                 e.Handled = true;

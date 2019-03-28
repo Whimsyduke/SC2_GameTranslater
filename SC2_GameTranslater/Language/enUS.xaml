@@ -158,6 +158,7 @@
     <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">Copy Translated Text</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_CopyTargets_Header">Copy Target Text</sys:String>
     <sys:String x:Key="UI_RibbonButton_DoCopy_Header">Do Copy</sys:String>
+    <sys:String x:Key="UI_MenuItem_JumpToText_Header">Jump To Text</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->

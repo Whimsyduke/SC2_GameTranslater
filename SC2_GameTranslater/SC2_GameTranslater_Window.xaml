@@ -1678,7 +1678,9 @@
                                                 VerticalAlignment="Center"
                                                 HorizontalContentAlignment="Left"
                                                 VerticalContentAlignment="Center"
+                                                VerticalScrollBarVisibility="Disabled"
                                                 BorderThickness="0"
+                                                IsSelectionEnabled="False"
                                                 IsHitTestVisible="True">
                                                 <FlowDocumentScrollViewer.Document>
                                                     <MultiBinding Converter="{StaticResource ResourceKey=Converter_RichTextBoxInGalaxyText}" UpdateSourceTrigger="PropertyChanged">
