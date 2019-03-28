@@ -811,7 +811,7 @@ namespace SC2_GameTranslater.Source
             if (ProjectInfoRow[RN_ModInfo_SearchConfig] is byte[] data)
             {
                 Class_SearchConfig config = Class_SearchConfig.Deserialize(data);
-                config.ApplyToUI();
+                config.ApplyToUI(true);
             }
         }
 

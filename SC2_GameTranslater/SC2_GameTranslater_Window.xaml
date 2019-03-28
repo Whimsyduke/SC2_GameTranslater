@@ -22,12 +22,12 @@
         </ResourceDictionary>
     </Window.Resources>
     <Window.InputBindings>
-        <KeyBinding Gesture="Control+N" Command="{x:Static local:SC2_GameTranslater_Window.CommandNew}"/>
-        <KeyBinding Gesture="Control+O" Command="{x:Static local:SC2_GameTranslater_Window.CommandOpen}"/>
-        <KeyBinding Gesture="Control+S" Command="{x:Static local:SC2_GameTranslater_Window.CommandSave}"/>
-        <KeyBinding Gesture="Control+W" Command="{x:Static local:SC2_GameTranslater_Window.CommandClose}"/>
-        <KeyBinding Gesture="Control+Left" Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordPrev}"/>
-        <KeyBinding Gesture="Control+Right" Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordNext}"/>
+        <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.CommandNew}" Gesture="Control+N" />
+        <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.CommandOpen}" Gesture="Control+O" />
+        <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.CommandSave}" Gesture="Control+S" />
+        <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.CommandClose}" Gesture="Control+W" />
+        <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordPrev}" Gesture="Control+Left" />
+        <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordNext}" Gesture="Control+Right" />
     </Window.InputBindings>
     <Grid Name="Grid_Main">
         <Grid.RowDefinitions>
@@ -747,7 +747,7 @@
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 CellEditEnding="DataGrid_TranslatedTexts_CellEditEnding"
-                EnableColumnVirtualization="True"
+                EnableColumnVirtualization="False"
                 EnableRowVirtualization="True"
                 SelectedCellsChanged="DataGrid_TranslatedTexts_SelectedCellsChanged"
                 SelectionMode="Extended"
@@ -952,7 +952,8 @@
                                 <Grid
                                     Name="Grid_TextStatus"
                                     HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch" d:DataContext="{d:DesignData }">
+                                    VerticalAlignment="Stretch"
+                                    d:DataContext="{d:DesignData}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="2*" />
@@ -1255,6 +1256,8 @@
                                     AlternationCount="2"
                                     AutoGenerateColumns="False"
                                     CanUserAddRows="False"
+                                    EnableColumnVirtualization="False"
+                                    EnableRowVirtualization="False"
                                     ItemsSource="{Binding}"
                                     SelectionMode="Extended"
                                     SelectionUnit="CellOrRowHeader">
@@ -1596,6 +1599,8 @@
                             AlternationCount="2"
                             AutoGenerateColumns="False"
                             CanUserAddRows="False"
+                            EnableColumnVirtualization="False"
+                            EnableRowVirtualization="False"
                             ItemsSource="{Binding}"
                             SelectionMode="Extended"
                             SelectionUnit="CellOrRowHeader">
@@ -1686,10 +1691,10 @@
                                                 VerticalAlignment="Center"
                                                 HorizontalContentAlignment="Left"
                                                 VerticalContentAlignment="Center"
-                                                VerticalScrollBarVisibility="Disabled"
                                                 BorderThickness="0"
+                                                IsHitTestVisible="True"
                                                 IsSelectionEnabled="False"
-                                                IsHitTestVisible="True">
+                                                VerticalScrollBarVisibility="Disabled">
                                                 <FlowDocumentScrollViewer.Document>
                                                     <MultiBinding Converter="{StaticResource ResourceKey=Converter_RichTextBoxInGalaxyText}" UpdateSourceTrigger="PropertyChanged">
                                                         <Binding />

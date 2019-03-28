@@ -485,6 +485,11 @@ namespace SC2_GameTranslater
         /// </summary>
         public List<ToggleButton> GalaxyButtons { get; } = new List<ToggleButton>();
 
+        /// <summary>
+        /// 当前滚动到的行号
+        /// </summary>
+        public int ScrollRowIndex { set; get; }
+
         #endregion
 
         #endregion
@@ -1636,6 +1641,29 @@ namespace SC2_GameTranslater
 
         #endregion
 
+        #region 滚动位置
+
+
+        /// <summary>
+        /// 获取搜索使用状态
+        /// </summary>
+        /// <returns>搜索使用状态</returns>
+        public int GetFileterScrollRowIndex()
+        {
+            return ScrollRowIndex;
+        }
+
+        /// <summary>
+        /// 设置搜索使用状态
+        /// </summary>
+        /// <param name="value">搜索使用状态</param>
+        public void SetFileterScrollRowIndex(int value)
+        {
+            ScrollToItemByIndex(value);
+        }
+
+        #endregion
+
         #endregion
 
         #region 筛选记录
@@ -1656,7 +1684,7 @@ namespace SC2_GameTranslater
         {
             if (!CanSaveRecord || !CanRefreshTranslatedText) return;
             Class_SearchConfig config = Class_SearchConfig.NewSearchConfig();
-            if (ListFilterRecordPointer >= 0 && config.Equals(ListFilterRecord[ListFilterRecordPointer])) return;
+            if (ListFilterRecordPointer >= 0 && config.Equals(ListFilterRecord[ListFilterRecordPointer]) && config.ScrollRowIndex == ListFilterRecord[ListFilterRecordPointer].ScrollRowIndex) return;
             ListFilterRecordPointer++;
             ListFilterRecord = ListFilterRecord.Take(ListFilterRecordPointer).Select(r=>r).ToList();
             ListFilterRecord.Add(config);
@@ -1676,7 +1704,8 @@ namespace SC2_GameTranslater
         /// </summary>
         public static void ListFilterRecordNext()
         {
-            if (ListFilterRecordCanNext()) ListFilterRecord[++ListFilterRecordPointer].ApplyToUI();
+            bool isRefrshText = !ListFilterRecord[ListFilterRecordPointer].Equals(ListFilterRecord[ListFilterRecordPointer + 1]);
+            if (ListFilterRecordCanNext()) ListFilterRecord[++ListFilterRecordPointer].ApplyToUI(isRefrshText);
         }
 
         /// <summary>
@@ -1693,7 +1722,8 @@ namespace SC2_GameTranslater
         /// </summary>
         public static void ListFilterRecordPrev()
         {
-            if (ListFilterRecordCanPrev()) ListFilterRecord[--ListFilterRecordPointer].ApplyToUI();
+            bool isRefrshText = !ListFilterRecord[ListFilterRecordPointer].Equals(ListFilterRecord[ListFilterRecordPointer - 1]);
+            if (ListFilterRecordCanPrev()) ListFilterRecord[--ListFilterRecordPointer].ApplyToUI(isRefrshText);
         }
 
         #endregion
@@ -1714,19 +1744,23 @@ namespace SC2_GameTranslater
             if (CurrentFilterResultView != null && CurrentFilterResultView.Count != 0)
             {
                 object selectItem = CurrentFilterResultView[0];
+                ScrollRowIndex = 0;
                 for (int i = 0; i < CurrentFilterResultView.Count; i++)
                 {
                     if (CurrentFilterResultView[i].Row == row)
                     {
                         selectItem = CurrentFilterResultView[i];
+                        ScrollRowIndex = i;
                         break;
                     }
                 }
+                SC2_GameTranslater_Window.CanSaveRecord = false;
                 DataGrid_TranslatedTexts.UnselectAllCells();
                 DataGrid_TranslatedTexts.SelectedItem = selectItem;
                 DataGrid_TranslatedTexts.CurrentItem = selectItem;
                 DataGrid_TranslatedTexts.ScrollIntoView(CurrentFilterResultView.Cast<DataRowView>().Last());
                 DataGrid_TranslatedTexts.ScrollIntoView(selectItem);
+                SC2_GameTranslater_Window.CanSaveRecord = true;
             }
             callback?.Invoke();
         }
@@ -1793,6 +1827,33 @@ namespace SC2_GameTranslater
         /// <param name="id">滚动到的ID</param>
         private void ScrollToItemByID(string id)
         {
+            switch (ScrollToItemByID(id, SetViewAndScollTranslatedText_CallBack))
+            {
+                case false:
+                    break;
+                case null:
+                    Log.Assert(false, "Error ID");
+                    break;
+                default:
+                    return;
+            }
+            if (Log.ShowSystemMessage(true, MessageBoxButton.YesNo, MessageBoxImage.None, "MSG_SrollToItemFindOutID", id) == MessageBoxResult.Yes)
+            {
+                CanRefreshTranslatedText = false;
+                ResetSearchControlToDefault(true);
+                CanRefreshTranslatedText = true;
+                RefreshTranslatedText();
+                ScrollToItemByID(id, SetViewAndScollTranslatedText_CallBack);
+            }
+        }
+
+        /// <summary>
+        /// 通过Key滚动到目标项
+        /// </summary>
+        /// <param name="index">滚动到的Index</param>
+        private void ScrollToItemByIndex(int index)
+        {
+            string id = CurrentFilterResultView[index].Row[Data_GameText.RN_GameText_ID] as string;
             switch (ScrollToItemByID(id, SetViewAndScollTranslatedText_CallBack))
             {
                 case false:
@@ -2780,6 +2841,19 @@ namespace SC2_GameTranslater
             }
             RefreshGameTextDetails(true);
             RefreshInGalaxyTextDetails();
+            if (CurrentFilterResultView != null && DataGrid_TranslatedTexts.CurrentItem is DataRowView rowView)
+            {
+                ScrollRowIndex = 0;
+                for (int i = 0; i < CurrentFilterResultView.Count; i++)
+                {
+                    if (CurrentFilterResultView[i] == rowView)
+                    {
+                        ScrollRowIndex = i;
+                        break;
+                    }
+                }
+                ListFilterRecordNew();
+            }
         }
 
         /// <summary>

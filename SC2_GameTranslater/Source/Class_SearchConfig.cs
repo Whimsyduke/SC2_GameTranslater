@@ -51,6 +51,7 @@ namespace SC2_GameTranslater.Source
         public const string SearchConfig_AttributeTextFile = "TextFile";
         public const string SearchConfig_AttributeTextStatuse = "TextStatus";
         public const string SearchConfig_AttributeUseStatus = "UseStatus";
+        public const string SearchConfig_AttributeScrollRowIndex = "ScrollRowIndex";
 
         #endregion
 
@@ -124,6 +125,12 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeUseStatus)]
         public EnumGameUseStatus UseStatus { set; get; } = EnumGameUseStatus.All;
+
+        /// <summary>
+        /// 所属使用状态
+        /// </summary>
+        [XmlAttribute(SearchConfig_AttributeScrollRowIndex)]
+        public int ScrollRowIndex { set; get; } = 0;
 
         #endregion
 
@@ -212,26 +219,31 @@ namespace SC2_GameTranslater.Source
             TextFile = Globals.MainWindow.GetFileterTextFile();
             TextStatus = Globals.MainWindow.GetFileterTextStatus();
             UseStatus = Globals.MainWindow.GetFileterUseStatus();
+            ScrollRowIndex = Globals.MainWindow.GetFileterScrollRowIndex();
         }
 
         /// <summary>
         /// 加载数据自UI
         /// </summary>
-        public void ApplyToUI()
+        public void ApplyToUI(bool isRefrshText)
         {
             SC2_GameTranslater_Window.CanSaveRecord = false;
-            Globals.MainWindow.SetFileterTranslatedLanguageSource(TraslateLanguageSource);
-            Globals.MainWindow.SetFileterTranslatedLanguageTarget(TraslateLanguageTarget);
-            Globals.MainWindow.SetFileterSearchTextType(SearchType);
-            Globals.MainWindow.SetFileterSearchLocation(SearchLocation);
-            Globals.MainWindow.SetFileterSearchWay(SearchWay);
-            Globals.MainWindow.SetFileterSearchCase(SearchCase);
-            Globals.MainWindow.TextBox_SearchText.Text = SearchText;
-            Globals.MainWindow.SetFileterGalaxyFile(GalaxyFile);
-            Globals.MainWindow.SetFileterTextFile(TextFile);
-            Globals.MainWindow.SetFileterTextStatus(TextStatus);
-            Globals.MainWindow.SetFileterUseStatus(UseStatus);
-            Globals.MainWindow.RefreshTranslatedText();
+            if (isRefrshText)
+            {
+                Globals.MainWindow.SetFileterTranslatedLanguageSource(TraslateLanguageSource);
+                Globals.MainWindow.SetFileterTranslatedLanguageTarget(TraslateLanguageTarget);
+                Globals.MainWindow.SetFileterSearchTextType(SearchType);
+                Globals.MainWindow.SetFileterSearchLocation(SearchLocation);
+                Globals.MainWindow.SetFileterSearchWay(SearchWay);
+                Globals.MainWindow.SetFileterSearchCase(SearchCase);
+                Globals.MainWindow.TextBox_SearchText.Text = SearchText;
+                Globals.MainWindow.SetFileterGalaxyFile(GalaxyFile);
+                Globals.MainWindow.SetFileterTextFile(TextFile);
+                Globals.MainWindow.SetFileterTextStatus(TextStatus);
+                Globals.MainWindow.SetFileterUseStatus(UseStatus);
+                Globals.MainWindow.RefreshTranslatedText();
+            }
+            Globals.MainWindow.SetFileterScrollRowIndex(ScrollRowIndex);
             SC2_GameTranslater_Window.CanSaveRecord = true;
         }
 
@@ -287,28 +299,6 @@ namespace SC2_GameTranslater.Source
         {
             return 0;
         }
-
-        ///// <summary>
-        ///// 重载等于运算符
-        ///// </summary>
-        ///// <param name="A">数据A</param>
-        ///// <param name="B">数据B</param>
-        ///// <returns>比较结果</returns>
-        //public static  bool operator == (Class_SearchConfig A, Class_SearchConfig B)
-        //{
-
-        //}
-
-        ///// <summary>
-        ///// 重载不等于运算符
-        ///// </summary>
-        ///// <param name="A">数据A</param>
-        ///// <param name="B">数据B</param>
-        ///// <returns>比较结果</returns>
-        //public static bool operator !=(Class_SearchConfig A, Class_SearchConfig B)
-        //{
-
-        //}
 
         #endregion
 
