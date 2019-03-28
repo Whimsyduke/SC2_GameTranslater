@@ -1171,9 +1171,21 @@
                                 <Setter Property="TextWrapping" Value="Wrap" />
                                 <Setter Property="FontWeight">
                                     <Setter.Value>
-                                        <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextFontWeight}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_EditedText}">
+                                        <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnModifyedTextFontWeight}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_TextStatus}">
                                             <Binding />
                                             <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentTranLangTarget" />
+                                            <Binding Path="zhCN_TextStatus" />
+                                            <Binding Path="zhTW_TextStatus" />
+                                            <Binding Path="enUS_TextStatus" />
+                                            <Binding Path="deDE_TextStatus" />
+                                            <Binding Path="esMX_TextStatus" />
+                                            <Binding Path="esES_TextStatus" />
+                                            <Binding Path="frFR_TextStatus" />
+                                            <Binding Path="itIT_TextStatus" />
+                                            <Binding Path="plPL_TextStatus" />
+                                            <Binding Path="ptBR_TextStatus" />
+                                            <Binding Path="ruRU_TextStatus" />
+                                            <Binding Path="koKR_TextStatus" />
                                         </MultiBinding>
                                     </Setter.Value>
                                 </Setter>
