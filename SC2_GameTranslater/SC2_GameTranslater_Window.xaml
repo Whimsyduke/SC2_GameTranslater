@@ -1683,7 +1683,7 @@
                                                 <FlowDocumentScrollViewer.Document>
                                                     <MultiBinding Converter="{StaticResource ResourceKey=Converter_RichTextBoxInGalaxyText}" UpdateSourceTrigger="PropertyChanged">
                                                         <Binding />
-                                                        <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguage" />
+                                                        <Binding ElementName="RibbonWindow_Main" Path="CurrentTranslatedLanguageTarget" />
                                                         <Binding ElementName="CheckBox_InGalaxyShowScript" Path="IsChecked" />
                                                         <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
                                                     </MultiBinding>
