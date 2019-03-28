@@ -21,6 +21,14 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Gesture="Control+N" Command="{x:Static local:SC2_GameTranslater_Window.CommandNew}"/>
+        <KeyBinding Gesture="Control+O" Command="{x:Static local:SC2_GameTranslater_Window.CommandOpen}"/>
+        <KeyBinding Gesture="Control+S" Command="{x:Static local:SC2_GameTranslater_Window.CommandSave}"/>
+        <KeyBinding Gesture="Control+W" Command="{x:Static local:SC2_GameTranslater_Window.CommandClose}"/>
+        <KeyBinding Gesture="Control+Left" Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordPrev}"/>
+        <KeyBinding Gesture="Control+Right" Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordNext}"/>
+    </Window.InputBindings>
     <Grid Name="Grid_Main">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -46,32 +54,32 @@
                             Header="{DynamicResource UI_SeparatorTabItem_Projects_Header}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuNew"
-                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandNew}"
+                            Command="{x:Static local:SC2_GameTranslater_Window.CommandNew}"
                             Header="{DynamicResource UI_RibbonButton_New_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_New}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuOpen"
-                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandOpen}"
+                            Command="{x:Static local:SC2_GameTranslater_Window.CommandOpen}"
                             Header="{DynamicResource UI_RibbonButton_Open_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Open}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuSave"
-                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSave}"
+                            Command="{x:Static local:SC2_GameTranslater_Window.CommandSave}"
                             Header="{DynamicResource UI_RibbonButton_Save_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Save}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuSaveAs"
-                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSaveAs}"
+                            Command="{x:Static local:SC2_GameTranslater_Window.CommandSaveAs}"
                             Header="{DynamicResource UI_RibbonButton_SaveAs_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Save}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuClose"
-                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandClose}"
+                            Command="{x:Static local:SC2_GameTranslater_Window.CommandClose}"
                             Header="{DynamicResource UI_RibbonButton_Close_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Close}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuAccept"
-                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandAccept}"
+                            Command="{x:Static local:SC2_GameTranslater_Window.CommandAccept}"
                             Header="{DynamicResource UI_RibbonButton_Accept_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Accept}" />
                         <Fluent:SeparatorTabItem
@@ -170,7 +178,7 @@
                                                 Grid.Column="1"
                                                 Margin="3"
                                                 Padding="3"
-                                                Command="{Binding ElementName=RibbonWindow_Main, Path=CommandComponentsPath}"
+                                                Command="{x:Static local:SC2_GameTranslater_Window.CommandComponentsPath}"
                                                 Content="{DynamicResource UI_Button_SelectComponentsPath_Content}" />
                                         </Grid>
                                     </GroupBox>
@@ -208,28 +216,28 @@
                     Header="{DynamicResource UI_RibbonGroupBox_File_Header}">
                     <Fluent:Button
                         x:Name="RibbonButton_New"
-                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandNew}"
+                        Command="{x:Static local:SC2_GameTranslater_Window.CommandNew}"
                         Header="{DynamicResource UI_RibbonButton_New_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_New}"
                         KeyTip="N"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_New}" />
                     <Fluent:Button
                         x:Name="RibbonButton_Open"
-                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandOpen}"
+                        Command="{x:Static local:SC2_GameTranslater_Window.CommandOpen}"
                         Header="{DynamicResource UI_RibbonButton_Open_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Open}"
                         KeyTip="O"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Open}" />
                     <Fluent:SplitButton
                         x:Name="RibbonButton_Save"
-                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSave}"
+                        Command="{x:Static local:SC2_GameTranslater_Window.CommandSave}"
                         Header="{DynamicResource UI_RibbonButton_Save_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Save}"
                         KeyTip="S"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Save}">
                         <Fluent:Button
                             x:Name="RibbonButton_SaveAs"
-                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandSaveAs}"
+                            Command="{x:Static local:SC2_GameTranslater_Window.CommandSaveAs}"
                             Header="{DynamicResource UI_RibbonButton_SaveAs_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Save}"
                             KeyTip="S"
@@ -237,7 +245,7 @@
                     </Fluent:SplitButton>
                     <Fluent:Button
                         x:Name="RibbonButton_Close"
-                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandClose}"
+                        Command="{x:Static local:SC2_GameTranslater_Window.CommandClose}"
                         Header="{DynamicResource UI_RibbonButton_Close_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Close}"
                         KeyTip="S"
@@ -245,20 +253,20 @@
                     <Separator />
                     <Fluent:Button
                         x:Name="RibbonButton_Accept"
-                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandAccept}"
+                        Command="{x:Static local:SC2_GameTranslater_Window.CommandAccept}"
                         Header="{DynamicResource UI_RibbonButton_Accept_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Accept}"
                         KeyTip="E"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" />
                     <Fluent:SplitButton
                         Name="SplitButton_ReloadTranslate"
-                        Command="{Binding ElementName=RibbonWindow_Main, Path=CommandReloadTranslate}"
+                        Command="{x:Static local:SC2_GameTranslater_Window.CommandReloadTranslate}"
                         Header="{DynamicResource UI_RibbonButton_ReloadTranslate_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Reload}"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Reload}">
                         <Fluent:Button
                             Name="SplitButton_ReloadSC2"
-                            Command="{Binding ElementName=RibbonWindow_Main, Path=CommandReloadSC2}"
+                            Command="{x:Static local:SC2_GameTranslater_Window.CommandReloadSC2}"
                             Header="{DynamicResource UI_RibbonButton_ReloadSC2_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Reload}"
                             LargeIcon="{StaticResource ResourceKey=IMAGE_Reload}" />
@@ -272,14 +280,14 @@
                     Header="{DynamicResource UI_RibbonGroupBox_FilterRecord_Header}">
                     <Fluent:Button
                         x:Name="RibbonButton_FilterPrev"
-                        Command="{Binding ElementName=RibbonWindow_Main, Path=FilterRecordPrev}"
+                        Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordPrev}"
                         Header="{DynamicResource UI_RibbonButton_FilterPrev_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_FilterPrev}"
                         KeyTip="+"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_FilterPrev}" />
                     <Fluent:Button
                         x:Name="RibbonButton_FilterNext"
-                        Command="{Binding ElementName=RibbonWindow_Main, Path=FilterRecordNext}"
+                        Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordNext}"
                         Header="{DynamicResource UI_RibbonButton_FilterNext_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_FilterNext}"
                         KeyTip="-"
@@ -434,7 +442,7 @@
                         Fluent:RibbonGroupBoxWrapPanel.SharedSizeGroupName="Group_Serach"
                         AcceptsReturn="True"
                         ButtonContent="{DynamicResource UI_TextBox_SearchText_ButtonContent}"
-                        Command="{Binding ElementName=RibbonWindow_Main, Path=SearchClick}"
+                        Command="{x:Static local:SC2_GameTranslater_Window.SearchClick}"
                         Header="{DynamicResource UI_ComboBox_SearchText_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchTextBox}"
                         TextWrapping="WrapWithOverflow"

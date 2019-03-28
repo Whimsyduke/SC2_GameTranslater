@@ -262,141 +262,7 @@ namespace SC2_GameTranslater
         #region 属性字段
 
         #region 依赖项属性
-
-        #region 命令
-
-        /// <summary>
-        /// 新建命令依赖项
-        /// </summary>
-        public static DependencyProperty CommandNewProperty = DependencyProperty.Register(nameof(CommandNew), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
-
-        /// <summary>
-        /// 新建命令依赖项属性
-        /// </summary>
-        public RoutedUICommand CommandNew { set => SetValue(CommandNewProperty, value); get => (RoutedUICommand)GetValue(CommandNewProperty); }
-
-        /// <summary>
-        /// 打开命令依赖项
-        /// </summary>
-        public static DependencyProperty CommandOpenProperty = DependencyProperty.Register(nameof(CommandOpen), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
-
-        /// <summary>
-        /// 打开命令依赖项属性
-        /// </summary>
-        public RoutedUICommand CommandOpen { set => SetValue(CommandOpenProperty, value); get => (RoutedUICommand)GetValue(CommandOpenProperty); }
-
-        /// <summary>
-        /// 保存命令依赖项
-        /// </summary>
-        public static DependencyProperty CommandSaveProperty = DependencyProperty.Register(nameof(CommandSave), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
-
-        /// <summary>
-        /// 保存命令依赖项属性
-        /// </summary>
-        public RoutedUICommand CommandSave { set => SetValue(CommandSaveProperty, value); get => (RoutedUICommand)GetValue(CommandSaveProperty); }
-
-        /// <summary>
-        /// 另存为命令依赖项
-        /// </summary>
-        public static DependencyProperty CommandSaveAsProperty = DependencyProperty.Register(nameof(CommandSaveAs), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
-
-        /// <summary>
-        /// 另存为命令依赖项属性
-        /// </summary>
-        public RoutedUICommand CommandSaveAs { set => SetValue(CommandSaveAsProperty, value); get => (RoutedUICommand)GetValue(CommandSaveAsProperty); }
-
-        /// <summary>
-        /// 关闭命令依赖项
-        /// </summary>
-        public static DependencyProperty CommandCloseProperty = DependencyProperty.Register(nameof(CommandClose), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
-
-        /// <summary>
-        /// 关闭命令依赖项属性
-        /// </summary>
-        public RoutedUICommand CommandClose { set => SetValue(CommandCloseProperty, value); get => (RoutedUICommand)GetValue(CommandCloseProperty); }
-
-        /// <summary>
-        /// 应用命令依赖项
-        /// </summary>
-        public static DependencyProperty CommandAcceptProperty = DependencyProperty.Register(nameof(CommandAccept), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
-
-        /// <summary>
-        /// 应用命令依赖项属性
-        /// </summary>
-        public RoutedUICommand CommandAccept { set => SetValue(CommandAcceptProperty, value); get => (RoutedUICommand)GetValue(CommandAcceptProperty); }
-
-        /// <summary>
-        /// 重载命令依赖项
-        /// </summary>
-        public static DependencyProperty CommandReloadTranslateperty = DependencyProperty.Register(nameof(CommandReloadTranslate), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
-
-        /// <summary>
-        /// 重载命令依赖项属性
-        /// </summary>
-        public RoutedUICommand CommandReloadTranslate { set => SetValue(CommandReloadTranslateperty, value); get => (RoutedUICommand)GetValue(CommandReloadTranslateperty); }
-
-        /// <summary>
-        /// 重载(地图/Mod)命令依赖项
-        /// </summary>
-        public static DependencyProperty CommandReloadSC2Property = DependencyProperty.Register(nameof(CommandReloadSC2), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
-
-        /// <summary>
-        /// 重载(地图/Mod)命令依赖项属性
-        /// </summary>
-        public RoutedUICommand CommandReloadSC2 { set => SetValue(CommandReloadSC2Property, value); get => (RoutedUICommand)GetValue(CommandReloadSC2Property); }
-
-        /// <summary>
-        /// 选择Mod/Map命令依赖项
-        /// </summary>
-        public static DependencyProperty CommandComponentsPathProperty = DependencyProperty.Register(nameof(CommandComponentsPath), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
-
-        /// <summary>
-        /// 选择Mod/Map依赖项属性
-        /// </summary>
-        public RoutedUICommand CommandComponentsPath { set => SetValue(CommandComponentsPathProperty, value); get => (RoutedUICommand)GetValue(CommandComponentsPathProperty); }
-
-        /// <summary>
-        /// 近期项目命令依赖项
-        /// </summary>
-        public static DependencyProperty CommandRecentProjectsProperty = DependencyProperty.Register(nameof(CommandRecentProjects), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
-
-        /// <summary>
-        /// 近期项目依赖项属性
-        /// </summary>
-        public RoutedUICommand CommandRecentProjects { set => SetValue(CommandRecentProjectsProperty, value); get => (RoutedUICommand)GetValue(CommandRecentProjectsProperty); }
         
-        /// <summary>
-        /// 搜索点击依赖项
-        /// </summary>
-        public static DependencyProperty SearchClickProperty = DependencyProperty.Register(nameof(SearchClick), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
-
-        /// <summary>
-        /// 搜索点击依赖项属性
-        /// </summary>
-        public RoutedUICommand SearchClick { set => SetValue(SearchClickProperty, value); get => (RoutedUICommand)GetValue(SearchClickProperty); }
-
-        /// <summary>
-        /// 上一记录依赖项
-        /// </summary>
-        public static DependencyProperty FilterRecordPrevProperty = DependencyProperty.Register(nameof(FilterRecordPrev), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
-
-        /// <summary>
-        /// 上一记录依赖项属性
-        /// </summary>
-        public RoutedUICommand FilterRecordPrev { set => SetValue(FilterRecordPrevProperty, value); get => (RoutedUICommand)GetValue(FilterRecordPrevProperty); }
-
-        /// <summary>
-        /// 下一记录依赖项
-        /// </summary>
-        public static DependencyProperty FilterRecordNextProperty = DependencyProperty.Register(nameof(FilterRecordNext), typeof(RoutedUICommand), typeof(SC2_GameTranslater_Window), new PropertyMetadata(new RoutedUICommand()));
-
-        /// <summary>
-        /// 下一记录依赖项属性
-        /// </summary>
-        public RoutedUICommand FilterRecordNext { set => SetValue(FilterRecordNextProperty, value); get => (RoutedUICommand)GetValue(FilterRecordNextProperty); }
-
-        #endregion
-
         #region 其它
 
         /// <summary>
@@ -473,6 +339,77 @@ namespace SC2_GameTranslater
 
         #region 属性
 
+        #region 命令
+
+        /// <summary>
+        /// 新建命令依赖项属性
+        /// </summary>
+        public static RoutedUICommand CommandNew { set; get; } = new RoutedUICommand();
+
+        /// <summary>
+        /// 打开命令依赖项属性
+        /// </summary>
+        public static RoutedUICommand CommandOpen { set; get; } = new RoutedUICommand();
+
+        /// <summary>
+        /// 保存命令依赖项属性
+        /// </summary>
+        public static RoutedUICommand CommandSave { set; get; } = new RoutedUICommand();
+
+        /// <summary>
+        /// 另存为命令依赖项属性
+        /// </summary>
+        public static RoutedUICommand CommandSaveAs { set; get; } = new RoutedUICommand();
+
+        /// <summary>
+        /// 关闭命令依赖项属性
+        /// </summary>
+        public static RoutedUICommand CommandClose { set; get; } = new RoutedUICommand();
+
+        /// <summary>
+        /// 应用命令依赖项属性
+        /// </summary>
+        public static RoutedUICommand CommandAccept { set; get; } = new RoutedUICommand();
+
+        /// <summary>
+        /// 重载命令依赖项属性
+        /// </summary>
+        public static RoutedUICommand CommandReloadTranslate { set; get; } = new RoutedUICommand();
+
+        /// <summary>
+        /// 重载(地图/Mod)命令依赖项属性
+        /// </summary>
+        public static RoutedUICommand CommandReloadSC2 { set; get; } = new RoutedUICommand();
+
+        /// <summary>
+        /// 选择Mod/Map依赖项属性
+        /// </summary>
+        public static RoutedUICommand CommandComponentsPath { set; get; } = new RoutedUICommand();
+
+        /// <summary>
+        /// 近期项目依赖项属性
+        /// </summary>
+        public static RoutedUICommand CommandRecentProjects { set; get; } = new RoutedUICommand();
+
+        /// <summary>
+        /// 搜索点击依赖项属性
+        /// </summary>
+        public static RoutedUICommand SearchClick { set; get; } = new RoutedUICommand();
+
+        /// <summary>
+        /// 上一记录依赖项属性
+        /// </summary>
+        public static RoutedUICommand FilterRecordPrev { set; get; } = new RoutedUICommand();
+
+        /// <summary>
+        /// 下一记录依赖项属性
+        /// </summary>
+        public static RoutedUICommand FilterRecordNext { set; get; } = new RoutedUICommand();
+
+        #endregion
+
+        #region 其他
+
         /// <summary>
         /// 翻译语言
         /// </summary>
@@ -547,6 +484,8 @@ namespace SC2_GameTranslater
         /// Galaxy按钮列表
         /// </summary>
         public List<ToggleButton> GalaxyButtons { get; } = new List<ToggleButton>();
+
+        #endregion
 
         #endregion
 
@@ -1810,6 +1749,7 @@ namespace SC2_GameTranslater
         private void SetViewAndScollTranslatedText_CallBack()
         {
             IsEnabled = true;
+            DataGrid_TranslatedTexts.Focus();
         }
 
         /// <summary>

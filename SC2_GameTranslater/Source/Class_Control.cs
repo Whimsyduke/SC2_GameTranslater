@@ -491,7 +491,7 @@ namespace SC2_GameTranslater.Source
     }
 
     /// <summary>
-    /// 空文本表格边框
+    /// 空文本文本加粗
     /// </summary>
     public class DataGridColumnNullTextFontWeightConverter : IMultiValueConverter
     {
@@ -505,24 +505,62 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            try
+            DataRowView rowView = values[0] as DataRowView;
+            if (values[1] == DependencyProperty.UnsetValue) return FontWeights.Normal;
+            EnumLanguage translatedLanguage = (EnumLanguage)Enum.ToObject(typeof(EnumGameUseStatus), values[1]);
+            if (translatedLanguage == EnumLanguage.Other) return FontWeights.Normal;
+            string column = parameter as string;
+            string key = column;
+            Log.Assert(rowView != null, nameof(rowView) + " != null");
+            if (rowView?.Row.Table != Data_GameText.GameTextForLanguageTable)
             {
-                DataRowView rowView = values[0] as DataRowView;
-                EnumLanguage TranslatedLanguage = (EnumLanguage)values[1];
-                string column = parameter as string;
-                string key = column;
-                Log.Assert(rowView != null, nameof(rowView) + " != null");
-                if (rowView?.Row.Table != Data_GameText.GameTextForLanguageTable)
-                {
-                    key = Data_GameText.GetRowNameForLanguage(TranslatedLanguage, column);
-                }
-                var var = key!= null ? rowView?.Row[key] : DBNull.Value;
-                return var == DBNull.Value ? FontWeights.Bold : FontWeights.Normal;
+                key = Data_GameText.GetRowNameForLanguage(translatedLanguage, column);
             }
-            catch
-            {
-                return FontWeights.Normal;
-            }
+            var var = key != null ? rowView?.Row[key] : DBNull.Value;
+            return var == DBNull.Value ? FontWeights.Bold : FontWeights.Normal;
+        }
+
+        /// <summary>
+        /// 逆向转换函数
+        /// </summary>
+        /// <param name="value">值数组</param>
+        /// <param name="targetTypes">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+
+    }
+
+    /// <summary>
+    /// 已修改文本加粗
+    /// </summary>
+    public class DataGridColumnModifyedTextFontWeightConverter : IMultiValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="values">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            DataRowView rowView = values[0] as DataRowView;
+            if (values[1] == DependencyProperty.UnsetValue) return FontWeights.Normal;
+            EnumLanguage translatedLanguage = (EnumLanguage)Enum.ToObject(typeof(EnumGameUseStatus), values[1]);
+            if (translatedLanguage == EnumLanguage.Other) return FontWeights.Normal;
+            string key = parameter as string;
+            Log.Assert(rowView != null, nameof(rowView) + " != null");
+            key = Data_GameText.GetRowNameForLanguage(translatedLanguage, key);
+            if (rowView?.Row[key] == null) return FontWeights.Normal;
+            EnumGameTextStatus status = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), rowView?.Row[key]);
+            return status == EnumGameTextStatus.Modified ? FontWeights.Bold : FontWeights.Normal;
         }
 
         /// <summary>
@@ -974,15 +1012,9 @@ namespace SC2_GameTranslater.Source
         {
             if (values[0] is string text && values[1] is int max)
             {
-                try
-                {
-                    int index = int.Parse(text);
-                    return index >= 0 && index < max;
-                }
-                catch
-                {
-                    return false;
-                }
+
+                int index = int.Parse(text);
+                return index >= 0 && index < max;
             }
             return false;
         }
