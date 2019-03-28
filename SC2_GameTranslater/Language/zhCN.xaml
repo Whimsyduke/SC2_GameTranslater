@@ -92,7 +92,7 @@
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextFile_Header">所在文件</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">文本ID</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">文本状态</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateUseStatus_Header">使用状态</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedUseStatus_Header">使用状态</sys:String>
     <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Mod/Map路径：</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">详情</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">游戏文本数据</sys:String>

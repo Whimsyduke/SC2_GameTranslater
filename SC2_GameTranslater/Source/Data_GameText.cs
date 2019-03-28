@@ -250,8 +250,8 @@ namespace SC2_GameTranslater.Source
         public static Dictionary<EnumGameTextStatus, Brush> TextStatusColor { get; } = new Dictionary<EnumGameTextStatus, Brush>()
         {
             { EnumGameTextStatus.Empty, Brushes.Red },
-            { EnumGameTextStatus.Normal, Brushes.Black },
-            { EnumGameTextStatus.Modified, Brushes.Green },
+            { EnumGameTextStatus.Normal, Brushes.Green },
+            { EnumGameTextStatus.Modified, Brushes.Yellow },
         };
 
         /// <summary>
@@ -259,11 +259,11 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         public static Dictionary<EnumGameUseStatus, Brush> UseStatusColor { get; } = new Dictionary<EnumGameUseStatus, Brush>()
         {
-            { EnumGameUseStatus.None, Brushes.Magenta },
-            { EnumGameUseStatus.Droped, Brushes.Red },
-            { EnumGameUseStatus.Normal, Brushes.Black },
-            { EnumGameUseStatus.Added, Brushes.Red },
-            { EnumGameUseStatus.Modified, Brushes.Green },
+            { EnumGameUseStatus.None, Brushes.Red },
+            { EnumGameUseStatus.Droped, Brushes.Magenta },
+            { EnumGameUseStatus.Normal, Brushes.Green },
+            { EnumGameUseStatus.Added, Brushes.Blue },
+            { EnumGameUseStatus.Modified, Brushes.Yellow },
         };
 
         /// <summary>

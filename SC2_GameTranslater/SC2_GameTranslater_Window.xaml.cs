@@ -2466,26 +2466,6 @@ namespace SC2_GameTranslater
         }
 
         /// <summary>
-        /// 获取文本状态对应翻译语言的绑定
-        /// </summary>
-        /// <param name="binding">基本绑定</param>
-        /// <param name="converter">转换器</param>
-        /// <returns>绑定</returns>
-        private MultiBinding GetStatusRowMultiBinding(Binding binding, IMultiValueConverter converter)
-        {
-            MultiBinding multiBinding = new MultiBinding();            
-            multiBinding.Bindings.Add(binding);
-            Binding childBinding = new Binding("EnumCurrentLanguage")
-            {
-                ElementName = "RibbonWindow_Main",
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            };
-            multiBinding.Bindings.Add(childBinding);            
-            multiBinding.Converter = converter;
-            return multiBinding;
-        }
-
-        /// <summary>
         /// 刷新当前翻译语言(源)
         /// </summary>
         /// <param name="language">翻译语言</param>
@@ -2509,8 +2489,6 @@ namespace SC2_GameTranslater
             else
             {
                 DataGridColumn_TranslateEditedText.Binding = GetRowBinding(language, Data_GameText.RN_GameText_EditedText);
-                DataGridColumn_TranslatedTextStatus.Binding = GetStatusRowMultiBinding(GetRowBinding(language, Data_GameText.RN_GameText_TextStatus), new EnumNameInLanguage_TextStatusConverter());
-                DataGridColumn_TranslateUseStatus.Binding = GetStatusRowMultiBinding(GetRowBinding(language, Data_GameText.RN_GameText_UseStatus), new EnumNameInLanguage_UseStatusConverter());
             }
             RefreshInGalaxyTextDetails();
         }

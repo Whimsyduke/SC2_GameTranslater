@@ -92,7 +92,7 @@
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextFile_Header">In File</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">Text ID</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">Text Status</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateUseStatus_Header">Use Status</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedUseStatus_Header">Use Status</sys:String>
     <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Mod/Map Path:</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">Details</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">Game Text Details</sys:String>

@@ -13,8 +13,12 @@
     <source:EnumTranslatedDataTextConverter x:Key="Converter_TranslatedDataText" />
     <source:EnumGameDataTextConverter x:Key="Converter_GameDataText" />
     <source:EnumNameInLanguage_TextFileConverter x:Key="Converter_EnumNameInLanguage_TextFile" />
+    <source:EnumValue_TextStatusConverter x:Key="Converter_EnumValue_TextStatus" />
+    <source:EnumValue_UseStatusConverter x:Key="Converter_EnumValue_UseStatus" />
     <source:EnumNameInLanguage_TextStatusConverter x:Key="Converter_EnumNameInLanguage_TextStatus" />
     <source:EnumNameInLanguage_UseStatusConverter x:Key="Converter_EnumNameInLanguage_UseStatus" />
+    <source:EnumColor_TextStatusConverter x:Key="Converter_EnumColor_TextStatus" />
+    <source:EnumColor_UseStatusConverter x:Key="Converter_EnumColor_UseStatus" />
     <source:TextInGalaxyFileNameConverter x:Key="Converter_TextInGalaxyFileName" />
     <source:DataGridColumnNullTextFontWeightConverter x:Key="Converter_DataGridColumnNullTextFontWeight" />
     <source:RichTextBoxInGalaxyTextConverter x:Key="Converter_RichTextBoxInGalaxyText" />

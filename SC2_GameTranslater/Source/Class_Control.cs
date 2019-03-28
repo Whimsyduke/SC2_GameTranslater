@@ -193,7 +193,7 @@ namespace SC2_GameTranslater.Source
     }
 
     /// <summary>
-    /// 语言枚举值翻译Converter
+    /// 文本文件枚举值Converter
     /// </summary>
     public class EnumNameInLanguage_TextFileConverter : IMultiValueConverter
     {
@@ -235,7 +235,97 @@ namespace SC2_GameTranslater.Source
     }
 
     /// <summary>
-    /// 语言枚举值翻译Converter
+    /// 文本状态枚举值Converter
+    /// </summary>
+    public class EnumValue_TextStatusConverter : IMultiValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="values">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                if (values[0] is DataRowView view && values[1] is EnumLanguage language)
+                {
+                    string keyStatus = Data_GameText.GetRowNameForLanguage(language, Data_GameText.RN_GameText_TextStatus);
+                    return view.Row[keyStatus];
+                }
+                return EnumGameTextStatus.Normal;
+            }
+            catch
+            {
+                return EnumGameTextStatus.Normal;
+            }
+        }
+
+        /// <summary>
+        /// 逆向转换函数
+        /// </summary>
+        /// <param name="value">值数组</param>
+        /// <param name="targetTypes">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+
+    }
+
+    /// <summary>
+    /// 使用状态枚举值Converter
+    /// </summary>
+    public class EnumValue_UseStatusConverter : IMultiValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="values">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                if (values[0] is DataRowView view && values[1] is EnumLanguage language)
+                {
+                    string keyStatus = Data_GameText.GetRowNameForLanguage(language, Data_GameText.RN_GameText_UseStatus);
+                    return view.Row[keyStatus];
+                }
+                return EnumGameUseStatus.Normal;
+            }
+            catch
+            {
+                return EnumGameUseStatus.Normal;
+            }
+        }
+
+        /// <summary>
+        /// 逆向转换函数
+        /// </summary>
+        /// <param name="value">值数组</param>
+        /// <param name="targetTypes">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+
+    }
+
+    /// <summary>
+    /// 文本状态枚举名称Converter
     /// </summary>
     public class EnumNameInLanguage_TextStatusConverter : IMultiValueConverter
     {
@@ -251,8 +341,8 @@ namespace SC2_GameTranslater.Source
         {
             try
             {
-                EnumGameTextStatus value = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), values[0]);
-                return Data_GameText.GetEnumNameInLanguage(value);
+                EnumGameTextStatus status = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), values[0]);
+                return Data_GameText.GetEnumNameInLanguage(status);
             }
             catch
             {
@@ -276,7 +366,7 @@ namespace SC2_GameTranslater.Source
     }
 
     /// <summary>
-    /// 语言枚举值翻译Converter
+    /// 使用状态枚举名称Converter
     /// </summary>
     public class EnumNameInLanguage_UseStatusConverter : IMultiValueConverter
     {
@@ -292,8 +382,8 @@ namespace SC2_GameTranslater.Source
         {
             try
             {
-                EnumGameUseStatus value = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), values[0]);
-                return Data_GameText.GetEnumNameInLanguage(value);
+                EnumGameUseStatus status = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), values[0]);
+                return Data_GameText.GetEnumNameInLanguage(status);
             }
             catch
             {
@@ -316,6 +406,87 @@ namespace SC2_GameTranslater.Source
 
     }
 
+    /// <summary>
+    /// 文本状态枚举颜色Converter
+    /// </summary>
+    public class EnumColor_TextStatusConverter : IMultiValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="values">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                EnumGameTextStatus status = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), values[0]);
+                return Data_GameText.TextStatusColor[status];
+            }
+            catch
+            {
+                return Data_GameText.TextStatusColor[EnumGameTextStatus.Normal];
+            }
+        }
+
+        /// <summary>
+        /// 逆向转换函数
+        /// </summary>
+        /// <param name="value">值数组</param>
+        /// <param name="targetTypes">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+
+    }
+
+    /// <summary>
+    /// 使用状态枚举颜色Converter
+    /// </summary>
+    public class EnumColor_UseStatusConverter : IMultiValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="values">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                EnumGameUseStatus status = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), values[0]);
+                return Data_GameText.UseStatusColor[status];
+            }
+            catch
+            {
+                return Data_GameText.UseStatusColor[EnumGameUseStatus.Normal];
+            }
+        }
+
+        /// <summary>
+        /// 逆向转换函数
+        /// </summary>
+        /// <param name="value">值数组</param>
+        /// <param name="targetTypes">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+
+    }
 
     /// <summary>
     /// 所在Galaxy文件名转换器Converter
