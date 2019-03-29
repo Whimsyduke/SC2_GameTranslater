@@ -1100,10 +1100,10 @@
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
-                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="HorizontalAlignment" Value="Left" />
                                 <Setter Property="VerticalAlignment" Value="Center" />
                                 <Setter Property="Margin" Value="2" />
-                                <Setter Property="TextWrapping" Value="NoWrap" />
+                                <Setter Property="TextWrapping" Value="Wrap" />
                                 <Setter Property="FontWeight">
                                     <Setter.Value>
                                         <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextFontWeight}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_DropedText}">
@@ -1138,10 +1138,10 @@
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
-                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="HorizontalAlignment" Value="Left" />
                                 <Setter Property="VerticalAlignment" Value="Center" />
                                 <Setter Property="Margin" Value="2" />
-                                <Setter Property="TextWrapping" Value="NoWrap" />
+                                <Setter Property="TextWrapping" Value="Wrap" />
                                 <Setter Property="FontWeight">
                                     <Setter.Value>
                                         <MultiBinding Converter="{StaticResource ResourceKey=Converter_DataGridColumnNullTextFontWeight}" ConverterParameter="{x:Static source:Data_GameText.RN_GameText_SourceText}">
