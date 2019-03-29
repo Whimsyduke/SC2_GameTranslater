@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Windows;
 using Globals = SC2_GameTranslater.Source.Class_Globals;
 
@@ -50,15 +49,6 @@ namespace SC2_GameTranslater.Source
                 }
             }
             return info;
-        }
-
-        /// <summary>
-        /// 抛出异常
-        /// </summary>
-        /// <param name="msg">消息</param>
-        public static Exception NewException(string msg)
-        {
-            return new Exception(ExceptionMsg(msg));
         }
 
         public static void Assert(bool check, string msg)

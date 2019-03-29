@@ -32,10 +32,9 @@ namespace SC2_GameTranslater.Source
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values[0] == null || values[1] == null) return 0;
-            var item = values[0];
             if (values[1] is ItemCollection items)
             {
-                var index = items.IndexOf(item);
+                int index = items.IndexOf(values[0]);
                 return (index + 1).ToString();
             }
             else
@@ -79,7 +78,7 @@ namespace SC2_GameTranslater.Source
             {
                 EnumLanguage language = (EnumLanguage)value;
                 string langName = Globals.GetEnumLanguageName(language);
-                return Globals.GetStringFromCurrentLanguage(string.Format("TEXT_{0}", langName));
+                return Globals.GetStringFromCurrentLanguage($"TEXT_{langName}");
             }
             return Globals.GetStringFromCurrentLanguage("TEXT_Error");
         }
@@ -209,7 +208,7 @@ namespace SC2_GameTranslater.Source
         {
             if (values[0] is DataRowView rowView)
             {
-                var var = rowView.Row[Data_GameText.RN_GameText_File];
+                object var = rowView.Row[Data_GameText.RN_GameText_File];
                 EnumGameTextFile value = (EnumGameTextFile)Enum.ToObject(typeof(EnumGameTextFile), var);
                 return Data_GameText.GetEnumNameInLanguage(value);
             }
@@ -516,7 +515,7 @@ namespace SC2_GameTranslater.Source
             {
                 key = Data_GameText.GetRowNameForLanguage(translatedLanguage, column);
             }
-            var var = key != null ? rowView?.Row[key] : DBNull.Value;
+            object var = key != null ? rowView?.Row[key] : DBNull.Value;
             return var == DBNull.Value ? FontWeights.Bold : FontWeights.Normal;
         }
 
@@ -559,7 +558,7 @@ namespace SC2_GameTranslater.Source
             Log.Assert(rowView != null, nameof(rowView) + " != null");
             key = Data_GameText.GetRowNameForLanguage(translatedLanguage, key);
             if (rowView?.Row[key] == null) return FontWeights.Normal;
-            EnumGameTextStatus status = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), rowView?.Row[key]);
+            EnumGameTextStatus status = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), rowView.Row[key]);
             return status == EnumGameTextStatus.Modified ? FontWeights.Bold : FontWeights.Normal;
         }
 
@@ -733,46 +732,6 @@ namespace SC2_GameTranslater.Source
     }
 
     /// <summary>
-    /// 布尔值可见性转换器
-    /// </summary>
-    public class BooleanToVisibilityConverter : IValueConverter
-    {
-        /// <summary>
-        /// 转换函数
-        /// </summary>
-        /// <param name="value">值</param>
-        /// <param name="targetType">目标类型</param>
-        /// <param name="parameter">参数</param>
-        /// <param name="culture">本地化信息</param>
-        /// <returns>转换结果</returns>
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            switch ((bool?)value)
-            {
-                case true:
-                    return Visibility.Visible;
-                case false:
-                    return Visibility.Collapsed;
-                default:
-                    return Visibility.Visible;
-            }
-        }
-
-        /// <summary>
-        /// 反向转回函数
-        /// </summary>
-        /// <param name="value">值</param>
-        /// <param name="targetType">目标类型</param>
-        /// <param name="parameter">参数</param>
-        /// <param name="culture">本地化信息</param>
-        /// <returns>转换结果</returns>
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value is Visibility && (Visibility)value == Visibility.Visible;
-        }
-    }
-
-    /// <summary>
     /// 枚举值翻译Converter
     /// </summary>
     public class SerachLocationByRegexControlConverter : IMultiValueConverter
@@ -800,7 +759,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 
@@ -847,7 +806,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 
@@ -883,7 +842,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 
@@ -919,7 +878,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 
@@ -955,7 +914,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 
@@ -991,7 +950,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 
@@ -1029,91 +988,13 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
-        }
-    }
-
-    /// <summary>
-    /// 语言按钮对应语言转换器
-    /// </summary>
-    public class SelectLanguageButtonToLanguageConverter : IValueConverter
-    {
-        /// <summary>
-        /// 转换函数
-        /// </summary>
-        /// <param name="value">值</param>
-        /// <param name="targetType">目标类型</param>
-        /// <param name="parameter">参数</param>
-        /// <param name="culture">本地化信息</param>
-        /// <returns>转换结果</returns>
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is EnumLanguage language)
-            {
-                return language;
-            }
-            return EnumLanguage.Other;
-        }
-
-        /// <summary>
-        /// 反向转回函数
-        /// </summary>
-        /// <param name="value">值</param>
-        /// <param name="targetType">目标类型</param>
-        /// <param name="parameter">参数</param>
-        /// <param name="culture">本地化信息</param>
-        /// <returns>转换结果</returns>
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
+            return null;
         }
     }
 
     #endregion
 
     #region Control
-
-    /// <summary>
-    /// 富文本控件模板
-    /// </summary>
-    public class DataGridRichTextBoxTemplate : RichTextBox
-    {
-        #region 属性字段
-
-        #region 属性
-
-        /// <summary>
-        /// 富文本内容依赖项属性
-        /// </summary>
-        public static readonly DependencyProperty DocumentTextProperty = DependencyProperty.Register("Document", typeof(FlowDocument), typeof(DataGridRichTextBoxTemplate), new FrameworkPropertyMetadata(null, OnDocumentChanged));
-
-        /// <summary>
-        /// 富文本内容依赖项
-        /// </summary>
-        public new FlowDocument Document { set => SetValue(DocumentTextProperty, value); get => (FlowDocument)GetValue(DocumentTextProperty); }
-
-        #endregion
-
-        #region 字段
-
-        #endregion
-
-        #endregion
-
-        #region 方法
-
-        /// <summary>
-        /// 文本变化回调
-        /// </summary>
-        /// <param name="dp">依赖项</param>
-        /// <param name="args">参数</param>
-        public static void OnDocumentChanged(DependencyObject dp, DependencyPropertyChangedEventArgs args)
-        {
-            RichTextBox textBox = (RichTextBox)dp;
-            textBox.Document = (FlowDocument)args.NewValue;
-        }
-        #endregion
-    }
 
     /// <summary>
     /// 搜索文本框

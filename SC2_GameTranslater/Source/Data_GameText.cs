@@ -277,10 +277,7 @@ namespace SC2_GameTranslater.Source
                 WriteCompontentsPath(value.FullName);
                 Globals.MainWindow.TextBox_ComponentsPath.Text = value.FullName;
             }
-            get
-            {
-                return mComponentsPath;
-            }
+            get => mComponentsPath;
         }
         private FileInfo mComponentsPath;
 
@@ -292,7 +289,7 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 语言数据
         /// </summary>
-        public EnumerableRowCollection<DataRow> LangaugeRowList { get => Tables[TN_Language].AsEnumerable(); }
+        public EnumerableRowCollection<DataRow> LangaugeRowList => Tables[TN_Language].AsEnumerable();
 
         /// <summary>
         /// 项目信息行
@@ -333,7 +330,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>列名</returns>
         public static string GetRowNameForLanguage(EnumLanguage language, string name)
         {
-            return string.Format("{0}_{1}", Globals.GetEnumLanguageName(language), name);
+            return $"{Globals.GetEnumLanguageName(language)}_{name}";
         }
 
         /// <summary>
@@ -343,7 +340,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>翻译名称</returns>
         public static string GetEnumNameInLanguage(Enum value)
         {
-            string key = string.Format("ENUM_{0}_{1}", value.GetType().Name, Enum.GetName(value.GetType(), value));
+            string key = $"ENUM_{value.GetType().Name}_{Enum.GetName(value.GetType(), value)}";
             return Globals.GetStringFromCurrentLanguage(key);
         }
 
@@ -353,15 +350,11 @@ namespace SC2_GameTranslater.Source
         /// <param name="language">语言</param>
         private void GenerateDataColumnForLanguage(EnumLanguage language)
         {
-            string columnName;
-            DataColumn column;
-            DataTable table;
-
-            table = Tables[TN_GameText];
+            DataTable table = Tables[TN_GameText];
 
             // Text Status
-            columnName = GetRowNameForLanguage(language, RN_GameText_TextStatus);
-            column = new DataColumn(columnName, typeof(Int32), "", MappingType.Attribute)
+            string columnName = GetRowNameForLanguage(language, RN_GameText_TextStatus);
+            DataColumn column = new DataColumn(columnName, typeof(Int32), "", MappingType.Attribute)
             {
                 Caption = columnName,
                 DefaultValue = EnumGameTextStatus.Empty,
@@ -452,12 +445,11 @@ namespace SC2_GameTranslater.Source
             int count = 0;
             foreach (EnumLanguage language in Globals.AllLanguage)
             {
-                string path;
-                path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(language, EnumGameTextFile.GameStrings));
+                string path = $"{baseDir.FullName}\\{TextFilePath(language, EnumGameTextFile.GameStrings)}";
                 if (File.Exists(path)) count++;
-                path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(language, EnumGameTextFile.ObjectStrings));
+                path = $"{baseDir.FullName}\\{TextFilePath(language, EnumGameTextFile.ObjectStrings)}";
                 if (File.Exists(path)) count++;
-                path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(language, EnumGameTextFile.TriggerStrings));
+                path = $"{baseDir.FullName}\\{TextFilePath(language, EnumGameTextFile.TriggerStrings)}";
                 if (File.Exists(path)) count++;
             }
             return count;
@@ -470,8 +462,7 @@ namespace SC2_GameTranslater.Source
         private static DataTable NewGameTextForLanguageTable()
         {
             DataTable table = new DataTable(TN_GameTextForLanguage);
-            DataColumn column;
-            column = new DataColumn(RN_GameTextForLanguage_Language, typeof(int));
+            DataColumn column = new DataColumn(RN_GameTextForLanguage_Language, typeof(int));
             table.Columns.Add(column);
             column = new DataColumn(RN_GameTextForLanguage_TextStatus, typeof(int));
             table.Columns.Add(column);
@@ -585,16 +576,13 @@ namespace SC2_GameTranslater.Source
             dropRows = table.AsEnumerable().Except(normalRows, GameTextComparer<DataRow>.Default).Except(addRows, GameTextComparer<DataRow>.Default).ToList();
 
             // SetStatuse
-            string dropKey;
-            string srcKey;
-            string statusKey;
-            string text;
             foreach (DataRow langRow in LangaugeRowList)
             {
                 EnumLanguage language = (EnumLanguage)langRow[RN_Language_ID];
-                dropKey = GetRowNameForLanguage(language, RN_GameText_DropedText);
-                srcKey = GetRowNameForLanguage(language, RN_GameText_SourceText);
-                statusKey = GetRowNameForLanguage(language, RN_GameText_UseStatus);
+                string dropKey = GetRowNameForLanguage(language, RN_GameText_DropedText);
+                string srcKey = GetRowNameForLanguage(language, RN_GameText_SourceText);
+                string statusKey = GetRowNameForLanguage(language, RN_GameText_UseStatus);
+                string text;
                 switch ((EnumGameUseStatus)langRow[RN_Language_Status])
                 {
                     case EnumGameUseStatus.Droped:
@@ -673,19 +661,16 @@ namespace SC2_GameTranslater.Source
         {
             DataTable dataTable = dataProject.Tables[TN_GameText];
             DataTable targetTable = Tables[TN_GameText];
-            DataRow targetRow;
-            string keyStatus;
-            string keyEdited;
             foreach (DataRow dataRow in dataTable.Rows)
             {
-                targetRow = targetTable.Rows.Find(dataRow[RN_GameText_ID]);
+                DataRow targetRow = targetTable.Rows.Find(dataRow[RN_GameText_ID]);
                 if (targetRow == null) continue;
 
                 foreach (EnumLanguage language in languages)
                 {
-                    keyStatus = GetRowNameForLanguage(language, RN_GameText_TextStatus);
+                    string keyStatus = GetRowNameForLanguage(language, RN_GameText_TextStatus);
                     if (onlyModified && (EnumGameTextStatus)dataRow[keyStatus] != EnumGameTextStatus.Modified) continue;
-                    keyEdited = GetRowNameForLanguage(language, RN_GameText_EditedText);
+                    string keyEdited = GetRowNameForLanguage(language, RN_GameText_EditedText);
                     targetRow[keyStatus] = EnumGameTextStatus.Modified;
                     targetRow[keyEdited] = dataRow[keyEdited];
                 }
@@ -713,8 +698,7 @@ namespace SC2_GameTranslater.Source
             if (textRow == null) return;
             foreach (EnumLanguage language in langList)
             {
-                string key;
-                key = GetRowNameForLanguage(language, RN_GameText_TextStatus);
+                string key = GetRowNameForLanguage(language, RN_GameText_TextStatus);
                 object dataTextStatus = textRow[key];
                 key = GetRowNameForLanguage(language, RN_GameText_UseStatus);
                 object dataUseStatus = textRow[key];
@@ -876,12 +860,10 @@ namespace SC2_GameTranslater.Source
             EnumerableRowCollection<DataRow> gameStringRows = GetGameTextRows(EnumGameTextFile.GameStrings);
             EnumerableRowCollection<DataRow> objectStringRows = GetGameTextRows(EnumGameTextFile.ObjectStrings);
             EnumerableRowCollection<DataRow> triggerStringRows = GetGameTextRows(EnumGameTextFile.TriggerStrings);
-            EnumLanguage language;
-            EnumGameUseStatus useStatus;
             foreach (DataRow row in LangaugeRowList)
             {
-                language = (EnumLanguage)row[RN_Language_ID];
-                useStatus = (EnumGameUseStatus)row[RN_Language_Status];
+                EnumLanguage language = (EnumLanguage)row[RN_Language_ID];
+                EnumGameUseStatus useStatus = (EnumGameUseStatus)row[RN_Language_Status];
                 if (EnumGameUseStatus.Useable.HasFlag(useStatus))
                 {
                     WriteToTextFile(baseDir, language, EnumGameTextFile.GameStrings, ref backFiles, gameStringRows);
@@ -908,7 +890,7 @@ namespace SC2_GameTranslater.Source
 #endif
             {
                 string backPath = TextFilePath(language, fileType);
-                string originpath = string.Format("{0}\\{1}", baseDir.FullName, backPath);
+                string originpath = $"{baseDir.FullName}\\{backPath}";
                 if (!File.Exists(originpath)) return true;
                 FileInfo backFile = new FileInfo(PATH_TempFolder + backPath);
                 backFiles.Add(backFile);
@@ -991,12 +973,11 @@ namespace SC2_GameTranslater.Source
         /// <returns>验证结果</returns>
         private bool ExistGameTextFileOfLanguage(DirectoryInfo baseDir, EnumLanguage language)
         {
-            string path;
-            path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(language, EnumGameTextFile.GameStrings));
+            string path = $"{baseDir.FullName}\\{TextFilePath(language, EnumGameTextFile.GameStrings)}";
             if (File.Exists(path)) return true;
-            path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(language, EnumGameTextFile.ObjectStrings));
+            path = $"{baseDir.FullName}\\{TextFilePath(language, EnumGameTextFile.ObjectStrings)}";
             if (File.Exists(path)) return true;
-            path = string.Format("{0}\\{1}", baseDir.FullName, TextFilePath(language, EnumGameTextFile.TriggerStrings));
+            path = $"{baseDir.FullName}\\{TextFilePath(language, EnumGameTextFile.TriggerStrings)}";
             if (File.Exists(path)) return true;
             return false;
         }
@@ -1010,21 +991,17 @@ namespace SC2_GameTranslater.Source
         private bool LoadGameTextFile(DirectoryInfo baseDir, EnumLanguage language, EnumGameTextFile file)
         {
             string name = TextFilePath(language, file);
-            string path = string.Format("{0}\\{1}", baseDir.FullName, name);
-            string line;
-            string key;
-            string value;
-            int length;
+            string path = $"{baseDir.FullName}\\{name}";
             if (!File.Exists(path)) return false;
             Globals.MainWindow.ProgressBarUpadte(1, name, this, null);
             StreamReader sr = new StreamReader(path);
             while (!sr.EndOfStream)
             {
-                line = sr.ReadLine();
+                string line = sr.ReadLine();
                 if (string.IsNullOrEmpty(line) || line.StartsWith("//")) continue;
-                length = line.IndexOf("=", StringComparison.Ordinal);
-                key = line.Substring(0, length++);
-                value = line.Substring(length);
+                int length = line.IndexOf("=", StringComparison.Ordinal);
+                string key = line.Substring(0, length++);
+                string value = line.Substring(length);
                 SetTextValue(language, file, key, value);
             }
 
@@ -1106,7 +1083,7 @@ namespace SC2_GameTranslater.Source
         {
             DataTable table = Tables[TN_GameText];
             EnumerableRowCollection<DataRow> rows = table.AsEnumerable();
-            rows = rows.OrderBy(r => GetTextInGalaxyFileSortValue(r)).ThenBy(r => GetTextInGalaxyLineNumberSortValue(r)).ThenBy(r => GetTextInIndexSortValue(r)).Select(r => r);
+            rows = rows.OrderBy(GetTextInGalaxyFileSortValue).ThenBy(GetTextInGalaxyLineNumberSortValue).ThenBy(GetTextInIndexSortValue).Select(r => r);
             int index = 0;
             foreach (DataRow row in rows)
             {
@@ -1122,7 +1099,7 @@ namespace SC2_GameTranslater.Source
         private string GetTextInGalaxyFileSortValue(DataRow row)
         {
             DataRow[] locations = row.GetChildRows(RSN_GameText_GalaxyLocation_Key);
-            if (locations.Count() == 0) return "";
+            if (!locations.Any()) return "";
             DataRow line = locations[0].GetParentRow(RSN_GalaxyLine_GameLocation_Line);
             return line[RN_GalaxyLine_File] as string;
         }
@@ -1135,7 +1112,7 @@ namespace SC2_GameTranslater.Source
         private int GetTextInGalaxyLineNumberSortValue(DataRow row)
         {
             DataRow[] locations = row.GetChildRows(RSN_GameText_GalaxyLocation_Key);
-            if (locations.Count() == 0) return 0x7FFFFFFF;
+            if (!locations.Any()) return 0x7FFFFFFF;
             DataRow line = locations[0].GetParentRow(RSN_GalaxyLine_GameLocation_Line);
             return (int)line[RN_GalaxyLine_LineNumber];
         }
@@ -1148,7 +1125,7 @@ namespace SC2_GameTranslater.Source
         private int GetTextInIndexSortValue(DataRow row)
         {
             DataRow[] locations = row.GetChildRows(RSN_GameText_GalaxyLocation_Key);
-            if (locations.Count() == 0) return 0x7FFFFFFF;
+            if (!locations.Any()) return 0x7FFFFFFF;
             return (int)locations[0][RN_GalaxyLocation_LineIndex];
         }
         #endregion
@@ -1231,12 +1208,11 @@ namespace SC2_GameTranslater.Source
             int indexLine = tableLine.Rows.Count;
             int indexLocation = tableLocation.Rows.Count;
             StreamReader sr = new StreamReader(file.FullName);
-            string line;
             int lineNumber = 0;
             while (!sr.EndOfStream)
             {
                 lineNumber++;
-                line = sr.ReadLine();
+                var line = sr.ReadLine();
                 if (!string.IsNullOrEmpty(line))
                 {
                     MatchCollection matchs = Const_Regex_StringExternal.Matches(line);

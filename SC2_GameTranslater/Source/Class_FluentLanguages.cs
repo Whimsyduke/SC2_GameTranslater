@@ -211,7 +211,7 @@ namespace SC2_GameTranslater.Source
         public override string ScreenTipDisableReasonHeader { get; } = "Este comando está desactivado actualmente";
         public override string ScreenTipF1LabelHeader { get; } = "Pulse F1 para obtener más ayuda";
     }
-    
+
     /// <summary>
     /// 法语法国
     /// </summary>

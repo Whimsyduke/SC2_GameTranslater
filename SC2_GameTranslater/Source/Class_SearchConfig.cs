@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace SC2_GameTranslater.Source
@@ -130,7 +129,7 @@ namespace SC2_GameTranslater.Source
         /// 所属使用状态
         /// </summary>
         [XmlAttribute(SearchConfig_AttributeScrollRowIndex)]
-        public int ScrollRowIndex { set; get; } = 0;
+        public int ScrollRowIndex { set; get; }
 
         #endregion
 
@@ -271,13 +270,13 @@ namespace SC2_GameTranslater.Source
             if (UseStatus != config.UseStatus) return false;
             if (GalaxyFile != null && config.GalaxyFile != null)
             {
-                if (GalaxyFile.Count() != config.GalaxyFile.Count())
+                if (GalaxyFile.Length != config.GalaxyFile.Length)
                 {
                     return false;
                 }
                 else
                 {
-                    for (int i = 0; i < GalaxyFile.Count(); i++)
+                    for (int i = 0; i < GalaxyFile.Length; i++)
                     {
                         if (GalaxyFile[i] != config.GalaxyFile[i]) return false;
                     }

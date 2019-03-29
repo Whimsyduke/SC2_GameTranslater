@@ -130,32 +130,32 @@ namespace SC2_GameTranslater
             /// <summary>
             /// 当前翻译源语言选择按钮
             /// </summary>
-            public Fluent.Button ButtonTranslateSource { private set; get; }
+            public Fluent.Button ButtonTranslateSource { get; }
 
             /// <summary>
             /// 当前翻译目标语言选择按钮
             /// </summary>
-            public Fluent.Button ButtonTranslateTarget { private set; get; }
+            public Fluent.Button ButtonTranslateTarget { get; }
 
             /// <summary>
             /// 复制源语言选择按钮
             /// </summary>
-            public Fluent.Button ButtonCopySource { private set; get; }
+            public Fluent.Button ButtonCopySource { get; }
 
             /// <summary>
             /// 复制目标语言选择按钮
             /// </summary>
-            public ToggleButton ButtonCopyTarget { private set; get; }
+            public ToggleButton ButtonCopyTarget { get; }
 
             /// <summary>
             /// 详情显示列表项
             /// </summary>
-            public ListBoxItem ListItemDetail { private set; get; }
+            public ListBoxItem ListItemDetail { get; }
 
             /// <summary>
             /// 详情显示列表项文本
             /// </summary>
-            public TextBlock ListItemTextDetail { private set; get; }
+            public TextBlock ListItemTextDetail { get; }
 
             #endregion
 
@@ -180,7 +180,7 @@ namespace SC2_GameTranslater
                 ButtonCopyTarget.Unchecked += ToggleButton_ButtonCopyTarget_CheckedEvent;
 
                 ListItemTextDetail = new TextBlock();
-                ListItemTextDetail.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_{0}", language));
+                ListItemTextDetail.SetResourceReference(TextBlock.TextProperty, $"TEXT_{language}");
                 ListItemDetail = new ListBoxItem
                 {
                     Tag = language,
@@ -215,9 +215,9 @@ namespace SC2_GameTranslater
             /// <param name="langName">使用语言</param>
             public static void SetRubbonButtonHeaderAndIcon(Fluent.Button button, string status, string langName)
             {
-                button.SetResourceReference(Fluent.Button.HeaderProperty, string.Format("TEXT_{0}{1}", status, langName));
-                button.SetResourceReference(Fluent.Button.IconProperty, string.Format("IMAGE_{0}{1}", status, langName));
-                button.SetResourceReference(Fluent.Button.LargeIconProperty, string.Format("IMAGE_{0}{1}", status, langName));
+                button.SetResourceReference(Fluent.Button.HeaderProperty, $"TEXT_{status}{langName}");
+                button.SetResourceReference(Fluent.Button.IconProperty, $"IMAGE_{status}{langName}");
+                button.SetResourceReference(Fluent.Button.LargeIconProperty, $"IMAGE_{status}{langName}");
             }
 
             /// <summary>
@@ -228,9 +228,9 @@ namespace SC2_GameTranslater
             /// <param name="langName">使用语言</param>
             public static void SetRubbonButtonHeaderAndIcon(ToggleButton button, string status, string langName)
             {
-                button.SetResourceReference(ToggleButton.HeaderProperty, string.Format("TEXT_{0}{1}", status, langName));
-                button.SetResourceReference(ToggleButton.IconProperty, string.Format("IMAGE_{0}{1}", status, langName));
-                button.SetResourceReference(ToggleButton.LargeIconProperty, string.Format("IMAGE_{0}{1}", status, langName));
+                button.SetResourceReference(ToggleButton.HeaderProperty, $"TEXT_{status}{langName}");
+                button.SetResourceReference(ToggleButton.IconProperty, $"IMAGE_{status}{langName}");
+                button.SetResourceReference(ToggleButton.LargeIconProperty, $"IMAGE_{status}{langName}");
             }
 
             /// <summary>
@@ -555,8 +555,7 @@ namespace SC2_GameTranslater
 
             #region 指令配置
 
-            CommandBinding commandBinding;
-            commandBinding = new CommandBinding(CommandNew, Executed_New, CanExecuted_New);
+            CommandBinding commandBinding = new CommandBinding(CommandNew, Executed_New, CanExecuted_New);
             Globals.MainWindow.CommandBindings.Add(commandBinding);
             commandBinding = new CommandBinding(CommandOpen, Executed_Open, CanExecuted_Open);
             Globals.MainWindow.CommandBindings.Add(commandBinding);
@@ -633,7 +632,8 @@ namespace SC2_GameTranslater
                 (ThreadStart)delegate
                 {
                     ProgressBar_Loading.Value += count;
-                    TextBlock_ProgressMsg.Text = string.Format("({0}/{1}) {2} {3}", ProgressBar_Loading.Value, ProgressBar_Loading.Maximum, Globals.GetStringFromCurrentLanguage("UI_TextBlock_ProgressMsg_Text"), msg);
+                    TextBlock_ProgressMsg.Text =
+                        $"({ProgressBar_Loading.Value}/{ProgressBar_Loading.Maximum}) {Globals.GetStringFromCurrentLanguage("UI_TextBlock_ProgressMsg_Text")} {msg}";
                     func?.Invoke(ProgressBar_Loading.Value, ProgressBar_Loading.Maximum, param);
                 });
         }
@@ -1034,8 +1034,8 @@ namespace SC2_GameTranslater
             TranslatedLanguageControls.SetRubbonButtonHeaderAndIcon(controls.ButtonTranslateTarget, status, languageName);
             TranslatedLanguageControls.SetRubbonButtonHeaderAndIcon(controls.ButtonCopySource, status, languageName);
             TranslatedLanguageControls.SetRubbonButtonHeaderAndIcon(controls.ButtonCopyTarget, status, languageName);
-            controls.ListItemTextDetail.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_{0}{1}", status, languageName));
-            controls.ListItemTextDetail.SetResourceReference(TextBlock.TextProperty, string.Format("TEXT_{0}{1}", status, languageName));
+            controls.ListItemTextDetail.SetResourceReference(TextBlock.TextProperty, $"TEXT_{status}{languageName}");
+            controls.ListItemTextDetail.SetResourceReference(TextBlock.TextProperty, $"TEXT_{status}{languageName}");
         }
 
         /// <summary>
@@ -1046,7 +1046,7 @@ namespace SC2_GameTranslater
         {
             CanRefreshTranslatedText = false;
             ResetTranslateAndSearchLanguageButtons();
-            if (project == null || project.LangaugeRowList.Count() == 0)
+            if (project == null || !project.LangaugeRowList.Any())
             {
                 InRibbonGallery_TranslatedLanguageSource.IsEnabled = false;
                 InRibbonGallery_TranslatedLanguageTarget.IsEnabled = false;
@@ -1159,10 +1159,9 @@ namespace SC2_GameTranslater
             GalaxyButtons.Clear();
             if (project != null)
             {
-                ToggleButton button;
                 foreach (DataRow row in project.Tables[Data_GameText.TN_GalaxyFile].Rows)
                 {
-                    button = NewGalaxyTextFileFilterButton(row);
+                    ToggleButton button = NewGalaxyTextFileFilterButton(row);
                     GalaxyButtons.Add(button);
                     InRibbonGallery_GalaxyFilter.Items.Insert(InRibbonGallery_GalaxyFilter.Items.Count - 1, button);
                 }
@@ -1385,7 +1384,7 @@ namespace SC2_GameTranslater
         {
             if (ComboBox_SearchType.SelectedItem != null && ComboBox_SearchType.SelectedItem is ComboBoxItem item)
             {
-                return item.Tag == null ? EnumSearchTextType.All : (EnumSearchTextType)item.Tag;
+                return (EnumSearchTextType?) item.Tag ?? EnumSearchTextType.All;
             }
             else
             {
@@ -1423,7 +1422,7 @@ namespace SC2_GameTranslater
         {
             if (ComboBox_SearchLocation.SelectedItem != null && ComboBox_SearchLocation.SelectedItem is ComboBoxItem item)
             {
-                return item.Tag == null ? EnumSearchTextLocation.All : (EnumSearchTextLocation)item.Tag;
+                return (EnumSearchTextLocation?) item.Tag ?? EnumSearchTextLocation.All;
             }
             else
             {
@@ -1754,13 +1753,13 @@ namespace SC2_GameTranslater
                         break;
                     }
                 }
-                SC2_GameTranslater_Window.CanSaveRecord = false;
+                CanSaveRecord = false;
                 DataGrid_TranslatedTexts.UnselectAllCells();
                 DataGrid_TranslatedTexts.SelectedItem = selectItem;
                 DataGrid_TranslatedTexts.CurrentItem = selectItem;
                 DataGrid_TranslatedTexts.ScrollIntoView(CurrentFilterResultView.Cast<DataRowView>().Last());
                 DataGrid_TranslatedTexts.ScrollIntoView(selectItem);
-                SC2_GameTranslater_Window.CanSaveRecord = true;
+                CanSaveRecord = true;
             }
             callback?.Invoke();
         }
@@ -1853,6 +1852,7 @@ namespace SC2_GameTranslater
         /// <param name="index">滚动到的Index</param>
         private void ScrollToItemByIndex(int index)
         {
+            if (CurrentFilterResultView == null) return;
             string id = CurrentFilterResultView[index].Row[Data_GameText.RN_GameText_ID] as string;
             switch (ScrollToItemByID(id, SetViewAndScollTranslatedText_CallBack))
             {
@@ -2062,12 +2062,12 @@ namespace SC2_GameTranslater
         private bool IsUseInGalaxyFiles(DataRow row)
         {
             DataRow[] locations = row.GetChildRows(Data_GameText.RSN_GameText_GalaxyLocation_Key);
-            if (locations.Count() == 0)
+            if (!locations.Any())
             {
                 return GalaxyFilter.Contains(Globals.Const_NoUseInGalaxy);
             }
 
-            return locations.Where(r => GalaxyFilter.Contains(r.GetParentRow(Data_GameText.RSN_GalaxyLine_GameLocation_Line)[Data_GameText.RN_GalaxyLine_File])).Count() != 0;
+            return locations.Count(r => GalaxyFilter.Contains(r.GetParentRow(Data_GameText.RSN_GalaxyLine_GameLocation_Line)[Data_GameText.RN_GalaxyLine_File])) != 0;
         }
 
         /// <summary>
@@ -2482,14 +2482,7 @@ namespace SC2_GameTranslater
         /// <param name="language">翻译语言</param>
         private void RefreshEnumCurrentTranLangTarget(EnumLanguage language)
         {
-            if (language == 0)
-            {
-                DataGridColumn_TranslateEditedText.Binding = null;
-            }
-            else
-            {
-                DataGridColumn_TranslateEditedText.Binding = GetRowBinding(language, Data_GameText.RN_GameText_EditedText);
-            }
+            DataGridColumn_TranslateEditedText.Binding = language == 0 ? null : GetRowBinding(language, Data_GameText.RN_GameText_EditedText);
             RefreshInGalaxyTextDetails();
         }
 
@@ -2846,7 +2839,7 @@ namespace SC2_GameTranslater
                 ScrollRowIndex = 0;
                 for (int i = 0; i < CurrentFilterResultView.Count; i++)
                 {
-                    if (CurrentFilterResultView[i] == rowView)
+                    if (CurrentFilterResultView[i].Row[Data_GameText.RN_GameText_ID] == rowView.Row[Data_GameText.RN_GameText_ID])
                     {
                         ScrollRowIndex = i;
                         break;
@@ -2970,7 +2963,7 @@ namespace SC2_GameTranslater
             if (Globals.CurrentProject == null) return;
             if (!(InRibbonGallery_CopySource.Tag is EnumLanguage sourceLanguage)) return;
             string srcLangName = Globals.GetEnumLanguageName(sourceLanguage);
-            string srcLangText = Globals.GetStringFromCurrentLanguage(string.Format("TEXT_{0}", srcLangName));
+            string srcLangText = Globals.GetStringFromCurrentLanguage($"TEXT_{srcLangName}");
             List<EnumLanguage> targetLanguages = new List<EnumLanguage>();
             string tarLangText = "";
             foreach (object select in InRibbonGallery_CopyTargets.Items)
@@ -2979,7 +2972,8 @@ namespace SC2_GameTranslater
                 {
                     targetLanguages.Add(targetLanguage);
                     string tarLangName = Globals.GetEnumLanguageName(targetLanguage);
-                    tarLangText += Globals.GetCommaStringFromCurrentLanguage(Globals.GetStringFromCurrentLanguage(string.Format("TEXT_{0}", tarLangName)));
+                    tarLangText += Globals.GetCommaStringFromCurrentLanguage(Globals.GetStringFromCurrentLanguage(
+                        $"TEXT_{tarLangName}"));
                 }
             }
             tarLangText = tarLangText.Substring(2);
