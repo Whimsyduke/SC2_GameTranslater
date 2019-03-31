@@ -170,11 +170,17 @@
     <sys:String x:Key="TP_RibbonButton_Help_Text">Pause F1 to see the help at project page.</sys:String>
     <sys:String x:Key="TP_RibbonButton_Help_DisableReason">Reason</sys:String>
     <sys:String x:Key="TP_RibbonButton_New_Title">New Translated Project</sys:String>
-    <sys:String x:Key="TP_RibbonButton_New_Text">Please select a SC2 Map/Mod components (ComponentList.SC2Components) to create a new translated project for the Map/Mod you select.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_New_Text" xml:space="preserve">Please select a SC2 Map/Mod components (ComponentList.SC2Components) to create a new translated project for the Map/Mod you select.&#x000D;HotKey: Ctrl + N</sys:String>
     <sys:String x:Key="TP_RibbonButton_New_DisableReason">Reason</sys:String>
     <sys:String x:Key="TP_RibbonButton_Open_Title">Open Translated Project</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Open_Text">Open a exist translated project to continue your work.(The extension name of the project file is .SC2GameTran)</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Open_Text" xml:space="preserve">Open a exist translated project to continue your work.(The extension name of the project file is .SC2GameTran)&#x000D;HotKey: Ctrl + O</sys:String>
     <sys:String x:Key="TP_RibbonButton_Open_DisableReason">Reason</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Save_Title">Save Translated Project</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Save_Text" xml:space="preserve">Save current on working project, if it is unsaved, you need choose a path first.&#x000D;HotKey: Ctrl + S</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Save_DisableReason">You need open or create a new porject before save it.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_SaveAs_Title">Save Translated Project</sys:String>
+    <sys:String x:Key="TP_RibbonButton_SaveAs_Text" xml:space="preserve">Save current on working project, you need choose a path where to place the project file.&#x000D;HotKey: Ctrl + Shift + S</sys:String>
+    <sys:String x:Key="TP_RibbonButton_SaveAs_DisableReason">You need open or create a new porject before save it.</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

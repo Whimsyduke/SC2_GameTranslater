@@ -170,11 +170,17 @@
     <sys:String x:Key="TP_RibbonButton_Help_Text">按下F1键去项目主页查看帮助信息。</sys:String>
     <sys:String x:Key="TP_RibbonButton_Help_DisableReason">禁用原因</sys:String>
     <sys:String x:Key="TP_RibbonButton_New_Title">新建翻译项目</sys:String>
-    <sys:String x:Key="TP_RibbonButton_New_Text">请选择SC2 Map/Mod组件文件夹(ComponentList.SC2Components)来为选择的Map/Mod创建一个翻译项目</sys:String>
+    <sys:String x:Key="TP_RibbonButton_New_Text" xml:space="preserve">请选择SC2 Map/Mod组件文件夹(ComponentList.SC2Components)来为选择的Map/Mod创建一个翻译项目。&#x000D;快捷键：Ctrl + N</sys:String>
     <sys:String x:Key="TP_RibbonButton_New_DisableReason">禁用原因</sys:String>
     <sys:String x:Key="TP_RibbonButton_Open_Title">打开翻译项目</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Open_Text">打开一个翻译项目来继续你的工作。（项目文件的扩展名为.SC2GameTran）</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Open_Text" xml:space="preserve">打开一个翻译项目来继续你的工作。（项目文件的扩展名为.SC2GameTran）&#x000D;快捷键：Ctrl + O</sys:String>
     <sys:String x:Key="TP_RibbonButton_Open_DisableReason">Reason</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Save_Title">保存翻译项目</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Save_Text">保存当前正在工作的项目，如果它是位保存的，你需要先选择保存的路径。&#x000D;快捷键：Ctrl + S</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Save_DisableReason" xml:space="preserve">在保存项目前，你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_SaveAs_Title">保存翻译项目</sys:String>
+    <sys:String x:Key="TP_RibbonButton_SaveAs_Text">保存当前正在工作的项目，你需要现选择项目文件的保存的路径。&#x000D;快捷键：Ctrl + Shift + S</sys:String>
+    <sys:String x:Key="TP_RibbonButton_SaveAs_DisableReason" xml:space="preserve">在保存项目前，你需要打开或者新建一个项目。</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

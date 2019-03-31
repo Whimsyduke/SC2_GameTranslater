@@ -252,7 +252,7 @@
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandOpen}"
                         Header="{DynamicResource UI_RibbonButton_Open_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Open}"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_Open}" >
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Open}">
                         <Fluent:Button.ToolTip>
                             <Fluent:ScreenTip
                                 Title="{DynamicResource TP_RibbonButton_Open_Title}"
@@ -270,12 +270,33 @@
                         Header="{DynamicResource UI_RibbonButton_Save_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Save}"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Save}">
+                        <Fluent:SplitButton.ToolTip>
+                            <Fluent:ScreenTip
+                                Title="{DynamicResource TP_RibbonButton_Save_Title}"
+                                Width="300"
+                                DisableReason="{DynamicResource TP_RibbonButton_Save_DisableReason}"
+                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
+                                Image="{StaticResource ResourceKey=IMAGE_Save}"
+                                IsRibbonAligned="False"
+                                Text="{DynamicResource TP_RibbonButton_Save_Text}" />
+                        </Fluent:SplitButton.ToolTip>
                         <Fluent:Button
                             x:Name="RibbonButton_SaveAs"
                             Command="{x:Static local:SC2_GameTranslater_Window.CommandSaveAs}"
                             Header="{DynamicResource UI_RibbonButton_SaveAs_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Save}"
-                            LargeIcon="{StaticResource ResourceKey=IMAGE_Save}" />
+                            LargeIcon="{StaticResource ResourceKey=IMAGE_Save}" >
+                            <Fluent:Button.ToolTip>
+                                <Fluent:ScreenTip
+                                Title="{DynamicResource TP_RibbonButton_SaveAs_Title}"
+                                Width="300"
+                                DisableReason="{DynamicResource TP_RibbonButton_SaveAs_DisableReason}"
+                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
+                                Image="{StaticResource ResourceKey=IMAGE_Save}"
+                                IsRibbonAligned="False"
+                                Text="{DynamicResource TP_RibbonButton_SaveAs_Text}" />
+                            </Fluent:Button.ToolTip>
+                        </Fluent:Button>
                     </Fluent:SplitButton>
                     <Fluent:Button
                         x:Name="RibbonButton_Close"

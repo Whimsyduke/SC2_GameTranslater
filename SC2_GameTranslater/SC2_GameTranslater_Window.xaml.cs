@@ -3074,7 +3074,7 @@ namespace SC2_GameTranslater
                 }
                 else
                 {
-                    System.Diagnostics.Process.Start("https://github.com/Whimsyduke/SC2_GameTranslater/" + topic);
+                    System.Diagnostics.Process.Start("https://github.com/Whimsyduke/SC2_GameTranslater/blob/Help/" + Globals.GetEnumLanguageName(EnumCurrentLanguage) + "/" + topic);
                 }
             }
         }
