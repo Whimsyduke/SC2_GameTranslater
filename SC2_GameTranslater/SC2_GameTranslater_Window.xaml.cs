@@ -562,6 +562,7 @@ namespace SC2_GameTranslater
                     if (CultureInfo.CurrentCulture.LCID == (int)language)
                     {
                         ComboBox_Language.SelectedItem = itemName;
+                        Language = System.Windows.Markup.XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.Name);
                         useDefault = false;
                     }
                 }
@@ -607,6 +608,7 @@ namespace SC2_GameTranslater
             Globals.Preference.LoadPreference();
             Globals.EventProjectChange += OnProjectChangeRefresh;
             OnProjectChangeRefresh(null, null);
+            ScreenTip.HelpPressed += ScreenTip_HelpPressed;
 
             #endregion
         }
@@ -3057,6 +3059,27 @@ namespace SC2_GameTranslater
             }
         }
 
+        /// <summary>
+        /// 按下帮助按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScreenTip_HelpPressed(object sender, ScreenTipHelpEventArgs e)
+        {
+            if (e.HelpTopic is string topic)
+            {
+                if (topic.StartsWith("https://"))
+                {
+                    System.Diagnostics.Process.Start(topic);
+                }
+                else
+                {
+                    System.Diagnostics.Process.Start("https://github.com/Whimsyduke/SC2_GameTranslater/" + topic);
+                }
+            }
+        }
+
         #endregion
+
     }
 }

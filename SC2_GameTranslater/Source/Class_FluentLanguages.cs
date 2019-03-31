@@ -34,7 +34,7 @@ namespace SC2_GameTranslater.Source
         public override string RibbonContextMenuShowAbove { get; } = "在功能区上方显示快速访问工具栏";
         public override string RibbonContextMenuShowBelow { get; } = "在功能区下方显示快速访问工具栏";
         public override string ScreenTipDisableReasonHeader { get; } = "此命令当前已被禁用。";
-        public override string ScreenTipF1LabelHeader { get; } = FallbackLocalization.ScreenTipF1LabelHeader;
+        public override string ScreenTipF1LabelHeader { get; } = "按下F1获得更多帮助。";
     }
 
     /// <summary>
@@ -69,7 +69,7 @@ namespace SC2_GameTranslater.Source
         public override string RibbonContextMenuShowAbove { get; } = "在功能區上方顯示快速訪問工具列";
         public override string RibbonContextMenuShowBelow { get; } = "在功能區下方顯示快速訪問工具列";
         public override string ScreenTipDisableReasonHeader { get; } = "此命令當前已被禁用。";
-        public override string ScreenTipF1LabelHeader { get; } = FallbackLocalization.ScreenTipF1LabelHeader;
+        public override string ScreenTipF1LabelHeader { get; } = "按下F1獲得更多幫助。";
     }
 
     /// <summary>

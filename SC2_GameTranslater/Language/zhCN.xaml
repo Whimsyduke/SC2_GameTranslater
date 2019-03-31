@@ -169,6 +169,12 @@
     <sys:String x:Key="TP_RibbonButton_Help_Title">工具帮助</sys:String>
     <sys:String x:Key="TP_RibbonButton_Help_Text">按下F1键去项目主页查看帮助信息。</sys:String>
     <sys:String x:Key="TP_RibbonButton_Help_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_RibbonButton_New_Title">新建翻译项目</sys:String>
+    <sys:String x:Key="TP_RibbonButton_New_Text">请选择SC2 Map/Mod组件文件夹(ComponentList.SC2Components)来为选择的Map/Mod创建一个翻译项目</sys:String>
+    <sys:String x:Key="TP_RibbonButton_New_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Open_Title">打开翻译项目</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Open_Text">打开一个翻译项目来继续你的工作。（项目文件的扩展名为.SC2GameTran）</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Open_DisableReason">Reason</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->
