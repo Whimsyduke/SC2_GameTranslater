@@ -311,11 +311,6 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         public static DataTable GameTextForLanguageTable { get; } = NewGameTextForLanguageTable();
 
-        /// <summary>
-        /// 需要存储
-        /// </summary>
-        public bool NeedSave { set; get; }
-
         #endregion
 
         #region 方法
@@ -675,7 +670,6 @@ namespace SC2_GameTranslater.Source
                     targetRow[keyEdited] = dataRow[keyEdited];
                 }
             }
-            dataProject.NeedSave = true;
         }
 
         /// <summary>
@@ -770,7 +764,6 @@ namespace SC2_GameTranslater.Source
         public void SaveProject(FileInfo path)
         {
             GenerateSearchConfigData();
-            NeedSave = true;
             Globals.ObjectSerializerCompression(path, this);
         }
 

@@ -409,6 +409,7 @@ namespace SC2_GameTranslater.Source
             return Enum.GetName(language.GetType(), language);
         }
 
+
         /// <summary>
         /// 全部语言列表
         /// </summary>

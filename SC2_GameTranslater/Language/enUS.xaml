@@ -49,7 +49,9 @@
     <sys:String x:Key="TEXT_SC2File">SCII Map, Mod Or Component Folders</sys:String>
     <sys:String x:Key="TEXT_SelectALL">Select All</sys:String>
     <sys:String x:Key="TEXT_SelectNone">Select None</sys:String>
-    <sys:String x:Key="TEXT_WindowTitleText">StarcraftII Game Translater</sys:String>
+    <sys:String x:Key="TEXT_WindowTitleText">StarcraftII Game Translater V{0}{1}{2}</sys:String>
+    <sys:String x:Key="TEXT_WindowTitleProject">&#160;Project:&#160;</sys:String>
+    <sys:String x:Key="TEXT_WindowTitleProjectUnsaved">Unsaved Project</sys:String>
     <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
     <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
     <sys:String x:Key="TEXT_Comma">, {0}</sys:String>

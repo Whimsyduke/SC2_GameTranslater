@@ -49,7 +49,9 @@
     <sys:String x:Key="TEXT_SC2File">SC II Mod地图或组件文件夹</sys:String>
     <sys:String x:Key="TEXT_SelectALL">全选</sys:String>
     <sys:String x:Key="TEXT_SelectNone">全不选</sys:String>
-    <sys:String x:Key="TEXT_WindowTitleText">《星际争霸II》游戏翻译器</sys:String>
+    <sys:String x:Key="TEXT_WindowTitleText">《星际争霸II》游戏翻译器 V{0}{1}{2}</sys:String>
+    <sys:String x:Key="TEXT_WindowTitleProject">&#160;项目：</sys:String>
+    <sys:String x:Key="TEXT_WindowTitleProjectUnsaved">未保存的项目</sys:String>
     <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
     <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
     <sys:String x:Key="TEXT_Comma">，{0}</sys:String>

@@ -14,13 +14,13 @@
     Icon="pack://application:,,,/Assets/Image/Icon.ico"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Window.Resources>
+    <Fluent:RibbonWindow.Resources>
         <ResourceDictionary x:Name="ResourceDictionary_WindowLanguage">
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Language/zhCN.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </Window.Resources>
+    </Fluent:RibbonWindow.Resources>
     <Window.InputBindings>
         <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.CommandNew}" Gesture="Control+N" />
         <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.CommandOpen}" Gesture="Control+O" />
@@ -29,6 +29,13 @@
         <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordPrev}" Gesture="Control+Left" />
         <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordNext}" Gesture="Control+Right" />
     </Window.InputBindings>
+    <Fluent:RibbonWindow.Title>
+        <MultiBinding Converter="{StaticResource Converter_TitleText}">
+            <Binding ElementName="RibbonWindow_Main" Path="CurrentProjectName"/>
+            <Binding ElementName="RibbonWindow_Main" Path="CurrentProjectNeedSave"/>
+            <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage"/>
+        </MultiBinding>
+    </Fluent:RibbonWindow.Title>
     <Grid Name="Grid_Main">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

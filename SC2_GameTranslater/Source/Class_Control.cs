@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Globalization;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -15,6 +16,58 @@ namespace SC2_GameTranslater.Source
     using Log = Class_Log;
 
     #region Converter
+
+    /// <summary>
+    /// 标题Converter
+    /// </summary>
+    public class TitleTextConverter : IMultiValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="values">值数组</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (Globals.CurrentLanguage == null) return "";
+            if(values[0] is string path)
+            {
+                if (path == "TEXT_WindowTitleProjectUnsaved")
+                {
+                    path = Globals.GetStringFromCurrentLanguage(path);
+                }
+                else
+                {
+                    if (values[1] is bool needSave && needSave)
+                    {
+                        path += "*";
+                    }
+                }
+                return string.Format(Globals.GetStringFromCurrentLanguage("TEXT_WindowTitleText"), Assembly.GetExecutingAssembly().GetName().Version, Globals.GetStringFromCurrentLanguage("TEXT_WindowTitleProject"), path);
+            }
+            else
+            {
+                return string.Format(Globals.GetStringFromCurrentLanguage("TEXT_WindowTitleText"), Assembly.GetExecutingAssembly().GetName().Version, "", "");
+            }
+        }
+
+        /// <summary>
+        /// 逆向转换函数
+        /// </summary>
+        /// <param name="value">值数组</param>
+        /// <param name="targetTypes">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化</param>
+        /// <returns>转换结果</returns>
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+
+    }
 
     /// <summary>
     /// 自动序号Converter

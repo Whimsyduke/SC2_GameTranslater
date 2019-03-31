@@ -281,7 +281,6 @@ namespace SC2_GameTranslater
                 Globals.CurrentLanguage = Globals.DictUILanguages[value];
                 ResourceDictionary_WindowLanguage.MergedDictionaries.Add(Globals.CurrentLanguage);
                 RibbonLocalization.Current.Localization = Globals.FluentLocalizationMap[value];
-                Title = Globals.GetStringFromCurrentLanguage("TEXT_WindowTitleText") + " V" + Assembly.GetExecutingAssembly().GetName().Version;
                 SetValue(EnumCurrentLanguageProperty, value);
             }
             get => ((EnumLanguage)GetValue(EnumCurrentLanguageProperty));
@@ -331,7 +330,27 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 当前文本数据依赖项
         /// </summary>
-        public DataTable CurrentTextData { get => (DataTable)GetValue(CurrentTextDataProperty); set => SetValue(CurrentTextDataProperty, value); }
+        public DataTable CurrentTextData { get => GetValue(CurrentTextDataProperty) as DataTable; set => SetValue(CurrentTextDataProperty, value); }
+
+        /// <summary>
+        /// 当前项目名称依赖项属性
+        /// </summary>
+        public static DependencyProperty CurrentProjectNameProperty = DependencyProperty.Register(nameof(CurrentProjectName), typeof(string), typeof(SC2_GameTranslater_Window));
+
+        /// <summary>
+        /// 当前项目名称数据依赖项
+        /// </summary>
+        public string CurrentProjectName { get => GetValue(CurrentProjectNeedSaveProperty) as string; set => SetValue(CurrentProjectNameProperty, value); }
+
+        /// <summary>
+        /// 当前项目需要保存依赖项属性
+        /// </summary>
+        public static DependencyProperty CurrentProjectNeedSaveProperty = DependencyProperty.Register(nameof(CurrentProjectNeedSave), typeof(bool), typeof(SC2_GameTranslater_Window));
+
+        /// <summary>
+        /// 当前项目需要保存数据依赖项
+        /// </summary>
+        public bool CurrentProjectNeedSave { get => (bool)GetValue(CurrentProjectNeedSaveProperty); set => SetValue(CurrentProjectNeedSaveProperty, value); }
 
         #endregion
 
@@ -674,6 +693,7 @@ namespace SC2_GameTranslater
             if (Globals.OpenFilePathDialog(baseFolder, filter, title, out OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
+                Globals.MainWindow.CurrentProjectNeedSave = false;
                 Globals.Preference.LastFolderPath = file.DirectoryName;
                 ProjectNew(file);
             }
@@ -704,6 +724,7 @@ namespace SC2_GameTranslater
             if (Globals.OpenFilePathDialog(baseFolder, filter, title, out OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
+                Globals.MainWindow.CurrentProjectNeedSave = false;
                 Globals.Preference.LastFolderPath = file.DirectoryName;
                 ProjectOpen(file);
 
@@ -1687,6 +1708,7 @@ namespace SC2_GameTranslater
             ListFilterRecordPointer++;
             ListFilterRecord = ListFilterRecord.Take(ListFilterRecordPointer).Select(r=>r).ToList();
             ListFilterRecord.Add(config);
+            Globals.MainWindow.CurrentProjectNeedSave = true;
         }
 
         /// <summary>
@@ -2302,6 +2324,8 @@ namespace SC2_GameTranslater
         public static void ProjectSave(FileInfo file)
         {
             Log.Assert(Globals.CurrentProject != null, "Globals.CurrentProject == null");
+            Globals.MainWindow.CurrentProjectName = file.Name;
+            Globals.MainWindow.CurrentProjectNeedSave = false;
             Globals.CurrentProject?.SaveProject(file);
         }
 
@@ -2351,12 +2375,13 @@ namespace SC2_GameTranslater
         {
             if (Globals.CurrentProject != null)
             {
-                if (Globals.CurrentProject.NeedSave)
+                if (Globals.MainWindow.CurrentProjectNeedSave)
                 {
                     AskForSave();
                 }
                 Globals.CurrentProject = null;
                 Globals.CurrentProjectPath = null;
+                Globals.MainWindow.CurrentProjectName = null;
             }
         }
 
@@ -2447,6 +2472,15 @@ namespace SC2_GameTranslater
             CanRefreshTranslatedText = true;
             RefreshTranslatedText(newPro);
             RefreshInGalaxyTextDetails();
+            if (Globals.CurrentProjectPath == null)
+            {
+                CurrentProjectName = "TEXT_WindowTitleProjectUnsaved";
+            }
+            else
+            {
+                CurrentProjectName = Globals.CurrentProjectPath.Name;
+            }
+            CurrentProjectNeedSave = false;
         }
 
         /// <summary>
@@ -2896,13 +2930,15 @@ namespace SC2_GameTranslater
                         }
                         else
                         {
-                            row[keyStatus] = EnumGameTextStatus.Modified;                    Globals.CurrentProject.NeedSave = true;
+                            row[keyStatus] = EnumGameTextStatus.Modified;
+                            CurrentProjectNeedSave = true;
                         }
                         break;
                     case EnumGameTextStatus.Normal:
                         if (value != row[keySource] as string)
                         {
-                            row[keyStatus] = EnumGameTextStatus.Modified;                    Globals.CurrentProject.NeedSave = true;
+                            row[keyStatus] = EnumGameTextStatus.Modified;
+                            CurrentProjectNeedSave = true;
                         }
                         break;
                 }
@@ -2984,7 +3020,7 @@ namespace SC2_GameTranslater
                 Globals.CurrentProject.CopyTranslateText(sourceLanguage, language);
             }
             RefreshTranslatedText();
-            Globals.CurrentProject.NeedSave = true;
+            CurrentProjectNeedSave = true;
         }
 
         /// <summary>
