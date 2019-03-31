@@ -153,7 +153,7 @@
     <sys:String x:Key="UI_TextBlock_Preference_Text">配置设置</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">加载</sys:String>
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">最近项目</sys:String>
-    <sys:String x:Key="UI_TextBox_SearchText_ButtonContent">搜索文本</sys:String>
+    <sys:String x:Key="UI_TextBox_SearchText_ButtonHeader">搜索文本</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
     <sys:String x:Key="UI_Window_GoToIndex_Title">跳转数据编号</sys:String>
     <sys:String x:Key="UI_Window_ReloadConfig_Title">重载选项</sys:String>
@@ -166,6 +166,9 @@
     <!--#region Tooltip-->
     <sys:String x:Key="TP_ToggleButton_FilterGalaxyFileNone_ToolTip">筛选所有未被Galaxy文件使用的文本。</sys:String>
     <sys:String x:Key="TP_RichTextBoxInGalaxyTextConverter_ToolTip">ID：{0}, 数据编号：{1}</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Help_Title">工具帮助</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Help_Text">按下F1键去项目主页查看帮助信息。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Help_DisableReason">禁用原因</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

@@ -153,7 +153,7 @@
     <sys:String x:Key="UI_TextBlock_Preference_Text">Preferences Setting</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">Load</sys:String>
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">Recent Projects</sys:String>
-    <sys:String x:Key="UI_TextBox_SearchText_ButtonContent">Search Text</sys:String>
+    <sys:String x:Key="UI_TextBox_SearchText_ButtonHeader">Search Text</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
     <sys:String x:Key="UI_Window_GoToIndex_Title">Go To Data Index</sys:String>
     <sys:String x:Key="UI_Window_ReloadConfig_Title">Reload Config</sys:String>
@@ -166,6 +166,9 @@
     <!--#region Tooltip-->
     <sys:String x:Key="TP_ToggleButton_FilterGalaxyFileNone_ToolTip">Filtrate all text that not use in any galaxy files.</sys:String>
     <sys:String x:Key="TP_RichTextBoxInGalaxyTextConverter_ToolTip">ID: {0}, Data Index: {1}</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Help_Title">Tool Help</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Help_Text">Pause F1 to see the help at project page.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Help_DisableReason">Reason</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

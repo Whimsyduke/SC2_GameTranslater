@@ -205,23 +205,24 @@
                         TextWrapping="Wrap" />
                 </Grid>
             </StackPanel>
-            <Button
+            <Fluent:Button
                 x:Name="PART_SearchButton"
                 Grid.Row="1"
                 Grid.RowSpan="2"
                 Grid.Column="0"
                 Height="40"
-                Margin="3,0,3,0"
-                Padding="10,0,10,0"
+                Margin="0,0,3,0"
+                Padding="0,0,10,0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Bottom"
                 HorizontalContentAlignment="Stretch"
                 VerticalContentAlignment="Center"
-                Background="{DynamicResource Fluent.Ribbon.Brushes.TextBox.Background}"
-                BorderBrush="{DynamicResource Fluent.Ribbon.Brushes.TextBox.BorderBrush}"
-                BorderThickness="3"
+                BorderThickness="1"
                 Command="{Binding Path=Command, RelativeSource={RelativeSource TemplatedParent}}"
-                Content="{Binding Path=ButtonContent, RelativeSource={RelativeSource TemplatedParent}}" />
+                Header="{Binding Path=ButtonHeader, RelativeSource={RelativeSource TemplatedParent}}"
+                Icon="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}}"
+                LargeIcon="{Binding Path=LargeIcon, RelativeSource={RelativeSource TemplatedParent}}"
+                SizeDefinition="Middle" />
             <Border
                 x:Name="PART_ContentBorder"
                 Grid.Row="0"

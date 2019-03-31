@@ -26,14 +26,16 @@
         <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.CommandOpen}" Gesture="Control+O" />
         <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.CommandSave}" Gesture="Control+S" />
         <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.CommandClose}" Gesture="Control+W" />
+        <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.CommandAccept}" Gesture="Control+E" />
         <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordPrev}" Gesture="Control+Left" />
         <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordNext}" Gesture="Control+Right" />
+        <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.SearchClick}" Gesture="Control+F" />
     </Window.InputBindings>
     <Fluent:RibbonWindow.Title>
         <MultiBinding Converter="{StaticResource Converter_TitleText}">
-            <Binding ElementName="RibbonWindow_Main" Path="CurrentProjectName"/>
-            <Binding ElementName="RibbonWindow_Main" Path="CurrentProjectNeedSave"/>
-            <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage"/>
+            <Binding ElementName="RibbonWindow_Main" Path="CurrentProjectName" />
+            <Binding ElementName="RibbonWindow_Main" Path="CurrentProjectNeedSave" />
+            <Binding ElementName="RibbonWindow_Main" Path="EnumCurrentLanguage" />
         </MultiBinding>
     </Fluent:RibbonWindow.Title>
     <Grid Name="Grid_Main">
@@ -52,7 +54,7 @@
             IsAutomaticCollapseEnabled="True"
             SelectedTabIndex="1">
             <Fluent:Ribbon.Menu>
-                <Fluent:Backstage Name="Backstage_Menu" Header="{DynamicResource UI_Backstage_Menu_Header}">
+                <Fluent:Backstage Name="Backstage_Menu" Header="{DynamicResource UI_Backstage_Menu_Header}" KeyTip="M">
                     <Fluent:BackstageTabControl>
                         <Fluent:SeparatorTabItem
                             Name="SeparatorTabItem_Projects"
@@ -124,10 +126,7 @@
                             Margin="0,20,0,0"
                             HorizontalContentAlignment="Left"
                             Header="{DynamicResource UI_SeparatorTabItem_Preferences_Header}" />
-                        <Fluent:BackstageTabItem
-                            x:Name="BackstageTabItem_Preference"
-                            Header="{DynamicResource UI_BackstageTabItem_Preference_Header}"
-                            KeyTip="P">
+                        <Fluent:BackstageTabItem x:Name="BackstageTabItem_Preference" Header="{DynamicResource UI_BackstageTabItem_Preference_Header}">
                             <ScrollViewer Name="ScrollViewer_Preference">
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -196,15 +195,19 @@
                 </Fluent:Backstage>
             </Fluent:Ribbon.Menu>
             <Fluent:Ribbon.ToolBarItems>
-                <Fluent:Button Icon="{DynamicResource IMAGE_HELP}" Size="Small">
-                    <!--<Fluent:Button.ToolTip>
-                        <Fluent:ScreenTip Title="Insert Chart"
-                                          Text="Insert a chart to illustarate and compare data. &#xa;&#xa;Bar, Pie, Line, Area and Surface are same of the available types."
-                                          HelpTopic="https://github.com/fluentribbon/Fluent.Ribbon"
-                                          DisableReason="Disable reason reason."
-                                          Width="190"
-                                          IsRibbonAligned="True" />
-                    </Fluent:Button.ToolTip>-->
+                <Fluent:Button
+                    Name="RibbonButton_Help"
+                    Icon="{DynamicResource IMAGE_HELP}"
+                    Size="Small">
+                    <Fluent:Button.ToolTip>
+                        <Fluent:ScreenTip
+                            Title="{DynamicResource TP_RibbonButton_Help_Title}"
+                            Width="190"
+                            DisableReason="{DynamicResource TP_RibbonButton_Help_DisableReason}"
+                            HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
+                            IsRibbonAligned="True"
+                            Text="{DynamicResource TP_RibbonButton_Help_Text}" />
+                    </Fluent:Button.ToolTip>
                 </Fluent:Button>
             </Fluent:Ribbon.ToolBarItems>
             <Fluent:Ribbon.QuickAccessItems>
@@ -215,7 +218,7 @@
                 <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_FilterPrev}}" />
                 <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_FilterNext}}" />
             </Fluent:Ribbon.QuickAccessItems>
-            <Fluent:RibbonTabItem Name="RibbonTabItem_Start" Header="{DynamicResource UI_RibbonTabItem_Start_Header}">
+            <Fluent:RibbonTabItem Name="RibbonTabItem_Start" KeyTip="G" Header="{DynamicResource UI_RibbonTabItem_Start_Header}">
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_File"
                     Width="Auto"
@@ -226,28 +229,24 @@
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandNew}"
                         Header="{DynamicResource UI_RibbonButton_New_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_New}"
-                        KeyTip="N"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_New}" />
                     <Fluent:Button
                         x:Name="RibbonButton_Open"
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandOpen}"
                         Header="{DynamicResource UI_RibbonButton_Open_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Open}"
-                        KeyTip="O"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Open}" />
                     <Fluent:SplitButton
                         x:Name="RibbonButton_Save"
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandSave}"
                         Header="{DynamicResource UI_RibbonButton_Save_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Save}"
-                        KeyTip="S"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Save}">
                         <Fluent:Button
                             x:Name="RibbonButton_SaveAs"
                             Command="{x:Static local:SC2_GameTranslater_Window.CommandSaveAs}"
                             Header="{DynamicResource UI_RibbonButton_SaveAs_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Save}"
-                            KeyTip="S"
                             LargeIcon="{StaticResource ResourceKey=IMAGE_Save}" />
                     </Fluent:SplitButton>
                     <Fluent:Button
@@ -255,7 +254,6 @@
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandClose}"
                         Header="{DynamicResource UI_RibbonButton_Close_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Close}"
-                        KeyTip="S"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" />
                     <Separator />
                     <Fluent:Button
@@ -263,7 +261,6 @@
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandAccept}"
                         Header="{DynamicResource UI_RibbonButton_Accept_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Accept}"
-                        KeyTip="E"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" />
                     <Fluent:SplitButton
                         Name="SplitButton_ReloadTranslate"
@@ -290,14 +287,12 @@
                         Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordPrev}"
                         Header="{DynamicResource UI_RibbonButton_FilterPrev_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_FilterPrev}"
-                        KeyTip="+"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_FilterPrev}" />
                     <Fluent:Button
                         x:Name="RibbonButton_FilterNext"
                         Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordNext}"
                         Header="{DynamicResource UI_RibbonButton_FilterNext_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_FilterNext}"
-                        KeyTip="-"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_FilterNext}" />
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
@@ -448,7 +443,7 @@
                         VerticalContentAlignment="Top"
                         Fluent:RibbonGroupBoxWrapPanel.SharedSizeGroupName="Group_Serach"
                         AcceptsReturn="True"
-                        ButtonContent="{DynamicResource UI_TextBox_SearchText_ButtonContent}"
+                        ButtonHeader="{DynamicResource UI_TextBox_SearchText_ButtonHeader}"
                         Command="{x:Static local:SC2_GameTranslater_Window.SearchClick}"
                         Header="{DynamicResource UI_ComboBox_SearchText_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchTextBox}"
@@ -694,7 +689,7 @@
                     </Fluent:InRibbonGallery>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
-            <Fluent:RibbonTabItem Name="RibbonTabItem_ToolCopyTranslatedText" Header="{DynamicResource UI_RibbonTabItem_ToolCopyTranslatedText_Header}">
+            <Fluent:RibbonTabItem Name="RibbonTabItem_ToolCopyTranslatedText" KeyTip="H" Header="{DynamicResource UI_RibbonTabItem_ToolCopyTranslatedText_Header}">
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_CopyTranslatedText"
                     Grid.IsSharedSizeScope="True"
@@ -1246,8 +1241,9 @@
                             Header="{DynamicResource UI_GroupBox_GameTextForLanguage_Header}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="703*" />
+                                    <ColumnDefinition Width="336*" />
+                                    <ColumnDefinition Width="367*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -1263,13 +1259,14 @@
                                     Name="TextBlock_DetailsIndex"
                                     Grid.Row="0"
                                     Grid.Column="1"
+                                    Grid.ColumnSpan="2"
                                     Margin="3"
                                     Text="" />
                                 <DataGrid
                                     Name="DataGrid_GameTextForLanguage"
                                     Grid.Row="1"
                                     Grid.Column="0"
-                                    Grid.ColumnSpan="2"
+                                    Grid.ColumnSpan="3"
                                     VerticalContentAlignment="Center"
                                     AlternatingRowBackground="LightGray"
                                     AlternationCount="2"

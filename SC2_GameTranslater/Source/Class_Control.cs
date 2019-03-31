@@ -1072,13 +1072,28 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 按钮文本依赖项
         /// </summary>
-        public static DependencyProperty ButtonContentProperty = DependencyProperty.Register(nameof(ButtonContent), typeof(object), typeof(RibbonSearchTextBox));
+        public static DependencyProperty ButtonHearderProperty = DependencyProperty.Register(nameof(ButtonHeader), typeof(object), typeof(RibbonSearchTextBox));
 
         /// <summary>
         /// 按钮文本依赖项属性
         /// </summary>
-        public object ButtonContent { set => SetValue(ButtonContentProperty, value); get => GetValue(ButtonContentProperty); }
+        public object ButtonHeader { set => SetValue(ButtonHearderProperty, value); get => GetValue(ButtonHearderProperty); }
 
+
+        #endregion
+
+        #endregion
+
+        #region 方法
+
+        #region 重载方法
+
+        public new void OnKeyTipBack()
+        {
+            base.OnKeyTipBack();
+            Fluent.Button button = this.Template.FindName("PART_SearchButton", this) as Fluent.Button;
+            button.OnKeyTipBack();
+        }
 
         #endregion
 
