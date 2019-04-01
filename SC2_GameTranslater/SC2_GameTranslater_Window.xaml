@@ -303,14 +303,36 @@
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandClose}"
                         Header="{DynamicResource UI_RibbonButton_Close_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Close}"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" />
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Close}" >
+                        <Fluent:Button.ToolTip>
+                            <Fluent:ScreenTip
+                                Title="{DynamicResource TP_RibbonButton_Close_Title}"
+                                Width="300"
+                                DisableReason="{DynamicResource TP_RibbonButton_Close_DisableReason}"
+                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
+                                Image="{StaticResource ResourceKey=IMAGE_Close}"
+                                IsRibbonAligned="False"
+                                Text="{DynamicResource TP_RibbonButton_Close_Text}" />
+                        </Fluent:Button.ToolTip>
+                    </Fluent:Button>
                     <Separator />
                     <Fluent:Button
                         x:Name="RibbonButton_Accept"
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandAccept}"
                         Header="{DynamicResource UI_RibbonButton_Accept_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Accept}"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" />
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}" >
+                        <Fluent:Button.ToolTip>
+                            <Fluent:ScreenTip
+                                Title="{DynamicResource TP_RibbonButton_Accept_Title}"
+                                Width="300"
+                                DisableReason="{DynamicResource TP_RibbonButton_Accept_DisableReason}"
+                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
+                                Image="{StaticResource ResourceKey=IMAGE_Accept}"
+                                IsRibbonAligned="False"
+                                Text="{DynamicResource TP_RibbonButton_Accept_Text}" />
+                        </Fluent:Button.ToolTip>
+                    </Fluent:Button>
                     <Fluent:SplitButton
                         Name="SplitButton_ReloadTranslate"
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandReloadTranslate}"

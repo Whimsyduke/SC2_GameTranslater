@@ -765,6 +765,7 @@ namespace SC2_GameTranslater.Source
         {
             GenerateSearchConfigData();
             Globals.ObjectSerializerCompression(path, this);
+            Log.ShowSystemMessage(true, MessageBoxButton.OK, MessageBoxImage.None, "MSG_SaveProject", path.FullName);
         }
 
         #endregion
@@ -847,7 +848,14 @@ namespace SC2_GameTranslater.Source
         /// <returns>写入成功</returns>
         public bool WriteToComponents()
         {
-            if (SC2Components == null || !SC2Components.Exists) return false;
+            if (SC2Components == null || !SC2Components.Exists)
+            {
+                Log.ShowSystemMessage(true, MessageBoxButton.OK, MessageBoxImage.None, "MSG_AcceptTranslateTextError");
+                return false;
+            }
+
+            DirectoryInfo tempDir = new DirectoryInfo($"{PATH_TempFolder}{SC2Components.Directory.Name}\\");
+            if (tempDir.Exists) tempDir.Delete();
             DirectoryInfo baseDir = SC2Components.Directory;
             List<FileInfo> backFiles = new List<FileInfo>();
             EnumerableRowCollection<DataRow> gameStringRows = GetGameTextRows(EnumGameTextFile.GameStrings);
@@ -864,6 +872,7 @@ namespace SC2_GameTranslater.Source
                     WriteToTextFile(baseDir, language, EnumGameTextFile.TriggerStrings, ref backFiles, triggerStringRows);
                 }
             }
+            Log.ShowSystemMessage(true, MessageBoxButton.OK, MessageBoxImage.None, "MSG_AcceptTranslateText", SC2Components.Directory, tempDir.FullName);
             return true;
         }
 
@@ -885,7 +894,7 @@ namespace SC2_GameTranslater.Source
                 string backPath = TextFilePath(language, fileType);
                 string originpath = $"{baseDir.FullName}\\{backPath}";
                 if (!File.Exists(originpath)) return true;
-                FileInfo backFile = new FileInfo(PATH_TempFolder + backPath);
+                FileInfo backFile = new FileInfo($"{PATH_TempFolder}{SC2Components.Directory.Name}\\{backPath}");
                 backFiles.Add(backFile);
                 if (backFile.Directory != null && !backFile.Directory.Exists) backFile.Directory.Create();
                 File.Copy(originpath, backFile.FullName, true);

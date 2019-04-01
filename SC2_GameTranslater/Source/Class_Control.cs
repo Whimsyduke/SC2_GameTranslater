@@ -377,7 +377,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] == null) return Globals.GetStringFromCurrentLanguage("TEXT_Error");
+            if (values[0] == null || values[0] == DependencyProperty.UnsetValue) return Globals.GetStringFromCurrentLanguage("TEXT_Error");
             EnumGameTextStatus status = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), values[0]);
             return Data_GameText.GetEnumNameInLanguage(status);
         }
@@ -412,7 +412,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] == null) return Globals.GetStringFromCurrentLanguage("TEXT_Error");
+            if (values[0] == null || values[0] == DependencyProperty.UnsetValue) return Globals.GetStringFromCurrentLanguage("TEXT_Error");
             EnumGameUseStatus status = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), values[0]);
             return Data_GameText.GetEnumNameInLanguage(status);
         }
@@ -447,7 +447,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] == null) return Data_GameText.TextStatusColor[EnumGameTextStatus.Normal];
+            if (values[0] == null|| values[0] == DependencyProperty.UnsetValue) return Data_GameText.TextStatusColor[EnumGameTextStatus.Normal];
             EnumGameTextStatus status = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), values[0]);
             return Data_GameText.TextStatusColor[status];
         }
@@ -482,7 +482,7 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] == null) return Data_GameText.UseStatusColor[EnumGameUseStatus.Normal];
+            if (values[0] == null || values[0] == DependencyProperty.UnsetValue) return Data_GameText.UseStatusColor[EnumGameUseStatus.Normal];
             EnumGameUseStatus status = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), values[0]);
             return Data_GameText.UseStatusColor[status];
         }

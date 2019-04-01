@@ -95,7 +95,7 @@
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">文本ID</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">文本状态</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedUseStatus_Header">使用状态</sys:String>
-    <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Mod/Map路径：</sys:String>
+    <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Map/Mod路径：</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">详情</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">游戏文本数据</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextInGalaxy_Header">Galaxy文本数据（</sys:String>
@@ -176,11 +176,17 @@
     <sys:String x:Key="TP_RibbonButton_Open_Text" xml:space="preserve">打开一个翻译项目来继续你的工作。（项目文件的扩展名为.SC2GameTran）&#x000D;快捷键：Ctrl + O</sys:String>
     <sys:String x:Key="TP_RibbonButton_Open_DisableReason">Reason</sys:String>
     <sys:String x:Key="TP_RibbonButton_Save_Title">保存翻译项目</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Save_Text">保存当前正在工作的项目，如果它是位保存的，你需要先选择保存的路径。&#x000D;快捷键：Ctrl + S</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Save_DisableReason" xml:space="preserve">在保存项目前，你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Save_Text" xml:space="preserve">保存当前正在工作的项目，如果它是位保存的，你需要先选择保存的路径。&#x000D;快捷键：Ctrl + S</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Save_DisableReason">在保存项目前，你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_RibbonButton_SaveAs_Title">保存翻译项目</sys:String>
-    <sys:String x:Key="TP_RibbonButton_SaveAs_Text">保存当前正在工作的项目，你需要现选择项目文件的保存的路径。&#x000D;快捷键：Ctrl + Shift + S</sys:String>
-    <sys:String x:Key="TP_RibbonButton_SaveAs_DisableReason" xml:space="preserve">在保存项目前，你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_SaveAs_Text" xml:space="preserve">保存当前正在工作的项目，你需要现选择项目文件的保存的路径。&#x000D;快捷键：Ctrl + Shift + S</sys:String>
+    <sys:String x:Key="TP_RibbonButton_SaveAs_DisableReason">在保存项目前，你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Close_Title">关闭翻译项目</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Close_Text" xml:space="preserve">关闭当前正在工作的项目，你将会在关闭前询问是否保存它。&#x000D;快捷键：Ctrl + W</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Close_DisableReason">在保存项目前，你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Accept_Title">应用翻译文本</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Accept_Text" xml:space="preserve">将翻译文本写回到Map/Mod中，在此之前，你需要保证设置的Map\Mod路径有效，你可以在【目录】【配置设置】【配置】对应页面找到相应设置。&#x000D;快捷键：Ctrl + W</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Accept_DisableReason">在应用项目前，你需要打开或者新建一个项目，并保证Map/Mod的路径是正确的。</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->
@@ -212,6 +218,12 @@
     <sys:String x:Key="MSG_SrollToItemFindOutID_Title">消息</sys:String>
     <sys:String x:Key="MSG_DoCopyTranslateText_Message">是否确认自{0}复制翻译文本到{1}？这将导致无法切换到过去的筛选条件。</sys:String>
     <sys:String x:Key="MSG_DoCopyTranslateText_Title">消息</sys:String>
+    <sys:String x:Key="MSG_AcceptTranslateText_Message">翻译文件已经成功写入{0}。旧翻译文件的备份保存在{1}。</sys:String>
+    <sys:String x:Key="MSG_AcceptTranslateText_Title">消息</sys:String>
+    <sys:String x:Key="MSG_AcceptTranslateTextError_Message">翻译文件已经写入失败。Map/Mod路径无效。</sys:String>
+    <sys:String x:Key="MSG_AcceptTranslateTextError_Title">消息</sys:String>
+    <sys:String x:Key="MSG_SaveProject_Message">成功保存到{0}.</sys:String>
+    <sys:String x:Key="MSG_SaveProject_Title">消息</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

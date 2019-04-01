@@ -95,7 +95,7 @@
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">Text ID</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">Text Status</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedUseStatus_Header">Use Status</sys:String>
-    <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Mod/Map Path:</sys:String>
+    <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Map/Mod Path:</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">Details</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">Game Text Details</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextInGalaxy_Header">Galaxy Text Details (</sys:String>
@@ -181,6 +181,12 @@
     <sys:String x:Key="TP_RibbonButton_SaveAs_Title">Save Translated Project</sys:String>
     <sys:String x:Key="TP_RibbonButton_SaveAs_Text" xml:space="preserve">Save current on working project, you need choose a path where to place the project file.&#x000D;HotKey: Ctrl + Shift + S</sys:String>
     <sys:String x:Key="TP_RibbonButton_SaveAs_DisableReason">You need open or create a new porject before save it.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Close_Title">Close Translated Project</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Close_Text" xml:space="preserve">Close current on working project, you will ask for save it before close it.&#x000D;HotKey: Ctrl + W</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Close_DisableReason">You need open or create a new porject before close it.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Accept_Title">Accept Translated Text</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Accept_Text" xml:space="preserve">Write back the translated text to Map/Mod. You need make sure your path of Map/Mod is vaild, if not, you can set it at [Menu][Preferences Setting][Preference].&#x000D;HotKey: Ctrl + E</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Accept_DisableReason">You need open or create a new porject before accept it, and also make Map/Mod path vaild.</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->
@@ -212,6 +218,12 @@
     <sys:String x:Key="MSG_SrollToItemFindOutID_Title">Notice</sys:String>
     <sys:String x:Key="MSG_DoCopyTranslateText_Message">Are you sure copy translated text form {0} to {1}? You will  not go back to the search filter before.</sys:String>
     <sys:String x:Key="MSG_DoCopyTranslateText_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_AcceptTranslateText_Message">Translated text successfully write to {0}. And you can find the backup of old file at {1}.</sys:String>
+    <sys:String x:Key="MSG_AcceptTranslateText_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_AcceptTranslateTextError_Message">Translated text write back failed. Map/Mod path is valid.</sys:String>
+    <sys:String x:Key="MSG_AcceptTranslateTextError_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_SaveProject_Message">Successfully save to {0}.</sys:String>
+    <sys:String x:Key="MSG_SaveProject_Title">Notice</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>
