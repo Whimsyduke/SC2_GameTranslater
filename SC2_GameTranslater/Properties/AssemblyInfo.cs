@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("SC2_GameTranslater")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Froggy&Catty")]
 [assembly: AssemblyProduct("SC2_GameTranslater")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]

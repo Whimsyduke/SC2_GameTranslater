@@ -1,0 +1,35 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+configuration: Release
+platform: Any CPU
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: 1.0.{build}
+  assembly_file_version: 1.0.{build}
+  assembly_informational_version: 1.0.{build}
+before_build:
+- cmd: nuget restore
+build:
+  verbosity: minimal
+after_build:
+- cmd: 7z a SC2_GameTranslater.zip %APPVEYOR_BUILD_FOLDER%\SC2_GameTranslater\bin\Release\*.dll -i!%APPVEYOR_BUILD_FOLDER%\SC2_GameTranslater\bin\Release\*.exe
+artifacts:
+- path: SC2_GameTranslater.zip
+  name: SC2_GameTranslater
+deploy:
+- provider: GitHub
+  auth_token:
+    secure: ukdoR2UafWjewqidkLUNEjSg990p+bAQbQbb4ySOVBiA93M2RleqmM4bnef0xEoL
+  prerelease: true
+  force_update: true
+  on:
+    APPVEYOR_REPO_TAG: true
+notifications:
+- provider: Email
+  to:
+  - whimsyduke@163.com
+  subject: SC2_GameTranslater build
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: true
