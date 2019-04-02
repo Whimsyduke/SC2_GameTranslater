@@ -1274,6 +1274,7 @@
                                 <Setter Property="Margin" Value="2" />
                                 <Setter Property="AcceptsReturn" Value="True" />
                                 <Setter Property="TextWrapping" Value="Wrap" />
+                                <Setter Property="AcceptsReturn" Value="False"/>
                             </Style>
                         </DataGridTextColumn.EditingElementStyle>
                     </DataGridTextColumn>

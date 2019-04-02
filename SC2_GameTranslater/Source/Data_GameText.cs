@@ -855,7 +855,7 @@ namespace SC2_GameTranslater.Source
             }
 
             DirectoryInfo tempDir = new DirectoryInfo($"{PATH_TempFolder}{SC2Components.Directory.Name}\\");
-            if (tempDir.Exists) tempDir.Delete();
+            if (tempDir.Exists) tempDir.Delete(true);
             DirectoryInfo baseDir = SC2Components.Directory;
             List<FileInfo> backFiles = new List<FileInfo>();
             EnumerableRowCollection<DataRow> gameStringRows = GetGameTextRows(EnumGameTextFile.GameStrings);
