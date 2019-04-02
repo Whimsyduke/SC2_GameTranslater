@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
@@ -189,6 +190,11 @@ namespace SC2_GameTranslater.Source
         /// 全部语言
         /// </summary>
         public static List<EnumLanguage> AllLanguage { get; } = AllLanguageList();
+
+        /// <summary>
+        /// 软件版本
+        /// </summary>
+        public static string SoftwareVersion { get; } = "V" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         #endregion
 

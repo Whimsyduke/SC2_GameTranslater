@@ -18,6 +18,11 @@
     <BitmapImage x:Key="IMAGE_FilterPrev" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-toolbar_findprev.png" />
     <BitmapImage x:Key="IMAGE_FilterNext" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-toolbar_findnext.png" />
     <BitmapImage x:Key="IMAGE_DoCopy" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-general_copy.png" />
+    <BitmapImage x:Key="IMAGE_DownAliPay" UriSource="pack://application:,,,/Assets/Image/WhimKey_UI_DownAhliPay.png" />
+    <BitmapImage x:Key="IMAGE_ButtonDonateDown" UriSource="pack://application:,,,/Assets/Image/WhimKey_UI_ButtonDonateDown.png"/>
+    <BitmapImage x:Key="IMAGE_ButtonDonateNorma" UriSource="pack://application:,,,/Assets/Image/WhimKey_UI_ButtonDonateNorma.png"/>
+    <BitmapImage x:Key="IMAGE_ButtonDonateOver" UriSource="pack://application:,,,/Assets/Image/WhimKey_UI_ButtonDonateOver.png"/>
+    <BitmapImage x:Key="IMAGE_Paypallink" UriSource="pack://application:,,,/Assets/Image/WhimKey_UI_Paypallink.png" />
     <!--#endregion-->
 
     <!--#region Translate Language-->

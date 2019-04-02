@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Data;
+using Fluent;
 using SC2_GameTranslater.Source;
 
 namespace SC2_GameTranslater
@@ -9,7 +10,7 @@ namespace SC2_GameTranslater
     /// <summary>
     /// SC2_GameTranslater_GoToIndex.xaml 的交互逻辑
     /// </summary>
-    public partial class SC2_GameTranslater_GoToIndex
+    public partial class SC2_GameTranslater_GoToIndex : RibbonWindow
     {
 
         #region 属性字段

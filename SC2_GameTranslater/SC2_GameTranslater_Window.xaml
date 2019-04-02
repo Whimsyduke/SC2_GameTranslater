@@ -202,6 +202,7 @@
             <Fluent:Ribbon.ToolBarItems>
                 <Fluent:Button
                     Name="RibbonButton_Help"
+                    Click="RibbonButton_Help_Click"
                     Icon="{DynamicResource IMAGE_HELP}"
                     Size="Small">
                     <Fluent:Button.ToolTip>

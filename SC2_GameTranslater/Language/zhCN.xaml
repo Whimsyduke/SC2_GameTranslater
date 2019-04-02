@@ -58,6 +58,16 @@
     <!--#endregion-->
 
     <!--#region 界面文本-->
+    <sys:String x:Key="UI_AboutWindow_AboutAuthor_Text">作者：</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutAuthorValue_Text">喵喵呱呱团队</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutCaption_Text">关于</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutDonation_Text">捐赠：</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutEmail_Text">邮箱：</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutSource_Text">源码:</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutSourcePage_Text">Github项目页面</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutUpdate_Text">更新:</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutUpdatePage_Text">Github发布页面</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutVersion_Text">版本：</sys:String>
     <sys:String x:Key="UI_Backstage_Menu_Header">目录</sys:String>
     <sys:String x:Key="UI_BackstageTabItem_MenuRecentProjects_Header">最近项目</sys:String>
     <sys:String x:Key="UI_BackstageTabItem_Preference_Header">配置</sys:String>
@@ -147,11 +157,15 @@
     <sys:String x:Key="UI_RibbonGroupBox_UseStatusFilter_Header">使用状态</sys:String>
     <sys:String x:Key="UI_RibbonTabItem_Start_Header">开始</sys:String>
     <sys:String x:Key="UI_RibbonTabItem_ToolCopyTranslatedText_Header">翻译复制工具</sys:String>
+    <sys:String x:Key="UI_RibbonWindow_About_Title">关于</sys:String>
+    <sys:String x:Key="UI_RibbonWindow_GoToIndex_Title">跳转数据编号</sys:String>
+    <sys:String x:Key="UI_RibbonWindow_ReloadConfig_Title">重载选项</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_Preferences_Header">配置设置</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_Projects_Header">项目文件</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_RecentProjects_Header">最近项目</sys:String>
     <sys:String x:Key="UI_TabItem_GameTextForLanguage_Header">全语言文本</sys:String>
     <sys:String x:Key="UI_TabItem_GameTextInGalaxy_Header">Galaxy拼接结果</sys:String>
+    <sys:String x:Key="UI_TextBlock_BLZInfoPannelCaption_Text">关于</sys:String>
     <sys:String x:Key="UI_TextBlock_DetailsID_Text">文本ID：{0}</sys:String>
     <sys:String x:Key="UI_TextBlock_DetailsIndex_Text">数据编号：{0}</sys:String>
     <sys:String x:Key="UI_TextBlock_Preference_Text">配置设置</sys:String>
@@ -159,8 +173,6 @@
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">最近项目</sys:String>
     <sys:String x:Key="UI_TextBox_SearchText_ButtonHeader">搜索文本</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
-    <sys:String x:Key="UI_Window_GoToIndex_Title">跳转数据编号</sys:String>
-    <sys:String x:Key="UI_Window_ReloadConfig_Title">重载选项</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->

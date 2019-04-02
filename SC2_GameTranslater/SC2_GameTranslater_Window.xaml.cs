@@ -88,7 +88,7 @@ namespace SC2_GameTranslater
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class SC2_GameTranslater_Window
+    public partial class SC2_GameTranslater_Window : RibbonWindow
     {
         #region 声明
 
@@ -3068,7 +3068,7 @@ namespace SC2_GameTranslater
         }
 
         /// <summary>
-        /// 按下帮助按钮
+        /// 按下帮助F1键
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -3087,7 +3087,17 @@ namespace SC2_GameTranslater
             }
         }
 
-        #endregion
+        /// <summary>
+        /// 按下帮助按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RibbonButton_Help_Click(object sender, RoutedEventArgs e)
+        {
+            SC2_GameTranslater_About window = new SC2_GameTranslater_About();
+            window.ShowDialog();
+        }
 
+        #endregion
     }
 }

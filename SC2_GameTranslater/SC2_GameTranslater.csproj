@@ -74,6 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SC2_GameTranslater_About.xaml.cs">
+      <DependentUpon>SC2_GameTranslater_About.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SC2_GameTranslater_GoToIndex.xaml.cs">
       <DependentUpon>SC2_GameTranslater_GoToIndex.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,10 @@
     <Page Include="Language\zhCN.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SC2_GameTranslater_About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SC2_GameTranslater_GoToIndex.xaml">
       <SubType>Designer</SubType>
@@ -234,6 +241,19 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Image\ui-editoricon-triggereditor_newactiondefinition.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\WhimKey_UI_ButtonDonateNorma.png" />
+    <Resource Include="Assets\Image\WhimKey_UI_DownAhliPay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\WhimKey_UI_Paypallink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\WhimKey_UI_ButtonDonateDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\WhimKey_UI_ButtonDonateOver.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

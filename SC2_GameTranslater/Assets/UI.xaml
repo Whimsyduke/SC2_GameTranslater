@@ -35,8 +35,82 @@
     <source:GoToIndexConfirmButtonEnableConverter x:Key="Converter_GoToIndexConfirmButtonEnable" />
     <!--#endregion-->
 
-    <!--#region Template-->
+    <!--#region Template & Style-->
 
+    <!--#region BLZ_Button-->
+    <Style x:Key="BLZ_ButtonStyle" TargetType="{x:Type source:Button}">
+        <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Rectangle Margin="2" SnapsToDevicePixels="True" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" Value="#00DDDDDD"/>
+        <Setter Property="BorderBrush" Value="#00707070"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type source:Button}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <Grid SnapsToDevicePixels="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <Image x:Name="BackGroundImage_Normal" Source="{TemplateBinding NormalImage}" SnapsToDevicePixels="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="Fill"/>
+                            <Image x:Name="BackGroundImage_Hover" Source="{TemplateBinding HoverImage}" Visibility="Hidden"  SnapsToDevicePixels="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="Fill"/>
+                            <Image x:Name="BackGroundImage_Press" Source="{TemplateBinding PressImage}" Visibility="Hidden"  SnapsToDevicePixels="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="Fill"/>
+                            <Image x:Name="BackGroundImage_Checked" Source="{TemplateBinding CheckedImage}"  Visibility="Hidden"  SnapsToDevicePixels="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="Fill"/>
+                            <Image x:Name="BackGroundImage_Disable" Source="{TemplateBinding DisableImage}"  Visibility="Hidden"  SnapsToDevicePixels="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="Fill"/>
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Normal" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Hover" Value="Visible"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Press" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Checked" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Disable" Value="Hidden"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Normal" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Hover" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Press" Value="Visible"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Checked" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Disable" Value="Hidden"/>
+                        </Trigger>
+                        <Trigger Property="ToggleButton.IsChecked" Value="True">
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Normal" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Hover" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Press" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Checked" Value="Visible"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Disable" Value="Hidden"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Normal" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Hover" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Press" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Checked" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="BackGroundImage_Disable" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    
     <!--#region CheckBox-->
     <ControlTemplate x:Key="CheckBoxControlTemplate" TargetType="{x:Type Fluent:CheckBox}">
         <Grid>

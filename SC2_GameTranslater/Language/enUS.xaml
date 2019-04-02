@@ -58,6 +58,16 @@
     <!--#endregion-->
 
     <!--#region UI Text-->
+    <sys:String x:Key="UI_AboutWindow_AboutAuthor_Text">Author:</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutAuthorValue_Text">Team Froggy &amp; Catty</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutCaption_Text">About</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutDonation_Text">Donate us:</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutEmail_Text">Email:</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutSource_Text">Source:</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutSourcePage_Text">Github Source Page</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutUpdate_Text">Update:</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutUpdatePage_Text">Github Release Page</sys:String>
+    <sys:String x:Key="UI_AboutWindow_AboutVersion_Text">Version:</sys:String>
     <sys:String x:Key="UI_Backstage_Menu_Header">Menu</sys:String>
     <sys:String x:Key="UI_BackstageTabItem_MenuRecentProjects_Header">Recent Projects</sys:String>
     <sys:String x:Key="UI_BackstageTabItem_Preference_Header">Preference</sys:String>
@@ -147,11 +157,15 @@
     <sys:String x:Key="UI_RibbonGroupBox_UseStatusFilter_Header">Use Status</sys:String>
     <sys:String x:Key="UI_RibbonTabItem_Start_Header">Start</sys:String>
     <sys:String x:Key="UI_RibbonTabItem_ToolCopyTranslatedText_Header">Translated Copy Tool</sys:String>
+    <sys:String x:Key="UI_RibbonWindow_About_Title">About</sys:String>
+    <sys:String x:Key="UI_RibbonWindow_GoToIndex_Title">Go To Data Index</sys:String>
+    <sys:String x:Key="UI_RibbonWindow_ReloadConfig_Title">Reload Config</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_Preferences_Header">Preferences Setting</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_Projects_Header">Projects file</sys:String>
     <sys:String x:Key="UI_SeparatorTabItem_RecentProjects_Header">Recent Projects</sys:String>
     <sys:String x:Key="UI_TabItem_GameTextForLanguage_Header">Text In Language</sys:String>
     <sys:String x:Key="UI_TabItem_GameTextInGalaxy_Header">Text Combine In Galaxy</sys:String>
+    <sys:String x:Key="UI_TextBlock_BLZInfoPannelCaption_Text">About</sys:String>
     <sys:String x:Key="UI_TextBlock_DetailsID_Text">Text ID: {0}</sys:String>
     <sys:String x:Key="UI_TextBlock_DetailsIndex_Text">Data Index: {0}</sys:String>
     <sys:String x:Key="UI_TextBlock_Preference_Text">Preferences Setting</sys:String>
@@ -159,8 +173,6 @@
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">Recent Projects</sys:String>
     <sys:String x:Key="UI_TextBox_SearchText_ButtonHeader">Search Text</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
-    <sys:String x:Key="UI_Window_GoToIndex_Title">Go To Data Index</sys:String>
-    <sys:String x:Key="UI_Window_ReloadConfig_Title">Reload Config</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->

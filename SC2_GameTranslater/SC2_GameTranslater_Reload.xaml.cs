@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Fluent;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -8,11 +9,12 @@ namespace SC2_GameTranslater
     using Preference = Source.Class_Preference;
     using Log = Source.Class_Log;
     using EnumLanguage = Source.EnumLanguage;
+    using CheckBox = System.Windows.Controls.CheckBox;
 
     /// <summary>
     /// Interaction logic for SC2_GameTranslater_Reload.xaml
     /// </summary>
-    public partial class SC2_GameTranslater_Reload
+    public partial class SC2_GameTranslater_Reload : RibbonWindow
     {
         #region 属性字段
 
