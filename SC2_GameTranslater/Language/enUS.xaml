@@ -173,6 +173,7 @@
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">Recent Projects</sys:String>
     <sys:String x:Key="UI_TextBox_SearchText_ButtonHeader">Search Text</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
+    <sys:String x:Key="UI_GroupBox_EditedText_Header">Edited Text</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->
