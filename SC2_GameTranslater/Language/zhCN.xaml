@@ -46,7 +46,7 @@
     <sys:String x:Key="TEXT_RemovezhCN">[-]zhCN</sys:String>
     <sys:String x:Key="TEXT_RemovezhTW">[-]zhTW</sys:String>
     <sys:String x:Key="TEXT_ruRU">ruRU</sys:String>
-    <sys:String x:Key="TEXT_SC2File">SC II Mod地图或组件文件夹</sys:String>
+    <sys:String x:Key="TEXT_SC2File">SC2组件列表</sys:String>
     <sys:String x:Key="TEXT_SelectALL">全选</sys:String>
     <sys:String x:Key="TEXT_SelectNone">全不选</sys:String>
     <sys:String x:Key="TEXT_WindowTitleText">《星际争霸II》游戏翻译器 V{0}{1}{2}</sys:String>
@@ -88,13 +88,13 @@
     <sys:String x:Key="UI_DataGridColumn_GalaxyLineNumber_Header">Galaxy行号</sys:String>
     <sys:String x:Key="UI_DataGridColumn_GalaxyText_Header">Galaxy文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateDropedText_Header">舍弃文本</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateEditedText_Header">修改文本</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateIndex_Header">数据编号</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateSourceText_Header">原始文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextFile_Header">所在文件</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">文本ID</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">文本状态</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedUseStatus_Header">使用状态</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslateEditedText_Header">修改文本</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslateIndex_Header">数据编号</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslateSourceText_Header">原始文本</sys:String>
     <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Map/Mod路径：</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">详情</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">游戏文本数据</sys:String>
@@ -106,10 +106,12 @@
     <sys:String x:Key="UI_GroupBox_ReloadConfig_Header">重载配置</sys:String>
     <sys:String x:Key="UI_GroupBox_ReloadLanguage_Header">重载语言</sys:String>
     <sys:String x:Key="UI_GroupBox_TranslatedTexts_Header">翻译文本</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_CopyTargets_Header">复制目标语言</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy文件</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">文本文件</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">文本状态</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">使用状态</sys:String>
+    <sys:String x:Key="UI_MenuItem_JumpToText_Header">跳至文本</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">清除日志</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">清空脚本</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateGoToDataIndex_Header">跳转数据编号</sys:String>
@@ -125,14 +127,16 @@
     <sys:String x:Key="UI_RadioButton_SearchText_Header">搜索文本</sys:String>
     <sys:String x:Key="UI_RibbonButton_Accept_Header">应用翻译</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">关闭</sys:String>
+    <sys:String x:Key="UI_RibbonButton_DoCopy_Header">开始复制</sys:String>
     <sys:String x:Key="UI_RibbonButton_FilterNext_Header">下一记录</sys:String>
     <sys:String x:Key="UI_RibbonButton_FilterPrev_Header">上一记录</sys:String>
     <sys:String x:Key="UI_RibbonButton_New_Header">新建</sys:String>
     <sys:String x:Key="UI_RibbonButton_Open_Header">打开</sys:String>
-    <sys:String x:Key="UI_RibbonButton_ReloadSC2_Header">重载文本</sys:String>
-    <sys:String x:Key="UI_RibbonButton_ReloadTranslate_Header">重载翻译</sys:String>
+    <sys:String x:Key="UI_RibbonButton_ReloadSourceText_Header">重载文本</sys:String>
+    <sys:String x:Key="UI_RibbonButton_ReloadTranslation_Header">重载翻译</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">保存</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">另存为</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">复制翻译语言</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">文件</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_FilterRecord_Header">筛选记录</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">所属Galaxy文件</sys:String>
@@ -157,10 +161,6 @@
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
     <sys:String x:Key="UI_Window_GoToIndex_Title">跳转数据编号</sys:String>
     <sys:String x:Key="UI_Window_ReloadConfig_Title">重载选项</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">复制翻译语言</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_CopyTargets_Header">复制目标语言</sys:String>
-    <sys:String x:Key="UI_RibbonButton_DoCopy_Header">开始复制</sys:String>
-    <sys:String x:Key="UI_MenuItem_JumpToText_Header">跳至文本</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->
@@ -187,6 +187,12 @@
     <sys:String x:Key="TP_RibbonButton_Accept_Title">应用翻译文本</sys:String>
     <sys:String x:Key="TP_RibbonButton_Accept_Text" xml:space="preserve">将翻译文本写回到Map/Mod中，在此之前，你需要保证设置的Map\Mod路径有效，你可以在【目录】【配置设置】【配置】对应页面找到相应设置。&#x000D;快捷键：Ctrl + W</sys:String>
     <sys:String x:Key="TP_RibbonButton_Accept_DisableReason">在应用项目前，你需要打开或者新建一个项目，并保证Map/Mod的路径是正确的。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadTranslation_Title">重载修改文本</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadTranslation_Text" xml:space="preserve">从另外一个项目文件重载修改好的文本，你可以选择重载文本的语言以及是否仅重载已翻译的内容。&#x000D;快捷键：Ctrl + R</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadTranslation_DisableReason">在重载前，你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Title">重载源文本</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Text" xml:space="preserve">从另外一个项目文件或直接从Map/Mod重载源文本，然后你可以知道两个项目文件的差异。&#x000D;这些信息是隐藏的，你可以右击翻译文本表个的列头来显示。&#x000D;快捷键：Ctrl + T</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadSourceText_DisableReason">在重载前，你需要打开或者新建一个项目。</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

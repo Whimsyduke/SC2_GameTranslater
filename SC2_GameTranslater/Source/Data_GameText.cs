@@ -555,7 +555,7 @@ namespace SC2_GameTranslater.Source
         /// 批量设置使用状态为新增
         /// </summary>
         /// <param name="oldProject">旧项目</param>
-        private void ReloadText(Data_GameText oldProject)
+        private void ReloadSourceText(Data_GameText oldProject)
         {
             // GetRows
             DataTable table = Tables[TN_GameText];
@@ -643,7 +643,7 @@ namespace SC2_GameTranslater.Source
         public void ReloadProjectData(Data_GameText oldProject)
         {
             ReloadLanguageStatus(oldProject);
-            ReloadText(oldProject);
+            ReloadSourceText(oldProject);
         }
 
         /// <summary>
@@ -652,7 +652,7 @@ namespace SC2_GameTranslater.Source
         /// <param name="dataProject">数据项目</param>
         /// <param name="languages">翻译语言</param>
         /// <param name="onlyModified">仅修改内容</param>
-        public void ReloadTranslatedText(Data_GameText dataProject, List<EnumLanguage> languages, bool onlyModified)
+        public void ReloadTranslationdText(Data_GameText dataProject, List<EnumLanguage> languages, bool onlyModified)
         {
             DataTable dataTable = dataProject.Tables[TN_GameText];
             DataTable targetTable = Tables[TN_GameText];

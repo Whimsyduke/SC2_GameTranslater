@@ -23,7 +23,7 @@ namespace SC2_GameTranslater.Source
         #region 默认值
 
         public static readonly FileInfo Preference_ConfigFile = new FileInfo("Config.cfg");
-        public static readonly Size Preference_DefaultWindowSize = new Size(1366, 768);
+        public static readonly Size Preference_DefaultWindowSize = new Size(1800, 900);
         public static readonly string Preference_DefaultLastFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         public static readonly int Prefrence_MaxRecentProjectCount = 20;
 
@@ -155,12 +155,11 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         public void LoadPreference()
         {
-            if (!Preference_ConfigFile.Exists) return;
 #if !DEBUG
             try
 #endif
             {
-                DeserializeDecompress();
+                if (Preference_ConfigFile.Exists) DeserializeDecompress();
             }
 #if !DEBUG
             catch

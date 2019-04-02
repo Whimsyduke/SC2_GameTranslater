@@ -46,7 +46,7 @@
     <sys:String x:Key="TEXT_RemovezhCN">[-]zhCN</sys:String>
     <sys:String x:Key="TEXT_RemovezhTW">[-]zhTW</sys:String>
     <sys:String x:Key="TEXT_ruRU">ruRU</sys:String>
-    <sys:String x:Key="TEXT_SC2File">SCII Map, Mod Or Component Folders</sys:String>
+    <sys:String x:Key="TEXT_SC2File">SCII ComponentList</sys:String>
     <sys:String x:Key="TEXT_SelectALL">Select All</sys:String>
     <sys:String x:Key="TEXT_SelectNone">Select None</sys:String>
     <sys:String x:Key="TEXT_WindowTitleText">StarcraftII Game Translater V{0}{1}{2}</sys:String>
@@ -88,13 +88,13 @@
     <sys:String x:Key="UI_DataGridColumn_GalaxyLineNumber_Header">Galaxy Line</sys:String>
     <sys:String x:Key="UI_DataGridColumn_GalaxyText_Header">Galaxy Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslateDropedText_Header">Droped Text</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateEditedText_Header">Edited Text</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateIndex_Header">Data Index</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateSourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextFile_Header">In File</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">Text ID</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">Text Status</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedUseStatus_Header">Use Status</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslateEditedText_Header">Edited Text</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslateIndex_Header">Data Index</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslateSourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Map/Mod Path:</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">Details</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">Game Text Details</sys:String>
@@ -106,10 +106,12 @@
     <sys:String x:Key="UI_GroupBox_ReloadConfig_Header">Reload Configure</sys:String>
     <sys:String x:Key="UI_GroupBox_ReloadLanguage_Header">Reload Language</sys:String>
     <sys:String x:Key="UI_GroupBox_TranslatedTexts_Header">Translated Text</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_CopyTargets_Header">Copy Target Text</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy File</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">Record File</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">Text Status</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">Use Status</sys:String>
+    <sys:String x:Key="UI_MenuItem_JumpToText_Header">Jump To Text</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">Clear Log</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">Empty Text</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateGoToDataIndex_Header">Go To Data Index</sys:String>
@@ -125,14 +127,16 @@
     <sys:String x:Key="UI_RadioButton_SearchText_Header">SearchText</sys:String>
     <sys:String x:Key="UI_RibbonButton_Accept_Header">Accept Project</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">Close</sys:String>
+    <sys:String x:Key="UI_RibbonButton_DoCopy_Header">Do Copy</sys:String>
     <sys:String x:Key="UI_RibbonButton_FilterNext_Header">Next Record</sys:String>
     <sys:String x:Key="UI_RibbonButton_FilterPrev_Header">Previous Record</sys:String>
     <sys:String x:Key="UI_RibbonButton_New_Header">New</sys:String>
     <sys:String x:Key="UI_RibbonButton_Open_Header">Open</sys:String>
-    <sys:String x:Key="UI_RibbonButton_ReloadSC2_Header">Reload Compontends</sys:String>
-    <sys:String x:Key="UI_RibbonButton_ReloadTranslate_Header">Reload Translated</sys:String>
+    <sys:String x:Key="UI_RibbonButton_ReloadSourceText_Header">Reload Compontends</sys:String>
+    <sys:String x:Key="UI_RibbonButton_ReloadTranslation_Header">Reload Translated</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">Save</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">Save As</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">Copy Translated Text</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">File</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_FilterRecord_Header">Filter Record</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">In Galaxy File</sys:String>
@@ -157,10 +161,6 @@
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
     <sys:String x:Key="UI_Window_GoToIndex_Title">Go To Data Index</sys:String>
     <sys:String x:Key="UI_Window_ReloadConfig_Title">Reload Config</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">Copy Translated Text</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_CopyTargets_Header">Copy Target Text</sys:String>
-    <sys:String x:Key="UI_RibbonButton_DoCopy_Header">Do Copy</sys:String>
-    <sys:String x:Key="UI_MenuItem_JumpToText_Header">Jump To Text</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->
@@ -187,6 +187,12 @@
     <sys:String x:Key="TP_RibbonButton_Accept_Title">Accept Translated Text</sys:String>
     <sys:String x:Key="TP_RibbonButton_Accept_Text" xml:space="preserve">Write back the translated text to Map/Mod. You need make sure your path of Map/Mod is vaild, if not, you can set it at [Menu][Preferences Setting][Preference].&#x000D;HotKey: Ctrl + E</sys:String>
     <sys:String x:Key="TP_RibbonButton_Accept_DisableReason">You need open or create a new porject before accept it, and also make Map/Mod path vaild.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadTranslation_Title">Reload Edited Text</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadTranslation_Text" xml:space="preserve">Reload the translated text form another project file, you can choose which language you want to reload and if only reload modified text.&#x000D;HotKey: Ctrl + R</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadTranslation_DisableReason">You need open or create a new porject before reload.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Title">Reload Source Text</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Text" xml:space="preserve">Reload the source text form another project file or directly from a Map/Mod, then you can know what have changed between two project.&#x000D;The info is hided, you can right click the column header of translated text grid to show.&#x000D;HotKey: Ctrl + T</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadSourceText_DisableReason">You need open or create a new porject before reload.</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

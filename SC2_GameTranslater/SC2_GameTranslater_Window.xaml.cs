@@ -393,12 +393,12 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 重载命令依赖项属性
         /// </summary>
-        public static RoutedUICommand CommandReloadTranslate { set; get; } = new RoutedUICommand();
+        public static RoutedUICommand CommandReloadTranslation { set; get; } = new RoutedUICommand();
 
         /// <summary>
         /// 重载(地图/Mod)命令依赖项属性
         /// </summary>
-        public static RoutedUICommand CommandReloadSC2 { set; get; } = new RoutedUICommand();
+        public static RoutedUICommand CommandReloadSourceText { set; get; } = new RoutedUICommand();
 
         /// <summary>
         /// 选择Mod/Map依赖项属性
@@ -587,9 +587,9 @@ namespace SC2_GameTranslater
             Globals.MainWindow.CommandBindings.Add(commandBinding);
             commandBinding = new CommandBinding(CommandAccept, Executed_Accept, CanExecuted_Accept);
             Globals.MainWindow.CommandBindings.Add(commandBinding);
-            commandBinding = new CommandBinding(CommandReloadTranslate, Executed_ReloadTranslate, CanExecuted_ReloadTranslate);
+            commandBinding = new CommandBinding(CommandReloadTranslation, Executed_ReloadTranslation, CanExecuted_ReloadTranslation);
             Globals.MainWindow.CommandBindings.Add(commandBinding);
-            commandBinding = new CommandBinding(CommandReloadSC2, Executed_ReloadSC2, CanExecuted_ReloadSC2);
+            commandBinding = new CommandBinding(CommandReloadSourceText, Executed_ReloadSourceText, CanExecuted_ReloadSourceText);
             Globals.MainWindow.CommandBindings.Add(commandBinding);
             commandBinding = new CommandBinding(CommandComponentsPath, Executed_ComponentsPath, CanExecuted_ComponentsPath);
             Globals.MainWindow.CommandBindings.Add(commandBinding);
@@ -848,7 +848,7 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="sender">命令来源</param>
         /// <param name="e">路由事件参数</param>
-        public static void Executed_ReloadTranslate(object sender, ExecutedRoutedEventArgs e)
+        public static void Executed_ReloadTranslation(object sender, ExecutedRoutedEventArgs e)
         {
             Log.Assert(Globals.CurrentProject != null, "Globals.CurrentProject != null");
             string baseFolder = Globals.Preference.LastFolderPath;
@@ -865,7 +865,7 @@ namespace SC2_GameTranslater
                 };
                 if (!dialog.ShowDialog() == true) return;
                 List<EnumLanguage> languages = dialog.DirtLanguageCheckBox.Where(r => r.Value.IsChecked == true).Select(r => r.Key).ToList();
-                Globals.CurrentProject?.ReloadTranslatedText(project, languages, dialog.CheckBox_ReloadOnlyModify.IsChecked == true);
+                Globals.CurrentProject?.ReloadTranslationdText(project, languages, dialog.CheckBox_ReloadOnlyModify.IsChecked == true);
                 Globals.MainWindow.RefreshTranslatedText(Globals.CurrentProject);
             }
             e.Handled = true;
@@ -876,7 +876,7 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="sender">命令来源</param>
         /// <param name="e">路由事件参数</param>
-        public static void CanExecuted_ReloadTranslate(object sender, CanExecuteRoutedEventArgs e)
+        public static void CanExecuted_ReloadTranslation(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = Globals.ComponentsPathValid;
             e.Handled = true;
@@ -887,17 +887,25 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="sender">命令来源</param>
         /// <param name="e">路由事件参数</param>
-        public static void Executed_ReloadSC2(object sender, ExecutedRoutedEventArgs e)
+        public static void Executed_ReloadSourceText(object sender, ExecutedRoutedEventArgs e)
         {
             Log.Assert(Globals.CurrentProject != null, "Globals.CurrentProject != null");
             string baseFolder = Globals.Preference.LastFolderPath;
-            string filter = Globals.GetStringFromCurrentLanguage("TEXT_SC2File") + "|" + Globals.FileName_SC2Components;
+            string filter = Globals.GetStringFromCurrentLanguage("TEXT_SC2File") + "|" + Globals.FileName_SC2Components + "|" + Globals.GetStringFromCurrentLanguage("TEXT_ProjectFile") + "|*" + Globals.Extension_SC2GameTran;
             string title = Globals.GetStringFromCurrentLanguage("UI_OpenFileDialog_Reload_Title");
             if (Globals.OpenFilePathDialog(baseFolder, filter, title, out OpenFileDialog fileDialog) == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo file = new FileInfo(fileDialog.FileName);
-                Globals.Preference.LastFolderPath = file.DirectoryName;
-                ProjectReloadSC2(file);
+                if (fileDialog.FilterIndex == 1)
+                {
+                    Globals.Preference.LastFolderPath = file.DirectoryName;
+                    ProjectReloadSourceText(file);
+                }
+                else
+                {
+                    Data_GameText project = GetProjectDataFile(file);
+                    ProjectReload(project);
+                }
             }
             e.Handled = true;
         }
@@ -907,7 +915,7 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="sender">命令来源</param>
         /// <param name="e">路由事件参数</param>
-        public static void CanExecuted_ReloadSC2(object sender, CanExecuteRoutedEventArgs e)
+        public static void CanExecuted_ReloadSourceText(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = Globals.ComponentsPathValid;
             e.Handled = true;
@@ -2421,7 +2429,7 @@ namespace SC2_GameTranslater
         /// <summary>
         /// 重载项目(地图/Mod)
         /// </summary>
-        public static void ProjectReloadSC2(FileInfo file)
+        public static void ProjectReloadSourceText(FileInfo file)
         {
             Data_GameText project = new Data_GameText();
             project.Initialization(file, ProjectReloadCallback);

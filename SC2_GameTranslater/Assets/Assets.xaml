@@ -4,8 +4,9 @@
     <BitmapImage x:Key="IMAGE_New" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-general_new.png" />
     <BitmapImage x:Key="IMAGE_Open" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-general_open.png" />
     <BitmapImage x:Key="IMAGE_Save" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-general_save.png" />
-    <BitmapImage x:Key="IMAGE_Accept" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newcondition.png" />
-    <BitmapImage x:Key="IMAGE_Reload" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newconditiondefinition.png" />
+    <BitmapImage x:Key="IMAGE_Accept" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-previewer_importmapdata.png" />
+    <BitmapImage x:Key="IMAGE_ReloadTranslation" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newconditiondefinition.png" />
+    <BitmapImage x:Key="IMAGE_ReloadSourceText" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newactiondefinition.png" />
     <BitmapImage x:Key="IMAGE_Close" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-data_types_buttons.png" />
     <BitmapImage x:Key="IMAGE_GalaxyNone" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_game.png" />
     <BitmapImage x:Key="IMAGE_GalaxyFile" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_minimap.png" />

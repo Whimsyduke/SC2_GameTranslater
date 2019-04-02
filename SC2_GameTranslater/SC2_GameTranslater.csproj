@@ -186,7 +186,6 @@
     <Resource Include="Assets\Image\ui-editoricon-triggercategories_story.png" />
     <Resource Include="Assets\Image\ui-editoricon-triggercategories_techpurchase.png" />
     <Resource Include="Assets\Image\ui-editoricon-triggereditor_newcomment.png" />
-    <Resource Include="Assets\Image\ui-editoricon-triggereditor_newcondition.png" />
     <Resource Include="Assets\Image\ui-editoricon-triggereditor_newconditiondefinition.png" />
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +228,12 @@
     <Resource Include="Assets\Image\TranslationTool_Language_Null.png" />
     <Resource Include="Icon.ico" />
     <Resource Include="Assets\Image\Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\ui-editoricon-previewer_importmapdata.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\ui-editoricon-triggereditor_newactiondefinition.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
