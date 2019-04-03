@@ -500,6 +500,20 @@ namespace SC2_GameTranslater
         public DataRowView LastSelectedCell { private set; get; }
 
         /// <summary>
+        /// 上一次编辑的数据
+        /// </summary>
+        public DataRowView LastEditedCell
+        {
+            set
+            {
+                mLastEditedCell = value;
+                ResetEditedTextBinding();
+            }
+            get => mLastEditedCell;
+        }
+        private DataRowView mLastEditedCell;
+
+        /// <summary>
         /// Galaxy按钮列表
         /// </summary>
         public List<ToggleButton> GalaxyButtons { get; } = new List<ToggleButton>();
@@ -2276,6 +2290,36 @@ namespace SC2_GameTranslater
             }
         }
 
+        /// <summary>
+        /// 编辑文本变化
+        /// </summary>
+        /// <returns>取消变化</returns>
+        private void OnEditedTextChange(DataRowView view, string newValue)
+        {
+            if (view == null) return;
+            DataRow row = view.Row;
+            string keyStatus = Data_GameText.GetRowNameForLanguage(EnumCurrentTranLangTarget, Data_GameText.RN_GameText_TextStatus);
+            string keySource = Data_GameText.GetRowNameForLanguage(EnumCurrentTranLangSource, Data_GameText.RN_GameText_SourceText);
+            string value = newValue;
+            switch ((EnumGameTextStatus)row[keyStatus])
+            {
+                case EnumGameTextStatus.Empty:
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        row[keyStatus] = EnumGameTextStatus.Modified;
+                        CurrentProjectNeedSave = true;
+                    }
+                    break;
+                case EnumGameTextStatus.Normal:
+                    if (value != row[keySource] as string)
+                    {
+                        row[keyStatus] = EnumGameTextStatus.Modified;
+                        CurrentProjectNeedSave = true;
+                    }
+                    break;
+            }
+        }
+
         #endregion
         
         #endregion
@@ -2343,7 +2387,8 @@ namespace SC2_GameTranslater
         /// 保存项目
         /// </summary>
         /// <param name="isSaveAs">是否另存为</param>
-        public static void ProjectSave(bool isSaveAs)
+        /// <return>是否保存</return>
+        public static bool ProjectSave(bool isSaveAs)
         {
             Log.Assert(Globals.CurrentProject != null, "Globals.CurrentProject == null");
             if (!isSaveAs && Globals.CurrentProjectPath != null)
@@ -2364,7 +2409,12 @@ namespace SC2_GameTranslater
                     ProjectSave(file);
                     AddRecentProject(file);
                 }
+                else
+                {
+                    return false;
+                }
             }
+            return true;
         }
 
         /// <summary>
@@ -2372,9 +2422,12 @@ namespace SC2_GameTranslater
         /// </summary>
         public static void AskForSave()
         {
-            if (Log.ShowSystemMessage(true, MessageBoxButton.YesNo, MessageBoxImage.None, "MSG_AskForSave") == MessageBoxResult.Yes)
+            while(true)
             {
-                ProjectSave(false);
+                if (Log.ShowSystemMessage(true, MessageBoxButton.YesNo, MessageBoxImage.None, "MSG_AskForSave") != MessageBoxResult.Yes || ProjectSave(false))
+                {
+                    break;
+                }
             }
         }
 
@@ -2471,6 +2524,7 @@ namespace SC2_GameTranslater
         private void OnProjectChangeRefresh(Data_GameText oldPro, Data_GameText newPro)
         {
             CanRefreshTranslatedText = false;
+            LastEditedCell = null;
             RefreshTranslateAndSearchLanguageButtons(newPro);
             RefreshGalaxyTextFileFilterButton(newPro);
             RefreshTextFileFilterButton(newPro);
@@ -2528,6 +2582,31 @@ namespace SC2_GameTranslater
         {
             DataGridColumn_TranslateEditedText.Binding = language == 0 ? null : GetRowBinding(language, Data_GameText.RN_GameText_EditedText);
             RefreshInGalaxyTextDetails();
+            ResetEditedTextBinding();
+        }
+
+        /// <summary>
+        /// 重置编辑文本绑定
+        /// </summary>
+        private void ResetEditedTextBinding()
+        {
+            if (LastEditedCell != null)
+            {
+                Binding binding = new Binding(Data_GameText.GetRowNameForLanguage(EnumCurrentTranLangTarget, Data_GameText.RN_GameText_EditedText))
+                {
+                    Source = LastEditedCell,
+                    Mode = BindingMode.TwoWay,
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,                    
+                };
+                TextBox_EditedBox.IsEnabled = true;
+                TextBox_EditedBox.SetBinding(TextBox.TextProperty, binding);
+            }
+            else
+            {
+                TextBox_EditedBox.IsEnabled = false;
+                BindingOperations.ClearBinding(TextBox_EditedBox, TextBox.TextProperty);
+                TextBox_EditedBox.Text = "";
+            }
         }
 
         #endregion
@@ -2632,6 +2711,7 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void RibbonWindow_Main_Closing(object sender, CancelEventArgs e)
         {
+            ProjectClose();
             Globals.Preference.SavePreference();
         }
 
@@ -2918,6 +2998,20 @@ namespace SC2_GameTranslater
         }
 
         /// <summary>
+        /// 表格数据准备编辑
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void DataGrid_TranslatedTexts_PreparingCellForEdit(object sender, DataGridPreparingCellForEditEventArgs e)
+        {
+
+            if (e.Column == DataGridColumn_TranslateEditedText)
+            {
+                if (e.Row.Item is DataRowView view) LastEditedCell = view;
+            }
+        }
+
+        /// <summary>
         /// 表格数据结束编辑
         /// </summary>
         /// <param name="sender">事件控件</param>
@@ -2927,32 +3021,18 @@ namespace SC2_GameTranslater
             if (e.Column == DataGridColumn_TranslateEditedText)
             {
                 if (!(e.Row.Item is DataRowView view)) return;
-                DataRow row = view.Row;
-                string keyStatus = Data_GameText.GetRowNameForLanguage(EnumCurrentTranLangTarget, Data_GameText.RN_GameText_TextStatus);
-                string keySource = Data_GameText.GetRowNameForLanguage(EnumCurrentTranLangSource, Data_GameText.RN_GameText_SourceText);
-                string value = ((TextBox)e.EditingElement).Text;
-                switch ((EnumGameTextStatus)row[keyStatus])
-                {
-                    case EnumGameTextStatus.Empty:
-                        if (string.IsNullOrEmpty(value))
-                        {
-                            e.Cancel = true;
-                        }
-                        else
-                        {
-                            row[keyStatus] = EnumGameTextStatus.Modified;
-                            CurrentProjectNeedSave = true;
-                        }
-                        break;
-                    case EnumGameTextStatus.Normal:
-                        if (value != row[keySource] as string)
-                        {
-                            row[keyStatus] = EnumGameTextStatus.Modified;
-                            CurrentProjectNeedSave = true;
-                        }
-                        break;
-                }
+                OnEditedTextChange(view, ((TextBox)e.EditingElement).Text);
             }
+        }
+
+        /// <summary>
+        /// 输入完成事件
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void TextBox_EditedBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            OnEditedTextChange(LastEditedCell, TextBox_EditedBox.Text);
         }
 
         /// <summary>

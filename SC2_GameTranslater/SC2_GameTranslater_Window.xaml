@@ -846,6 +846,7 @@
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 CellEditEnding="DataGrid_TranslatedTexts_CellEditEnding"
+                PreparingCellForEdit="DataGrid_TranslatedTexts_PreparingCellForEdit"
                 EnableColumnVirtualization="False"
                 EnableRowVirtualization="True"
                 SelectedCellsChanged="DataGrid_TranslatedTexts_SelectedCellsChanged"
@@ -1314,6 +1315,7 @@
         <Grid Grid.Row="3" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <GroupBox
@@ -1831,15 +1833,23 @@
                     </TabItem>
                 </TabControl>
             </GroupBox>
+            <GridSplitter
+            Grid.Column="1"
+            Width="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Stretch"
+            ResizeDirection="Columns" />
             <GroupBox
                 Name="GroupBox_EditedText"
-                Grid.Column="1"
+                Grid.Column="2"
                 Margin="3"
                 Header="{DynamicResource UI_GroupBox_EditedText_Header}">
                 <TextBox
                     Name="TextBox_EditedBox"
                     Margin="3"
                     AcceptsReturn="False"
+                    IsEnabled="False"
+                    LostFocus="TextBox_EditedBox_LostFocus"
                     TextWrapping="Wrap" />
             </GroupBox>
         </Grid>
