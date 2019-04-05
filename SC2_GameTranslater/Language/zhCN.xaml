@@ -18,6 +18,7 @@
     <sys:String x:Key="TEXT_AddzhTW">[+]zhTW</sys:String>
     <sys:String x:Key="TEXT_All">全部</sys:String>
     <sys:String x:Key="TEXT_Cancel">取消</sys:String>
+    <sys:String x:Key="TEXT_Comma">，{0}</sys:String>
     <sys:String x:Key="TEXT_Confirm">确定</sys:String>
     <sys:String x:Key="TEXT_deDE">deDE</sys:String>
     <sys:String x:Key="TEXT_enUS">enUS</sys:String>
@@ -49,12 +50,11 @@
     <sys:String x:Key="TEXT_SC2File">SC2组件列表</sys:String>
     <sys:String x:Key="TEXT_SelectALL">全选</sys:String>
     <sys:String x:Key="TEXT_SelectNone">全不选</sys:String>
-    <sys:String x:Key="TEXT_WindowTitleText">《星际争霸II》游戏翻译器 V{0}{1}{2}</sys:String>
     <sys:String x:Key="TEXT_WindowTitleProject">&#160;项目：</sys:String>
     <sys:String x:Key="TEXT_WindowTitleProjectUnsaved">未保存的项目</sys:String>
+    <sys:String x:Key="TEXT_WindowTitleText">《星际争霸II》游戏翻译器 V{0}{1}{2}</sys:String>
     <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
     <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
-    <sys:String x:Key="TEXT_Comma">，{0}</sys:String>
     <!--#endregion-->
 
     <!--#region 界面文本-->
@@ -107,6 +107,7 @@
     <sys:String x:Key="UI_DataGridColumn_TranslateSourceText_Header">原始文本</sys:String>
     <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Map/Mod路径：</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">详情</sys:String>
+    <sys:String x:Key="UI_GroupBox_EditedText_Header">修改文本</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">游戏文本数据</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextInGalaxy_Header">Galaxy文本数据（</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextShowLanguage_Header">显示语言</sys:String>
@@ -173,7 +174,6 @@
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">最近项目</sys:String>
     <sys:String x:Key="UI_TextBox_SearchText_ButtonHeader">搜索文本</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
-    <sys:String x:Key="UI_GroupBox_EditedText_Header">修改文本</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->
@@ -206,6 +206,12 @@
     <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Title">重载源文本</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Text" xml:space="preserve">从另外一个项目文件或直接从Map/Mod重载源文本，然后你可以知道两个项目文件的差异。&#x000D;这些信息是隐藏的，你可以右击翻译文本表个的列头来显示。&#x000D;快捷键：Ctrl + T</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadSourceText_DisableReason">在重载前，你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_FilterPrev_Title">前一选择或搜索状态</sys:String>
+    <sys:String x:Key="TP_RibbonButton_FilterPrev_Text" xml:space="preserve">切换到前一翻译文本表格选择项或者搜索状态.&#x000D;快捷键：Ctrl + ←</sys:String>
+    <sys:String x:Key="TP_RibbonButton_FilterPrev_DisableReason">不存在前一选择或者搜索状态。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_FilterNext_Title">下一选择或搜索状态</sys:String>
+    <sys:String x:Key="TP_RibbonButton_FilterNext_Text" xml:space="preserve">切换到前一翻译文本表格选择项或者搜索状态.&#x000D;快捷键：Ctrl + →</sys:String>
+    <sys:String x:Key="TP_RibbonButton_FilterNext_DisableReason">不存在下一选择或者搜索状态。</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->
@@ -227,22 +233,22 @@
     <!--#endregion-->
 
     <!--#region Message-->
-    <sys:String x:Key="MSG_AskForSave_Message">存在未保存的更改，是否在关闭前保存它们？</sys:String>
-    <sys:String x:Key="MSG_AskForSave_Title">消息</sys:String>
-    <sys:String x:Key="MSG_CanNotFindProjectFile_Message">无法找到项目文件{0}。是否将此条记录删除？</sys:String>
-    <sys:String x:Key="MSG_CanNotFindProjectFile_Title">消息</sys:String>
-    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Message">项目文件版本号（{0}）与软件支持项目文件版本号（{1}）不匹配。</sys:String>
-    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Title">消息</sys:String>
-    <sys:String x:Key="MSG_SrollToItemFindOutID_Message">无法在当前搜索结果中找到ID（{0}），是否在重置筛选设置后再次尝试？</sys:String>
-    <sys:String x:Key="MSG_SrollToItemFindOutID_Title">消息</sys:String>
-    <sys:String x:Key="MSG_DoCopyTranslateText_Message">是否确认自{0}复制翻译文本到{1}？这将导致无法切换到过去的筛选条件。</sys:String>
-    <sys:String x:Key="MSG_DoCopyTranslateText_Title">消息</sys:String>
     <sys:String x:Key="MSG_AcceptTranslateText_Message">翻译文件已经成功写入{0}。旧翻译文件的备份保存在{1}。</sys:String>
     <sys:String x:Key="MSG_AcceptTranslateText_Title">消息</sys:String>
     <sys:String x:Key="MSG_AcceptTranslateTextError_Message">翻译文件已经写入失败。Map/Mod路径无效。</sys:String>
     <sys:String x:Key="MSG_AcceptTranslateTextError_Title">消息</sys:String>
+    <sys:String x:Key="MSG_AskForSave_Message">存在未保存的更改，是否在关闭前保存它们？</sys:String>
+    <sys:String x:Key="MSG_AskForSave_Title">消息</sys:String>
+    <sys:String x:Key="MSG_CanNotFindProjectFile_Message">无法找到项目文件{0}。是否将此条记录删除？</sys:String>
+    <sys:String x:Key="MSG_CanNotFindProjectFile_Title">消息</sys:String>
+    <sys:String x:Key="MSG_DoCopyTranslateText_Message">是否确认自{0}复制翻译文本到{1}？这将导致无法切换到过去的筛选条件。</sys:String>
+    <sys:String x:Key="MSG_DoCopyTranslateText_Title">消息</sys:String>
+    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Message">项目文件版本号（{0}）与软件支持项目文件版本号（{1}）不匹配。</sys:String>
+    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Title">消息</sys:String>
     <sys:String x:Key="MSG_SaveProject_Message">成功保存到{0}.</sys:String>
     <sys:String x:Key="MSG_SaveProject_Title">消息</sys:String>
+    <sys:String x:Key="MSG_SrollToItemFindOutID_Message">无法在当前搜索结果中找到ID（{0}），是否在重置筛选设置后再次尝试？</sys:String>
+    <sys:String x:Key="MSG_SrollToItemFindOutID_Title">消息</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

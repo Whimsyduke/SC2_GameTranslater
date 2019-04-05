@@ -381,13 +381,35 @@
                         Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordPrev}"
                         Header="{DynamicResource UI_RibbonButton_FilterPrev_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_FilterPrev}"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_FilterPrev}" />
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_FilterPrev}">
+                        <Fluent:Button.ToolTip>
+                            <Fluent:ScreenTip
+                                Title="{DynamicResource TP_RibbonButton_FilterPrev_Title}"
+                                Width="300"
+                                DisableReason="{DynamicResource TP_RibbonButton_FilterPrev_DisableReason}"
+                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
+                                Image="{StaticResource ResourceKey=IMAGE_ReloadSourceText}"
+                                IsRibbonAligned="False"
+                                Text="{DynamicResource TP_RibbonButton_ReloadSourceText_Text}" />
+                        </Fluent:Button.ToolTip>
+                    </Fluent:Button>
                     <Fluent:Button
                         x:Name="RibbonButton_FilterNext"
                         Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordNext}"
                         Header="{DynamicResource UI_RibbonButton_FilterNext_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_FilterNext}"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_FilterNext}" />
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_FilterNext}">
+                        <Fluent:Button.ToolTip>
+                            <Fluent:ScreenTip
+                                Title="{DynamicResource TP_RibbonButton_FilterNext_Title}"
+                                Width="300"
+                                DisableReason="{DynamicResource TP_RibbonButton_FilterNext_DisableReason}"
+                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
+                                Image="{StaticResource ResourceKey=IMAGE_FilterNext}"
+                                IsRibbonAligned="False"
+                                Text="{DynamicResource TP_RibbonButton_FilterNext_Text}" />
+                        </Fluent:Button.ToolTip>
+                    </Fluent:Button>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_TranslatedLanguage"
@@ -846,9 +868,9 @@
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 CellEditEnding="DataGrid_TranslatedTexts_CellEditEnding"
-                PreparingCellForEdit="DataGrid_TranslatedTexts_PreparingCellForEdit"
                 EnableColumnVirtualization="False"
                 EnableRowVirtualization="True"
+                PreparingCellForEdit="DataGrid_TranslatedTexts_PreparingCellForEdit"
                 SelectedCellsChanged="DataGrid_TranslatedTexts_SelectedCellsChanged"
                 SelectionMode="Extended"
                 SelectionUnit="CellOrRowHeader">
@@ -1834,11 +1856,11 @@
                 </TabControl>
             </GroupBox>
             <GridSplitter
-            Grid.Column="1"
-            Width="3"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Stretch"
-            ResizeDirection="Columns" />
+                Grid.Column="1"
+                Width="3"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Stretch"
+                ResizeDirection="Columns" />
             <GroupBox
                 Name="GroupBox_EditedText"
                 Grid.Column="2"

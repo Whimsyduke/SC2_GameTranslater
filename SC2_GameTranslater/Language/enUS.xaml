@@ -18,6 +18,7 @@
     <sys:String x:Key="TEXT_AddzhTW">[+]zhTW</sys:String>
     <sys:String x:Key="TEXT_All">All</sys:String>
     <sys:String x:Key="TEXT_Cancel">Cancel</sys:String>
+    <sys:String x:Key="TEXT_Comma">, {0}</sys:String>
     <sys:String x:Key="TEXT_Confirm">Confirm</sys:String>
     <sys:String x:Key="TEXT_deDE">deDE</sys:String>
     <sys:String x:Key="TEXT_enUS">enUS</sys:String>
@@ -49,12 +50,11 @@
     <sys:String x:Key="TEXT_SC2File">SCII ComponentList</sys:String>
     <sys:String x:Key="TEXT_SelectALL">Select All</sys:String>
     <sys:String x:Key="TEXT_SelectNone">Select None</sys:String>
-    <sys:String x:Key="TEXT_WindowTitleText">StarcraftII Game Translater V{0}{1}{2}</sys:String>
     <sys:String x:Key="TEXT_WindowTitleProject">&#160;Project:&#160;</sys:String>
     <sys:String x:Key="TEXT_WindowTitleProjectUnsaved">Unsaved Project</sys:String>
+    <sys:String x:Key="TEXT_WindowTitleText">StarcraftII Game Translater V{0}{1}{2}</sys:String>
     <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
     <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
-    <sys:String x:Key="TEXT_Comma">, {0}</sys:String>
     <!--#endregion-->
 
     <!--#region UI Text-->
@@ -107,6 +107,7 @@
     <sys:String x:Key="UI_DataGridColumn_TranslateSourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Map/Mod Path:</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">Details</sys:String>
+    <sys:String x:Key="UI_GroupBox_EditedText_Header">Edited Text</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">Game Text Details</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextInGalaxy_Header">Galaxy Text Details (</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextShowLanguage_Header">Show Language</sys:String>
@@ -173,7 +174,6 @@
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">Recent Projects</sys:String>
     <sys:String x:Key="UI_TextBox_SearchText_ButtonHeader">Search Text</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
-    <sys:String x:Key="UI_GroupBox_EditedText_Header">Edited Text</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->
@@ -206,6 +206,12 @@
     <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Title">Reload Source Text</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Text" xml:space="preserve">Reload the source text form another project file or directly from a Map/Mod, then you can know what have changed between two project.&#x000D;The info is hided, you can right click the column header of translated text grid to show.&#x000D;HotKey: Ctrl + T</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadSourceText_DisableReason">You need open or create a new porject before reload.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_FilterPrev_Title">Previous Selection Of Search State</sys:String>
+    <sys:String x:Key="TP_RibbonButton_FilterPrev_Text" xml:space="preserve">Go to previous selection in Translated Text Grid or use previou search state.&#x000D;HotKey: Ctrl + Left</sys:String>
+    <sys:String x:Key="TP_RibbonButton_FilterPrev_DisableReason">No selection or search record in previous.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_FilterNext_Title">Next Selection Of Search State</sys:String>
+    <sys:String x:Key="TP_RibbonButton_FilterNext_Text" xml:space="preserve">Go to next selection in Translated Text Grid or use previou search state.&#x000D;HotKey: Ctrl + Right</sys:String>
+    <sys:String x:Key="TP_RibbonButton_FilterNext_DisableReason">No selection or search record in next.</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->
@@ -227,22 +233,22 @@
     <!--#endregion-->
 
     <!--#region Message-->
-    <sys:String x:Key="MSG_AskForSave_Message">Have unsaved change. Do you want to save it before closing?</sys:String>
-    <sys:String x:Key="MSG_AskForSave_Title">Notice</sys:String>
-    <sys:String x:Key="MSG_CanNotFindProjectFile_Message">Can not find project file {0}. Do you want to delete it?</sys:String>
-    <sys:String x:Key="MSG_CanNotFindProjectFile_Title">Notice</sys:String>
-    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Message">Project file Version ({0}) is mismatched the supported file version ({1}) of the software.</sys:String>
-    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Title">Notice</sys:String>
-    <sys:String x:Key="MSG_SrollToItemFindOutID_Message">Can not find the ID {0} in current search result, do you want to retry after reset filter?</sys:String>
-    <sys:String x:Key="MSG_SrollToItemFindOutID_Title">Notice</sys:String>
-    <sys:String x:Key="MSG_DoCopyTranslateText_Message">Are you sure copy translated text form {0} to {1}? You will  not go back to the search filter before.</sys:String>
-    <sys:String x:Key="MSG_DoCopyTranslateText_Title">Notice</sys:String>
     <sys:String x:Key="MSG_AcceptTranslateText_Message">Translated text successfully write to {0}. And you can find the backup of old file at {1}.</sys:String>
     <sys:String x:Key="MSG_AcceptTranslateText_Title">Notice</sys:String>
     <sys:String x:Key="MSG_AcceptTranslateTextError_Message">Translated text write back failed. Map/Mod path is valid.</sys:String>
     <sys:String x:Key="MSG_AcceptTranslateTextError_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_AskForSave_Message">Have unsaved change. Do you want to save it before closing?</sys:String>
+    <sys:String x:Key="MSG_AskForSave_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_CanNotFindProjectFile_Message">Can not find project file {0}. Do you want to delete it?</sys:String>
+    <sys:String x:Key="MSG_CanNotFindProjectFile_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_DoCopyTranslateText_Message">Are you sure copy translated text form {0} to {1}? You will  not go back to the search filter before.</sys:String>
+    <sys:String x:Key="MSG_DoCopyTranslateText_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Message">Project file Version ({0}) is mismatched the supported file version ({1}) of the software.</sys:String>
+    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Title">Notice</sys:String>
     <sys:String x:Key="MSG_SaveProject_Message">Successfully save to {0}.</sys:String>
     <sys:String x:Key="MSG_SaveProject_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_SrollToItemFindOutID_Message">Can not find the ID {0} in current search result, do you want to retry after reset filter?</sys:String>
+    <sys:String x:Key="MSG_SrollToItemFindOutID_Title">Notice</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>
