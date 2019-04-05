@@ -49,8 +49,6 @@ namespace SC2_GameTranslater
         public SC2_GameTranslater_GoToIndex(int maxIndex)
         {
             InitializeComponent();
-            ResourceDictionary_WindowLanguage.MergedDictionaries.Clear();
-            ResourceDictionary_WindowLanguage.MergedDictionaries.Add(Globals.CurrentLanguage);
             GroupBox_GoToIndex.Header = Globals.GetStringFromCurrentLanguage("UI_GroupBox_GoToIndex_Header", maxIndex);
             MaxIndex = maxIndex;
             Binding binding = new Binding("Value")

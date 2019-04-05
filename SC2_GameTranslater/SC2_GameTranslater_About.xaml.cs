@@ -31,8 +31,6 @@ namespace SC2_GameTranslater
         public SC2_GameTranslater_About()
         {
             InitializeComponent();
-            ResourceDictionary_WindowLanguage.MergedDictionaries.Clear();
-            ResourceDictionary_WindowLanguage.MergedDictionaries.Add(Globals.CurrentLanguage);
             if (Globals.MainWindow.EnumCurrentLanguage != EnumLanguage.zhCN)
             {
                 Image_Alipay.Visibility = Visibility.Hidden;

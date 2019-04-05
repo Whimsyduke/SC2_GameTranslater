@@ -277,9 +277,9 @@ namespace SC2_GameTranslater
         {
             set
             {
-                ResourceDictionary_WindowLanguage.MergedDictionaries.Clear();
+                App.Current.Resources.MergedDictionaries[0].MergedDictionaries.Clear();
                 Globals.CurrentLanguage = Globals.DictUILanguages[value];
-                ResourceDictionary_WindowLanguage.MergedDictionaries.Add(Globals.CurrentLanguage);
+                App.Current.Resources.MergedDictionaries[0].MergedDictionaries.Add(Globals.CurrentLanguage);
                 RibbonLocalization.Current.Localization = Globals.FluentLocalizationMap[value];
                 SetValue(EnumCurrentLanguageProperty, value);
             }

@@ -14,13 +14,6 @@
     Icon="pack://application:,,,/Assets/Image/Icon.ico"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Fluent:RibbonWindow.Resources>
-        <ResourceDictionary x:Name="ResourceDictionary_WindowLanguage">
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Language/zhCN.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Fluent:RibbonWindow.Resources>
     <Window.InputBindings>
         <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.CommandNew}" Gesture="Control+N" />
         <KeyBinding Command="{x:Static local:SC2_GameTranslater_Window.CommandOpen}" Gesture="Control+O" />

@@ -12,13 +12,6 @@
     ResizeMode="NoResize"
     SizeToContent="WidthAndHeight"
     mc:Ignorable="d">
-    <Window.Resources>
-        <ResourceDictionary x:Name="ResourceDictionary_WindowLanguage">
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Language/zhCN.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

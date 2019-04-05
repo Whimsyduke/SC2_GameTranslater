@@ -37,8 +37,6 @@ namespace SC2_GameTranslater
         public SC2_GameTranslater_Reload(List<EnumLanguage> listLang)
         {
             InitializeComponent();
-            ResourceDictionary_WindowLanguage.MergedDictionaries.Clear();
-            ResourceDictionary_WindowLanguage.MergedDictionaries.Add(Globals.CurrentLanguage);
             int x = 0;
             int y = 0;
             foreach (EnumLanguage language in listLang)

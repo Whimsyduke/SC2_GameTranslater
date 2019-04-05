@@ -11,13 +11,6 @@
     ResizeMode="NoResize"
     SizeToContent="WidthAndHeight"
     mc:Ignorable="d">
-    <Fluent:RibbonWindow.Resources>
-        <ResourceDictionary x:Name="ResourceDictionary_WindowLanguage">
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Language/zhCN.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Fluent:RibbonWindow.Resources>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid
             Name="Grid_Content"
