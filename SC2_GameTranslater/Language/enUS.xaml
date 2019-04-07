@@ -226,12 +226,12 @@
     <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_Title">Software Language</sys:String>
     <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_Text" xml:space="preserve">Set software display language.</sys:String>
     <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_DisableReason">Reason</sys:String>
-    <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Title">Translate Source Language</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Title">Translated Source Language</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Text" xml:space="preserve">The language that translate from. The data of Source Text column in Translated Text Data Grid shows depend on its value.</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_DisableReason">You need open or create a new porject before select a Source Language.</sys:String>
-    <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_Title">Translate Target Language</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_Title">Translated Target Language</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_Text" xml:space="preserve">The language that translate to. The data of Text Status column, Use Status column, Droped Text column and Edited Text column in Translated Text Data Grid shows depend on its value.</sys:String>
-    <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_DisableReason">You need open or create a new porject before select a Source Language</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_DisableReason">You need open or create a new porject before select a Target Language</sys:String>
     
     <!--#endregion-->
 

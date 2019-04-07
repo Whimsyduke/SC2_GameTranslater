@@ -92,9 +92,14 @@ namespace SC2_GameTranslater.Source
         public static Dictionary<EnumLanguage, ResourceDictionary> DictUILanguages { set; get; } = new Dictionary<EnumLanguage, ResourceDictionary>();
 
         /// <summary>
+        /// 全部语言
+        /// </summary>
+        public static List<EnumLanguage> AllLanguage { get; } = AllLanguageList();
+
+        /// <summary>
         /// 本地化信息字典
         /// </summary>
-        public static Dictionary<string, CultureInfo> DictCultureInfo { set; get; } = new Dictionary<string, CultureInfo>();
+        public static Dictionary<string, CultureInfo> DictCultureInfo { set; get; } = NewCultureInfoDict();
 
         /// <summary>
         /// 列表项对应语言
@@ -122,11 +127,6 @@ namespace SC2_GameTranslater.Source
         public static Class_Preference Preference { set; get; } = new Class_Preference();
 
         /// <summary>
-        /// 全部语言
-        /// </summary>
-        public static List<EnumLanguage> AllLanguage { get; } = AllLanguageList();
-
-        /// <summary>
         /// 软件版本
         /// </summary>
         public static string SoftwareVersion { get; } = "V" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -147,6 +147,35 @@ namespace SC2_GameTranslater.Source
         #endregion
 
         #region 方法
+
+        #region 属性初始值
+
+        /// <summary>
+        /// 全部语言列表
+        /// </summary>
+        /// <returns>语言列表</returns>
+        public static List<EnumLanguage> AllLanguageList()
+        {
+            List<EnumLanguage> languages = new List<EnumLanguage>((EnumLanguage[])Enum.GetValues(typeof(EnumLanguage)));
+            languages.Remove(EnumLanguage.Other);
+            return languages;
+        }
+
+        /// <summary>
+        /// 新建本地化信息字典
+        /// </summary>
+        /// <returns>字典</returns>
+        private static Dictionary<string, CultureInfo> NewCultureInfoDict()
+        {
+            Dictionary<string, CultureInfo> dictCulture = new Dictionary<string, CultureInfo>();
+            foreach (EnumLanguage language in AllLanguage)
+            {
+                dictCulture[GetEnumLanguageName(language)] = new CultureInfo((int)language);
+            }
+            return dictCulture;
+        }
+
+        #endregion
 
         #region 打开保存窗口
 
@@ -348,18 +377,6 @@ namespace SC2_GameTranslater.Source
         public static string GetEnumLanguageName(EnumLanguage language)
         {
             return Enum.GetName(language.GetType(), language);
-        }
-
-
-        /// <summary>
-        /// 全部语言列表
-        /// </summary>
-        /// <returns>语言列表</returns>
-        public static List<EnumLanguage> AllLanguageList()
-        {
-            List<EnumLanguage> languages = new List<EnumLanguage>((EnumLanguage[])Enum.GetValues(typeof(EnumLanguage)));
-            languages.Remove(EnumLanguage.Other);
-            return languages;
         }
 
         #endregion

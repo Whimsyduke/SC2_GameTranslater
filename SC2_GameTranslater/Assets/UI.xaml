@@ -37,10 +37,26 @@
 
     <!--#region ToolTip-->
 
-    <!--#region Language-->
-    
-    
-    
+    <!--#region InRibbonGallery-->
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_TranslateSource"
+        Title="{DynamicResource TP_InRibbonGallery_TranslateSource_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_InRibbonGallery_TranslateSource_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_InRibbonGallery_TranslateSource_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_TranslateTarget"
+        Title="{DynamicResource TP_InRibbonGallery_TranslateTarget_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_InRibbonGallery_TranslateTarget_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_InRibbonGallery_TranslateTarget_Text}" />
+
     <!--#endregion-->
 
     <!--#region RibbonButton-->

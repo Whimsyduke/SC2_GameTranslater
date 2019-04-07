@@ -526,9 +526,8 @@ namespace SC2_GameTranslater
             Assembly assembly = Assembly.GetExecutingAssembly();
             foreach (EnumLanguage language in Globals.AllLanguage)
             {
-                CultureInfo culture = new CultureInfo((int)language);
                 string langName = Globals.GetEnumLanguageName(language);
-                Globals.DictCultureInfo[langName] = culture;
+                CultureInfo culture = Globals.DictCultureInfo[langName];
                 string fileName = "Language/" + langName + ".xaml";
                 FileInfo file = new FileInfo(fileName);
                 ResourceDictionary dictLanguage = new ResourceDictionary();

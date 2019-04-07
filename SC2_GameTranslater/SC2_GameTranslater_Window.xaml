@@ -355,7 +355,8 @@
                         Selectable="True"
                         SelectionChanged="InRibbonGallery_TranslatedLanguageSource_SelectionChanged"
                         SizeDefinition="Large"
-                        Tag="{Binding ElementName=InRibbonGallery_TranslatedLanguageSource, Path=SelectedItem, Converter={StaticResource Converter_LanguageButtonTag}}">
+                        Tag="{Binding ElementName=InRibbonGallery_TranslatedLanguageSource, Path=SelectedItem, Converter={StaticResource Converter_LanguageButtonTag}}"
+                        ToolTip="{StaticResource ToolTip_TranslateSource}">
                         <Fluent:InRibbonGallery.Header>
                             <MultiBinding Converter="{StaticResource Converter_LanguageButtonHeader}">
                                 <Binding ElementName="InRibbonGallery_TranslatedLanguageSource" Path="SelectedItem" />
@@ -376,7 +377,8 @@
                         Selectable="True"
                         SelectionChanged="InRibbonGallery_TranslatedLanguageTarget_SelectionChanged"
                         SizeDefinition="Large"
-                        Tag="{Binding ElementName=InRibbonGallery_TranslatedLanguageTarget, Path=SelectedItem, Converter={StaticResource Converter_LanguageButtonTag}}">
+                        Tag="{Binding ElementName=InRibbonGallery_TranslatedLanguageTarget, Path=SelectedItem, Converter={StaticResource Converter_LanguageButtonTag}}"
+                        ToolTip="{StaticResource ToolTip_TranslateTarget}">
                         <Fluent:InRibbonGallery.Header>
                             <MultiBinding Converter="{StaticResource Converter_LanguageButtonHeader}">
                                 <Binding ElementName="InRibbonGallery_TranslatedLanguageTarget" Path="SelectedItem" />

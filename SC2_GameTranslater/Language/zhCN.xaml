@@ -226,6 +226,12 @@
     <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_Title">软件语言</sys:String>
     <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_Text" xml:space="preserve">设置当前显示的软件语言。</sys:String>
     <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Title">翻译源语言</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Text" xml:space="preserve">翻译来源的语言，翻译文本表格的原始文本列的显示数据基于此项选择。</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_TranslateSource_DisableReason">在选择翻译来源语言前，你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_Title">翻译目标语言</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_Text" xml:space="preserve">翻译来源的语言，翻译文本表格的文本状态列、使用状态列、舍弃文本列及修改文本列的显示数据基于此项选择。</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_DisableReason">在选择翻译目标语言前，你需要打开或者新建一个项目。</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->
