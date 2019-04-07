@@ -18,7 +18,7 @@
                     Name="CheckBox_zhCN"
                     Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
-                    Content="{DynamicResource TEXT_zhCN}"
+                    Content="{DynamicResource TEXT_UsezhCN}"
                     IsChecked="True"
                     Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
@@ -26,7 +26,7 @@
                     Name="CheckBox_zhTW"
                     Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
-                    Content="{DynamicResource TEXT_zhTW}"
+                    Content="{DynamicResource TEXT_UsezhTW}"
                     IsChecked="True"
                     Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
@@ -34,7 +34,7 @@
                     Name="CheckBox_enUS"
                     Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
-                    Content="{DynamicResource TEXT_enUS}"
+                    Content="{DynamicResource TEXT_UseenUS}"
                     IsChecked="True"
                     Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
@@ -42,7 +42,7 @@
                     Name="CheckBox_deDE"
                     Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
-                    Content="{DynamicResource TEXT_deDE}"
+                    Content="{DynamicResource TEXT_UsedeDE}"
                     IsChecked="True"
                     Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
@@ -50,7 +50,7 @@
                     Name="CheckBox_esMX"
                     Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
-                    Content="{DynamicResource TEXT_esMX}"
+                    Content="{DynamicResource TEXT_UseesMX}"
                     IsChecked="True"
                     Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
@@ -58,7 +58,7 @@
                     Name="CheckBox_esES"
                     Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
-                    Content="{DynamicResource TEXT_esES}"
+                    Content="{DynamicResource TEXT_UseesES}"
                     IsChecked="True"
                     Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
@@ -66,7 +66,7 @@
                     Name="CheckBox_frFR"
                     Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
-                    Content="{DynamicResource TEXT_frFR}"
+                    Content="{DynamicResource TEXT_UsefrFR}"
                     IsChecked="True"
                     Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
@@ -74,7 +74,7 @@
                     Name="CheckBox_itIT"
                     Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
-                    Content="{DynamicResource TEXT_itIT}"
+                    Content="{DynamicResource TEXT_UseitIT}"
                     IsChecked="True"
                     Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
@@ -82,7 +82,7 @@
                     Name="CheckBox_plPL"
                     Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
-                    Content="{DynamicResource TEXT_plPL}"
+                    Content="{DynamicResource TEXT_UseplPL}"
                     IsChecked="True"
                     Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
@@ -90,7 +90,7 @@
                     Name="CheckBox_ptBR"
                     Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
-                    Content="{DynamicResource TEXT_ptBR}"
+                    Content="{DynamicResource TEXT_UseptBR}"
                     IsChecked="True"
                     Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
@@ -98,7 +98,7 @@
                     Name="CheckBox_ruRU"
                     Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
-                    Content="{DynamicResource TEXT_ruRU}"
+                    Content="{DynamicResource TEXT_UseruRU}"
                     IsChecked="True"
                     Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
                 <CheckBox
@@ -106,7 +106,7 @@
                     Name="CheckBox_koKR"
                     Margin="5,3,10,3"
                     Checked="CheckBox_ReloadLanguge_CheckEvent"
-                    Content="{DynamicResource TEXT_koKR}"
+                    Content="{DynamicResource TEXT_UsekoKR}"
                     IsChecked="True"
                     Unchecked="CheckBox_ReloadLanguge_CheckEvent" />
             </ResourceDictionary>

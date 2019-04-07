@@ -132,7 +132,7 @@ namespace SC2_GameTranslater.Source
             {
                 EnumLanguage language = (EnumLanguage)value;
                 string langName = Globals.GetEnumLanguageName(language);
-                return Globals.GetStringFromCurrentLanguage($"TEXT_{langName}");
+                return Globals.GetStringFromCurrentLanguage($"TEXT_Use{langName}");
             }
             return Globals.GetStringFromCurrentLanguage("TEXT_Error");
         }

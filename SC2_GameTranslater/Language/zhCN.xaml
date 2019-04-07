@@ -20,20 +20,10 @@
     <sys:String x:Key="TEXT_Cancel">取消</sys:String>
     <sys:String x:Key="TEXT_Comma">，{0}</sys:String>
     <sys:String x:Key="TEXT_Confirm">确定</sys:String>
-    <sys:String x:Key="TEXT_deDE">deDE</sys:String>
-    <sys:String x:Key="TEXT_enUS">enUS</sys:String>
     <sys:String x:Key="TEXT_Error">【错误】</sys:String>
-    <sys:String x:Key="TEXT_esES">esES</sys:String>
-    <sys:String x:Key="TEXT_esMX">esMX</sys:String>
-    <sys:String x:Key="TEXT_frFR">frFR</sys:String>
-    <sys:String x:Key="TEXT_itIT">itIT</sys:String>
-    <sys:String x:Key="TEXT_koKR">koKR</sys:String>
-    <sys:String x:Key="TEXT_LanguageName">简体中文</sys:String>
     <sys:String x:Key="TEXT_NoText">【无文本】</sys:String>
     <sys:String x:Key="TEXT_Null">空</sys:String>
-    <sys:String x:Key="TEXT_plPL">plPL</sys:String>
     <sys:String x:Key="TEXT_ProjectFile">翻译项目文件</sys:String>
-    <sys:String x:Key="TEXT_ptBR">ptBR</sys:String>
     <sys:String x:Key="TEXT_RemovedeDE">[-]deDE</sys:String>
     <sys:String x:Key="TEXT_RemoveenUS">[-]enUS</sys:String>
     <sys:String x:Key="TEXT_RemoveesES">[-]esES</sys:String>
@@ -46,15 +36,27 @@
     <sys:String x:Key="TEXT_RemoveruRU">[-]ruRU</sys:String>
     <sys:String x:Key="TEXT_RemovezhCN">[-]zhCN</sys:String>
     <sys:String x:Key="TEXT_RemovezhTW">[-]zhTW</sys:String>
-    <sys:String x:Key="TEXT_ruRU">ruRU</sys:String>
     <sys:String x:Key="TEXT_SC2File">SC2组件列表</sys:String>
     <sys:String x:Key="TEXT_SelectALL">全选</sys:String>
     <sys:String x:Key="TEXT_SelectNone">全不选</sys:String>
+    <sys:String x:Key="TEXT_UsedeDE">deDE</sys:String>
+    <sys:String x:Key="TEXT_UseenUS">enUS</sys:String>
+    <sys:String x:Key="TEXT_UseesES">esES</sys:String>
+    <sys:String x:Key="TEXT_UseesMX">esMX</sys:String>
+    <sys:String x:Key="TEXT_UsefrFR">frFR</sys:String>
+    <sys:String x:Key="TEXT_UseitIT">itIT</sys:String>
+    <sys:String x:Key="TEXT_UsekoKR">koKR</sys:String>
+    <sys:String x:Key="TEXT_UseplPL">plPL</sys:String>
+    <sys:String x:Key="TEXT_UseptBR">ptBR</sys:String>
+    <sys:String x:Key="TEXT_UseruRU">ruRU</sys:String>
+    <sys:String x:Key="TEXT_UsezhCN">zhCN</sys:String>
+    <sys:String x:Key="TEXT_UsezhTW">zhTW</sys:String>
     <sys:String x:Key="TEXT_WindowTitleProject">&#160;项目：</sys:String>
     <sys:String x:Key="TEXT_WindowTitleProjectUnsaved">未保存的项目</sys:String>
     <sys:String x:Key="TEXT_WindowTitleText">《星际争霸II》游戏翻译器 V{0}{1}{2}</sys:String>
-    <sys:String x:Key="TEXT_zhCN">zhCN</sys:String>
-    <sys:String x:Key="TEXT_zhTW">zhTW</sys:String>
+    <sys:String x:Key="TEXT_AddLanguage">新增语言</sys:String>
+    <sys:String x:Key="TEXT_RemoveLanguage">移除语言</sys:String>
+    <sys:String x:Key="TEXT_UseLanguage">使用语言</sys:String>
     <!--#endregion-->
 
     <!--#region 界面文本-->
@@ -69,7 +71,7 @@
     <sys:String x:Key="UI_AboutWindow_AboutUpdatePage_Text">Github发布页面</sys:String>
     <sys:String x:Key="UI_AboutWindow_AboutVersion_Text">版本：</sys:String>
     <sys:String x:Key="UI_Backstage_Menu_Header">目录</sys:String>
-    <sys:String x:Key="UI_BackstageTabItem_MenuRecentProjects_Header">最近项目</sys:String>
+    <sys:String x:Key="UI_BackstageTabItem_RecentProjects_Header">最近项目</sys:String>
     <sys:String x:Key="UI_BackstageTabItem_Preference_Header">配置</sys:String>
     <sys:String x:Key="UI_Button_SelectComponentsPath_Content">选择</sys:String>
     <sys:String x:Key="UI_CheckBox_InGalaxyShowScript_Content">显示脚本）</sys:String>
@@ -212,6 +214,18 @@
     <sys:String x:Key="TP_RibbonButton_FilterNext_Title">下一选择或搜索状态</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterNext_Text" xml:space="preserve">切换到前一翻译文本表格选择项或者搜索状态.&#x000D;快捷键：Ctrl + →</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterNext_DisableReason">不存在下一选择或者搜索状态。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_RecentProjects_Title">最近项目</sys:String>
+    <sys:String x:Key="TP_RibbonButton_RecentProjects_Text" xml:space="preserve">列出最多20个最近打开的项目文件。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_RecentProjects_DisableReason">没有最近打开的项目</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Preference_Title">配置</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Preference_Text" xml:space="preserve">软件配置和项目配置可以在这里设定。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Preference_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ComponentsPath_Title">组件文件夹路径</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ComponentsPath_Text" xml:space="preserve">此项目的星际争霸2 Map/Mod组件文件夹路径。用于应用翻译文件。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ComponentsPath_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_Title">软件语言</sys:String>
+    <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_Text" xml:space="preserve">设置当前显示的软件语言。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_DisableReason">禁用原因</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

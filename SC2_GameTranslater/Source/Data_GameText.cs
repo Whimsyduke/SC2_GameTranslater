@@ -13,99 +13,6 @@ namespace SC2_GameTranslater.Source
     using Threads = Class_Threads;
     using Log = Class_Log;
 
-    #region 枚举声明
-
-    /// <summary>
-    /// 文本状态
-    /// </summary>
-    [Flags]
-    public enum EnumGameTextStatus
-    {
-        /// <summary>
-        /// 空
-        /// </summary>
-        Empty = 1,
-        /// <summary>
-        /// 正常
-        /// </summary>
-        Normal = 2,
-        /// <summary>
-        /// 已修改
-        /// </summary>
-        Modified = 4,
-        /// <summary>
-        /// 已使用
-        /// </summary>
-        Useable = 6,
-        /// <summary>
-        /// 全部复选
-        /// </summary>
-        All = 7,
-    }
-
-    /// <summary>
-    /// 使用状态
-    /// </summary>
-    [Flags]
-    public enum EnumGameUseStatus
-    {
-        /// <summary>
-        /// 无效
-        /// </summary>
-        None = 1,
-        /// <summary>
-        /// 过期
-        /// </summary>
-        Droped = 2,
-        /// <summary>
-        /// 正常
-        /// </summary>
-        Normal = 4,
-        /// <summary>
-        /// 新增
-        /// </summary>
-        Added = 8,
-        /// <summary>
-        /// 修改
-        /// </summary>
-        Modified = 16,
-        /// <summary>
-        /// 已使用
-        /// </summary>
-        Useable = 28,
-        /// <summary>
-        /// 全部
-        /// </summary>
-        All = 31,
-    }
-
-
-    /// <summary>
-    /// 文本文件
-    /// </summary>
-    [Flags]
-    public enum EnumGameTextFile
-    {
-        /// <summary>
-        /// GameStrings.txt
-        /// </summary>
-        GameStrings = 1,
-        /// <summary>
-        /// ObjectStrings.txt
-        /// </summary>
-        ObjectStrings = 2,
-        /// <summary>
-        /// ObjectStrings.txt
-        /// </summary>
-        TriggerStrings = 4,
-        /// <summary>
-        /// 全部复选
-        /// </summary>
-        All = 7,
-    }
-
-    #endregion
-
     /// <summary>
     /// 翻译文本数据表
     /// </summary>
@@ -230,13 +137,6 @@ namespace SC2_GameTranslater.Source
 
         #endregion
 
-
-        #endregion
-
-        #region 其他
-
-        public const string PATH_TempFolder = "Temp\\";
-        public const string PATH_BackupFolder = "Backup\\";
 
         #endregion
 
@@ -854,7 +754,7 @@ namespace SC2_GameTranslater.Source
                 return false;
             }
 
-            DirectoryInfo tempDir = new DirectoryInfo($"{PATH_TempFolder}{SC2Components.Directory.Name}\\");
+            DirectoryInfo tempDir = new DirectoryInfo($"{Class_ConstantAndEnum.Path_TempFolder}{SC2Components.Directory.Name}\\");
             if (tempDir.Exists) tempDir.Delete(true);
             DirectoryInfo baseDir = SC2Components.Directory;
             List<FileInfo> backFiles = new List<FileInfo>();
@@ -894,7 +794,7 @@ namespace SC2_GameTranslater.Source
                 string backPath = TextFilePath(language, fileType);
                 string originpath = $"{baseDir.FullName}\\{backPath}";
                 if (!File.Exists(originpath)) return true;
-                FileInfo backFile = new FileInfo($"{PATH_TempFolder}{SC2Components.Directory.Name}\\{backPath}");
+                FileInfo backFile = new FileInfo($"{Class_ConstantAndEnum.Path_TempFolder}{SC2Components.Directory.Name}\\{backPath}");
                 backFiles.Add(backFile);
                 if (backFile.Directory != null && !backFile.Directory.Exists) backFile.Directory.Create();
                 File.Copy(originpath, backFile.FullName, true);

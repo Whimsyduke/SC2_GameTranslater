@@ -1,6 +1,7 @@
 ﻿using Fluent.Localization;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Reflection;
@@ -11,69 +12,6 @@ using System.Windows;
 namespace SC2_GameTranslater.Source
 {
     using Log = Class_Log;
-
-    #region 声明
-
-    /// <summary>
-    /// SC2本地化语言类型枚举
-    /// </summary>
-    public enum EnumLanguage
-    {
-        /// <summary>
-        /// 其它
-        /// </summary>
-        Other = 0,
-        /// <summary>
-        /// 简体中文
-        /// </summary>
-        zhCN = 0x0804,
-        /// <summary>
-        /// 繁体中文
-        /// </summary>
-        zhTW = 0x0404,
-        /// <summary>
-        /// 英语美国
-        /// </summary>
-        enUS = 0x0409,
-        /// <summary>
-        /// 德语德国
-        /// </summary>
-        deDE = 0x0407,
-        /// <summary>
-        /// 西班牙语墨西哥
-        /// </summary>
-        esMX = 0x080A,
-        /// <summary>
-        /// 西班牙语西班牙
-        /// </summary>
-        esES = 0x0c0A,
-        /// <summary>
-        /// 法语法国
-        /// </summary>
-        frFR = 0x040C,
-        /// <summary>
-        /// 意大利语意大利
-        /// </summary>
-        itIT = 0x0410,
-        /// <summary>
-        /// 波兰语波兰
-        /// </summary>
-        plPL = 0x0415,
-        /// <summary>
-        /// 葡萄牙语巴西
-        /// </summary>
-        ptBR = 0x0416,
-        /// <summary>
-        /// 俄语俄罗斯
-        /// </summary>
-        ruRU = 0x0419,
-        /// <summary>
-        /// 韩语韩国
-        /// </summary>
-        koKR = 0x0412,
-    }
-
-    #endregion
 
     /// <summary>
     /// 全局数据
@@ -89,17 +27,6 @@ namespace SC2_GameTranslater.Source
         #endregion
 
         #region 常量
-
-        #region 文件名
-
-        public const string Extension_SC2GameTran = ".SC2GameTran";
-        public const string Extension_SC2Map = ".SC2Map";
-        public const string Extension_SC2Mod = ".SC2Mod";
-        public const string Extension_Galaxy = ".Galaxy";
-        public const string Extension_SC2Components = ".SC2Components";
-        public const string FileName_SC2Components = "ComponentList.SC2Components";
-
-        #endregion
 
         #region 默认值
 
@@ -165,6 +92,11 @@ namespace SC2_GameTranslater.Source
         public static Dictionary<EnumLanguage, ResourceDictionary> DictUILanguages { set; get; } = new Dictionary<EnumLanguage, ResourceDictionary>();
 
         /// <summary>
+        /// 本地化信息字典
+        /// </summary>
+        public static Dictionary<string, CultureInfo> DictCultureInfo { set; get; } = new Dictionary<string, CultureInfo>();
+
+        /// <summary>
         /// 列表项对应语言
         /// </summary>
         public static Dictionary<object, EnumLanguage> DictComboBoxItemLanguage { set; get; } = new Dictionary<object, EnumLanguage>();
@@ -179,6 +111,9 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         public static SC2_GameTranslater_Window MainWindow { set; get; }
 
+        /// <summary>
+        /// Fluent语言字典
+        /// </summary>
         public static Dictionary<EnumLanguage, RibbonLocalizationBase> FluentLocalizationMap { set; get; } = new Dictionary<EnumLanguage, RibbonLocalizationBase>();
 
         /// <summary>

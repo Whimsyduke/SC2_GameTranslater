@@ -63,38 +63,47 @@
                             x:Name="RibbonButton_MenuNew"
                             Command="{x:Static local:SC2_GameTranslater_Window.CommandNew}"
                             Header="{DynamicResource UI_RibbonButton_New_Header}"
-                            Icon="{StaticResource ResourceKey=IMAGE_New}" />
+                            Icon="{StaticResource ResourceKey=IMAGE_New}"
+                            ToolTip="{StaticResource ToolTip_New}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuOpen"
                             Command="{x:Static local:SC2_GameTranslater_Window.CommandOpen}"
                             Header="{DynamicResource UI_RibbonButton_Open_Header}"
-                            Icon="{StaticResource ResourceKey=IMAGE_Open}" />
+                            Icon="{StaticResource ResourceKey=IMAGE_Open}"
+                            ToolTip="{StaticResource ToolTip_Open}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuSave"
                             Command="{x:Static local:SC2_GameTranslater_Window.CommandSave}"
                             Header="{DynamicResource UI_RibbonButton_Save_Header}"
-                            Icon="{StaticResource ResourceKey=IMAGE_Save}" />
+                            Icon="{StaticResource ResourceKey=IMAGE_Save}"
+                            ToolTip="{StaticResource ToolTip_Save}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuSaveAs"
                             Command="{x:Static local:SC2_GameTranslater_Window.CommandSaveAs}"
                             Header="{DynamicResource UI_RibbonButton_SaveAs_Header}"
-                            Icon="{StaticResource ResourceKey=IMAGE_Save}" />
+                            Icon="{StaticResource ResourceKey=IMAGE_Save}"
+                            ToolTip="{StaticResource ToolTip_New}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuClose"
                             Command="{x:Static local:SC2_GameTranslater_Window.CommandClose}"
                             Header="{DynamicResource UI_RibbonButton_Close_Header}"
-                            Icon="{StaticResource ResourceKey=IMAGE_Close}" />
+                            Icon="{StaticResource ResourceKey=IMAGE_Close}"
+                            ToolTip="{StaticResource ToolTip_SaveAs}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuAccept"
                             Command="{x:Static local:SC2_GameTranslater_Window.CommandAccept}"
                             Header="{DynamicResource UI_RibbonButton_Accept_Header}"
-                            Icon="{StaticResource ResourceKey=IMAGE_Accept}" />
+                            Icon="{StaticResource ResourceKey=IMAGE_Accept}"
+                            ToolTip="{StaticResource ToolTip_Close}" />
                         <Fluent:SeparatorTabItem
                             Name="SeparatorTabItem_RecentProjects"
                             Margin="0,20,0,0"
                             HorizontalContentAlignment="Left"
                             Header="{DynamicResource UI_SeparatorTabItem_RecentProjects_Header}" />
-                        <Fluent:BackstageTabItem x:Name="BackstageTabItem_MenuRecentProjects" Header="{DynamicResource UI_BackstageTabItem_MenuRecentProjects_Header}">
+                        <Fluent:BackstageTabItem
+                            x:Name="BackstageTabItem_RecentProjects"
+                            Header="{DynamicResource UI_BackstageTabItem_RecentProjects_Header}"
+                            ToolTip="{StaticResource ToolTip_RecentProjects}">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -124,7 +133,10 @@
                             Margin="0,20,0,0"
                             HorizontalContentAlignment="Left"
                             Header="{DynamicResource UI_SeparatorTabItem_Preferences_Header}" />
-                        <Fluent:BackstageTabItem x:Name="BackstageTabItem_Preference" Header="{DynamicResource UI_BackstageTabItem_Preference_Header}">
+                        <Fluent:BackstageTabItem
+                            x:Name="BackstageTabItem_Preference"
+                            Header="{DynamicResource UI_BackstageTabItem_Preference_Header}"
+                            ToolTip="{StaticResource ToolTip_Preference}">
                             <ScrollViewer Name="ScrollViewer_Preference">
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -147,7 +159,8 @@
                                     <GroupBox
                                         Name="GroupBox_Language"
                                         Grid.Row="2"
-                                        Margin="3">
+                                        Margin="3"
+                                        ToolTip="{StaticResource ToolTip_SoftwareLanguage}">
                                         <GroupBox.Header>
                                             <Label>
                                                 <TextBlock Text="{DynamicResource UI_GroupBox_Language_Header}" />
@@ -158,7 +171,10 @@
                                             Margin="3"
                                             SelectionChanged="ComboBox_Language_SelectionChanged" />
                                     </GroupBox>
-                                    <GroupBox Name="GroupBox_ComponentsPath" Grid.Row="3">
+                                    <GroupBox
+                                        Name="GroupBox_ComponentsPath"
+                                        Grid.Row="3"
+                                        ToolTip="{StaticResource ToolTip_ComponentsPath}">
                                         <GroupBox.Header>
                                             <Label>
                                                 <TextBlock Text="{DynamicResource UI_GroupBox_ComponentsPath_Header}" />
@@ -203,19 +219,37 @@
                             Title="{DynamicResource TP_RibbonButton_Help_Title}"
                             Width="300"
                             DisableReason="{DynamicResource TP_RibbonButton_Help_DisableReason}"
-                            HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
+                            HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
                             IsRibbonAligned="False"
                             Text="{DynamicResource TP_RibbonButton_Help_Text}" />
                     </Fluent:Button.ToolTip>
                 </Fluent:Button>
             </Fluent:Ribbon.ToolBarItems>
             <Fluent:Ribbon.QuickAccessItems>
-                <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_New}}" />
-                <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Open}}" />
-                <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Save}}" />
-                <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_Close}}" />
-                <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_FilterPrev}}" />
-                <Fluent:QuickAccessMenuItem IsChecked="True" Target="{Binding Source={x:Reference RibbonButton_FilterNext}}" />
+                <Fluent:QuickAccessMenuItem
+                    IsChecked="True"
+                    Target="{Binding Source={x:Reference RibbonButton_New}}"
+                    ToolTip="{StaticResource ToolTip_New}" />
+                <Fluent:QuickAccessMenuItem
+                    IsChecked="True"
+                    Target="{Binding Source={x:Reference RibbonButton_Open}}"
+                    ToolTip="{StaticResource ToolTip_Open}" />
+                <Fluent:QuickAccessMenuItem
+                    IsChecked="True"
+                    Target="{Binding Source={x:Reference RibbonButton_Save}}"
+                    ToolTip="{StaticResource ToolTip_Save}" />
+                <Fluent:QuickAccessMenuItem
+                    IsChecked="True"
+                    Target="{Binding Source={x:Reference RibbonButton_Close}}"
+                    ToolTip="{StaticResource ToolTip_Close}" />
+                <Fluent:QuickAccessMenuItem
+                    IsChecked="True"
+                    Target="{Binding Source={x:Reference RibbonButton_FilterPrev}}"
+                    ToolTip="{StaticResource ToolTip_FilterPrev}" />
+                <Fluent:QuickAccessMenuItem
+                    IsChecked="True"
+                    Target="{Binding Source={x:Reference RibbonButton_FilterNext}}"
+                    ToolTip="{StaticResource ToolTip_FilterNext}" />
             </Fluent:Ribbon.QuickAccessItems>
             <Fluent:RibbonTabItem
                 Name="RibbonTabItem_Start"
@@ -231,138 +265,58 @@
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandNew}"
                         Header="{DynamicResource UI_RibbonButton_New_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_New}"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_New}">
-                        <Fluent:Button.ToolTip>
-                            <Fluent:ScreenTip
-                                Title="{DynamicResource TP_RibbonButton_New_Title}"
-                                Width="300"
-                                DisableReason="{DynamicResource TP_RibbonButton_New_DisableReason}"
-                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
-                                Image="{StaticResource ResourceKey=IMAGE_New}"
-                                IsRibbonAligned="False"
-                                Text="{DynamicResource TP_RibbonButton_New_Text}" />
-                        </Fluent:Button.ToolTip>
-                    </Fluent:Button>
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_New}"
+                        ToolTip="{StaticResource ToolTip_New}" />
                     <Fluent:Button
                         x:Name="RibbonButton_Open"
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandOpen}"
                         Header="{DynamicResource UI_RibbonButton_Open_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Open}"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_Open}">
-                        <Fluent:Button.ToolTip>
-                            <Fluent:ScreenTip
-                                Title="{DynamicResource TP_RibbonButton_Open_Title}"
-                                Width="300"
-                                DisableReason="{DynamicResource TP_RibbonButton_Open_DisableReason}"
-                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
-                                Image="{StaticResource ResourceKey=IMAGE_Open}"
-                                IsRibbonAligned="False"
-                                Text="{DynamicResource TP_RibbonButton_Open_Text}" />
-                        </Fluent:Button.ToolTip>
-                    </Fluent:Button>
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Open}"
+                        ToolTip="{StaticResource ToolTip_Open}" />
                     <Fluent:Button
                         x:Name="RibbonButton_Save"
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandSave}"
                         Header="{DynamicResource UI_RibbonButton_Save_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Save}"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_Save}">
-                        <Fluent:Button.ToolTip>
-                            <Fluent:ScreenTip
-                                Title="{DynamicResource TP_RibbonButton_Save_Title}"
-                                Width="300"
-                                DisableReason="{DynamicResource TP_RibbonButton_Save_DisableReason}"
-                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
-                                Image="{StaticResource ResourceKey=IMAGE_Save}"
-                                IsRibbonAligned="False"
-                                Text="{DynamicResource TP_RibbonButton_Save_Text}" />
-                        </Fluent:Button.ToolTip>
-                    </Fluent:Button>
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Save}"
+                        ToolTip="{StaticResource ToolTip_Save}" />
                     <Fluent:Button
                         x:Name="RibbonButton_SaveAs"
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandSaveAs}"
                         Header="{DynamicResource UI_RibbonButton_SaveAs_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Save}"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_Save}">
-                        <Fluent:Button.ToolTip>
-                            <Fluent:ScreenTip
-                                Title="{DynamicResource TP_RibbonButton_SaveAs_Title}"
-                                Width="300"
-                                DisableReason="{DynamicResource TP_RibbonButton_SaveAs_DisableReason}"
-                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
-                                Image="{StaticResource ResourceKey=IMAGE_Save}"
-                                IsRibbonAligned="False"
-                                Text="{DynamicResource TP_RibbonButton_SaveAs_Text}" />
-                        </Fluent:Button.ToolTip>
-                    </Fluent:Button>
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Save}"
+                        ToolTip="{StaticResource ToolTip_SaveAs}" />
                     <Fluent:Button
                         x:Name="RibbonButton_Close"
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandClose}"
                         Header="{DynamicResource UI_RibbonButton_Close_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Close}"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_Close}">
-                        <Fluent:Button.ToolTip>
-                            <Fluent:ScreenTip
-                                Title="{DynamicResource TP_RibbonButton_Close_Title}"
-                                Width="300"
-                                DisableReason="{DynamicResource TP_RibbonButton_Close_DisableReason}"
-                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
-                                Image="{StaticResource ResourceKey=IMAGE_Close}"
-                                IsRibbonAligned="False"
-                                Text="{DynamicResource TP_RibbonButton_Close_Text}" />
-                        </Fluent:Button.ToolTip>
-                    </Fluent:Button>
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Close}"
+                        ToolTip="{StaticResource ToolTip_Close}" />
                     <Separator />
                     <Fluent:Button
                         x:Name="RibbonButton_Accept"
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandAccept}"
                         Header="{DynamicResource UI_RibbonButton_Accept_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_Accept}"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}">
-                        <Fluent:Button.ToolTip>
-                            <Fluent:ScreenTip
-                                Title="{DynamicResource TP_RibbonButton_Accept_Title}"
-                                Width="300"
-                                DisableReason="{DynamicResource TP_RibbonButton_Accept_DisableReason}"
-                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
-                                Image="{StaticResource ResourceKey=IMAGE_Accept}"
-                                IsRibbonAligned="False"
-                                Text="{DynamicResource TP_RibbonButton_Accept_Text}" />
-                        </Fluent:Button.ToolTip>
-                    </Fluent:Button>
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Accept}"
+                        ToolTip="{StaticResource ToolTip_Accept}" />
                     <Fluent:Button
                         Name="RibbonButton_ReloadTranslation"
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandReloadTranslation}"
                         Header="{DynamicResource UI_RibbonButton_ReloadTranslation_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_ReloadTranslation}"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_ReloadTranslation}">
-                        <Fluent:Button.ToolTip>
-                            <Fluent:ScreenTip
-                                Title="{DynamicResource TP_RibbonButton_ReloadTranslation_Title}"
-                                Width="300"
-                                DisableReason="{DynamicResource TP_RibbonButton_ReloadTranslation_DisableReason}"
-                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
-                                Image="{StaticResource ResourceKey=IMAGE_ReloadTranslation}"
-                                IsRibbonAligned="False"
-                                Text="{DynamicResource TP_RibbonButton_ReloadTranslation_Text}" />
-                        </Fluent:Button.ToolTip>
-                    </Fluent:Button>
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_ReloadTranslation}"
+                        ToolTip="{StaticResource ToolTip_ReloadTranslation}" />
                     <Fluent:Button
                         Name="RibbonButton_ReloadSourceText"
                         Command="{x:Static local:SC2_GameTranslater_Window.CommandReloadSourceText}"
                         Header="{DynamicResource UI_RibbonButton_ReloadSourceText_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_ReloadSourceText}"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_ReloadSourceText}">
-                        <Fluent:Button.ToolTip>
-                            <Fluent:ScreenTip
-                                Title="{DynamicResource TP_RibbonButton_ReloadSourceText_Title}"
-                                Width="300"
-                                DisableReason="{DynamicResource TP_RibbonButton_ReloadSourceText_DisableReason}"
-                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
-                                Image="{StaticResource ResourceKey=IMAGE_ReloadSourceText}"
-                                IsRibbonAligned="False"
-                                Text="{DynamicResource TP_RibbonButton_ReloadSourceText_Text}" />
-                        </Fluent:Button.ToolTip>
-                    </Fluent:Button>
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_ReloadSourceText}"
+                        ToolTip="{StaticResource ToolTip_ReloadSourceText}" />
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_FilterRecord"
@@ -374,35 +328,15 @@
                         Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordPrev}"
                         Header="{DynamicResource UI_RibbonButton_FilterPrev_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_FilterPrev}"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_FilterPrev}">
-                        <Fluent:Button.ToolTip>
-                            <Fluent:ScreenTip
-                                Title="{DynamicResource TP_RibbonButton_FilterPrev_Title}"
-                                Width="300"
-                                DisableReason="{DynamicResource TP_RibbonButton_FilterPrev_DisableReason}"
-                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
-                                Image="{StaticResource ResourceKey=IMAGE_ReloadSourceText}"
-                                IsRibbonAligned="False"
-                                Text="{DynamicResource TP_RibbonButton_ReloadSourceText_Text}" />
-                        </Fluent:Button.ToolTip>
-                    </Fluent:Button>
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_FilterPrev}"
+                        ToolTip="{StaticResource ToolTip_FilterPrev}" />
                     <Fluent:Button
                         x:Name="RibbonButton_FilterNext"
                         Command="{x:Static local:SC2_GameTranslater_Window.FilterRecordNext}"
                         Header="{DynamicResource UI_RibbonButton_FilterNext_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_FilterNext}"
-                        LargeIcon="{StaticResource ResourceKey=IMAGE_FilterNext}">
-                        <Fluent:Button.ToolTip>
-                            <Fluent:ScreenTip
-                                Title="{DynamicResource TP_RibbonButton_FilterNext_Title}"
-                                Width="300"
-                                DisableReason="{DynamicResource TP_RibbonButton_FilterNext_DisableReason}"
-                                HelpTopic="https://github.com/Whimsyduke/SC2_GameTranslater"
-                                Image="{StaticResource ResourceKey=IMAGE_FilterNext}"
-                                IsRibbonAligned="False"
-                                Text="{DynamicResource TP_RibbonButton_FilterNext_Text}" />
-                        </Fluent:Button.ToolTip>
-                    </Fluent:Button>
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_FilterNext}"
+                        ToolTip="{StaticResource ToolTip_FilterNext}" />
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_TranslatedLanguage"
@@ -466,27 +400,27 @@
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeAll"
                             Content="{DynamicResource UI_ComboBoxItem_SearchTypeALL_Header}"
-                            Tag="{x:Static local:EnumSearchTextType.All}" />
+                            Tag="{x:Static source:EnumSearchTextType.All}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeTextID"
                             Content="{DynamicResource UI_ComboBoxItem_SearchTypeTextID_Header}"
-                            Tag="{x:Static local:EnumSearchTextType.ID}" />
+                            Tag="{x:Static source:EnumSearchTextType.ID}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeAllText"
                             Content="{DynamicResource UI_ComboBoxItem_SearchTypeALLText_Header}"
-                            Tag="{x:Static local:EnumSearchTextType.AllText}" />
+                            Tag="{x:Static source:EnumSearchTextType.AllText}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeSourceText"
                             Content="{DynamicResource UI_ComboBoxItem_SearchTypeSourceText_Header}"
-                            Tag="{x:Static local:EnumSearchTextType.Source}" />
+                            Tag="{x:Static source:EnumSearchTextType.Source}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeDropedText"
                             Content="{DynamicResource UI_ComboBoxItem_SearchTypeDropedText_Header}"
-                            Tag="{x:Static local:EnumSearchTextType.Droped}" />
+                            Tag="{x:Static source:EnumSearchTextType.Droped}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchTypeEditedText"
                             Content="{DynamicResource UI_ComboBoxItem_SearchTypeEditedText_Header}"
-                            Tag="{x:Static local:EnumSearchTextType.Edited}" />
+                            Tag="{x:Static source:EnumSearchTextType.Edited}" />
                     </Fluent:ComboBox>
                     <Fluent:ComboBox
                         Name="ComboBox_SearchLocation"
@@ -506,15 +440,15 @@
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchLocationAll"
                             Content="{DynamicResource UI_ComboBoxItem_SearchLocationALL_Header}"
-                            Tag="{x:Static local:EnumSearchTextLocation.All}" />
+                            Tag="{x:Static source:EnumSearchTextLocation.All}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchLocationLeft"
                             Content="{DynamicResource UI_ComboBoxItem_SearchLocationLeft_Header}"
-                            Tag="{x:Static local:EnumSearchTextLocation.Left}" />
+                            Tag="{x:Static source:EnumSearchTextLocation.Left}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchLocationRight"
                             Content="{DynamicResource UI_ComboBoxItem_SearchLocationRight_Header}"
-                            Tag="{x:Static local:EnumSearchTextLocation.Right}" />
+                            Tag="{x:Static source:EnumSearchTextLocation.Right}" />
                     </Fluent:ComboBox>
                     <Fluent:CheckBox
                         Name="CheckBox_SearchCase"

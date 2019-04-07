@@ -35,6 +35,156 @@
     <source:GoToIndexConfirmButtonEnableConverter x:Key="Converter_GoToIndexConfirmButtonEnable" />
     <!--#endregion-->
 
+    <!--#region ToolTip-->
+
+    <!--#region Language-->
+    
+    
+    
+    <!--#endregion-->
+
+    <!--#region RibbonButton-->
+    
+    <Fluent:ScreenTip
+        x:Key="ToolTip_New"
+        Title="{DynamicResource TP_RibbonButton_New_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_New_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        Image="{StaticResource ResourceKey=IMAGE_New}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_New_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_Open"
+        Title="{DynamicResource TP_RibbonButton_Open_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_Open_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        Image="{StaticResource ResourceKey=IMAGE_Open}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_Open_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_Save"
+        Title="{DynamicResource TP_RibbonButton_Save_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_Save_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        Image="{StaticResource ResourceKey=IMAGE_Save}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_Save_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SaveAs"
+        Title="{DynamicResource TP_RibbonButton_SaveAs_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_SaveAs_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        Image="{StaticResource ResourceKey=IMAGE_Save}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_SaveAs_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_Close"
+        Title="{DynamicResource TP_RibbonButton_Close_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_Close_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        Image="{StaticResource ResourceKey=IMAGE_Close}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_Close_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_Accept"
+        Title="{DynamicResource TP_RibbonButton_Accept_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_Accept_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        Image="{StaticResource ResourceKey=IMAGE_Accept}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_Accept_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_ReloadTranslation"
+        Title="{DynamicResource TP_RibbonButton_ReloadTranslation_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_ReloadTranslation_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        Image="{StaticResource ResourceKey=IMAGE_ReloadTranslation}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_ReloadTranslation_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_ReloadSourceText"
+        Title="{DynamicResource TP_RibbonButton_ReloadSourceText_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_ReloadSourceText_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        Image="{StaticResource ResourceKey=IMAGE_ReloadSourceText}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_ReloadSourceText_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_FilterPrev"
+        Title="{DynamicResource TP_RibbonButton_FilterPrev_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_FilterPrev_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        Image="{StaticResource ResourceKey=IMAGE_ReloadSourceText}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_ReloadSourceText_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_FilterNext"
+        Title="{DynamicResource TP_RibbonButton_FilterNext_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_FilterNext_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        Image="{StaticResource ResourceKey=IMAGE_FilterNext}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_FilterNext_Text}" />
+    
+    <Fluent:ScreenTip
+        x:Key="ToolTip_RecentProjects"
+        Title="{DynamicResource TP_RibbonButton_RecentProjects_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_RecentProjects_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_RecentProjects_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_Preference"
+        Title="{DynamicResource TP_RibbonButton_Preference_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_Preference_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_Preference_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SoftwareLanguage"
+        Title="{DynamicResource TP_RibbonButton_SoftwareLanguage_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_SoftwareLanguage_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_SoftwareLanguage_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_ComponentsPath"
+        Title="{DynamicResource TP_RibbonButton_ComponentsPath_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_ComponentsPath_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_ComponentsPath_Text}" />
+
+    <!--#endregion-->
+
+    <!--#endregion-->
+
     <!--#region Template & Style-->
 
     <!--#region BLZ_Button-->
