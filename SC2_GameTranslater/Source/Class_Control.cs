@@ -1073,56 +1073,22 @@ namespace SC2_GameTranslater.Source
         #region 属性字段
 
         #region 属性
-
-        /// <summary>
-        /// 按钮点击依赖项
-        /// </summary>
-        public static DependencyProperty ClickProperty = DependencyProperty.Register(nameof(Command), typeof(ICommand), typeof(RibbonSearchTextBox));
-
-        /// <summary>
-        /// 按钮点击依赖项属性
-        /// </summary>
-        public ICommand Command { set => SetValue(ClickProperty, value); get => (ICommand)GetValue(ClipProperty); }
-
+        
 
         /// <summary>
         /// 按钮文本依赖项
         /// </summary>
-        public static DependencyProperty ButtonHearderProperty = DependencyProperty.Register(nameof(ButtonHeader), typeof(object), typeof(RibbonSearchTextBox));
+        public static DependencyProperty ButtonWidthProperty = DependencyProperty.Register(nameof(ButtonWidth), typeof(int), typeof(RibbonSearchTextBox));
 
         /// <summary>
         /// 按钮文本依赖项属性
         /// </summary>
-        public object ButtonHeader { set => SetValue(ButtonHearderProperty, value); get => GetValue(ButtonHearderProperty); }
-
-        /// <summary>
-        /// 按钮文本依赖项
-        /// </summary>
-        public static DependencyProperty TextBoxEnableProperty = DependencyProperty.Register(nameof(TextBoxEnable), typeof(bool), typeof(RibbonSearchTextBox));
-
-        /// <summary>
-        /// 按钮文本依赖项属性
-        /// </summary>
-        public bool TextBoxEnable { set => SetValue(TextBoxEnableProperty, value); get => (bool)GetValue(TextBoxEnableProperty); }
+        public int ButtonWidth { set => SetValue(ButtonWidthProperty, value); get => (int)GetValue(ButtonWidthProperty); }
 
         #endregion
 
         #endregion
 
-        #region 方法
-
-        #region 重载方法
-
-        public new void OnKeyTipBack()
-        {
-            base.OnKeyTipBack();
-            Fluent.Button button = this.Template.FindName("PART_SearchButton", this) as Fluent.Button;
-            button.OnKeyTipBack();
-        }
-
-        #endregion
-
-        #endregion
     }
 
     /// <summary>

@@ -502,18 +502,24 @@
                         x:Name="TextBox_SearchKeyword"
                         Height="65"
                         MinWidth="300"
-                        TextBoxEnable="{Binding ElementName=RadioButton_SearchNull,Path=IsChecked,Converter={StaticResource Converter_CommonNotValue}}"
                         HorizontalContentAlignment="Left"
                         VerticalContentAlignment="Top"
                         Fluent:RibbonGroupBoxWrapPanel.SharedSizeGroupName="Group_Serach"
                         AcceptsReturn="True"
-                        ButtonHeader="{DynamicResource UI_TextBox_SearchKeyword_ButtonHeader}"
-                        Command="{x:Static local:SC2_GameTranslater_Window.SearchClick}"
                         Header="{DynamicResource UI_ComboBox_SearchText_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchTextBox}"
+                        IsEnabled="{Binding ElementName=RadioButton_SearchNull, Path=IsChecked, Converter={StaticResource Converter_CommonNotValue}}"
+                        ButtonWidth="{Binding ElementName=RibbonButton_SearchClick,Path=ActualWidth}"
                         TextWrapping="WrapWithOverflow"
                         ToolTip="{StaticResource ToolTip_SearchKeyword}"
                         VerticalScrollBarVisibility="Auto" />
+                    <Fluent:Button
+                        Name="RibbonButton_SearchClick"
+                        Height="40"
+                        SizeDefinition="Middle"
+                        Header="{DynamicResource UI_TextBox_SearchKeyword_ButtonHeader}"
+                        Command="{x:Static local:SC2_GameTranslater_Window.SearchClick}"
+                        Icon="{StaticResource ResourceKey=IMAGE_SearchTextBox}" Margin="0,-35,0,0" />
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_GalaxyFilter"

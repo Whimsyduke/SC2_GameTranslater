@@ -658,24 +658,13 @@
                         TextWrapping="Wrap" />
                 </Grid>
             </StackPanel>
-            <Fluent:Button
-                x:Name="PART_SearchButton"
+            <Grid
                 Grid.Row="1"
                 Grid.RowSpan="2"
-                Grid.Column="0"
                 Height="40"
+                Width="{TemplateBinding ButtonWidth}"
                 Margin="0,0,3,0"
-                Padding="0,0,10,0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Bottom"
-                HorizontalContentAlignment="Stretch"
-                VerticalContentAlignment="Center"
-                BorderThickness="1"
-                Command="{Binding Path=Command, RelativeSource={RelativeSource TemplatedParent}}"
-                Header="{Binding Path=ButtonHeader, RelativeSource={RelativeSource TemplatedParent}}"
-                Icon="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}}"
-                LargeIcon="{Binding Path=LargeIcon, RelativeSource={RelativeSource TemplatedParent}}"
-                SizeDefinition="Middle" />
+                Grid.Column="0" />
             <Grid
                 Grid.Row="0"
                 Grid.RowSpan="3"
@@ -713,12 +702,6 @@
                 <Setter TargetName="PART_ContentBorder" Property="BorderBrush" Value="{DynamicResource Fluent.Ribbon.Brushes.TextBox.Disabled.BorderBrush}" />
                 <Setter TargetName="PART_ContentHost" Property="BorderBrush" Value="{DynamicResource Fluent.Ribbon.Brushes.TextBox.Disabled.Background}" />
                 <Setter TargetName="PART_IconImage" Property="Opacity" Value="0.5" />
-                <Setter TargetName="PART_SearchButton" Property="Opacity" Value="0.5" />
-                <Setter TargetName="PART_SearchButton" Property="Effect">
-                    <Setter.Value>
-                        <Fluent:GrayscaleEffect />
-                    </Setter.Value>
-                </Setter>
                 <Setter TargetName="PART_HeaderTextBlock" Property="Opacity" Value="0.5" />
                 <Setter TargetName="PART_IconImage" Property="Effect">
                     <Setter.Value>

@@ -79,7 +79,7 @@
     <sys:String x:Key="UI_CheckBox_SearchCase_Header">Match Case</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchLanguage_Header">Language:</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchLcation_Header">Location:</sys:String>
-    <sys:String x:Key="UI_ComboBox_SearchText_Header">Search:</sys:String>
+    <sys:String x:Key="UI_ComboBox_SearchText_Header">Keyword:</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchScope_Header">Type:</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationALL_Header">All Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationLeft_Header">Start Left</sys:String>
@@ -174,7 +174,7 @@
     <sys:String x:Key="UI_TextBlock_Preference_Text">Preferences Setting</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">Load</sys:String>
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">Recent Projects</sys:String>
-    <sys:String x:Key="UI_TextBox_SearchKeyword_ButtonHeader">Keyword</sys:String>
+    <sys:String x:Key="UI_TextBox_SearchKeyword_ButtonHeader">Search</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
     <!--#endregion-->
 
