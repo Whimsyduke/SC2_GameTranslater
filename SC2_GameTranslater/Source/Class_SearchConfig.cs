@@ -213,7 +213,7 @@ namespace SC2_GameTranslater.Source
             SearchLocation = Globals.MainWindow.GetFileterSearchLocation();
             SearchWay = Globals.MainWindow.GetFileterSearchWay();
             SearchCase = Globals.MainWindow.GetFileterSearchCase();
-            SearchText = Globals.MainWindow.TextBox_SearchText.Text;
+            SearchText = Globals.MainWindow.TextBox_SearchKeyword.Text;
             GalaxyFile = Globals.MainWindow.GetFileterGalaxyFile();
             TextFile = Globals.MainWindow.GetFileterTextFile();
             TextStatus = Globals.MainWindow.GetFileterTextStatus();
@@ -235,7 +235,7 @@ namespace SC2_GameTranslater.Source
                 Globals.MainWindow.SetFileterSearchLocation(SearchLocation);
                 Globals.MainWindow.SetFileterSearchWay(SearchWay);
                 Globals.MainWindow.SetFileterSearchCase(SearchCase);
-                Globals.MainWindow.TextBox_SearchText.Text = SearchText;
+                Globals.MainWindow.TextBox_SearchKeyword.Text = SearchText;
                 Globals.MainWindow.SetFileterGalaxyFile(GalaxyFile);
                 Globals.MainWindow.SetFileterTextFile(TextFile);
                 Globals.MainWindow.SetFileterTextStatus(TextStatus);

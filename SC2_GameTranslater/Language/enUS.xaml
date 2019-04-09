@@ -137,7 +137,7 @@
     <sys:String x:Key="UI_OpenFileDialog_SaveAs_Title">Save Project As</sys:String>
     <sys:String x:Key="UI_RadioButton_SearchNull_Header">Find Null</sys:String>
     <sys:String x:Key="UI_RadioButton_SearchRegex_Header">Regex Expression</sys:String>
-    <sys:String x:Key="UI_RadioButton_SearchText_Header">SearchText</sys:String>
+    <sys:String x:Key="UI_RadioButton_SearchNormal_Header">SearchText</sys:String>
     <sys:String x:Key="UI_RibbonButton_Accept_Header">Accept Project</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">Close</sys:String>
     <sys:String x:Key="UI_RibbonButton_DoCopy_Header">Do Copy</sys:String>
@@ -174,7 +174,7 @@
     <sys:String x:Key="UI_TextBlock_Preference_Text">Preferences Setting</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">Load</sys:String>
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">Recent Projects</sys:String>
-    <sys:String x:Key="UI_TextBox_SearchText_ButtonHeader">Search Text</sys:String>
+    <sys:String x:Key="UI_TextBox_SearchKeyword_ButtonHeader">Keyword</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
     <!--#endregion-->
 
@@ -214,18 +214,18 @@
     <sys:String x:Key="TP_RibbonButton_FilterNext_Title">Next Selection Of Search State</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterNext_Text" xml:space="preserve">Go to next selection in Translated Text Data Grid or use previou search state.&#x000D;HotKey: Ctrl + Right</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterNext_DisableReason">No selection or search record in next.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_RecentProjects_Title">Recent Projects</sys:String>
-    <sys:String x:Key="TP_RibbonButton_RecentProjects_Text" xml:space="preserve">List up to 20 project files that you open recently.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_RecentProjects_DisableReason">No recent project.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Preference_Title">Preference</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Preference_Text" xml:space="preserve">Preference and project setting can be config here.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Preference_DisableReason">Reason</sys:String>
-    <sys:String x:Key="TP_RibbonButton_ComponentsPath_Title">Components Path</sys:String>
-    <sys:String x:Key="TP_RibbonButton_ComponentsPath_Text" xml:space="preserve">SC2 Map/Mod Components file path for current Project, used for acception of translated text.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_ComponentsPath_DisableReason">Reason</sys:String>
-    <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_Title">Software Language</sys:String>
-    <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_Text" xml:space="preserve">Set software display language.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_DisableReason">Reason</sys:String>
+    <sys:String x:Key="TP_BackstageTabItem_RecentProjects_Title">Recent Projects</sys:String>
+    <sys:String x:Key="TP_BackstageTabItem_RecentProjects_Text" xml:space="preserve">List up to 20 project files that you open recently.</sys:String>
+    <sys:String x:Key="TP_BackstageTabItem_RecentProjects_DisableReason">No recent project.</sys:String>
+    <sys:String x:Key="TP_BackstageTabItem_Preference_Title">Preference</sys:String>
+    <sys:String x:Key="TP_BackstageTabItem_Preference_Text" xml:space="preserve">Preference and project setting can be config here.</sys:String>
+    <sys:String x:Key="TP_BackstageTabItem_Preference_DisableReason">Reason</sys:String>
+    <sys:String x:Key="TP_GroupBox_ComponentsPath_Title">Components Path</sys:String>
+    <sys:String x:Key="TP_GroupBox_ComponentsPath_Text" xml:space="preserve">SC2 Map/Mod Components file path for current Project, used for acception of translated text.</sys:String>
+    <sys:String x:Key="TP_GroupBox_ComponentsPath_DisableReason">Reason</sys:String>
+    <sys:String x:Key="TP_GroupBox_SoftwareLanguage_Title">Software Language</sys:String>
+    <sys:String x:Key="TP_GroupBox_SoftwareLanguage_Text" xml:space="preserve">Set software display language.</sys:String>
+    <sys:String x:Key="TP_GroupBox_SoftwareLanguage_DisableReason">Reason</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Title">Translated Source Language</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Text" xml:space="preserve">The language that translate from. The data of Source Text column in Translated Text Data Grid shows depend on its value.</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_DisableReason">You need open or create a new porject.</sys:String>
@@ -268,15 +268,19 @@
     <sys:String x:Key="TP_CheckBox_SearchCase_Title">Search Match Case</sys:String>
     <sys:String x:Key="TP_CheckBox_SearchCase_Text" xml:space="preserve">Match case when search english character.</sys:String>
     <sys:String x:Key="TP_CheckBox_SearchCase_DisableReason">You need open or create a new porject.</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchNull_Title">Search Null</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNull_Title">Null Mode</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNull_Text" xml:space="preserve">Only search all empty text (no text with the Text ID or the value of the text is empty).</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNull_DisableReason">You need open or create a new porject.</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchRegex_Title">Search Regex Experssion</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchRegex_Title">Regex Experssion Mode</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchRegex_Text" xml:space="preserve">Search text with Regex Experssion mode.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchRegex_DisableReason">You need open or create a new porject.</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchText_Title">Search Text</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchText_Text" xml:space="preserve">Search text with normal mode.</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchText_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNormal_Title">Normal Mode</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNormal_Text" xml:space="preserve">Search text with normal mode.</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNormal_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_Title">Search Keyword</sys:String>
+    <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_Text" xml:space="preserve">The keyword use for search.</sys:String>
+    <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_DisableReason">You need open or create a new porject and no need write if in Null mode.</sys:String>
+    <!--#endregion-->
     <!--#endregion-->
 
     <!--#region EnumValue-->

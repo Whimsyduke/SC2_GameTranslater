@@ -137,7 +137,7 @@
     <sys:String x:Key="UI_OpenFileDialog_SaveAs_Title">保存项目到</sys:String>
     <sys:String x:Key="UI_RadioButton_SearchNull_Header">空文本</sys:String>
     <sys:String x:Key="UI_RadioButton_SearchRegex_Header">正则表达式</sys:String>
-    <sys:String x:Key="UI_RadioButton_SearchText_Header">搜索文本</sys:String>
+    <sys:String x:Key="UI_RadioButton_SearchNormal_Header">搜索文本</sys:String>
     <sys:String x:Key="UI_RibbonButton_Accept_Header">应用翻译</sys:String>
     <sys:String x:Key="UI_RibbonButton_Close_Header">关闭</sys:String>
     <sys:String x:Key="UI_RibbonButton_DoCopy_Header">开始复制</sys:String>
@@ -174,7 +174,7 @@
     <sys:String x:Key="UI_TextBlock_Preference_Text">配置设置</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">加载</sys:String>
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">最近项目</sys:String>
-    <sys:String x:Key="UI_TextBox_SearchText_ButtonHeader">搜索文本</sys:String>
+    <sys:String x:Key="UI_TextBox_SearchKeyword_ButtonHeader">关键字</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
     <!--#endregion-->
 
@@ -214,18 +214,18 @@
     <sys:String x:Key="TP_RibbonButton_FilterNext_Title">下一选择或搜索状态</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterNext_Text" xml:space="preserve">切换到前一翻译文本表格选择项或者搜索状态.&#x000D;快捷键：Ctrl + →</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterNext_DisableReason">不存在下一选择或者搜索状态。</sys:String>
-    <sys:String x:Key="TP_RibbonButton_RecentProjects_Title">最近项目</sys:String>
-    <sys:String x:Key="TP_RibbonButton_RecentProjects_Text" xml:space="preserve">列出最多20个最近打开的项目文件。</sys:String>
-    <sys:String x:Key="TP_RibbonButton_RecentProjects_DisableReason">没有最近打开的项目</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Preference_Title">配置</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Preference_Text" xml:space="preserve">软件配置和项目配置可以在这里设定。</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Preference_DisableReason">禁用原因</sys:String>
-    <sys:String x:Key="TP_RibbonButton_ComponentsPath_Title">组件文件夹路径</sys:String>
-    <sys:String x:Key="TP_RibbonButton_ComponentsPath_Text" xml:space="preserve">此项目的星际争霸2 Map/Mod组件文件夹路径。用于应用翻译文件。</sys:String>
-    <sys:String x:Key="TP_RibbonButton_ComponentsPath_DisableReason">禁用原因</sys:String>
-    <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_Title">软件语言</sys:String>
-    <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_Text" xml:space="preserve">设置当前显示的软件语言。</sys:String>
-    <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_BackstageTabItem_RecentProjects_Title">最近项目</sys:String>
+    <sys:String x:Key="TP_BackstageTabItem_RecentProjects_Text" xml:space="preserve">列出最多20个最近打开的项目文件。</sys:String>
+    <sys:String x:Key="TP_BackstageTabItem_RecentProjects_DisableReason">没有最近打开的项目</sys:String>
+    <sys:String x:Key="TP_BackstageTabItem_Preference_Title">配置</sys:String>
+    <sys:String x:Key="TP_BackstageTabItem_Preference_Text" xml:space="preserve">软件配置和项目配置可以在这里设定。</sys:String>
+    <sys:String x:Key="TP_BackstageTabItem_Preference_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_GroupBox_ComponentsPath_Title">组件文件夹路径</sys:String>
+    <sys:String x:Key="TP_GroupBox_ComponentsPath_Text" xml:space="preserve">此项目的星际争霸2 Map/Mod组件文件夹路径。用于应用翻译文件。</sys:String>
+    <sys:String x:Key="TP_GroupBox_ComponentsPath_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_GroupBox_SoftwareLanguage_Title">软件语言</sys:String>
+    <sys:String x:Key="TP_GroupBox_SoftwareLanguage_Text" xml:space="preserve">设置当前显示的软件语言。</sys:String>
+    <sys:String x:Key="TP_GroupBox_SoftwareLanguage_DisableReason">禁用原因</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Title">翻译源语言</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Text" xml:space="preserve">翻译来源的语言，翻译文本表格的原始文本列的显示数据基于此项选择。</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_DisableReason">你需要打开或者新建一个项目。</sys:String>
@@ -268,15 +268,18 @@
     <sys:String x:Key="TP_CheckBox_SearchCase_Title">搜索匹配大小写</sys:String>
     <sys:String x:Key="TP_CheckBox_SearchCase_Text" xml:space="preserve">搜索时匹配英文大小写。</sys:String>
     <sys:String x:Key="TP_CheckBox_SearchCase_DisableReason">你需要打开或者新建一个项目。</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchNull_Title">搜索空文本</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNull_Title">空文本模式</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNull_Text" xml:space="preserve">仅搜索空文本(当前语言不存在或者文本值为空)。</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNull_DisableReason">你需要打开或者新建一个项目。</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchRegex_Title">搜索正则表达式</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchRegex_Title">正则表达式模式</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchRegex_Text" xml:space="preserve">以正则表达式模式搜索文本。</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchRegex_DisableReason">你需要打开或者新建一个项目。</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchText_Title">搜索空文本</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchText_Text" xml:space="preserve">以普通模式搜索文本。</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchText_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNormal_Title">普通模式</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNormal_Text" xml:space="preserve">以普通模式搜索文本。</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNormal_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_Title">搜索关键字</sys:String>
+    <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_Text" xml:space="preserve">用来搜索的关键字。</sys:String>
+    <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

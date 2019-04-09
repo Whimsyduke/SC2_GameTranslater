@@ -1095,6 +1095,15 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         public object ButtonHeader { set => SetValue(ButtonHearderProperty, value); get => GetValue(ButtonHearderProperty); }
 
+        /// <summary>
+        /// 按钮文本依赖项
+        /// </summary>
+        public static DependencyProperty TextBoxEnableProperty = DependencyProperty.Register(nameof(TextBoxEnable), typeof(bool), typeof(RibbonSearchTextBox));
+
+        /// <summary>
+        /// 按钮文本依赖项属性
+        /// </summary>
+        public bool TextBoxEnable { set => SetValue(TextBoxEnableProperty, value); get => (bool)GetValue(TextBoxEnableProperty); }
 
         #endregion
 

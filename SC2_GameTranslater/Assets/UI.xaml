@@ -37,30 +37,48 @@
 
     <!--#region ToolTip-->
 
-    <!--#region InRibbonGallery-->
+    <!--#region 目录-->
 
     <Fluent:ScreenTip
-        x:Key="ToolTip_TranslateSource"
-        Title="{DynamicResource TP_InRibbonGallery_TranslateSource_Title}"
+        x:Key="ToolTip_RecentProjects"
+        Title="{DynamicResource TP_BackstageTabItem_RecentProjects_Title}"
         Width="300"
-        DisableReason="{DynamicResource TP_InRibbonGallery_TranslateSource_DisableReason}"
+        DisableReason="{DynamicResource TP_BackstageTabItem_RecentProjects_DisableReason}"
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
-        Text="{DynamicResource TP_InRibbonGallery_TranslateSource_Text}" />
+        Text="{DynamicResource TP_BackstageTabItem_RecentProjects_Text}" />
 
     <Fluent:ScreenTip
-        x:Key="ToolTip_TranslateTarget"
-        Title="{DynamicResource TP_InRibbonGallery_TranslateTarget_Title}"
+        x:Key="ToolTip_Preference"
+        Title="{DynamicResource TP_BackstageTabItem_Preference_Title}"
         Width="300"
-        DisableReason="{DynamicResource TP_InRibbonGallery_TranslateTarget_DisableReason}"
+        DisableReason="{DynamicResource TP_BackstageTabItem_Preference_DisableReason}"
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
-        Text="{DynamicResource TP_InRibbonGallery_TranslateTarget_Text}" />
+        Text="{DynamicResource TP_BackstageTabItem_Preference_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SoftwareLanguage"
+        Title="{DynamicResource TP_GroupBox_SoftwareLanguage_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_GroupBox_SoftwareLanguage_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_GroupBox_SoftwareLanguage_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_ComponentsPath"
+        Title="{DynamicResource TP_GroupBox_ComponentsPath_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_GroupBox_ComponentsPath_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_GroupBox_ComponentsPath_Text}" />
 
     <!--#endregion-->
 
-    <!--#region RibbonButton-->
-    
+    <!--#region 文件-->
+
     <Fluent:ScreenTip
         x:Key="ToolTip_New"
         Title="{DynamicResource TP_RibbonButton_New_Title}"
@@ -141,6 +159,10 @@
         IsRibbonAligned="False"
         Text="{DynamicResource TP_RibbonButton_ReloadSourceText_Text}" />
 
+    <!--#endregion-->
+
+    <!--#region 筛选记录-->
+
     <Fluent:ScreenTip
         x:Key="ToolTip_FilterPrev"
         Title="{DynamicResource TP_RibbonButton_FilterPrev_Title}"
@@ -160,47 +182,33 @@
         Image="{StaticResource ResourceKey=IMAGE_FilterNext}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_RibbonButton_FilterNext_Text}" />
-    
-    <Fluent:ScreenTip
-        x:Key="ToolTip_RecentProjects"
-        Title="{DynamicResource TP_RibbonButton_RecentProjects_Title}"
-        Width="300"
-        DisableReason="{DynamicResource TP_RibbonButton_RecentProjects_DisableReason}"
-        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
-        IsRibbonAligned="False"
-        Text="{DynamicResource TP_RibbonButton_RecentProjects_Text}" />
-
-    <Fluent:ScreenTip
-        x:Key="ToolTip_Preference"
-        Title="{DynamicResource TP_RibbonButton_Preference_Title}"
-        Width="300"
-        DisableReason="{DynamicResource TP_RibbonButton_Preference_DisableReason}"
-        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
-        IsRibbonAligned="False"
-        Text="{DynamicResource TP_RibbonButton_Preference_Text}" />
-
-    <Fluent:ScreenTip
-        x:Key="ToolTip_SoftwareLanguage"
-        Title="{DynamicResource TP_RibbonButton_SoftwareLanguage_Title}"
-        Width="300"
-        DisableReason="{DynamicResource TP_RibbonButton_SoftwareLanguage_DisableReason}"
-        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
-        IsRibbonAligned="False"
-        Text="{DynamicResource TP_RibbonButton_SoftwareLanguage_Text}" />
-
-    <Fluent:ScreenTip
-        x:Key="ToolTip_ComponentsPath"
-        Title="{DynamicResource TP_RibbonButton_ComponentsPath_Title}"
-        Width="300"
-        DisableReason="{DynamicResource TP_RibbonButton_ComponentsPath_DisableReason}"
-        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
-        IsRibbonAligned="False"
-        Text="{DynamicResource TP_RibbonButton_ComponentsPath_Text}" />
 
     <!--#endregion-->
-    
-    <!--#region ComboBox and Item-->
-    
+
+    <!--#region 翻译语言-->
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_TranslateSource"
+        Title="{DynamicResource TP_InRibbonGallery_TranslateSource_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_InRibbonGallery_TranslateSource_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_InRibbonGallery_TranslateSource_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_TranslateTarget"
+        Title="{DynamicResource TP_InRibbonGallery_TranslateTarget_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_InRibbonGallery_TranslateTarget_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_InRibbonGallery_TranslateTarget_Text}" />
+
+    <!--#endregion-->
+
+    <!--#region 搜索-->
+
     <Fluent:ScreenTip
         x:Key="ToolTip_SearchScope"
         Title="{DynamicResource TP_ComboBox_SearchScope_Title}"
@@ -218,7 +226,7 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_ComboBoxItem_SearchScopeAll_Text}" />
-    
+
     <Fluent:ScreenTip
         x:Key="ToolTip_SearchScopeItem_TextID"
         Title="{DynamicResource TP_ComboBoxItem_SearchScopeTextID_Title}"
@@ -245,7 +253,7 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_ComboBoxItem_SearchScopeDropedText_Text}" />
-    
+
     <Fluent:ScreenTip
         x:Key="ToolTip_SearchScopeItem_SourceText"
         Title="{DynamicResource TP_ComboBoxItem_SearchScopeSourceText_Title}"
@@ -281,7 +289,7 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_ComboBoxItem_SearchTextLocationALL_Text}" />
-    
+
     <Fluent:ScreenTip
         x:Key="ToolTip_SearchTextLocationItem_Left"
         Title="{DynamicResource TP_ComboBoxItem_SearchTextLocationLeft_Title}"
@@ -290,7 +298,7 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_ComboBoxItem_SearchTextLocationLeft_Text}" />
-    
+
     <Fluent:ScreenTip
         x:Key="ToolTip_SearchTextLocationItem_Right"
         Title="{DynamicResource TP_ComboBoxItem_SearchTextLocationRight_Title}"
@@ -299,10 +307,6 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_ComboBoxItem_SearchTextLocationRight_Text}" />
-    
-    <!--#endregion-->
-    
-    <!--#region CheckBox-->
 
     <Fluent:ScreenTip
         x:Key="ToolTip_SearchCase"
@@ -313,10 +317,6 @@
         IsRibbonAligned="False"
         Text="{DynamicResource TP_CheckBox_SearchCase_Text}" />
 
-    <!--#endregion-->
-
-    <!--#region RadioButton-->
-
     <Fluent:ScreenTip
         x:Key="ToolTip_SearchNullMode"
         Title="{DynamicResource TP_RadioButton_SearchNull_Title}"
@@ -325,7 +325,7 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_RadioButton_SearchNull_Text}" />
-    
+
     <Fluent:ScreenTip
         x:Key="ToolTip_SearchRegexMode"
         Title="{DynamicResource TP_RadioButton_SearchRegex_Title}"
@@ -334,15 +334,24 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_RadioButton_SearchRegex_Text}" />
-    
+
     <Fluent:ScreenTip
         x:Key="ToolTip_SearchTextMode"
-        Title="{DynamicResource TP_RadioButton_SearchText_Title}"
+        Title="{DynamicResource TP_RadioButton_SearchNormal_Title}"
         Width="300"
-        DisableReason="{DynamicResource TP_RadioButton_SearchText_DisableReason}"
+        DisableReason="{DynamicResource TP_RadioButton_SearchNormal_DisableReason}"
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
-        Text="{DynamicResource TP_RadioButton_SearchText_Text}" />
+        Text="{DynamicResource TP_RadioButton_SearchNormal_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchKeyword"
+        Title="{DynamicResource TP_RibbonSearchTextBox_SearchKeyword_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonSearchTextBox_SearchKeyword_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonSearchTextBox_SearchKeyword_Text}" />
 
     <!--#endregion-->
 
@@ -667,22 +676,24 @@
                 Icon="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}}"
                 LargeIcon="{Binding Path=LargeIcon, RelativeSource={RelativeSource TemplatedParent}}"
                 SizeDefinition="Middle" />
-            <Border
-                x:Name="PART_ContentBorder"
+            <Grid
                 Grid.Row="0"
                 Grid.RowSpan="3"
-                Grid.Column="1"
-                Width="{TemplateBinding InputWidth}"
-                Height="Auto"
-                HorizontalAlignment="Right"
-                Background="{DynamicResource Fluent.Ribbon.Brushes.TextBox.Background}"
-                BorderBrush="{DynamicResource Fluent.Ribbon.Brushes.TextBox.BorderBrush}"
-                BorderThickness="2">
-                <ScrollViewer
-                    x:Name="PART_ContentHost"
-                    Margin="0"
-                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
-            </Border>
+                Grid.Column="1">
+                <Border
+                    x:Name="PART_ContentBorder"
+                    Width="{TemplateBinding InputWidth}"
+                    Height="Auto"
+                    HorizontalAlignment="Right"
+                    Background="{DynamicResource Fluent.Ribbon.Brushes.TextBox.Background}"
+                    BorderBrush="{DynamicResource Fluent.Ribbon.Brushes.TextBox.BorderBrush}"
+                    BorderThickness="2">
+                    <ScrollViewer
+                        x:Name="PART_ContentHost"
+                        Margin="0"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </Border>
+            </Grid>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="Icon" Value="{x:Null}">

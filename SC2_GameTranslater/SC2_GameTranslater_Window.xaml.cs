@@ -1291,12 +1291,12 @@ namespace SC2_GameTranslater
             RadioButton_SearchNull.IsChecked = false;
             RadioButton_SearchRegex.IsEnabled = isEnable;
             RadioButton_SearchRegex.IsChecked = false;
-            RadioButton_SearchText.IsEnabled = isEnable;
-            RadioButton_SearchText.IsChecked = true;
+            RadioButton_SearchNormal.IsEnabled = isEnable;
+            RadioButton_SearchNormal.IsChecked = true;
             CheckBox_SearchCase.IsEnabled = isEnable;
             CheckBox_SearchCase.IsChecked = false;
-            TextBox_SearchText.IsEnabled = isEnable;
-            TextBox_SearchText.Text = "";
+            TextBox_SearchKeyword.IsEnabled = isEnable;
+            TextBox_SearchKeyword.Text = "";
         }
 
         /// <summary>
@@ -1312,12 +1312,12 @@ namespace SC2_GameTranslater
             RadioButton_SearchNull.IsChecked = false;
             RadioButton_SearchRegex.IsEnabled = isEnable;
             RadioButton_SearchRegex.IsChecked = false;
-            RadioButton_SearchText.IsEnabled = isEnable;
-            RadioButton_SearchText.IsChecked = true;
+            RadioButton_SearchNormal.IsEnabled = isEnable;
+            RadioButton_SearchNormal.IsChecked = true;
             CheckBox_SearchCase.IsEnabled = isEnable;
             CheckBox_SearchCase.IsChecked = false;
-            TextBox_SearchText.IsEnabled = isEnable;
-            TextBox_SearchText.Text = "";
+            TextBox_SearchKeyword.IsEnabled = isEnable;
+            TextBox_SearchKeyword.Text = "";
             foreach (ToggleButton button in InRibbonGallery_GalaxyFilter.Items)
             {
                 button.IsChecked = true;
@@ -1514,7 +1514,7 @@ namespace SC2_GameTranslater
                     RadioButton_SearchRegex.IsChecked = true;
                     break;
                 case EnumSearchWay.Text:
-                    RadioButton_SearchText.IsChecked = true;
+                    RadioButton_SearchNormal.IsChecked = true;
                     break;
             }
         }
@@ -2048,7 +2048,7 @@ namespace SC2_GameTranslater
         /// <param name="query">查询数据</param>
         private void SereachText_RegexMod(ref EnumerableRowCollection<DataRow> query)
         {
-            string match = TextBox_SearchText.Text;
+            string match = TextBox_SearchKeyword.Text;
             if (string.IsNullOrEmpty(match)) return;
             RegexOptions options = CheckBox_SearchCase.IsChecked == true ? RegexOptions.Compiled : RegexOptions.Compiled | RegexOptions.IgnoreCase;
             try
@@ -2070,7 +2070,7 @@ namespace SC2_GameTranslater
         /// <param name="query">查询数据</param>
         private void SereachText_MatchMod(ref EnumerableRowCollection<DataRow> query)
         {
-            string match = TextBox_SearchText.Text;
+            string match = TextBox_SearchKeyword.Text;
             if (String.IsNullOrEmpty(match)) return;
             EnumSearchTextLocation location = (EnumSearchTextLocation)((ComboBoxItem) ComboBox_SearchLocation.SelectedItem).Tag;
             Delegate_IsInSearchResult searchMatchFunc = DictTextSearchLocationFunc[location];
@@ -2660,7 +2660,7 @@ namespace SC2_GameTranslater
                 Width = 500,
                 Text = path,
             };
-            tooltip.SetResourceReference(ScreenTip.TitleProperty, "TP_RibbonButton_RecentProjects_Title");
+            tooltip.SetResourceReference(ScreenTip.TitleProperty, "TP_BackstageTabItem_RecentProjects_Title");
             tooltip.SetResourceReference(ScreenTip.ImageProperty, "IMAGE_ProjectFile");
             panel.Children.Add(image);
             panel.Children.Add(text);

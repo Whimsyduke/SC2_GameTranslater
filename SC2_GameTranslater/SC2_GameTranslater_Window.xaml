@@ -491,26 +491,28 @@
                         Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
                         ToolTip="{StaticResource ToolTip_SearchRegexMode}" />
                     <Fluent:RadioButton
-                        Name="RadioButton_SearchText"
+                        Name="RadioButton_SearchNormal"
                         HorizontalAlignment="Left"
                         VerticalContentAlignment="Center"
                         GroupName="SerachConfigure"
-                        Header="{DynamicResource UI_RadioButton_SearchText_Header}"
+                        Header="{DynamicResource UI_RadioButton_SearchNormal_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
                         ToolTip="{StaticResource ToolTip_SearchTextMode}" />
                     <source:RibbonSearchTextBox
-                        x:Name="TextBox_SearchText"
+                        x:Name="TextBox_SearchKeyword"
                         Height="65"
                         MinWidth="300"
+                        TextBoxEnable="{Binding ElementName=RadioButton_SearchNull,Path=IsChecked,Converter={StaticResource Converter_CommonNotValue}}"
                         HorizontalContentAlignment="Left"
                         VerticalContentAlignment="Top"
                         Fluent:RibbonGroupBoxWrapPanel.SharedSizeGroupName="Group_Serach"
                         AcceptsReturn="True"
-                        ButtonHeader="{DynamicResource UI_TextBox_SearchText_ButtonHeader}"
+                        ButtonHeader="{DynamicResource UI_TextBox_SearchKeyword_ButtonHeader}"
                         Command="{x:Static local:SC2_GameTranslater_Window.SearchClick}"
                         Header="{DynamicResource UI_ComboBox_SearchText_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchTextBox}"
                         TextWrapping="WrapWithOverflow"
+                        ToolTip="{StaticResource ToolTip_SearchKeyword}"
                         VerticalScrollBarVisibility="Auto" />
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
