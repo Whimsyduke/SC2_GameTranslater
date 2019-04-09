@@ -80,16 +80,16 @@
     <sys:String x:Key="UI_ComboBox_SearchLanguage_Header">Language:</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchLcation_Header">Location:</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchText_Header">Search:</sys:String>
-    <sys:String x:Key="UI_ComboBox_SearchType_Header">Type:</sys:String>
+    <sys:String x:Key="UI_ComboBox_SearchScope_Header">Type:</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationALL_Header">All Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationLeft_Header">Start Left</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationRight_Header">Start Right</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeALL_Header">All</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeALLText_Header">All Text</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeDropedText_Header">Drop Text</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeEditedText_Header">Edited Text</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeSourceText_Header">Source Text</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeTextID_Header">Text ID</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchScopeALL_Header">All</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchScopeALLText_Header">All Text</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchScopeDropedText_Header">Drop Text</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchScopeEditedText_Header">Edited Text</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchScopeSourceText_Header">Source Text</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchScopeTextID_Header">Text ID</sys:String>
     <sys:String x:Key="UI_DataGridColumn_DeatilsDropedText_Header">Droped Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_DeatilsEditedText_Header">Edited Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_DeatilsLanguage_Header">Language</sys:String>
@@ -192,22 +192,22 @@
     <sys:String x:Key="TP_RibbonButton_Open_DisableReason">Reason</sys:String>
     <sys:String x:Key="TP_RibbonButton_Save_Title">Save Translated Project</sys:String>
     <sys:String x:Key="TP_RibbonButton_Save_Text" xml:space="preserve">Save current on working project, if it is unsaved, you need choose a path first.&#x000D;HotKey: Ctrl + S</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Save_DisableReason">You need open or create a new porject before save it.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Save_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_RibbonButton_SaveAs_Title">Save Translated Project</sys:String>
     <sys:String x:Key="TP_RibbonButton_SaveAs_Text" xml:space="preserve">Save current on working project, you need choose a path where to place the project file.&#x000D;HotKey: Ctrl + Shift + S</sys:String>
-    <sys:String x:Key="TP_RibbonButton_SaveAs_DisableReason">You need open or create a new porject before save it.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_SaveAs_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_RibbonButton_Close_Title">Close Translated Project</sys:String>
     <sys:String x:Key="TP_RibbonButton_Close_Text" xml:space="preserve">Close current on working project, you will ask for save it before close it.&#x000D;HotKey: Ctrl + W</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Close_DisableReason">You need open or create a new porject before close it.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Close_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_RibbonButton_Accept_Title">Accept Translated Text</sys:String>
     <sys:String x:Key="TP_RibbonButton_Accept_Text" xml:space="preserve">Write back the translated text to Map/Mod. You need make sure your path of Map/Mod is vaild, if not, you can set it at [Menu][Preferences Setting][Preference].&#x000D;HotKey: Ctrl + E</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Accept_DisableReason">You need open or create a new porject before accept it, and also make Map/Mod path vaild.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Accept_DisableReason">You need open or create a new porject, and also make Map/Mod path vaild.</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadTranslation_Title">Reload Edited Text</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadTranslation_Text" xml:space="preserve">Reload the translated text form another project file, you can choose which language you want to reload and if only reload modified text.&#x000D;HotKey: Ctrl + R</sys:String>
-    <sys:String x:Key="TP_RibbonButton_ReloadTranslation_DisableReason">You need open or create a new porject before reload.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadTranslation_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Title">Reload Source Text</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Text" xml:space="preserve">Reload the source text form another project file or directly from a Map/Mod, then you can know what have changed between two project.&#x000D;The info is hided, you can right click the column header of translated text grid to show.&#x000D;HotKey: Ctrl + T</sys:String>
-    <sys:String x:Key="TP_RibbonButton_ReloadSourceText_DisableReason">You need open or create a new porject before reload.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadSourceText_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterPrev_Title">Previous Selection Of Search State</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterPrev_Text" xml:space="preserve">Go to previous selection in Translated Text Data Grid or use previou search state.&#x000D;HotKey: Ctrl + Left</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterPrev_DisableReason">No selection or search record in previous.</sys:String>
@@ -228,11 +228,55 @@
     <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_DisableReason">Reason</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Title">Translated Source Language</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Text" xml:space="preserve">The language that translate from. The data of Source Text column in Translated Text Data Grid shows depend on its value.</sys:String>
-    <sys:String x:Key="TP_InRibbonGallery_TranslateSource_DisableReason">You need open or create a new porject before select a Source Language.</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_TranslateSource_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_Title">Translated Target Language</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_Text" xml:space="preserve">The language that translate to. The data of Text Status column, Use Status column, Droped Text column and Edited Text column in Translated Text Data Grid shows depend on its value.</sys:String>
-    <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_DisableReason">You need open or create a new porject before select a Target Language</sys:String>
-    
+    <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchScope_Title">Search Scope</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchScope_Text" xml:space="preserve">Which columns search in.</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchScope_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeAll_Title">Search All</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeAll_Text" xml:space="preserve">Search in Text ID, Droped Text, Source Text and Edited Text column.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeAll_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeTextID_Title">Search Text ID</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeTextID_Text" xml:space="preserve">Search in Text ID.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeTextID_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeAllText_Title">Search All Text</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeAllText_Text" xml:space="preserve">Search in Droped Text, Source Text and Edited Text column.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeAllText_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeDropedText_Title">Search Droped Text</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeDropedText_Text" xml:space="preserve">Search in Droped Text column.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeDropedText_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeSourceText_Title">Search Source Text</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeSourceText_Text" xml:space="preserve">Search in Source Text column.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeSourceText_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeEditedText_Title">Search Edited Text</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeEditedText_Text" xml:space="preserve">Search in Edited Text column.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeEditedText_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchTextLocation_Title">Search Text Location</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchTextLocation_Text" xml:space="preserve">Which loaction the search text, can not use in Regext Experssion mode</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchTextLocation_DisableReason">You need open or create a new porject and not do search in Regex Experssion mode.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationALL_Title">Search In All Location</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationALL_Text" xml:space="preserve">Search all of the locations in text.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationALL_DisableReason">You need open or create a new porject and not do search in Regex Experssion mode.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationLeft_Title">Search Start With Left</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationLeft_Text" xml:space="preserve">Search the text only start with left.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationLeft_DisableReason">You need open or create a new porject and not do search in Regex Experssion mode.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationRight_Title">Search End With Left</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationRight_Text" xml:space="preserve">Search the text only end with right.</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationRight_DisableReason">You need open or create a new porject and not do search in Regex Experssion mode.</sys:String>
+    <sys:String x:Key="TP_CheckBox_SearchCase_Title">Search Match Case</sys:String>
+    <sys:String x:Key="TP_CheckBox_SearchCase_Text" xml:space="preserve">Match case when search english character.</sys:String>
+    <sys:String x:Key="TP_CheckBox_SearchCase_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNull_Title">Search Null</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNull_Text" xml:space="preserve">Only search all empty text (no text with the Text ID or the value of the text is empty).</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNull_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchRegex_Title">Search Regex Experssion</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchRegex_Text" xml:space="preserve">Search text with Regex Experssion mode.</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchRegex_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchText_Title">Search Text</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchText_Text" xml:space="preserve">Search text with normal mode.</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchText_DisableReason">You need open or create a new porject.</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

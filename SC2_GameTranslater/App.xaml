@@ -8,7 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary x:Name="ResourceDictionary_WindowLanguage">
                     <ResourceDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="pack://application:,,,/Language/zhCN.xaml" />
+                        <ResourceDictionary Source="pack://application:,,,/Language/enUS.xaml" />
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Generic.xaml" />

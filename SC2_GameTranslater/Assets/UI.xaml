@@ -198,6 +198,153 @@
         Text="{DynamicResource TP_RibbonButton_ComponentsPath_Text}" />
 
     <!--#endregion-->
+    
+    <!--#region ComboBox and Item-->
+    
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchScope"
+        Title="{DynamicResource TP_ComboBox_SearchScope_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_ComboBox_SearchScope_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_ComboBox_SearchScope_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchScopeItem_All"
+        Title="{DynamicResource TP_ComboBoxItem_SearchScopeAll_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_ComboBoxItem_SearchScopeAll_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_ComboBoxItem_SearchScopeAll_Text}" />
+    
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchScopeItem_TextID"
+        Title="{DynamicResource TP_ComboBoxItem_SearchScopeTextID_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_ComboBoxItem_SearchScopeTextID_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_ComboBoxItem_SearchScopeTextID_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchScopeItem_AllText"
+        Title="{DynamicResource TP_ComboBoxItem_SearchScopeAllText_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_ComboBoxItem_SearchScopeAllText_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_ComboBoxItem_SearchScopeAllText_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchScopeItem_DropedText"
+        Title="{DynamicResource TP_ComboBoxItem_SearchScopeDropedText_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_ComboBoxItem_SearchScopeDropedText_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_ComboBoxItem_SearchScopeDropedText_Text}" />
+    
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchScopeItem_SourceText"
+        Title="{DynamicResource TP_ComboBoxItem_SearchScopeSourceText_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_ComboBoxItem_SearchScopeSourceText_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_ComboBoxItem_SearchScopeSourceText_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchScopeItem_EditedText"
+        Title="{DynamicResource TP_ComboBoxItem_SearchScopeEditedText_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_ComboBoxItem_SearchScopeEditedText_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_ComboBoxItem_SearchScopeEditedText_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchTextLocation"
+        Title="{DynamicResource TP_ComboBox_SearchTextLocation_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_ComboBox_SearchTextLocation_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_ComboBox_SearchTextLocation_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchTextLocationItem_All"
+        Title="{DynamicResource TP_ComboBoxItem_SearchTextLocationALL_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_ComboBoxItem_SearchTextLocationALL_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_ComboBoxItem_SearchTextLocationALL_Text}" />
+    
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchTextLocationItem_Left"
+        Title="{DynamicResource TP_ComboBoxItem_SearchTextLocationLeft_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_ComboBoxItem_SearchTextLocationLeft_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_ComboBoxItem_SearchTextLocationLeft_Text}" />
+    
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchTextLocationItem_Right"
+        Title="{DynamicResource TP_ComboBoxItem_SearchTextLocationRight_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_ComboBoxItem_SearchTextLocationRight_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_ComboBoxItem_SearchTextLocationRight_Text}" />
+    
+    <!--#endregion-->
+    
+    <!--#region CheckBox-->
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchCase"
+        Title="{DynamicResource TP_CheckBox_SearchCase_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_CheckBox_SearchCase_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_CheckBox_SearchCase_Text}" />
+
+    <!--#endregion-->
+
+    <!--#region RadioButton-->
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchNullMode"
+        Title="{DynamicResource TP_RadioButton_SearchNull_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RadioButton_SearchNull_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RadioButton_SearchNull_Text}" />
+    
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchRegexMode"
+        Title="{DynamicResource TP_RadioButton_SearchRegex_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RadioButton_SearchRegex_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RadioButton_SearchRegex_Text}" />
+    
+    <Fluent:ScreenTip
+        x:Key="ToolTip_SearchTextMode"
+        Title="{DynamicResource TP_RadioButton_SearchText_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RadioButton_SearchText_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RadioButton_SearchText_Text}" />
+
+    <!--#endregion-->
 
     <!--#endregion-->
 

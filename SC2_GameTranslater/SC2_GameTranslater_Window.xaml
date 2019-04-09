@@ -394,35 +394,42 @@
                     Grid.IsSharedSizeScope="True"
                     Header="{DynamicResource UI_RibbonGroupBox_Search_Header}">
                     <Fluent:ComboBox
-                        Name="ComboBox_SearchType"
-                        Header="{DynamicResource UI_ComboBox_SearchType_Header}"
+                        Name="ComboBox_SearchScope"
+                        Header="{DynamicResource UI_ComboBox_SearchScope_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchComboBox}"
                         IsEditable="False"
-                        SelectedIndex="0">
+                        SelectedIndex="0"
+                        ToolTip="{StaticResource ToolTip_SearchScope}">
                         <ComboBoxItem
-                            Name="ComboBoxItem_SearchTypeAll"
-                            Content="{DynamicResource UI_ComboBoxItem_SearchTypeALL_Header}"
-                            Tag="{x:Static source:EnumSearchTextType.All}" />
+                            Name="ComboBoxItem_SearchScopeAll"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchScopeALL_Header}"
+                            Tag="{x:Static source:EnumSearchTextType.All}"
+                            ToolTip="{StaticResource ToolTip_SearchScopeItem_All}" />
                         <ComboBoxItem
-                            Name="ComboBoxItem_SearchTypeTextID"
-                            Content="{DynamicResource UI_ComboBoxItem_SearchTypeTextID_Header}"
-                            Tag="{x:Static source:EnumSearchTextType.ID}" />
+                            Name="ComboBoxItem_SearchScopeTextID"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchScopeTextID_Header}"
+                            Tag="{x:Static source:EnumSearchTextType.ID}"
+                            ToolTip="{StaticResource ToolTip_SearchScopeItem_TextID}" />
                         <ComboBoxItem
-                            Name="ComboBoxItem_SearchTypeAllText"
-                            Content="{DynamicResource UI_ComboBoxItem_SearchTypeALLText_Header}"
-                            Tag="{x:Static source:EnumSearchTextType.AllText}" />
+                            Name="ComboBoxItem_SearchScopeAllText"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchScopeALLText_Header}"
+                            Tag="{x:Static source:EnumSearchTextType.AllText}"
+                            ToolTip="{StaticResource ToolTip_SearchScopeItem_AllText}" />
                         <ComboBoxItem
-                            Name="ComboBoxItem_SearchTypeSourceText"
-                            Content="{DynamicResource UI_ComboBoxItem_SearchTypeSourceText_Header}"
-                            Tag="{x:Static source:EnumSearchTextType.Source}" />
+                            Name="ComboBoxItem_SearchScopeDropedText"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchScopeDropedText_Header}"
+                            Tag="{x:Static source:EnumSearchTextType.Droped}"
+                            ToolTip="{StaticResource ToolTip_SearchScopeItem_DropedText}" />
                         <ComboBoxItem
-                            Name="ComboBoxItem_SearchTypeDropedText"
-                            Content="{DynamicResource UI_ComboBoxItem_SearchTypeDropedText_Header}"
-                            Tag="{x:Static source:EnumSearchTextType.Droped}" />
+                            Name="ComboBoxItem_SearchScopeSourceText"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchScopeSourceText_Header}"
+                            Tag="{x:Static source:EnumSearchTextType.Source}"
+                            ToolTip="{StaticResource ToolTip_SearchScopeItem_SourceText}" />
                         <ComboBoxItem
-                            Name="ComboBoxItem_SearchTypeEditedText"
-                            Content="{DynamicResource UI_ComboBoxItem_SearchTypeEditedText_Header}"
-                            Tag="{x:Static source:EnumSearchTextType.Edited}" />
+                            Name="ComboBoxItem_SearchScopeEditedText"
+                            Content="{DynamicResource UI_ComboBoxItem_SearchScopeEditedText_Header}"
+                            Tag="{x:Static source:EnumSearchTextType.Edited}"
+                            ToolTip="{StaticResource ToolTip_SearchScopeItem_EditedText}" />
                     </Fluent:ComboBox>
                     <Fluent:ComboBox
                         Name="ComboBox_SearchLocation"
@@ -432,7 +439,8 @@
                         Header="{DynamicResource UI_ComboBox_SearchLcation_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchComboBox}"
                         IsEditable="False"
-                        SelectedIndex="0">
+                        SelectedIndex="0"
+                        ToolTip="{StaticResource ToolTip_SearchTextLocation}">
                         <Fluent:ComboBox.IsEnabled>
                             <MultiBinding Converter="{StaticResource Converter_SerachLocationByRegexControl}">
                                 <Binding ElementName="RadioButton_SearchRegex" Path="IsEnabled" />
@@ -442,22 +450,29 @@
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchLocationAll"
                             Content="{DynamicResource UI_ComboBoxItem_SearchLocationALL_Header}"
-                            Tag="{x:Static source:EnumSearchTextLocation.All}" />
+                            Tag="{x:Static source:EnumSearchTextLocation.All}"
+                            ToolTip="{StaticResource ToolTip_SearchTextLocationItem_All}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchLocationLeft"
                             Content="{DynamicResource UI_ComboBoxItem_SearchLocationLeft_Header}"
-                            Tag="{x:Static source:EnumSearchTextLocation.Left}" />
+                            Tag="{x:Static source:EnumSearchTextLocation.Left}"
+                            ToolTip="{StaticResource ToolTip_SearchTextLocationItem_Left}" />
                         <ComboBoxItem
                             Name="ComboBoxItem_SearchLocationRight"
                             Content="{DynamicResource UI_ComboBoxItem_SearchLocationRight_Header}"
-                            Tag="{x:Static source:EnumSearchTextLocation.Right}" />
+                            Tag="{x:Static source:EnumSearchTextLocation.Right}"
+                            ToolTip="{StaticResource ToolTip_SearchTextLocationItem_Right}" />
                     </Fluent:ComboBox>
                     <Fluent:CheckBox
                         Name="CheckBox_SearchCase"
+                        Height="18"
+                        Margin="2,2,2,0"
                         HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
                         VerticalContentAlignment="Center"
                         Header="{DynamicResource UI_CheckBox_SearchCase_Header}"
-                        Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}" />
+                        Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
+                        ToolTip="{StaticResource ToolTip_SearchCase}" />
                     <Fluent:RadioButton
                         Name="RadioButton_SearchNull"
                         HorizontalAlignment="Left"
@@ -465,21 +480,24 @@
                         GroupName="SerachConfigure"
                         Header="{DynamicResource UI_RadioButton_SearchNull_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
-                        IsChecked="True" />
+                        IsChecked="True"
+                        ToolTip="{StaticResource ToolTip_SearchNullMode}" />
                     <Fluent:RadioButton
                         Name="RadioButton_SearchRegex"
                         HorizontalAlignment="Left"
                         VerticalContentAlignment="Center"
                         GroupName="SerachConfigure"
                         Header="{DynamicResource UI_RadioButton_SearchRegex_Header}"
-                        Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}" />
+                        Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
+                        ToolTip="{StaticResource ToolTip_SearchRegexMode}" />
                     <Fluent:RadioButton
                         Name="RadioButton_SearchText"
                         HorizontalAlignment="Left"
                         VerticalContentAlignment="Center"
                         GroupName="SerachConfigure"
                         Header="{DynamicResource UI_RadioButton_SearchText_Header}"
-                        Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}" />
+                        Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
+                        ToolTip="{StaticResource ToolTip_SearchTextMode}" />
                     <source:RibbonSearchTextBox
                         x:Name="TextBox_SearchText"
                         Height="65"

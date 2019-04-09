@@ -80,16 +80,16 @@
     <sys:String x:Key="UI_ComboBox_SearchLanguage_Header">语言：</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchLcation_Header">位置：</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchText_Header">搜索：</sys:String>
-    <sys:String x:Key="UI_ComboBox_SearchType_Header">类型：</sys:String>
+    <sys:String x:Key="UI_ComboBox_SearchScope_Header">类型：</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationALL_Header">全文</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationLeft_Header">左起</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationRight_Header">右起</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeALL_Header">全部</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeALLText_Header">全部文本</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeDropedText_Header">舍弃文本</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeEditedText_Header">修改文本</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeSourceText_Header">原始文本</sys:String>
-    <sys:String x:Key="UI_ComboBoxItem_SearchTypeTextID_Header">文本ID:</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchScopeALL_Header">全部</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchScopeALLText_Header">全部文本</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchScopeDropedText_Header">舍弃文本</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchScopeEditedText_Header">修改文本</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchScopeSourceText_Header">原始文本</sys:String>
+    <sys:String x:Key="UI_ComboBoxItem_SearchScopeTextID_Header">文本ID:</sys:String>
     <sys:String x:Key="UI_DataGridColumn_DeatilsDropedText_Header">舍弃文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_DeatilsEditedText_Header">修改文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_DeatilsLanguage_Header">语言</sys:String>
@@ -191,23 +191,23 @@
     <sys:String x:Key="TP_RibbonButton_Open_Text" xml:space="preserve">打开一个翻译项目来继续你的工作。（项目文件的扩展名为.SC2GameTran）&#x000D;快捷键：Ctrl + O</sys:String>
     <sys:String x:Key="TP_RibbonButton_Open_DisableReason">Reason</sys:String>
     <sys:String x:Key="TP_RibbonButton_Save_Title">保存翻译项目</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Save_Text" xml:space="preserve">保存当前正在工作的项目，如果它是位保存的，你需要先选择保存的路径。&#x000D;快捷键：Ctrl + S</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Save_DisableReason">在保存项目前，你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Save_Text" xml:space="preserve">保存当前正在工作的项目，如果它是未保存的，你需要先选择保存的路径。&#x000D;快捷键：Ctrl + S</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Save_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_RibbonButton_SaveAs_Title">保存翻译项目</sys:String>
     <sys:String x:Key="TP_RibbonButton_SaveAs_Text" xml:space="preserve">保存当前正在工作的项目，你需要现选择项目文件的保存的路径。&#x000D;快捷键：Ctrl + Shift + S</sys:String>
-    <sys:String x:Key="TP_RibbonButton_SaveAs_DisableReason">在保存项目前，你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_SaveAs_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_RibbonButton_Close_Title">关闭翻译项目</sys:String>
     <sys:String x:Key="TP_RibbonButton_Close_Text" xml:space="preserve">关闭当前正在工作的项目，你将会在关闭前询问是否保存它。&#x000D;快捷键：Ctrl + W</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Close_DisableReason">在保存项目前，你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Close_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_RibbonButton_Accept_Title">应用翻译文本</sys:String>
     <sys:String x:Key="TP_RibbonButton_Accept_Text" xml:space="preserve">将翻译文本写回到Map/Mod中，在此之前，你需要保证设置的Map\Mod路径有效，你可以在【目录】【配置设置】【配置】对应页面找到相应设置。&#x000D;快捷键：Ctrl + W</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Accept_DisableReason">在应用项目前，你需要打开或者新建一个项目，并保证Map/Mod的路径是正确的。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Accept_DisableReason">你需要打开或者新建一个项目，并保证Map/Mod的路径是正确的。</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadTranslation_Title">重载修改文本</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadTranslation_Text" xml:space="preserve">从另外一个项目文件重载修改好的文本，你可以选择重载文本的语言以及是否仅重载已翻译的内容。&#x000D;快捷键：Ctrl + R</sys:String>
-    <sys:String x:Key="TP_RibbonButton_ReloadTranslation_DisableReason">在重载前，你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadTranslation_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Title">重载源文本</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Text" xml:space="preserve">从另外一个项目文件或直接从Map/Mod重载源文本，然后你可以知道两个项目文件的差异。&#x000D;这些信息是隐藏的，你可以右击翻译文本表个的列头来显示。&#x000D;快捷键：Ctrl + T</sys:String>
-    <sys:String x:Key="TP_RibbonButton_ReloadSourceText_DisableReason">在重载前，你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadSourceText_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterPrev_Title">前一选择或搜索状态</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterPrev_Text" xml:space="preserve">切换到前一翻译文本表格选择项或者搜索状态.&#x000D;快捷键：Ctrl + ←</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterPrev_DisableReason">不存在前一选择或者搜索状态。</sys:String>
@@ -228,10 +228,55 @@
     <sys:String x:Key="TP_RibbonButton_SoftwareLanguage_DisableReason">禁用原因</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Title">翻译源语言</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Text" xml:space="preserve">翻译来源的语言，翻译文本表格的原始文本列的显示数据基于此项选择。</sys:String>
-    <sys:String x:Key="TP_InRibbonGallery_TranslateSource_DisableReason">在选择翻译来源语言前，你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_TranslateSource_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_Title">翻译目标语言</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_Text" xml:space="preserve">翻译来源的语言，翻译文本表格的文本状态列、使用状态列、舍弃文本列及修改文本列的显示数据基于此项选择。</sys:String>
-    <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_DisableReason">在选择翻译目标语言前，你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchScope_Title">搜索范围</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchScope_Text" xml:space="preserve">搜索哪些列。</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchScope_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeAll_Title">搜索全部</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeAll_Text" xml:space="preserve">搜索文本ID、舍弃文本、原始文本和修改文本。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeAll_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeTextID_Title">搜索文本ID</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeTextID_Text" xml:space="preserve">搜索文本ID。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeTextID_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeAllText_Title">搜索全部文本</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeAllText_Text" xml:space="preserve">搜索舍弃文本、原始文本、修改文本。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeAllText_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeDropedText_Title">搜索舍弃文本</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeDropedText_Text" xml:space="preserve">搜索舍弃文本。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeDropedText_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeSourceText_Title">搜索原始文本</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeSourceText_Text" xml:space="preserve">搜索原始文本。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeSourceText_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeEditedText_Title">搜索修改文本</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeEditedText_Text" xml:space="preserve">搜索修改文本。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchScopeEditedText_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchTextLocation_Title">搜索文本位置</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchTextLocation_Text" xml:space="preserve">在非正则表达式模式下搜索文本的位置。</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchTextLocation_DisableReason">你需要打开或者新建一个项目，并且当前搜索不在正则表达式模式下。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationALL_Title">搜索全部位置</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationALL_Text" xml:space="preserve">搜索全部位置的文本。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationALL_DisableReason">你需要打开或者新建一个项目，并且当前搜索不在正则表达式模式下。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationLeft_Title">搜索左侧文本</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationLeft_Text" xml:space="preserve">仅搜索自左侧开始的文本。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationLeft_DisableReason">你需要打开或者新建一个项目，并且当前搜索不在正则表达式模式下。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationRight_Title">搜索右侧文本</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationRight_Text" xml:space="preserve">仅搜索自右侧结束的文本。</sys:String>
+    <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationRight_DisableReason">你需要打开或者新建一个项目，并且当前搜索不在正则表达式模式下。</sys:String>
+    <sys:String x:Key="TP_CheckBox_SearchCase_Title">搜索匹配大小写</sys:String>
+    <sys:String x:Key="TP_CheckBox_SearchCase_Text" xml:space="preserve">搜索时匹配英文大小写。</sys:String>
+    <sys:String x:Key="TP_CheckBox_SearchCase_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNull_Title">搜索空文本</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNull_Text" xml:space="preserve">仅搜索空文本(当前语言不存在或者文本值为空)。</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNull_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchRegex_Title">搜索正则表达式</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchRegex_Text" xml:space="preserve">以正则表达式模式搜索文本。</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchRegex_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchText_Title">搜索空文本</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchText_Text" xml:space="preserve">以普通模式搜索文本。</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchText_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

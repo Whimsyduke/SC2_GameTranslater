@@ -1284,8 +1284,8 @@ namespace SC2_GameTranslater
         private void RefreshSearchControl(Data_GameText project)
         {
             bool isEnable = project != null;
-            ComboBox_SearchType.IsEnabled = isEnable;
-            ComboBox_SearchType.SelectedIndex = 0;
+            ComboBox_SearchScope.IsEnabled = isEnable;
+            ComboBox_SearchScope.SelectedIndex = 0;
             ComboBox_SearchLocation.SelectedIndex = 0;
             RadioButton_SearchNull.IsEnabled = isEnable;
             RadioButton_SearchNull.IsChecked = false;
@@ -1305,8 +1305,8 @@ namespace SC2_GameTranslater
         /// <param name="isEnable">项目数据</param>
         private void ResetSearchControlToDefault(bool isEnable)
         {
-            ComboBox_SearchType.IsEnabled = isEnable;
-            ComboBox_SearchType.SelectedIndex = 0;
+            ComboBox_SearchScope.IsEnabled = isEnable;
+            ComboBox_SearchScope.SelectedIndex = 0;
             ComboBox_SearchLocation.SelectedIndex = 0;
             RadioButton_SearchNull.IsEnabled = isEnable;
             RadioButton_SearchNull.IsChecked = false;
@@ -1408,7 +1408,7 @@ namespace SC2_GameTranslater
         /// <returns>搜索类型</returns>
         public EnumSearchTextType GetFileterSearchTextType()
         {
-            if (ComboBox_SearchType.SelectedItem != null && ComboBox_SearchType.SelectedItem is ComboBoxItem item)
+            if (ComboBox_SearchScope.SelectedItem != null && ComboBox_SearchScope.SelectedItem is ComboBoxItem item)
             {
                 return (EnumSearchTextType?) item.Tag ?? EnumSearchTextType.All;
             }
@@ -1424,13 +1424,13 @@ namespace SC2_GameTranslater
         /// <param name="value">搜索类型</param>
         public void SetFileterSearchTextType(EnumSearchTextType value)
         {
-            foreach (object select in ComboBox_SearchType.Items)
+            foreach (object select in ComboBox_SearchScope.Items)
             {
                 if (select is ComboBoxItem item && item.Tag != null)
                 {
                     if ((EnumSearchTextType)item.Tag == value)
                     {
-                        ComboBox_SearchType.SelectedItem = item;
+                        ComboBox_SearchScope.SelectedItem = item;
                     }
                 }
             }
@@ -1997,7 +1997,7 @@ namespace SC2_GameTranslater
         private List<string> GetSearchKeyList()
         {
             List<string> keyList = new List<string>();
-            EnumSearchTextType type = (EnumSearchTextType)((ComboBoxItem)ComboBox_SearchType.SelectedItem).Tag;
+            EnumSearchTextType type = (EnumSearchTextType)((ComboBoxItem)ComboBox_SearchScope.SelectedItem).Tag;
             // ID
             if (type.HasFlag(EnumSearchTextType.ID))
             {

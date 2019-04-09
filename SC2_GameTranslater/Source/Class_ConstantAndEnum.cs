@@ -168,13 +168,13 @@ namespace SC2_GameTranslater.Source
         /// </summary>
         ID = 1,
         /// <summary>
+        /// 舍弃文本
+        /// </summary>
+        Droped = 2,
+        /// <summary>
         /// 原文本
         /// </summary>
-        Source = 2,
-        /// <summary>
-        /// 旧文本
-        /// </summary>
-        Droped = 4,
+        Source = 4,
         /// <summary>
         /// 修改文本
         /// </summary>

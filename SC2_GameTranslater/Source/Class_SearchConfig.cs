@@ -40,7 +40,7 @@ namespace SC2_GameTranslater.Source
         public const string SearchConfig_ElementRoot = "SearchConfig";
         public const string SearchConfig_AttributeTraslateLanguageSource = "TraslateLanguageSource";
         public const string SearchConfig_AttributeTraslateLanguageTarget = "TraslateLanguageTarget";
-        public const string SearchConfig_AttributeSearchType = "SearchType";
+        public const string SearchConfig_AttributeSearchScope = "SearchScope";
         public const string SearchConfig_AttributeSearchLanguage = "SearchLanguage";
         public const string SearchConfig_AttributeSearchLocation = "SearchLocation";
         public const string SearchConfig_AttributeSearchWay = "SearchWay";
@@ -73,8 +73,8 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 搜索类型
         /// </summary>
-        [XmlAttribute(SearchConfig_AttributeSearchType)]
-        public EnumSearchTextType SearchType { set; get; } = EnumSearchTextType.All;
+        [XmlAttribute(SearchConfig_AttributeSearchScope)]
+        public EnumSearchTextType SearchScope { set; get; } = EnumSearchTextType.All;
 
         /// <summary>
         /// 搜索位置
@@ -209,7 +209,7 @@ namespace SC2_GameTranslater.Source
         {
             TraslateLanguageSource = Globals.MainWindow.GetFileterTranslatedLanguageSource();
             TraslateLanguageTarget = Globals.MainWindow.GetFileterTranslatedLanguageTarget();
-            SearchType = Globals.MainWindow.GetFileterSearchTextType();
+            SearchScope = Globals.MainWindow.GetFileterSearchTextType();
             SearchLocation = Globals.MainWindow.GetFileterSearchLocation();
             SearchWay = Globals.MainWindow.GetFileterSearchWay();
             SearchCase = Globals.MainWindow.GetFileterSearchCase();
@@ -231,7 +231,7 @@ namespace SC2_GameTranslater.Source
             {
                 Globals.MainWindow.SetFileterTranslatedLanguageSource(TraslateLanguageSource);
                 Globals.MainWindow.SetFileterTranslatedLanguageTarget(TraslateLanguageTarget);
-                Globals.MainWindow.SetFileterSearchTextType(SearchType);
+                Globals.MainWindow.SetFileterSearchTextType(SearchScope);
                 Globals.MainWindow.SetFileterSearchLocation(SearchLocation);
                 Globals.MainWindow.SetFileterSearchWay(SearchWay);
                 Globals.MainWindow.SetFileterSearchCase(SearchCase);
@@ -260,7 +260,7 @@ namespace SC2_GameTranslater.Source
             if (!(obj is Class_SearchConfig config)) return false;
             if (TraslateLanguageSource != config.TraslateLanguageSource) return false;
             if (TraslateLanguageTarget != config.TraslateLanguageTarget) return false;
-            if (SearchType != config.SearchType) return false;
+            if (SearchScope != config.SearchScope) return false;
             if (SearchLocation != config.SearchLocation) return false;
             if (SearchWay != config.SearchWay) return false;
             if (SearchCase != config.SearchCase) return false;
