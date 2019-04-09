@@ -54,6 +54,9 @@ namespace SC2_GameTranslater.Source
         public static void Assert(bool check, string msg)
         {
             Debug.Assert(check, ExceptionMsg(msg));
+#if DEBUG
+            if (!check) throw new System.Exception(msg);
+#endif
         }
         
         #endregion

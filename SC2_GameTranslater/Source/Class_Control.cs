@@ -134,6 +134,7 @@ namespace SC2_GameTranslater.Source
                 string langName = Globals.GetEnumLanguageName(language);
                 return Globals.GetStringFromCurrentLanguage($"TEXT_Use{langName}");
             }
+            Log.Assert(true, "EnumLanguageToTreslateNameConverter");
             return Globals.GetStringFromCurrentLanguage("TEXT_Error");
         }
 
@@ -182,6 +183,7 @@ namespace SC2_GameTranslater.Source
             }
             else
             {
+                Log.Assert(true, "EnumTranslatedDataTextConverter");
                 return Globals.GetStringFromCurrentLanguage("TEXT_Error");
             }
         }
@@ -226,6 +228,7 @@ namespace SC2_GameTranslater.Source
             }
             else
             {
+                Log.Assert(true, "EnumGameDataTextConverter");
                 return Globals.GetStringFromCurrentLanguage("TEXT_Error");
             }
         }
@@ -268,6 +271,7 @@ namespace SC2_GameTranslater.Source
             }
             else
             {
+                Log.Assert(true, "EnumNameInLanguage_TextFileConverter");
                 return Globals.GetStringFromCurrentLanguage("TEXT_Error");
             }
         }
@@ -378,7 +382,12 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] == null || values[0] == DependencyProperty.UnsetValue) return Globals.GetStringFromCurrentLanguage("TEXT_Error");
+            if (values[0] == null || values[0] == DependencyProperty.UnsetValue)
+            {
+                Log.Assert(true, "EnumNameInLanguage_TextStatusConverter");
+                return Globals.GetStringFromCurrentLanguage("TEXT_Error");
+            }
+
             EnumGameTextStatus status = (EnumGameTextStatus)Enum.ToObject(typeof(EnumGameTextStatus), values[0]);
             return Data_GameText.GetEnumNameInLanguage(status);
         }
@@ -413,7 +422,12 @@ namespace SC2_GameTranslater.Source
         /// <returns>转换结果</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] == null || values[0] == DependencyProperty.UnsetValue) return Globals.GetStringFromCurrentLanguage("TEXT_Error");
+            if (values[0] == null || values[0] == DependencyProperty.UnsetValue)
+            {
+                Log.Assert(true, "EnumNameInLanguage_UseStatusConverter");
+                return Globals.GetStringFromCurrentLanguage("TEXT_Error");
+            }
+
             EnumGameUseStatus status = (EnumGameUseStatus)Enum.ToObject(typeof(EnumGameUseStatus), values[0]);
             return Data_GameText.GetEnumNameInLanguage(status);
         }
@@ -525,6 +539,7 @@ namespace SC2_GameTranslater.Source
             }
             else
             {
+                Log.Assert(true, "TextInGalaxyFileNameConverter");
                 return Globals.GetStringFromCurrentLanguage("TEXT_Error");
             }
         }
