@@ -498,28 +498,63 @@
                         Header="{DynamicResource UI_RadioButton_SearchNormal_Header}"
                         Icon="{StaticResource ResourceKey=IMAGE_SearchConfigure}"
                         ToolTip="{StaticResource ToolTip_SearchTextMode}" />
-                    <source:RibbonSearchTextBox
-                        x:Name="TextBox_SearchKeyword"
+                    <Grid
+                        Name="Grid_SearchKeyword"
                         Height="65"
-                        MinWidth="300"
-                        HorizontalContentAlignment="Left"
-                        VerticalContentAlignment="Top"
-                        Fluent:RibbonGroupBoxWrapPanel.SharedSizeGroupName="Group_Serach"
-                        AcceptsReturn="True"
-                        Header="{DynamicResource UI_ComboBox_SearchText_Header}"
-                        Icon="{StaticResource ResourceKey=IMAGE_SearchTextBox}"
-                        IsEnabled="{Binding ElementName=RadioButton_SearchNull, Path=IsChecked, Converter={StaticResource Converter_CommonNotValue}}"
-                        ButtonWidth="{Binding ElementName=RibbonButton_SearchClick,Path=ActualWidth}"
-                        TextWrapping="WrapWithOverflow"
-                        ToolTip="{StaticResource ToolTip_SearchKeyword}"
-                        VerticalScrollBarVisibility="Auto" />
-                    <Fluent:Button
-                        Name="RibbonButton_SearchClick"
-                        Height="40"
-                        SizeDefinition="Middle"
-                        Header="{DynamicResource UI_TextBox_SearchKeyword_ButtonHeader}"
-                        Command="{x:Static local:SC2_GameTranslater_Window.SearchClick}"
-                        Icon="{StaticResource ResourceKey=IMAGE_SearchTextBox}" Margin="0,-35,0,0" />
+                        MinWidth="300">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <source:RibbonLabel
+                            x:Name="RibbonLabel_SearchKeyWord"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Width="100"
+                            VerticalContentAlignment="Center"
+                            HorizontalContentAlignment="Left"
+                            Style="{StaticResource RibbonLabelStyle}"
+                            IsEnabled="{Binding ElementName=TextBox_SearchKeyword,Path=IsEnabled}"
+                            Header="{DynamicResource UI_StackPanel_SearchKeyWord_Content}"
+                            Icon="{StaticResource IMAGE_SearchTextBox}"/>
+                        <Border
+                            Name="Border_SearchClick"
+                            Grid.Row="1"
+                            Grid.RowSpan="2"
+                            Grid.Column="0"
+                            Margin="3"
+                            BorderBrush="{DynamicResource Fluent.Ribbon.Brushes.TextBox.BorderBrush}"
+                            BorderThickness="1">
+                            <Fluent:Button
+                                Name="RibbonButton_SearchClick"
+                                Width="{Binding ElementName=StackPanel_SearchKeyWord, Path=ActualWidth}"
+                                Height="{Binding ElementName=Border_SearchClick, Path=ActualHeight}"
+                                HorizontalAlignment="Center"
+                                HorizontalContentAlignment="Stretch"
+                                Command="{x:Static local:SC2_GameTranslater_Window.SearchClick}"
+                                Header="{DynamicResource UI_TextBox_SearchKeyword_ButtonHeader}"
+                                Icon="{StaticResource ResourceKey=IMAGE_Find}"
+                                LargeIcon="{StaticResource ResourceKey=IMAGE_Find}" />
+                        </Border>
+                        <TextBox
+                            Name="TextBox_SearchKeyword"
+                            Grid.Row="0"
+                            Grid.RowSpan="3"
+                            Grid.Column="1"
+                            Margin="3"
+                            VerticalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
+                            VerticalContentAlignment="Top"
+                            AcceptsReturn="True"
+                            IsEnabled="{Binding ElementName=RadioButton_SearchNull, Path=IsChecked, Converter={StaticResource Converter_CommonNotValue}}"
+                            TextWrapping="Wrap"
+                            ToolTip="{StaticResource ToolTip_SearchKeyword}" />
+                    </Grid>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_GalaxyFilter"

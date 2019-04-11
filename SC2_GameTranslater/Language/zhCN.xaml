@@ -79,7 +79,7 @@
     <sys:String x:Key="UI_CheckBox_SearchCase_Header">匹配大小写</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchLanguage_Header">语言：</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchLcation_Header">位置：</sys:String>
-    <sys:String x:Key="UI_ComboBox_SearchText_Header">关键字：</sys:String>
+    <sys:String x:Key="UI_StackPanel_SearchKeyWord_Content">关键字：</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchScope_Header">类型：</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationALL_Header">全文</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationLeft_Header">左起</sys:String>
@@ -174,7 +174,7 @@
     <sys:String x:Key="UI_TextBlock_Preference_Text">配置设置</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">加载</sys:String>
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">最近项目</sys:String>
-    <sys:String x:Key="UI_TextBox_SearchKeyword_ButtonHeader">搜索搜索搜索</sys:String>
+    <sys:String x:Key="UI_TextBox_SearchKeyword_ButtonHeader">搜索</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
     <!--#endregion-->
 

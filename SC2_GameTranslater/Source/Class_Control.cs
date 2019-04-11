@@ -19,6 +19,39 @@ namespace SC2_GameTranslater.Source
     #region Converter
 
     /// <summary>
+    /// 测试值转换器
+    /// </summary>
+    public class TestValueConverter : IValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+
+        /// <summary>
+        /// 反向转回函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
+
+
+    /// <summary>
     /// 标题Converter
     /// </summary>
     public class TitleTextConverter : IMultiValueConverter
@@ -1066,33 +1099,41 @@ namespace SC2_GameTranslater.Source
     #region Control
 
     /// <summary>
-    /// 搜索文本框
+    /// Ribbon标题
     /// </summary>
-    public class RibbonSearchTextBox : Fluent.TextBox
+    public class RibbonLabel : UserControl
     {
         #region 属性字段
 
         #region 属性
-        
 
         /// <summary>
-        /// 按钮文本依赖项
+        /// Header依赖项
         /// </summary>
-        public static DependencyProperty ButtonWidthProperty = DependencyProperty.Register(nameof(ButtonWidth), typeof(int), typeof(RibbonSearchTextBox));
+        public static DependencyProperty HeaderProperty = DependencyProperty.Register(nameof(Header), typeof(object), typeof(RibbonLabel));
 
         /// <summary>
-        /// 按钮文本依赖项属性
+        /// Header依赖项属性
         /// </summary>
-        public int ButtonWidth { set => SetValue(ButtonWidthProperty, value); get => (int)GetValue(ButtonWidthProperty); }
+        public object Header { set => SetValue(HeaderProperty, value); get => GetValue(HeaderProperty); }
 
+        /// <summary>
+        /// Icon依赖项
+        /// </summary>
+        public static DependencyProperty IconProperty = DependencyProperty.Register(nameof(Icon), typeof(object), typeof(RibbonLabel));
+
+        /// <summary>
+        /// Icon依赖项属性
+        /// </summary>
+        public object Icon { set => SetValue(IconProperty, value); get => (int)GetValue(IconProperty); }
+               
         #endregion
 
         #endregion
-
     }
 
     /// <summary>
-    /// BLZ_Button 按钮
+    /// Button 按钮
     /// </summary>
     public class Button : System.Windows.Controls.Button
     {

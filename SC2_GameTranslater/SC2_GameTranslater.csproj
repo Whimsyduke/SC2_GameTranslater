@@ -256,5 +256,8 @@
   <ItemGroup>
     <Resource Include="Assets\Image\WhimKey_UI_ButtonDonateOver.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\ui-editoricon-toolbar_find.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

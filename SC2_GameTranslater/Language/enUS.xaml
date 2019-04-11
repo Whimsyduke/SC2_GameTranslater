@@ -79,7 +79,7 @@
     <sys:String x:Key="UI_CheckBox_SearchCase_Header">Match Case</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchLanguage_Header">Language:</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchLcation_Header">Location:</sys:String>
-    <sys:String x:Key="UI_ComboBox_SearchText_Header">Keyword:</sys:String>
+    <sys:String x:Key="UI_StackPanel_SearchKeyWord_Content">Keyword:</sys:String>
     <sys:String x:Key="UI_ComboBox_SearchScope_Header">Type:</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationALL_Header">All Text</sys:String>
     <sys:String x:Key="UI_ComboBoxItem_SearchLocationLeft_Header">Start Left</sys:String>

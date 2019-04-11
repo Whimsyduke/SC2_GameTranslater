@@ -8,6 +8,7 @@
     mc:Ignorable="d">
 
     <!--#region Converter-->
+    <source:TestValueConverter x:Key="Converter_TestValue" />
     <source:TitleTextConverter x:Key="Converter_TitleText" />
     <source:AutoNumberValueConverter x:Key="Converter_AutoNumberValue" />
     <source:EnumLanguageToTreslateNameConverter x:Key="Converter_EnumLanguageToTreslateName" />
@@ -615,8 +616,60 @@
     </Style>
     <!--#endregion-->
 
-    <!--#region TextBox-->
-    <ControlTemplate x:Key="Fluent.Ribbon.ControlTemplates.TextBox" TargetType="{x:Type source:RibbonSearchTextBox}">
+    <!--#region RibbonLabel-->
+    <Style x:Key="RibbonLabelStyle" TargetType="{x:Type source:RibbonLabel}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type UserControl}">
+                    <StackPanel
+                        x:Name="PART_HeaderAndIconPanel"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Width="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Width, Mode=TwoWay}"
+                        Height="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Height, Mode=TwoWay}"
+                        Margin="0,0,4,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Image
+                            x:Name="PART_IconImage"
+                            Width="16"
+                            Height="16"
+                            Margin="3,0,0,0"
+                            VerticalAlignment="Center"
+                            IsEnabled="{TemplateBinding IsEnabled}"
+                            Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition SharedSizeGroup="{Binding Path=(Fluent:RibbonGroupBoxWrapPanel.SharedSizeGroupName), RelativeSource={RelativeSource TemplatedParent}}" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                x:Name="PART_HeaderTextBlock"
+                                Margin="5,0,0,0"
+                                Text="{Binding Header, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                TextWrapping="Wrap" />
+                        </Grid>
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_IconImage" Property="Opacity" Value="0.5" />
+                            <Setter Property="Opacity" Value="0.5" />
+                            <Setter TargetName="PART_IconImage" Property="Effect">
+                                <Setter.Value>
+                                    <Fluent:GrayscaleEffect />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--<ControlTemplate x:Key="RibbonLabel_Template" TargetType="{x:Type source:RibbonLabel}">
         <Grid
             Width="Auto"
             Height="Auto"
@@ -662,7 +715,7 @@
                 Grid.Row="1"
                 Grid.RowSpan="2"
                 Height="40"
-                Width="{TemplateBinding ButtonWidth}"
+                Width="{Binding ButtonWidth, RelativeSource={RelativeSource TemplatedParent}}"
                 Margin="0,0,3,0"
                 Grid.Column="0" />
             <Grid
@@ -729,7 +782,7 @@
         <Setter Property="Foreground" Value="{DynamicResource Fluent.Ribbon.Brushes.LabelTextBrush}" />
         <Setter Property="CaretBrush" Value="{DynamicResource Fluent.Ribbon.Brushes.TextBox.CaretBrush}" />
         <Setter Property="SelectionBrush" Value="{DynamicResource Fluent.Ribbon.Brushes.TextBox.SelectionBrush}" />
-    </Style>
+        </Style-->
     <!--#endregion-->
 
     <!--#region RadioButton-->
