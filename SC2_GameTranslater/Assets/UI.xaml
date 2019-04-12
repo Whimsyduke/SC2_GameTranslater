@@ -9,6 +9,7 @@
 
     <!--#region Converter-->
     <source:TestValueConverter x:Key="Converter_TestValue" />
+    <source:FormatTextConverter x:Key="Converter_FormatText" />
     <source:TitleTextConverter x:Key="Converter_TitleText" />
     <source:AutoNumberValueConverter x:Key="Converter_AutoNumberValue" />
     <source:EnumLanguageToTreslateNameConverter x:Key="Converter_EnumLanguageToTreslateName" />
@@ -362,7 +363,29 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_RibbonSearchTextBox_DoSearch_Text}" />
+
+    <!--#endregion-->
+
+    <!--#region Galaxy文件-->
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_GalaxyFilter"
+        Title="{DynamicResource TP_InRibbonGallery_GalaxyFilter_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_InRibbonGallery_GalaxyFilter_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_InRibbonGallery_GalaxyFilter_Text}" />
     
+    <Fluent:ScreenTip
+        x:Key="ToolTip_FilterGalaxyFileNone"
+        Title="{DynamicResource TP_RibbonButton_FilterGalaxyFileNone_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_FilterGalaxyFileNone_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_FilterGalaxyFileNone_Text}" />
+
     <!--#endregion-->
 
     <!--#endregion-->
@@ -537,11 +560,11 @@
                         <Grid>
                             <Image
                                 x:Name="BackGroundImage_Normal"
+                                Width="32"
+                                Height="32"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
                                 SnapsToDevicePixels="True"
-                                Width="32"
-                                Height="32"
                                 Source="{TemplateBinding NormalImage}"
                                 Stretch="{TemplateBinding ImageStretch}" />
                             <ContentPresenter

@@ -1,6 +1,8 @@
 ﻿using Fluent;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Globalization;
 using System.Reflection;
 using System.Windows;
@@ -50,6 +52,45 @@ namespace SC2_GameTranslater.Source
         }
     }
 
+    /// <summary>
+    /// 格式化文本Converter
+    /// </summary>
+    public class FormatTextConverter : IValueConverter
+    {
+        /// <summary>
+        /// 转换函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (parameter is List<object> list)
+            {
+                if (list[0] is string key && list[1] is DataRow row)
+                {
+                    object[] args = list.Skip(2).Select(r => row[r as string]).ToArray();
+                    return Globals.GetStringFromCurrentLanguage(key, args);
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 反向转回函数
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="targetType">目标类型</param>
+        /// <param name="parameter">参数</param>
+        /// <param name="culture">本地化信息</param>
+        /// <returns>转换结果</returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
 
     /// <summary>
     /// 标题Converter

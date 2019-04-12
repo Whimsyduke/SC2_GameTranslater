@@ -1196,6 +1196,7 @@ namespace SC2_GameTranslater
                 {
                     ToggleButton button = NewGalaxyTextFileFilterButton(row);
                     GalaxyButtons.Add(button);
+                    button.ToolTip = GetGalaxyFileToolTip(row);
                     InRibbonGallery_GalaxyFilter.Items.Insert(InRibbonGallery_GalaxyFilter.Items.Count - 1, button);
                 }
                 ToggleButton_FilterGalaxyFileNone.IsChecked = true;
@@ -1210,6 +1211,41 @@ namespace SC2_GameTranslater
         }
 
         /// <summary>
+        /// 获取Galaxy文件对应ToolTip
+        /// </summary>
+        /// <param name="row">数据行</param>
+        /// <returns>Tooltip</returns>
+        public Fluent.ScreenTip GetGalaxyFileToolTip(DataRow row)
+        {
+            Fluent.ScreenTip tip = new Fluent.ScreenTip()
+            {
+                Width = 300,
+                HelpTopic = Class_ConstantAndEnum.Link_HelpTopic,
+                IsRibbonAligned = false,
+            };
+            tip.SetResourceReference(Fluent.ScreenTip.TitleProperty, "TP_RibbonButton_GalaxyFIle_Title");
+            tip.SetResourceReference(Fluent.ScreenTip.DisableReasonProperty, "TP_RibbonButton_GalaxyFIle_DisableReason");
+            List<object> list = new List<object>()
+            {
+                "TP_RibbonButton_GalaxyFIle_Text",
+                row,
+                Data_GameText.RN_GalaxyFile_Name,
+                Data_GameText.RN_GalaxyFile_Path,
+                Data_GameText.RN_GalaxyFile_Count,
+            };
+            IValueConverter converter = App.Current.FindResource("Converter_FormatText") as IValueConverter;
+            Binding binding = new Binding("EnumCurrentLanguage")
+            {
+                Converter = converter,
+                ConverterParameter = list,
+                Source = this,
+            };
+            tip.SetBinding(Fluent.ScreenTip.TextProperty, binding);
+
+            return tip;
+        }
+
+        /// <summary>
         /// 新建Galaxy文件筛选按钮
         /// </summary>
         /// <param name="fileRow">Galaxy数据</param>
@@ -1220,7 +1256,6 @@ namespace SC2_GameTranslater
             {
                 Tag = fileRow,
                 Header = fileRow[Data_GameText.RN_GalaxyFile_Name],
-                ToolTip = fileRow[Data_GameText.RN_GalaxyFile_Path],
                 SizeDefinition = new RibbonControlSizeDefinition(RibbonControlSize.Middle, RibbonControlSize.Middle, RibbonControlSize.Middle),
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 IsChecked = true,

@@ -529,7 +529,6 @@
                             Grid.Column="0"
                             Width="{Binding ElementName=RibbonLabel_SearchKeyWord, Path=ActualWidth}"
                             Margin="5,3,0,3"
-                           
                             HorizontalAlignment="Center"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
@@ -560,6 +559,7 @@
                     <Fluent:InRibbonGallery
                         Name="InRibbonGallery_GalaxyFilter"
                         MinWidth="100"
+                        ToolTip="{StaticResource ToolTip_GalaxyFilter}"
                         CanCollapseToButton="False"
                         Header="{DynamicResource UI_InRibbonGallery_GalaxyFilter_Header}"
                         IsCollapsed="False"
@@ -583,6 +583,7 @@
                         <Fluent:ToggleButton
                             Name="ToggleButton_FilterGalaxyFileNone"
                             HorizontalAlignment="Stretch"
+                            ToolTip="{StaticResource ToolTip_FilterGalaxyFileNone}"
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_FilterGalaxyButton_CheckEvent"
@@ -590,7 +591,6 @@
                             Icon="{StaticResource ResourceKey=IMAGE_GalaxyNone}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:Class_Globals.Const_NoUseInGalaxy}"
-                            ToolTip="{DynamicResource TP_ToggleButton_FilterGalaxyFileNone_ToolTip}"
                             Unchecked="ToggleButton_FilterGalaxyButton_CheckEvent" />
                     </Fluent:InRibbonGallery>
                 </Fluent:RibbonGroupBox>

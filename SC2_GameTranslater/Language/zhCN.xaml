@@ -178,7 +178,6 @@
     <!--#endregion-->
 
     <!--#region Tooltip-->
-    <sys:String x:Key="TP_ToggleButton_FilterGalaxyFileNone_ToolTip">筛选所有未被Galaxy文件使用的文本。</sys:String>
     <sys:String x:Key="TP_RichTextBoxInGalaxyTextConverter_ToolTip">ID：{0}, 数据编号：{1}</sys:String>
     <sys:String x:Key="TP_RibbonButton_Help_Title">工具帮助</sys:String>
     <sys:String x:Key="TP_RibbonButton_Help_Text">按下F1键去项目主页查看帮助信息。</sys:String>
@@ -282,6 +281,15 @@
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_Title">进行搜索</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_Text" xml:space="preserve">根据输入的关键字和设定的搜索范围进行搜索。搜索结果将体现在翻译文本列表中。&#x000D;快捷键：Ctrl + F</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_GalaxyFilter_Title">Galaxy文件筛选</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_GalaxyFilter_Text" xml:space="preserve">文本在不同Galaxy文件的筛选。</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_GalaxyFilter_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_GalaxyFIle_Title">Galaxy文件选项</sys:String>
+    <sys:String x:Key="TP_RibbonButton_GalaxyFIle_Text" xml:space="preserve">Galaxy文件信息&#x000D;文件名称：{0}&#x000D;文件路径：{1}&#x000D;文本计数：{2}</sys:String>
+    <sys:String x:Key="TP_RibbonButton_GalaxyFIle_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_RibbonButton_FilterGalaxyFileNone_Title">不在Galaxy文件中</sys:String>
+    <sys:String x:Key="TP_RibbonButton_FilterGalaxyFileNone_Text" xml:space="preserve">所有不在任何一个Galaxy文件的文本的筛选项。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_FilterGalaxyFileNone_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->
