@@ -157,7 +157,7 @@
                         Margin="5"
                         HorizontalAlignment="Left"
                         Source="{StaticResource IMAGE_DownAliPay}" />
-                    <source:Button
+                    <source:ImageButton
                         x:Name="Image_Paypal"
                         Grid.Row="0"
                         Width="110"
@@ -177,7 +177,7 @@
                         HorizontalAlignment="Center"
                         FontSize="16"
                         Text="支付宝" />
-                    <source:Button
+                    <source:ImageButton
                         x:Name="Button_Donate"
                         Grid.Column="2"
                         Width="100"

@@ -174,7 +174,6 @@
     <sys:String x:Key="UI_TextBlock_Preference_Text">Preferences Setting</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">Load</sys:String>
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">Recent Projects</sys:String>
-    <sys:String x:Key="UI_TextBox_SearchKeyword_ButtonHeader">Search</sys:String>
     <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
     <!--#endregion-->
 
@@ -233,7 +232,7 @@
     <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_Text" xml:space="preserve">The language that translate to. The data of Text Status column, Use Status column, Droped Text column and Edited Text column in Translated Text Data Grid shows depend on its value.</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_ComboBox_SearchScope_Title">Search Scope</sys:String>
-    <sys:String x:Key="TP_ComboBox_SearchScope_Text" xml:space="preserve">Which columns search in.</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchScope_Text" xml:space="preserve">Which columns search in. Take effect after click Do Search Button or press Ctrl + F.</sys:String>
     <sys:String x:Key="TP_ComboBox_SearchScope_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_ComboBoxItem_SearchScopeAll_Title">Search All</sys:String>
     <sys:String x:Key="TP_ComboBoxItem_SearchScopeAll_Text" xml:space="preserve">Search in Text ID, Droped Text, Source Text and Edited Text column.</sys:String>
@@ -254,7 +253,7 @@
     <sys:String x:Key="TP_ComboBoxItem_SearchScopeEditedText_Text" xml:space="preserve">Search in Edited Text column.</sys:String>
     <sys:String x:Key="TP_ComboBoxItem_SearchScopeEditedText_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_ComboBox_SearchTextLocation_Title">Search Text Location</sys:String>
-    <sys:String x:Key="TP_ComboBox_SearchTextLocation_Text" xml:space="preserve">Which loaction the search text, can not use in Regext Experssion mode</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchTextLocation_Text" xml:space="preserve">Which loaction the search text, can not use in Regext Experssion mode. Take effect after click Do Search Button or press Ctrl + F.</sys:String>
     <sys:String x:Key="TP_ComboBox_SearchTextLocation_DisableReason">You need open or create a new porject and not do search in Regex Experssion mode.</sys:String>
     <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationALL_Title">Search In All Location</sys:String>
     <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationALL_Text" xml:space="preserve">Search all of the locations in text.</sys:String>
@@ -266,23 +265,25 @@
     <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationRight_Text" xml:space="preserve">Search the text only end with right.</sys:String>
     <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationRight_DisableReason">You need open or create a new porject and not do search in Regex Experssion mode.</sys:String>
     <sys:String x:Key="TP_CheckBox_SearchCase_Title">Search Match Case</sys:String>
-    <sys:String x:Key="TP_CheckBox_SearchCase_Text" xml:space="preserve">Match case when search english character.</sys:String>
+    <sys:String x:Key="TP_CheckBox_SearchCase_Text" xml:space="preserve">Match case when search english character. Take effect after click Do Search Button or press Ctrl + F.</sys:String>
     <sys:String x:Key="TP_CheckBox_SearchCase_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNull_Title">Null Mode</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchNull_Text" xml:space="preserve">Only search all empty text (no text with the Text ID or the value of the text is empty).</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNull_Text" xml:space="preserve">Only search all empty text (no text with the Text ID or the value of the text is empty). Take effect after click Do Search Button or press Ctrl + F.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNull_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchRegex_Title">Regex Experssion Mode</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchRegex_Text" xml:space="preserve">Search text with Regex Experssion mode.</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchRegex_Text" xml:space="preserve">Search text with Regex Experssion mode. Take effect after click Do Search Button or press Ctrl + F.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchRegex_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNormal_Title">Normal Mode</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchNormal_Text" xml:space="preserve">Search text with normal mode.</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNormal_Text" xml:space="preserve">Search text with normal mode. Take effect after click Do Search Button or press Ctrl + F.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNormal_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_Title">Search Keyword</sys:String>
-    <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_Text" xml:space="preserve">The keyword use for search.</sys:String>
+    <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_Text" xml:space="preserve">The keyword use for search. Take effect after click Do Search Button or press Ctrl + F.</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_DisableReason">You need open or create a new porject and no need write if in Null mode.</sys:String>
+    <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_Title">Do Search</sys:String>
+    <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_Text" xml:space="preserve">Search with the keyword in the region that set in the group. The search reslut will show in Translated Text Data Grid.&#x000D;HotKey: Ctrl + F</sys:String>
+    <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_DisableReason">You need open or create a new porject.</sys:String>
     <!--#endregion-->
-    <!--#endregion-->
-
+    
     <!--#region EnumValue-->
     <sys:String x:Key="ENUM_EnumGameTextFile_GameStrings">Game Strings</sys:String>
     <sys:String x:Key="ENUM_EnumGameTextFile_ObjectStrings">Object Strings</sys:String>

@@ -516,31 +516,28 @@
                             Grid.Row="0"
                             Grid.Column="0"
                             Width="100"
-                            VerticalContentAlignment="Center"
                             HorizontalContentAlignment="Left"
-                            Style="{StaticResource RibbonLabelStyle}"
-                            IsEnabled="{Binding ElementName=TextBox_SearchKeyword,Path=IsEnabled}"
+                            VerticalContentAlignment="Center"
                             Header="{DynamicResource UI_StackPanel_SearchKeyWord_Content}"
-                            Icon="{StaticResource IMAGE_SearchTextBox}"/>
-                        <Border
-                            Name="Border_SearchClick"
+                            Icon="{StaticResource IMAGE_SearchTextBox}"
+                            IsEnabled="{Binding ElementName=TextBox_SearchKeyword, Path=IsEnabled}"
+                            Style="{StaticResource RibbonLabelStyle}" />
+                        <source:SearchButton
+                            x:Name="Button_DoSearch"
                             Grid.Row="1"
                             Grid.RowSpan="2"
                             Grid.Column="0"
-                            Margin="3"
+                            Width="{Binding ElementName=RibbonLabel_SearchKeyWord, Path=ActualWidth}"
+                            Margin="5,3,0,3"
+                           
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
                             BorderBrush="{DynamicResource Fluent.Ribbon.Brushes.TextBox.BorderBrush}"
-                            BorderThickness="1">
-                            <Fluent:Button
-                                Name="RibbonButton_SearchClick"
-                                Width="{Binding ElementName=StackPanel_SearchKeyWord, Path=ActualWidth}"
-                                Height="{Binding ElementName=Border_SearchClick, Path=ActualHeight}"
-                                HorizontalAlignment="Center"
-                                HorizontalContentAlignment="Stretch"
-                                Command="{x:Static local:SC2_GameTranslater_Window.SearchClick}"
-                                Header="{DynamicResource UI_TextBox_SearchKeyword_ButtonHeader}"
-                                Icon="{StaticResource ResourceKey=IMAGE_Find}"
-                                LargeIcon="{StaticResource ResourceKey=IMAGE_Find}" />
-                        </Border>
+                            Command="{x:Static local:SC2_GameTranslater_Window.SearchClick}"
+                            ImageStretch="Uniform"
+                            NormalImage="{StaticResource ResourceKey=IMAGE_Find}"
+                            ToolTip="{StaticResource ToolTip_DoSearch}" />
                         <TextBox
                             Name="TextBox_SearchKeyword"
                             Grid.Row="0"

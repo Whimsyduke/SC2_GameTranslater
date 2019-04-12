@@ -600,6 +600,13 @@ namespace SC2_GameTranslater
 
             #endregion
 
+            #region ToolTip 服务
+            
+            Fluent.ToolTipService.Attach(typeof(SearchButton));
+            Fluent.ToolTipService.Attach(typeof(TextBox));
+
+            #endregion
+
             #region 其他
             Globals.Preference.LoadPreference();
             Globals.EventProjectChange += OnProjectChangeRefresh;

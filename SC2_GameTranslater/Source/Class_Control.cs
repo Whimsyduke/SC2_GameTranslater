@@ -1101,7 +1101,7 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// Ribbon标题
     /// </summary>
-    public class RibbonLabel : UserControl
+    public class RibbonLabel : Control
     {
         #region 属性字段
 
@@ -1132,16 +1132,17 @@ namespace SC2_GameTranslater.Source
         #endregion
     }
 
-    /// <summary>
-    /// Button 按钮
-    /// </summary>
-    public class Button : System.Windows.Controls.Button
+    public class SearchButton : System.Windows.Controls.Button
     {
         #region 属性
+
+        #region New
+
         /// <summary>
         /// 通用图片依赖项属性
         /// </summary>
-        public static readonly DependencyProperty NormalImageProperty = DependencyProperty.Register("NormalImage", typeof(BitmapImage), typeof(Button));
+        public static readonly DependencyProperty NormalImageProperty = DependencyProperty.Register(nameof(NormalImage), typeof(BitmapImage), typeof(SearchButton));
+
         /// <summary>
         /// 通用图片依赖项
         /// </summary>
@@ -1150,10 +1151,74 @@ namespace SC2_GameTranslater.Source
             set { SetValue(NormalImageProperty, value); }
             get { return (BitmapImage)GetValue(NormalImageProperty); }
         }
+
+        /// <summary>
+        /// 填充模式依赖项属性
+        /// </summary>
+        public static readonly DependencyProperty ImageStretchProperty = DependencyProperty.Register(nameof(ImageStretch), typeof(Stretch), typeof(SearchButton), new PropertyMetadata(Stretch.None));
+
+        /// <summary>
+        /// 填充模式依赖项
+        /// </summary>
+        public Stretch ImageStretch
+        {
+            set { SetValue(ImageStretchProperty, value); }
+            get { return (Stretch)GetValue(ImageStretchProperty); }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region 构造函数
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        static SearchButton()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(SearchButton), new FrameworkPropertyMetadata(typeof(SearchButton)));
+        }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public SearchButton() : base()
+        {
+            Style = Application.Current.Resources["SearchButtonStyle"] as Style;
+        }
+
+        #endregion
+
+        #region 方法
+        
+        #endregion
+    }
+
+    /// <summary>
+    /// Button 按钮
+    /// </summary>
+    public class ImageButton : System.Windows.Controls.Button
+    {
+        #region 属性
+        /// <summary>
+        /// 通用图片依赖项属性
+        /// </summary>
+        public static readonly DependencyProperty NormalImageProperty = DependencyProperty.Register(nameof(NormalImage), typeof(BitmapImage), typeof(ImageButton));
+
+        /// <summary>
+        /// 通用图片依赖项
+        /// </summary>
+        public BitmapImage NormalImage
+        {
+            set { SetValue(NormalImageProperty, value); }
+            get { return (BitmapImage)GetValue(NormalImageProperty); }
+        }
+
         /// <summary>
         /// 高亮图片依赖项属性
         /// </summary>
-        public static readonly DependencyProperty HoverImageProperty = DependencyProperty.Register("HoverImage", typeof(BitmapImage), typeof(Button));
+        public static readonly DependencyProperty HoverImageProperty = DependencyProperty.Register(nameof(HoverImage), typeof(BitmapImage), typeof(ImageButton));
+
         /// <summary>
         /// 高亮图片依赖项
         /// </summary>
@@ -1162,10 +1227,12 @@ namespace SC2_GameTranslater.Source
             set { SetValue(HoverImageProperty, value); }
             get { return (BitmapImage)GetValue(HoverImageProperty); }
         }
+
         /// <summary>
         /// 按下图片依赖项属性
         /// </summary>
-        public static readonly DependencyProperty PressImageProperty = DependencyProperty.Register("PressImage", typeof(BitmapImage), typeof(Button));
+        public static readonly DependencyProperty PressImageProperty = DependencyProperty.Register(nameof(PressImage), typeof(BitmapImage), typeof(ImageButton));
+
         /// <summary>
         /// 按下图片依赖项
         /// </summary>
@@ -1174,10 +1241,12 @@ namespace SC2_GameTranslater.Source
             set { SetValue(PressImageProperty, value); }
             get { return (BitmapImage)GetValue(PressImageProperty); }
         }
+
         /// <summary>
         /// 禁用图片依赖项属性
         /// </summary>
-        public static readonly DependencyProperty DisableImageProperty = DependencyProperty.Register("DisableImage", typeof(BitmapImage), typeof(Button));
+        public static readonly DependencyProperty DisableImageProperty = DependencyProperty.Register(nameof(DisableImage), typeof(BitmapImage), typeof(ImageButton));
+
         /// <summary>
         /// 禁用图片依赖项
         /// </summary>
@@ -1186,10 +1255,12 @@ namespace SC2_GameTranslater.Source
             set { SetValue(DisableImageProperty, value); }
             get { return (BitmapImage)GetValue(DisableImageProperty); }
         }
+
         /// <summary>
         /// 选定图片依赖项属性
         /// </summary>
-        public static readonly DependencyProperty CheckedImageProperty = DependencyProperty.Register("CheckedImage", typeof(BitmapImage), typeof(Button));
+        public static readonly DependencyProperty CheckedImageProperty = DependencyProperty.Register(nameof(CheckedImage), typeof(BitmapImage), typeof(ImageButton));
+
         /// <summary>
         /// 选定图片依赖项
         /// </summary>
@@ -1205,17 +1276,17 @@ namespace SC2_GameTranslater.Source
         /// <summary>
         /// 构造函数
         /// </summary>
-        static Button()
+        static ImageButton()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(Button), new FrameworkPropertyMetadata(typeof(Button)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ImageButton), new FrameworkPropertyMetadata(typeof(ImageButton)));
         }
 
         /// <summary>
         /// 构造函数
         /// </summary>
-        public Button() : base()
+        public ImageButton() : base()
         {
-            Style = Application.Current.Resources["BLZ_ButtonStyle"] as Style;
+            Style = Application.Current.Resources["ImageButtonStyle"] as Style;
         }
 
         #endregion

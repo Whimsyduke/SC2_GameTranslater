@@ -354,14 +354,23 @@
         IsRibbonAligned="False"
         Text="{DynamicResource TP_RibbonSearchTextBox_SearchKeyword_Text}" />
 
+    <Fluent:ScreenTip
+        x:Key="ToolTip_DoSearch"
+        Title="{DynamicResource TP_RibbonSearchTextBox_DoSearch_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonSearchTextBox_DoSearch_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonSearchTextBox_DoSearch_Text}" />
+    
     <!--#endregion-->
 
     <!--#endregion-->
 
     <!--#region Template & Style-->
 
-    <!--#region BLZ_Button-->
-    <Style x:Key="BLZ_ButtonStyle" TargetType="{x:Type source:Button}">
+    <!--#region ImageButton-->
+    <Style x:Key="ImageButtonStyle" TargetType="{x:Type source:ImageButton}">
         <Setter Property="FocusVisualStyle">
             <Setter.Value>
                 <Style>
@@ -389,7 +398,7 @@
         <Setter Property="Padding" Value="1" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type source:Button}">
+                <ControlTemplate TargetType="{x:Type source:ImageButton}">
                     <Border
                         x:Name="border"
                         Background="{TemplateBinding Background}"
@@ -483,6 +492,92 @@
                             <Setter TargetName="BackGroundImage_Press" Property="Visibility" Value="Hidden" />
                             <Setter TargetName="BackGroundImage_Checked" Property="Visibility" Value="Hidden" />
                             <Setter TargetName="BackGroundImage_Disable" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region SearchButton-->
+    <Style x:Key="FocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle
+                        Margin="2"
+                        SnapsToDevicePixels="true"
+                        Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                        StrokeDashArray="1 2"
+                        StrokeThickness="1" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="SearchButtonStyle" TargetType="{x:Type source:SearchButton}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+        <Setter Property="Background" Value="{DynamicResource Fluent.Ribbon.Brushes.WindowCommands.CaptionButton.Background}" />
+        <Setter Property="Foreground" Value="{DynamicResource Fluent.Ribbon.Brushes.WindowCommands.CaptionButton.Foreground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Fluent.Ribbon.Brushes.TextBox.BorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type source:SearchButton}">
+                    <Border
+                        x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        SnapsToDevicePixels="true">
+                        <Grid>
+                            <Image
+                                x:Name="BackGroundImage_Normal"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                SnapsToDevicePixels="True"
+                                Width="32"
+                                Height="32"
+                                Source="{TemplateBinding NormalImage}"
+                                Stretch="{TemplateBinding ImageStretch}" />
+                            <ContentPresenter
+                                x:Name="contentPresenter"
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Focusable="False"
+                                RecognizesAccessKey="True"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="true">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsPressed" Value="False" />
+                                <Condition Property="IsEnabled" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource Fluent.Ribbon.Brushes.Button.MouseOver.Background}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource Fluent.Ribbon.Brushes.Button.MouseOver.BorderBrush}" />
+                        </MultiTrigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource Fluent.Ribbon.Brushes.Button.Pressed.BorderBrush}" />
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource Fluent.Ribbon.Brushes.Button.Pressed.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="BackGroundImage_Normal" Property="Opacity" Value="0.5" />
+                            <Setter TargetName="BackGroundImage_Normal" Property="Effect">
+                                <Setter.Value>
+                                    <Fluent:GrayscaleEffect />
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -620,7 +715,7 @@
     <Style x:Key="RibbonLabelStyle" TargetType="{x:Type source:RibbonLabel}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type UserControl}">
+                <ControlTemplate TargetType="{x:Type Control}">
                     <StackPanel
                         x:Name="PART_HeaderAndIconPanel"
                         Grid.Row="0"
