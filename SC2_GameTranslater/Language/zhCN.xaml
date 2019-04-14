@@ -120,7 +120,7 @@
     <sys:String x:Key="UI_GroupBox_ReloadLanguage_Header">重载语言</sys:String>
     <sys:String x:Key="UI_GroupBox_TranslatedTexts_Header">翻译文本</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_CopyTargets_Header">复制目标语言</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy文件</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_GalaxyFileFilter_Header">Galaxy文件</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">文本文件</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">文本状态</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">使用状态</sys:String>
@@ -149,10 +149,10 @@
     <sys:String x:Key="UI_RibbonButton_ReloadTranslation_Header">重载翻译</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">保存</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">另存为</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">复制翻译语言</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">复制翻译文本</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">文件</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_FilterRecord_Header">筛选记录</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">所属Galaxy文件</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFileFilter_Header">所属Galaxy文件</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_Search_Header">搜索</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TextFileFilter_Header">所属文本文件</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TextStatusFilter_Header">文本状态</sys:String>
@@ -174,7 +174,7 @@
     <sys:String x:Key="UI_TextBlock_Preference_Text">配置设置</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">加载</sys:String>
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">最近项目</sys:String>
-    <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">不在Galaxy中</sys:String>
+    <sys:String x:Key="UI_ToggleButton_GalaxyFileFilterNone_Header">不在Galaxy中</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->
@@ -281,15 +281,66 @@
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_Title">进行搜索</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_Text" xml:space="preserve">根据输入的关键字和设定的搜索范围进行搜索。搜索结果将体现在翻译文本列表中。&#x000D;快捷键：Ctrl + F</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_DisableReason">你需要打开或者新建一个项目。</sys:String>
-    <sys:String x:Key="TP_InRibbonGallery_GalaxyFilter_Title">Galaxy文件筛选</sys:String>
-    <sys:String x:Key="TP_InRibbonGallery_GalaxyFilter_Text" xml:space="preserve">文本在不同Galaxy文件的筛选。</sys:String>
-    <sys:String x:Key="TP_InRibbonGallery_GalaxyFilter_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_GalaxyFileFilter_Title">Galaxy文件筛选</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_GalaxyFileFilter_Text" xml:space="preserve">文本在不同Galaxy文件的筛选。</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_GalaxyFileFilter_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_RibbonButton_GalaxyFIle_Title">Galaxy文件选项</sys:String>
     <sys:String x:Key="TP_RibbonButton_GalaxyFIle_Text" xml:space="preserve">Galaxy文件信息&#x000D;文件名称：{0}&#x000D;文件路径：{1}&#x000D;文本计数：{2}</sys:String>
     <sys:String x:Key="TP_RibbonButton_GalaxyFIle_DisableReason">禁用原因</sys:String>
-    <sys:String x:Key="TP_RibbonButton_FilterGalaxyFileNone_Title">不在Galaxy文件中</sys:String>
-    <sys:String x:Key="TP_RibbonButton_FilterGalaxyFileNone_Text" xml:space="preserve">所有不在任何一个Galaxy文件的文本的筛选项。</sys:String>
-    <sys:String x:Key="TP_RibbonButton_FilterGalaxyFileNone_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_GalaxyFileFilterNone_Title">不在Galaxy文件中</sys:String>
+    <sys:String x:Key="TP_RibbonButton_GalaxyFileFilterNone_Text" xml:space="preserve">所有不在任何一个Galaxy文件的文本的筛选项。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_GalaxyFileFilterNone_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_TextFileFilter_Title">文本文件筛选</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_TextFileFilter_Text" xml:space="preserve">筛选文本所在的文本文件，包括所有语言的GameStrings.txt，ObjectStrings.txt或者TriggerStrings.txt。</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_TextFileFilter_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterGameStrings_Title">属于游戏文本</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterGameStrings_Text" xml:space="preserve">筛选所有在GameStrings.txt中声明的文本。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterGameStrings_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterObjectStrings_Title">属于数据文本</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterObjectStrings_Text" xml:space="preserve">筛选所有在ObjectStrings.txt中声明的文本。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterObjectStrings_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterTriggerStrings_Title">属于触发文本</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterTriggerStrings_Text" xml:space="preserve">筛选所有在TriggerStrings.txt中声明的文本。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterTriggerStrings_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_TextStatusFilter_Title">所处文本状态</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_TextStatusFilter_Text" xml:space="preserve">文本状态筛选器</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_TextStatusFilter_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterEmpty_Title">空文本</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterEmpty_Text" xml:space="preserve">筛选所有文本状态为空的文本。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterEmpty_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterNormal_Title">未修改文本</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterNormal_Text" xml:space="preserve">筛选所有文本状态为未修改的文本。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterNormal_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_Title">已修改文本</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_Text" xml:space="preserve">筛选所有文本状态为已修改的文本。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Title">所处使用状态</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Text" xml:space="preserve">Filter for different use status.</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_Title">放弃文本</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_Text" xml:space="preserve">筛选所有使用状态为放弃的文本。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_Title">正常文本</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_Text" xml:space="preserve">筛选所有使用状态为正常的文本。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_Title">新增文本</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_Text" xml:space="preserve">筛选所有使用状态为新增的文本。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Title">修改文本</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Text" xml:space="preserve">筛选所有使用状态为修改的文本。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_CopyTranslatedText_Title">复杂翻译文本</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_CopyTranslatedText_Text" xml:space="preserve">复制所有翻译文本从一个语言到其它选择的语言。比如将翻译好的enUS语言下的文本复制到deDE，这样如果无人翻译，deDE就会显示英文。</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_CopyTranslatedText_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_CopyTargets_Title">复制目标</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_CopyTargets_Text" xml:space="preserve">你所选择复制翻译文本的目标语言（多选）。</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_CopyTargets_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_CopySource_Title">复制来源</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_CopySource_Text" xml:space="preserve">你所选择复制翻译文本的来源语言。</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_CopySource_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_DoCopy_Title">复制</sys:String>
+    <sys:String x:Key="TP_RibbonButton_DoCopy_Text" xml:space="preserve">进行复制翻译语言。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_DoCopy_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

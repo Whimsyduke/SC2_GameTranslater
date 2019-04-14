@@ -1187,7 +1187,7 @@ namespace SC2_GameTranslater
         {
             foreach (ToggleButton button in GalaxyButtons)
             {
-                InRibbonGallery_GalaxyFilter.Items.Remove(button);
+                InRibbonGallery_GalaxyFileFilter.Items.Remove(button);
             }
             GalaxyButtons.Clear();
             if (project != null)
@@ -1197,17 +1197,17 @@ namespace SC2_GameTranslater
                     ToggleButton button = NewGalaxyTextFileFilterButton(row);
                     GalaxyButtons.Add(button);
                     button.ToolTip = GetGalaxyFileToolTip(row);
-                    InRibbonGallery_GalaxyFilter.Items.Insert(InRibbonGallery_GalaxyFilter.Items.Count - 1, button);
+                    InRibbonGallery_GalaxyFileFilter.Items.Insert(InRibbonGallery_GalaxyFileFilter.Items.Count - 1, button);
                 }
-                ToggleButton_FilterGalaxyFileNone.IsChecked = true;
-                ToggleButton_FilterGalaxyFileNone.IsEnabled = true;
+                ToggleButton_GalaxyFileFilterNone.IsChecked = true;
+                ToggleButton_GalaxyFileFilterNone.IsEnabled = true;
             }
             else
             {
-                ToggleButton_FilterGalaxyFileNone.IsChecked = false;
-                ToggleButton_FilterGalaxyFileNone.IsEnabled = false;
+                ToggleButton_GalaxyFileFilterNone.IsChecked = false;
+                ToggleButton_GalaxyFileFilterNone.IsEnabled = false;
             }
-            InRibbonGallery_GalaxyFilter.SelectedItem = null;
+            InRibbonGallery_GalaxyFileFilter.SelectedItem = null;
         }
 
         /// <summary>
@@ -1259,8 +1259,8 @@ namespace SC2_GameTranslater
                 SizeDefinition = new RibbonControlSizeDefinition(RibbonControlSize.Middle, RibbonControlSize.Middle, RibbonControlSize.Middle),
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 IsChecked = true,
-                Height = ToggleButton_FilterGalaxyFileNone.Height,
-                FontSize = ToggleButton_FilterGalaxyFileNone.FontSize,
+                Height = ToggleButton_GalaxyFileFilterNone.Height,
+                FontSize = ToggleButton_GalaxyFileFilterNone.FontSize,
                 VerticalContentAlignment = VerticalAlignment.Center
             };
             button.SetResourceReference(ToggleButton.IconProperty, "IMAGE_GalaxyFile");
@@ -1360,7 +1360,7 @@ namespace SC2_GameTranslater
             CheckBox_SearchCase.IsChecked = false;
             TextBox_SearchKeyword.IsEnabled = isEnable;
             TextBox_SearchKeyword.Text = "";
-            foreach (ToggleButton button in InRibbonGallery_GalaxyFilter.Items)
+            foreach (ToggleButton button in InRibbonGallery_GalaxyFileFilter.Items)
             {
                 button.IsChecked = true;
             }
@@ -1595,7 +1595,7 @@ namespace SC2_GameTranslater
         public string[] GetFileterGalaxyFile()
         {
             List<string> files = new List<string>();
-            if (ToggleButton_FilterGalaxyFileNone.IsChecked == true) files.Add("");
+            if (ToggleButton_GalaxyFileFilterNone.IsChecked == true) files.Add("");
             foreach (ToggleButton select in GalaxyButtons)
             {
                 if (select.Tag is DataRow row && row[Data_GameText.RN_GalaxyFile_Path] is string path)
@@ -1612,7 +1612,7 @@ namespace SC2_GameTranslater
         /// <param name="files">搜索方式</param>
         public void SetFileterGalaxyFile(string[] files)
         {
-            ToggleButton_FilterGalaxyFileNone.IsChecked = files.Contains("");
+            ToggleButton_GalaxyFileFilterNone.IsChecked = files.Contains("");
             List<ToggleButton> buttons = GalaxyButtons.Where(r => r.Tag is DataRow row && row[Data_GameText.RN_GalaxyFile_Path] is string path && files.Contains(path)).Select(r => r).ToList();
             foreach (ToggleButton button in GalaxyButtons)
             {
@@ -2753,10 +2753,10 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="sender">事件控件</param>
         /// <param name="e">响应参数</param>
-        private void MenuItem_GalaxyFilterSelectAll_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_GalaxyFileFilterSelectAll_Click(object sender, RoutedEventArgs e)
         {
             CanRefreshTranslatedText = false;
-            ToggleButton_FilterGalaxyFileNone.IsChecked = true;
+            ToggleButton_GalaxyFileFilterNone.IsChecked = true;
             foreach (ToggleButton button in GalaxyButtons)
             {
                 button.IsChecked = true;
@@ -2771,10 +2771,10 @@ namespace SC2_GameTranslater
         /// </summary>
         /// <param name="sender">事件控件</param>
         /// <param name="e">响应参数</param>
-        private void MenuItem_GalaxyFilterSelectNone_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_GalaxyFileFilterSelectNone_Click(object sender, RoutedEventArgs e)
         {
             CanRefreshTranslatedText = false;
-            ToggleButton_FilterGalaxyFileNone.IsChecked = false;
+            ToggleButton_GalaxyFileFilterNone.IsChecked = false;
             foreach (ToggleButton button in GalaxyButtons)
             {
                 button.IsChecked = false;
@@ -2792,7 +2792,7 @@ namespace SC2_GameTranslater
         private void ToggleButton_FilterGalaxyButton_CheckEvent(object sender, RoutedEventArgs e)
         {
             GalaxyFilter.Clear();
-            IsSelectAllGalaxyFilter = ToggleButton_FilterGalaxyFileNone.IsChecked == true;
+            IsSelectAllGalaxyFilter = ToggleButton_GalaxyFileFilterNone.IsChecked == true;
             if (IsSelectAllGalaxyFilter) GalaxyFilter.Add(Globals.Const_NoUseInGalaxy);
             foreach (ToggleButton button in GalaxyButtons)
             {

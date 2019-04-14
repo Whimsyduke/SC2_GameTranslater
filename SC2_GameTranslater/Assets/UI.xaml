@@ -366,26 +366,193 @@
 
     <!--#endregion-->
 
-    <!--#region Galaxy文件-->
+    <!--#region 所属Galaxy文件-->
 
     <Fluent:ScreenTip
-        x:Key="ToolTip_GalaxyFilter"
-        Title="{DynamicResource TP_InRibbonGallery_GalaxyFilter_Title}"
+        x:Key="ToolTip_GalaxyFileFilter"
+        Title="{DynamicResource TP_RibbonGroupBox_GalaxyFileFilter_Title}"
         Width="300"
-        DisableReason="{DynamicResource TP_InRibbonGallery_GalaxyFilter_DisableReason}"
+        DisableReason="{DynamicResource TP_RibbonGroupBox_GalaxyFileFilter_DisableReason}"
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
-        Text="{DynamicResource TP_InRibbonGallery_GalaxyFilter_Text}" />
+        Text="{DynamicResource TP_RibbonGroupBox_GalaxyFileFilter_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_GalaxyFileFilterNone"
+        Title="{DynamicResource TP_RibbonButton_GalaxyFileFilterNone_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_GalaxyFileFilterNone_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_GalaxyFileFilterNone_Text}" />
+
+    <!--#endregion-->
+
+    <!--#region 所属文本文件-->
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_TextFileFilter"
+        Title="{DynamicResource TP_RibbonGroupBox_TextFileFilter_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonGroupBox_TextFileFilter_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonGroupBox_TextFileFilter_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_TextFileFilterGameStrings"
+        Title="{DynamicResource TP_RibbonButton_TextFileFilterGameStrings_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_TextFileFilterGameStrings_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_TextFileFilterGameStrings_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_TextFileFilterObjectStrings"
+        Title="{DynamicResource TP_RibbonButton_TextFileFilterObjectStrings_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_TextFileFilterObjectStrings_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_TextFileFilterObjectStrings_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_TextFileFilterTriggerStrings"
+        Title="{DynamicResource TP_RibbonButton_TextFileFilterTriggerStrings_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_TextFileFilterTriggerStrings_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_TextFileFilterTriggerStrings_Text}" />
+    <!--#endregion-->
+
+    <!--#region 文本状态-->
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_TextStatusFilter"
+        Title="{DynamicResource TP_RibbonGroupBox_TextStatusFilter_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonGroupBox_TextStatusFilter_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonGroupBox_TextStatusFilter_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_TextStatusFilterEmpty"
+        Title="{DynamicResource TP_RibbonButton_TextStatusFilterEmpty_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_TextStatusFilterEmpty_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_TextStatusFilterEmpty_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_TextStatusFilterNormal"
+        Title="{DynamicResource TP_RibbonButton_TextStatusFilterNormal_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_TextStatusFilterNormal_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_TextStatusFilterNormal_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_TextStatusFilterModified"
+        Title="{DynamicResource TP_RibbonButton_TextStatusFilterModified_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_TextStatusFilterModified_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_TextStatusFilterModified_Text}" />
+    <!--#endregion-->
+
+    <!--#region 使用状态-->
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_UseStatusFilter"
+        Title="{DynamicResource TP_RibbonGroupBox_UseStatusFilter_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonGroupBox_UseStatusFilter_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonGroupBox_UseStatusFilter_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_UseStatusFilterDroped"
+        Title="{DynamicResource TP_RibbonButton_UseStatusFilterDroped_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_UseStatusFilterDroped_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_UseStatusFilterDroped_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_UseStatusFilterNormal"
+        Title="{DynamicResource TP_RibbonButton_UseStatusFilterNormal_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_UseStatusFilterNormal_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_UseStatusFilterNormal_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_UseStatusFilterAdded"
+        Title="{DynamicResource TP_RibbonButton_UseStatusFilterAdded_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_UseStatusFilterAdded_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_UseStatusFilterAdded_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_UseStatusFilterModified"
+        Title="{DynamicResource TP_RibbonButton_UseStatusFilterModified_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_UseStatusFilterModified_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_UseStatusFilterModified_Text}" />
+
+    <!--#endregion-->
+
+    <!--#region 复制翻译文本-->
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_CopyTranslatedText"
+        Title="{DynamicResource TP_RibbonGroupBox_CopyTranslatedText_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonGroupBox_CopyTranslatedText_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonGroupBox_CopyTranslatedText_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_CopyTargets"
+        Title="{DynamicResource TP_InRibbonGallery_CopyTargets_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_InRibbonGallery_CopyTargets_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_InRibbonGallery_CopyTargets_Text}" />
     
     <Fluent:ScreenTip
-        x:Key="ToolTip_FilterGalaxyFileNone"
-        Title="{DynamicResource TP_RibbonButton_FilterGalaxyFileNone_Title}"
+        x:Key="ToolTip_CopySource"
+        Title="{DynamicResource TP_InRibbonGallery_CopySource_Title}"
         Width="300"
-        DisableReason="{DynamicResource TP_RibbonButton_FilterGalaxyFileNone_DisableReason}"
+        DisableReason="{DynamicResource TP_InRibbonGallery_CopySource_DisableReason}"
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
-        Text="{DynamicResource TP_RibbonButton_FilterGalaxyFileNone_Text}" />
-
+        Text="{DynamicResource TP_InRibbonGallery_CopySource_Text}" />
+    
+    <Fluent:ScreenTip
+        x:Key="ToolTip_DoCopy"
+        Title="{DynamicResource TP_RibbonButton_DoCopy_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_DoCopy_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_DoCopy_Text}" />
+    
     <!--#endregion-->
 
     <!--#endregion-->

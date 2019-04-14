@@ -553,15 +553,15 @@
                     </Grid>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
-                    Name="RibbonGroupBox_GalaxyFilter"
+                    Name="RibbonGroupBox_GalaxyFileFilter"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource UI_RibbonGroupBox_GalaxyFilter_Header}">
+                    Header="{DynamicResource UI_RibbonGroupBox_GalaxyFileFilter_Header}"
+                    ToolTip="{StaticResource ToolTip_GalaxyFileFilter}">
                     <Fluent:InRibbonGallery
-                        Name="InRibbonGallery_GalaxyFilter"
+                        Name="InRibbonGallery_GalaxyFileFilter"
                         MinWidth="100"
-                        ToolTip="{StaticResource ToolTip_GalaxyFilter}"
                         CanCollapseToButton="False"
-                        Header="{DynamicResource UI_InRibbonGallery_GalaxyFilter_Header}"
+                        Header="{DynamicResource UI_InRibbonGallery_GalaxyFileFilter_Header}"
                         IsCollapsed="False"
                         MaxItemsInDropDownRow="1"
                         MinItemsInDropDownRow="1"
@@ -571,33 +571,34 @@
                         <Fluent:InRibbonGallery.Menu>
                             <Fluent:RibbonMenu>
                                 <Fluent:MenuItem
-                                    Name="MenuItem_GalaxyFilterSelectAll"
-                                    Click="MenuItem_GalaxyFilterSelectAll_Click"
+                                    Name="MenuItem_GalaxyFileFilterSelectAll"
+                                    Click="MenuItem_GalaxyFileFilterSelectAll_Click"
                                     Header="{DynamicResource TEXT_SelectALL}" />
                                 <Fluent:MenuItem
-                                    Name="MenuItem_GalaxyFilterSelectNone"
-                                    Click="MenuItem_GalaxyFilterSelectNone_Click"
+                                    Name="MenuItem_GalaxyFileFilterSelectNone"
+                                    Click="MenuItem_GalaxyFileFilterSelectNone_Click"
                                     Header="{DynamicResource TEXT_SelectNone}" />
                             </Fluent:RibbonMenu>
                         </Fluent:InRibbonGallery.Menu>
                         <Fluent:ToggleButton
-                            Name="ToggleButton_FilterGalaxyFileNone"
+                            Name="ToggleButton_GalaxyFileFilterNone"
                             HorizontalAlignment="Stretch"
-                            ToolTip="{StaticResource ToolTip_FilterGalaxyFileNone}"
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Center"
                             Checked="ToggleButton_FilterGalaxyButton_CheckEvent"
-                            Header="{DynamicResource UI_ToggleButton_FilterGalaxyFileNone_Header}"
+                            Header="{DynamicResource UI_ToggleButton_GalaxyFileFilterNone_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_GalaxyNone}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:Class_Globals.Const_NoUseInGalaxy}"
+                            ToolTip="{StaticResource ToolTip_GalaxyFileFilterNone}"
                             Unchecked="ToggleButton_FilterGalaxyButton_CheckEvent" />
                     </Fluent:InRibbonGallery>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_TextFileFilter"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource UI_RibbonGroupBox_TextFileFilter_Header}">
+                    Header="{DynamicResource UI_RibbonGroupBox_TextFileFilter_Header}"
+                    ToolTip="{StaticResource ToolTip_TextFileFilter}">
                     <Fluent:InRibbonGallery
                         Name="InRibbonGallery_TextFileFilter"
                         MinWidth="100"
@@ -631,6 +632,7 @@
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameTextFile.GameStrings}"
+                            ToolTip="{StaticResource ToolTip_TextFileFilterGameStrings}"
                             Unchecked="ToggleButton_TextFileFilterButton_CheckEvent" />
                         <Fluent:ToggleButton
                             Name="ToggleButton_TextFileFilterObjectStrings"
@@ -642,6 +644,7 @@
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameTextFile.ObjectStrings}"
+                            ToolTip="{StaticResource ToolTip_TextFileFilterObjectStrings}"
                             Unchecked="ToggleButton_TextFileFilterButton_CheckEvent" />
                         <Fluent:ToggleButton
                             Name="ToggleButton_TextFileFilterTriggerStrings"
@@ -653,13 +656,15 @@
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameTextFile.TriggerStrings}"
+                            ToolTip="{StaticResource ToolTip_TextFileFilterTriggerStrings}"
                             Unchecked="ToggleButton_TextFileFilterButton_CheckEvent" />
                     </Fluent:InRibbonGallery>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_TextStatusFilter"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource UI_RibbonGroupBox_TextStatusFilter_Header}">
+                    Header="{DynamicResource UI_RibbonGroupBox_TextStatusFilter_Header}"
+                    ToolTip="{StaticResource ToolTip_TextStatusFilter}">
                     <Fluent:InRibbonGallery
                         Name="InRibbonGallery_TextStatusFilter"
                         MinWidth="100"
@@ -693,6 +698,7 @@
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameTextStatus.Empty}"
+                            ToolTip="{StaticResource ToolTip_TextStatusFilterEmpty}"
                             Unchecked="ToggleButton_TextStatusFilterButton_CheckEvent" />
                         <Fluent:ToggleButton
                             Name="ToggleButton_TextStatusFilterNormal"
@@ -704,6 +710,7 @@
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameTextStatus.Normal}"
+                            ToolTip="{StaticResource ToolTip_TextStatusFilterNormal}"
                             Unchecked="ToggleButton_TextStatusFilterButton_CheckEvent" />
                         <Fluent:ToggleButton
                             Name="ToggleButton_TextStatusFilterModified"
@@ -715,13 +722,15 @@
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameTextStatus.Modified}"
+                            ToolTip="{StaticResource ToolTip_TextStatusFilterModified}"
                             Unchecked="ToggleButton_TextStatusFilterButton_CheckEvent" />
                     </Fluent:InRibbonGallery>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_UseStatusFilter"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource UI_RibbonGroupBox_UseStatusFilter_Header}">
+                    Header="{DynamicResource UI_RibbonGroupBox_UseStatusFilter_Header}"
+                    ToolTip="{StaticResource ToolTip_UseStatusFilter}">
                     <Fluent:InRibbonGallery
                         Name="InRibbonGallery_UseStatusFilter"
                         MinWidth="100"
@@ -755,6 +764,7 @@
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameUseStatus.Droped}"
+                            ToolTip="{StaticResource ToolTip_UseStatusFilterDroped}"
                             Unchecked="ToggleButton_UseStatusFilterButton_CheckEvent" />
                         <Fluent:ToggleButton
                             Name="ToggleButton_UseStatusFilterNormal"
@@ -766,6 +776,7 @@
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameUseStatus.Normal}"
+                            ToolTip="{StaticResource ToolTip_UseStatusFilterNormal}"
                             Unchecked="ToggleButton_UseStatusFilterButton_CheckEvent" />
                         <Fluent:ToggleButton
                             Name="ToggleButton_UseStatusFilterAdded"
@@ -777,6 +788,7 @@
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameUseStatus.Added}"
+                            ToolTip="{StaticResource ToolTip_UseStatusFilterAdded}"
                             Unchecked="ToggleButton_UseStatusFilterButton_CheckEvent" />
                         <Fluent:ToggleButton
                             Name="ToggleButton_UseStatusFilterModified"
@@ -788,6 +800,7 @@
                             Icon="{StaticResource ResourceKey=IMAGE_TextFile}"
                             SizeDefinition="Middle"
                             Tag="{x:Static source:EnumGameUseStatus.Modified}"
+                            ToolTip="{StaticResource ToolTip_UseStatusFilterModified}"
                             Unchecked="ToggleButton_UseStatusFilterButton_CheckEvent" />
                     </Fluent:InRibbonGallery>
                 </Fluent:RibbonGroupBox>
@@ -799,20 +812,22 @@
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_CopyTranslatedText"
                     Grid.IsSharedSizeScope="True"
-                    Header="{DynamicResource UI_RibbonGroupBox_CopyTranslatedText_Header}">
+                    Header="{DynamicResource UI_RibbonGroupBox_CopyTranslatedText_Header}"
+                    ToolTip="{StaticResource ToolTip_CopyTranslatedText}">
                     <Fluent:InRibbonGallery
                         Name="InRibbonGallery_CopyTargets"
                         MinWidth="120"
                         CanCollapseToButton="False"
                         Header="{DynamicResource UI_InRibbonGallery_CopyTargets_Header}"
                         IsCollapsed="False"
-                        MaxItemsInDropDownRow="3"
-                        MaxItemsInRow="3"
+                        MaxItemsInDropDownRow="12"
+                        MaxItemsInRow="12"
                         MinItemsInDropDownRow="1"
                         MinItemsInRow="1"
                         Orientation="Horizontal"
                         ResizeMode="Both"
-                        SizeDefinition="Large" />
+                        SizeDefinition="Large"
+                        ToolTip="{StaticResource ToolTip_CopyTargets}" />
                     <Fluent:InRibbonGallery
                         Name="InRibbonGallery_CopySource"
                         Icon="{Binding ElementName=InRibbonGallery_CopySource, Path=SelectedItem, Converter={StaticResource Converter_LanguageButtonIcon}}"
@@ -825,7 +840,8 @@
                         ResizeMode="Both"
                         Selectable="True"
                         SizeDefinition="Large"
-                        Tag="{Binding ElementName=InRibbonGallery_CopySource, Path=SelectedItem, Converter={StaticResource Converter_LanguageButtonTag}}">
+                        Tag="{Binding ElementName=InRibbonGallery_CopySource, Path=SelectedItem, Converter={StaticResource Converter_LanguageButtonTag}}"
+                        ToolTip="{StaticResource ToolTip_CopySource}">
                         <Fluent:InRibbonGallery.Header>
                             <MultiBinding Converter="{StaticResource Converter_LanguageButtonHeader}">
                                 <Binding ElementName="InRibbonGallery_CopySource" Path="SelectedItem" />
@@ -838,7 +854,8 @@
                         Click="RibbonButton_DoCopy_Click"
                         Header="{DynamicResource UI_RibbonButton_DoCopy_Header}"
                         Icon="{StaticResource IMAGE_DoCopy}"
-                        LargeIcon="{StaticResource IMAGE_DoCopy}" />
+                        LargeIcon="{StaticResource IMAGE_DoCopy}"
+                        ToolTip="{StaticResource ToolTip_DoCopy}" />
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>

@@ -120,7 +120,7 @@
     <sys:String x:Key="UI_GroupBox_ReloadLanguage_Header">Reload Language</sys:String>
     <sys:String x:Key="UI_GroupBox_TranslatedTexts_Header">Translated Text</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_CopyTargets_Header">Copy Target Text</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_GalaxyFilter_Header">Galaxy File</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_GalaxyFileFilter_Header">Galaxy File</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">Record File</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">Text Status</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">Use Status</sys:String>
@@ -152,7 +152,7 @@
     <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">Copy Translated Text</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">File</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_FilterRecord_Header">Filter Record</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFilter_Header">In Galaxy File</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_GalaxyFileFilter_Header">In Galaxy File</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_Search_Header">Search</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TextFileFilter_Header">In Record File</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_TextStatusFilter_Header">Text Status</sys:String>
@@ -174,20 +174,20 @@
     <sys:String x:Key="UI_TextBlock_Preference_Text">Preferences Setting</sys:String>
     <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">Load</sys:String>
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">Recent Projects</sys:String>
-    <sys:String x:Key="UI_ToggleButton_FilterGalaxyFileNone_Header">Not In Galaxy</sys:String>
+    <sys:String x:Key="UI_ToggleButton_GalaxyFileFilterNone_Header">Not In Galaxy</sys:String>
     <!--#endregion-->
 
     <!--#region Tooltip-->
     <sys:String x:Key="TP_RichTextBoxInGalaxyTextConverter_ToolTip">ID: {0}, Data Index: {1}</sys:String>
     <sys:String x:Key="TP_RibbonButton_Help_Title">Tool Help</sys:String>
     <sys:String x:Key="TP_RibbonButton_Help_Text">Pause F1 to see the help at project page.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Help_DisableReason">Reason</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Help_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_RibbonButton_New_Title">New Translated Project</sys:String>
     <sys:String x:Key="TP_RibbonButton_New_Text" xml:space="preserve">Please select a SC2 Map/Mod components (ComponentList.SC2Components) to create a new translated project for the Map/Mod you select.&#x000D;HotKey: Ctrl + N</sys:String>
-    <sys:String x:Key="TP_RibbonButton_New_DisableReason">Reason</sys:String>
+    <sys:String x:Key="TP_RibbonButton_New_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_RibbonButton_Open_Title">Open Translated Project</sys:String>
     <sys:String x:Key="TP_RibbonButton_Open_Text" xml:space="preserve">Open a exist translated project to continue your work.(The extension name of the project file is .SC2GameTran)&#x000D;HotKey: Ctrl + O</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Open_DisableReason">Reason</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Open_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_RibbonButton_Save_Title">Save Translated Project</sys:String>
     <sys:String x:Key="TP_RibbonButton_Save_Text" xml:space="preserve">Save current on working project, if it is unsaved, you need choose a path first.&#x000D;HotKey: Ctrl + S</sys:String>
     <sys:String x:Key="TP_RibbonButton_Save_DisableReason">You need open or create a new porject.</sys:String>
@@ -217,13 +217,13 @@
     <sys:String x:Key="TP_BackstageTabItem_RecentProjects_DisableReason">No recent project.</sys:String>
     <sys:String x:Key="TP_BackstageTabItem_Preference_Title">Preference</sys:String>
     <sys:String x:Key="TP_BackstageTabItem_Preference_Text" xml:space="preserve">Preference and project setting can be config here.</sys:String>
-    <sys:String x:Key="TP_BackstageTabItem_Preference_DisableReason">Reason</sys:String>
+    <sys:String x:Key="TP_BackstageTabItem_Preference_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_GroupBox_ComponentsPath_Title">Components Path</sys:String>
     <sys:String x:Key="TP_GroupBox_ComponentsPath_Text" xml:space="preserve">SC2 Map/Mod Components file path for current Project, used for acception of translated text.</sys:String>
-    <sys:String x:Key="TP_GroupBox_ComponentsPath_DisableReason">Reason</sys:String>
+    <sys:String x:Key="TP_GroupBox_ComponentsPath_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_GroupBox_SoftwareLanguage_Title">Software Language</sys:String>
     <sys:String x:Key="TP_GroupBox_SoftwareLanguage_Text" xml:space="preserve">Set software display language.</sys:String>
-    <sys:String x:Key="TP_GroupBox_SoftwareLanguage_DisableReason">Reason</sys:String>
+    <sys:String x:Key="TP_GroupBox_SoftwareLanguage_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Title">Translated Source Language</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Text" xml:space="preserve">The language that you translate from. The data of Source Text column in Translated Text Data Grid shows depend on its value.</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_DisableReason">You need open or create a new porject.</sys:String>
@@ -281,17 +281,68 @@
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_Title">Do Search</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_Text" xml:space="preserve">Search with the keyword in the region that set in the group. The search reslut will show in Translated Text Data Grid.&#x000D;HotKey: Ctrl + F</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_DisableReason">You need open or create a new porject.</sys:String>
-    <sys:String x:Key="TP_InRibbonGallery_GalaxyFilter_Title">Galaxy File Filter</sys:String>
-    <sys:String x:Key="TP_InRibbonGallery_GalaxyFilter_Text" xml:space="preserve">Filter for text inside different galaxy files.</sys:String>
-    <sys:String x:Key="TP_InRibbonGallery_GalaxyFilter_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_GalaxyFileFilter_Title">Galaxy File Filter</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_GalaxyFileFilter_Text" xml:space="preserve">Filter for text inside different galaxy files.</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_GalaxyFileFilter_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_RibbonButton_GalaxyFIle_Title">Galaxy File Item</sys:String>
     <sys:String x:Key="TP_RibbonButton_GalaxyFIle_Text" xml:space="preserve">Galaxy File Info&#x000D;File Name: {0}&#x000D;File Path: {1}&#x000D;Text Count: {2}</sys:String>
-    <sys:String x:Key="TP_RibbonButton_GalaxyFIle_DisableReason">Reason</sys:String>
-    <sys:String x:Key="TP_RibbonButton_FilterGalaxyFileNone_Title">Out Galaxy File</sys:String>
-    <sys:String x:Key="TP_RibbonButton_FilterGalaxyFileNone_Text" xml:space="preserve">Filter for all text which are not use in any of the galaxy files.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_FilterGalaxyFileNone_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_GalaxyFIle_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_RibbonButton_GalaxyFileFilterNone_Title">No Galaxy File</sys:String>
+    <sys:String x:Key="TP_RibbonButton_GalaxyFileFilterNone_Text" xml:space="preserve">Filter for all text which are not use in any of the galaxy files.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_GalaxyFileFilterNone_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_TextFileFilter_Title">Text File Filter</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_TextFileFilter_Text" xml:space="preserve">Filter for text inside different GameStrings.txt, ObjectStrings.txt, or TriggerStrings.txt in all language.</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_TextFileFilter_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterGameStrings_Title">In Game String</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterGameStrings_Text" xml:space="preserve">Filter for all text which are declarate in GameStrings.txt.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterGameStrings_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterObjectStrings_Title">In Object String</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterObjectStrings_Text" xml:space="preserve">Filter for all text which are declarate in ObjectStrings.txt.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterObjectStrings_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterTriggerStrings_Title">In Trigger String</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterTriggerStrings_Text" xml:space="preserve">Filter for all text which are declarate in TriggerStrings.txt.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextFileFilterTriggerStrings_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_TextStatusFilter_Title">On Text Status</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_TextStatusFilter_Text" xml:space="preserve">Filter for different text status.</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_TextStatusFilter_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterEmpty_Title">Text Status Empty</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterEmpty_Text" xml:space="preserve">Filter for all text whose text status is empty.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterEmpty_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterNormal_Title">Text Status Normal</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterNormal_Text" xml:space="preserve">Filter for all text whose text status is normal.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterNormal_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_Title">Text Status Modified</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_Text" xml:space="preserve">Filter for all text whose text status is modified.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Title">On Use Status</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Text" xml:space="preserve">Filter for different use status.</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_Title">Use Status Droped</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_Text" xml:space="preserve">Filter for all text whose use status is droped.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_Title">Use Status Normal</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_Text" xml:space="preserve">Filter for all text whose use status is normal.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_Title">Use Status Added</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_Text" xml:space="preserve">Filter for all text whose use status is added.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Title">Use Status Modified</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Text" xml:space="preserve">Filter for all text whose use status is modified.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_CopyTranslatedText_Title">Copy Translated Text</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_CopyTranslatedText_Text" xml:space="preserve">Copy all translated text from a language to the languages you selected. For example, you can copy all translated text form enUS to deDE, so if you have not translate deDE, it will dispaly enUS.</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_CopyTranslatedText_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_CopyTargets_Title">Copy Targets</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_CopyTargets_Text" xml:space="preserve">The target languages you select that copy translated text to (multiple choice).</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_CopyTargets_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_CopySource_Title">Copy Source</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_CopySource_Text" xml:space="preserve">The source language you select that copy translated text form.</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_CopySource_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_DoCopy_Title">Do Copy</sys:String>
+    <sys:String x:Key="TP_RibbonButton_DoCopy_Text" xml:space="preserve">Do copy the translated text.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_DoCopy_DisableReason">You need open or create a new porject.</sys:String>
     <!--#endregion-->
-    
+
     <!--#region EnumValue-->
     <sys:String x:Key="ENUM_EnumGameTextFile_GameStrings">Game Strings</sys:String>
     <sys:String x:Key="ENUM_EnumGameTextFile_ObjectStrings">Object Strings</sys:String>
