@@ -2603,7 +2603,7 @@ namespace SC2_GameTranslater
         /// <param name="language">翻译语言</param>
         private void RefreshEnumCurrentTranLangTarget(EnumLanguage language)
         {
-            DataGridColumn_TranslateEditedText.Binding = language == 0 ? null : GetRowBinding(language, Data_GameText.RN_GameText_EditedText);
+            DataGridColumn_TranslatedEditedText.Binding = language == 0 ? null : GetRowBinding(language, Data_GameText.RN_GameText_EditedText);
             RefreshInGalaxyTextDetails();
             ResetEditedTextBinding();
         }
@@ -3038,7 +3038,7 @@ namespace SC2_GameTranslater
         private void DataGrid_TranslatedTexts_PreparingCellForEdit(object sender, DataGridPreparingCellForEditEventArgs e)
         {
 
-            if (e.Column == DataGridColumn_TranslateEditedText)
+            if (e.Column == DataGridColumn_TranslatedEditedText)
             {
                 if (e.Row.Item is DataRowView view) LastEditedCell = view;
             }
@@ -3051,7 +3051,7 @@ namespace SC2_GameTranslater
         /// <param name="e">响应参数</param>
         private void DataGrid_TranslatedTexts_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            if (e.Column == DataGridColumn_TranslateEditedText)
+            if (e.Column == DataGridColumn_TranslatedEditedText)
             {
                 if (!(e.Row.Item is DataRowView view)) return;
                 OnEditedTextChange(view, ((TextBox)e.EditingElement).Text);

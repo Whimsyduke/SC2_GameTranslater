@@ -99,14 +99,14 @@
     <sys:String x:Key="UI_DataGridColumn_GalaxyFile_Header">Galaxy File</sys:String>
     <sys:String x:Key="UI_DataGridColumn_GalaxyLineNumber_Header">Galaxy Line</sys:String>
     <sys:String x:Key="UI_DataGridColumn_GalaxyText_Header">Galaxy Text</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateDropedText_Header">Droped Text</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedDropedText_Header">Droped Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextFile_Header">In File</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">Text ID</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">Text Status</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedUseStatus_Header">Use Status</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateEditedText_Header">Edited Text</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateIndex_Header">Data Index</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateSourceText_Header">Source Text</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedEditedText_Header">Edited Text</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedIndex_Header">Data Index</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedSourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Map/Mod Path:</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">Details</sys:String>
     <sys:String x:Key="UI_GroupBox_EditedText_Header">Edited Text</sys:String>
@@ -341,6 +341,30 @@
     <sys:String x:Key="TP_RibbonButton_DoCopy_Title">Do Copy</sys:String>
     <sys:String x:Key="TP_RibbonButton_DoCopy_Text" xml:space="preserve">Do copy the translated text.</sys:String>
     <sys:String x:Key="TP_RibbonButton_DoCopy_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Title">Index</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Text" xml:space="preserve">The index of the text, it is unique in all text, you can simply find text by it.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextID_Title">Text ID</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextID_Text" xml:space="preserve">The ID of the text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextID_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextFile_Title">Text File</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextFile_Text" xml:space="preserve">Which text file (GameStrings.txt, ObjectStrings.txt or TriggerStrings.txt) the text is declared in.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextFile_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextStatus_Title">Text Status</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextStatus_Text" xml:space="preserve">The status of the text, it can be three kind of values:&#x000D;    *Empty means the value of text is empty or there is not text with this ID inside the language.&#x000D;    *Normal means normal text that it have not been modified now.&#x000D;    *Modified means the text have been modified.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextStatus_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_Title">Use Status</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_Text" xml:space="preserve">The status of used, it can be four kind of values:&#x000D;    *None means the text do not exist in the language.&#x000D;    *Droped means the text is not use in the newest Map/Mod after reload text.&#x000D;    *Normal means the text is used now.&#x000D;    *Modified means the text have been modified after reload text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_Title">Droped Text</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_Text" xml:space="preserve">Do copy the translated text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_Title">Source Text</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_Text" xml:space="preserve">Do copy the translated text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Title">Edited Text</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Text" xml:space="preserve">Do copy the translated text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_DisableReason">Disable Reason</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

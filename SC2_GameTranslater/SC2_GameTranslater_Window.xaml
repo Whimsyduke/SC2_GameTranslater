@@ -887,7 +887,7 @@
                         Tag="0" />
                     <MenuItem
                         x:Key="MenuItem_Index"
-                        Header="{DynamicResource UI_DataGridColumn_TranslateIndex_Header}"
+                        Header="{DynamicResource UI_DataGridColumn_TranslatedIndex_Header}"
                         IsCheckable="True"
                         IsChecked="True"
                         Tag="1" />
@@ -911,19 +911,19 @@
                         Tag="4" />
                     <MenuItem
                         x:Key="MenuItem_DropedText"
-                        Header="{DynamicResource UI_DataGridColumn_TranslateDropedText_Header}"
+                        Header="{DynamicResource UI_DataGridColumn_TranslatedDropedText_Header}"
                         IsCheckable="True"
                         IsChecked="False"
                         Tag="5" />
                     <MenuItem
                         x:Key="MenuItem_SourceText"
-                        Header="{DynamicResource UI_DataGridColumn_TranslateSourceText_Header}"
+                        Header="{DynamicResource UI_DataGridColumn_TranslatedSourceText_Header}"
                         IsCheckable="True"
                         IsChecked="True"
                         Tag="6" />
                     <MenuItem
                         x:Key="MenuItem_EditedText"
-                        Header="{DynamicResource UI_DataGridColumn_TranslateEditedText_Header}"
+                        Header="{DynamicResource UI_DataGridColumn_TranslatedEditedText_Header}"
                         IsCheckable="True"
                         IsChecked="True"
                         Tag="7" />
@@ -993,7 +993,7 @@
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_TranslateIndex"
+                        x:Name="DataGridColumn_TranslatedIndex"
                         Width="Auto"
                         Binding="{Binding Index, UpdateSourceTrigger=PropertyChanged}"
                         CanUserReorder="True"
@@ -1002,7 +1002,7 @@
                         IsReadOnly="True"
                         Visibility="{Binding Source={StaticResource MenuItem_Index}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateIndex_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedIndex_Header}" ToolTip="{StaticResource ToolTip_ColumnTranslatedIndex}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -1022,7 +1022,7 @@
                         IsReadOnly="True"
                         Visibility="{Binding Source={StaticResource MenuItem_TextID}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedTextID_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedTextID_Header}" ToolTip="{StaticResource ToolTip_ColumnTranslatedTextID}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -1051,7 +1051,7 @@
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedTextFile_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedTextFile_Header}" ToolTip="{StaticResource ToolTip_ColumnTranslatedTextFile}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -1071,7 +1071,7 @@
                         IsReadOnly="True"
                         Visibility="{Binding Source={StaticResource MenuItem_TextStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTemplateColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedTextStatus_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedTextStatus_Header}" ToolTip="{StaticResource ToolTip_ColumnTranslatedTextStatus}" />
                         </DataGridTemplateColumn.Header>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -1134,7 +1134,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn
-                        x:Name="DataGridColumn_TranslateUseStatus"
+                        x:Name="DataGridColumn_TranslatedUseStatus"
                         Width="Auto"
                         CanUserReorder="True"
                         CanUserResize="True"
@@ -1142,7 +1142,7 @@
                         IsReadOnly="True"
                         Visibility="{Binding Source={StaticResource MenuItem_UseStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTemplateColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedUseStatus_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedUseStatus_Header}" ToolTip="{StaticResource ToolTip_ColumnTranslatedUseStatus}" />
                         </DataGridTemplateColumn.Header>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -1204,7 +1204,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_TranslateDropedText"
+                        x:Name="DataGridColumn_TranslatedDropedText"
                         Width="2*"
                         CanUserReorder="True"
                         CanUserResize="True"
@@ -1222,7 +1222,7 @@
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateDropedText_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedDropedText_Header}" ToolTip="{StaticResource ToolTip_ColumnTranslatedDropedText}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -1242,7 +1242,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_TranslateSourceText"
+                        x:Name="DataGridColumn_TranslatedSourceText"
                         Width="2*"
                         CanUserReorder="True"
                         CanUserResize="True"
@@ -1260,7 +1260,7 @@
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateSourceText_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedSourceText_Header}" ToolTip="{StaticResource ToolTip_ColumnTranslatedSourceText}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -1280,14 +1280,14 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn
-                        x:Name="DataGridColumn_TranslateEditedText"
+                        x:Name="DataGridColumn_TranslatedEditedText"
                         Width="2*"
                         CanUserReorder="True"
                         CanUserResize="True"
                         CanUserSort="False"
                         Visibility="{Binding Source={StaticResource MenuItem_EditedText}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslateEditedText_Header}" />
+                            <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedEditedText_Header}" ToolTip="{StaticResource ToolTip_ColumnTranslatedEditedText}" />
                         </DataGridTextColumn.Header>
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">

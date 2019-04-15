@@ -99,14 +99,14 @@
     <sys:String x:Key="UI_DataGridColumn_GalaxyFile_Header">Galaxy文件</sys:String>
     <sys:String x:Key="UI_DataGridColumn_GalaxyLineNumber_Header">Galaxy行号</sys:String>
     <sys:String x:Key="UI_DataGridColumn_GalaxyText_Header">Galaxy文本</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateDropedText_Header">舍弃文本</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedDropedText_Header">舍弃文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextFile_Header">所在文件</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">文本ID</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">文本状态</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedUseStatus_Header">使用状态</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateEditedText_Header">修改文本</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateIndex_Header">数据编号</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslateSourceText_Header">原始文本</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedEditedText_Header">修改文本</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedIndex_Header">数据编号</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedSourceText_Header">原始文本</sys:String>
     <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Map/Mod路径：</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">详情</sys:String>
     <sys:String x:Key="UI_GroupBox_EditedText_Header">修改文本</sys:String>
@@ -341,6 +341,30 @@
     <sys:String x:Key="TP_RibbonButton_DoCopy_Title">复制</sys:String>
     <sys:String x:Key="TP_RibbonButton_DoCopy_Text" xml:space="preserve">进行复制翻译语言。</sys:String>
     <sys:String x:Key="TP_RibbonButton_DoCopy_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Title">数据编号</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Text" xml:space="preserve">文本的序号，对于全部文本是 唯一的，你可以使用它来做简单的搜索。</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextID_Title">文本ID</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextID_Text" xml:space="preserve">文本的ID。</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextID_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextFile_Title">所在文本</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextFile_Text" xml:space="preserve">声明此文本的文本文件（GameStrings.txt，ObjectStrings.txt或者TriggerStrings.txt）</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextFile_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextStatus_Title">文本状态</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextStatus_Text" xml:space="preserve">文本的状态，可能有三种值：&#x000D;    *空文本表示档位文本的值为空或者当前语言中不存在相同ID的文本。&#x000D;    *未修改表示当前文本没有被修改过。&#x000D;    *已修改表示当前文本已经被修改。</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextStatus_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_Title">使用状态</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_Text" xml:space="preserve">Do copy the translated text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_Title">舍弃文本</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_Text" xml:space="preserve">Do copy the translated text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_Title">原始文本</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_Text" xml:space="preserve">Do copy the translated text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Title">修改文本</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Text" xml:space="preserve">Do copy the translated text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_DisableReason">禁用原因</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->
