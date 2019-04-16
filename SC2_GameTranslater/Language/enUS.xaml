@@ -317,6 +317,9 @@
     <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Title">On Use Status</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Text" xml:space="preserve">Filter for different use status.</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_Title">Use Status None</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_Text" xml:space="preserve">Filter for all text whose use status is None.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_Title">Use Status Droped</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_Text" xml:space="preserve">Filter for all text whose use status is droped.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_DisableReason">You need open or create a new porject.</sys:String>
@@ -354,16 +357,16 @@
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextStatus_Text" xml:space="preserve">The status of the text, it can be three kind of values:&#x000D;    *Empty means the value of text is empty or there is not text with this ID inside the language.&#x000D;    *Normal means normal text that it have not been modified now.&#x000D;    *Modified means the text have been modified.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextStatus_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_Title">Use Status</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_Text" xml:space="preserve">The status of used, it can be four kind of values:&#x000D;    *None means the text do not exist in the language.&#x000D;    *Droped means the text is not use in the newest Map/Mod after reload text.&#x000D;    *Normal means the text is used now.&#x000D;    *Modified means the text have been modified after reload text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_Text" xml:space="preserve">The status of used, it can be five kind of values:&#x000D;    *None means the text do not exist in current language of the newest Map/Mod.&#x000D;    *Droped means the text is not use in the newest Map/Mod after reload text.&#x000D;    *Normal means the text is used now.&#x000D;    *Added means the text just add to the Map/Mod.&#x000D;    *Modified means the text have been modified after reload text.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_Title">Droped Text</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_Text" xml:space="preserve">Do copy the translated text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_Text" xml:space="preserve">The source text  in the language used before the newest Map/Mod.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_Title">Source Text</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_Text" xml:space="preserve">Do copy the translated text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_Text" xml:space="preserve">The text in use when creted the project.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Title">Edited Text</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Text" xml:space="preserve">Do copy the translated text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Text" xml:space="preserve">New text you want to translate to.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_DisableReason">Disable Reason</sys:String>
     <!--#endregion-->
 

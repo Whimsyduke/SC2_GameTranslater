@@ -478,6 +478,15 @@
         Text="{DynamicResource TP_RibbonGroupBox_UseStatusFilter_Text}" />
 
     <Fluent:ScreenTip
+        x:Key="ToolTip_UseStatusFilterNone"
+        Title="{DynamicResource TP_RibbonButton_UseStatusFilterNone_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_RibbonButton_UseStatusFilterNone_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_RibbonButton_UseStatusFilterNone_Text}" />
+    
+    <Fluent:ScreenTip
         x:Key="ToolTip_UseStatusFilterDroped"
         Title="{DynamicResource TP_RibbonButton_UseStatusFilterDroped_Title}"
         Width="300"

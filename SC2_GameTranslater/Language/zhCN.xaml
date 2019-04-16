@@ -317,6 +317,9 @@
     <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Title">所处使用状态</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Text" xml:space="preserve">Filter for different use status.</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_Title">无文本</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_Text" xml:space="preserve">筛选所有使用状态为无的文本。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_Title">放弃文本</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_Text" xml:space="preserve">筛选所有使用状态为放弃的文本。</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_DisableReason">你需要打开或者新建一个项目。</sys:String>
@@ -351,19 +354,19 @@
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextFile_Text" xml:space="preserve">声明此文本的文本文件（GameStrings.txt，ObjectStrings.txt或者TriggerStrings.txt）</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextFile_DisableReason">禁用原因</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextStatus_Title">文本状态</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedTextStatus_Text" xml:space="preserve">文本的状态，可能有三种值：&#x000D;    *空文本表示档位文本的值为空或者当前语言中不存在相同ID的文本。&#x000D;    *未修改表示当前文本没有被修改过。&#x000D;    *已修改表示当前文本已经被修改。</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedTextStatus_Text" xml:space="preserve">文本的状态，可能有三种值：&#x000D;    *空表示当前文本的值为空或者当前语言中不存在相同ID的文本。&#x000D;    *未修改表示当前文本没有被修改过。&#x000D;    *已修改表示当前文本已经被修改。</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextStatus_DisableReason">禁用原因</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_Title">使用状态</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_Text" xml:space="preserve">Do copy the translated text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_Text" xml:space="preserve">文本的使用状态，可能有四种值：&#x000D;    *无表示当前文本在最新版本的当前Map/Mod的当前语言中不存在。&#x000D;    *放弃表示当前文本不在最新的当前Map/Mod中使用。&#x000D;    *正常表示当前文本正在使用。&#x000D;    *新增表示当前文本在最新的Map/Mod中加入。&#x000D;    *修改表示当前文本在最新Map/Mod中被修改。</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_DisableReason">禁用原因</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_Title">舍弃文本</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_Text" xml:space="preserve">Do copy the translated text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_Text" xml:space="preserve">最新Map/Mod之前使用的当前语言的原始文本</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_DisableReason">禁用原因</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_Title">原始文本</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_Text" xml:space="preserve">Do copy the translated text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_Text" xml:space="preserve">新建项目时在Map/Mod中使用的文本。</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_DisableReason">禁用原因</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Title">修改文本</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Text" xml:space="preserve">Do copy the translated text.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Text" xml:space="preserve">你想要翻译的文本结果。</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_DisableReason">禁用原因</sys:String>
     <!--#endregion-->
 
