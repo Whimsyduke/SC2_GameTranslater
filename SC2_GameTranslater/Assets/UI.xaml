@@ -567,6 +567,15 @@
     <!--#region 数据表-->
 
     <Fluent:ScreenTip
+        x:Key="ToolTip_DataGridTranslatedTexts"
+        Title="{DynamicResource TP_GroupBox_TranslatedTexts_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_GroupBox_TranslatedTexts_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_GroupBox_TranslatedTexts_Text}" />
+    
+    <Fluent:ScreenTip
         x:Key="ToolTip_ColumnTranslatedIndex"
         Title="{DynamicResource TP_DataGridColumn_TranslatedIndex_Title}"
         Width="300"

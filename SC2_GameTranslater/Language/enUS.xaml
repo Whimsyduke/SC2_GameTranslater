@@ -118,7 +118,7 @@
     <sys:String x:Key="UI_GroupBox_Log_Header">Log</sys:String>
     <sys:String x:Key="UI_GroupBox_ReloadConfig_Header">Reload Configure</sys:String>
     <sys:String x:Key="UI_GroupBox_ReloadLanguage_Header">Reload Language</sys:String>
-    <sys:String x:Key="UI_GroupBox_TranslatedTexts_Header">Translated Text</sys:String>
+    <sys:String x:Key="UI_GroupBox_TranslatedTexts_Text">Translated Text</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_CopyTargets_Header">Copy Target Text</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_GalaxyFileFilter_Header">Galaxy File</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">Record File</sys:String>
@@ -344,6 +344,9 @@
     <sys:String x:Key="TP_RibbonButton_DoCopy_Title">Do Copy</sys:String>
     <sys:String x:Key="TP_RibbonButton_DoCopy_Text" xml:space="preserve">Do copy the translated text.</sys:String>
     <sys:String x:Key="TP_RibbonButton_DoCopy_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_GroupBox_TranslatedTexts_Title">Data Grid Translated Text</sys:String>
+    <sys:String x:Key="TP_GroupBox_TranslatedTexts_Text" xml:space="preserve">The data grid of all translated text, it can shows several infomations of the text in game. You can get info in the tooltip of the columns and you can right click the column to show/hide the columns. You also can right click the data grid to show the context menu.</sys:String>
+    <sys:String x:Key="TP_GroupBox_TranslatedTexts_DisableReason">You need open or create a new porject.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Title">Index</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Text" xml:space="preserve">The index of the text, it is unique in all text, you can simply find text by it.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_DisableReason">Disable Reason</sys:String>

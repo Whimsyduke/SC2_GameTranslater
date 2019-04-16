@@ -101,7 +101,7 @@ namespace SC2_GameTranslater.Source
         public string [] RecentProjectList { get; set; } = new string[Prefrence_MaxRecentProjectCount];
 
         /// <summary>
-        /// 最后打开保存文件路径
+        /// 显示隐藏的列
         /// </summary>
         [XmlArray(Preference_AttributeColumnVisiblility)]
         public bool [] ColumnVisiblity { get; set; } =

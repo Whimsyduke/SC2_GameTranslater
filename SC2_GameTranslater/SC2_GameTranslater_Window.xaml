@@ -874,8 +874,10 @@
         <GroupBox
             Name="GroupBox_TranslatedTexts"
             Grid.Row="1"
-            Margin="3"
-            Header="{DynamicResource UI_GroupBox_TranslatedTexts_Header}">
+            Margin="3">
+            <GroupBox.Header>
+                <TextBlock Text="{DynamicResource UI_GroupBox_TranslatedTexts_Text}"/>
+            </GroupBox.Header>
             <DataGrid
                 Name="DataGrid_TranslatedTexts"
                 VerticalContentAlignment="Center"

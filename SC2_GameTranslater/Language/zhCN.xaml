@@ -118,7 +118,7 @@
     <sys:String x:Key="UI_GroupBox_Log_Header">日志</sys:String>
     <sys:String x:Key="UI_GroupBox_ReloadConfig_Header">重载配置</sys:String>
     <sys:String x:Key="UI_GroupBox_ReloadLanguage_Header">重载语言</sys:String>
-    <sys:String x:Key="UI_GroupBox_TranslatedTexts_Header">翻译文本</sys:String>
+    <sys:String x:Key="UI_GroupBox_TranslatedTexts_Text">翻译文本</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_CopyTargets_Header">复制目标语言</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_GalaxyFileFilter_Header">Galaxy文件</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">文本文件</sys:String>
@@ -344,6 +344,9 @@
     <sys:String x:Key="TP_RibbonButton_DoCopy_Title">复制</sys:String>
     <sys:String x:Key="TP_RibbonButton_DoCopy_Text" xml:space="preserve">进行复制翻译语言。</sys:String>
     <sys:String x:Key="TP_RibbonButton_DoCopy_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_GroupBox_TranslatedTexts_Title">翻译文本表格</sys:String>
+    <sys:String x:Key="TP_GroupBox_TranslatedTexts_Text" xml:space="preserve">所有翻译文本的表格，能够显示有关游戏文本的信息。你可以通过每列表头的提示信息来获取对应的说明，右键点击列的表头可以切换显示/隐藏表头。你也可以通过右键表格来打开右键菜单。</sys:String>
+    <sys:String x:Key="TP_GroupBox_TranslatedTexts_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Title">数据编号</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Text" xml:space="preserve">文本的序号，对于全部文本是 唯一的，你可以使用它来做简单的搜索。</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_DisableReason">禁用原因</sys:String>
