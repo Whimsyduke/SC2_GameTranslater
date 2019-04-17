@@ -369,8 +369,23 @@
     <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_Text" xml:space="preserve">新建项目时在Map/Mod中使用的文本。</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_DisableReason">禁用原因</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Title">修改文本</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Text" xml:space="preserve">你想要翻译的文本结果。</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Text" xml:space="preserve">你想要翻译的文本结果。双击开始修改，或者双击之后在“修改文本”框里修改。</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_DetailsLanguage_Title">语言</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_DetailsLanguage_Text" xml:space="preserve">当前翻译文本所在语言。</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_DetailsLanguage_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_DetailsEditedText_Title">修改文本</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_DetailsEditedText_Text" xml:space="preserve">你想要翻译的文本结果。</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_DetailsEditedText_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyFile_Title">Galaxy文件</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyFile_Text" xml:space="preserve">文本所在的脚本文件。</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyFile_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyLineNumber_Title">Galaxy行号</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyLineNumber_Text" xml:space="preserve">文本在Galaxy文件中所在的行号。</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyLineNumber_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyText_Title">Galaxy文本</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyText_Text" xml:space="preserve">此行Galaxy脚本的文本显示结果，可用&quot;显示脚本&quot;复选框来切换是否显示Galaxy语法。</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyText_DisableReason">禁用原因</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

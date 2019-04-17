@@ -369,8 +369,23 @@
     <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_Text" xml:space="preserve">The text in use when creted the project.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Title">Edited Text</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Text" xml:space="preserve">New text you want to translate to.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Text" xml:space="preserve">New text you want to translate to. Double click to start edit it, and modify in the "Modified Text" box.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_DetailsLanguage_Title">Language</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_DetailsLanguage_Text" xml:space="preserve">The language of the text shows in the row.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_DetailsLanguage_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_DetailsEditedText_Title">Edited Text</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_DetailsEditedText_Text" xml:space="preserve">New text you want to translate to.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_DetailsEditedText_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyFile_Title">Galaxy File</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyFile_Text" xml:space="preserve">The galaxy file where the text is in.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyFile_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyLineNumber_Title">Galaxy Line Number</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyLineNumber_Text" xml:space="preserve">The line number of the text in the galaxy file.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyLineNumber_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyText_Title">Galaxy Text</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyText_Text" xml:space="preserve">The display text of the galaxy script, You can use the "Show Script" to  show/hide the galaxy script.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_GalaxyText_DisableReason">Disable Reason</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

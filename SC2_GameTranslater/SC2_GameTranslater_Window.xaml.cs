@@ -133,7 +133,7 @@ namespace SC2_GameTranslater
                     Tag = language,
                     Content = ListItemTextDetail,
                 };
-                SetListItemHeaderAndIcon(ListItemTextDetail, "Use", langName);
+                SetListItemHeaderAndIcon(ListItemDetail, ListItemTextDetail, "Use", langName);
             }
 
             #region 方法
@@ -182,9 +182,9 @@ namespace SC2_GameTranslater
             /// <param name="item">列表项</param>
             /// <param name="status">使用状态</param>
             /// <param name="langName">使用语言</param>
-            public static void SetListItemHeaderAndIcon(TextBlock item, string status, string langName)
+            public static void SetListItemHeaderAndIcon(ListBoxItem item, TextBlock block, string status, string langName)
             {
-                item.SetResourceReference(TextBlock.TextProperty, $"TEXT_{status}{langName}");
+                block.SetResourceReference(TextBlock.TextProperty, $"TEXT_{status}{langName}");
                 item.ToolTip = GetEnumLanguageToolTip(status, langName);
             }
 
@@ -1068,7 +1068,7 @@ namespace SC2_GameTranslater
             TranslatedLanguageControls.SetRubbonButtonHeaderAndIcon(controls.ButtonTranslateTarget, status, languageName);
             TranslatedLanguageControls.SetRubbonButtonHeaderAndIcon(controls.ButtonCopySource, status, languageName);
             TranslatedLanguageControls.SetRubbonButtonHeaderAndIcon(controls.ButtonCopyTarget, status, languageName);
-            TranslatedLanguageControls.SetListItemHeaderAndIcon(controls.ListItemTextDetail, status, languageName);
+            TranslatedLanguageControls.SetListItemHeaderAndIcon(controls.ListItemDetail, controls.ListItemTextDetail, status, languageName);
         }
 
         /// <summary>

@@ -876,7 +876,7 @@
             Grid.Row="1"
             Margin="3">
             <GroupBox.Header>
-                <TextBlock Text="{DynamicResource UI_GroupBox_TranslatedTexts_Text}"/>
+                <TextBlock Text="{DynamicResource UI_GroupBox_TranslatedTexts_Text}" />
             </GroupBox.Header>
             <DataGrid
                 Name="DataGrid_TranslatedTexts"
@@ -1003,7 +1003,7 @@
                         <Setter Property="HorizontalContentAlignment" Value="Center" />
                         <Setter Property="VerticalContentAlignment" Value="Center" />
                         <Setter Property="ContextMenu" Value="{StaticResource ResourceKey=ContextMenu_ColumnVisible}" />
-                        <Setter Property="ToolTip" Value="{Binding Path=ToolTip}"/>
+                        <Setter Property="ToolTip" Value="{Binding Path=ToolTip}" />
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
@@ -1495,6 +1495,7 @@
                                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
                                                 <Setter Property="VerticalContentAlignment" Value="Center" />
                                                 <Setter Property="ContextMenu" Value="{StaticResource ResourceKey=ContextMenu_ColumnVisible}" />
+                                                <Setter Property="ToolTip" Value="{Binding Path=ToolTip}" />
                                             </Style>
                                         </DataGrid.ColumnHeaderStyle>
                                         <DataGrid.Columns>
@@ -1508,7 +1509,7 @@
                                                 IsReadOnly="True"
                                                 Visibility="{Binding Source={StaticResource MenuItem_Language}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                                                 <DataGridTextColumn.Header>
-                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsLanguage_Header}" />
+                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsLanguage_Header}" ToolTip="{StaticResource ToolTip_ColumnDetailsLanguage}" />
                                                 </DataGridTextColumn.Header>
                                                 <DataGridTextColumn.ElementStyle>
                                                     <Style TargetType="TextBlock">
@@ -1528,7 +1529,7 @@
                                                 IsReadOnly="True"
                                                 Visibility="{Binding Source={StaticResource MenuItem_TextStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                                                 <DataGridTemplateColumn.Header>
-                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsTextStatus_Header}" />
+                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsTextStatus_Header}" ToolTip="{StaticResource ToolTip_ColumnTranslatedTextStatus}" />
                                                 </DataGridTemplateColumn.Header>
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
@@ -1580,7 +1581,7 @@
                                                 IsReadOnly="True"
                                                 Visibility="{Binding Source={StaticResource MenuItem_UseStatus}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
                                                 <DataGridTemplateColumn.Header>
-                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsUseStatus_Header}" />
+                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsUseStatus_Header}" ToolTip="{StaticResource ToolTip_ColumnTranslatedUseStatus}" />
                                                 </DataGridTemplateColumn.Header>
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
@@ -1638,7 +1639,7 @@
                                                     </MultiBinding>
                                                 </DataGridTextColumn.Binding>
                                                 <DataGridTextColumn.Header>
-                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsDropedText_Header}" />
+                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsDropedText_Header}" ToolTip="{StaticResource ToolTip_ColumnTranslatedDropedText}" />
                                                 </DataGridTextColumn.Header>
                                                 <DataGridTextColumn.ElementStyle>
                                                     <Style TargetType="TextBlock">
@@ -1672,7 +1673,7 @@
                                                     </MultiBinding>
                                                 </DataGridTextColumn.Binding>
                                                 <DataGridTextColumn.Header>
-                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsSourceText_Header}" />
+                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsSourceText_Header}" ToolTip="{StaticResource ToolTip_ColumnTranslatedSourceText}" />
                                                 </DataGridTextColumn.Header>
                                                 <DataGridTextColumn.ElementStyle>
                                                     <Style TargetType="TextBlock">
@@ -1706,7 +1707,7 @@
                                                     </MultiBinding>
                                                 </DataGridTextColumn.Binding>
                                                 <DataGridTextColumn.Header>
-                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsEditedText_Header}" />
+                                                    <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsEditedText_Header}" ToolTip="{StaticResource ToolTip_ColumnDetailsEditedText}" />
                                                 </DataGridTextColumn.Header>
                                                 <DataGridTextColumn.ElementStyle>
                                                     <Style TargetType="TextBlock">
@@ -1791,6 +1792,7 @@
                                     <Style TargetType="DataGridColumnHeader">
                                         <Setter Property="HorizontalContentAlignment" Value="Center" />
                                         <Setter Property="VerticalContentAlignment" Value="Center" />
+                                        <Setter Property="ToolTip" Value="{Binding Path=ToolTip}" />
                                     </Style>
                                 </DataGrid.ColumnHeaderStyle>
                                 <DataGrid.Columns>
@@ -1803,7 +1805,7 @@
                                         CanUserSort="True"
                                         IsReadOnly="True">
                                         <DataGridTextColumn.Header>
-                                            <TextBlock Text="{DynamicResource UI_DataGridColumn_GalaxyFile_Header}" />
+                                            <TextBlock Text="{DynamicResource UI_DataGridColumn_GalaxyFile_Header}" ToolTip="{StaticResource ToolTip_ColumnGalaxyFile}" />
                                         </DataGridTextColumn.Header>
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="TextBlock">
@@ -1823,7 +1825,7 @@
                                         CanUserSort="True"
                                         IsReadOnly="True">
                                         <DataGridTextColumn.Header>
-                                            <TextBlock Text="{DynamicResource UI_DataGridColumn_GalaxyLineNumber_Header}" />
+                                            <TextBlock Text="{DynamicResource UI_DataGridColumn_GalaxyLineNumber_Header}" ToolTip="{StaticResource ToolTip_ColumnGalaxyLineNumber}" />
                                         </DataGridTextColumn.Header>
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="TextBlock">
@@ -1842,7 +1844,7 @@
                                         CanUserSort="True"
                                         IsReadOnly="True">
                                         <DataGridTemplateColumn.Header>
-                                            <TextBlock Text="{DynamicResource UI_DataGridColumn_GalaxyText_Header}" />
+                                            <TextBlock Text="{DynamicResource UI_DataGridColumn_GalaxyText_Header}" ToolTip="{StaticResource ToolTip_ColumnGalaxyText}" />
                                         </DataGridTemplateColumn.Header>
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
