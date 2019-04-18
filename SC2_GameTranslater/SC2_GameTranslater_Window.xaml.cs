@@ -2571,7 +2571,11 @@ namespace SC2_GameTranslater
             RefreshTranslatedText(newPro);
             RefreshInGalaxyTextDetails();
             RefreshDetails(newPro);
-            if (Globals.CurrentProjectPath == null)
+            if (newPro == null)
+            {
+                CurrentProjectName = null;
+            }
+            else if (Globals.CurrentProjectPath == null)
             {
                 CurrentProjectName = "TEXT_WindowTitleProjectUnsaved";
             }

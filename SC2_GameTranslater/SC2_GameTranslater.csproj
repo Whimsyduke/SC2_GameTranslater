@@ -262,6 +262,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if not exist $(TargetDir)Language mkdir $(TargetDir)Language
-xcopy /e $(ProjectDir)Language $(TargetDir)\Language</PostBuildEvent>
+xcopy /e /y $(ProjectDir)Language $(TargetDir)\Language</PostBuildEvent>
   </PropertyGroup>
 </Project>
