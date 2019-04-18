@@ -109,7 +109,7 @@
     <sys:String x:Key="UI_DataGridColumn_TranslatedSourceText_Header">原始文本</sys:String>
     <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Map/Mod路径：</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">详情</sys:String>
-    <sys:String x:Key="UI_GroupBox_EditedText_Header">修改文本</sys:String>
+    <sys:String x:Key="UI_GroupBox_LastEditedText_Header">修改文本</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">游戏文本数据</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextInGalaxy_Header">Galaxy文本数据（</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextShowLanguage_Header">显示语言</sys:String>
@@ -386,6 +386,18 @@
     <sys:String x:Key="TP_DataGridColumn_GalaxyText_Title">Galaxy文本</sys:String>
     <sys:String x:Key="TP_DataGridColumn_GalaxyText_Text" xml:space="preserve">此行Galaxy脚本的文本显示结果，可用&quot;显示脚本&quot;复选框来切换是否显示Galaxy语法。</sys:String>
     <sys:String x:Key="TP_DataGridColumn_GalaxyText_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_TextBlock_DetailsID_Title">所选文本ID</sys:String>
+    <sys:String x:Key="TP_TextBlock_DetailsID_Text" xml:space="preserve">翻译文本数据表中选择的行的文本ID。</sys:String>
+    <sys:String x:Key="TP_TextBlock_DetailsID_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_TextBlock_DetailsIndex_Title">所选数据编号</sys:String>
+    <sys:String x:Key="TP_TextBlock_DetailsIndex_Text" xml:space="preserve">翻译文本数据表中选择的行的文本编号。</sys:String>
+    <sys:String x:Key="TP_TextBlock_DetailsIndex_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_GroupBox_LastEditedText_Title">上一次编辑的文本</sys:String>
+    <sys:String x:Key="TP_GroupBox_LastEditedText_Text" xml:space="preserve">这里显示并可以继续编译上一次编辑的文本。</sys:String>
+    <sys:String x:Key="TP_GroupBox_LastEditedText_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_CheckBox_InGalaxyShowScript_Title">显示Galaxy脚本</sys:String>
+    <sys:String x:Key="TP_CheckBox_InGalaxyShowScript_Text" xml:space="preserve">在Galaxy文本列中显示/隐藏Galaxy脚本的部分。</sys:String>
+    <sys:String x:Key="TP_CheckBox_InGalaxyShowScript_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

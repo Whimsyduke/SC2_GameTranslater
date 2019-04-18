@@ -485,7 +485,7 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_RibbonButton_UseStatusFilterNone_Text}" />
-    
+
     <Fluent:ScreenTip
         x:Key="ToolTip_UseStatusFilterDroped"
         Title="{DynamicResource TP_RibbonButton_UseStatusFilterDroped_Title}"
@@ -543,7 +543,7 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_InRibbonGallery_CopyTargets_Text}" />
-    
+
     <Fluent:ScreenTip
         x:Key="ToolTip_CopySource"
         Title="{DynamicResource TP_InRibbonGallery_CopySource_Title}"
@@ -552,7 +552,7 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_InRibbonGallery_CopySource_Text}" />
-    
+
     <Fluent:ScreenTip
         x:Key="ToolTip_DoCopy"
         Title="{DynamicResource TP_RibbonButton_DoCopy_Title}"
@@ -561,11 +561,11 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_RibbonButton_DoCopy_Text}" />
-    
+
     <!--#endregion-->
 
     <!--#region 翻译文本-->
-    
+
     <Fluent:ScreenTip
         x:Key="ToolTip_DataGridTranslatedTexts"
         Title="{DynamicResource TP_GroupBox_TranslatedTexts_Title}"
@@ -576,7 +576,7 @@
         Text="{DynamicResource TP_GroupBox_TranslatedTexts_Text}" />
 
     <!--#endregion-->
-    
+
     <!--#region 数据表-->
 
     <Fluent:ScreenTip
@@ -587,7 +587,7 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_DataGridColumn_TranslatedIndex_Text}" />
-    
+
     <Fluent:ScreenTip
         x:Key="ToolTip_ColumnTranslatedTextID"
         Title="{DynamicResource TP_DataGridColumn_TranslatedTextID_Title}"
@@ -650,7 +650,7 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_DataGridColumn_TranslatedEditedText_Text}" />
-    
+
     <Fluent:ScreenTip
         x:Key="ToolTip_ColumnDetailsLanguage"
         Title="{DynamicResource TP_DataGridColumn_DetailsLanguage_Title}"
@@ -668,7 +668,7 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_DataGridColumn_DetailsEditedText_Text}" />
-    
+
     <Fluent:ScreenTip
         x:Key="ToolTip_ColumnGalaxyFile"
         Title="{DynamicResource TP_DataGridColumn_GalaxyFile_Title}"
@@ -677,7 +677,7 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_DataGridColumn_GalaxyFile_Text}" />
-    
+
     <Fluent:ScreenTip
         x:Key="ToolTip_ColumnGalaxyLineNumber"
         Title="{DynamicResource TP_DataGridColumn_GalaxyLineNumber_Title}"
@@ -695,6 +695,52 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_DataGridColumn_GalaxyText_Text}" />
+
+    <!--#endregion-->
+
+    <!--#region 详情-->
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_DetailsID"
+        Title="{DynamicResource TP_TextBlock_DetailsID_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_TextBlock_DetailsID_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_TextBlock_DetailsID_Text}" />
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_DetailsIndex"
+        Title="{DynamicResource TP_TextBlock_DetailsIndex_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_TextBlock_DetailsIndex_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_TextBlock_DetailsIndex_Text}" />
+
+    <!--#endregion-->
+
+    <!--#region 详情-->
+
+    <Fluent:ScreenTip
+        x:Key="ToolTip_LastEditedText"
+        Title="{DynamicResource TP_GroupBox_LastEditedText_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_GroupBox_LastEditedText_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_GroupBox_LastEditedText_Text}" />
+    
+    <Fluent:ScreenTip
+        x:Key="ToolTip_InGalaxyShowScript"
+        Title="{DynamicResource TP_CheckBox_InGalaxyShowScript_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_CheckBox_InGalaxyShowScript_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_CheckBox_InGalaxyShowScript_Text}" />
+
+    <!--#endregion-->
 
     <!--#endregion-->
 

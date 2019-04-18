@@ -1399,14 +1399,16 @@
                                         Grid.Row="0"
                                         Grid.Column="0"
                                         Margin="3"
-                                        Text="" />
+                                        Text=""
+                                        ToolTip="{StaticResource ToolTip_DetailsID}" />
                                     <TextBlock
                                         Name="TextBlock_DetailsIndex"
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         Grid.ColumnSpan="2"
                                         Margin="3"
-                                        Text="" />
+                                        Text=""
+                                        ToolTip="{StaticResource ToolTip_DetailsIndex}" />
                                     <DataGrid
                                         Name="DataGrid_GameTextForLanguage"
                                         Grid.Row="1"
@@ -1748,6 +1750,7 @@
                                     <TextBlock VerticalAlignment="Bottom" Text="{StaticResource UI_GroupBox_GameTextInGalaxy_Header}" />
                                     <CheckBox
                                         Name="CheckBox_InGalaxyShowScript"
+                                        ToolTip="{StaticResource ToolTip_InGalaxyShowScript}"
                                         VerticalAlignment="Bottom"
                                         VerticalContentAlignment="Bottom"
                                         Content="{DynamicResource UI_CheckBox_InGalaxyShowScript_Content}"
@@ -1883,10 +1886,11 @@
                 VerticalAlignment="Stretch"
                 ResizeDirection="Columns" />
             <GroupBox
-                Name="GroupBox_EditedText"
+                Name="GroupBox_LastEditedText"
                 Grid.Column="2"
                 Margin="3"
-                Header="{DynamicResource UI_GroupBox_EditedText_Header}">
+                ToolTip="{StaticResource ToolTip_LastEditedText}"
+                Header="{DynamicResource UI_GroupBox_LastEditedText_Header}">
                 <TextBox
                     Name="TextBox_EditedBox"
                     Margin="3"

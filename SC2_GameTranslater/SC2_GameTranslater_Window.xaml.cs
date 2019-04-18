@@ -604,6 +604,7 @@ namespace SC2_GameTranslater
             
             Fluent.ToolTipService.Attach(typeof(SearchButton));
             Fluent.ToolTipService.Attach(typeof(TextBox));
+            Fluent.ToolTipService.Attach(typeof(System.Windows.Controls.GroupBox));
 
             #endregion
 
@@ -2314,6 +2315,16 @@ namespace SC2_GameTranslater
         }
 
         /// <summary>
+        /// 刷新详情控件
+        /// </summary>
+        /// <param name="project">项目数据</param>
+        private void RefreshDetails(Data_GameText project)
+        {
+            bool isCheck = project != null;
+            CheckBox_InGalaxyShowScript.IsEnabled = isCheck;
+        }
+
+        /// <summary>
         /// 编辑文本变化
         /// </summary>
         /// <returns>取消变化</returns>
@@ -2559,6 +2570,7 @@ namespace SC2_GameTranslater
             CanRefreshTranslatedText = true;
             RefreshTranslatedText(newPro);
             RefreshInGalaxyTextDetails();
+            RefreshDetails(newPro);
             if (Globals.CurrentProjectPath == null)
             {
                 CurrentProjectName = "TEXT_WindowTitleProjectUnsaved";

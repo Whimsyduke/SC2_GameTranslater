@@ -109,7 +109,7 @@
     <sys:String x:Key="UI_DataGridColumn_TranslatedSourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_GroupBox_ComponentsPath_Header">Map/Mod Path:</sys:String>
     <sys:String x:Key="UI_GroupBox_Details_Header">Details</sys:String>
-    <sys:String x:Key="UI_GroupBox_EditedText_Header">Edited Text</sys:String>
+    <sys:String x:Key="UI_GroupBox_LastEditedText_Header">Edited Text</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextForLanguage_Header">Game Text Details</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextInGalaxy_Header">Galaxy Text Details (</sys:String>
     <sys:String x:Key="UI_GroupBox_GameTextShowLanguage_Header">Show Language</sys:String>
@@ -386,6 +386,18 @@
     <sys:String x:Key="TP_DataGridColumn_GalaxyText_Title">Galaxy Text</sys:String>
     <sys:String x:Key="TP_DataGridColumn_GalaxyText_Text" xml:space="preserve">The display text of the galaxy script, You can use the "Show Script" to  show/hide the galaxy script.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_GalaxyText_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_TextBlock_DetailsID_Title">Text ID Of Select Row</sys:String>
+    <sys:String x:Key="TP_TextBlock_DetailsID_Text" xml:space="preserve">Text ID of the row you select in Translated Text Data Grid.</sys:String>
+    <sys:String x:Key="TP_TextBlock_DetailsID_DisableReason">>Disable Reason</sys:String>
+    <sys:String x:Key="TP_TextBlock_DetailsIndex_Title">Index Of Select Row</sys:String>
+    <sys:String x:Key="TP_TextBlock_DetailsIndex_Text" xml:space="preserve">Index of the row you select in Translated Text Data Grid.。</sys:String>
+    <sys:String x:Key="TP_TextBlock_DetailsIndex_DisableReason">>Disable Reason</sys:String>
+    <sys:String x:Key="TP_GroupBox_LastEditedText_Title">Last Edited Text</sys:String>
+    <sys:String x:Key="TP_GroupBox_LastEditedText_Text" xml:space="preserve">You can see the last edited text and continue work on it.</sys:String>
+    <sys:String x:Key="TP_GroupBox_LastEditedText_DisableReason">You need open or create a new porject.</sys:String>
+    <sys:String x:Key="TP_CheckBox_InGalaxyShowScript_Title">Show Galaxy Script</sys:String>
+    <sys:String x:Key="TP_CheckBox_InGalaxyShowScript_Text" xml:space="preserve">Show/Hide galaxy script in Galaxy Text Column.</sys:String>
+    <sys:String x:Key="TP_CheckBox_InGalaxyShowScript_DisableReason">You need open or create a new porject.</sys:String>
     <!--#endregion-->
 
     <!--#region EnumValue-->

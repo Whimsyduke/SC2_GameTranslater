@@ -42,6 +42,7 @@ namespace SC2_GameTranslater.Source
         public const string Preference_ElementRecentProjectList = "RecentProjectList";
         public const string Preference_AttributeRecentProject = "RecentProject";
         public const string Preference_AttributeColumnVisiblility = "ColumnVisiblility";
+        public const string Preference_AttributeShowScript = "ShowScript";
 
         #endregion
 
@@ -131,6 +132,12 @@ namespace SC2_GameTranslater.Source
             #endregion
         };
 
+        /// <summary>
+        /// 显示脚本
+        /// </summary>
+        [XmlAttribute(Preference_AttributeShowScript)]
+        public bool ShowScript { get; set; }
+
         #endregion
 
         #endregion
@@ -146,6 +153,7 @@ namespace SC2_GameTranslater.Source
         {
             Globals.Preference.Preference_SaveWindowSize();
             Globals.Preference.Preference_SaveColumnVisibility();
+            Globals.Preference.Preference_SaveShowScript();
             SerializerCompression();
 
         }
@@ -171,6 +179,7 @@ namespace SC2_GameTranslater.Source
             {
                 Globals.Preference.Preference_LoadWindowSize();
                 Globals.Preference.Preference_LoadColumnVisibility();
+                Globals.Preference.Preference_LoadShowScript();
                 Globals.MainWindow.RefreshRecentProjects();
             }
         }
@@ -285,6 +294,30 @@ namespace SC2_GameTranslater.Source
             }
             RecentProjectList = list.ToArray();
         }
+
+        #endregion
+
+        #region 详情
+
+        #region 窗口大小
+
+        /// <summary>
+        /// 保存显示脚本
+        /// </summary>
+        private void Preference_SaveShowScript()
+        {
+            ShowScript = Globals.MainWindow.CheckBox_InGalaxyShowScript.IsChecked == true;
+        }
+
+        /// <summary>
+        /// 加载显示脚本
+        /// </summary>
+        public void Preference_LoadShowScript()
+        {
+            Globals.MainWindow.CheckBox_InGalaxyShowScript.IsChecked = ShowScript;
+        }
+
+        #endregion
 
         #endregion
 
