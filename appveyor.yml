@@ -13,7 +13,12 @@ before_build:
 build:
   verbosity: minimal
 after_build:
-- cmd: 7z a SC2_GameTranslater.zip %APPVEYOR_BUILD_FOLDER%\SC2_GameTranslater\bin\Release\*.dll -i!%APPVEYOR_BUILD_FOLDER%\SC2_GameTranslater\bin\Release\*.exe
+- cmd: >-
+    if not exist %APPVEYOR_BUILD_FOLDER%\SC2_GameTranslater\Language mkdir %APPVEYOR_BUILD_FOLDER%\SC2_GameTranslater\Language
+
+    xcopy /e /y %APPVEYOR_BUILD_FOLDER%\SC2_GameTranslater\Language %APPVEYOR_BUILD_FOLDER%\SC2_GameTranslater\bin\Release\Language
+
+    7z a SC2_GameTranslater.zip %APPVEYOR_BUILD_FOLDER%\SC2_GameTranslater\bin\Release\*.dll -i!%APPVEYOR_BUILD_FOLDER%\SC2_GameTranslater\bin\Release\*.exe -i!%APPVEYOR_BUILD_FOLDER%\SC2_GameTranslater\bin\Release\*\*.xaml
 artifacts:
 - path: SC2_GameTranslater.zip
   name: SC2_GameTranslater
