@@ -82,19 +82,19 @@
                             Command="{x:Static local:SC2_GameTranslater_Window.CommandSaveAs}"
                             Header="{DynamicResource UI_RibbonButton_SaveAs_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Save}"
-                            ToolTip="{StaticResource ToolTip_New}" />
+                            ToolTip="{StaticResource ToolTip_SaveAs}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuClose"
                             Command="{x:Static local:SC2_GameTranslater_Window.CommandClose}"
                             Header="{DynamicResource UI_RibbonButton_Close_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Close}"
-                            ToolTip="{StaticResource ToolTip_SaveAs}" />
+                            ToolTip="{StaticResource ToolTip_Close}" />
                         <Fluent:Button
                             x:Name="RibbonButton_MenuAccept"
                             Command="{x:Static local:SC2_GameTranslater_Window.CommandAccept}"
                             Header="{DynamicResource UI_RibbonButton_Accept_Header}"
                             Icon="{StaticResource ResourceKey=IMAGE_Accept}"
-                            ToolTip="{StaticResource ToolTip_Close}" />
+                            ToolTip="{StaticResource ToolTip_Accept}" />
                         <Fluent:SeparatorTabItem
                             Name="SeparatorTabItem_RecentProjects"
                             Margin="0,20,0,0"
@@ -1750,11 +1750,11 @@
                                     <TextBlock VerticalAlignment="Bottom" Text="{StaticResource UI_GroupBox_GameTextInGalaxy_Header}" />
                                     <CheckBox
                                         Name="CheckBox_InGalaxyShowScript"
-                                        ToolTip="{StaticResource ToolTip_InGalaxyShowScript}"
                                         VerticalAlignment="Bottom"
                                         VerticalContentAlignment="Bottom"
                                         Content="{DynamicResource UI_CheckBox_InGalaxyShowScript_Content}"
-                                        IsChecked="False" />
+                                        IsChecked="False"
+                                        ToolTip="{StaticResource ToolTip_InGalaxyShowScript}" />
                                 </StackPanel>
                             </GroupBox.Header>
                             <DataGrid
@@ -1889,8 +1889,8 @@
                 Name="GroupBox_LastEditedText"
                 Grid.Column="2"
                 Margin="3"
-                ToolTip="{StaticResource ToolTip_LastEditedText}"
-                Header="{DynamicResource UI_GroupBox_LastEditedText_Header}">
+                Header="{DynamicResource UI_GroupBox_LastEditedText_Header}"
+                ToolTip="{StaticResource ToolTip_LastEditedText}">
                 <TextBox
                     Name="TextBox_EditedBox"
                     Margin="3"
