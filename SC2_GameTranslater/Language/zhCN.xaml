@@ -126,9 +126,9 @@
     <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">使用状态</sys:String>
     <sys:String x:Key="UI_MenuItem_JumpToText_Header">跳至文本</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">清除日志</sys:String>
-    <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">清空脚本</sys:String>
+    <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">清空文本</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateGoToDataIndex_Header">跳转数据编号</sys:String>
-    <sys:String x:Key="UI_MenuItem_TranslateResetEditedText_Header">重置脚本</sys:String>
+    <sys:String x:Key="UI_MenuItem_TranslateResetEditedText_Header">重置文本</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_CompontentsPath_Title">选择SC2地图/Mod组件文件夹</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_New_Title">新建项目</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">打开项目</sys:String>
@@ -187,7 +187,7 @@
     <sys:String x:Key="TP_RibbonButton_New_DisableReason">禁用原因</sys:String>
     <sys:String x:Key="TP_RibbonButton_Open_Title">打开翻译项目</sys:String>
     <sys:String x:Key="TP_RibbonButton_Open_Text" xml:space="preserve">打开一个翻译项目来继续你的工作。（项目文件的扩展名为.SC2GameTran）&#x000D;快捷键：Ctrl + O</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Open_DisableReason">Reason</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Open_DisableReason">禁用原因</sys:String>
     <sys:String x:Key="TP_RibbonButton_Save_Title">保存翻译项目</sys:String>
     <sys:String x:Key="TP_RibbonButton_Save_Text" xml:space="preserve">保存当前正在工作的项目，如果它是未保存的，你需要先选择保存的路径。&#x000D;快捷键：Ctrl + S</sys:String>
     <sys:String x:Key="TP_RibbonButton_Save_DisableReason">你需要打开或者新建一个项目。</sys:String>
@@ -199,12 +199,13 @@
     <sys:String x:Key="TP_RibbonButton_Close_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_RibbonButton_Accept_Title">应用翻译文本</sys:String>
     <sys:String x:Key="TP_RibbonButton_Accept_Text" xml:space="preserve">将翻译文本写回到Map/Mod中，在此之前，你需要保证设置的Map\Mod路径有效，你可以在【目录】【配置设置】【配置】对应页面找到相应设置。&#x000D;快捷键：Ctrl + W</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Accept_DisableReason">你需要打开或者新建一个项目，并保证Map/Mod的路径是正确的。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Accept_DisableReason">你需要
+一个项目，并保证Map/Mod的路径是正确的。</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadTranslation_Title">重载修改文本</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadTranslation_Text" xml:space="preserve">从另外一个项目文件重载修改好的文本，你可以选择重载文本的语言以及是否仅重载已翻译的内容。&#x000D;快捷键：Ctrl + R</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadTranslation_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Title">重载源文本</sys:String>
-    <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Text" xml:space="preserve">从另外一个项目文件或直接从Map/Mod重载源文本，然后你可以知道两个项目文件的差异。&#x000D;这些信息是隐藏的，你可以右击翻译文本表个的列头来显示。&#x000D;快捷键：Ctrl + T</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Text" xml:space="preserve">从另外一个项目文件或直接从Map/Mod重载源文本，然后你可以知道两个项目文件的差异。&#x000D;这些信息是默认隐藏的，你可以右击翻译文本表个的列头来显示。&#x000D;快捷键：Ctrl + T</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadSourceText_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterPrev_Title">前一选择或搜索状态</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterPrev_Text" xml:space="preserve">切换到前一翻译文本表格选择项或者搜索状态.&#x000D;快捷键：Ctrl + ←</sys:String>
@@ -228,7 +229,7 @@
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_Text" xml:space="preserve">翻译来源的语言，翻译文本表格的原始文本列的显示数据基于此项选择。</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateSource_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_Title">翻译目标语言</sys:String>
-    <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_Text" xml:space="preserve">翻译来源的语言，翻译文本表格的文本状态列、使用状态列、舍弃文本列及修改文本列的显示数据基于此项选择。</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_Text" xml:space="preserve">翻译目标的语言，翻译文本表格的文本状态列、使用状态列、舍弃文本列及修改文本列的显示数据基于此项选择。</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_ComboBox_SearchScope_Title">搜索范围</sys:String>
     <sys:String x:Key="TP_ComboBox_SearchScope_Text" xml:space="preserve">搜索哪些列。在点击搜索按钮或按下Ctrl + F后起效。</sys:String>
@@ -343,7 +344,7 @@
     <sys:String x:Key="TP_InRibbonGallery_CopySource_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_RibbonButton_DoCopy_Title">复制</sys:String>
     <sys:String x:Key="TP_RibbonButton_DoCopy_Text" xml:space="preserve">进行复制翻译语言。</sys:String>
-    <sys:String x:Key="TP_RibbonButton_DoCopy_DisableReason">你需要打开或者新建一个项目。</sys:String>
+    <sys:String x:Key="TP_RibbonButton_DoCopy_DisableReason">你需要打开或者新建一个项目，并且选定来源和目标语言。</sys:String>
     <sys:String x:Key="TP_GroupBox_TranslatedTexts_Title">翻译文本表格</sys:String>
     <sys:String x:Key="TP_GroupBox_TranslatedTexts_Text" xml:space="preserve">所有翻译文本的表格，能够显示有关游戏文本的信息。你可以通过每列表头的提示信息来获取对应的说明，右键点击列的表头可以切换显示/隐藏表头。你也可以通过右键表格来打开右键菜单。</sys:String>
     <sys:String x:Key="TP_GroupBox_TranslatedTexts_DisableReason">你需要打开或者新建一个项目。</sys:String>
@@ -360,7 +361,7 @@
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextStatus_Text" xml:space="preserve">文本的状态，可能有三种值：&#x000D;    *空表示当前文本的值为空或者当前语言中不存在相同ID的文本。&#x000D;    *未修改表示当前文本没有被修改过。&#x000D;    *已修改表示当前文本已经被修改。</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextStatus_DisableReason">禁用原因</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_Title">使用状态</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_Text" xml:space="preserve">文本的使用状态，可能有四种值：&#x000D;    *无表示当前文本在最新版本的当前Map/Mod的当前语言中不存在。&#x000D;    *放弃表示当前文本不在最新的当前Map/Mod中使用。&#x000D;    *正常表示当前文本正在使用。&#x000D;    *新增表示当前文本在最新的Map/Mod中加入。&#x000D;    *修改表示当前文本在最新Map/Mod中被修改。</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_Text" xml:space="preserve">文本的使用状态，可能有五种值：&#x000D;    *无表示当前文本在最新版本的当前Map/Mod的当前语言中不存在。&#x000D;    *放弃表示当前文本不在最新的当前Map/Mod中使用。&#x000D;    *正常表示当前文本正在使用。&#x000D;    *新增表示当前文本在最新的Map/Mod中加入。&#x000D;    *修改表示当前文本在最新Map/Mod中被修改。</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_DisableReason">禁用原因</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_Title">舍弃文本</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_Text" xml:space="preserve">最新Map/Mod之前使用的当前语言的原始文本</sys:String>
