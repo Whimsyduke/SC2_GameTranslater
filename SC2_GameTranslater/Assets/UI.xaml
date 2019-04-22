@@ -171,9 +171,9 @@
         Width="300"
         DisableReason="{DynamicResource TP_RibbonButton_FilterPrev_DisableReason}"
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
-        Image="{StaticResource ResourceKey=IMAGE_ReloadSourceText}"
+        Image="{StaticResource ResourceKey=IMAGE_FilterPrev}"
         IsRibbonAligned="False"
-        Text="{DynamicResource TP_RibbonButton_ReloadSourceText_Text}" />
+        Text="{DynamicResource TP_RibbonButton_FilterPrev_Text}" />
 
     <Fluent:ScreenTip
         x:Key="ToolTip_FilterNext"
