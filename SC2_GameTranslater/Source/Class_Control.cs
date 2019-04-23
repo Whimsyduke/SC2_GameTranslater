@@ -229,7 +229,7 @@ namespace SC2_GameTranslater.Source
     /// <summary>
     /// 翻译语言对应数据Converter
     /// </summary>
-    public class EnumTranslatedDataTextConverter : IMultiValueConverter
+    public class TranslatedDataTextConverter : IMultiValueConverter
     {
         /// <summary>
         /// 转换函数
@@ -274,7 +274,6 @@ namespace SC2_GameTranslater.Source
         {
             return null;
         }
-
     }
 
     /// <summary>

@@ -13,7 +13,7 @@
     <source:TitleTextConverter x:Key="Converter_TitleText" />
     <source:AutoNumberValueConverter x:Key="Converter_AutoNumberValue" />
     <source:EnumLanguageToTreslateNameConverter x:Key="Converter_EnumLanguageToTreslateName" />
-    <source:EnumTranslatedDataTextConverter x:Key="Converter_TranslatedDataText" />
+    <source:TranslatedDataTextConverter x:Key="Converter_TranslatedDataText" />
     <source:EnumGameDataTextConverter x:Key="Converter_GameDataText" />
     <source:EnumNameInLanguage_TextFileConverter x:Key="Converter_EnumNameInLanguage_TextFile" />
     <source:EnumValue_TextStatusConverter x:Key="Converter_EnumValue_TextStatus" />
@@ -730,7 +730,7 @@
         HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
         IsRibbonAligned="False"
         Text="{DynamicResource TP_GroupBox_LastEditedText_Text}" />
-    
+
     <Fluent:ScreenTip
         x:Key="ToolTip_InGalaxyShowScript"
         Title="{DynamicResource TP_CheckBox_InGalaxyShowScript_Title}"

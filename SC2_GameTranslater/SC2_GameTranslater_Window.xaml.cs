@@ -260,6 +260,7 @@ namespace SC2_GameTranslater
         {
             set
             {
+                if (value == EnumCurrentLanguage) return;
                 App.Current.Resources.MergedDictionaries[0].MergedDictionaries.Clear();
                 Globals.CurrentLanguage = Globals.DictUILanguages[value];
                 App.Current.Resources.MergedDictionaries[0].MergedDictionaries.Add(Globals.CurrentLanguage);
@@ -281,6 +282,7 @@ namespace SC2_GameTranslater
         {
             set
             {
+                if (value == EnumCurrentTranLangSource) return;
                 SetValue(EnumCurrentTranLangSourceProperty, value);
                 RefreshEnumCurrentTranLangSource(value);
             }
@@ -299,6 +301,8 @@ namespace SC2_GameTranslater
         {
             set
             {
+                if (value == EnumCurrentTranLangTarget) return;
+                mLastEditedCell = null; // 后面会有一次刷新所以不需要调用属性
                 SetValue(EnumCurrentTranLangTargetProperty, value);
                 RefreshEnumCurrentTranLangTarget(value);
             }
@@ -489,6 +493,7 @@ namespace SC2_GameTranslater
         {
             set
             {
+                OnEditedTextChange(mLastEditedCell, TextBox_EditedBox.Text);
                 mLastEditedCell = value;
                 ResetEditedTextBinding();
             }
@@ -2597,7 +2602,7 @@ namespace SC2_GameTranslater
             Binding binding = new Binding(Data_GameText.GetRowNameForLanguage(language, name))
             {
                 Mode = BindingMode.TwoWay,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                Converter = new TestValueConverter(),
             };
             return binding;
         }
@@ -2620,8 +2625,10 @@ namespace SC2_GameTranslater
         private void RefreshEnumCurrentTranLangTarget(EnumLanguage language)
         {
             DataGridColumn_TranslatedEditedText.Binding = language == 0 ? null : GetRowBinding(language, Data_GameText.RN_GameText_EditedText);
+
             RefreshInGalaxyTextDetails();
             ResetEditedTextBinding();
+            RefreshTranslatedText();
         }
 
         /// <summary>
@@ -2635,7 +2642,7 @@ namespace SC2_GameTranslater
                 {
                     Source = LastEditedCell,
                     Mode = BindingMode.TwoWay,
-                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,                    
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,                   
                 };
                 TextBox_EditedBox.IsEnabled = true;
                 TextBox_EditedBox.SetBinding(TextBox.TextProperty, binding);
