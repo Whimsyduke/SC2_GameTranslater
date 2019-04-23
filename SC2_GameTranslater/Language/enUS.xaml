@@ -95,7 +95,7 @@
     <sys:String x:Key="UI_DataGridColumn_DeatilsLanguage_Header">Language</sys:String>
     <sys:String x:Key="UI_DataGridColumn_DeatilsSourceText_Header">Source Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_DeatilsTextStatus_Header">Text Status</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_DeatilsUseStatus_Header">text status</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_DeatilsUseStatus_Header">Usage Status</sys:String>
     <sys:String x:Key="UI_DataGridColumn_GalaxyFile_Header">Galaxy File</sys:String>
     <sys:String x:Key="UI_DataGridColumn_GalaxyLineNumber_Header">Line of Galaxy script</sys:String>
     <sys:String x:Key="UI_DataGridColumn_GalaxyText_Header">Galaxy Text</sys:String>
@@ -103,7 +103,7 @@
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextFile_Header">File</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">Text ID</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">Text Status</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslatedUseStatus_Header">text status</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedUseStatus_Header">Usage Status</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedEditedText_Header">Edited Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedIndex_Header">Data Index</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedSourceText_Header">Source Text</sys:String>
@@ -123,7 +123,7 @@
     <sys:String x:Key="UI_InRibbonGallery_GalaxyFileFilter_Header">Galaxy File</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextFileFilter_Header">Record File</sys:String>
     <sys:String x:Key="UI_InRibbonGallery_TextStatusFilter_Header">Text Status</sys:String>
-    <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">text status</sys:String>
+    <sys:String x:Key="UI_InRibbonGallery_UseStatusFilter_Header">Usage Status</sys:String>
     <sys:String x:Key="UI_MenuItem_JumpToText_Header">Go To Target Text</sys:String>
     <sys:String x:Key="UI_MenuItem_LogClear_Header">Clear Log</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">Clear Text</sys:String>
@@ -314,23 +314,23 @@
     <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_Title">Text Status Modified</sys:String>
     <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_Text" xml:space="preserve">Filter all text which text status is modified.</sys:String>
     <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_DisableReason">You need to open or create a new project.</sys:String>
-    <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Title">Current text status</sys:String>
-    <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Text" xml:space="preserve">Filter different text status.</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Title">Current usage status</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Text" xml:space="preserve">Filter different usage status.</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_DisableReason">You need to open or create a new project.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_Title">text status Null</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_Text" xml:space="preserve">Filter all text which text status is set as Null.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_Title">usage status Null</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_Text" xml:space="preserve">Filter all text which usage status is set as Null.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_DisableReason">You need to open or create a new project.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_Title">Abandoned Text</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_Text" xml:space="preserve">Filter all text which text status is set as abandoned.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_Text" xml:space="preserve">Filter all text which usage status is set as abandoned.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_DisableReason">You need to open or create a new project.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_Title">text status Normal</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_Text" xml:space="preserve">Filter all text which text status is set as normal.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_Title">usage status Normal</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_Text" xml:space="preserve">Filter all text which usage status is set as normal.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_DisableReason">You need to open or create a new project.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_Title">text status Added</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_Text" xml:space="preserve">Filter all text which text status is set as added.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_Title">usage status Added</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_Text" xml:space="preserve">Filter all text which usage status is set as added.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_DisableReason">You need to open or create a new project.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Title">text status Modified</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Text" xml:space="preserve">Filter all text which text status is set as modified.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Title">usage status Modified</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Text" xml:space="preserve">Filter all text which usage status is set as modified.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_DisableReason">You need to open or create a new project.</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_CopyTranslatedText_Title">Overlap multipe languages</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_CopyTranslatedText_Text" xml:space="preserve">Copy all translated text from one language to the languages you selected. For example, you can copy translated text form enUS to deDE if you have not translated deDE. Then it will dispaly as enUS.</sys:String>
