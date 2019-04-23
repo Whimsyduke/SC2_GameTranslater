@@ -1,4 +1,7 @@
-# SC2_GameTranslater
+# SC2_GameTranslate
+Hi SC2 modders, we are Team Froggy&Catty.
+
+
 Tools for translating text in maps or mods.
 
 ### CI Status
