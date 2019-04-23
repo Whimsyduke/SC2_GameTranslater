@@ -2,6 +2,8 @@ SC2_GameTranslater
 =====================
 ![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/Froggy&Catty_Logo.png)
 
+**Tips**: this software supports mulitple languages. You can copy and translate the file [enUS.xaml] under https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/SC2_GameTranslater/Language/enUS.xaml, then rename it as your target language like frFR.xaml for example. Please make a PR to me and we'll be happy to share it with other modders!
+
 ### CI Status
 | Branch | Status |
 | ------ | ------- |
