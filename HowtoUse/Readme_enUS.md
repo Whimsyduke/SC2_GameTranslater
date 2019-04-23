@@ -2,7 +2,7 @@ SC2_GameTranslater
 =====================
 Hi SC2 modders, I'm Whimsyduke form Team Froggy&Catty. SC2_GameTranslater is one of our open source projects for Starcraft II mod community. With this tool, Modders can translate your Map/Mod in to different local languages, we wish this tool can help you sharing your works and increasing communications between people all around the world. 
 
-Based on our translate experience, we have developed utiilty kits such as auto backup, modification and text search/comparison to simplify and optimize the translation process. This tool also support various fuctions such as collation, content filtration and in game preview. The translater can even finish the translation without complete mod or map files. So this tool can also be good partner of players and project cooperators.
+Based on our translate experience, we have developed utiilty kits such as auto backup, modification and text search/comparison to simplify and optimize the translation process. This tool also supports various functions such as collation, content filtration and in game preview. The translater can even finish the translation without complete mod or map files. So this tool can also be good partner of players and project cooperators.
 
 ![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/23.png)
 
@@ -31,12 +31,12 @@ Toolbar
 New
 --------
 
->Create a new translation project for SC2. The tool requires a map or mod that saved as SC2component folds. You can double click the ComponentList.SC2Components to open this mod/map. Using SC2component fold can increase the loading speed of your mod/map, once you apply your translation, the files will automaticly save your translated text to local language folds like enUS.SC2Data.
+>Create a new translation project for SC2. The tool requires a map or mod that saved as SC2component folds. You can double click the ComponentList.SC2Components to open this mod/map. Using SC2component fold can increase the loading speed of your mod/map, once you apply your translation, the files will automatically save your translated text to local language folds like enUS.SC2Data.
 
 Open
 --------
 
->Open a saved project file. If you once saved your work, a SC2Gametran file will be created, it contains all necessary information that translation needed. So you can continue your work or share it will partners without the Map/mod files.
+>Open a saved project file. If you once saved your work, a SC2Gametran file will be created, it contains all necessary information that translation needed. So you can continue your work or share it with partners without the Map/mod files.
 
 Save
 --------
@@ -133,7 +133,7 @@ This tool can overlap the translated text to other local languages. Such as usin
 3.Apply
 -------------
 
->Apply the process then the target languages will be overlaped.
+>Apply the process then the target languages will be overwritten.
 
 
 Main Translation Zone
@@ -179,12 +179,12 @@ Detail View
 1.Show Language
 -------------
 
->Show all languages that your mod used, it can be set in the SC2 editor, you can see in the picture, there are three activatied languages in the example mod.
+>Show all languages that your mod used, it can be set in the SC2 editor, you can see in the picture, there are three activated languages in the example mod.
 
 2.Game Text Details
 ------------------
 
->Show the text in all activatied languages, notice that you can only preview the text here, this tool doesn't support modification.
+>Show the text in all activated languages, notice that you can only preview the text here, this tool doesn't support modification.
 
 3.Edited Text
 ---------------
