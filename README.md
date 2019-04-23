@@ -13,7 +13,7 @@ GG&GL!
 
 ![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Tool02.png)
 
-1.文件
+>>>>>>>>>1.文件
 ------------
 
 新建
