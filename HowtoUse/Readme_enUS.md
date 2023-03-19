@@ -2,7 +2,7 @@ SC2_GameTranslater
 =====================
 Hi SC2 modders, I'm Whimsyduke form Team Froggy&Catty. SC2_GameTranslater is one of our open source projects for Starcraft II mod community. With this tool, Modders can translate your Map/Mod in to different local languages, we wish this tool can help you sharing your works and increasing communications between people all around the world. 
 
-Based on our translate experience, we have developed utiilty kits such as auto backup, modification and text search/comparison to simplify and optimize the translation process. This tool also supports various functions such as collation, content filtration and in game preview. The translater can even finish the translation without complete mod or map files. So this tool can also be good partner of players and project cooperators.
+Based on our translate experience, we have developed utility kits such as auto backup, modification and text search/comparison to simplify and optimize the translation process. This tool also supports various functions such as collation, content filtration and in game preview. The translater can even finish the translation without complete mod or map files. So this tool can also be good partner of players and project cooperators.
 
 ![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/23.png)
 
@@ -64,7 +64,7 @@ Reload Translation
 
 >Import translated text from another SC2Gametran file. It will also refresh your translated text. You can select one or more languages you need.
 
-Reload Compontends
+Reload Components
 --------
 
 >Import translated text from old version SC2Gametran file or Mod/map (SC2component folds). It won't change your text, instead, Abandoned text and usage status will be refreshed, you can compare these text with current text (source text and edited text) so that identify the changed text during the updates. (the Abandoned text and usage status are hide by default, you may need to set them by right click the table title of main translation zone.)
@@ -94,22 +94,22 @@ Last Record/Next Record
 Galaxy File Filter
 --------------
 
->Filt text from different galaxy files, such as LibLIB1, LibIB1h and so on.
+>Filter text from different galaxy files, such as LibLIB1, LibIB1h and so on.
 
 Record File Filter
 ---------------
 
->Filt text from different record, such as data editor, trigger and so on.
+>Filter text from different record, such as data editor, trigger and so on.
 
 Text Status Filter
 --------------
 
->Filt text from different status, such as modified and unmodified and so on.
+>Filter text from different status, such as modified and unmodified and so on.
 
 Usage Status Filter
 --------------
 
->Filt text base on the usage status in the mod. Such as added, modified and abandoned. Requires using `Reload Compontends` first.
+>Filter text base on the usage status in the mod. Such as added, modified and abandoned. Requires using `Reload Components` first.
 
 
 
@@ -164,12 +164,12 @@ Main Translation Zone
 5.Usage Status
 ------------
 
->Show the usage status in the mod. Such as added, modified and abandoned. Requires using `Reload Compontends` first.
+>Show the usage status in the mod. Such as added, modified and abandoned. Requires using `Reload Components` first.
 
 6.Abandoned Text
 --------------
 
->The default abandoned text is same as the source text. If use the `Relaod Compontends` to load an old version mod, it will show the text of `old version mod` and can be used to compare with current text.
+>The default abandoned text is same as the source text. If use the `Relaod Components` to load an old version mod, it will show the text of `old version mod` and can be used to compare with current text.
 
 Detail View
 ==================

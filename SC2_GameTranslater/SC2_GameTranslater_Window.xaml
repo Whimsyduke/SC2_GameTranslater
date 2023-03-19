@@ -1747,7 +1747,7 @@
                         <GroupBox Name="GroupBox_GameTextInGalaxy">
                             <GroupBox.Header>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock VerticalAlignment="Bottom" Text="{StaticResource UI_GroupBox_GameTextInGalaxy_Header}" />
+                                    <TextBlock VerticalAlignment="Bottom" Text="{DynamicResource UI_GroupBox_GameTextInGalaxy_Header}" />
                                     <CheckBox
                                         Name="CheckBox_InGalaxyShowScript"
                                         VerticalAlignment="Bottom"
