@@ -2757,6 +2757,7 @@ namespace SC2_GameTranslater
         {
             if (!(ComboBox_Language.SelectedItem is string itemName)) return;
             EnumCurrentLanguage = Globals.DictComboBoxItemLanguage[itemName];
+            RefreshInGalaxyTextDetails();
             e.Handled = true;
         }
 
