@@ -384,7 +384,7 @@ namespace SC2_GameTranslater.Source
         public override string RibbonContextMenuShowAbove { get; } = "Разместить панель быстрого доступа над лентой";
         public override string RibbonContextMenuShowBelow { get; } = "Разместить панель быстрого доступа под лентой";
         public override string ScreenTipDisableReasonHeader { get; } = "В настоящее время эта команда отключена.";
-        public override string ScreenTipF1LabelHeader { get; } = FallbackLocalization.ScreenTipF1LabelHeader;
+        public override string ScreenTipF1LabelHeader { get; } = "Нажмите F1 для получения справки";
     }
 
     /// <summary>

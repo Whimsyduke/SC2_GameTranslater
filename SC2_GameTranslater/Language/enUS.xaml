@@ -129,7 +129,7 @@
     <sys:String x:Key="UI_MenuItem_TranslateEmptyEditedText_Header">Clear Text</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateGoToDataIndex_Header">Go To Data Index</sys:String>
     <sys:String x:Key="UI_MenuItem_TranslateResetEditedText_Header">Reset Text</sys:String>
-    <sys:String x:Key="UI_OpenFileDialog_CompontentsPath_Title">Select SC2 Map/Mod Compontents</sys:String>
+    <sys:String x:Key="UI_OpenFileDialog_CompontentsPath_Title">Select SC2 Map/Mod Components</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_New_Title">New Project</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Open_Title">Open Project</sys:String>
     <sys:String x:Key="UI_OpenFileDialog_Reload_Title">Reload Project</sys:String>
@@ -145,11 +145,11 @@
     <sys:String x:Key="UI_RibbonButton_FilterPrev_Header">Last Record</sys:String>
     <sys:String x:Key="UI_RibbonButton_New_Header">New</sys:String>
     <sys:String x:Key="UI_RibbonButton_Open_Header">Open</sys:String>
-    <sys:String x:Key="UI_RibbonButton_ReloadSourceText_Header">Reload Compontends</sys:String>
+    <sys:String x:Key="UI_RibbonButton_ReloadSourceText_Header">Reload Components</sys:String>
     <sys:String x:Key="UI_RibbonButton_ReloadTranslation_Header">Reload Translation</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">Save</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">Save As</sys:String>
-    <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">Overlap Multipe languages</sys:String>
+    <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">Overlap Multiple languages</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_File_Header">File</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_FilterRecord_Header">Record Filter</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_GalaxyFileFilter_Header">Galaxy File Filter</sys:String>
@@ -198,13 +198,13 @@
     <sys:String x:Key="TP_RibbonButton_Close_Text" xml:space="preserve">Close current project.&#x000D; HotKey: Ctrl + W</sys:String>
     <sys:String x:Key="TP_RibbonButton_Close_DisableReason">You need to open or create a new project.</sys:String>
     <sys:String x:Key="TP_RibbonButton_Accept_Title">Apply Translation Text</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Accept_Text" xml:space="preserve">Apply the translated text to your Map/Mod. This function works only when the path of your Map/Mod is vaild, or you need to set it through [Menu][Preferences Setting][Preference] first.&#x000D; HotKey: Ctrl + E</sys:String>
-    <sys:String x:Key="TP_RibbonButton_Accept_DisableReason">You need to open or create a new project, and make sure that your Map/Mod path is vaild.</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Accept_Text" xml:space="preserve">Apply the translated text to your Map/Mod. This function works only when the path of your Map/Mod is valid, or you need to set it through [Menu][Preferences Setting][Preference] first.&#x000D; HotKey: Ctrl + E</sys:String>
+    <sys:String x:Key="TP_RibbonButton_Accept_DisableReason">You need to open or create a new project, and make sure that your Map/Mod path is valid.</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadTranslation_Title">Reload Edited Text</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadTranslation_Text" xml:space="preserve">Reload the translated text form another project file, you can choose which language you want to reload or reload modified text only.&#x000D; HotKey: Ctrl + R</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadTranslation_DisableReason">You need to open or create a new project.</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Title">Reload Source Text</sys:String>
-    <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Text" xml:space="preserve">Reload the source text form another project file or directly from a Map/Mod, the tool will show you the modified text  between two projects.&#x000D; The info is hided by default, you can right click the column header of translated text grid to show it.&#x000D; HotKey: Ctrl + T</sys:String>
+    <sys:String x:Key="TP_RibbonButton_ReloadSourceText_Text" xml:space="preserve">Reload the source text form another project file or directly from a Map/Mod, the tool will show you the modified text  between two projects.&#x000D; The info is hidden by default, you can right click the column header of translated text grid to show it.&#x000D; HotKey: Ctrl + T</sys:String>
     <sys:String x:Key="TP_RibbonButton_ReloadSourceText_DisableReason">You need to open or create a new project.</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterPrev_Title">Last Selection Of Search State</sys:String>
     <sys:String x:Key="TP_RibbonButton_FilterPrev_Text" xml:space="preserve">Go to last selection in Translated Text Data Grid or use last search state.&#x000D; HotKey: Ctrl + Left</sys:String>
@@ -219,7 +219,7 @@
     <sys:String x:Key="TP_BackstageTabItem_Preference_Text" xml:space="preserve">Preference and project setting can be changed here.</sys:String>
     <sys:String x:Key="TP_BackstageTabItem_Preference_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_GroupBox_ComponentsPath_Title">Components Path</sys:String>
-    <sys:String x:Key="TP_GroupBox_ComponentsPath_Text" xml:space="preserve">SC2 Map/Mod Components file path for current Project, used for acception of translated text.</sys:String>
+    <sys:String x:Key="TP_GroupBox_ComponentsPath_Text" xml:space="preserve">SC2 Map/Mod Components file path for current Project, used for acceptation of translated text.</sys:String>
     <sys:String x:Key="TP_GroupBox_ComponentsPath_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_GroupBox_SoftwareLanguage_Title">Software Language</sys:String>
     <sys:String x:Key="TP_GroupBox_SoftwareLanguage_Text" xml:space="preserve">Set software display language.</sys:String>
@@ -231,7 +231,7 @@
     <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_Text" xml:space="preserve">The text of the target language, the information will be showed in Text Status, abandon Text and Edited Text column of the Translated Text Data Grid (base on the compare between the target and source language).</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_TranslateTarget_DisableReason">You need to open or create a new project.</sys:String>
     <sys:String x:Key="TP_ComboBox_SearchScope_Title">Search Columns</sys:String>
-    <sys:String x:Key="TP_ComboBox_SearchScope_Text" xml:space="preserve">Set which columns you want to search. Works when click Search Button Hot Key: Ctrl + F.</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchScope_Text" xml:space="preserve">Set which columns you want to search. Works when click Search Button. HotKey: Ctrl + F.</sys:String>
     <sys:String x:Key="TP_ComboBox_SearchScope_DisableReason">You need to open or create a new project.</sys:String>
     <sys:String x:Key="TP_ComboBoxItem_SearchScopeAll_Title">Search All</sys:String>
     <sys:String x:Key="TP_ComboBoxItem_SearchScopeAll_Text" xml:space="preserve">Search Text ID, abandoned Text, Source Text and Edited Text columns...</sys:String>
@@ -252,7 +252,7 @@
     <sys:String x:Key="TP_ComboBoxItem_SearchScopeEditedText_Text" xml:space="preserve">Search Edited Text columns.</sys:String>
     <sys:String x:Key="TP_ComboBoxItem_SearchScopeEditedText_DisableReason">You need to open or create a new project.</sys:String>
     <sys:String x:Key="TP_ComboBox_SearchTextLocation_Title">Search Text Location</sys:String>
-    <sys:String x:Key="TP_ComboBox_SearchTextLocation_Text" xml:space="preserve">Set which column you want to search in Non-regular expression mode. Works when click Search Button Hot Key: Ctrl + F.</sys:String>
+    <sys:String x:Key="TP_ComboBox_SearchTextLocation_Text" xml:space="preserve">Set which column you want to search in Non-regular expression mode. Works when click Search Button. HotKey: Ctrl + F.</sys:String>
     <sys:String x:Key="TP_ComboBox_SearchTextLocation_DisableReason">You need to open or create a new project and search in Non-regular expression mode.</sys:String>
     <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationALL_Title">Search All Locations</sys:String>
     <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationALL_Text" xml:space="preserve">Search all of the locations in text.</sys:String>
@@ -264,19 +264,19 @@
     <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationRight_Text" xml:space="preserve">Search the text only end from right.</sys:String>
     <sys:String x:Key="TP_ComboBoxItem_SearchTextLocationRight_DisableReason">You need to open or create a new project and search in Non-regular expression mode.</sys:String>
     <sys:String x:Key="TP_CheckBox_SearchCase_Title">Search Match Case</sys:String>
-    <sys:String x:Key="TP_CheckBox_SearchCase_Text" xml:space="preserve">Match case when searching English words. Works when click Search Button Hot Key: Ctrl + F.</sys:String>
+    <sys:String x:Key="TP_CheckBox_SearchCase_Text" xml:space="preserve">Match case when searching English words. Works when click Search Button. HotKey: Ctrl + F.</sys:String>
     <sys:String x:Key="TP_CheckBox_SearchCase_DisableReason">You need to open or create a new project.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNull_Title">Null Mode</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchNull_Text" xml:space="preserve">Only search empty text (no text with the Text ID or the value of the text is empty). Works when click Search Button Hot Key: Ctrl + F.</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNull_Text" xml:space="preserve">Only search empty text (no text with the Text ID or the value of the text is empty). Works when click Search Button. HotKey: Ctrl + F.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNull_DisableReason">You need to open or create a new project.</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchRegex_Title">Regular Experssion Mode</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchRegex_Text" xml:space="preserve">Search text with Regular Experssion Mode. Works when click Search Button Hot Key: Ctrl + F.</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchRegex_Title">Regular Expression Mode</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchRegex_Text" xml:space="preserve">Search text with Regular Expression Mode. Works when click Search Button. HotKey: Ctrl + F.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchRegex_DisableReason">You need to open or create a new project.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNormal_Title">Normal Mode</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchNormal_Text" xml:space="preserve">Search text with normal mode. Works when click Search Button Hot Key: Ctrl + F.</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNormal_Text" xml:space="preserve">Search text with normal mode. Works when click Search Button. HotKey: Ctrl + F.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNormal_DisableReason">You need to open or create a new project.</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_Title">Search Keyword</sys:String>
-    <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_Text" xml:space="preserve">The keyword use for search. Works when click Search Button Hot Key: Ctrl + F.</sys:String>
+    <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_Text" xml:space="preserve">The keyword use for search. Works when click Search Button. HotKey: Ctrl + F.</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_DisableReason">You need to open or create a new project and no need to write if in Null mode.</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_Title">Search</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_Text" xml:space="preserve">Search with the keyword in the region that set in the group. The search results will be showed in Translated Text Data Grid.&#x000D; HotKey: Ctrl + F</sys:String>
@@ -285,7 +285,7 @@
     <sys:String x:Key="TP_RibbonGroupBox_GalaxyFileFilter_Text" xml:space="preserve">Filter text inside different galaxy files.</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_GalaxyFileFilter_DisableReason">You need to open or create a new project.</sys:String>
     <sys:String x:Key="TP_RibbonButton_GalaxyFIle_Title">Galaxy File Options</sys:String>
-    <sys:String x:Key="TP_RibbonButton_GalaxyFIle_Text" xml:space="preserve">Galaxy File Info&#x000D;File Name: {0}&#x000D;File Path: {1}&#x000D;Text Count: {2}</sys:String>
+    <sys:String x:Key="TP_RibbonButton_GalaxyFIle_Text" xml:space="preserve">Galaxy File Info&#x000D;  File Name: {0}&#x000D;  File Path: {1}&#x000D;  Text Count: {2}</sys:String>
     <sys:String x:Key="TP_RibbonButton_GalaxyFIle_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_RibbonButton_GalaxyFileFilterNone_Title">No Galaxy File</sys:String>
     <sys:String x:Key="TP_RibbonButton_GalaxyFileFilterNone_Text" xml:space="preserve">Filter all text which are not used in any of the galaxy files.</sys:String>
@@ -332,20 +332,20 @@
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Title">usage status Modified</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Text" xml:space="preserve">Filter all text which usage status is set as modified.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_DisableReason">You need to open or create a new project.</sys:String>
-    <sys:String x:Key="TP_RibbonGroupBox_CopyTranslatedText_Title">Overlap multipe languages</sys:String>
-    <sys:String x:Key="TP_RibbonGroupBox_CopyTranslatedText_Text" xml:space="preserve">Copy all translated text from one language to the languages you selected. For example, you can copy translated text form enUS to deDE if you have not translated deDE. Then it will dispaly as enUS.</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_CopyTranslatedText_Title">Overlap multiple languages</sys:String>
+    <sys:String x:Key="TP_RibbonGroupBox_CopyTranslatedText_Text" xml:space="preserve">Copy all translated text from one language to the languages you selected. For example, you can copy translated text form enUS to deDE if you have not translated deDE. Then it will display as enUS.</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_CopyTranslatedText_DisableReason">You need to open or create a new project.</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_CopyTargets_Title">Overlap Targets</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_CopyTargets_Text" xml:space="preserve">The target languages you want to overlap (multiple choices).</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_CopyTargets_DisableReason">You need to open or create a new project.</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_CopySource_Title">Overlap Source</sys:String>
-    <sys:String x:Key="TP_InRibbonGallery_CopySource_Text" xml:space="preserve">The source language you want to used for overlaping.</sys:String>
+    <sys:String x:Key="TP_InRibbonGallery_CopySource_Text" xml:space="preserve">The source language you want to used for overlapping.</sys:String>
     <sys:String x:Key="TP_InRibbonGallery_CopySource_DisableReason">You need to open or create a new project.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_DoCopy_Title">Apply overlaping</sys:String>
+    <sys:String x:Key="TP_RibbonButton_DoCopy_Title">Apply overlapping</sys:String>
     <sys:String x:Key="TP_RibbonButton_DoCopy_Text" xml:space="preserve">Overlap the translated text to target languages.</sys:String>
     <sys:String x:Key="TP_RibbonButton_DoCopy_DisableReason">You need to open or create a new project and select both source and target languages.</sys:String>
     <sys:String x:Key="TP_GroupBox_TranslatedTexts_Title">Data Grid Translated Text</sys:String>
-    <sys:String x:Key="TP_GroupBox_TranslatedTexts_Text" xml:space="preserve">The data grid of all translated text, it shows various infomation of the text in game. You can get info from the tooltip of the columns and right click the column to show/hide the columns. Right click the data grid to show the context menu.</sys:String>
+    <sys:String x:Key="TP_GroupBox_TranslatedTexts_Text" xml:space="preserve">The data grid of all translated text, it shows various information of the text in game. You can get info from the tooltip of the columns and right click the column to show/hide the columns. Right click the data grid to show the context menu.</sys:String>
     <sys:String x:Key="TP_GroupBox_TranslatedTexts_DisableReason">You need to open or create a new project.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Title">Index</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Text" xml:space="preserve">The index of the text, it is unique, you can simply find text through its index.</sys:String>
@@ -363,16 +363,16 @@
     <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_Text" xml:space="preserve">The usage status, there are five kinds of value:&#x000D;    *Null means the text do not exist in current language of the newest Map/Mod.&#x000D;    *Abandoned means the text is no longer used in the newest Map/Mod after reloading text.&#x000D;    *Normal means the text is using now.&#x000D;    *Added means the text will be added to the Map/Mod after you save the project.&#x000D;    *Modified means the text has been modified after reloading text.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedUseStatus_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_Title">Abandoned Text</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_Text" xml:space="preserve">The source text of current languare which previously used in the newest Map/Mod.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_Text" xml:space="preserve">The source text of current language which previously used in the newest Map/Mod.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedDropedText_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_Title">Source Text</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_Text" xml:space="preserve">The original text used in the Map/Mod when this project was created.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedSourceText_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Title">Edited Text</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Text" xml:space="preserve">The target languarge you want to translate to. Double click to edit. You can also use "Edited Text" box below to edit it.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_Text" xml:space="preserve">The target language you want to translate to. Double click to edit. You can also use "Edited Text" box below to edit it.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedEditedText_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_DataGridColumn_DetailsLanguage_Title">Language</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_DetailsLanguage_Text" xml:space="preserve">The langurage of current text showed in Translated Text Data Grid.</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_DetailsLanguage_Text" xml:space="preserve">The language of current text showed in Translated Text Data Grid.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_DetailsLanguage_DisableReason">Disable Reason</sys:String>
     <sys:String x:Key="TP_DataGridColumn_DetailsEditedText_Title">Edited Text</sys:String>
     <sys:String x:Key="TP_DataGridColumn_DetailsEditedText_Text" xml:space="preserve">The text that should be translated.</sys:String>
@@ -441,7 +441,7 @@
     <sys:String x:Key="MSG_CanNotFindProjectFile_Title">Notice</sys:String>
     <sys:String x:Key="MSG_DoCopyTranslateText_Message">Are you sure copy translated text form {0} to {1}? You can't return back to the last search filter.</sys:String>
     <sys:String x:Key="MSG_DoCopyTranslateText_Title">Notice</sys:String>
-    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Message">Project file Version ({0}) mismatchs the supported file version ({1}) of the software.</sys:String>
+    <sys:String x:Key="MSG_ProjectFileVersionMismatched_Message">Project file Version ({0}) mismatches the supported file version ({1}) of the software.</sys:String>
     <sys:String x:Key="MSG_ProjectFileVersionMismatched_Title">Notice</sys:String>
     <sys:String x:Key="MSG_SaveProject_Message">Project is saved to {0}.</sys:String>
     <sys:String x:Key="MSG_SaveProject_Title">Notice</sys:String>
