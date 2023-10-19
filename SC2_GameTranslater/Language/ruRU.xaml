@@ -172,7 +172,7 @@
     <sys:String x:Key="UI_TextBlock_DetailsID_Text">ИД текста: {0}</sys:String>
     <sys:String x:Key="UI_TextBlock_DetailsIndex_Text">Индекс данных: {0}</sys:String>
     <sys:String x:Key="UI_TextBlock_Preference_Text">Настройки программы</sys:String>
-    <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">Загрузить</sys:String>
+    <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">Загрузка</sys:String>
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">Недавние проекты</sys:String>
     <sys:String x:Key="UI_ToggleButton_GalaxyFileFilterNone_Header">Не в Galaxy</sys:String>
     <!--#endregion-->
