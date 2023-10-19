@@ -172,7 +172,7 @@
     <sys:String x:Key="UI_TextBlock_DetailsID_Text">Text ID: {0}</sys:String>
     <sys:String x:Key="UI_TextBlock_DetailsIndex_Text">Data Index: {0}</sys:String>
     <sys:String x:Key="UI_TextBlock_Preference_Text">Preferences Setting</sys:String>
-    <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">Load</sys:String>
+    <sys:String x:Key="UI_TextBlock_ProgressMsg_Text">Loading</sys:String>
     <sys:String x:Key="UI_TextBlock_RecentProjects_Text">Recent Projects</sys:String>
     <sys:String x:Key="UI_ToggleButton_GalaxyFileFilterNone_Header">Not In Galaxy</sys:String>
     <!--#endregion-->
