@@ -36,7 +36,7 @@
     <sys:String x:Key="TEXT_RemoveruRU">[-]ruRU</sys:String>
     <sys:String x:Key="TEXT_RemovezhCN">[-]zhCN</sys:String>
     <sys:String x:Key="TEXT_RemovezhTW">[-]zhTW</sys:String>
-    <sys:String x:Key="TEXT_SC2File">SCII ComponentList</sys:String>
+    <sys:String x:Key="TEXT_SC2File">SCII Component List</sys:String>
     <sys:String x:Key="TEXT_SelectALL">Select All</sys:String>
     <sys:String x:Key="TEXT_SelectNone">Select None</sys:String>
     <sys:String x:Key="TEXT_UsedeDE">deDE</sys:String>
@@ -53,7 +53,7 @@
     <sys:String x:Key="TEXT_UsezhTW">zhTW</sys:String>
     <sys:String x:Key="TEXT_WindowTitleProject">&#160;Project:&#160;</sys:String>
     <sys:String x:Key="TEXT_WindowTitleProjectUnsaved">Unsaved Project</sys:String>
-    <sys:String x:Key="TEXT_WindowTitleText">StarcraftII Game Translater V{0}{1}{2}</sys:String>
+    <sys:String x:Key="TEXT_WindowTitleText">StarCraft II Game Translater V{0}{1}{2}</sys:String>
     <sys:String x:Key="TEXT_AddLanguage">Add Language</sys:String>
     <sys:String x:Key="TEXT_RemoveLanguage">Remove Language</sys:String>
     <sys:String x:Key="TEXT_UseLanguage">Apply Language</sys:String>
