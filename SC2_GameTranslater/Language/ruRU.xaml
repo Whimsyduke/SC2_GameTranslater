@@ -53,7 +53,7 @@
     <sys:String x:Key="TEXT_UsezhTW">zhTW</sys:String>
     <sys:String x:Key="TEXT_WindowTitleProject">&#160;Проект:&#160;</sys:String>
     <sys:String x:Key="TEXT_WindowTitleProjectUnsaved">Несохранённый проект</sys:String>
-    <sys:String x:Key="TEXT_WindowTitleText">Редактор перевода игры Starcraft II вер. {0}{1}{2}</sys:String>
+    <sys:String x:Key="TEXT_WindowTitleText">Редактор перевода игры StarCraft II вер. {0}{1}{2}</sys:String>
     <sys:String x:Key="TEXT_AddLanguage">Добавить язык</sys:String>
     <sys:String x:Key="TEXT_RemoveLanguage">Удалить язык</sys:String>
     <sys:String x:Key="TEXT_UseLanguage">Применить язык</sys:String>
@@ -266,7 +266,7 @@
     <sys:String x:Key="TP_CheckBox_SearchCase_Title">Поиск с учётом регистра</sys:String>
     <sys:String x:Key="TP_CheckBox_SearchCase_Text" xml:space="preserve">Совпадение по регистру при поиске английских слов. Работает при нажатии кнопки поиска. Горячая клавиша: Ctrl + F.</sys:String>
     <sys:String x:Key="TP_CheckBox_SearchCase_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchNull_Title">Нулевой режим</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNull_Title">Режим нулей</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNull_Text" xml:space="preserve">Поиск только по пустому тексту (текст с текстовым идентификатором отсутствует или значение текста пустое). Работает при нажатии кнопки поиска. Горячая клавиша: Ctrl + F.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNull_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchRegex_Title">Режим регулярного выражения</sys:String>
@@ -277,7 +277,7 @@
     <sys:String x:Key="TP_RadioButton_SearchNormal_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_Title">Поиск ключевого слова</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_Text" xml:space="preserve">Ключевое слово, используемое для поиска. Работает при нажатии кнопки поиска. Горячая клавиша: Ctrl + F.</sys:String>
-    <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_DisableReason">Вам нужно открыть или создать новый проект, и нет необходимости вводить текст в нулевом режиме.</sys:String>
+    <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_DisableReason">Вам нужно открыть или создать новый проект, и нет необходимости вводить текст в режиме нулей.</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_Title">Поиск</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_Text" xml:space="preserve">Поиск по ключевому слову в области, заданной в группе. Результаты поиска будут показаны в таблице переведённых текстовых данных.&#x000D; Горячая клавиша: Ctrl + F</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
@@ -305,31 +305,31 @@
     <sys:String x:Key="TP_RibbonGroupBox_TextStatusFilter_Title">В состоянии текста</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_TextStatusFilter_Text" xml:space="preserve">Фильтрация различных текстовых состояний.</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_TextStatusFilter_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_TextStatusFilterEmpty_Title">Состояние пустого текста</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterEmpty_Title">Состояние: пустой текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_TextStatusFilterEmpty_Text" xml:space="preserve">Фильтрация всего текста, текстовое состояние которого пусто.</sys:String>
     <sys:String x:Key="TP_RibbonButton_TextStatusFilterEmpty_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_TextStatusFilterNormal_Title">Состояние обычного текста</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterNormal_Title">Состояние: обычный текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_TextStatusFilterNormal_Text" xml:space="preserve">Фильтрация всего текста, текстовое состояние которого обычное.</sys:String>
     <sys:String x:Key="TP_RibbonButton_TextStatusFilterNormal_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_Title">Состояние изменённого текста</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_Title">Состояние: изменённый текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_Text" xml:space="preserve">Фильтрация всего текста, текстовое состояние которого изменённое.</sys:String>
     <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Title">Текущее состояние использования</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Text" xml:space="preserve">Фильтрация различных состояний использования.</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_Title">Состояние нулевого текста</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_Title">Состояние: нулевой текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_Text" xml:space="preserve">Фильтрация всего текста, состояние использования которого является нулевым.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_Title">Заброшенный текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_Text" xml:space="preserve">Фильтрация всего текста, состояние использования которого является заброшенным.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_Title">Состояние обычного текста</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_Title">Состояние: обычный текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_Text" xml:space="preserve">Фильтрация всего текста, состояние использования которого является обычным.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_Title">Состояние добавленного текста</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_Title">Состояние: добавленный текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_Text" xml:space="preserve">Фильтрация всего текста, состояние использования которого является добавленным.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Title">Состояние изменённого текста</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Title">Состояние: изменённый текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Text" xml:space="preserve">Фильтрация всего текста, состояние использования которого является изменённым.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_CopyTranslatedText_Title">Дублирование нескольких языков</sys:String>
