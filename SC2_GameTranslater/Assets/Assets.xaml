@@ -24,6 +24,7 @@
     <BitmapImage x:Key="IMAGE_SearchConfigure" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_techpurchase.png" />
     <BitmapImage x:Key="IMAGE_SearchTextBox" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_dialog.png" />
     <BitmapImage x:Key="IMAGE_TextFile" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggercategories_story.png" />
+    <BitmapImage x:Key="IMAGE_Preview" UriSource="pack://application:,,,/Assets/Image/ui-editoricon-triggereditor_newcomment.png" />
     <!--#endregion-->
 
     <!--#region Translate Language-->

@@ -101,6 +101,7 @@
     <sys:String x:Key="UI_DataGridColumn_GalaxyText_Header">Galaxy Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedDropedText_Header">Abandoned Text</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextFile_Header">File</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedAddToPreview_Header">Add To Preview</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">Text ID</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">Text Status</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedUseStatus_Header">Usage Status</sys:String>
@@ -147,6 +148,7 @@
     <sys:String x:Key="UI_RibbonButton_Open_Header">Open</sys:String>
     <sys:String x:Key="UI_RibbonButton_ReloadSourceText_Header">Reload Components</sys:String>
     <sys:String x:Key="UI_RibbonButton_ReloadTranslation_Header">Reload Translation</sys:String>
+    <sys:String x:Key="UI_RibbonButton_PreviewText_Header">Preview Text</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">Save</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">Save As</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">Overlap Multiple languages</sys:String>
@@ -350,6 +352,9 @@
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Title">Index</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Text" xml:space="preserve">The index of the text, it is unique, you can simply find text through its index.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_Title">Add To Preview</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_DisableReason">Disable Reason</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_Text" xml:space="preserve">Add generated preview Galaxy code. Checking/unchecking the checkboxes for column headings toggles the configuration of all rows “within the current filter results”. Each row will be set to the checkbox state of the column header.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextID_Title">Text ID</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextID_Text" xml:space="preserve">The ID of the text.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextID_DisableReason">Disable Reason</sys:String>
@@ -447,6 +452,8 @@
     <sys:String x:Key="MSG_SaveProject_Title">Notice</sys:String>
     <sys:String x:Key="MSG_SrollToItemFindOutID_Message">Can not find the ID {0} in current search results, do you want to retry after reset filter?</sys:String>
     <sys:String x:Key="MSG_SrollToItemFindOutID_Title">Notice</sys:String>
+    <sys:String x:Key="MSG_CopyPreviewTextToClipboard_Message">Preview with Galaxy code has been written to the clipboard, please paste it into the translated map to test it.</sys:String>
+    <sys:String x:Key="MSG_CopyPreviewTextToClipboard_Title">Notice</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

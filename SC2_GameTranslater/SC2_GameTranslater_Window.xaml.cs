@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows;
@@ -388,6 +391,11 @@ namespace SC2_GameTranslater
         public static RoutedUICommand CommandReloadSourceText { set; get; } = new RoutedUICommand();
 
         /// <summary>
+        /// 预览文本命令依赖项属性
+        /// </summary>
+        public static RoutedUICommand CommandPreviewText { set; get; } = new RoutedUICommand();
+
+        /// <summary>
         /// 选择Mod/Map依赖项属性
         /// </summary>
         public static RoutedUICommand CommandComponentsPath { set; get; } = new RoutedUICommand();
@@ -591,6 +599,8 @@ namespace SC2_GameTranslater
             commandBinding = new CommandBinding(CommandReloadTranslation, Executed_ReloadTranslation, CanExecuted_ReloadTranslation);
             Globals.MainWindow.CommandBindings.Add(commandBinding);
             commandBinding = new CommandBinding(CommandReloadSourceText, Executed_ReloadSourceText, CanExecuted_ReloadSourceText);
+            Globals.MainWindow.CommandBindings.Add(commandBinding);
+            commandBinding = new CommandBinding(CommandPreviewText, Executed_PreviewText, CanExecuted_PreviewText);
             Globals.MainWindow.CommandBindings.Add(commandBinding);
             commandBinding = new CommandBinding(CommandComponentsPath, Executed_ComponentsPath, CanExecuted_ComponentsPath);
             Globals.MainWindow.CommandBindings.Add(commandBinding);
@@ -925,6 +935,41 @@ namespace SC2_GameTranslater
         /// <param name="sender">命令来源</param>
         /// <param name="e">路由事件参数</param>
         public static void CanExecuted_ReloadSourceText(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = Globals.ComponentsPathValid;
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 预览文本命令执行函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public void Executed_PreviewText(object sender, ExecutedRoutedEventArgs e)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("HelpPanelAddTip(PlayerGroupAll(), StringToText(\"Translated\"), (StringToText(\"\")"); 
+            for (int i = 0; i < CurrentFilterResultView.Count; i++)
+            {
+                if ((CurrentFilterResultView[i].Row[Data_GameText.RN_GameText_AddToPreview] is bool needAdd) && needAdd && CurrentFilterResultView[i].Row[Data_GameText.RN_GameText_ID] is string id)
+                {
+                    builder.Append(" + StringExternal(\"");
+                    builder.Append(id);
+                    builder.Append("\") + StringToText(\"\\r\\n\")");
+                }
+            }
+            builder.Append("), StringToText(\"\"), \"Assets\\\\Textures\\\\ui_btn_generic_exclemation_red.dds\");\r\nHelpPanelDisplayPage(PlayerGroupAll(), c_helpPanelPageTips);");
+            System.Windows.Clipboard.SetText(builder.ToString());
+            Log.ShowSystemMessage(true, MessageBoxButton.OK, MessageBoxImage.Information, "MSG_CopyPreviewTextToClipboard");
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 预览文本命令判断函数
+        /// </summary>
+        /// <param name="sender">命令来源</param>
+        /// <param name="e">路由事件参数</param>
+        public static void CanExecuted_PreviewText(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = Globals.ComponentsPathValid;
             e.Handled = true;
@@ -3205,6 +3250,20 @@ namespace SC2_GameTranslater
         }
 
         /// <summary>
+        /// 批量修改加入测试事件
+        /// </summary>
+        /// <param name="sender">事件控件</param>
+        /// <param name="e">响应参数</param>
+        private void CheckBox_AddToPreview_Checked(object sender, RoutedEventArgs e)
+        {
+            bool val = CheckBox_AddToPreview.IsChecked == true;
+            for (int i = 0; i < CurrentFilterResultView.Count; i++)
+            {
+                CurrentFilterResultView[i].Row[Data_GameText.RN_GameText_AddToPreview] = val;
+            }
+        }
+
+        /// <summary>
         /// 按下帮助F1键
         /// </summary>
         /// <param name="sender"></param>
@@ -3236,5 +3295,6 @@ namespace SC2_GameTranslater
         }
 
         #endregion
+
     }
 }

@@ -4,7 +4,7 @@ Hi SC2 modders, I'm Whimsyduke form Team Froggy&Catty. SC2_GameTranslater is one
 
 Based on our translate experience, we have developed utility kits such as auto backup, modification and text search/comparison to simplify and optimize the translation process. This tool also supports various functions such as collation, content filtration and in game preview. The translater can even finish the translation without complete mod or map files. So this tool can also be good partner of players and project cooperators.
 
-![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/23.png)
+![image](Image/23.png)
 
 How to use
 =======
@@ -14,16 +14,16 @@ Before We Start
 
 >If you first open this software and find there are so many Chinese words, don't be panic. Just follow the picture to find the language selection menu. Then all things will be familiar.
 
-![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/English.png)
+![image](Image/English.png)
 
-![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/EnglishSet.png)
+![image](Image/EnglishSet.png)
 
 
 
 Toolbar
 ============
 
-![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/Tool01.png)
+![image](Image/Tool01.png)
 
 1.File
 ------------
@@ -69,6 +69,14 @@ Reload Components
 
 >Import translated text from old version SC2Gametran file or Mod/map (SC2component folds). It won't change your text, instead, Abandoned text and usage status will be refreshed, you can compare these text with current text (source text and edited text) so that identify the changed text during the updates. (the Abandoned text and usage status are hide by default, you may need to set them by right click the table title of main translation zone.)
 
+PreviewText
+--------
+
+>Generate a Galaxy script to preview the translation result. You can select the preview text by checking the corresponding checkbox in ① in the figure below (you can click the corresponding checkbox in ② to select or unselect the current filtered text, note that it will not change the status of the hidden rows due to the filtering mismatch, but the hidden text will not be added to the previewed text), and then click the corresponding button in ③ to generate the previewed Galaxy Script and add it to the Clipboard. Then add the generated Galaxy code to the custom script action of the map test trigger. Enable the map to preview the result.
+
+![image](Image/Preview.png)
+![image](Image/PreviewEditor.png)
+![image](Image/PreviewGame.png)
 
 2.Record Filter
 --------------
@@ -118,7 +126,7 @@ Text overlap tool
 -------------
 
 This tool can overlap the translated text to other local languages. Such as using enUS in frFR and deDE.
-![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/Tool07.png)
+![image](Image/Tool07.png)
 
 1.Target language
 -----------
@@ -139,7 +147,7 @@ This tool can overlap the translated text to other local languages. Such as usin
 Main Translation Zone
 ==================
 
-![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/Tool03.png)
+![image](Image/Tool03.png)
 
 1.Data Index
 -----------
@@ -174,7 +182,7 @@ Main Translation Zone
 Detail View
 ==================
 
-![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/Tool05.png)
+![image](Image/Tool05.png)
 
 1.Show Language
 -------------
@@ -196,6 +204,6 @@ Detail View
 4.Text Combine in Galaxy
 --------------------
 
-![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/Tool09.png)
+![image](Image/Tool09.png)
 >Show the text details in the galaxy script, if a sentence contains various strings in galaxy script, you can review the final result here too, such as `this weapon creates`+`points damages.`.
 

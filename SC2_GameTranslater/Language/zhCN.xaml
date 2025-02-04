@@ -101,6 +101,7 @@
     <sys:String x:Key="UI_DataGridColumn_GalaxyText_Header">Galaxy文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedDropedText_Header">舍弃文本</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextFile_Header">所在文件</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedAddToPreview_Header">加入预览</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">文本ID</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">文本状态</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedUseStatus_Header">使用状态</sys:String>
@@ -147,6 +148,7 @@
     <sys:String x:Key="UI_RibbonButton_Open_Header">打开</sys:String>
     <sys:String x:Key="UI_RibbonButton_ReloadSourceText_Header">重载文本</sys:String>
     <sys:String x:Key="UI_RibbonButton_ReloadTranslation_Header">重载翻译</sys:String>
+    <sys:String x:Key="UI_RibbonButton_PreviewText_Header">预览文本</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">保存</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">另存为</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">复制翻译文本</sys:String>
@@ -349,8 +351,11 @@
     <sys:String x:Key="TP_GroupBox_TranslatedTexts_Text" xml:space="preserve">所有翻译文本的表格，能够显示有关游戏文本的信息。你可以通过每列表头的提示信息来获取对应的说明，右键点击列的表头可以切换显示/隐藏表头。你也可以通过右键表格来打开右键菜单。</sys:String>
     <sys:String x:Key="TP_GroupBox_TranslatedTexts_DisableReason">你需要打开或者新建一个项目。</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Title">数据编号</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Text" xml:space="preserve">文本的序号，对于全部文本是 唯一的，你可以使用它来做简单的搜索。</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Text" xml:space="preserve">文本的序号，对于全部文本是唯一的，你可以使用它来做简单的搜索。</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_Title">加入预览</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_DisableReason">禁用原因</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_Text" xml:space="preserve">加入生成的预览Galaxy代码。勾选/取消列标题的复选框可以切换“当前筛选结果范围内”的全部行的配置。每行都会设置为列标题的复选框状态。</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextID_Title">文本ID</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextID_Text" xml:space="preserve">文本的ID。</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextID_DisableReason">禁用原因</sys:String>
@@ -436,6 +441,8 @@
     <sys:String x:Key="MSG_SaveProject_Title">消息</sys:String>
     <sys:String x:Key="MSG_SrollToItemFindOutID_Message">无法在当前搜索结果中找到ID（{0}），是否在重置筛选设置后再次尝试？</sys:String>
     <sys:String x:Key="MSG_SrollToItemFindOutID_Title">消息</sys:String>
+    <sys:String x:Key="MSG_CopyPreviewTextToClipboard_Message">预览用Galaxy代码已经写入剪切板，请粘贴到翻译的地图中测试。</sys:String>
+    <sys:String x:Key="MSG_CopyPreviewTextToClipboard_Title">消息</sys:String>
     <!--#endregion-->
 
 </ResourceDictionary>

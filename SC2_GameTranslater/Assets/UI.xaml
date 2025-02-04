@@ -589,6 +589,15 @@
         Text="{DynamicResource TP_DataGridColumn_TranslatedIndex_Text}" />
 
     <Fluent:ScreenTip
+        x:Key="ToolTip_ColumnTranslatedAddToPreview"
+        Title="{DynamicResource TP_DataGridColumn_TranslatedAddToPreview_Title}"
+        Width="300"
+        DisableReason="{DynamicResource TP_DataGridColumn_TranslatedAddToPreview_DisableReason}"
+        HelpTopic="{x:Static source:Class_ConstantAndEnum.Link_HelpTopic}"
+        IsRibbonAligned="False"
+        Text="{DynamicResource TP_DataGridColumn_TranslatedAddToPreview_Text}" />
+
+    <Fluent:ScreenTip
         x:Key="ToolTip_ColumnTranslatedTextID"
         Title="{DynamicResource TP_DataGridColumn_TranslatedTextID_Title}"
         Width="300"

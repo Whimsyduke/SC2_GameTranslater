@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TriggerData>
+    <Root>
+        <Item Type="Trigger" Id="E6F9C786"/>
+    </Root>
+    <Element Type="Trigger" Id="E6F9C786">
+        <Event Type="FunctionCall" Id="17B96C16"/>
+        <Action Type="FunctionCall" Id="B0A66179"/>
+    </Element>
+    <Element Type="FunctionCall" Id="17B96C16">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="BF7A3439"/>
+        <Parameter Type="Param" Id="5AA9FA51"/>
+        <Parameter Type="Param" Id="696714A8"/>
+    </Element>
+    <Element Type="Param" Id="5AA9FA51">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="D5175014"/>
+        <Value>0.1</Value>
+        <ValueType Type="fixed"/>
+    </Element>
+    <Element Type="Param" Id="696714A8">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="BCEBDC95"/>
+        <Preset Type="PresetValue" Library="Ntve" Id="00000013"/>
+    </Element>
+    <Element Type="FunctionCall" Id="B0A66179">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000123"/>
+        <ScriptCode>
+            HelpPanelAddTip(PlayerGroupAll(), StringToText(&quot;Translated&quot;), (StringToText(&quot;&quot;) + StringExternal(&quot;DocInfo/DescLong&quot;) + StringToText(&quot;\r\n&quot;) + StringExternal(&quot;DocInfo/DescShort&quot;) + StringToText(&quot;\r\n&quot;) + StringExternal(&quot;DocInfo/Name&quot;) + StringToText(&quot;\r\n&quot;) + StringExternal(&quot;MapInfo/Player00/Name&quot;) + StringToText(&quot;\r\n&quot;) + StringExternal(&quot;MapInfo/Player01/Name&quot;) + StringToText(&quot;\r\n&quot;) + StringExternal(&quot;MapInfo/Player02/Name&quot;) + StringToText(&quot;\r\n&quot;) + StringExternal(&quot;CustomScript/Name/CDF5ADB7&quot;) + StringToText(&quot;\r\n&quot;) + StringExternal(&quot;FunctionDef/Name/42440B95&quot;) + StringToText(&quot;\r\n&quot;) + StringExternal(&quot;Trigger/Name/E6F9C786&quot;) + StringToText(&quot;\r\n&quot;) + StringExternal(&quot;DOCSTR_0000&quot;) + StringToText(&quot;\r\n&quot;) + StringExternal(&quot;DOCSTR_0001&quot;) + StringToText(&quot;\r\n&quot;) + StringExternal(&quot;DOCSTR_0002&quot;) + StringToText(&quot;\r\n&quot;)), StringToText(&quot;&quot;), &quot;Assets\\Textures\\ui_btn_generic_exclemation_red.dds&quot;);
+            HelpPanelDisplayPage(PlayerGroupAll(), c_helpPanelPageTips);
+        </ScriptCode>
+    </Element>
+</TriggerData>

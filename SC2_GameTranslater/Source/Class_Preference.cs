@@ -155,7 +155,6 @@ namespace SC2_GameTranslater.Source
             Globals.Preference.Preference_SaveColumnVisibility();
             Globals.Preference.Preference_SaveShowScript();
             SerializerCompression();
-
         }
 
         /// <summary>

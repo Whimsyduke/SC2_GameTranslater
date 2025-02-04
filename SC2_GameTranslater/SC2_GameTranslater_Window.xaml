@@ -317,6 +317,13 @@
                         Icon="{StaticResource ResourceKey=IMAGE_ReloadSourceText}"
                         LargeIcon="{StaticResource ResourceKey=IMAGE_ReloadSourceText}"
                         ToolTip="{StaticResource ToolTip_ReloadSourceText}" />
+                    <Fluent:Button
+                        Name="RibbonButton_PreviewText"
+                        Command="{x:Static local:SC2_GameTranslater_Window.CommandPreviewText}"
+                        Header="{DynamicResource UI_RibbonButton_PreviewText_Header}"
+                        Icon="{StaticResource ResourceKey=IMAGE_Preview}"
+                        LargeIcon="{StaticResource ResourceKey=IMAGE_Preview}"
+                        ToolTip="{StaticResource ToolTip_ReloadSourceText}" />
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox
                     Name="RibbonGroupBox_FilterRecord"
@@ -894,6 +901,12 @@
                 SelectionUnit="CellOrRowHeader">
                 <DataGrid.Resources>
                     <MenuItem
+                        x:Key="MenuItem_AddToPreview"
+                        Header="{DynamicResource UI_DataGridColumn_TranslatedAddToPreview_Header}"
+                        IsCheckable="True"
+                        IsChecked="True"
+                        Tag="0" />
+                    <MenuItem
                         x:Key="MenuItem_TextID"
                         Header="{DynamicResource UI_DataGridColumn_TranslatedTextID_Header}"
                         IsCheckable="True"
@@ -942,6 +955,7 @@
                         IsChecked="True"
                         Tag="7" />
                     <ContextMenu x:Key="ContextMenu_ColumnVisible">
+                        <StaticResource ResourceKey="MenuItem_AddToPreview" />
                         <StaticResource ResourceKey="MenuItem_TextID" />
                         <StaticResource ResourceKey="MenuItem_Index" />
                         <StaticResource ResourceKey="MenuItem_TextFile" />
@@ -1027,6 +1041,30 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
+                    <DataGridCheckBoxColumn
+                        x:Name="DataGridColumn_TranslatedAddToPreview"
+                        Width="Auto"
+                        Binding="{Binding AddToPreview, UpdateSourceTrigger=PropertyChanged}"
+                        CanUserReorder="True"
+                        CanUserResize="True"
+                        CanUserSort="True"
+                        IsReadOnly="False"
+                        Visibility="{Binding Source={StaticResource MenuItem_AddToPreview}, Path=IsChecked, Converter={StaticResource ResourceKey=Converter_BooleanToVisibility}}">
+                        <DataGridCheckBoxColumn.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox
+                                    Name="CheckBox_AddToPreview" IsChecked="False" Checked="CheckBox_AddToPreview_Checked" Unchecked="CheckBox_AddToPreview_Checked" />
+                                <TextBlock Text="{DynamicResource UI_DataGridColumn_TranslatedAddToPreview_Header}" ToolTip="{StaticResource ToolTip_ColumnTranslatedAddToPreview}" />
+                            </StackPanel>
+                        </DataGridCheckBoxColumn.Header>
+                        <DataGridCheckBoxColumn.ElementStyle>
+                            <Style TargetType="CheckBox">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Margin" Value="2" />
+                            </Style>
+                        </DataGridCheckBoxColumn.ElementStyle>
+                    </DataGridCheckBoxColumn>
                     <DataGridTextColumn
                         x:Name="DataGridColumn_TranslatedTextID"
                         Width="*"
@@ -1712,6 +1750,7 @@
                                                     <TextBlock Text="{DynamicResource UI_DataGridColumn_DeatilsEditedText_Header}" ToolTip="{StaticResource ToolTip_ColumnDetailsEditedText}" />
                                                 </DataGridTextColumn.Header>
                                                 <DataGridTextColumn.ElementStyle>
+                                                    
                                                     <Style TargetType="TextBlock">
                                                         <Setter Property="HorizontalAlignment" Value="Left" />
                                                         <Setter Property="VerticalAlignment" Value="Center" />
