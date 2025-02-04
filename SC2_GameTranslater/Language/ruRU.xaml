@@ -101,7 +101,7 @@
     <sys:String x:Key="UI_DataGridColumn_GalaxyText_Header">Текст Galaxy</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedDropedText_Header">Заброшенный текст</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextFile_Header">Файл</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslatedAddToPreview_Header">Добавить к просмотру</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedAddToPreview_Header">В предпросмотр</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">ИД текста</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">Состояние текста</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedUseStatus_Header">Состояние использования</sys:String>
@@ -148,7 +148,7 @@
     <sys:String x:Key="UI_RibbonButton_Open_Header">Открыть</sys:String>
     <sys:String x:Key="UI_RibbonButton_ReloadSourceText_Header">Обновить компоненты</sys:String>
     <sys:String x:Key="UI_RibbonButton_ReloadTranslation_Header">Обновить перевод</sys:String>
-    <sys:String x:Key="UI_RibbonButton_PreviewText_Header">Предварительный просмотр текста</sys:String>
+    <sys:String x:Key="UI_RibbonButton_PreviewText_Header">Предпросмотр текста</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">Сохранить</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">Сохранить как</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">Дублирование нескольких языков</sys:String>
@@ -352,7 +352,7 @@
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Title">Индекс</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Text" xml:space="preserve">Индекс текста, он уникален, вы можете просто найти текст по его индексу.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_DisableReason">Причина отключения</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_Title">Добавить к просмотру</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_Title">В предпросмотр</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_DisableReason">Причина отключения</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_Text" xml:space="preserve">Добавьте сгенерированный код предварительного просмотра Galaxy. Установите/снимите флажки в заголовках столбцов, чтобы переключить конфигурацию всех строк «в пределах текущего диапазона результатов фильтрации». Для каждой строки будет установлено состояние флажка в заголовке столбца.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextID_Title">ИД текста</sys:String>
@@ -452,7 +452,7 @@
     <sys:String x:Key="MSG_SaveProject_Title">Предупреждение</sys:String>
     <sys:String x:Key="MSG_SrollToItemFindOutID_Message">Не удаётся найти идентификатор {0} в текущих результатах поиска, вы хотите повторить попытку после сброса фильтра?</sys:String>
     <sys:String x:Key="MSG_SrollToItemFindOutID_Title">Предупреждение</sys:String>
-    <sys:String x:Key="MSG_CopyPreviewTextToClipboard_Message">Превью с кодом Galaxy было записано в буфер обмена, пожалуйста, вставьте его в переведенную карту, чтобы проверить ее.</sys:String>
+    <sys:String x:Key="MSG_CopyPreviewTextToClipboard_Message">Предпросмотр с кодом Galaxy был записан в буфер обмена, пожалуйста, вставьте его в переведённую карту, чтобы проверить его.</sys:String>
     <sys:String x:Key="MSG_CopyPreviewTextToClipboard_Title">Предупреждение</sys:String>
     <!--#endregion-->
 
