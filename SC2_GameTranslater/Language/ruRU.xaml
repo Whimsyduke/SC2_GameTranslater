@@ -101,7 +101,7 @@
     <sys:String x:Key="UI_DataGridColumn_GalaxyText_Header">Текст Galaxy</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedDropedText_Header">Заброшенный текст</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextFile_Header">Файл</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslatedAddToPreview_Header">В предпросмотр</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedAddToPreview_Header">Добавить в предпросмотр</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">ИД текста</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">Состояние текста</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedUseStatus_Header">Состояние использования</sys:String>
@@ -352,7 +352,7 @@
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Title">Индекс</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Text" xml:space="preserve">Индекс текста, он уникален, вы можете просто найти текст по его индексу.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_DisableReason">Причина отключения</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_Title">В предпросмотр</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_Title">Добавить в предпросмотр</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_DisableReason">Причина отключения</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_Text" xml:space="preserve">Добавьте сгенерированный код предварительного просмотра Galaxy. Установите/снимите флажки в заголовках столбцов, чтобы переключить конфигурацию всех строк «в пределах текущего диапазона результатов фильтрации». Для каждой строки будет установлено состояние флажка в заголовке столбца.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextID_Title">ИД текста</sys:String>
