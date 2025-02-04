@@ -558,6 +558,9 @@ namespace SC2_GameTranslater
                         case EnumLanguage.enUS:
                             dictLanguage.Source = new Uri("pack://application:,,,/" + fileName);
                             break;
+                        case EnumLanguage.ruRU:
+                            dictLanguage.Source = new Uri("pack://application:,,,/" + fileName);
+                            break;
                         default:
                             continue;
                     }

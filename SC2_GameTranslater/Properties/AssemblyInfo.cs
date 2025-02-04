@@ -50,8 +50,8 @@ using System.Windows;
 //
 // 可以指定所有值，也可以使用以下所示的 "*" 预置版本号和修订号
 // 方法是按如下所示使用“*”: :
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.*")]
+// [assembly: AssemblyVersion("1.1.*")]
+[assembly: AssemblyVersion("1.1.*")]
 #pragma warning disable CS7035 // 指定版本字符串不符合建议格式 - major.minor.build.revision
-[assembly: AssemblyFileVersion("1.0.*")]
+[assembly: AssemblyFileVersion("1.1.*")]
 #pragma warning restore CS7035 // 指定版本字符串不符合建议格式 - major.minor.build.revision
