@@ -1,0 +1,56 @@
+//==================================================================================================
+// 
+// Generated Map Script
+// 
+// Name:   Just Another StarCraft II Map
+// 
+//==================================================================================================
+include "TriggerLibs/NativeLib"
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+void InitLibs () {
+    libNtve_InitLib();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger Variables
+//--------------------------------------------------------------------------------------------------
+trigger gt_UntitledTrigger001;
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Untitled Trigger 001
+//--------------------------------------------------------------------------------------------------
+bool gt_UntitledTrigger001_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    HelpPanelAddTip(PlayerGroupAll(), StringToText("Translated"), (StringToText("") + StringExternal("DocInfo/DescLong") + StringToText("\r\n") + StringExternal("DocInfo/DescShort") + StringToText("\r\n") + StringExternal("DocInfo/Name") + StringToText("\r\n") + StringExternal("MapInfo/Player00/Name") + StringToText("\r\n") + StringExternal("MapInfo/Player01/Name") + StringToText("\r\n") + StringExternal("MapInfo/Player02/Name") + StringToText("\r\n") + StringExternal("CustomScript/Name/CDF5ADB7") + StringToText("\r\n") + StringExternal("FunctionDef/Name/42440B95") + StringToText("\r\n") + StringExternal("Trigger/Name/E6F9C786") + StringToText("\r\n") + StringExternal("DOCSTR_0000") + StringToText("\r\n") + StringExternal("DOCSTR_0001") + StringToText("\r\n") + StringExternal("DOCSTR_0002") + StringToText("\r\n")), StringToText(""), "Assets\\Textures\\ui_btn_generic_exclemation_red.dds");
+    HelpPanelDisplayPage(PlayerGroupAll(), c_helpPanelPageTips);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_UntitledTrigger001_Init () {
+    gt_UntitledTrigger001 = TriggerCreate("gt_UntitledTrigger001_Func");
+    TriggerAddEventTimeElapsed(gt_UntitledTrigger001, 0.1, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger Initialization
+//--------------------------------------------------------------------------------------------------
+void InitTriggers () {
+    gt_UntitledTrigger001_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Map Initialization
+//--------------------------------------------------------------------------------------------------
+void InitMap () {
+    InitLibs();
+    InitTriggers();
+}

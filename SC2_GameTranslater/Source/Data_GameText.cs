@@ -112,6 +112,7 @@ namespace SC2_GameTranslater.Source
         public const string RN_GalaxyLocation_Line = "Line";
         public const string RN_GalaxyLocation_LineIndex = "LineIndex";
         public const string RN_GalaxyLocation_Key = "Key";
+        public const string RN_GameText_AddToPreview = "AddToPreview";
         public const string RN_GameText_ID = "ID";
         public const string RN_GameText_Index = "Index";
         public const string RN_GameText_File = "File";

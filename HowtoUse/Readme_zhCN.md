@@ -13,7 +13,7 @@ GG&GL!
 工具栏
 ============
 
-![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/Tool02.png)
+![image](Image/Tool02.png)
 
 1.文件
 ------------
@@ -57,6 +57,15 @@ GG&GL!
 --------
 
 >从另外一个项目文件中将翻译内容导入至该项目，但不会修改翻译内容，而是进行文本对比，方便你查看哪些文本的翻译发生了变化。（默认隐藏，需要在主翻译区勾选相关选项）
+
+预览文本
+--------
+
+>生成预览翻译结果的Galaxy脚本。可以勾选如下图①对应的复选框来选择预览的文本（可以点击②对应的复选框来全选或全不选当前筛选出的文本，注意，不会更改因筛选不匹配而隐藏的行的状态，但是隐藏的文本也不会加入到预览文本中），最终点击③对应按钮生成预览Galaxy脚本并加入到剪切板中。然后将生成的Galaxy代码加入地图测试用触发器的自定义脚本动作中。启用地图即可预览结果。
+
+![image](Image/Preview.png)
+![image](Image/PreviewEditor.png)
+![image](Image/PreviewGame.png)
 
 2.筛选记录
 --------------
@@ -107,7 +116,7 @@ GG&GL!
 -------------
 
 翻译复制工具用于将已经翻译好的语言文本覆盖到其他语言文本中。比如在法语或德语文本中使用英文文本。
-![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/Tool08.png)
+![image](Image/Tool08.png)
 
 1.目标语言
 -----------
@@ -128,7 +137,7 @@ GG&GL!
 翻译区
 ==================
 
-![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/Tool04.png)
+![image](Image/Tool04.png)
 
 1.数据编号
 -----------
@@ -163,7 +172,7 @@ GG&GL!
 细节视图
 ==================
 
-![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/Tool06.png)
+![image](Image/Tool06.png)
 
 1.显示语言
 -------------
@@ -186,5 +195,5 @@ GG&GL!
 4.Galaxy拼接结果
 --------------------
 
-![image](https://github.com/Whimsyduke/SC2_GameTranslater/blob/master/HowtoUse/Image/Tool10.png)
+![image](Image/Tool10.png)
 >显示文本在Galaxy脚本中的详细信息，当一个句子由多个字符串组成时，也可以通过该工具查看完整的拼接文本。如“`造成`+`点伤害`”。
