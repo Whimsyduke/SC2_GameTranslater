@@ -53,7 +53,7 @@
     <sys:String x:Key="TEXT_UsezhTW">zhTW</sys:String>
     <sys:String x:Key="TEXT_WindowTitleProject">&#160;Проект:&#160;</sys:String>
     <sys:String x:Key="TEXT_WindowTitleProjectUnsaved">Несохранённый проект</sys:String>
-    <sys:String x:Key="TEXT_WindowTitleText">Редактор перевода игры Starcraft II вер. {0}{1}{2}</sys:String>
+    <sys:String x:Key="TEXT_WindowTitleText">Редактор перевода игры StarCraft II вер. {0}{1}{2}</sys:String>
     <sys:String x:Key="TEXT_AddLanguage">Добавить язык</sys:String>
     <sys:String x:Key="TEXT_RemoveLanguage">Удалить язык</sys:String>
     <sys:String x:Key="TEXT_UseLanguage">Применить язык</sys:String>
@@ -101,7 +101,7 @@
     <sys:String x:Key="UI_DataGridColumn_GalaxyText_Header">Текст Galaxy</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedDropedText_Header">Заброшенный текст</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextFile_Header">Файл</sys:String>
-    <sys:String x:Key="UI_DataGridColumn_TranslatedAddToPreview_Header">Добавить к просмотру</sys:String>
+    <sys:String x:Key="UI_DataGridColumn_TranslatedAddToPreview_Header">Добавить в предпросмотр</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextID_Header">ИД текста</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedTextStatus_Header">Состояние текста</sys:String>
     <sys:String x:Key="UI_DataGridColumn_TranslatedUseStatus_Header">Состояние использования</sys:String>
@@ -148,7 +148,7 @@
     <sys:String x:Key="UI_RibbonButton_Open_Header">Открыть</sys:String>
     <sys:String x:Key="UI_RibbonButton_ReloadSourceText_Header">Обновить компоненты</sys:String>
     <sys:String x:Key="UI_RibbonButton_ReloadTranslation_Header">Обновить перевод</sys:String>
-    <sys:String x:Key="UI_RibbonButton_PreviewText_Header">Предварительный просмотр текста</sys:String>
+    <sys:String x:Key="UI_RibbonButton_PreviewText_Header">Предпросмотр текста</sys:String>
     <sys:String x:Key="UI_RibbonButton_Save_Header">Сохранить</sys:String>
     <sys:String x:Key="UI_RibbonButton_SaveAs_Header">Сохранить как</sys:String>
     <sys:String x:Key="UI_RibbonGroupBox_CopyTranslatedText_Header">Дублирование нескольких языков</sys:String>
@@ -268,7 +268,7 @@
     <sys:String x:Key="TP_CheckBox_SearchCase_Title">Поиск с учётом регистра</sys:String>
     <sys:String x:Key="TP_CheckBox_SearchCase_Text" xml:space="preserve">Совпадение по регистру при поиске английских слов. Работает при нажатии кнопки поиска. Горячая клавиша: Ctrl + F.</sys:String>
     <sys:String x:Key="TP_CheckBox_SearchCase_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RadioButton_SearchNull_Title">Нулевой режим</sys:String>
+    <sys:String x:Key="TP_RadioButton_SearchNull_Title">Режим нулей</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNull_Text" xml:space="preserve">Поиск только по пустому тексту (текст с текстовым идентификатором отсутствует или значение текста пустое). Работает при нажатии кнопки поиска. Горячая клавиша: Ctrl + F.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchNull_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
     <sys:String x:Key="TP_RadioButton_SearchRegex_Title">Режим регулярного выражения</sys:String>
@@ -279,7 +279,7 @@
     <sys:String x:Key="TP_RadioButton_SearchNormal_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_Title">Поиск ключевого слова</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_Text" xml:space="preserve">Ключевое слово, используемое для поиска. Работает при нажатии кнопки поиска. Горячая клавиша: Ctrl + F.</sys:String>
-    <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_DisableReason">Вам нужно открыть или создать новый проект, и нет необходимости вводить текст в нулевом режиме.</sys:String>
+    <sys:String x:Key="TP_RibbonSearchTextBox_SearchKeyword_DisableReason">Вам нужно открыть или создать новый проект, и нет необходимости вводить текст в режиме нулей.</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_Title">Поиск</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_Text" xml:space="preserve">Поиск по ключевому слову в области, заданной в группе. Результаты поиска будут показаны в таблице переведённых текстовых данных.&#x000D; Горячая клавиша: Ctrl + F</sys:String>
     <sys:String x:Key="TP_RibbonSearchTextBox_DoSearch_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
@@ -307,31 +307,31 @@
     <sys:String x:Key="TP_RibbonGroupBox_TextStatusFilter_Title">В состоянии текста</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_TextStatusFilter_Text" xml:space="preserve">Фильтрация различных текстовых состояний.</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_TextStatusFilter_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_TextStatusFilterEmpty_Title">Состояние пустого текста</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterEmpty_Title">Состояние: пустой текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_TextStatusFilterEmpty_Text" xml:space="preserve">Фильтрация всего текста, текстовое состояние которого пусто.</sys:String>
     <sys:String x:Key="TP_RibbonButton_TextStatusFilterEmpty_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_TextStatusFilterNormal_Title">Состояние обычного текста</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterNormal_Title">Состояние: обычный текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_TextStatusFilterNormal_Text" xml:space="preserve">Фильтрация всего текста, текстовое состояние которого обычное.</sys:String>
     <sys:String x:Key="TP_RibbonButton_TextStatusFilterNormal_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_Title">Состояние изменённого текста</sys:String>
+    <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_Title">Состояние: изменённый текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_Text" xml:space="preserve">Фильтрация всего текста, текстовое состояние которого изменённое.</sys:String>
     <sys:String x:Key="TP_RibbonButton_TextStatusFilterModified_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Title">Текущее состояние использования</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_Text" xml:space="preserve">Фильтрация различных состояний использования.</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_UseStatusFilter_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_Title">Состояние нулевого текста</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_Title">Состояние: нулевой текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_Text" xml:space="preserve">Фильтрация всего текста, состояние использования которого является нулевым.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterNone_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_Title">Заброшенный текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_Text" xml:space="preserve">Фильтрация всего текста, состояние использования которого является заброшенным.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterDroped_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_Title">Состояние обычного текста</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_Title">Состояние: обычный текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_Text" xml:space="preserve">Фильтрация всего текста, состояние использования которого является обычным.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterNormal_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_Title">Состояние добавленного текста</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_Title">Состояние: добавленный текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_Text" xml:space="preserve">Фильтрация всего текста, состояние использования которого является добавленным.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterAdded_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
-    <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Title">Состояние изменённого текста</sys:String>
+    <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Title">Состояние: изменённый текст</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_Text" xml:space="preserve">Фильтрация всего текста, состояние использования которого является изменённым.</sys:String>
     <sys:String x:Key="TP_RibbonButton_UseStatusFilterModified_DisableReason">Вам нужно открыть или создать новый проект.</sys:String>
     <sys:String x:Key="TP_RibbonGroupBox_CopyTranslatedText_Title">Дублирование нескольких языков</sys:String>
@@ -352,7 +352,7 @@
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Title">Индекс</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_Text" xml:space="preserve">Индекс текста, он уникален, вы можете просто найти текст по его индексу.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedIndex_DisableReason">Причина отключения</sys:String>
-    <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_Title">Добавить к просмотру</sys:String>
+    <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_Title">Добавить в предпросмотр</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_DisableReason">Причина отключения</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedAddToPreview_Text" xml:space="preserve">Добавьте сгенерированный код предварительного просмотра Galaxy. Установите/снимите флажки в заголовках столбцов, чтобы переключить конфигурацию всех строк «в пределах текущего диапазона результатов фильтрации». Для каждой строки будет установлено состояние флажка в заголовке столбца.</sys:String>
     <sys:String x:Key="TP_DataGridColumn_TranslatedTextID_Title">ИД текста</sys:String>
@@ -452,7 +452,7 @@
     <sys:String x:Key="MSG_SaveProject_Title">Предупреждение</sys:String>
     <sys:String x:Key="MSG_SrollToItemFindOutID_Message">Не удаётся найти идентификатор {0} в текущих результатах поиска, вы хотите повторить попытку после сброса фильтра?</sys:String>
     <sys:String x:Key="MSG_SrollToItemFindOutID_Title">Предупреждение</sys:String>
-    <sys:String x:Key="MSG_CopyPreviewTextToClipboard_Message">Превью с кодом Galaxy было записано в буфер обмена, пожалуйста, вставьте его в переведенную карту, чтобы проверить ее.</sys:String>
+    <sys:String x:Key="MSG_CopyPreviewTextToClipboard_Message">Предпросмотр с кодом Galaxy был записан в буфер обмена, пожалуйста, вставьте его в переведённую карту, чтобы проверить его.</sys:String>
     <sys:String x:Key="MSG_CopyPreviewTextToClipboard_Title">Предупреждение</sys:String>
     <!--#endregion-->
 
